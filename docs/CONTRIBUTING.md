@@ -27,7 +27,7 @@ coding guidelines, as well as begin extending your own workflow.
 1. Copy the snippet below to clone the project onto your local machine:
 
    ```zsh
-   git clone https://github.com/flex-development/ts-pkg.git; cd ts-pkg
+   git clone https://github.com/flex-development/tutils.git; cd tutils
    yarn
    ```
 

@@ -1,9 +1,7 @@
 # Prettier Ignore
 # See: https://prettier.io/docs/en/ignore.html
 
-.vercel/**
 .vscode/**
-coverage/**
 dist/**
 node_modules/**
 

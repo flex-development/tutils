@@ -72,7 +72,7 @@ module.exports = {
       return [
         2,
         'always',
-        [...directories(readdirSync(SRC)), 'deps', 'release']
+        [...directories(readdirSync(SRC)), 'deps', 'release', 'types']
       ]
     },
 

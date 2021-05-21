@@ -34,12 +34,7 @@ module.exports = {
     ...PARSER_OPTIONS,
     project: ['./tsconfig.json']
   },
-  plugins: [
-    '@typescript-eslint/eslint-plugin',
-    'jsdoc',
-    'spellcheck',
-    'tree-shaking'
-  ],
+  plugins: ['@typescript-eslint/eslint-plugin', 'jsdoc', 'spellcheck'],
   rules: {
     '@typescript-eslint/ban-ts-ignore': 0,
     '@typescript-eslint/ban-types': 1,
@@ -137,18 +132,6 @@ module.exports = {
       rules: {
         '@typescript-eslint/explicit-module-boundary-types': 0,
         '@typescript-eslint/no-var-requires': 0
-      }
-    },
-    {
-      files: ['**/__tests__/**', '*.spec.ts'],
-      env: {
-        es6: true,
-        'jest/globals': true,
-        node: true
-      },
-      extends: EXTENDS_CONFIG.splice(1, 0, 'plugin:jest/recommended'),
-      rules: {
-        'jest/no-disabled-tests': 0
       }
     },
     {

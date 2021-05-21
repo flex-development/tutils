@@ -19,14 +19,7 @@
     "noUnusedLocals": false,
     "noUnusedParameters": false,
     "outDir": "dist",
-    "paths": {
-      "@": ["src/index.ts"],
-      "@/*": ["src/*"],
-      "@mango": ["src/index.ts"],
-      "@mango/*": ["src/*"],
-      "@tests/fixtures/*": ["__tests__/__fixtures__/*"],
-      "@tests/*": ["__tests__/*"]
-    },
+    "paths": {},
     "preserveConstEnums": true,
     "pretty": true,
     "resolveJsonModule": true,

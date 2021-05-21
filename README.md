@@ -1,19 +1,18 @@
-# TypeScript Package Starter
+# Tutils
 
 [![TypeScript](https://badgen.net/badge/-/typescript?icon=typescript&label)](https://www.typescriptlang.org/)
-[![tested with jest](https://img.shields.io/badge/tested_with-jest-99424f.svg)](https://github.com/facebook/jest)
 
 ## Overview
 
-[Getting Started](#🚧-getting-started)  
+[Getting Started](#getting-started)  
 [Installation](#installation)  
-[Usage](#🚧-usage)  
-[Built With](#🚧-built-with)  
+[Usage](#usage)  
+[Built With](#built-with)  
 [Contributing](docs/CONTRIBUTING.md)
 
-## :construction: Getting Started
+## Getting Started
 
-**TODO:** Update documentation.
+[TypeScript][1] utilities.
 
 ## Installation
 
@@ -26,13 +25,27 @@
 2. Add project to `dependencies`
 
    ```zsh
-   yarn add @flex-development/ts-pkg # or npm i @flex-development/ts-pkg
+   yarn add @flex-development/tutils # or npm i @flex-development/tutils
    ```
 
-## :construction: Usage
+## Usage
 
-**TODO:** Update documentation.
+```typescript
+import type { ObjectPath } from '@flex-development/tutils'
 
-## :construction: Built With
+const object = {
+  top_level: true,
+  nested: { data: true }
+}
 
-**TODO:** Update documentation.
+const object_top_level_path: ObjectPath<typeof object> = 'top_level'
+const object_nested_data_path: ObjectPath<typeof object> = 'nested.data'
+```
+
+[See all type definitions](src/index.ts).
+
+## Built With
+
+- [TypeScript][1] - Typed JavaScript
+
+[1]: https://www.typescriptlang.org
