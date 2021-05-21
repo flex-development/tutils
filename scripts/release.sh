@@ -21,11 +21,9 @@ fi
 # PRE-RELEASE WORKFLOW
 # 1. Pull commits from `origin/$CURRENT_BRANCH`
 # 2. Get latest updates from `next` branch
-# 3. Run test suites (without cache)
-# 4. Push changes
+# 3. Push changes
 git pull
 git rebase origin/next
-yarn test --no-cache
 git pnv
 
 # RELEASE WORKFLOW
