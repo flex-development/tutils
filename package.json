@@ -1,0 +1,89 @@
+{
+  "name": "@flex-development/ts-pkg",
+  "description": "TypeScript package starter",
+  "version": "1.0.0",
+  "keywords": [
+    "typescript"
+  ],
+  "homepage": "https://github.com/flex-development/ts-pkg",
+  "repository": "git://github.com/flex-development/ts-pkg.git",
+  "bugs": {
+    "url": "https://github.com/flex-development/ts-pkg/issues",
+    "email": "developers@flexdevelopment.llc"
+  },
+  "license": "BSD-3-Clause",
+  "author": {
+    "name": "Lexus Drumgold",
+    "email": "lex@flexdevlopment.llc",
+    "url": "https://flexdevelopment.llc"
+  },
+  "publishConfig": {
+    "access": "public",
+    "directory": "./dist",
+    "registry": "https://npm.pkg.github.com"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "clean": "rm -rf node_modules || true",
+    "clear:jest": "jest --clearCache",
+    "postinstall": "husky-run install",
+    "format": "prettier --write \"./\"",
+    "lint": "eslint . --ext js,ts --fix --cache",
+    "test": "zsh scripts/jest.sh",
+    "test:e2e": "zsh scripts/jest-e2e.sh",
+    "compile": "zsh scripts/compile.sh",
+    "release": "zsh scripts/release.sh",
+    "release:github": "node scripts/js/release-github"
+  },
+  "dependencies": {
+    "@flex-development/exceptions": "2.0.0",
+    "@types/debug": "latest",
+    "debug": "latest"
+  },
+  "devDependencies": {
+    "@babel/eslint-parser": "latest",
+    "@commitlint/cli": "latest",
+    "@commitlint/config-conventional": "latest",
+    "@commitlint/format": "latest",
+    "@types/faker": "latest",
+    "@types/jest": "latest",
+    "@typescript-eslint/eslint-plugin": "latest",
+    "@typescript-eslint/parser": "latest",
+    "@zerollup/ts-transform-paths": "latest",
+    "dotenv-cli": "latest",
+    "eslint": "latest",
+    "eslint-config-prettier": "latest",
+    "eslint-plugin-import": "latest",
+    "eslint-plugin-jest": "latest",
+    "eslint-plugin-jsdoc": "latest",
+    "eslint-plugin-node": "latest",
+    "eslint-plugin-prettier": "latest",
+    "eslint-plugin-spellcheck": "latest",
+    "eslint-plugin-tree-shaking": "latest",
+    "faker": "latest",
+    "husky": "4.3.8",
+    "jest": "27.0.0-next.8",
+    "jest-extended": "latest",
+    "lint-staged": "latest",
+    "npm": "latest",
+    "npm-run-all": "latest",
+    "prettier": "2.2.1",
+    "replace-in-file": "latest",
+    "standard-version": "latest",
+    "ts-jest": "27.0.0-next.9",
+    "ts-node": "latest",
+    "ttypescript": "latest",
+    "type-plus": "latest",
+    "typescript": "4.2.4",
+    "underscore-cli": "latest",
+    "yarn": "latest"
+  },
+  "peerDependencies": {},
+  "peerDependenciesMeta": {},
+  "resolutions": {},
+  "release": {
+    "allowBranch": "main"
+  },
+  "required-env": []
+}
