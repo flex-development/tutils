@@ -106,9 +106,7 @@ export type NumberString = number | string
  *
  * See: https://github.com/ghoullier/awesome-template-literal-types
  */
-export type ObjectPath<T> = ObjectPathNT<T> extends string | keyof T
-  ? ObjectPathNT<T>
-  : keyof T
+export type Path<T> = PathNT<T> extends string | keyof T ? PathNT<T> : keyof T
 
 /**
  * Type representing a nested object key or `never` if the key in question does
@@ -119,10 +117,10 @@ export type ObjectPath<T> = ObjectPathNT<T> extends string | keyof T
  *
  * - https://github.com/ghoullier/awesome-template-literal-types#dot-notation-string-type-safe
  */
-export type ObjectPathN<T, K extends keyof T> = K extends string
+export type PathN<T, K extends keyof T> = K extends string
   ? T[K] extends PlainObject
     ?
-        | `${K}.${ObjectPathN<T[K], Exclude<keyof T[K], keyof any[]>> & string}`
+        | `${K}.${PathN<T[K], Exclude<keyof T[K], keyof any[]>> & string}`
         | `${K}.${Exclude<keyof T[K], keyof any[]> & string}`
     : never
   : never
@@ -135,7 +133,7 @@ export type ObjectPathN<T, K extends keyof T> = K extends string
  *
  * - https://github.com/ghoullier/awesome-template-literal-types#dot-notation-string-type-safe
  */
-export type ObjectPathNT<T> = ObjectPathN<T, keyof T> | keyof T
+export type PathNT<T> = PathN<T, keyof T> | keyof T
 
 /**
  * Type representing an object value.
@@ -145,13 +143,13 @@ export type ObjectPathNT<T> = ObjectPathN<T, keyof T> | keyof T
  *
  * - https://github.com/ghoullier/awesome-template-literal-types#dot-notation-string-type-safe
  */
-export type ObjectPathValue<
+export type PathValue<
   T,
-  P extends ObjectPath<T>
+  P extends Path<T>
 > = P extends `${infer Key}.${infer Rest}`
   ? Key extends keyof T
-    ? Rest extends ObjectPath<T[Key]>
-      ? ObjectPathValue<T[Key], Rest>
+    ? Rest extends Path<T[Key]>
+      ? PathValue<T[Key], Rest>
       : never
     : never
   : P extends keyof T
@@ -196,7 +194,7 @@ export type OrPromise<T = any> = T | Promise<T>
 export type PartialBy<T, K extends keyof T> = Omit<T, K> & Partial<Pick<T, K>>
 
 /**
- * Make certain fields required while making others required.
+ * Pick (require) certain fields while making others required.
  *
  * @template T - Object type
  * @template K - Object fields (top level) to pick
