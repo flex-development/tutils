@@ -39,11 +39,30 @@ export type EmptyPrimitive = '' | null | undefined
 export type IndexSignature = number | symbol | string
 
 /**
- * Type representing any [JSON][1] object.
+ * Types representing an array of [JSON data types][1].
  *
  * [1]: https://restfulapi.net/json-data-types
  */
-export type JSONObject = Record<string, JSONValue>
+export type JSONArray = JSONValue[]
+
+/**
+ * Type representing any [JSON][1] object.
+ *
+ * This type can be useful to enforce some input to be JSON-compatible or as a
+ * super-type to be extended from.
+ *
+ * Don't use this as a direct return type as the user would have to double-cast
+ * it: `object as unknown as CustomResponse`.
+ *
+ * Instead, you could extend `JSONObject` to ensure your type only uses
+ * JSON-compatible types:  `interface CustomResponse extends JSONObject { … }`.
+ *
+ * Reference: [type-fest - Basic][2]
+ *
+ * [1]: https://restfulapi.net/json-data-types
+ * [2]: https://github.com/sindresorhus/type-fest/blob/main/source/basic.d.ts
+ */
+export type JSONObject = { [Key in string]?: JSONValue }
 
 /**
  * Type representing any [primitive][1] [JSON value][2].
@@ -56,12 +75,9 @@ export type JSONPrimitive = boolean | null | number | string
 /**
  * Types of [JSON data types][1].
  *
- * `PlainObject` must be used to represent `JSONObject` to prevent the circular
- * referencing error: `"Type alias 'JSONValue' circularly references itself"`.
- *
  * [1]: https://restfulapi.net/json-data-types
  */
-export type JSONValue = OneOrMany<JSONPrimitive | PlainObject>
+export type JSONValue = JSONArray | JSONPrimitive | JSONObject
 
 /**
  * Type representing any boolean that can also be `null`.
