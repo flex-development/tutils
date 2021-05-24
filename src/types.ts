@@ -39,14 +39,29 @@ export type EmptyPrimitive = '' | null | undefined
 export type IndexSignature = number | string
 
 /**
- * Type representing any JSON object.
+ * Type representing any [JSON][1] object.
+ *
+ * [1]: https://restfulapi.net/json-data-types
  */
 export type JSONObject = Record<string, JSONValue>
 
 /**
- * Types of JSON data values.
+ * Type representing any [primitive][1] [JSON value][2].
+ *
+ * [1]: https://developer.mozilla.org/docs/Glossary/Primitive
+ * [2]: https://restfulapi.net/json-data-types
  */
-export type JSONValue = OneOrMany<NullishPrimitive | PlainObject>
+export type JSONPrimitive = boolean | null | number | string
+
+/**
+ * Types of [JSON data types][1].
+ *
+ * `PlainObject` must be used to represent `JSONObject` to prevent the circular
+ * referencing error: `"Type alias 'JSONValue' circularly references itself"`.
+ *
+ * [1]: https://restfulapi.net/json-data-types
+ */
+export type JSONValue = OneOrMany<JSONPrimitive | PlainObject>
 
 /**
  * Type representing any boolean that can also be `null`.
@@ -57,11 +72,6 @@ export type NullishBoolean = boolean | null
  * Type representing any number that can also be `null`.
  */
 export type NullishNumber = number | null
-
-/**
- * Type representing any defined `Primitive` that can also be `null`.
- */
-export type NullishPrimitive = Primitive | null
 
 /**
  * Type representing any string that can also be `null`.
@@ -184,9 +194,11 @@ export type PartialByRequired<T, K extends keyof T> = Pick<T, K> &
 export type PlainObject = Record<IndexSignature, any>
 
 /**
- * Type representing primitive value types.
+ * Type representing any [primitive][1] value.
+ *
+ * [1]: https://developer.mozilla.org/docs/Glossary/Primitive
  */
-export type Primitive = boolean | number | string
+export type Primitive = JSONPrimitive | bigint | symbol | undefined
 
 /**
  * Type representing object with unknown values.
