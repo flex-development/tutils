@@ -36,7 +36,7 @@ export type EmptyPrimitive = '' | null | undefined
 /**
  * Valid index signature types.
  */
-export type IndexSignature = number | string
+export type IndexSignature = number | symbol | string
 
 /**
  * Type representing any [JSON][1] object.
