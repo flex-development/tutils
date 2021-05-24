@@ -118,7 +118,7 @@ type DeepOmitHelper<T> =
   | WeakMap<any, DeepOmitHelper<T>>
 
 /**
- * Recursive version of [`Partial`][1]
+ * Recursive version of [`Partial`][1].
  *
  * [1]: https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype
  */
@@ -142,9 +142,37 @@ export type DeepPartial<T> = T extends BuiltIn
     : Array<DeepPartial<U>>
   : T extends Promise<infer U>
   ? Promise<DeepPartial<U>>
-  : T extends UnknownObject
+  : T extends {}
   ? { [K in keyof T]?: DeepPartial<T[K]> }
   : Partial<T>
+
+/**
+ * Recursive version of [`Required`][1].
+ *
+ * See: [type-fest - Basic][2]
+ *
+ * [1]: https://www.typescriptlang.org/docs/handbook/utility-types.html#requiredtype
+ * [2]: https://github.com/sindresorhus/type-fest/blob/main/source/basic.d.ts
+ */
+export type DeepRequired<T> = T extends BuiltIn
+  ? NonNullable<T>
+  : T extends Map<infer K, infer V>
+  ? Map<DeepRequired<K>, DeepRequired<V>>
+  : T extends ReadonlyMap<infer K, infer V>
+  ? ReadonlyMap<DeepRequired<K>, DeepRequired<V>>
+  : T extends WeakMap<infer K, infer V>
+  ? WeakMap<DeepRequired<K>, DeepRequired<V>>
+  : T extends Set<infer U>
+  ? Set<DeepRequired<U>>
+  : T extends ReadonlySet<infer U>
+  ? ReadonlySet<DeepRequired<U>>
+  : T extends WeakSet<infer U>
+  ? WeakSet<DeepRequired<U>>
+  : T extends Promise<infer U>
+  ? Promise<DeepRequired<U>>
+  : T extends {}
+  ? { [K in keyof T]-?: DeepRequired<T[K]> }
+  : NonNullable<T>
 
 /**
  * Type representing any empty object.
