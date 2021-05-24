@@ -271,7 +271,7 @@ export type OmitByType<T, P> = Pick<
  *
  * @template T - Data
  */
-export type OneOrMany<T = ANY> = T | Array<T>
+export type OneOrMany<T> = T | Array<T>
 
 /**
  * Represents data returned by a function, or the return type of a function that
@@ -279,21 +279,39 @@ export type OneOrMany<T = ANY> = T | Array<T>
  *
  * @template T - Return value
  */
-export type OrNever<T = any> = T | never
+export type OrNever<T> = T | never
 
 /**
  * Type allowing all properties of T or some properties of T.
  *
- * @template T - Object type
+ * @template T - Value type
  */
-export type OrPartial<T = UnknownObject> = T | Partial<T>
+export type OrPartial<T> = T | DeepPartial<T>
 
 /**
  * Type representing an asynchronous or synchronous value.
  *
- * @template T - type
+ * @template T - Value type
  */
-export type OrPromise<T = any> = T | Promise<T>
+export type OrPromise<T> = T | Promise<T>
+
+/**
+ * Omit certain fields while making others optional.
+ *
+ * @template T - Object type
+ * @template K - Object fields (top level) to omit
+ */
+export type PartialBy<T, K extends keyof T> = Omit<T, K> &
+  DeepPartial<Pick<T, K>>
+
+/**
+ * Pick (require) certain fields while making others required.
+ *
+ * @template T - Object type
+ * @template K - Object fields (top level) to pick
+ */
+export type PartialByRequired<T, K extends keyof T> = Pick<T, K> &
+  DeepPartial<Omit<T, K>>
 
 /**
  * Type representing a nested or top level object key.
@@ -351,24 +369,6 @@ export type PathValue<
   : P extends keyof T
   ? T[P]
   : never
-
-/**
- * Omit certain fields while making others optional.
- *
- * @template T - Object type
- * @template K - Object fields (top level) to omit
- */
-export type PartialBy<T, K extends keyof T> = Omit<T, K> &
-  DeepPartial<Pick<T, K>>
-
-/**
- * Pick (require) certain fields while making others required.
- *
- * @template T - Object type
- * @template K - Object fields (top level) to pick
- */
-export type PartialByRequired<T, K extends keyof T> = Pick<T, K> &
-  DeepPartial<Omit<T, K>>
 
 /**
  * Picks all properties of given type in object type.
