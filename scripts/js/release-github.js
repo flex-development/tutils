@@ -52,14 +52,14 @@ const sync = { shell: 'zsh', stdout: process.stdout }
  * @return {void} Nothing when complete
  */
 const releaseAssets = (remove = false) => {
-  const ASSETS = [TARBALL, ZIP]
+  const ASSETS = { TARBALL, ZIP }
 
   if (!remove) {
-    execa.commandSync(`yarn pack --filename ${TARBALL}`, sync)
-    execa.commandSync(`yarn pack --filename ${ZIP}`, sync)
+    execa.commandSync(`yarn pack --filename ${ASSETS.TARBALL}`, sync)
+    execa.commandSync(`yarn pack --filename ${ASSETS.ZIP}`, sync)
   } else {
-    execa.commandSync(`rm ${TARBALL} ${ZIP}`, sync)
-    ASSETS.forEach(arg => debug(`Removed ${arg}`))
+    execa.commandSync(`rm ${ASSETS.TARBALL} ${ASSETS.ZIP}`, sync)
+    Object.values(ASSETS).forEach(arg => debug(`Removed ${arg}`))
   }
 
   return
@@ -84,12 +84,12 @@ const releaseNotes = (remove = false) => {
   // Read CHANGELOG
   let notes = readFileSync(CHANGELOG, 'utf8')
 
-  // Get index of recent changes
-  let first_heading_index = notes.indexOf(`## [${version}]`)
+  // Get index of minor / patch headings
+  let first_heading_index = notes.indexOf(`### [${version}]`)
 
-  // Check for minor / patch headings
+  // Check for major headings
   if (first_heading_index === -1) {
-    first_heading_index = notes.indexOf(`### [${version}]`)
+    first_heading_index = notes.indexOf(`## [${version}]`)
   }
 
   // Check if index is equal to -1 (no recent changes)
@@ -98,33 +98,33 @@ const releaseNotes = (remove = false) => {
     return null
   }
 
-  // Get index of first heading with emoji
-  first_heading_index = notes.indexOf('### :')
+  // Get index of BREAKING CHANGES subheading
+  first_heading_index = first_heading_index = notes.indexOf('### ⚠')
 
-  // Check for BREAKING CHANGES header
-  if (first_heading_index === -1) first_heading_index = notes.indexOf('### ⚠')
+  // Check for first subheading with emoji
+  if (first_heading_index === -1) first_heading_index = notes.indexOf('### :')
 
-  // Check if index is equal to -1 (no headings)
+  // Check if index is equal to -1 (no subheading)
   if (first_heading_index === -1) {
-    debug(`Cannot find first heading under ${CHANGELOG} / [${version}].`)
+    debug(`Cannot find first subheading under ${CHANGELOG} / [${version}].`)
     debug(`${CHANGELOG} [${version}] assumed to be empty.`)
-
     return null
   }
 
   // Trim notes
   notes = notes.substring(first_heading_index, notes.length)
 
-  // Get last heading index
-  let last_heading_index = notes.indexOf('## [')
+  // Get last heading index - start by checking for version 1.0.0 heading
+  let last_heading_index = notes.indexOf('## 1.0.0')
+
+  // Check for major headings
+  if (last_heading_index === -1) notes.indexOf('## [')
 
   // Check for minor / patch headings
   if (last_heading_index === -1) last_heading_index = notes.indexOf('### [')
 
   if (last_heading_index === -1) {
     debug(`Cannot find ending of ${CHANGELOG} / [${version}].`)
-    debug('Heading associated with previous version unknown.')
-
     return null
   }
 
@@ -152,12 +152,18 @@ const githubRelease = () => {
   const V1 = version === '1.0.0'
   const PACKAGE = `${name}@${version}`
   const RELEASE = `gh release create ${RELEASE_TAG} ./${TARBALL} ./${ZIP}`
-  const OPTIONS = `-t ${RELEASE_TAG} -d${V1 ? '' : `-d -F ${RELEASE_NOTES}`}`
+  const OPTIONS = `-t ${RELEASE_TAG} ${V1 ? '' : `-d -F ${RELEASE_NOTES}`}`
+
+  // Store release notes
+  let notes = null
 
   // Generate release assets and notes
   debug(`Starting release workflow for ${PACKAGE}`)
   releaseAssets(GENERATE)
-  if (!V1) releaseNotes(GENERATE)
+  if (!V1) notes = releaseNotes(GENERATE)
+
+  // Check if release notes were generated
+  if (!V1 && !notes) return debug('Error generating release notes.')
 
   // Execute GitHub release
   execa.commandSync(`${RELEASE} ${OPTIONS}`, sync)
