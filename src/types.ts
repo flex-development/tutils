@@ -147,6 +147,30 @@ export type DeepPartial<T> = T extends BuiltIn
   : Partial<T>
 
 /**
+ * Constructs a type by picking the set of properties `K` (string literal or
+ * union of string literals) from `T`.
+ *
+ * Supports nested properties.
+ *
+ * @template T - Object type
+ * @template P - Object paths
+ */
+export type DeepPick<T, P extends Path<T>> = OmitByType<
+  {
+    [K in keyof T]: K extends P
+      ? PathValue<T, K>
+      : P extends `${infer Key}.${infer Rest}`
+      ? K extends Key
+        ? Rest extends Path<T[K]>
+          ? { [K2 in Rest]: PathValue<T[K], Rest> }
+          : never
+        : never
+      : never
+  },
+  never
+>
+
+/**
  * Recursive version of [`Required`][1].
  *
  * See: [type-fest - Basic][2]
