@@ -8,6 +8,8 @@ import type { ObjectPlain } from './ObjectPlain'
 /**
  * Constructs a union type consisting of nested and top level properties of `T`.
  *
+ * Note that the type recurses **two levels (`foo.nested`)** deep.
+ *
  * See: https://github.com/ghoullier/awesome-template-literal-types
  *
  * @template T - Object type

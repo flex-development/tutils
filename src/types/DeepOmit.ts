@@ -10,7 +10,7 @@ import type { OmitByType } from './OmitByType'
  */
 
 /**
- * Omits properties of `T` using a filter object.
+ * Omits properties of `T` using filter object `F`.
  *
  * See: https://github.com/krzkaczor/ts-essentials#DeepOmit
  *
