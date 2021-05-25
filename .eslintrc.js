@@ -102,6 +102,8 @@ module.exports = {
         skipIfMatch: [],
         skipWordIfMatch: [],
         skipWords: [
+          'Booleanish',
+          'Nullish',
           'commitlint',
           'enums',
           'enum',
