@@ -14,6 +14,7 @@ export type { DeepRequired } from './types/DeepRequired'
 export type { EmptyValue } from './types/EmptyValue'
 export type { FIXME } from './types/FIXME'
 export type { IndexSignature } from './types/IndexSignature'
+export type { Join } from './types/Join'
 export type {
   JSONArray,
   JSONObject,
