@@ -1,4 +1,3 @@
-import type { DeepPartial } from './DeepPartial'
 import type { ObjectPlain } from './ObjectPlain'
 
 /**
@@ -11,10 +10,10 @@ import type { ObjectPlain } from './ObjectPlain'
  * properties of `T` are optional.
  *
  * @template T - Object type
- * @template K - Object fields (top level) to pick
+ * @template K - Required properties (top-level)
  */
 export type PartialByRequired<T extends ObjectPlain, K extends keyof T> = Pick<
   T,
   K
 > &
-  DeepPartial<Omit<T, K>>
+  Partial<Omit<T, K>>
