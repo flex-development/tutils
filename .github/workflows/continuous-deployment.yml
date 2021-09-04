@@ -58,7 +58,7 @@ jobs:
 
             core.setOutput(
               'command', 
-              `yarn npm publish --access public ${dtag}`.trim()
+              `npm publish --access public ${dtag}`.trim()
             )
   publish-package:
     name: Publish package to GPR & NPM
@@ -96,7 +96,7 @@ jobs:
           TS_NODE_PROJECT: tsconfig.prod.json
       - id: publish-to-gpr
         name: Publish package [GPR]
-        run: ${{ needs.deployment-info.outputs.publish_command }}
+        run: yarn ${{ needs.deployment-info.outputs.publish_command }}
         env:
           NODE_AUTH_TOKEN: ${{ secrets.PAT_GPR_FLDV_ADMIN }}
       - id: setup-npmrc-npm
