@@ -32,7 +32,7 @@
   "types": "./esm/index.d.ts",
   "scripts": {
     "clean": "rimraf node_modules",
-    "postinstall": "is-ci || husky-run init",
+    "postinstall": "is-ci || husky-run init || true",
     "check:format": "prettier --check .",
     "check:install": "yarn dlx @yarnpkg/doctor .",
     "check:style": "eslint . --ext md,js,ts",
