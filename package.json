@@ -20,20 +20,24 @@
     "url": "https://flexdevelopment.llc"
   },
   "publishConfig": {
-    "access": "public",
-    "directory": "./dist",
-    "registry": "https://npm.pkg.github.com"
+    "directory": "./"
   },
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "files": [
+    "cjs",
+    "esm",
+    "CHANGELOG.md"
+  ],
+  "main": "./cjs/index.js",
+  "module": "./esm/index.js",
+  "types": "./esm/index.d.ts",
   "scripts": {
     "clean": "rm -rf node_modules || true",
     "postinstall": "husky-run install",
     "check:style": "eslint . --ext md,js,ts",
     "fix:format": "prettier --write .",
     "fix:style": "yarn check:style --fix --cache",
-    "test": "zsh scripts/jest.sh",
-    "compile": "zsh scripts/compile.sh",
+    "build": "ts-node ./scripts/build",
+    "prepack": "dotenv -c production -- yarn build",
     "release": "zsh scripts/release.sh",
     "release:github": "node scripts/js/release-github"
   },
@@ -47,10 +51,13 @@
     "@types/debug": "latest",
     "@types/mvdan-sh": "0.5.0",
     "@types/node": "16.7.10",
+    "@types/yargs": "17.0.2",
     "@typescript-eslint/eslint-plugin": "4.30.0",
     "@typescript-eslint/parser": "4.30.0",
-    "@zerollup/ts-transform-paths": "latest",
+    "@zerollup/ts-transform-paths": "1.7.18",
+    "copyfiles": "2.4.1",
     "debug": "latest",
+    "dotenv-cli": "4.0.0",
     "eslint": "7.32.0",
     "eslint-config-prettier": "8.3.0",
     "eslint-plugin-import": "2.24.2",
@@ -59,18 +66,22 @@
     "eslint-plugin-node": "11.1.0",
     "eslint-plugin-prettier": "4.0.0",
     "eslint-plugin-spellcheck": "0.0.19",
+    "fs-extra": "10.0.0",
     "husky": "4.3.8",
     "lint-staged": "latest",
     "prettier": "2.3.2",
     "prettier-plugin-sh": "0.7.0",
-    "replace-in-file": "latest",
-    "ts-node": "latest",
-    "ttypescript": "latest",
-    "typescript": "4.2.4",
-    "underscore-cli": "latest"
+    "replace-in-file": "6.2.0",
+    "rimraf": "3.0.2",
+    "ts-node": "10.2.1",
+    "ttypescript": "1.5.12",
+    "typescript": "4.4.2"
   },
   "peerDependencies": {
     "typescript": "4.2.4"
+  },
+  "resolutions": {
+    "read-pkg": "5.2.0"
   },
   "engines": {
     "node": ">=15.0.0",

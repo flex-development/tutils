@@ -77,6 +77,6 @@ jspm_packages/
 .eslintcache
 
 # Builds & Distributions
-dist/
+cjs/
+esm/
 *.zip
-RELEASE_NOTES.md

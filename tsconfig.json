@@ -4,14 +4,14 @@
     "allowUnreachableCode": false,
     "allowSyntheticDefaultImports": true,
     "baseUrl": "./",
-    "checkJs": true,
+    "checkJs": false,
     "declaration": true,
     "emitDecoratorMetadata": true,
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
     "lib": ["es2020"],
-    "module": "es2020",
+    "module": "commonjs",
     "moduleResolution": "node",
     "noEmit": true,
     "noFallthroughCasesInSwitch": true,
@@ -20,7 +20,16 @@
     "noUnusedLocals": false,
     "noUnusedParameters": false,
     "outDir": "dist",
-    "paths": {},
+    "paths": {
+      "@flex-development/grease": [
+        "node_modules/@flex-development/grease/cjs/index"
+      ],
+      "@flex-development/grease/*": [
+        "node_modules/@flex-development/grease/cjs/*"
+      ],
+      "@flex-development/tutils": ["src/index.ts"],
+      "@flex-development/tutils/*": ["src/*"]
+    },
     "preserveConstEnums": true,
     "pretty": true,
     "resolveJsonModule": true,
