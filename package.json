@@ -1,7 +1,7 @@
 {
   "name": "@flex-development/tutils",
   "description": "TypeScript utilities",
-  "version": "3.1.1",
+  "version": "3.1.0",
   "keywords": [
     "type definitons",
     "typescript utilities",
