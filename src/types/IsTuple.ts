@@ -10,6 +10,7 @@
  *
  * [1]: https://www.tutorialsteacher.com/typescript/typescript-tuple
  */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 export type IsTuple<T> = T extends [infer A]
   ? T
   : T extends [infer A, infer B]
@@ -21,3 +22,4 @@ export type IsTuple<T> = T extends [infer A]
   : T extends [infer A, infer B, infer C, infer D, infer E]
   ? T
   : never
+/* eslint-enable @typescript-eslint/no-unused-vars */
