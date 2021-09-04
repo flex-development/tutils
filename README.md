@@ -8,7 +8,7 @@
 [Installation](#installation)  
 [Usage](#usage)  
 [Built With](#built-with)  
-[Contributing](docs/CONTRIBUTING.md)
+[Contributing](./CONTRIBUTING.md)
 
 ## Getting Started
 
