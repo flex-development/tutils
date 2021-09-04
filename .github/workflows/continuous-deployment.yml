@@ -91,7 +91,9 @@ jobs:
         name: Build project
         run: yarn build
         env:
+          NODE_ENV: production
           NODE_OPTIONS: -r tsconfig-paths/register
+          TS_NODE_PROJECT: tsconfig.prod.json
       - id: publish-to-gpr
         name: Publish package [GPR]
         run: ${{ needs.deployment-info.outputs.publish_command }}
