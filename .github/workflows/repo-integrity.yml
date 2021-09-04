@@ -29,6 +29,9 @@ on:
 jobs:
   check:
     runs-on: ubuntu-latest
+    env:
+      NPM_TOKEN_FLDV: ${{ secrets.NPM_TOKEN_FLDV }}
+      PAT_GPR_FLDV: ${{ secrets.PAT_GPR_FLDV }}
     strategy:
       matrix:
         node: ['15', '16']
