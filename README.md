@@ -17,17 +17,9 @@
 
 ## Installation
 
-1. Create or edit an `.npmrc` file with the following information:
-
-   ```utf-8
-   @flex-development:registry=https://npm.pkg.github.com/
-   ```
-
-2. Add project to `dependencies`
-
-   ```zsh
-   yarn add @flex-development/tutils # or npm i @flex-development/tutils
-   ```
+```zsh
+yarn add @flex-development/tutils # or npm i @flex-development/tutils
+```
 
 ## Usage
 
