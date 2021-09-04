@@ -1,8 +1,13 @@
 # Prettier Ignore
 # See: https://prettier.io/docs/en/ignore.html
 
-.vscode/**
-dist/**
-node_modules/**
+.yarn/
+cjs/
+esm/
+node_modules/
 
-*.d.ts
+**/CHANGELOG.md
+.env.*
+.env
+.gitkeep
+yarn.lock
