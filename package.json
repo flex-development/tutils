@@ -32,7 +32,7 @@
   "types": "./esm/index.d.ts",
   "scripts": {
     "clean": "rm -rf node_modules || true",
-    "postinstall": "husky-run install",
+    "postinstall": "is-ci || husky-run install",
     "check:style": "eslint . --ext md,js,ts",
     "fix:format": "prettier --write .",
     "fix:style": "yarn check:style --fix --cache",
@@ -67,6 +67,7 @@
     "eslint-plugin-spellcheck": "0.0.19",
     "fs-extra": "10.0.0",
     "husky": "4.3.8",
+    "is-ci": "3.0.0",
     "lint-staged": "latest",
     "prettier": "2.3.2",
     "prettier-plugin-sh": "0.7.0",

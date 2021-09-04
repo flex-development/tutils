@@ -586,7 +586,7 @@ __metadata:
     eslint-plugin-spellcheck: 0.0.19
     fs-extra: 10.0.0
     husky: 4.3.8
-    lint-staged: latest
+    is-ci: 3.0.0
     lint-staged: 11.0.0
     prettier: 2.3.2
     prettier-plugin-sh: 0.7.0
@@ -1339,6 +1339,13 @@ __metadata:
   version: 2.0.0
   resolution: "ci-info@npm:2.0.0"
   checksum: 3b374666a85ea3ca43fa49aa3a048d21c9b475c96eb13c133505d2324e7ae5efd6a454f41efe46a152269e9b6a00c9edbe63ec7fa1921957165aae16625acd67
+  languageName: node
+  linkType: hard
+
+"ci-info@npm:^3.1.1":
+  version: 3.2.0
+  resolution: "ci-info@npm:3.2.0"
+  checksum: c68995a94e95ce3f233ff845e62dfc56f2e8ff1e3f5c1361bcdd520cbbc9726d8a54cbc1a685cb9ee19c3c5e71a1dade6dda23eb364b59b8e6c32508a9b761bc
   languageName: node
   linkType: hard
 
@@ -3003,12 +3010,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"is-core-module@npm:^2.2.0":
-  version: 2.4.0
-  resolution: "is-core-module@npm:2.4.0"
+"is-ci@npm:3.0.0":
+  version: 3.0.0
+  resolution: "is-ci@npm:3.0.0"
   dependencies:
-    has: ^1.0.3
-  checksum: c498902d4c4d0e8eba3a2e8293ccd442158cfe49a71d7cfad136ccf9902b6a41de34ddaa86cdc95c8b7c22f872e59572d8a5d994cbec04c8ecf27ffe75137119
+    ci-info: ^3.1.1
+  bin:
+    is-ci: bin.js
+  checksum: 4b45aef32dd42dcb1f6fb3cd4b3a7ee7e18ea47516d2129005f46c3f36983506bb471382bac890973cf48a2f60d926a24461674ca2d9dc10744d82d4a876c26b
   languageName: node
   linkType: hard
 
