@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.1.2](https://github.com/flex-development/tutils/compare/v3.1.1...v3.1.2) (2021-09-04)
+
+
+### :bug: Fixes
+
+* **scripts:** only run `postinstall` in dev environments ([3824716](https://github.com/flex-development/tutils/commit/382471649eaf3e5c23048c9a5b812e14126b2f3e))
+
 ### [3.1.1](https://github.com/flex-development/tutils/compare/v3.1.0...v3.1.1) (2021-09-04)
 
 
