@@ -80,7 +80,29 @@
     "typescript": "4.4.2"
   },
   "peerDependencies": {
-    "typescript": "4.2.4"
+    "chalk": "4.1.1",
+    "lodash": "4.17.21",
+    "read-pkg": "5.2.0",
+    "shelljs": "0.8.4",
+    "typescript": "4.2.4",
+    "yargs": "17.1.1"
+  },
+  "peerDependenciesMeta": {
+    "chalk": {
+      "optional": true
+    },
+    "lodash": {
+      "optional": true
+    },
+    "read-pkg": {
+      "optional": true
+    },
+    "shelljs": {
+      "optional": true
+    },
+    "yargs": {
+      "optional": true
+    }
   },
   "resolutions": {
     "read-pkg": "5.2.0"
