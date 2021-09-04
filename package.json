@@ -36,7 +36,6 @@
     "release": "zsh scripts/release.sh",
     "release:github": "node scripts/js/release-github"
   },
-  "dependencies": {},
   "devDependencies": {
     "@babel/core": "latest",
     "@babel/eslint-parser": "latest",
@@ -63,16 +62,24 @@
     "ts-node": "latest",
     "ttypescript": "latest",
     "typescript": "4.2.4",
-    "underscore-cli": "latest",
-    "yarn": "latest"
+    "underscore-cli": "latest"
   },
   "peerDependencies": {
     "typescript": "4.2.4"
   },
-  "peerDependenciesMeta": {},
-  "resolutions": {},
+  "engines": {
+    "npm": "use-yarn",
+    "yarn": "3.0.1"
+  },
+  "env": {
+    "optional": [],
+    "required": [
+      "NPM_TOKEN_FLDV",
+      "PAT_GPR_FLDV"
+    ]
+  },
+  "packageManager": "yarn@3.0.1",
   "release": {
     "allowBranch": "main"
-  },
-  "required-env": []
+  }
 }

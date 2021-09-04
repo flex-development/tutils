@@ -54,16 +54,19 @@ jspm_packages/
 # Yarn Integrity file
 .yarn-integrity
 
+# Yarn v2 (Not using Zero-Installs)
+# See: https://yarnpkg.com/getting-started/qa#which-files-should-be-gitignored
+.yarn/*
+!.yarn/patches
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+.pnp.*
+
 ### Environment ###
 # Environment variables
-.env.local
-.env.*.local
-.env
-# .env.test
 .env*.local
-
-### Jest ###
-coverage/
 
 ### TypeScript ###
 # TypeScript cache
