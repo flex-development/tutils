@@ -4,13 +4,14 @@
     "allowUnreachableCode": false,
     "allowSyntheticDefaultImports": true,
     "baseUrl": "./",
+    "checkJs": true,
     "declaration": true,
     "emitDecoratorMetadata": true,
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
-    "lib": ["esnext"],
-    "module": "esnext",
+    "lib": ["es2020"],
+    "module": "es2020",
     "moduleResolution": "node",
     "noEmit": true,
     "noFallthroughCasesInSwitch": true,
@@ -23,10 +24,11 @@
     "preserveConstEnums": true,
     "pretty": true,
     "resolveJsonModule": true,
+    "sourceMap": false,
     "strictPropertyInitialization": false,
     "suppressImplicitAnyIndexErrors": true,
     "strict": true,
-    "target": "es2018"
+    "target": "es2020"
   },
   "exclude": ["node_modules"]
 }
