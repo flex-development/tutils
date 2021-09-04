@@ -17,8 +17,8 @@ well as follow our coding guidelines.
 
 ### Git Configuration
 
-Copy the [starter Git global configuration](.gitconfig) to stay inline with our
-coding guidelines, as well as begin extending your own workflow.
+Copy the [starter Git global configuration](../.github/.gitconfig) to stay
+inline with our coding guidelines, as well as begin extending your own workflow.
 
 **Note**: The examples below will uses aliases from the starter config.
 
@@ -27,7 +27,8 @@ coding guidelines, as well as begin extending your own workflow.
 1. Copy the snippet below to clone the project onto your local machine:
 
    ```zsh
-   git clone https://github.com/flex-development/tutils.git; cd tutils
+   git clone https://github.com/flex-development/tutils.git
+   cd tutils
    yarn
    ```
 
@@ -49,7 +50,7 @@ When creating a new branch, the name should match the following format:
 For example:
 
 ```zsh
-  git feat repo-setup
+git feat repo-setup
 ```
 
 will create a new branch titled `feat/repo-setup` and push it to `origin`.
@@ -76,7 +77,7 @@ Commit messages should be one of the following types:
 For example:
 
 ```zsh
-  git chore "add eslint configuration"
+git chore "add eslint configuration"
 ```
 
 will produce the following commit: `chore: add eslint configuration`
