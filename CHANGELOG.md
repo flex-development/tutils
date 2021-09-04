@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.1.3](https://github.com/flex-development/tutils/compare/v3.1.2...v3.1.3) (2021-09-04)
+
+
+### :bug: Fixes
+
+* **scripts:** use `husky-run init` in `postinstall` script ([812ae42](https://github.com/flex-development/tutils/commit/812ae423e1fa68c82a29fb55de49fcea01e8022c))
+
 ### [3.1.2](https://github.com/flex-development/tutils/compare/v3.1.1...v3.1.2) (2021-09-04)
 
 
