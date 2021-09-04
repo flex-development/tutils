@@ -3,9 +3,9 @@
   "description": "TypeScript utilities",
   "version": "3.1.0",
   "keywords": [
-    "typescript-utilities",
-    "typescript",
-    "type-definitons"
+    "type definitons",
+    "typescript utilities",
+    "typescript"
   ],
   "homepage": "https://github.com/flex-development/tutils",
   "repository": "git://github.com/flex-development/tutils.git",
