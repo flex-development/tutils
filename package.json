@@ -77,7 +77,10 @@
     "yarn": "3.0.1"
   },
   "env": {
-    "optional": [],
+    "optional": [
+      "DEBUG",
+      "DEBUG_COLORS"
+    ],
     "required": [
       "NPM_TOKEN_FLDV",
       "PAT_GPR_FLDV"
