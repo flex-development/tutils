@@ -566,7 +566,6 @@ __metadata:
     "@commitlint/config-conventional": 13.0.0
     "@commitlint/format": 13.0.0
     "@flex-development/grease": 1.1.0
-    "@types/debug": latest
     "@types/mvdan-sh": 0.5.0
     "@types/node": 16.7.10
     "@types/yargs": 17.0.2
@@ -575,7 +574,6 @@ __metadata:
     "@zerollup/ts-transform-paths": 1.7.18
     chalk: 4.1.2
     copyfiles: 2.4.1
-    debug: latest
     dotenv-cli: 4.0.0
     eslint: 7.32.0
     eslint-config-prettier: 8.3.0
@@ -1848,7 +1846,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"debug@npm:^4.0.0, debug@npm:^4.0.1, debug@npm:^4.1.0, debug@npm:^4.1.1, debug@npm:^4.3.1, debug@npm:^4.3.2, debug@npm:latest":
+"debug@npm:^4.0.0, debug@npm:^4.0.1, debug@npm:^4.1.0, debug@npm:^4.1.1, debug@npm:^4.3.1, debug@npm:^4.3.2":
   version: 4.3.2
   resolution: "debug@npm:4.3.2"
   dependencies:
