@@ -5,5 +5,18 @@
 
 module.exports = {
   root: true,
-  extends: ['./.eslintrc.base']
+  extends: ['./.eslintrc.base'],
+  overrides: [
+    {
+      files: [
+        'src/types/DeepOmit.ts',
+        'src/types/DeepPartialByHelper.ts',
+        'src/types/DeepPartialByRequiredHelper.ts',
+        'src/types/Overwrite.ts'
+      ],
+      rules: {
+        '@typescript-eslint/ban-types': 0
+      }
+    }
+  ]
 }
