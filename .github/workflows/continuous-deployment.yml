@@ -58,7 +58,7 @@ jobs:
 
             core.setOutput(
               'command', 
-              `yarn publish --access public ${dtag}`.trim()
+              `yarn npm publish --access public ${dtag}`.trim()
             )
   publish-package:
     name: Publish package to GPR & NPM
