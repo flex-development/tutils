@@ -31,7 +31,7 @@
   "module": "./esm/index.js",
   "types": "./esm/index.d.ts",
   "scripts": {
-    "clean": "rm -rf node_modules || true",
+    "clean": "rimraf node_modules",
     "postinstall": "is-ci || husky-run install",
     "check:style": "eslint . --ext md,js,ts",
     "fix:format": "prettier --write .",
