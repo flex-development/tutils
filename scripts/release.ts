@@ -132,7 +132,7 @@ const options: IGreaseOptions = {
   releaseBranchWhitelist: ['release/*'],
   releaseCommitMessageFormat: `release: ${$name}@{{currentTag}}`,
   scripts: {
-    postchangelog: `yarn pack -o %s-%v.tgz${argv.dryRun ? ' -n' : ''}`,
+    postchangelog: `npm pack ${argv.dryRun ? ' --dry-run' : ''}`,
     postcommit: 'git pnv',
     postgreaser: 'rimraf ./cjs && rimraf ./esm && rimraf ./*.tgz'
   },
