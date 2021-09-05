@@ -99,6 +99,9 @@ jobs:
         run: ${{ needs.deployment-info.outputs.publish_command }}
         env:
           NODE_AUTH_TOKEN: ${{ secrets.PAT_GPR_FLDV_ADMIN }}
+          NODE_ENV: production
+          NODE_OPTIONS: -r tsconfig-paths/register
+          TS_NODE_PROJECT: tsconfig.prod.json
       - id: setup-npmrc-npm
         name: Setup .npmrc file [NPM]
         uses: actions/setup-node@v2
@@ -112,6 +115,9 @@ jobs:
         run: ${{ needs.deployment-info.outputs.publish_command }}
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN_FLDV }}
+          NODE_ENV: production
+          NODE_OPTIONS: -r tsconfig-paths/register
+          TS_NODE_PROJECT: tsconfig.prod.json
   update-production-branch:
     name: Update production branch
     needs: publish-package
