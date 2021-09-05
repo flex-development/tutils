@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.1.5](https://github.com/flex-development/tutils/compare/v3.1.4...v3.1.5) (2021-09-05)
+
+
+### :bug: Fixes
+
+* **scripts:** disable `postinstall` before tarball is packed ([a2243b0](https://github.com/flex-development/tutils/commit/a2243b0f61003cc448dedd761c7b23c1782244dc))
+
 ### [3.1.4](https://github.com/flex-development/tutils/compare/v3.1.3...v3.1.4) (2021-09-04)
 
 
