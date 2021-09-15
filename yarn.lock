@@ -610,7 +610,7 @@ __metadata:
     typescript: 4.4.2
     yargs: 17.1.1
   peerDependencies:
-    typescript: "*"
+    typescript: ">=2.7"
   languageName: unknown
   linkType: soft
 

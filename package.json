@@ -86,7 +86,7 @@
     "yargs": "17.1.1"
   },
   "peerDependencies": {
-    "typescript": "*"
+    "typescript": ">=2.7"
   },
   "engines": {
     "node": ">=15.0.0",
