@@ -88,6 +88,11 @@
   "peerDependencies": {
     "typescript": ">=2.7"
   },
+  "peerDependenciesMeta": {
+    "typescript": {
+      "optional": true
+    }
+  },
   "engines": {
     "node": ">=15.0.0",
     "npm": "use-yarn",

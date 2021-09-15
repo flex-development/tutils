@@ -611,6 +611,9 @@ __metadata:
     yargs: 17.1.1
   peerDependencies:
     typescript: ">=2.7"
+  peerDependenciesMeta:
+    typescript:
+      optional: true
   languageName: unknown
   linkType: soft
 
