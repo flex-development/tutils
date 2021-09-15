@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.1.6](https://github.com/flex-development/tutils/compare/v3.1.5...v3.1.6) (2021-09-15)
+
+
+### :hammer: Build
+
+* **deps-peer:** add `typescript>=2.7` peer dependency ([e4d23dc](https://github.com/flex-development/tutils/commit/e4d23dc6998ea65900effc3d621d49f410a8afb2))
+
 ### [3.1.5](https://github.com/flex-development/tutils/compare/v3.1.4...v3.1.5) (2021-09-05)
 
 
