@@ -111,7 +111,7 @@ jobs:
       - id: env
         name: Set environment variables
         working-directory: ${{ needs.deployment-info.outputs.directory }}
-        run: ./tools/cli/loadenv -gc=production
+        run: ./tools/cli/loadenv.cjs -gc=production
       - id: build
         name: Build project
         working-directory: ${{ needs.deployment-info.outputs.directory }}
