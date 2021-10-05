@@ -18,5 +18,19 @@ module.exports = {
   singleQuote: true,
   tabWidth: 2,
   trailingComma: 'none',
-  overrides: []
+  overrides: [
+    {
+      files: ['*.sh', '.husky/commit-msg', '.husky/pre-commit'],
+      options: {
+        functionNextLine: true,
+        indent: 2,
+        keepComments: true,
+        keepPadding: false,
+        parser: 'sh',
+        spaceRedirects: true,
+        switchCaseIndent: true,
+        variant: 0
+      }
+    }
+  ]
 }

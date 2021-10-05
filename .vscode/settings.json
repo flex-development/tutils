@@ -5,7 +5,9 @@
   },
   "files.associations": {
     ".env": "shellscript",
-    ".env.*": "shellscript"
+    ".env.*": "shellscript",
+    "commit-msg": "shellscript",
+    "pre-commit": "shellscript"
   },
   "prettier.configPath": "./.prettierrc.cjs",
   "typescript.tsdk": "node_modules/typescript/lib"
