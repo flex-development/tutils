@@ -610,7 +610,25 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@flex-development/tutils@3.1.7, @flex-development/tutils@workspace:.":
+"@flex-development/tutils@npm:3.1.0":
+  version: 3.1.0
+  resolution: "@flex-development/tutils@npm:3.1.0::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40flex-development%2Ftutils%2F3.1.0%2F788b7cc6c7b75c158692cbf43f4dba4bbba0f43a231538ff927620a06fc7c522"
+  peerDependencies:
+    typescript: 4.2.4
+  checksum: a915f3b46567646a179cab185827ef8c93563089ac1dbf1ef55ca8191efbfd54c0513c37d0e6d2e6f48d9f0b72561d38456bcf878a3137f9359b825c74a9e086
+  languageName: node
+  linkType: hard
+
+"@flex-development/tutils@npm:3.1.7":
+  version: 3.1.7
+  resolution: "@flex-development/tutils@npm:3.1.7::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40flex-development%2Ftutils%2F3.1.7%2F196c3e6fc5affae835629a3fa7efad6800fa00af29efa7ad29c71dab5efaf691"
+  peerDependencies:
+    typescript: ">=2.7"
+  checksum: d4ebf259d3072d946d407b254a9ce6a8a53ad2adc8e1e4e7a73aa00970d6ef6cc27a1df0c5c0dff20ea71c6789428ceaec497912e3f0825f902138a1ecfb4479
+  languageName: node
+  linkType: hard
+
+"@flex-development/tutils@workspace:.":
   version: 0.0.0-use.local
   resolution: "@flex-development/tutils@workspace:."
   dependencies:
@@ -677,15 +695,6 @@ __metadata:
       optional: true
   languageName: unknown
   linkType: soft
-
-"@flex-development/tutils@npm:3.1.0":
-  version: 3.1.0
-  resolution: "@flex-development/tutils@npm:3.1.0::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40flex-development%2Ftutils%2F3.1.0%2F788b7cc6c7b75c158692cbf43f4dba4bbba0f43a231538ff927620a06fc7c522"
-  peerDependencies:
-    typescript: 4.2.4
-  checksum: a915f3b46567646a179cab185827ef8c93563089ac1dbf1ef55ca8191efbfd54c0513c37d0e6d2e6f48d9f0b72561d38456bcf878a3137f9359b825c74a9e086
-  languageName: node
-  linkType: hard
 
 "@humanwhocodes/config-array@npm:^0.5.0":
   version: 0.5.0
@@ -890,9 +899,9 @@ __metadata:
   linkType: hard
 
 "@types/node@npm:*":
-  version: 16.10.2
-  resolution: "@types/node@npm:16.10.2"
-  checksum: 83c1c3c68e7500103908c3f16094e458879c840a719c15b6ea577f81fe1f24a1b3473bb6c8e8091fe79a82543ca7639c6b1088fcf80292ec091d1d1c9504a87e
+  version: 16.10.3
+  resolution: "@types/node@npm:16.10.3"
+  checksum: 3fd429bce8a4acb497dcc62b536782a5e87ccf7cd91d64a78b263ae5d66cb72bf84be9eeeff6f84ae0567b065a40b267caa66d311f9e094990a5847bbd168a29
   languageName: node
   linkType: hard
 
@@ -2191,9 +2200,9 @@ __metadata:
   linkType: hard
 
 "electron-to-chromium@npm:^1.3.857":
-  version: 1.3.859
-  resolution: "electron-to-chromium@npm:1.3.859"
-  checksum: 1216f29c30bc5b720d2651e44c6f25199132789f06ea31f416c68e2f09ad86e6491480c07b148668938e075cb3c3074a0606184cc13216ad627e09a70fd21226
+  version: 1.3.860
+  resolution: "electron-to-chromium@npm:1.3.860"
+  checksum: 0446f14a1b9a43a2b4a60d1233171374b48112ae0270524887e1b592c1da615add9666955dad79793cd52489a1bb4f84091b24af36d38ef2c82b78b32dda7b9e
   languageName: node
   linkType: hard
 

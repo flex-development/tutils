@@ -2,6 +2,48 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.0.0-dev.0](https://github.com/flex-development/tutils/compare/tutils@3.1.7...tutils@4.0.0-dev.0) (2021-10-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* use default exports + kebab case filenames
+* **hybrid:** esm-cjs hybrid migration (no longer using `.js` extension)
+- https://github.com/peterjwest/convert-extension
+- https://github.com/gfmio/typescript-esm-cjs-hybrid-example
+- https://nodejs.medium.com/announcing-a-new-experimental-modules-1be8d2d6c2ff
+- https://www.sensedeep.com/blog/posts/2021/how-to-create-single-source-npm-module.html
+
+### :hammer: Build
+
+* **deps-dev:** drop `eslint-plugin-tree-shaking` ([6706515](https://github.com/flex-development/tutils/commit/67065159ffef68e954b5a5b005c5769d0b48ee22))
+* **hybrid:** esm-cjs hybrid migration (no longer using `.js` extension) ([37b147d](https://github.com/flex-development/tutils/commit/37b147de15953ac1f6f37bbe6742a1fb49655dd1))
+
+
+### :nail_care: Formatting & Structure
+
+* use default exports + kebab case filenames ([21c25d9](https://github.com/flex-development/tutils/commit/21c25d99f1b29a464c58416ef51fdc2e9fe8bb27))
+
+
+### :sparkles: Features
+
+* **types:** `OrDeepPartial` ([cd1b274](https://github.com/flex-development/tutils/commit/cd1b2748074715280dd797c05a58e1b1330934d6))
+
+
+### :truck: Continuous Integration & Deployment
+
+* **workflows:** fix `./tools/cli/loadenv: No such file or directory` ([6952c62](https://github.com/flex-development/tutils/commit/6952c626578a1b34289677b28c29b7f949a55a00))
+* **workflows:** update `strategy.matrix.node` ([b1188b3](https://github.com/flex-development/tutils/commit/b1188b35c532376206631666f11a6c1c9bdbd4e1))
+
+
+### :pencil2: Housekeeping
+
+* add `enums`, `interfaces`, and `types` commit scopes ([a5c3b9d](https://github.com/flex-development/tutils/commit/a5c3b9de6ff0538d9a7a9b6369a13932f6ab8abd))
+* fix repo integrity ([fd99661](https://github.com/flex-development/tutils/commit/fd9966120924549d5b05b633bb79e12314ff88e6))
+* **release:** set package version ([3fd1d56](https://github.com/flex-development/tutils/commit/3fd1d56182aa637b96695ad26672fd60010fd498))
+* **tools:** update extension conversion logic in `build` workflow ([d12d950](https://github.com/flex-development/tutils/commit/d12d95009c96c32e2281e3f50399c35d464fc086))
+* upgrade to `husky@7.0.2` ([e3ad638](https://github.com/flex-development/tutils/commit/e3ad63826b8bc63043d7dff5e3fc410caaae7d7c))
+
 ### [3.1.7](https://github.com/flex-development/tutils/compare/v3.1.6...v3.1.7) (2021-09-15)
 
 
