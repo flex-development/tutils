@@ -606,8 +606,6 @@ __metadata:
       optional: true
     shelljs:
       optional: true
-  bin:
-    
   checksum: 4e2b1d02638cc67eda51ddeda0ec27f11350aed6e1427e8dec4c56b957145e6828138a0a15892e56693365ac1764c3ea4540acc4241ca83b7501da1fc03cbef2
   languageName: node
   linkType: hard
