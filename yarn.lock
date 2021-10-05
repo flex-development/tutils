@@ -649,7 +649,6 @@ __metadata:
     eslint-plugin-node: 11.1.0
     eslint-plugin-prettier: 4.0.0
     eslint-plugin-spellcheck: 0.0.19
-    eslint-plugin-tree-shaking: 1.9.2
     eslint-plugin-unicorn: 36.0.0
     fs-extra: 10.0.0
     husky: 7.0.2
@@ -2464,13 +2463,6 @@ __metadata:
   peerDependencies:
     eslint: ">=0.8.0"
   checksum: 58c54bda54385a39834c386188b2572b7a14f4e13a18af6dd4b565bd25046c5e84f08efe7899b26153e02cb26a922c2df70912356835e5ef79851a9e85eafff2
-  languageName: node
-  linkType: hard
-
-"eslint-plugin-tree-shaking@npm:1.9.2":
-  version: 1.9.2
-  resolution: "eslint-plugin-tree-shaking@npm:1.9.2"
-  checksum: 8d6d54573bc06657a9e4d72a8ed39eda3948d4bedf52ac8b1e096c6e269c1940fce4638f8e26628ff20951dda4056f54543b61cd27aab2633b9320ec49e84da4
   languageName: node
   linkType: hard
 

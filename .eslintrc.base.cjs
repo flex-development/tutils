@@ -34,7 +34,6 @@ module.exports = {
     'jsdoc',
     'markdown',
     'spellcheck',
-    'tree-shaking',
     'unicorn'
   ],
   rules: {

@@ -111,7 +111,6 @@
     "eslint-plugin-node": "11.1.0",
     "eslint-plugin-prettier": "4.0.0",
     "eslint-plugin-spellcheck": "0.0.19",
-    "eslint-plugin-tree-shaking": "1.9.2",
     "eslint-plugin-unicorn": "36.0.0",
     "fs-extra": "10.0.0",
     "husky": "7.0.2",
