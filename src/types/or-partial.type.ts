@@ -1,5 +1,3 @@
-import type DeepPartial from './deep-partial.type'
-
 /**
  * @file Type Definitions - OrPartial
  * @module tutils/types/OrPartial
@@ -11,6 +9,6 @@ import type DeepPartial from './deep-partial.type'
  *
  * @template T - Value type
  */
-type OrPartial<T> = T | DeepPartial<T>
+type OrPartial<T> = T | Partial<T>
 
 export default OrPartial
