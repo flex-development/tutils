@@ -12,10 +12,10 @@ module.exports = {
     ...baseConfig.overrides,
     {
       files: [
-        'src/types/DeepOmit.ts',
-        'src/types/DeepPartialByHelper.ts',
-        'src/types/DeepPartialByRequiredHelper.ts',
-        'src/types/Overwrite.ts'
+        'src/types/deep-omit.type.ts',
+        'src/types/deep-partial-by-helper.type.ts',
+        'src/types/deep-partial-by-required-helper.type.ts',
+        'src/types/overwrite.type.ts'
       ],
       rules: {
         '@typescript-eslint/ban-types': 0

@@ -118,6 +118,7 @@ module.exports = {
           'dotenv',
           'esm',
           'extensionless',
+          'fixme',
           'loadenv',
           'nullable',
           'nullish',
@@ -143,6 +144,13 @@ module.exports = {
     'unicorn/consistent-function-scoping': 2,
     'unicorn/custom-error-definition': 2,
     'unicorn/explicit-length-check': 2,
+    'unicorn/filename-case': [
+      2,
+      {
+        cases: { kebabCase: true },
+        ignore: [/^.md/i]
+      }
+    ],
     'unicorn/import-index': 2,
     'unicorn/import-style': [
       2,
