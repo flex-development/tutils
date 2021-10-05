@@ -120,6 +120,7 @@ module.exports = {
           'extensionless',
           'fixme',
           'loadenv',
+          'mjs',
           'nullable',
           'nullish',
           'perf',

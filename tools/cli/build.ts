@@ -11,6 +11,7 @@ import { hideBin } from 'yargs/helpers'
 import exec from '../helpers/exec'
 import fixNodeModulePaths from '../helpers/fix-node-module-paths'
 import pkg, { $workspace } from '../helpers/pkg'
+// @ts-expect-error ts(2307)
 import useDualExports from '../helpers/use-dual-exports.mjs'
 
 /**
@@ -195,11 +196,16 @@ async function build(): Promise<void> {
         logger(argv, `build ${format}`)
       }
 
-      // Get module extension
-      const ext = `${format === 'esm' ? 'm' : 'c'}js`
+      // Convert TypeScript output to .cjs or .mjs
+      // See: https://github.com/peterjwest/convert-extension
+      if (format !== 'types') {
+        // Get output extension
+        const ext = `${format === 'cjs' ? 'c' : 'm'}js`
 
-      // Convert extensions
-      await convertExtension(`${format}/`, 'js', ext, { minified: true })
+        // Convert extensions
+        !argv.dryRun && (await convertExtension(`${format}/`, 'js', ext))
+        logger(argv, `use .${ext} extensions`)
+      }
     }
 
     // Fix node module import paths
