@@ -10,103 +10,143 @@
   "homepage": "https://github.com/flex-development/tutils",
   "repository": "git://github.com/flex-development/tutils.git",
   "bugs": {
-    "url": "https://github.com/flex-development/tutils/issues",
-    "email": "developers@flexdevelopment.llc"
+    "url": "https://github.com/flex-development/tutils/issues"
   },
   "license": "BSD-3-Clause",
-  "author": {
-    "name": "Lexus Drumgold",
-    "email": "lex@flexdevlopment.llc",
-    "url": "https://flexdevelopment.llc"
-  },
+  "contributors": [
+    {
+      "name": "Lexus Drumgold",
+      "url": "https://github.com/unicornware"
+    }
+  ],
   "publishConfig": {
+    "access": "public",
     "directory": "./"
   },
+  "type": "module",
   "files": [
     "cjs",
     "esm",
     "CHANGELOG.md"
   ],
-  "main": "./cjs/index.js",
-  "module": "./esm/index.js",
-  "types": "./esm/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./esm/index.mjs",
+      "require": "./cjs/index.cjs"
+    },
+    "./*": {
+      "import": "./esm/*.mjs",
+      "require": "./cjs/*.cjs"
+    },
+    "./cjs/*": "./cjs/*.cjs",
+    "./esm/*": "./esm/*.mjs",
+    "./package.json": "./package.json",
+    "./types": {
+      "import": "./esm/types/index.mjs",
+      "require": "./cjs/types/index.cjs"
+    },
+    "./types/*": {
+      "import": "./esm/types/*.mjs",
+      "require": "./cjs/types/*.cjs"
+    }
+  },
+  "main": "./cjs/index.cjs",
+  "module": "./esm/index.mjs",
+  "types": "./types/index.d.ts",
   "scripts": {
-    "clean": "rimraf node_modules",
+    "clean:build": "rimraf ./(cjs|esm)",
+    "clean:modules": "rimraf ./node_modules",
+    "clean:yarn": "rimraf .yarn/cache .yarn/*.gz",
+    "clean": "concurrently \"yarn:clean:*\"",
     "postinstall": "is-ci || husky-run install",
+    "check:dedupe": "yarn dedupe --check",
     "check:format": "prettier --check .",
     "check:install": "yarn dlx @yarnpkg/doctor .",
-    "check:style": "eslint . --ext md,js,ts",
+    "check:style": "eslint . --ext cjs,md,js,ts",
+    "check:upgrades": "yarn upgrade-interactive",
     "fix:format": "prettier --write .",
     "fix:style": "yarn check:style --fix --cache",
-    "build": "ts-node ./scripts/build",
-    "prepack": "pinst -d; is-ci || dotenv -c production -- true; yarn build",
-    "postpack": "pinst -e",
-    "release": "dotenv -c production -- ts-node ./scripts/release"
+    "test": "echo no tests specified && exit 0",
+    "build": "node ./tools/cli/build.ts",
+    "prepack": "toggle-scripts -postinstall && yarn build",
+    "postpack": "toggle-scripts +postinstall",
+    "release": "node ./tools/cli/release.ts",
+    "prepublishOnly": "toggle-scripts -prepack",
+    "postpublish": "toggle-scripts +prepack"
   },
   "devDependencies": {
-    "@babel/core": "7.15.4",
-    "@babel/eslint-parser": "7.15.4",
-    "@commitlint/cli": "13.0.0",
-    "@commitlint/config-conventional": "13.0.0",
-    "@commitlint/format": "13.0.0",
-    "@flex-development/grease": "1.1.0",
-    "@types/lodash": "4.14.172",
-    "@types/mvdan-sh": "0.5.0",
-    "@types/node": "16.7.10",
-    "@types/yargs": "17.0.2",
-    "@typescript-eslint/eslint-plugin": "4.30.0",
-    "@typescript-eslint/parser": "4.30.0",
+    "@babel/core": "7.15.5",
+    "@babel/eslint-parser": "7.15.7",
+    "@commitlint/cli": "13.2.0",
+    "@commitlint/config-conventional": "13.2.0",
+    "@commitlint/format": "13.2.0",
+    "@commitlint/types": "13.2.0",
+    "@flex-development/grease": "2.0.0",
+    "@flex-development/log": "3.0.0-dev.0",
+    "@types/fs-extra": "9.0.13",
+    "@types/lodash.merge": "4.6.6",
+    "@types/node": "16.0.0",
+    "@types/rimraf": "3.0.2",
+    "@types/shelljs": "0.8.9",
+    "@types/yargs": "17.0.3",
+    "@typescript-eslint/eslint-plugin": "4.33.0",
+    "@typescript-eslint/parser": "4.33.0",
+    "@vates/toggle-scripts": "1.0.0",
     "@zerollup/ts-transform-paths": "1.7.18",
     "chalk": "4.1.2",
-    "copyfiles": "2.4.1",
-    "dotenv-cli": "4.0.0",
+    "concurrently": "6.3.0",
+    "convert-extension": "0.3.0",
+    "dotenv": "10.0.0",
+    "dotenv-expand": "5.1.0",
     "eslint": "7.32.0",
     "eslint-config-prettier": "8.3.0",
+    "eslint-import-resolver-node": "0.3.6",
+    "eslint-import-resolver-typescript": "2.5.0",
     "eslint-plugin-import": "2.24.2",
-    "eslint-plugin-jsdoc": "36.0.8",
-    "eslint-plugin-markdown": "2.2.0",
+    "eslint-plugin-jsdoc": "36.1.0",
+    "eslint-plugin-markdown": "2.2.1",
+    "eslint-plugin-markdownlint": "0.2.2",
     "eslint-plugin-node": "11.1.0",
     "eslint-plugin-prettier": "4.0.0",
     "eslint-plugin-spellcheck": "0.0.19",
+    "eslint-plugin-tree-shaking": "1.9.2",
+    "eslint-plugin-unicorn": "36.0.0",
     "fs-extra": "10.0.0",
     "husky": "4.3.8",
     "is-ci": "3.0.0",
-    "lint-staged": "11.0.0",
-    "lodash": "4.17.21",
-    "pinst": "2.1.6",
-    "prettier": "2.3.2",
-    "prettier-plugin-sh": "0.7.0",
-    "read-pkg": "5.2.0",
+    "lint-staged": "11.2.0",
+    "lodash.merge": "4.6.2",
+    "prettier": "2.4.1",
+    "read-pkg": "7.0.0",
+    "renamer": "4.0.0",
     "replace-in-file": "6.2.0",
     "rimraf": "3.0.2",
     "shelljs": "0.8.4",
     "ts-node": "10.2.1",
+    "tsconfig-paths": "3.11.0",
     "ttypescript": "1.5.12",
-    "typescript": "4.4.2",
-    "yargs": "17.1.1"
+    "typescript": "4.4.3",
+    "yargs": "17.2.1"
   },
   "peerDependencies": {
+    "@types/node": ">=12.20.0",
     "typescript": ">=2.7"
   },
   "peerDependenciesMeta": {
+    "@types/node": {
+      "optional": true
+    },
     "typescript": {
       "optional": true
     }
   },
   "engines": {
-    "node": ">=15.0.0",
-    "npm": "use-yarn",
-    "yarn": "3.0.1"
+    "node": ">=12.20.0",
+    "yarn": "3.0.2"
   },
   "env": {
-    "optional": [
-      "DEBUG",
-      "DEBUG_COLORS"
-    ],
-    "required": [
-      "NPM_TOKEN_FLDV",
-      "PAT_GPR_FLDV"
-    ]
+    "optional": [],
+    "required": []
   },
-  "packageManager": "yarn@3.0.1"
+  "packageManager": "yarn@3.0.2"
 }

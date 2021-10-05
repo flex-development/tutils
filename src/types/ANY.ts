@@ -1,6 +1,6 @@
 /**
- * @file Types - ANY
- * @module types/ANY
+ * @file Type Definitions - ANY
+ * @module tutils/types/ANY
  */
 
 /**

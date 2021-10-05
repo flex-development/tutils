@@ -1,8 +1,8 @@
 import type { ObjectPlain } from './ObjectPlain'
 
 /**
- * @file Types - KeysOptional
- * @module types/KeysOptional
+ * @file Type Definitions - KeysOptional
+ * @module tutils/types/KeysOptional
  */
 
 /**

@@ -1,6 +1,6 @@
 /**
- * @file Types - IsTuple
- * @module types/IsTuple
+ * @file Type Definitions - IsTuple
+ * @module tutils/types/IsTuple
  */
 
 /**

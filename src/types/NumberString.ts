@@ -1,6 +1,6 @@
 /**
- * @file Types - NumberString
- * @module types/NumberString
+ * @file Type Definitions - NumberString
+ * @module tutils/types/NumberString
  */
 
 /**

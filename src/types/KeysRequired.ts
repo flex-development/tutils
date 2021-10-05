@@ -2,8 +2,8 @@ import type { KeysOptional } from './KeysOptional'
 import type { ObjectPlain } from './ObjectPlain'
 
 /**
- * @file Types - KeysRequired
- * @module types/KeysRequired
+ * @file Type Definitions - KeysRequired
+ * @module tutils/types/KeysRequired
  */
 
 /**

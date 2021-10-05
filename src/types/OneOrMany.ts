@@ -1,6 +1,6 @@
 /**
- * @file Types - OneOrMany
- * @module types/OneOrMany
+ * @file Type Definitions - OneOrMany
+ * @module tutils/types/OneOrMany
  */
 
 /**

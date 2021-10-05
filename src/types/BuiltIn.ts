@@ -1,8 +1,8 @@
 import type { Primitive } from './Primitive'
 
 /**
- * @file Types - BuiltIn
- * @module types/BuiltIn
+ * @file Type Definitions - BuiltIn
+ * @module tutils/types/BuiltIn
  */
 
 /**

@@ -1,6 +1,6 @@
 /**
- * @file Types - IndexSignature
- * @module types/IndexSignature
+ * @file Type Definitions - IndexSignature
+ * @module tutils/types/IndexSignature
  */
 
 /**

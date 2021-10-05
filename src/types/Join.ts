@@ -1,8 +1,8 @@
 import type { IndexSignature } from './IndexSignature'
 
 /**
- * @file Types - Join
- * @module types/Join
+ * @file Type Definitions - Join
+ * @module tutils/types/Join
  */
 
 /**

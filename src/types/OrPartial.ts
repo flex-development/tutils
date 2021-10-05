@@ -1,8 +1,8 @@
 import type { DeepPartial } from './DeepPartial'
 
 /**
- * @file Types - OrPartial
- * @module types/OrPartial
+ * @file Type Definitions - OrPartial
+ * @module tutils/types/OrPartial
  */
 
 /**

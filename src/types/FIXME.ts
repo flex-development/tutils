@@ -1,6 +1,6 @@
 /**
- * @file Types - FIXME
- * @module types/FIXME
+ * @file Type Definitions - FIXME
+ * @module tutils/types/FIXME
  */
 
 /**

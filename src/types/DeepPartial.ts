@@ -3,8 +3,8 @@ import type { IsTuple } from './IsTuple'
 import type { ObjectUnknown } from './ObjectUnknown'
 
 /**
- * @file Types - DeepPartial
- * @module types/DeepPartial
+ * @file Type Definitions - DeepPartial
+ * @module tutils/types/DeepPartial
  */
 
 /**

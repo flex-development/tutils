@@ -6,8 +6,8 @@ import type { ObjectPlain } from './ObjectPlain'
 import type { Path } from './Path'
 
 /**
- * @file Types - DeepPartialByRequired
- * @module types/DeepPartialByRequired
+ * @file Type Definitions - DeepPartialByRequired
+ * @module tutils/types/DeepPartialByRequired
  */
 
 /**

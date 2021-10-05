@@ -77,6 +77,10 @@ jspm_packages/
 .eslintcache
 
 # Builds & Distributions
+build/
 cjs/
 esm/
+types/
 *.zip
+
+!src/types

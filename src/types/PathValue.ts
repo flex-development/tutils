@@ -2,8 +2,8 @@ import type { ObjectPlain } from './ObjectPlain'
 import type { Path } from './Path'
 
 /**
- * @file Types - PathValue
- * @module types/PathValue
+ * @file Type Definitions - PathValue
+ * @module tutils/types/PathValue
  */
 
 /**

@@ -1,8 +1,8 @@
 import type { NIL } from './NIL'
 
 /**
- * @file Types - EmptyValue
- * @module types/EmptyValue
+ * @file Type Definitions - EmptyValue
+ * @module tutils/types/EmptyValue
  */
 
 /**

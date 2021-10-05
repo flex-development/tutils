@@ -2,19 +2,20 @@
 
 import grease from '@flex-development/grease'
 import type { IGreaseOptions } from '@flex-development/grease/interfaces'
-import log from '@flex-development/grease/utils/log.util'
+import logger from '@flex-development/grease/utils/logger.util'
+import LogLevel from '@flex-development/log/enums/log-level.enum'
 import ch from 'chalk'
-import merge from 'lodash/merge'
-import pick from 'lodash/pick'
+import merge from 'lodash.merge'
 import sh from 'shelljs'
-import util from 'util'
+import { inspect } from 'util'
+import type { Argv } from 'yargs'
+import yargs from 'yargs'
 import { hideBin } from 'yargs/helpers'
-import yargs from 'yargs/yargs'
-import { $name } from './utils/pkg-get'
+import { $workspace, $workspace_no_scope } from '../helpers/pkg'
 
 /**
- * @file Scripts - Release Workflow
- * @module scripts/release
+ * @file CLI - Release Workflow
+ * @module tools/cli/release
  */
 
 export type ReleaseOptions = {
@@ -25,12 +26,18 @@ export type ReleaseOptions = {
    */
   commitAll?: IGreaseOptions['commitAll']
 
+  /** @see ReleaseOptions.commitAll */
+  a?: ReleaseOptions['commitAll']
+
   /**
    * See the commands that running release would run.
    *
    * @default false
    */
   dryRun?: IGreaseOptions['dryRun']
+
+  /** @see ReleaseOptions.dryRun */
+  d?: ReleaseOptions['dryRun']
 
   /**
    * Is this the first release?
@@ -39,8 +46,21 @@ export type ReleaseOptions = {
    */
   firstRelease?: IGreaseOptions['firstRelease']
 
+  /** @see ReleaseOptions.firstRelease */
+  f?: ReleaseOptions['firstRelease']
+
   /**
-   * Create a prerelease with optional tag id (e.g: `alpha`,`beta`, `dev`).
+   * Only populate commits made under this path.
+   *
+   * @default process.cwd()
+   */
+  path?: IGreaseOptions['path']
+
+  /** @see ReleaseOptions.path */
+  p?: ReleaseOptions['path']
+
+  /**
+   * Create prerelease with optional tag id (e.g: `alpha`,`beta`, `dev`).
    */
   prerelease?: IGreaseOptions['prerelease']
 
@@ -48,6 +68,9 @@ export type ReleaseOptions = {
    * Specify release type (like `npm version <major|minor|patch>`).
    */
   releaseAs?: IGreaseOptions['releaseAs']
+
+  /** @see ReleaseOptions.releaseAs */
+  r?: ReleaseOptions['releaseAs']
 
   /**
    * Save GitHub release as a draft instead of publishing it.
@@ -64,81 +87,79 @@ export type ReleaseOptions = {
   skip?: IGreaseOptions['skip']
 }
 
-/**
- * @property {yargs.Argv} args - Command line arguments parser
- * @see https://github.com/yargs/yargs
- */
+/** @property {Argv<IGreaseOptions>} args - CLI arguments parser */
 const args = yargs(hideBin(process.argv))
   .usage('$0 [options]')
-  .option('commit-all', {
+  .option('commitAll', {
     alias: 'a',
     default: true,
     describe: 'commit all staged changes, not just release files',
     type: 'boolean'
   })
-  .option('dry-run', {
+  .option('dryRun', {
+    alias: 'd',
     default: false,
     describe: 'see the commands that running release would run',
     type: 'boolean'
   })
-  .option('first-release', {
+  .option('firstRelease', {
     alias: 'f',
     default: false,
     describe: 'is this the first release?',
     type: 'boolean'
   })
-  .option('release-as', {
+  .option('path', {
+    alias: 'p',
+    default: process.cwd(),
+    describe: 'only populate commits made under this path',
+    type: 'string'
+  })
+  .option('prerelease', {
+    describe: 'create prerelease with optional tag id',
+    requiresArg: true,
+    type: 'string'
+  })
+  .option('releaseAs', {
     alias: 'r',
     describe: 'specify release type (like npm version <major|minor|patch>)',
     requiresArg: true,
-    string: true
+    type: 'string'
   })
-  .option('release-draft', {
+  .option('releaseDraft', {
     default: true,
     describe: 'release as a draft instead of publishing it',
     type: 'boolean'
   })
   .option('skip', {
-    describe: 'map of steps in the release process that should be skipped'
+    describe: 'map of steps in the release process that should be skipped',
+    type: 'array'
   })
   .alias('help', 'h')
   .pkgConf('release')
-  .wrap(98)
+  .wrap(98) as Argv<IGreaseOptions>
 
-/**
- * @property {IGreaseOptions & ReleaseOptions} argv - Command line arguments
- */
-const argv: IGreaseOptions & ReleaseOptions = pick(
-  args.argv as IGreaseOptions & ReleaseOptions,
-  [
-    'commitAll',
-    'dryRun',
-    'firstRelease',
-    'prerelease',
-    'releaseAs',
-    'releaseDraft',
-    'skip'
-  ]
-)
+/** @property {ReleaseOptions} argv - CLI arguments object */
+const argv = args.argv as ReleaseOptions
 
-/**
- * @property {IGreaseOptions} options - `grease` options
- */
+/** @property {IGreaseOptions} options - `grease` options */
 const options: IGreaseOptions = {
   commitAll: true,
   gitTagFallback: false,
   gitdir: process.env.PROJECT_CWD,
+  lernaPackage: $workspace_no_scope,
   releaseAssets: ['./*.tgz'],
   releaseBranchWhitelist: ['release/*'],
-  releaseCommitMessageFormat: `release: ${$name}@{{currentTag}}`,
+  releaseCommitMessageFormat: `release: ${$workspace}@{{currentTag}}`,
   scripts: {
-    postchangelog: `npm pack ${argv.dryRun ? ' --dry-run' : ''}`,
+    postchangelog: `yarn pack -o %s-%v.tgz ${(argv.d && '-n') || ''}`.trim(),
     postcommit: 'git pnv',
-    postgreaser: 'rimraf ./cjs && rimraf ./esm && rimraf ./*.tgz'
+    postgreaser: 'yarn clean:build && rimraf ./*.tgz',
+    prerelease: 'yarn test --no-cache'
   },
   // `continuous-deployment` workflow will create new tag
   skip: { tag: true },
   skipUnstable: false,
+  tagPrefix: `${$workspace_no_scope}@`,
   types: [
     /* eslint-disable sort-keys */
     { type: 'feat', section: ':sparkles: Features' },
@@ -159,10 +180,15 @@ const options: IGreaseOptions = {
 }
 
 // Log workflow start
-log(argv, 'starting release workflow', [$name, `[dry=${argv.dryRun}]`], 'info')
+logger(
+  argv,
+  'starting release workflow',
+  [$workspace, `[dry=${argv.dryRun}]`],
+  LogLevel.INFO
+)
 
 // Run release workflow
 grease(merge({}, options, argv)).catch(error => {
   if (error.stderr) return
-  else sh.echo(ch.bold.red(util.inspect(error, false, null)))
+  else sh.echo(ch.bold.red(inspect(error, false, null)))
 })

@@ -1,7 +1,10 @@
 {
   "compilerOptions": {
     "declaration": true,
+    "inlineSourceMap": true,
     "noEmit": false,
+    "noEmitOnError": true,
+    "outDir": "build",
     "plugins": [
       {
         "afterDeclarations": true,
@@ -11,9 +14,10 @@
     ],
     "removeComments": false,
     "rootDir": "./src",
-    "sourceMap": true
+    "skipLibCheck": true,
+    "sourceMap": false
   },
-  "exclude": ["cjs", "esm", "node_modules"],
+  "exclude": ["./build", "./cjs", "./esm", "./node_modules", "./types"],
   "extends": "./tsconfig.json",
   "files": [],
   "include": ["src"]

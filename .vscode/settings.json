@@ -1,0 +1,12 @@
+{
+  "eslint.options": {
+    "configFile": "./.eslintrc.cjs",
+    "extensions": [".cjs", ".md", ".mjs", ".ts"]
+  },
+  "files.associations": {
+    ".env": "shellscript",
+    ".env.*": "shellscript"
+  },
+  "prettier.configPath": "./.prettierrc.cjs",
+  "typescript.tsdk": "node_modules/typescript/lib"
+}

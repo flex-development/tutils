@@ -1,8 +1,8 @@
 import type { IndexSignature } from './IndexSignature'
 
 /**
- * @file Types - ObjectPlain
- * @module types/ObjectPlain
+ * @file Type Definitions - ObjectPlain
+ * @module tutils/types/ObjectPlain
  */
 
 /**

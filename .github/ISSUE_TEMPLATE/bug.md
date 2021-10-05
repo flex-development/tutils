@@ -29,19 +29,22 @@ assignees: ''
 
 ## Environment
 
-<!-- If applicable, add screenshots to help explain your problem. -->
+<!-- Environment details. Put "N/A" where details are not necessary -->
 
-- Node version: [e.g `14`, `15`, `16`]
-- Package mangager version(s): [e.g. `yarn@3.0.1`]
-- Package version(s): [e.g. `v1.2.0`]
-- TypeScript version(s): [e.g. `4.2.4`, `4.3.4`]
+- Node Version (e.g `v16.6.0`): ``
+- OS (e.g `iOS 14.7.1`, `macOS v11.3.1`): ``
+- Package Manager (e.g `yarn@3.0.2`): ``
+- Package version(s) (e.g `<=v1.1.0`): ``
+- Browser (e.g `Firefox Developer Edition 93.0b7`): ``
 
 ## Possible solution
 
-<!--
-A clear and concise description of what you think may solve the problem.
--->
+<!-- A clear and concise description of what you think may solve the problem. -->
 
 ## Additional context
 
 <!-- Add any other details about the problem here. -->
+
+-
+-
+-

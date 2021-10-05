@@ -1,6 +1,6 @@
 /**
- * @file Types - NIL
- * @module types/nil
+ * @file Type Definitions - NIL
+ * @module tutils/types/nil
  */
 
 /**

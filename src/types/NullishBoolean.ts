@@ -1,6 +1,6 @@
 /**
- * @file Types - NullishBoolean
- * @module types/NullishBoolean
+ * @file Type Definitions - NullishBoolean
+ * @module tutils/types/NullishBoolean
  */
 
 /**

@@ -1,6 +1,6 @@
 /**
- * @file Types - Nullable
- * @module types/Nullable
+ * @file Type Definitions - Nullable
+ * @module tutils/types/Nullable
  */
 
 /**

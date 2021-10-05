@@ -1,8 +1,8 @@
 import type { ObjectPlain } from './ObjectPlain'
 
 /**
- * @file Types - Path
- * @module types/Path
+ * @file Type Definitions - Path
+ * @module tutils/types/Path
  */
 
 /**

@@ -1,13 +1,23 @@
 # Prettier Ignore
-# See: https://prettier.io/docs/en/ignore.html
+# https://prettier.io/docs/en/ignore.html
 
-.yarn/
-cjs/
-esm/
-node_modules/
+**/.yarn/*
+**/build/*
+**/cjs/*
+**/esm/*
+**/node_modules/*
+**/types/*
 
 **/CHANGELOG.md
-.env.*
-.env
-.gitkeep
-yarn.lock
+
+**/.eslintignore
+**/.env.*
+**/.env
+**/.gitconfig
+**/.gitignore
+**/.gitkeep
+**/.prettierignore
+**/*.markdownlintignore
+**/yarn.lock
+
+!/src/types/*

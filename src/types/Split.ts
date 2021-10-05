@@ -1,6 +1,6 @@
 /**
- * @file Types - Split
- * @module types/Split
+ * @file Type Definitions - Split
+ * @module tutils/types/Split
  */
 
 /**

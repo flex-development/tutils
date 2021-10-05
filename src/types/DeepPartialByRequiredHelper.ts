@@ -2,8 +2,8 @@ import type { ObjectPlain } from './ObjectPlain'
 import type { Path } from './Path'
 
 /**
- * @file Types - DeepPartialByRequiredHelper
- * @module types/DeepPartialByHelper
+ * @file Type Definitions - DeepPartialByRequiredHelper
+ * @module tutils/types/DeepPartialByHelper
  */
 
 /**

@@ -1,6 +1,6 @@
 /**
- * @file Types - JSON
- * @module types/JSON
+ * @file Type Definitions - JSON
+ * @module tutils/types/JSON
  */
 
 /**

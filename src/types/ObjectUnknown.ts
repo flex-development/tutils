@@ -1,8 +1,8 @@
 import type { IndexSignature } from './IndexSignature'
 
 /**
- * @file Types - ObjectUnknown
- * @module types/ObjectUnknown
+ * @file Type Definitions - ObjectUnknown
+ * @module tutils/types/ObjectUnknown
  */
 
 /**

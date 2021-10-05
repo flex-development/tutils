@@ -1,18 +1,19 @@
+import type { UserConfig } from '@commitlint/types'
+
 /**
  * @file Commitlint Configuration
  * @see https://commitlint.js.org/#/guides-local-setup
+ * @see https://commitlint.js.org/#/reference-configuration
  */
 
-module.exports = {
+const config: UserConfig = {
   /**
-   * Enable default ignore rules
+   * Enable default ignore rules.
    */
   defaultIgnores: true,
 
   /**
-   * IDs of commitlint configurations.
-   *
-   * @see https://github.com/conventional-changelog/commitlint
+   * IDs of commitlint configurations to extend.
    */
   extends: ['@commitlint/config-conventional'],
 
@@ -38,27 +39,34 @@ module.exports = {
     'scope-case': [2, 'always', 'kebab-case'],
 
     /**
-     * Returns the rules for valid commit scopes.
+     * Commit scopes.
      */
     'scope-enum': [
       2,
       'always',
       [
+        'cjs',
         'deploy',
         'deps',
         'deps-dev',
+        'deps-opt',
         'deps-peer',
+        'esm',
+        'github',
+        'hybrid',
         'release',
         'scripts',
+        'tools',
         'typescript',
-        'workflows'
+        'workflows',
+        'yarn'
       ]
     ],
 
     /**
      * Commit message subject casing.
      */
-    'subject-case': [2, 'always', ['lower-case']],
+    'subject-case': [1, 'always', 'lower-case'],
 
     /**
      * Rules for valid commit types.
@@ -82,3 +90,5 @@ module.exports = {
     ]
   }
 }
+
+export default config

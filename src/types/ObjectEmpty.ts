@@ -1,6 +1,6 @@
 /**
- * @file Types - ObjectEmpty
- * @module types/ObjectEmpty
+ * @file Type Definitions - ObjectEmpty
+ * @module tutils/types/ObjectEmpty
  */
 
 /**

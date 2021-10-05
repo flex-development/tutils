@@ -1,8 +1,8 @@
 import type { ObjectPlain } from './ObjectPlain'
 
 /**
- * @file Types - PartialByRequired
- * @module types/PartialByRequired
+ * @file Type Definitions - PartialByRequired
+ * @module tutils/types/PartialByRequired
  */
 
 /**

@@ -1,6 +1,6 @@
 /**
- * @file Types - NullishString
- * @module types/NullishString
+ * @file Type Definitions - NullishString
+ * @module tutils/types/NullishString
  */
 
 /**

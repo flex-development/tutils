@@ -1,6 +1,6 @@
 /**
- * @file Types - Booleanish
- * @module types/Booleanish
+ * @file Type Definitions - Booleanish
+ * @module tutils/types/Booleanish
  */
 
 /**

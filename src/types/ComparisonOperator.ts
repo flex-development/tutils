@@ -1,6 +1,6 @@
 /**
- * @file Types - ComparisonOperator
- * @module types/ComparisonOperator
+ * @file Type Definitions - ComparisonOperator
+ * @module tutils/types/ComparisonOperator
  */
 
 /**

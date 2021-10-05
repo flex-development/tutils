@@ -4,8 +4,8 @@ import type { Path } from './Path'
 import type { PathValue } from './PathValue'
 
 /**
- * @file Types - DeepPick
- * @module types/DeepPick
+ * @file Type Definitions - DeepPick
+ * @module tutils/types/DeepPick
  */
 
 /**

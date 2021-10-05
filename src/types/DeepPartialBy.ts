@@ -5,8 +5,8 @@ import type { DeepPick } from './DeepPick'
 import type { ObjectPlain } from './ObjectPlain'
 
 /**
- * @file Types - DeepPartialBy
- * @module types/DeepPartialBy
+ * @file Type Definitions - DeepPartialBy
+ * @module tutils/types/DeepPartialBy
  */
 
 /**

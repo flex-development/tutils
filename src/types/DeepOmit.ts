@@ -5,8 +5,8 @@ import type { ObjectUnknown } from './ObjectUnknown'
 import type { OmitByType } from './OmitByType'
 
 /**
- * @file Types - DeepOmit
- * @module types/DeepOmit
+ * @file Type Definitions - DeepOmit
+ * @module tutils/types/DeepOmit
  */
 
 /**
@@ -54,19 +54,16 @@ export type DeepOmit<
   ? ItemType extends DeepOmitHelper<F>
     ? Promise<DeepOmit<ItemType, F>>
     : T
-  : { [K in Exclude<KeysOptional<T>, keyof F>]+?: T[K] } &
-      OmitByType<
-        {
-          [K in Extract<KeysOptional<T>, keyof F>]+?: F[K] extends true
-            ? never
-            : T[K] extends DeepOmitHelper<F[K]>
-            ? DeepOmit<T[K], F[K]>
-            : T[K]
-        },
-        never
-      > &
-      { [K in Exclude<KeysRequired<T>, keyof F>]: T[K] } &
-      OmitByType<
+  : { [K in Exclude<KeysOptional<T>, keyof F>]+?: T[K] } & OmitByType<
+      {
+        [K in Extract<KeysOptional<T>, keyof F>]+?: F[K] extends true
+          ? never
+          : T[K] extends DeepOmitHelper<F[K]>
+          ? DeepOmit<T[K], F[K]>
+          : T[K]
+      },
+      never
+    > & { [K in Exclude<KeysRequired<T>, keyof F>]: T[K] } & OmitByType<
         {
           [K in Extract<KeysRequired<T>, keyof F>]: F[K] extends true
             ? never

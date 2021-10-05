@@ -1,6 +1,6 @@
 /**
- * @file Types - OrNever
- * @module types/OrNever
+ * @file Type Definitions - OrNever
+ * @module tutils/types/OrNever
  */
 
 /**

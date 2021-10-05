@@ -1,6 +1,6 @@
 /**
- * @file Types - OrPromise
- * @module types/OrPromise
+ * @file Type Definitions - OrPromise
+ * @module tutils/types/OrPromise
  */
 
 /**

@@ -1,10 +1,11 @@
-import log from '@flex-development/grease/utils/log.util'
+import logger from '@flex-development/grease/utils/logger.util'
+import LogLevel from '@flex-development/log/enums/log-level.enum'
 import type { ReplaceInFileConfig, ReplaceResult } from 'replace-in-file'
 import replace from 'replace-in-file'
 
 /**
- * @file Scripts - Fix Node Module Import Paths
- * @module scripts/fix-node-module-paths
+ * @file Helpers - Fix Node Module Import Paths
+ * @module tools/helpers/fix-node-module-paths
  * @see https://github.com/adamreisnz/replace-in-file
  */
 
@@ -15,7 +16,7 @@ import replace from 'replace-in-file'
  */
 const OPTIONS: ReplaceInFileConfig = {
   files: ['./cjs/**/*', './esm/**/*'],
-  from: new RegExp('(../.*)?(node_modules/)', 'g'),
+  from: new RegExp(`(../.*)?(${process.env.NODE_MODULES}/)`, 'g'),
   to: ''
 }
 
@@ -36,10 +37,10 @@ const fixNodeModulePaths = (): ReplaceResult[] => {
   try {
     results = replace.sync(OPTIONS)
   } catch (error) {
-    log({}, (error as Error).message, [], 'error')
+    logger({}, (error as Error).message, [], LogLevel.ERROR)
   }
 
-  log({}, 'fix import paths')
+  logger({}, 'fix import paths')
   return results
 }
 

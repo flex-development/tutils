@@ -1,8 +1,8 @@
 import type { ObjectPlain } from './ObjectPlain'
 
 /**
- * @file Types - PickByType
- * @module types/PickByType
+ * @file Type Definitions - PickByType
+ * @module tutils/types/PickByType
  */
 
 /**

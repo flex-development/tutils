@@ -1,8 +1,8 @@
 import type { ObjectPlain } from './ObjectPlain'
 
 /**
- * @file Types - Overwrite
- * @module types/Overwrite
+ * @file Type Definitions - Overwrite
+ * @module tutils/types/Overwrite
  */
 
 /**

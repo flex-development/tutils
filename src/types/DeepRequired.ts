@@ -2,8 +2,8 @@ import type { BuiltIn } from './BuiltIn'
 import type { ObjectUnknown } from './ObjectUnknown'
 
 /**
- * @file Types - DeepRequired
- * @module types/DeepRequired
+ * @file Type Definitions - DeepRequired
+ * @module tutils/types/DeepRequired
  */
 
 /**

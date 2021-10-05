@@ -1,8 +1,8 @@
 import type { JSONPrimitive } from './JSON'
 
 /**
- * @file Types - Primitive
- * @module types/Primitive
+ * @file Type Definitions - Primitive
+ * @module tutils/types/Primitive
  */
 
 /**
