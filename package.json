@@ -31,14 +31,16 @@
   ],
   "exports": {
     ".": {
-      "import": "./esm/index.mjs",
-      "require": "./cjs/index.cjs"
+      "import": "./esm/tutils.mjs",
+      "require": "./cjs/tutils.cjs"
     },
     "./*": {
       "import": "./esm/*.mjs",
       "require": "./cjs/*.cjs"
     },
+    "./cjs": "./cjs/index.cjs",
     "./cjs/*": "./cjs/*.cjs",
+    "./esm": "./esm/index.mjs",
     "./esm/*": "./esm/*.mjs",
     "./package.json": "./package.json",
     "./types": {
@@ -50,9 +52,9 @@
       "require": "./cjs/types/*.cjs"
     }
   },
-  "main": "./cjs/index.cjs",
-  "module": "./esm/index.mjs",
-  "types": "./types/index.d.ts",
+  "main": "./cjs/tutils.min.cjs",
+  "module": "./esm/tutils.min.mjs",
+  "typings": "./types/tutils.d.ts",
   "scripts": {
     "clean:build": "rimraf ./(cjs|esm)",
     "clean:modules": "rimraf ./node_modules",
@@ -84,6 +86,7 @@
     "@commitlint/types": "13.2.0",
     "@flex-development/grease": "2.0.0",
     "@flex-development/log": "4.0.0-dev.0",
+    "@flex-development/trext": "1.0.0",
     "@types/fs-extra": "9.0.13",
     "@types/lodash.merge": "4.6.6",
     "@types/mvdan-sh": "0.5.1",
@@ -94,6 +97,7 @@
     "@typescript-eslint/eslint-plugin": "4.33.0",
     "@typescript-eslint/parser": "4.33.0",
     "@vates/toggle-scripts": "1.0.0",
+    "@vercel/ncc": "0.31.1",
     "@zerollup/ts-transform-paths": "1.7.18",
     "chalk": "4.1.2",
     "concurrently": "6.3.0",
