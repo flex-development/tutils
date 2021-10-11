@@ -83,7 +83,7 @@
     "@commitlint/format": "13.2.0",
     "@commitlint/types": "13.2.0",
     "@flex-development/grease": "2.0.0",
-    "@flex-development/log": "3.0.0-dev.0",
+    "@flex-development/log": "4.0.0-dev.0",
     "@types/fs-extra": "9.0.13",
     "@types/lodash.merge": "4.6.6",
     "@types/mvdan-sh": "0.5.1",

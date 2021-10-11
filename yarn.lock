@@ -588,9 +588,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@flex-development/log@npm:3.0.0-dev.0":
-  version: 3.0.0-dev.0
-  resolution: "@flex-development/log@npm:3.0.0-dev.0::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40flex-development%2Flog%2F3.0.0-dev.0%2Fbc1a42426fcaca5d2f4c06e35653b7a63aebd1590ef1590bd67e8e3dee689865"
+"@flex-development/log@npm:4.0.0-dev.0":
+  version: 4.0.0-dev.0
+  resolution: "@flex-development/log@npm:4.0.0-dev.0::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40flex-development%2Flog%2F4.0.0-dev.0%2Fab985a91b114b4903f86144fd9500f70f7075962a123321224b0e4fca91508c8"
   dependencies:
     "@flex-development/tutils": 3.1.7
     "@types/chalk": 2.2.0
@@ -606,7 +606,7 @@ __metadata:
       optional: true
     shelljs:
       optional: true
-  checksum: 4e2b1d02638cc67eda51ddeda0ec27f11350aed6e1427e8dec4c56b957145e6828138a0a15892e56693365ac1764c3ea4540acc4241ca83b7501da1fc03cbef2
+  checksum: 2fff7ba73ecde7483b4d8ce6d3f98b066bb21ec54e1b1f8861b81ecfb2592ad06e8400eacd526bf3873adb1140131f85a04d1589fdef3c55108b69671de9deef
   languageName: node
   linkType: hard
 
@@ -639,7 +639,7 @@ __metadata:
     "@commitlint/format": 13.2.0
     "@commitlint/types": 13.2.0
     "@flex-development/grease": 2.0.0
-    "@flex-development/log": 3.0.0-dev.0
+    "@flex-development/log": 4.0.0-dev.0
     "@types/fs-extra": 9.0.13
     "@types/lodash.merge": 4.6.6
     "@types/mvdan-sh": 0.5.1
