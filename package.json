@@ -1,7 +1,7 @@
 {
   "name": "@flex-development/tutils",
   "description": "TypeScript utilities",
-  "version": "4.0.0-dev.0",
+  "version": "4.0.0",
   "keywords": [
     "type definitons",
     "typescript utilities",
@@ -134,7 +134,7 @@
     "yargs": "17.2.1"
   },
   "peerDependencies": {
-    "@types/node": ">=12.20.0",
+    "@types/node": ">=14.0.0",
     "typescript": ">=2.7"
   },
   "peerDependenciesMeta": {
@@ -146,7 +146,7 @@
     }
   },
   "engines": {
-    "node": ">=12.20.0",
+    "node": ">=14.18.0",
     "yarn": "3.0.2"
   },
   "env": {

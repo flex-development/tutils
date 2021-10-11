@@ -2,6 +2,30 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.0.0](https://github.com/flex-development/tutils/compare/tutils@4.0.0-dev.0...tutils@4.0.0) (2021-10-11)
+
+
+### ⚠ BREAKING CHANGES
+
+* target `node>=14.18.0`
+
+### :hammer: Build
+
+* **deps-dev:** interactive upgrades ([acfd4c3](https://github.com/flex-development/tutils/commit/acfd4c37599521d625c60e67c6d56c538f287531))
+* **deps-dev:** use `@flex-development/log@4.0.0-dev.0` ([771547c](https://github.com/flex-development/tutils/commit/771547ca7f253f94878048f0b48ff2c41214c419))
+* target `node>=14.18.0` ([ad7bbdb](https://github.com/flex-development/tutils/commit/ad7bbdb506c18ce6f27a73e225e69008023d24b0))
+* update package exports and entrypoints ([286d9f3](https://github.com/flex-development/tutils/commit/286d9f36e1e4e07b80e547babdf65262069ef39e))
+
+
+### :pencil2: Housekeeping
+
+* local integrity check ([087675c](https://github.com/flex-development/tutils/commit/087675cf744ac27b89872a15760a871d13235387))
+* **release:** set package version ([9880b9a](https://github.com/flex-development/tutils/commit/9880b9af3b18a230bb67dbb4dd22de30e60d9203))
+* **scripts:** update - `clean:build`, `postinstall`, `check:style` ([6e679a2](https://github.com/flex-development/tutils/commit/6e679a277f956da2f689b00d0a80ace9226e67ec))
+* **tools:** add `trext` and `@vercel/ncc` to build workflow ([9a7b3bd](https://github.com/flex-development/tutils/commit/9a7b3bd142336446ba2adebe85f55a5daac0d81e))
+* **tools:** update `pkg` helper exports ([d7901d4](https://github.com/flex-development/tutils/commit/d7901d42dc4728b2b362f5bd91acf3b95bac69c6))
+* **tools:** update prerelease workflow ([47108c1](https://github.com/flex-development/tutils/commit/47108c18e27f7a583a27351c20246c2bf9dc8e7b))
+
 ## [4.0.0-dev.0](https://github.com/flex-development/tutils/compare/tutils@3.1.7...tutils@4.0.0-dev.0) (2021-10-05)
 
 
