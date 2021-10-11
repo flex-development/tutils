@@ -10,7 +10,7 @@ import yargs from 'yargs'
 import { hideBin } from 'yargs/helpers'
 import exec from '../helpers/exec'
 import fixNodeModulePaths from '../helpers/fix-node-module-paths'
-import pkg, { $workspace } from '../helpers/pkg'
+import pkg, { $WORKSPACE } from '../helpers/pkg'
 // @ts-expect-error ts(2307)
 import useDualExports from '../helpers/use-dual-exports.mjs'
 
@@ -171,7 +171,7 @@ async function build(): Promise<void> {
   logger(
     argv,
     'starting build workflow',
-    [$workspace, `[dry=${argv.dryRun}]`],
+    [$WORKSPACE, `[dry=${argv.dryRun}]`],
     LogLevel.INFO
   )
 
@@ -258,7 +258,7 @@ async function build(): Promise<void> {
   }
 
   // Log workflow end
-  logger(argv, 'build workflow complete', [$workspace], LogLevel.INFO)
+  logger(argv, 'build workflow complete', [$WORKSPACE], LogLevel.INFO)
 }
 
 build()
