@@ -33,7 +33,7 @@
     "target": "es2020"
   },
   "exclude": ["./build", "./cjs", "./esm", "./node_modules", "./types"],
-  "include": ["**/*.cjs", "**/.*.cjs", "**/*.mjs", "**/*.ts", "**/.*.ts"],
+  "include": ["**/*.cjs", "**/*.mjs", "**/*.ts", "**/.*.cjs", "**/.*.ts"],
   "ts-node": {
     "moduleTypes": {
       ".commitlintrc.ts": "cjs"
