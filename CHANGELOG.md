@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.0.1](https://github.com/flex-development/tutils/compare/tutils@4.0.0...tutils@4.0.1) (2021-10-13)
+
+
+### :bug: Fixes
+
+* **cjs:** directory index specifiers ([429f3f8](https://github.com/flex-development/tutils/commit/429f3f8ff8274570b7f516d530d0ebffe4149840))
+
+
+### :pencil2: Housekeeping
+
+* **esm:** update `@flex-development/tutils` path alias ([1158135](https://github.com/flex-development/tutils/commit/1158135acfdbaacdd552a66f700b2803a25e551b))
+* **tools:** add `ts-patch`, drop `ttypescript` ([4d9cb71](https://github.com/flex-development/tutils/commit/4d9cb7125c0a5efe5959d4c8f5d16e493c518072))
+* **tools:** add `tsc-prog` to build workflow ([3f3f922](https://github.com/flex-development/tutils/commit/3f3f9221d2f33183d086854144d86dc90707bf0b))
+* **tools:** enable type checking during build workflow ([9dc7bf8](https://github.com/flex-development/tutils/commit/9dc7bf876a3c5990d854ec0bf76961cd1de59b94))
+
+
+### :truck: Continuous Integration & Deployment
+
+* **workflows:** update `continuous-integration` triggers ([96a59fd](https://github.com/flex-development/tutils/commit/96a59fddb6adfc94e54080ec1eb2f388e27e0ea2))
+* **workflows:** update `integrity` triggers ([9be038e](https://github.com/flex-development/tutils/commit/9be038e3825b36fa5d04d0e8717464dffecb3b41))
+
 ## [4.0.0](https://github.com/flex-development/tutils/compare/tutils@4.0.0-dev.0...tutils@4.0.0) (2021-10-11)
 
 
