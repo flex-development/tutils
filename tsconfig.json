@@ -19,7 +19,7 @@
       ],
       "@flex-development/log": ["node_modules/@flex-development/log/esm/index"],
       "@flex-development/log/*": ["node_modules/@flex-development/log/esm/*"],
-      "@flex-development/tutils": ["src/index.ts"],
+      "@flex-development/tutils": ["src/index"],
       "@flex-development/tutils/*": ["src/*"]
     },
     "preserveConstEnums": true,
