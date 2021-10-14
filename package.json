@@ -27,6 +27,7 @@
   "files": [
     "cjs",
     "esm",
+    "types",
     "CHANGELOG.md"
   ],
   "exports": {
