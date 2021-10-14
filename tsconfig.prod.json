@@ -2,16 +2,11 @@
   "compilerOptions": {
     "declaration": true,
     "inlineSourceMap": true,
+    "lib": ["esnext"],
     "noEmit": false,
     "noEmitOnError": true,
+    "noImplicitAny": true,
     "outDir": "build",
-    "plugins": [
-      {
-        "afterDeclarations": true,
-        "exclude": ["*"],
-        "transform": "@zerollup/ts-transform-paths"
-      }
-    ],
     "removeComments": false,
     "rootDir": "./src",
     "skipLibCheck": true,

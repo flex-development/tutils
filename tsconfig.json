@@ -2,14 +2,17 @@
   // See: https://github.com/tsconfig/bases/blob/main/bases/node14.json
   "compilerOptions": {
     "allowJs": true,
+    "alwaysStrict": true,
     "baseUrl": "./",
     "checkJs": false,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "lib": ["es2020"],
-    "module": "es2020",
+    "lib": ["dom", "esnext"],
+    "module": "es2022",
     "moduleResolution": "node",
     "noEmit": true,
+    "noErrorTruncation": true,
+    "noImplicitAny": true,
     "paths": {
       "@flex-development/grease": [
         "node_modules/@flex-development/grease/cjs/index"
@@ -32,8 +35,17 @@
     // Node.js 14
     "target": "es2020"
   },
-  "exclude": ["./build", "./cjs", "./esm", "./node_modules", "./types"],
-  "include": ["**/*.cjs", "**/*.mjs", "**/*.ts", "**/.*.cjs", "**/.*.ts"],
+  "exclude": ["./build", "./cjs", "./esm", "./node_modules/**", "./types"],
+  "files": ["typings/tools/helpers/use-dual-exports.d.mts"],
+  "include": [
+    "**/*.cjs",
+    "**/*.cts",
+    "**/*.mjs",
+    "**/*.mts",
+    "**/*.ts",
+    "**/.*.cjs",
+    "**/.*.ts"
+  ],
   "ts-node": {
     "moduleTypes": {
       ".commitlintrc.ts": "cjs"

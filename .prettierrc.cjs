@@ -20,7 +20,18 @@ module.exports = {
   trailingComma: 'none',
   overrides: [
     {
-      files: ['*.sh', '.husky/commit-msg', '.husky/pre-commit'],
+      files: ['*.cts', '*.mts'],
+      options: {
+        parser: 'typescript'
+      }
+    },
+    {
+      files: [
+        '*.sh',
+        '.husky/commit-msg',
+        '.husky/pre-commit',
+        '.husky/pre-push'
+      ],
       options: {
         functionNextLine: true,
         indent: 2,

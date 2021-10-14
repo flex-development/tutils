@@ -1,7 +1,7 @@
 import type BuiltIn from './built-in.type'
 import type KeysOptional from './keys-optional.type'
 import type KeysRequired from './keys-required.type'
-import type ObjectUnknown from './object-unknown.type'
+import type ObjectPlain from './object-plain.type'
 import type OmitByType from './omit-by-type.type'
 
 /**
@@ -19,7 +19,7 @@ import type OmitByType from './omit-by-type.type'
  */
 type DeepOmit<
   T extends DeepOmitHelper<F>,
-  F extends ObjectUnknown
+  F extends ObjectPlain
 > = T extends BuiltIn
   ? T
   : T extends Map<infer KeyType, infer ValueType>
