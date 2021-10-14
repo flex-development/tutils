@@ -2,6 +2,33 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.0.2](https://github.com/flex-development/tutils/compare/tutils@4.0.1...tutils@4.0.2) (2021-10-14)
+
+
+### :bug: Fixes
+
+* `Could not find a declaration file for module` ([e075120](https://github.com/flex-development/tutils/commit/e075120cc54ccbc5a2d60e3b66858d24e2a6519d))
+
+
+### :hammer: Build
+
+* include source code in sourcemaps ([114b8a1](https://github.com/flex-development/tutils/commit/114b8a17b9e23969de91eb6ed3a1dd52b62daca9))
+* **typescript:** create sourcemaps for `.d.ts` files ([9534aba](https://github.com/flex-development/tutils/commit/9534aba64dc81b9a6a0cb48ae1823644bf0fd8c4))
+
+
+### :pencil2: Housekeeping
+
+* **scripts:** remove `*.tgz` files in `clean:build` script ([e3bd500](https://github.com/flex-development/tutils/commit/e3bd5009b1c7a01adb3e87a7098f243579afc171))
+* **typescript:** enable `exactOptionalPropertyTypes` ([bcd8f5e](https://github.com/flex-development/tutils/commit/bcd8f5ed40d645e0a2adf1d98512d7b059d26624))
+* **typescript:** upgrade to `typescript@4.5.0-beta` ([f74cf2f](https://github.com/flex-development/tutils/commit/f74cf2f75e53a84e1c0c80f0be08df74eba11f32))
+
+
+### :truck: Continuous Integration & Deployment
+
+* **workflows:** add `delete-release-branch` job ([4b418f1](https://github.com/flex-development/tutils/commit/4b418f1f1510924bfe378e66a2fc63d998fd7c37))
+* **workflows:** push to **protected** branch 'main' ([efd8d22](https://github.com/flex-development/tutils/commit/efd8d22a460550c039ac4cc4432a6e2f65b333ca))
+* **workflows:** update `integrity` triggers ([f031e61](https://github.com/flex-development/tutils/commit/f031e61671a4969be3e7504e4ba316b3b31a7cbb))
+
 ### [4.0.1](https://github.com/flex-development/tutils/compare/tutils@4.0.0...tutils@4.0.1) (2021-10-13)
 
 
