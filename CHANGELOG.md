@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.0.3](https://github.com/flex-development/tutils/compare/tutils@4.0.2...tutils@4.0.3) (2021-10-14)
+
+
+### :bug: Fixes
+
+* `Could not find a declaration file for module` (actually! 😉) ([5161733](https://github.com/flex-development/tutils/commit/51617335bf7137c429dd3b393f431caaf9fbd479))
+
 ### [4.0.2](https://github.com/flex-development/tutils/compare/tutils@4.0.1...tutils@4.0.2) (2021-10-14)
 
 
