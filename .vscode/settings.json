@@ -17,7 +17,7 @@
   "typescript.tsdk": "node_modules/typescript/lib",
   "vsicons.associations.files": [
     {
-      "extensions": [".commitlintrc.cjs", ".commitlintrc.ts"],
+      "extensions": [".commitlintrc.ts"],
       "format": "svg",
       "icon": "commitlint"
     },

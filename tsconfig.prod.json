@@ -14,7 +14,15 @@
     "skipLibCheck": true,
     "sourceMap": false
   },
-  "exclude": ["./build", "./cjs", "./esm", "./node_modules", "./types"],
+  "exclude": [
+    "**/__mocks__",
+    "**/__tests__",
+    "./build",
+    "./cjs",
+    "./esm",
+    "./node_modules",
+    "./types"
+  ],
   "extends": "./tsconfig.json",
   "files": [],
   "include": ["src"]
