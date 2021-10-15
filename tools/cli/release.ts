@@ -2,7 +2,6 @@
 
 import grease from '@flex-development/grease'
 import type { IGreaseOptions } from '@flex-development/grease/interfaces'
-import logger from '@flex-development/grease/utils/logger.util'
 import LogLevel from '@flex-development/log/enums/log-level.enum'
 import ch from 'chalk'
 import merge from 'lodash.merge'
@@ -11,6 +10,7 @@ import { inspect } from 'util'
 import type { Argv } from 'yargs'
 import yargs from 'yargs'
 import { hideBin } from 'yargs/helpers'
+import logger from '../helpers/logger'
 import { $WNS, $WORKSPACE } from '../helpers/pkg'
 
 /**
@@ -87,8 +87,10 @@ export type ReleaseOptions = {
   skip?: IGreaseOptions['skip']
 }
 
-/** @property {Argv<IGreaseOptions>} args - CLI arguments parser */
-const args = yargs(hideBin(process.argv))
+export type ReleaseArgs = Argv<ReleaseOptions>
+export type ReleaseArgv = Exclude<ReleaseArgs['argv'], Promise<any>>
+
+const args = yargs(hideBin(process.argv), process.env.INIT_CWD)
   .usage('$0 [options]')
   .option('commitAll', {
     alias: 'a',
@@ -136,16 +138,14 @@ const args = yargs(hideBin(process.argv))
   })
   .alias('help', 'h')
   .pkgConf('release')
-  .wrap(98) as Argv<IGreaseOptions>
+  .wrap(98) as ReleaseArgs
 
-/** @property {ReleaseOptions} argv - CLI arguments object */
-const argv = args.argv as ReleaseOptions
+const argv: ReleaseArgv = await args.argv
 
-/** @property {IGreaseOptions} options - `grease` options */
 const options: IGreaseOptions = {
   commitAll: true,
   gitTagFallback: false,
-  gitdir: process.env.PROJECT_CWD,
+  gitdir: process.env.PROJECT_CWD as string,
   lernaPackage: $WNS,
   releaseAssets: ['./*.tgz'],
   releaseBranchWhitelist: ['release/*'],
@@ -154,7 +154,7 @@ const options: IGreaseOptions = {
     postchangelog: `yarn pack -o %s-%v.tgz ${(argv.d && '-n') || ''}`.trim(),
     postcommit: 'git pnv',
     postgreaser: 'yarn clean:build && rimraf ./*.tgz',
-    prerelease: 'yarn test'
+    prerelease: 'yarn test --no-cache'
   },
   // `continuous-deployment` workflow will create new tag
   skip: { tag: true },
@@ -188,7 +188,8 @@ logger(
 )
 
 // Run release workflow
-grease(merge({}, options, argv)).catch(error => {
+// @ts-expect-error Property 'default' does not exist on type
+grease.default(merge({}, options, argv)).catch(error => {
   if (error.stderr) return
   else sh.echo(ch.bold.red(inspect(error, false, null)))
 })
