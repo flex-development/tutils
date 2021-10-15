@@ -64,12 +64,7 @@ module.exports = {
     'jsdoc/check-syntax': 1,
     'jsdoc/check-tag-names': [1, { definedTags: ['link'] }],
     'jsdoc/no-multi-asterisks': 0,
-    'jsdoc/no-undefined-types': [
-      1,
-      {
-        definedTypes: []
-      }
-    ],
+    'jsdoc/no-undefined-types': [1, { definedTypes: ['never'] }],
     'jsdoc/require-hyphen-before-param-description': 1,
     'jsdoc/require-throws': 1,
     'jsdoc/tag-lines': [
@@ -230,13 +225,6 @@ module.exports = {
       }
     },
     {
-      files: ['**/*.cjs', '**/*.cts', '**/*.mjs'],
-      parser: `${__dirname}/node_modules/@babel/eslint-parser/lib/index.cjs`,
-      parserOptions: {
-        requireConfigFile: false
-      }
-    },
-    {
       files: ['**/*.d.cts', '**/*.d.mts'],
       rules: {
         'prettier/prettier': 0
@@ -260,7 +248,7 @@ module.exports = {
       }
     },
     {
-      files: ['tools/loaders/env.cjs'],
+      files: ['tools/cli/loadenv.cjs'],
       rules: {
         'unicorn/no-array-reduce': 0
       }

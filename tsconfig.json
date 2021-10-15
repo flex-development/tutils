@@ -37,7 +37,6 @@
     "target": "es2020"
   },
   "exclude": ["./build", "./cjs", "./esm", "./node_modules/**", "./types"],
-  "files": ["typings/tools/helpers/use-dual-exports.d.mts"],
   "include": [
     "**/*.cjs",
     "**/*.cts",
