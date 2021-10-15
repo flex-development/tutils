@@ -52,6 +52,10 @@
   description: ES modules
   color: 74cefc
 
+- name: scope:guards
+  description: Type guards
+  color: 74cefc
+
 - name: scope:interfaces
   description: Object types
   color: 74cefc
