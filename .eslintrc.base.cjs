@@ -107,6 +107,7 @@ module.exports = {
         skipWordIfMatch: [],
         skipWords: [
           'argv',
+          'basedir',
           'booleanish',
           'cjs',
           'commonjs',
@@ -120,6 +121,7 @@ module.exports = {
           'nullable',
           'nullish',
           'perf',
+          'pkgfile',
           'pnv',
           'postinstall',
           'prepack',
@@ -129,6 +131,7 @@ module.exports = {
           'tsconfig',
           'ttsc',
           'tutils',
+          'typeof',
           'usr',
           'vercel',
           'wasm',

@@ -24,7 +24,9 @@
       "@flex-development/log": ["node_modules/@flex-development/log/esm/index"],
       "@flex-development/log/*": ["node_modules/@flex-development/log/esm/*"],
       "@flex-development/tutils": ["src/index"],
-      "@flex-development/tutils/*": ["src/*"]
+      "@flex-development/tutils/*": ["src/*"],
+      "@tests/fixtures/*": ["__tests__/__fixtures__/*"],
+      "@tests/*": ["__tests__/*"]
     },
     "preserveConstEnums": true,
     "pretty": true,
@@ -36,7 +38,8 @@
     // Node.js 14
     "target": "es2020"
   },
-  "exclude": ["./build", "./cjs", "./esm", "./node_modules/**", "./types"],
+  "exclude": ["./build", "./cjs", "./esm", "./node_modules", "./types"],
+  "files": ["typings/jest.d.ts"],
   "include": [
     "**/*.cjs",
     "**/*.cts",
@@ -48,7 +51,9 @@
   ],
   "ts-node": {
     "moduleTypes": {
-      ".commitlintrc.ts": "cjs"
+      ".commitlintrc.ts": "cjs",
+      "jest.config.base.ts": "cjs",
+      "jest.config.ts": "cjs"
     },
     "transpileOnly": true
   }
