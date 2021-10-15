@@ -54,6 +54,7 @@ const config: UserConfig = {
         'enums',
         'esm',
         'github',
+        'guards',
         'hybrid',
         'interfaces',
         'release',
