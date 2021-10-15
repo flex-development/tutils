@@ -115,6 +115,7 @@ module.exports = {
           'esm',
           'extensionless',
           'fixme',
+          'keyof',
           'loadenv',
           'mjs',
           'ncc',

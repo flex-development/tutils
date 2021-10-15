@@ -26,7 +26,9 @@
       "@flex-development/tutils": ["src/index"],
       "@flex-development/tutils/*": ["src/*"],
       "@tests/fixtures/*": ["__tests__/__fixtures__/*"],
-      "@tests/*": ["__tests__/*"]
+      "@tests/*": ["__tests__/*"],
+      "@tutils": ["src/index"],
+      "@tutils/*": ["src/*"]
     },
     "preserveConstEnums": true,
     "pretty": true,
