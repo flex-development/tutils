@@ -2,6 +2,37 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.1.0](https://github.com/flex-development/tutils/compare/tutils@4.0.3...tutils@4.1.0) (2021-10-15)
+
+
+### :hammer: Build
+
+* **deps-dev:** interactive upgrades ([47e382e](https://github.com/flex-development/tutils/commit/47e382e57a54887b03542f83054d42dbc4ada53d))
+* **deps-dev:** remove unused deps ([7604d38](https://github.com/flex-development/tutils/commit/7604d3864d0d3709277b90816aa9c2ff5edaf481))
+* use fully specified exports and call expressions in build output ([e0ae635](https://github.com/flex-development/tutils/commit/e0ae6350f1a44ebf7eff6ed094af1fb5c8a7779c))
+
+
+### :robot: Testing
+
+* add testing framework ([590d697](https://github.com/flex-development/tutils/commit/590d6975886f34f611b7a2f2b37e68845273e54b))
+
+
+### :sparkles: Features
+
+* **enums:** `NodeEnv` ([445a546](https://github.com/flex-development/tutils/commit/445a546586d3975ad5a8e4950945cc5ac2b6cdc7))
+* **guards:** `isNodeEnv` ([7b372de](https://github.com/flex-development/tutils/commit/7b372decc283d868c5e8bec4e2c34e32847a141b))
+* **types:** `Intersection` ([d270a78](https://github.com/flex-development/tutils/commit/d270a781f52b57648e3096a3604d0652c2388f8c))
+* **types:** `RegexString` ([2c7940f](https://github.com/flex-development/tutils/commit/2c7940f709994622ed958685370c371e13ca2458))
+* **types:** `Union` ([59e1584](https://github.com/flex-development/tutils/commit/59e1584e43de2a96852a1c37dd5c9e29f93147a9))
+
+
+### :pencil2: Housekeeping
+
+* **github:** add `guards` commit scope ([0735655](https://github.com/flex-development/tutils/commit/0735655a755501fc651839fec4a142bc2abb1592))
+* **github:** add `scope:guards` label ([bff9176](https://github.com/flex-development/tutils/commit/bff91765ed28e86e3c77963b3d472e9a960966f1))
+* **tools:** cleanup project tools ([2186a3d](https://github.com/flex-development/tutils/commit/2186a3d70bc5763fcef42bd116657767e87e87d9))
+* **tools:** fix release workflow script ([828edc3](https://github.com/flex-development/tutils/commit/828edc36b5642faa2c6a61d4cf4afc68caeb97a3))
+
 ### [4.0.3](https://github.com/flex-development/tutils/compare/tutils@4.0.2...tutils@4.0.3) (2021-10-14)
 
 
