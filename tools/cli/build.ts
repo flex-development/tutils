@@ -10,9 +10,7 @@ import fs from 'fs/promises'
 import path from 'path'
 import replace from 'replace-in-file'
 import sh from 'shelljs'
-import type { ReplaceTscAliasPathsOptions } from 'tsc-alias'
-import { replaceTscAliasPaths as tsTransformPaths } from 'tsc-alias'
-import type { BuildOptions as TsBuildOptions, TsConfig } from 'tsc-prog'
+import type { BuildOptions as TsBuildOptions } from 'tsc-prog'
 import tsc from 'tsc-prog'
 import { loadSync as tsconfigLoad } from 'tsconfig/dist/tsconfig'
 import { inspect } from 'util'
@@ -22,6 +20,8 @@ import { hideBin } from 'yargs/helpers'
 import exec from '../helpers/exec'
 import logger from '../helpers/logger'
 import { $PACKAGE, $WNS, $WORKSPACE } from '../helpers/pkg'
+import type { TsRemapOptions } from '../helpers/ts-remap'
+import tsRemap from '../helpers/ts-remap'
 import tsconfigCascade from '../helpers/tsconfig-cascade'
 
 /**
@@ -37,12 +37,18 @@ export type BuildOptions = {
    */
   dryRun?: boolean
 
+  /** @see BuildOptions.dryRun */
+  d?: BuildOptions['dryRun']
+
   /**
    * Name of build environment.
    *
    * @default 'production'
    */
   env?: 'development' | 'production' | 'test'
+
+  /** @see BuildOptions.env */
+  e?: BuildOptions['env']
 
   /**
    * Specify module build formats.
@@ -51,12 +57,18 @@ export type BuildOptions = {
    */
   formats?: ('cjs' | 'esm' | 'types')[]
 
+  /** @see BuildOptions.formats */
+  f?: BuildOptions['formats']
+
   /**
    * Run preliminary `yarn install` if package contains build scripts.
    *
    * @default false
    */
   install?: boolean
+
+  /** @see BuildOptions.install */
+  i?: BuildOptions['install']
 
   /**
    * Create tarball at specified path.
@@ -65,6 +77,9 @@ export type BuildOptions = {
    */
   out?: string
 
+  /** @see BuildOptions.out */
+  o?: BuildOptions['out']
+
   /**
    * Run `prepack` script.
    *
@@ -72,21 +87,27 @@ export type BuildOptions = {
    */
   prepack?: boolean
 
+  /** @see BuildOptions.prepack */
+  p?: BuildOptions['prepack']
+
   /**
    * Pack the project once build is complete.
    *
    * @default false
    */
   tarball?: boolean
+
+  /** @see BuildOptions.tarball */
+  t?: BuildOptions['tarball']
 }
 
 export type BuildArgs = Argv<BuildOptions>
 export type BuildArgv = Exclude<BuildArgs['argv'], Promise<any>>
 
 export type BuildModuleFormatOptions = {
-  alias: ReplaceTscAliasPathsOptions
   build: TsBuildOptions
   trext: TrextOptions<'js', 'cjs' | 'mjs'>
+  remap: TsRemapOptions
 }
 
 /** @property {string[]} BUILD_FORMATS - Module build formats */
@@ -155,7 +176,7 @@ const args = yargs(hideBin(process.argv), CWD)
   .wrap(98) as BuildArgs
 
 const argv: BuildArgv = await args.argv
-const { dryRun, env, formats = [], tarball } = argv
+const { dryRun = false, env, formats = [], tarball } = argv
 
 // Log workflow start
 logger(
@@ -183,42 +204,43 @@ try {
     // See: https://github.com/justkey007/tsc-alias#usage
     // See: https://github.com/jeremyben/tsc-prog
     // See: https://github.com/flex-development/trext
-    const options: BuildModuleFormatOptions = {
-      alias: {
-        configFile: `tsconfig.prod.${format}.json`,
-        outDir: `./${format}`,
-        silent: false
-      },
-      build: {
-        ...((): TsConfig => {
-          const { compilerOptions = {}, exclude = [] } = tsconfigCascade([
-            [PWD, 'json'],
-            [PWD, 'prod.json'],
-            [PWD, suffix]
-          ])
+    const options: BuildModuleFormatOptions = (() => {
+      const tsconfig = (() => {
+        const { compilerOptions = {}, exclude = [] } = tsconfigCascade([
+          [PWD, 'json'],
+          [CWD, 'json'],
+          [PWD, 'prod.json'],
+          [PWD, suffix]
+        ])
 
-          return {
-            compilerOptions,
-            exclude,
-            include: tsconfigLoad(PWD, 'tsconfig.prod.json').config.include
-          }
-        })(),
-        basePath: CWD,
-        clean: { outDir: true }
-      },
-      trext: {
-        babel: { sourceMaps: 'inline' as const },
-        from: 'js',
-        pattern: /.js$/,
-        to: `${format === 'cjs' ? 'c' : 'm'}js`
+        return {
+          compilerOptions,
+          exclude,
+          include: tsconfigLoad(PWD, 'tsconfig.prod.json').config.include
+        }
+      })()
+
+      return {
+        build: { ...tsconfig, basePath: CWD, clean: { outDir: true } },
+        remap: {
+          compilerOptions: { ...tsconfig.compilerOptions, baseUrl: '../..' },
+          dryRun,
+          verbose: true
+        },
+        trext: {
+          babel: { sourceMaps: 'inline' as const },
+          from: 'js',
+          pattern: /.js$/,
+          to: `${format === 'cjs' ? 'c' : 'm'}js`
+        }
       }
-    }
+    })()
 
     // Build project
     !dryRun && tsc.build(options.build)
 
     // Transform paths
-    !dryRun && tsTransformPaths(options.alias)
+    tsRemap(options.remap)
     dryRun && logger(argv, `build ${format}`)
 
     if (format !== 'types') {
