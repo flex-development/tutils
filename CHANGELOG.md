@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.1.1](https://github.com/flex-development/tutils/compare/tutils@4.1.0...tutils@4.1.1) (2021-10-16)
+
+
+### :bug: Fixes
+
+* path remapping in `types` build output ([78d512a](https://github.com/flex-development/tutils/commit/78d512ae00dfc22194ff4e7a2476d5f3a93136a8))
+
 ## [4.1.0](https://github.com/flex-development/tutils/compare/tutils@4.0.3...tutils@4.1.0) (2021-10-15)
 
 
