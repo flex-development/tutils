@@ -6,6 +6,7 @@
 export type { default as ANY } from './any.type'
 export type { default as Booleanish } from './booleanish.type'
 export type { default as BuiltIn } from './built-in.type'
+export type { default as ClassConstructor } from './class-constructor.type'
 export type { default as ComparisonOperator } from './comparison-operator.type'
 export type { default as DeepOmit } from './deep-omit.type'
 export type { default as DeepPartialByHelper } from './deep-partial-by-helper.type'
