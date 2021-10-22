@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.2.0](https://github.com/flex-development/tutils/compare/tutils@4.1.1...tutils@4.2.0) (2021-10-22)
+
+
+### :sparkles: Features
+
+* **types:** `ClassConstructor` ([4799845](https://github.com/flex-development/tutils/commit/4799845a649b5db7f1d3e18a871c4a83b67e5f90))
+* **types:** `DocumentDeepPartial`, `DocumentPartial` ([6fb47b7](https://github.com/flex-development/tutils/commit/6fb47b7eb09303ec2a28f0c85d24230856bfbe37))
+* **types:** `DUID` ([03513e8](https://github.com/flex-development/tutils/commit/03513e832a459065e706bcb4e9fa68890ffb859f))
+* **types:** `EmptyString` ([ccf0af1](https://github.com/flex-development/tutils/commit/ccf0af1ed4e041a68ceb4856f6bdfd8a2911c591))
+* **types:** `UID` ([921883e](https://github.com/flex-development/tutils/commit/921883ee1eb0293d85d07462475f52505f80006d))
+
 ### [4.1.1](https://github.com/flex-development/tutils/compare/tutils@4.1.0...tutils@4.1.1) (2021-10-16)
 
 
