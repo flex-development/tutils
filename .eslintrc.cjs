@@ -15,7 +15,7 @@ module.exports = {
       RULES_SPELLCHECKER[0],
       {
         ...RULES_SPELLCHECKER[1],
-        skipWords: [...RULES_SPELLCHECKER[1].skipWords, 'enum', 'enums']
+        skipWords: [...RULES_SPELLCHECKER[1].skipWords, 'duid', 'enum', 'enums']
       }
     ]
   },
