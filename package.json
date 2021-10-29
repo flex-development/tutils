@@ -43,6 +43,14 @@
     "./cjs/*": "./cjs/*.cjs",
     "./esm": "./esm/index.mjs",
     "./esm/*": "./esm/*.mjs",
+    "./guards": {
+      "import": "./esm/guards/index.mjs",
+      "require": "./cjs/guards/index.cjs"
+    },
+    "./guards/*": {
+      "import": "./esm/guards/*.mjs",
+      "require": "./cjs/guards/*.cjs"
+    },
     "./package.json": "./package.json",
     "./types": {
       "import": "./esm/types/index.mjs",
