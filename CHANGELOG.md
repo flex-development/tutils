@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.2.1](https://github.com/flex-development/tutils/compare/tutils@4.2.0...tutils@4.2.1) (2021-10-29)
+
+
+### :bug: Fixes
+
+* add conditional exports - `./guards`, `./guards/*` ([98a1426](https://github.com/flex-development/tutils/commit/98a1426337c99835425b17ce2ae4239445339fcc))
+
+
+### :pencil2: Housekeeping
+
+* local integrity check ([ea5451d](https://github.com/flex-development/tutils/commit/ea5451d082107a40b80caf0f9eed9cd77dd652cf))
+* **scripts:** add `check:ci` script ([1233da6](https://github.com/flex-development/tutils/commit/1233da620ca6de5c6daac0bfd47c727a889b13c8))
+* **tools:** reorganize build workflow ([adf50f6](https://github.com/flex-development/tutils/commit/adf50f64a8d04d8b22ca7fd87adf3b5a098cd3cf))
+* **tools:** use explicit environment variables in testing workflow ([c0c9db8](https://github.com/flex-development/tutils/commit/c0c9db8e0343fc997bace0bf05dca4b89b31da65))
+* **typescript:** add typings for `@vercel/ncc` ([46065f2](https://github.com/flex-development/tutils/commit/46065f20849d8b20bcba7959b4d16b63af92c8d5))
+* **typescript:** add typings for `tsc-prog/dist/utils/log` ([4e8a325](https://github.com/flex-development/tutils/commit/4e8a325124216c2d7afdc574aebcbeeca034bc02))
+
 ## [4.2.0](https://github.com/flex-development/tutils/compare/tutils@4.1.1...tutils@4.2.0) (2021-10-22)
 
 
