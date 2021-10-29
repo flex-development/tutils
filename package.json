@@ -79,10 +79,10 @@
     "fix:format": "prettier --write .",
     "fix:style": "yarn check:style --fix --cache",
     "test": "bash ./tools/scripts/jest.sh",
-    "build": "node ./tools/cli/build.ts",
+    "build": "node ./tools/cli/build-pkg.ts",
     "prepack": "toggle-scripts -postinstall && yarn build",
     "postpack": "toggle-scripts +postinstall",
-    "release": "node ./tools/cli/release.ts",
+    "release": "NODE_ENV=production node ./tools/cli/release.ts",
     "prepublishOnly": "toggle-scripts -prepack",
     "postpublish": "toggle-scripts +prepack"
   },

@@ -6,7 +6,6 @@
     "baseUrl": "./",
     "checkJs": false,
     "esModuleInterop": true,
-    "exactOptionalPropertyTypes": true,
     "forceConsistentCasingInFileNames": true,
     "lib": ["dom", "esnext"],
     "module": "es2022",
