@@ -156,18 +156,10 @@
   },
   "peerDependencies": {
     "@types/node": ">=14.0.0",
-    "node:path": "*",
-    "node:util": "*",
     "typescript": "4.5.0-beta"
   },
   "peerDependenciesMeta": {
     "@types/node": {
-      "optional": true
-    },
-    "node:path": {
-      "optional": true
-    },
-    "node:util": {
       "optional": true
     },
     "typescript": {
