@@ -126,6 +126,7 @@ module.exports = {
           'pnv',
           'postinstall',
           'prepack',
+          'prog',
           'rimraf',
           'stringified',
           'tgz',
