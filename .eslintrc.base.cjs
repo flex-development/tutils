@@ -127,6 +127,7 @@ module.exports = {
           'postinstall',
           'prepack',
           'rimraf',
+          'stringified',
           'tgz',
           'tsc',
           'tsconfig',
