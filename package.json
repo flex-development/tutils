@@ -35,35 +35,36 @@
       "import": "./esm/tutils.mjs",
       "require": "./cjs/tutils.cjs"
     },
-    "./*": {
-      "import": "./esm/*.mjs",
-      "require": "./cjs/*.cjs"
+    "./": "./",
+    "./enums": {
+      "import": "./esm/enums/index.mjs",
+      "require": "./cjs/enums/index.cjs"
     },
-    "./cjs": "./cjs/index.cjs",
-    "./cjs/*": "./cjs/*.cjs",
-    "./esm": "./esm/index.mjs",
-    "./esm/*": "./esm/*.mjs",
+    "./enums/": {
+      "import": "./esm/enums/",
+      "require": "./cjs/enums/"
+    },
     "./guards": {
       "import": "./esm/guards/index.mjs",
       "require": "./cjs/guards/index.cjs"
     },
-    "./guards/*": {
-      "import": "./esm/guards/*.mjs",
-      "require": "./cjs/guards/*.cjs"
+    "./guards/": {
+      "import": "./esm/guards/",
+      "require": "./cjs/guards/"
     },
     "./package.json": "./package.json",
     "./types": {
       "import": "./esm/types/index.mjs",
       "require": "./cjs/types/index.cjs"
     },
-    "./types/*": {
-      "import": "./esm/types/*.mjs",
-      "require": "./cjs/types/*.cjs"
+    "./types/": {
+      "import": "./esm/types/",
+      "require": "./cjs/types/"
     }
   },
   "main": "./cjs/tutils.min.cjs",
   "module": "./esm/tutils.min.mjs",
-  "typings": "./types/index.d.ts",
+  "types": "./types/index.d.ts",
   "scripts": {
     "clean:build": "rimraf ./(cjs|esm|types|*.tgz)",
     "clean:modules": "rimraf ./node_modules",
