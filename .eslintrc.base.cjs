@@ -110,14 +110,19 @@ module.exports = {
           'basedir',
           'booleanish',
           'cjs',
+          'commitlint',
           'commonjs',
+          'cts',
           'dotenv',
           'esm',
           'extensionless',
           'fixme',
+          'formatter',
           'keyof',
           'loadenv',
           'mjs',
+          'msg',
+          'mts',
           'ncc',
           'nullable',
           'nullish',
@@ -137,6 +142,7 @@ module.exports = {
           'typeof',
           'usr',
           'vercel',
+          'vscode',
           'wasm',
           'wip',
           'workspace',
@@ -247,10 +253,15 @@ module.exports = {
       parser: require.resolve('@typescript-eslint/parser')
     },
     {
-      files: ['.eslintrc.*'],
+      files: ['**/.eslintrc.*'],
       rules: {
-        'sort-keys': 0,
         'spellcheck/spell-checker': 0
+      }
+    },
+    {
+      files: ['**/.eslintrc.*', '**/.prettierrc.*'],
+      rules: {
+        'sort-keys': 0
       }
     },
     {
