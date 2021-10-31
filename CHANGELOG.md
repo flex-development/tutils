@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.2.2](https://github.com/flex-development/tutils/compare/tutils@4.2.1...tutils@4.2.2) (2021-10-31)
+
+
+### :bug: Fixes
+
+* package exports ([e601c92](https://github.com/flex-development/tutils/commit/e601c92fad14681325150d58ef032062d58833ad))
+
+
+### :pencil2: Housekeeping
+
+* check for duplicate deps when `yarn.lock` changes ([b275a35](https://github.com/flex-development/tutils/commit/b275a35e0b4cb94d8a6d82dca02cf48e31e4f1ce))
+* update eslint config to handle dotfiles ([179617e](https://github.com/flex-development/tutils/commit/179617e647e35a8639849c6f913bce0affb17732))
+
 ### [4.2.1](https://github.com/flex-development/tutils/compare/tutils@4.2.0...tutils@4.2.1) (2021-10-29)
 
 
