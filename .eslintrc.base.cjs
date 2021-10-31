@@ -113,6 +113,7 @@ module.exports = {
           'commitlint',
           'commonjs',
           'cts',
+          'dedupe',
           'dotenv',
           'esm',
           'extensionless',
