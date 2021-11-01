@@ -40,26 +40,26 @@
       "import": "./esm/enums/index.mjs",
       "require": "./cjs/enums/index.cjs"
     },
-    "./enums/": {
-      "import": "./esm/enums/",
-      "require": "./cjs/enums/"
+    "./enums/*": {
+      "import": "./esm/enums/*.mjs",
+      "require": "./cjs/enums/*.cjs"
     },
     "./guards": {
       "import": "./esm/guards/index.mjs",
       "require": "./cjs/guards/index.cjs"
     },
-    "./guards/": {
-      "import": "./esm/guards/",
-      "require": "./cjs/guards/"
+    "./guards/*": {
+      "import": "./esm/guards/*.mjs",
+      "require": "./cjs/guards/*.cjs"
     },
     "./package.json": "./package.json",
     "./types": {
       "import": "./esm/types/index.mjs",
       "require": "./cjs/types/index.cjs"
     },
-    "./types/": {
-      "import": "./esm/types/",
-      "require": "./cjs/types/"
+    "./types/*": {
+      "import": "./esm/types/*.mjs",
+      "require": "./cjs/types/*.cjs"
     }
   },
   "main": "./cjs/tutils.min.cjs",
