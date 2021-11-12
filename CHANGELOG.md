@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.4.0](https://github.com/flex-development/tutils/compare/tutils@4.3.0...tutils@4.4.0) (2021-11-12)
+
+
+### :sparkles: Features
+
+* **guards:** `isBooleanish` ([7d53fcd](https://github.com/flex-development/tutils/commit/7d53fcdf04b65a89ecb334402d70385a73eda3e2))
+* **guards:** `isEmptyString` ([141902a](https://github.com/flex-development/tutils/commit/141902aa6a1561f0214ef074e943cfd0ff62d607))
+* **guards:** `isEmptyValue` ([879aa26](https://github.com/flex-development/tutils/commit/879aa26dd89ca88a691078c579767d60983ae8e0))
+* **guards:** `isNIL` ([011f516](https://github.com/flex-development/tutils/commit/011f516ca8e77477448d2634dc77bde742c561d5))
+* **guards:** `isNumberString` ([4d3bae0](https://github.com/flex-development/tutils/commit/4d3bae0801ae8e8e0b69aa410faddfa481f2a553))
+
 ## [4.3.0](https://github.com/flex-development/tutils/compare/tutils@4.2.3...tutils@4.3.0) (2021-11-12)
 
 
