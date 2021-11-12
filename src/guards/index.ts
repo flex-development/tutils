@@ -3,4 +3,5 @@
  * @module tutils/guards
  */
 
+export { default as isNIL } from './is-nil.guard'
 export { default as isNodeEnv } from './is-node-env.guard'
