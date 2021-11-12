@@ -254,6 +254,21 @@ module.exports = {
       parser: require.resolve('@typescript-eslint/parser')
     },
     {
+      files: ['**/*.spec.ts'],
+      env: {
+        jest: true
+      },
+      extends: ['plugin:jest/recommended'],
+      globals: {
+        'jest/globals': true
+      },
+      rules: {
+        'jest/no-disabled-tests': 0,
+        'jest/valid-title': 0,
+        'unicorn/consistent-function-scoping': 0
+      }
+    },
+    {
       files: ['**/.eslintrc.*'],
       rules: {
         'spellcheck/spell-checker': 0

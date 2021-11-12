@@ -1,3 +1,4 @@
+import type EmptyString from './empty-string.type'
 import type NIL from './nil.type'
 
 /**
@@ -8,6 +9,6 @@ import type NIL from './nil.type'
 /**
  * Type representing `null`, `undefined`, and empty strings.
  */
-type EmptyValue = NIL | ''
+type EmptyValue = NIL | EmptyString
 
 export default EmptyValue
