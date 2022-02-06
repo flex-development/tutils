@@ -20,7 +20,8 @@ module.exports = {
           'duid',
           'enum',
           'enums',
-          'uid'
+          'uid',
+          'unix'
         ]
       }
     ]
