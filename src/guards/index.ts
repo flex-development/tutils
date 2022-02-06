@@ -3,6 +3,7 @@
  * @module tutils/guards
  */
 
+export { default as isAppEnv } from './is-app-env.guard'
 export { default as isBooleanish } from './is-booleanish.guard'
 export { default as isEmptyString } from './is-empty-string.guard'
 export { default as isEmptyValue } from './is-empty-value.guard'
