@@ -5,6 +5,8 @@
 
 /**
  * Node environments.
+ *
+ * @enum {Lowercase<string>}
  */
 enum NodeEnv {
   DEV = 'development',
