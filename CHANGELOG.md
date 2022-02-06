@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.5.0](https://github.com/flex-development/tutils/compare/tutils@4.4.0...tutils@4.5.0) (2022-02-06)
+
+
+### :book: Documentation
+
+* **enums:** update `NodeEnv` annotations ([bd4ba29](https://github.com/flex-development/tutils/commit/bd4ba294f4452267f6e28490848e004a4f521624))
+
+
+### :sparkles: Features
+
+* **enums:** `AppEnv` ([a69c7ac](https://github.com/flex-development/tutils/commit/a69c7ac5f6c339622a3f42ac71746cb45473b1da))
+* **guards:** `isAppEnv` ([cc80fc9](https://github.com/flex-development/tutils/commit/cc80fc95a4aff2f3cae97f4919990ccae37a9751))
+* **guards:** `isUnixTimestamp` ([4401dc8](https://github.com/flex-development/tutils/commit/4401dc8c2de91d39a7761d3ce6386302ecd3da8e))
+
 ## [4.4.0](https://github.com/flex-development/tutils/compare/tutils@4.3.0...tutils@4.4.0) (2021-11-12)
 
 
