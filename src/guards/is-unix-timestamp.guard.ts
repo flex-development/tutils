@@ -1,3 +1,5 @@
+import { TimestampUnix } from '../types'
+
 /**
  * @file Type Guards - isUnixTimestamp
  * @module tutils/guards/isUnixTimestamp
@@ -11,7 +13,7 @@
  * @param {any} timestamp - Value to check
  * @return {boolean} `true` if unix timestamp, `false` otherwise
  */
-const isUnixTimestamp = (timestamp: any): boolean => {
+const isUnixTimestamp = (timestamp: any): timestamp is TimestampUnix => {
   return typeof timestamp === 'number' && new Date(timestamp).getTime() > 0
 }
 
