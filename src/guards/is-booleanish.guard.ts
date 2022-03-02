@@ -6,7 +6,7 @@ import { Booleanish } from '@tutils/types'
  */
 
 /**
- * Checks if `value` is a `boolean`, `'false'`, or `'true'`.
+ * Checks if `value` is a {@link Booleanish}.
  *
  * @param {any} [value] - Value to check
  * @return {boolean} `true` if `value` is a `boolean`, `'false'`, or `'true'`

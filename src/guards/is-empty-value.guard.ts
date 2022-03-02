@@ -11,7 +11,7 @@ import isNIL from './is-nil.guard'
  * Checks if `value` is an empty string or `NIL`.
  *
  * @param {any} [value] - Value to check
- * @return {boolean} `true` if `value` is an empty string or `NIL`
+ * @return {boolean} `true` if `value` is empty string, `null`, or `undefined`
  */
 const isEmptyValue = (value?: any): value is EmptyValue => {
   return isEmptyString(value) || isNIL(value)
