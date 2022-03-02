@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.6.0](https://github.com/flex-development/tutils/compare/tutils@4.5.0...tutils@4.6.0) (2022-03-02)
+
+
+### :sparkles: Features
+
+* **enums:** `AppEnv.CI` ([d504f1c](https://github.com/flex-development/tutils/commit/d504f1c782a952a8067b299a0f63e937f354a402))
+* **enums:** `JwtType` ([d2370a6](https://github.com/flex-development/tutils/commit/d2370a6e28f5e91e75e4a80b44c1263cc2d76334))
+* **guards:** `isJwtType` ([f77bcaf](https://github.com/flex-development/tutils/commit/f77bcaf942a2e4834a39d2570a9c4a35d1c9a3d1))
+* **types:** `Numeric` ([462f102](https://github.com/flex-development/tutils/commit/462f102c424fe623c920cdae3d3a9cca54e0ae78))
+* **types:** `TimestampUnix` ([936651e](https://github.com/flex-development/tutils/commit/936651efaaef4166c861d6acc5b4836c4945a7de))
+
 ## [4.5.0](https://github.com/flex-development/tutils/compare/tutils@4.4.0...tutils@4.5.0) (2022-02-06)
 
 
