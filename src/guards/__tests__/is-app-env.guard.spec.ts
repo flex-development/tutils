@@ -13,6 +13,7 @@ describe('unit:guards/isAppEnv', () => {
   const cases: Case[] = [
     { expected: false, state: 'keyof AppEnv', value: 'PROD' },
     { expected: false, state: 'random string', value: 'some-random-string' },
+    { expected: true, state: 'AppEnv.CI', value: AppEnv.CI },
     { expected: true, state: 'AppEnv.DEV', value: AppEnv.DEV },
     { expected: true, state: 'AppEnv.STG', value: AppEnv.STG },
     { expected: true, state: 'AppEnv.PROD', value: AppEnv.PROD },

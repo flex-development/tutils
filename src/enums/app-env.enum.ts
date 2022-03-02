@@ -9,6 +9,7 @@
  * @enum {Lowercase<string>}
  */
 enum AppEnv {
+  CI = 'ci',
   DEV = 'development',
   PROD = 'production',
   STG = 'staging',
