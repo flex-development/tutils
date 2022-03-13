@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.7.0](https://github.com/flex-development/tutils/compare/tutils@4.6.0...tutils@4.7.0) (2022-03-13)
+
+
+### :sparkles: Features
+
+* **enums:** `CompareResult` ([16b2417](https://github.com/flex-development/tutils/commit/16b2417e8eba14cc05f51859128aa10f1fd45fdd))
+
 ## [4.6.0](https://github.com/flex-development/tutils/compare/tutils@4.5.0...tutils@4.6.0) (2022-03-02)
 
 
