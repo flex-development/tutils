@@ -17,6 +17,8 @@ module.exports = {
         ...RULES_SPELLCHECKER[1],
         skipWords: [
           ...RULES_SPELLCHECKER[1].skipWords,
+          'bool',
+          'bson',
           'duid',
           'enum',
           'enums',
