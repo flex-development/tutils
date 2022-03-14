@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.8.0](https://github.com/flex-development/tutils/compare/tutils@4.7.0...tutils@4.8.0) (2022-03-14)
+
+
+### :sparkles: Features
+
+* **enums:** `BsonTypeAlias`, `BsonTypeCode`, `ProjectRule`, `SortOrder` ([992fefb](https://github.com/flex-development/tutils/commit/992fefbc7c2c3ce548af1033dd3cf5a02cc42ef6))
+
 ## [4.7.0](https://github.com/flex-development/tutils/compare/tutils@4.6.0...tutils@4.7.0) (2022-03-13)
 
 
