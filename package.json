@@ -78,6 +78,7 @@
     "check:style": "eslint . --ext cjs,cts,md,mjs,mts,ts --max-warnings 0",
     "check:types": "tsc -p tsconfig.prod.json --noEmit",
     "check:upgrades": "yarn upgrade-interactive",
+    "fix:dedupe": "yarn dedupe --strategy=highest",
     "fix:format": "prettier --write .",
     "fix:style": "yarn check:style --fix --cache",
     "test": "bash ./tools/scripts/jest.sh",
