@@ -169,11 +169,11 @@
   },
   "engines": {
     "node": ">=14.18.0",
-    "yarn": "3.0.2"
+    "yarn": "3.2.0"
   },
   "env": {
     "optional": [],
     "required": []
   },
-  "packageManager": "yarn@3.0.2"
+  "packageManager": "yarn@3.2.0"
 }

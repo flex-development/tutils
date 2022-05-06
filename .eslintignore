@@ -1,14 +1,17 @@
-# ESLint Ignore
-# https://eslint.org/docs/user-guide/configuring/ignoring-code
+# ESLINT IGNORE
+# https://eslint.org/docs/user-guide/configuring#ignoring-files-and-directories
 
-**/.yarn/*
-**/build/*
-**/cjs/*
-**/esm/*
-**/node_modules/*
-**/types/*
+# DIRECTORIES
+.yarn/*
+build/*
+cjs/*
+esm/*
+node_modules/*
+types/*
 
-**/CHANGELOG.md
+# FILES
+CHANGELOG.md
 
-!/src/types/*
+# NEGATED PATTERNS
+!src/types/*
 !**/.*.*
