@@ -53,6 +53,7 @@ const config: UserConfig = {
         'deps-peer',
         'enums',
         'esm',
+        'exports',
         'github',
         'guards',
         'hybrid',
