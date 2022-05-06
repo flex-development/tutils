@@ -76,11 +76,13 @@ jspm_packages/
 # Optional eslint cache
 .eslintcache
 
-# Builds & Distributions
+### Builds & Distributions ###
+# Directories
 build/
 cjs/
 esm/
 types/
-*.zip
-
 !src/types
+
+# Files
+*.zip
