@@ -12,7 +12,7 @@ import { NumberString } from '@tutils/types'
  * @return {boolean} `true` if `value` is a `number` or `string`
  */
 const isNumberString = (value?: any): value is NumberString => {
-  return typeof value === 'number' || value === 'string'
+  return typeof value === 'number' || typeof value === 'string'
 }
 
 export default isNumberString
