@@ -10,10 +10,10 @@ import { TimestampUnix } from '../types'
  *
  * [1]: https://unixtimestamp.com
  *
- * @param {any} timestamp - Value to check
+ * @param {any} [timestamp] - Value to check
  * @return {boolean} `true` if `timestamp` is valid unix timestamp
  */
-const isUnixTimestamp = (timestamp: any): timestamp is TimestampUnix => {
+const isUnixTimestamp = (timestamp?: any): timestamp is TimestampUnix => {
   return typeof timestamp === 'number' && new Date(timestamp).getTime() > 0
 }
 
