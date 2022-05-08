@@ -21,6 +21,5 @@ assignees: ''
 
 <!--
 Describe whether this request is related to an existing workflow, feature, or
-otherwise something in the product today. Or, does this open us up to new
-markets and innovative ideas?
+otherwise something in the product today. Or, does this open us up to new ideas?
 -->
