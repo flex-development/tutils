@@ -90,7 +90,8 @@ const config: UserConfig = {
         'refactor',
         'revert',
         'style',
-        'test'
+        'test',
+        'wip'
       ]
     ]
   }
