@@ -1,9 +1,9 @@
-import { NumberString } from '@tutils/types'
-
 /**
  * @file Type Guards - isNumberString
  * @module tutils/guards/isNumberString
  */
+
+import type { NumberString } from '@tutils/types'
 
 /**
  * Checks if `value` is a `number` or `string`.

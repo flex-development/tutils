@@ -21,4 +21,4 @@ jobs:
           approve: true
           command: squash and merge
           config: .github/auto-merge.yml
-          github-token: ${{ secrets.PAT_REPO_FLDV_ADMIN }}
+          github-token: ${{ secrets.PAT_REPO_ADMIN }}

@@ -2,60 +2,75 @@
   // See: https://github.com/tsconfig/bases/blob/main/bases/node14.json
   "compilerOptions": {
     "allowJs": true,
+    "allowUnreachableCode": false,
     "alwaysStrict": true,
     "baseUrl": "./",
     "checkJs": false,
+    "emitDecoratorMetadata": true,
     "esModuleInterop": true,
+    "exactOptionalPropertyTypes": false,
+    "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
-    "lib": ["dom", "esnext"],
-    "module": "es2022",
+    "isolatedModules": false,
+    "lib": ["dom", "es2020"],
+    "module": "commonjs",
     "moduleResolution": "node",
     "noEmit": true,
     "noErrorTruncation": true,
+    "noFallthroughCasesInSwitch": true,
     "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "noUncheckedIndexedAccess": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
     "paths": {
+      "@doubles/*": ["__doubles__/*"],
+      "@fixtures/*": ["__fixtures__/*"],
       "@flex-development/grease": [
-        "node_modules/@flex-development/grease/cjs/index"
+        "node_modules/@flex-development/grease/esm/index"
       ],
       "@flex-development/grease/*": [
-        "node_modules/@flex-development/grease/cjs/*"
+        "node_modules/@flex-development/grease/esm/*"
       ],
       "@flex-development/log": ["node_modules/@flex-development/log/esm/index"],
       "@flex-development/log/*": ["node_modules/@flex-development/log/esm/*"],
       "@flex-development/tutils": ["src/index"],
       "@flex-development/tutils/*": ["src/*"],
-      "@tests/fixtures/*": ["__tests__/__fixtures__/*"],
+      "@helpers/*": ["tools/helpers/*"],
       "@tests/*": ["__tests__/*"],
       "@tutils": ["src/index"],
       "@tutils/*": ["src/*"]
     },
     "preserveConstEnums": true,
     "pretty": true,
-    // Should work with NODE_OPTIONS='--experimental-json-modules' flag
-    // See: https://nodejs.org/api/esm.html#esm_json_modules
     "resolveJsonModule": true,
     "rootDir": "./",
+    "skipLibCheck": true,
     "strict": true,
-    // Node.js 14
-    "target": "es2020"
+    "strictNullChecks": true,
+    "strictPropertyInitialization": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "target": "es2020",
+    "useDefineForClassFields": true
   },
-  "exclude": ["./build", "./cjs", "./esm", "./node_modules", "./types"],
-  "files": ["typings/jest.d.ts"],
-  "include": [
-    "**/*.cjs",
-    "**/*.cts",
-    "**/*.mjs",
-    "**/*.mts",
-    "**/*.ts",
-    "**/.*.cjs",
-    "**/.*.ts"
+  "exclude": [
+    "./cjs",
+    "./coverage",
+    "./dist",
+    "./esm",
+    "./node_modules",
+    "./types"
   ],
+  "files": ["typings/index.d.ts"],
+  "include": ["**/*.cjs", "**/*.ts", "**/.*.cjs", "**/.*.ts"],
+  // SEE: https://typestrong.org/ts-node/docs/configuration
   "ts-node": {
-    "moduleTypes": {
-      ".commitlintrc.ts": "cjs",
-      "jest.config.base.ts": "cjs",
-      "jest.config.ts": "cjs"
-    },
+    "compilerOptions": {},
+    "moduleTypes": {},
+    "require": [
+      "./tools/shims/index.cjs",
+      "./tools/helpers/tsconfig-paths.cjs"
+    ],
     "transpileOnly": true
   }
 }

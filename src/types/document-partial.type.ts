@@ -1,13 +1,13 @@
+/**
+ * @file Type Definitions - DocumentPartial
+ * @module tutils/types/DocumentPartial
+ */
+
 import type DUID from './duid.type'
 import type ObjectPlain from './object-plain.type'
 import type ObjectUnknown from './object-unknown.type'
 import type OrPartial from './or-partial.type'
 import type UID from './uid.type'
-
-/**
- * @file Type Definitions - DocumentPartial
- * @module tutils/types/DocumentPartial
- */
 
 /**
  * Object that includes all object properties or a subset.

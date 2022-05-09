@@ -1,9 +1,9 @@
-import { TimestampUnix } from '../types'
-
 /**
  * @file Type Guards - isUnixTimestamp
  * @module tutils/guards/isUnixTimestamp
  */
+
+import type { TimestampUnix } from '@tutils/types'
 
 /**
  * Checks if `timestamp` is a valid [unix timestamp][1].

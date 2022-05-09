@@ -6,6 +6,6 @@
 /**
  * Boolean and string values representing `true` or `false`.
  */
-type Booleanish = boolean | 'true' | 'false'
+type Booleanish = boolean | 'false' | 'true'
 
 export default Booleanish

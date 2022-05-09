@@ -8,6 +8,6 @@
  *
  * [1]: https://basarat.gitbook.io/typescript/type-system/index-signatures
  */
-type IndexSignature = number | symbol | string
+type IndexSignature = number | string | symbol
 
 export default IndexSignature

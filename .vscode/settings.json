@@ -1,20 +1,33 @@
 {
-  "eslint.options": {
-    "configFile": "./.eslintrc.cjs",
-    "extensions": [".cjs", ".cts", ".md", ".mjs", ".mts", ".ts"]
+  "[javascript]": {
+    "editor.defaultFormatter": "dprint.dprint"
   },
+  "[json]": {
+    "editor.defaultFormatter": "dprint.dprint"
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "dprint.dprint"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "dprint.dprint"
+  },
+  "dprint.path": "./node_modules/dprint/dprint",
+  "eslint.options": {
+    "extensions": [".cjs", ".md", ".ts"],
+    "overrideConfigFile": "./.eslintrc.cjs"
+  },
+  "eslint.packageManager": "yarn",
+  "eslint.validate": ["javascript", "markdown", "typescript"],
   "files.associations": {
-    "*.d.cts": "typescript",
-    "*.d.mts": "typescript",
-    ".env": "shellscript",
-    ".env.*": "shellscript",
+    ".env*": "shellscript",
     ".markdownlintignore": "ignore",
     "commit-msg": "shellscript",
     "pre-commit": "shellscript",
     "pre-push": "shellscript"
   },
-  "prettier.configPath": "./.prettierrc.cjs",
-  "typescript.tsdk": "node_modules/typescript/lib",
+  "markdownlint.ignore": "./.markdownlintignore",
+  "prettier.enable": false,
+  "typescript.tsdk": "./node_modules/typescript/lib",
   "vsicons.associations.files": [
     {
       "extensions": [".commitlintrc.ts"],
@@ -22,19 +35,13 @@
       "icon": "commitlint"
     },
     {
-      "extensions": [".d.cts", ".d.mts"],
-      "format": "svg",
-      "icon": "typescriptdef"
-    },
-    {
-      "extensions": [".eslintrc.base.cjs"],
+      "extensions": [
+        ".eslintrc.base.cjs",
+        ".eslintrc.spec.cjs",
+        ".eslintrc.spellcheck.cjs"
+      ],
       "format": "svg",
       "icon": "eslint"
-    },
-    {
-      "extensions": ["prod.cjs.json", "prod.esm.json", "prod.types.json"],
-      "format": "svg",
-      "icon": "tsconfig"
     },
     {
       "extensions": [".lintstagedrc.cjs"],
@@ -42,9 +49,36 @@
       "icon": "lintstagedrc"
     },
     {
+      "extensions": [".markdownlint.cjs", ".markdownlintignore"],
+      "format": "svg",
+      "icon": "markdownlint"
+    },
+    {
+      "extensions": ["prod.cjs.json", "prod.esm.json", "prod.types.json"],
+      "format": "svg",
+      "icon": "tsconfig"
+    },
+    {
       "extensions": ["yarnrc.yml"],
       "format": "svg",
       "icon": "yarn"
+    }
+  ],
+  "vsicons.associations.folders": [
+    {
+      "extensions": ["__doubles__"],
+      "format": "svg",
+      "icon": "mock"
+    },
+    {
+      "extensions": ["__fixtures__"],
+      "format": "svg",
+      "icon": "db"
+    },
+    {
+      "extensions": ["types"],
+      "format": "svg",
+      "icon": "typings"
     }
   ]
 }

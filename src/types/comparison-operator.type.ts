@@ -6,6 +6,6 @@
 /**
  * Type representing all comparison operators.
  */
-type ComparisonOperator = '=' | '!=' | '>' | '>=' | '<' | '<='
+type ComparisonOperator = '!=' | '<' | '<=' | '=' | '>' | '>='
 
 export default ComparisonOperator

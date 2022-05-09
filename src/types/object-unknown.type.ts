@@ -1,9 +1,9 @@
-import type IndexSignature from './index-signature.type'
-
 /**
  * @file Type Definitions - ObjectUnknown
  * @module tutils/types/ObjectUnknown
  */
+
+import type IndexSignature from './index-signature.type'
 
 /**
  * Type representing any object.

@@ -1,9 +1,9 @@
-import NodeEnv from '@tutils/enums/node-env.enum'
-
 /**
  * @file Type Guards - isNodeEnv
  * @module tutils/guards/isNodeEnv
  */
+
+import NodeEnv from '@tutils/enums/node-env.enum'
 
 /**
  * Checks if `value` is a {@link NodeEnv}.

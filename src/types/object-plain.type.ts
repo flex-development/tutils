@@ -1,9 +1,9 @@
-import type IndexSignature from './index-signature.type'
-
 /**
  * @file Type Definitions - ObjectPlain
  * @module tutils/types/ObjectPlain
  */
+
+import type IndexSignature from './index-signature.type'
 
 /**
  * Type representing any plain object (`{}`) value.

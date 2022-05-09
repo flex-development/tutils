@@ -1,62 +1,42 @@
-import type { Testcase } from '@tests/utils/types'
+/**
+ * @file Functional Tests - isEmptyValue
+ * @module tutils/guards/tests/functional/isEmptyValue
+ */
+
+import type { Testcase } from '@tests/interfaces'
 import * as isEmptyString from '../is-empty-string.guard'
 import testSubject from '../is-empty-value.guard'
 import * as isNIL from '../is-nil.guard'
 
-/**
- * @file Unit Tests - isEmptyValue
- * @module tutils/guards/tests/unit/isEmptyValue
- */
-
-describe('unit:guards/isEmptyValue', () => {
-  const spyIsEmptyString = jest.spyOn(isEmptyString, 'default')
-  const spyIsNIL = jest.spyOn(isNIL, 'default')
-
-  type Case = Testcase<{ isEmptyString: number; isNIL: number }> & {
-    state: string
-    value: any
+describe('functional:guards/isEmptyValue', () => {
+  interface Case extends Testcase<{ isEmptyString: number; isNIL: number }> {
+    parameters: Parameters<typeof testSubject>
   }
 
   const cases: Case[] = [
-    {
-      expected: { isEmptyString: 1, isNIL: 1 },
-      state: 'undefined',
-      value: undefined
-    },
-    {
-      expected: { isEmptyString: 1, isNIL: 0 },
-      state: 'empty string (trimmed)',
-      value: ''
-    },
-    {
-      expected: { isEmptyString: 1, isNIL: 0 },
-      state: 'empty string (untrimmed)',
-      value: '   '
-    },
-    {
-      expected: { isEmptyString: 1, isNIL: 1 },
-      state: 'null',
-      value: null
-    },
-    {
-      expected: { isEmptyString: 1, isNIL: 1 },
-      state: 'undefined',
-      value: undefined
-    }
+    { expected: { isEmptyString: 1, isNIL: 0 }, parameters: [''] },
+    { expected: { isEmptyString: 1, isNIL: 0 }, parameters: ['   '] },
+    { expected: { isEmptyString: 1, isNIL: 1 }, parameters: [null] },
+    { expected: { isEmptyString: 1, isNIL: 1 }, parameters: [undefined] }
   ]
 
-  for (const { expected, state, value } of cases) {
+  cases.forEach(({ expected, parameters }) => {
     const times = (num: number) => `${num} time${num === 1 ? '' : 's'}`
-    const state1 = `isEmptyString ${times(expected.isEmptyString)}`
-    const state2 = `isNIL ${times(expected.isNIL)}`
+    const fn1 = `isEmptyString ${times(expected.isEmptyString)}`
+    const fn2 = `isNIL ${times(expected.isNIL)}`
+    const functions = `${fn1} and ${fn2}`
 
-    it(`should call ${state1} and ${state2} given ${state}`, () => {
+    it(`should call ${functions} given ${pf(parameters)}`, function (this) {
+      // Arrange
+      const spy_isEmptyString = this.sandbox.spy(isEmptyString, 'default')
+      const spy_isNIL = this.sandbox.spy(isNIL, 'default')
+
       // Act
-      testSubject(value)
+      testSubject(...parameters)
 
       // Expect
-      expect(spyIsEmptyString).toBeCalledTimes(expected.isEmptyString)
-      expect(spyIsNIL).toBeCalledTimes(expected.isNIL)
+      expect(spy_isEmptyString).to.have.callCount(expected.isEmptyString)
+      expect(spy_isNIL).to.have.callCount(expected.isNIL)
     })
-  }
+  })
 })

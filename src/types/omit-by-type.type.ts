@@ -1,9 +1,9 @@
-import type ObjectPlain from './object-plain.type'
-
 /**
  * @file Type Definitions - OmitByType
  * @module tutils/types/OmitByType
  */
+
+import type ObjectPlain from './object-plain.type'
 
 /**
  * Constructs a type where properties of type `P` will be omitted from `T`.

@@ -1,9 +1,9 @@
-import { NIL } from '@tutils/types'
-
 /**
  * @file Type Guards - isNIL
  * @module tutils/guards/isNIL
  */
+
+import type { NIL } from '@tutils/types'
 
 /**
  * Checks if `value` is a {@link NIL}.

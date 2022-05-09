@@ -1,27 +1,26 @@
-import type { Testcase } from '@tests/utils/types'
-import testSubject from '../is-number-string.guard'
-
 /**
  * @file Unit Tests - isNumberString
  * @module tutils/guards/tests/unit/isNumberString
  */
 
+import type { TestcaseFn } from '@tests/interfaces'
+import testSubject from '../is-number-string.guard'
+
 describe('unit:guards/isNumberString', () => {
-  type Case = Testcase<boolean> & { state: string; value: any }
+  interface Case extends TestcaseFn<typeof testSubject> {}
 
   const cases: Case[] = [
-    { expected: false, state: 'array', value: [] },
-    { expected: false, state: 'boolean', value: true },
-    { expected: false, state: 'object', value: {} },
-    { expected: true, state: 'number', value: 13 },
-    { expected: true, state: 'string', value: 'string' }
+    { expected: false, parameters: [[]] },
+    { expected: false, parameters: [{}] },
+    { expected: false, parameters: [true] },
+    { expected: false, parameters: [false] },
+    { expected: true, parameters: [13] },
+    { expected: true, parameters: ['hello world'] }
   ]
 
-  it.each<Case>(cases)('should return $expected given $state', testcase => {
-    // Arrange
-    const { expected, value } = testcase
-
-    // Act + Expect
-    expect(testSubject(value)).toBe(expected)
+  cases.forEach(({ expected, parameters }) => {
+    it(`should return ${expected} given ${pf(parameters)}`, () => {
+      expect(testSubject(...parameters)).to.equal(expected)
+    })
   })
 })

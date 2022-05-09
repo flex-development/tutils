@@ -19,8 +19,9 @@ jobs:
   integrity-check:
     runs-on: ubuntu-latest
     env:
+      GH_PAT: ${{ secrets.PAT_GPR_ADMIN }}
+      NODE_AUTH_TOKEN: ${{ secrets.PAT_GPR_ADMIN }}
       NPM_TOKEN: ${{ secrets.NPM_TOKEN_ADMIN }}
-      PAT_GPR: ${{ secrets.PAT_GPR_ADMIN }}
     strategy:
       matrix:
         node: [14.x, 16.x]
@@ -51,11 +52,9 @@ jobs:
           restore-keys: |
             yarn-cache-folder-os-${{ runner.os }}-node-${{ env.node-version }}-
             yarn-cache-folder-os-${{ runner.os }}-
-      - id: install
+      - id: install-deps
         name: Install dependencies
         run: yarn install --immutable
-        env:
-          NODE_AUTH_TOKEN: ${PAT_GPR}
       - id: dedupe-check
         name: Check for duplicate dependencies in lock file
         run: yarn check:dedupe

@@ -3,8 +3,9 @@
 
 # DIRECTORIES
 .yarn/*
-build/*
 cjs/*
+coverage/*
+dist/*
 esm/*
 node_modules/*
 types/*

@@ -21,10 +21,10 @@ declare module '@vercel/ncc' {
      *
      * @default undefined
      */
-    customEmit?: (
+    customEmit?(
       path: string,
       context: { id: string; isRequire: boolean }
-    ) => false | string
+    ): string | false
 
     /**
      * Enable debug logging.
@@ -128,7 +128,7 @@ declare module '@vercel/ncc' {
     /**
      * Build [target][1].
      *
-     * [1]: https://www.typescriptlang.org/tsconfig#target
+     * [1]: https://typescriptlang.org/tsconfig#target
      */
     target?: `es${number | 'next'}`
 

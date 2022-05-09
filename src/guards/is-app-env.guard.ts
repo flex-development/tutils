@@ -1,12 +1,12 @@
-import AppEnv from '@tutils/enums/app-env.enum'
-
 /**
  * @file Type Guards - isAppEnv
  * @module tutils/guards/isAppEnv
  */
 
+import AppEnv from '@tutils/enums/app-env.enum'
+
 /**
- * Checks if `value` is a {@link AppEnv}.
+ * Checks if `value` is an {@link AppEnv}.
  *
  * @param {any} [value] - Value to check
  * @return {boolean} `true` if `value` is valid app environment

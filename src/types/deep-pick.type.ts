@@ -1,12 +1,12 @@
-import type ObjectPlain from './object-plain.type'
-import type OmitByType from './omit-by-type.type'
-import type PathValue from './path-value.type'
-import type Path from './path.type'
-
 /**
  * @file Type Definitions - DeepPick
  * @module tutils/types/DeepPick
  */
+
+import type ObjectPlain from './object-plain.type'
+import type OmitByType from './omit-by-type.type'
+import type PathValue from './path-value.type'
+import type Path from './path.type'
 
 /**
  * Constructs a type by picking a set of properties `K` from `T`.
@@ -16,12 +16,10 @@ import type Path from './path.type'
  */
 type DeepPick<T extends ObjectPlain, P extends Path<T>> = OmitByType<
   {
-    [K in keyof T]: K extends P
-      ? PathValue<T, K>
+    [K in keyof T]: K extends P ? PathValue<T, K>
       : P extends `${infer Key}.${infer Rest}`
-      ? K extends Key
-        ? Rest extends Path<T[K]>
-          ? { [K2 in Rest]: PathValue<T[K], Rest> }
+        ? K extends Key
+          ? Rest extends Path<T[K]> ? { [K2 in Rest]: PathValue<T[K], Rest> }
           : never
         : never
       : never

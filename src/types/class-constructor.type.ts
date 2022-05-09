@@ -1,9 +1,9 @@
-import type ObjectPlain from './object-plain.type'
-
 /**
  * @file Type Definitions - ClassConstructor
  * @module tutils/types/ClassConstructor
  */
+
+import type ObjectPlain from './object-plain.type'
 
 /**
  * [Object class][1] type.
@@ -16,8 +16,6 @@ import type ObjectPlain from './object-plain.type'
 type ClassConstructor<
   T extends ObjectPlain = ObjectPlain,
   A extends any[] = any[]
-> = {
-  new (...args: A): T
-}
+> = new (...args: A) => T
 
 export default ClassConstructor

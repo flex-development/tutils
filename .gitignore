@@ -68,6 +68,13 @@ jspm_packages/
 # Environment variables
 .env*.local
 
+### Testing ###
+# Coverage output
+coverage/
+
+# Reporter output
+__tests__/report.json
+
 ### TypeScript ###
 # TypeScript cache
 *.tsbuildinfo
@@ -78,11 +85,13 @@ jspm_packages/
 
 ### Builds & Distributions ###
 # Directories
-build/
 cjs/
+dist/
 esm/
 types/
+!__tests__/types
 !src/types
+!typings/tsc-prog/dist
 
 # Files
 *.zip

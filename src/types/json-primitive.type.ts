@@ -9,6 +9,6 @@
  * [1]: https://developer.mozilla.org/docs/Glossary/Primitive
  * [2]: https://restfulapi.net/json-data-types
  */
-type JSONPrimitive = boolean | null | number | string
+type JSONPrimitive = boolean | number | string | null
 
 export default JSONPrimitive

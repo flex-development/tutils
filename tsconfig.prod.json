@@ -5,25 +5,14 @@
     "exactOptionalPropertyTypes": true,
     "inlineSourceMap": true,
     "inlineSources": true,
-    "lib": ["esnext"],
     "noEmit": false,
-    "noEmitOnError": true,
-    "noImplicitAny": true,
-    "outDir": "build",
+    "noEmitOnError": false,
+    "outDir": "./dist",
     "removeComments": false,
     "rootDir": "./src",
-    "skipLibCheck": true,
-    "sourceMap": false
+    "stripInternal": true
   },
-  "exclude": [
-    "**/__mocks__",
-    "**/__tests__",
-    "./build",
-    "./cjs",
-    "./esm",
-    "./node_modules",
-    "./types"
-  ],
+  "exclude": ["**/__doubles__", "**/__tests__"],
   "extends": "./tsconfig.json",
   "files": [],
   "include": ["src"]

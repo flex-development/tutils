@@ -1,12 +1,12 @@
-import { Booleanish } from '@tutils/types'
-
 /**
  * @file Type Guards - isBooleanish
  * @module tutils/guards/isBooleanish
  */
 
+import type { Booleanish } from '@tutils/types'
+
 /**
- * Checks if `value` is a {@link Booleanish}.
+ * Checks if `value` is {@link Booleanish}.
  *
  * @param {any} [value] - Value to check
  * @return {boolean} `true` if `value` is a `boolean`, `'false'`, or `'true'`

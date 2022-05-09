@@ -1,18 +1,20 @@
-import type ObjectPlain from './object-plain.type'
-
 /**
  * @file Type Definitions - Overwrite
  * @module tutils/types/Overwrite
  */
 
+import type ObjectPlain from './object-plain.type'
+
 /**
- * Replaces the properties of `T` with those of `T1`.
+ * Replaces existing properties in `Obj` with those in `DTO`.
  *
- * @template T1 - Object to update
- * @template T2 - Object to update with
+ * @template Obj - Object to update
+ * @template DTO - Object to update with
  */
-type Overwrite<T extends ObjectPlain, T1 extends ObjectPlain> = {
-  [K in keyof T]: K extends keyof T1 ? T1[K] : T[K]
-} & {}
+type Overwrite<Obj extends ObjectPlain, DTO extends ObjectPlain> =
+  & {
+    [K in keyof Obj]: K extends keyof DTO ? DTO[K] : Obj[K]
+  }
+  & {}
 
 export default Overwrite

@@ -1,10 +1,10 @@
-import type ObjectPlain from './object-plain.type'
-import type Path from './path.type'
-
 /**
  * @file Type Definitions - DeepPartialByHelper
  * @module tutils/types/DeepPartialByHelper
  */
+
+import type ObjectPlain from './object-plain.type'
+import type Path from './path.type'
 
 /**
  * `DeepPartialBy` helper.

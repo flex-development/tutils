@@ -8,6 +8,6 @@
  *
  * @template T - Value type
  */
-type OneOrMany<T> = T | Array<T>
+type OneOrMany<T> = T | T[]
 
 export default OneOrMany

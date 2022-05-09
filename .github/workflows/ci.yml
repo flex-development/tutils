@@ -1,0 +1,54 @@
+# Continuous Integration
+#
+# References:
+#
+# - https://github.com/actions/checkout/tree/v2
+# - https://github.com/actions/setup-node/tree/v2
+# - https://docs.github.com/actions/guides/building-and-testing-nodejs
+
+---
+name: continuous-integration
+on:
+  pull_request:
+  push:
+    branches:
+      - next
+      - push-action/**
+  workflow_dispatch:
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    env:
+      GH_PAT: ${{ secrets.PAT_GPR_ADMIN }}
+      NODE_AUTH_TOKEN: ${{ secrets.PAT_GPR_ADMIN }}
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN_ADMIN }}
+    strategy:
+      matrix:
+        node: [14.x, 16.x]
+    steps:
+      - id: checkout
+        name: Checkout branch
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.head_ref }}
+      - id: node
+        name: Setup Node ${{ matrix.node }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node }}
+          scope: '@${{ github.repository_owner }}'
+      - id: install-deps
+        name: Install dependencies
+        run: yarn --immutable
+      - id: check-format
+        name: Check code formatting
+        run: yarn check:format
+      - id: check-style
+        name: Check code style
+        run: yarn check:style
+      - id: test
+        name: Run test suites
+        run: yarn test:ci
+      - id: build
+        name: Build project
+        run: NODE_ENV=production yarn build

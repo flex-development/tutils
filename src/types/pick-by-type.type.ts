@@ -1,9 +1,9 @@
-import type ObjectPlain from './object-plain.type'
-
 /**
  * @file Type Definitions - PickByType
  * @module tutils/types/PickByType
  */
+
+import type ObjectPlain from './object-plain.type'
 
 /**
  * Constructs a type where properties of type `P` will be chosen from `T`.

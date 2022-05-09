@@ -1,9 +1,7 @@
 {
   "compilerOptions": {
-    "lib": ["es5"],
     "module": "commonjs",
-    "outDir": "./cjs",
-    "target": "es5"
+    "outDir": "./cjs"
   },
   "extends": "./tsconfig.prod.json"
 }

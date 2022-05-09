@@ -1,28 +1,27 @@
-import type { Testcase } from '@tests/utils/types'
-import testSubject from '../is-booleanish.guard'
-
 /**
  * @file Unit Tests - isBooleanish
  * @module tutils/guards/tests/unit/isBooleanish
  */
 
+import type { TestcaseFn } from '@tests/interfaces'
+import testSubject from '../is-booleanish.guard'
+
 describe('unit:guards/isBooleanish', () => {
-  type Case = Testcase<boolean> & { state: string; value: any }
+  interface Case extends TestcaseFn<typeof testSubject> {}
 
   const cases: Case[] = [
-    { expected: false, state: 'array', value: [] },
-    { expected: false, state: 'number', value: 13 },
-    { expected: false, state: 'object', value: { data: 26 } },
-    { expected: true, state: 'boolean', value: false },
-    { expected: true, state: "'false'", value: 'false' },
-    { expected: true, state: "'true'", value: 'true' }
+    { expected: false, parameters: [[]] },
+    { expected: false, parameters: [{}] },
+    { expected: false, parameters: [13] },
+    { expected: true, parameters: [true] },
+    { expected: true, parameters: ['true'] },
+    { expected: true, parameters: [false] },
+    { expected: true, parameters: ['false'] }
   ]
 
-  it.each<Case>(cases)('should return $expected given $state', testcase => {
-    // Arrange
-    const { expected, value } = testcase
-
-    // Act + Expect
-    expect(testSubject(value)).toBe(expected)
+  cases.forEach(({ expected, parameters }) => {
+    it(`should return ${expected} given ${pf(parameters)}`, () => {
+      expect(testSubject(...parameters)).to.equal(expected)
+    })
   })
 })

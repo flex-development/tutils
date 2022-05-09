@@ -1,10 +1,10 @@
-import type ObjectPlain from './object-plain.type'
-import type Path from './path.type'
-
 /**
  * @file Type Definitions - DeepPartialByRequiredHelper
  * @module tutils/types/DeepPartialByHelper
  */
+
+import type ObjectPlain from './object-plain.type'
+import type Path from './path.type'
 
 /**
  * `DeepPartialByRequired` helper.
@@ -15,7 +15,8 @@ import type Path from './path.type'
  *
  * @example
  *  interface IPerson { ... }
- *  type Helper = DeepPartialByHelper<IPerson, 'firstName', { age: never }>
+ *
+ *  type DTOHelper = DeepPartialByRequiredHelper<IPerson, 'name', { age: never }>
  */
 type DeepPartialByRequiredHelper<
   T extends ObjectPlain,

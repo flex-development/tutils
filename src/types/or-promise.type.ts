@@ -8,6 +8,6 @@
  *
  * @template T - Value type
  */
-type OrPromise<T> = T | Promise<T>
+type OrPromise<T> = Promise<T> | T
 
 export default OrPromise

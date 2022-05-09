@@ -1,38 +1,23 @@
-const { overrides, rules } = require('./.eslintrc.base.cjs')
-
 /**
  * @file ESLint Configuration - Root
  * @see https://eslint.org/docs/user-guide/configuring
  */
 
-const RULES_SPELLCHECKER = rules['spellcheck/spell-checker']
+const { Linter } = require('eslint')
+const { overrides } = require('./.eslintrc.base.cjs')
 
-module.exports = {
+/**
+ * @type {Linter.Config}
+ * @const config - ESLint configuration object
+ */
+const config = {
   root: true,
   extends: ['./.eslintrc.base.cjs'],
-  rules: {
-    'spellcheck/spell-checker': [
-      RULES_SPELLCHECKER[0],
-      {
-        ...RULES_SPELLCHECKER[1],
-        skipWords: [
-          ...RULES_SPELLCHECKER[1].skipWords,
-          'bool',
-          'bson',
-          'duid',
-          'enum',
-          'enums',
-          'uid',
-          'unix'
-        ]
-      }
-    ]
-  },
   overrides: [
     ...overrides,
     {
       files: [
-        'src/types/deep-omit.type.ts',
+        'src/types/built-in.type.ts',
         'src/types/deep-partial-by-helper.type.ts',
         'src/types/deep-partial-by-required-helper.type.ts',
         'src/types/overwrite.type.ts'
@@ -40,6 +25,20 @@ module.exports = {
       rules: {
         '@typescript-eslint/ban-types': 0
       }
+    },
+    {
+      files: ['src/types/deep-omit.type.ts'],
+      rules: {
+        '@typescript-eslint/sort-type-union-intersection-members': 0
+      }
+    },
+    {
+      files: ['src/types/or-never.type.ts'],
+      rules: {
+        '@typescript-eslint/no-redundant-type-constituents': 0
+      }
     }
   ]
 }
+
+module.exports = config

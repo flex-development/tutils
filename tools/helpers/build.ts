@@ -1,22 +1,27 @@
 #!/usr/bin/env ts-node
 
+/**
+ * @file Helpers - build
+ * @module tools/helpers/build
+ */
+
 import LogLevel from '@flex-development/log/enums/log-level.enum'
+import NodeEnv from '@flex-development/tutils/enums/node-env.enum'
 import ch from 'chalk'
 import { inspect } from 'node:util'
+import type { PackageJson } from 'read-pkg'
+import readPkg from 'read-pkg'
 import sh from 'shelljs'
 import type { Argv } from 'yargs'
 import yargs from 'yargs'
 import { hideBin } from 'yargs/helpers'
 import exec from './exec'
 import logger from './logger'
-import { $PACKAGE, $WORKSPACE } from './pkg'
 
 /**
- * @file Helpers - build
- * @module tools/helpers/build
+ * Build options.
  */
-
-export type BuildOptions = {
+export interface BuildOptions {
   /**
    * See the commands that running `build` would run.
    *
@@ -24,18 +29,12 @@ export type BuildOptions = {
    */
   dryRun?: boolean
 
-  /** @see BuildOptions.dryRun */
-  d?: BuildOptions['dryRun']
-
   /**
    * Name of build environment.
    *
-   * @default process.env.NODE_ENV
+   * @default NodeEnv.DEV
    */
-  env?: 'development' | 'production' | 'test'
-
-  /** @see BuildOptions.env */
-  e?: BuildOptions['env']
+  env?: NodeEnv
 
   /**
    * Run preliminary `yarn install` if package contains build scripts.
@@ -44,18 +43,12 @@ export type BuildOptions = {
    */
   install?: boolean
 
-  /** @see BuildOptions.install */
-  i?: BuildOptions['install']
-
   /**
    * Create tarball at specified path.
    *
    * @default '%s-%v.tgz'
    */
   out?: string
-
-  /** @see BuildOptions.out */
-  o?: BuildOptions['out']
 
   /**
    * Run `prepack` script.
@@ -64,51 +57,75 @@ export type BuildOptions = {
    */
   prepack?: boolean
 
-  /** @see BuildOptions.prepack */
-  p?: BuildOptions['prepack']
-
   /**
    * Pack the project once build is complete.
    *
    * @default false
    */
   tarball?: boolean
+}
+
+/**
+ * Build options with command aliases.
+ *
+ * @extends {BuildOptions}
+ */
+export interface BuildOptionsWithAliases extends BuildOptions {
+  /** @see BuildOptions.dryRun */
+  d?: BuildOptions['dryRun']
+
+  /** @see BuildOptions.env */
+  e?: BuildOptions['env']
+
+  /** @see BuildOptions.install */
+  i?: BuildOptions['install']
+
+  /** @see BuildOptions.out */
+  o?: BuildOptions['out']
+
+  /** @see BuildOptions.prepack */
+  p?: BuildOptions['prepack']
 
   /** @see BuildOptions.tarball */
   t?: BuildOptions['tarball']
 }
 
-export type BuildArgs = Argv<BuildOptions>
+export type BuildArgs = Argv<BuildOptionsWithAliases>
 export type BuildArgv = BuildArgs['argv']
 
 export type BuildContext = {
   cwd: ReturnType<typeof process['cwd']>
+  npm_package_name: string
+  pkg: PackageJson
   pwd: string
 }
 
-export type BuildWorflow<O extends BuildOptions = BuildOptions> = {
-  (argv: O, context: BuildContext): any
-}
+export type BuildWorflow<O extends BuildOptions = BuildOptions> = (
+  argv: O,
+  context: BuildContext
+) => any
 
-/** @property {BuildContext} context - Build context */
-export const CONTEXT: BuildContext = {
+/** @const {BuildContext} context - Build context */
+export const CTX: BuildContext = {
   cwd: process.cwd(),
-  pwd: process.env['PROJECT_CWD'] as string
+  npm_package_name: process.env.npm_package_name!,
+  pkg: readPkg.sync({ cwd: process.cwd(), normalize: false }),
+  pwd: process.env.PROJECT_CWD!
 }
 
-/** @property {BuildArgs} args - Project working directory */
-export const args = yargs(hideBin(process.argv), CONTEXT.cwd)
+/** @const {BuildArgs} args - CLI arguments parser */
+export const args = yargs(hideBin(process.argv), CTX.cwd)
   .usage('$0 [options]')
   .option('dryRun', {
     alias: 'd',
     default: false,
-    describe: 'see the commands that running `build` would run',
+    describe: 'see the commands that executing the build workflow would run',
     type: 'boolean'
   })
   .option('env', {
     alias: 'e',
     choices: ['production', 'test', 'development'],
-    default: process.env['NODE_ENV'],
+    default: NodeEnv.DEV,
     describe: 'node environment',
     requiresArg: true,
     type: 'string'
@@ -147,6 +164,7 @@ export const args = yargs(hideBin(process.argv), CONTEXT.cwd)
  * @template O - Shape of build options
  *
  * @async
+ *
  * @param {O | Promise<O>} [argv] - Build options
  * @param {BuildWorflow<O>} [workflow] - Workflow function
  * @return {Promise<void>} Empty promise when complete
@@ -155,29 +173,23 @@ async function build<O extends BuildOptions = BuildOptions>(
   argv: O | Promise<O>,
   workflow?: BuildWorflow<O>
 ): Promise<void> {
-  const { dryRun, env, tarball } = (argv = await argv)
+  const { dryRun, env, tarball } = argv = await argv
 
   // Log workflow start
   logger(
     argv,
     'starting build workflow',
-    [$WORKSPACE, `[env=${env},dry=${dryRun}]`],
+    [CTX.npm_package_name, `[env=${env},dry=${dryRun}]`],
     LogLevel.INFO
   )
 
   try {
     // Type check source code
-    exec(`tsc -p ${CONTEXT.cwd}/tsconfig.prod.json --noEmit`, dryRun)
+    exec(`tsc -p ${CTX.cwd}/tsconfig.prod.json --noEmit`, dryRun)
     logger(argv, 'type check source code')
 
-    // Set environment variables
-    if (env) {
-      exec(`node ${CONTEXT.pwd}/tools/cli/loadenv.cjs -c ${env}`, dryRun)
-      logger(argv, `set ${env} environment variables`)
-    }
-
     // Execute build workflow
-    if (workflow) await workflow(argv, CONTEXT)
+    if (workflow) await workflow(argv, CTX)
 
     // Pack project
     if (tarball) {
@@ -191,8 +203,8 @@ async function build<O extends BuildOptions = BuildOptions>(
       ]
 
       // Check if package has postinstall and prepack scripts
-      const has_postinstall = typeof $PACKAGE.scripts?.postinstall === 'string'
-      const has_prepack = typeof $PACKAGE.scripts?.prepack === 'string'
+      const has_postinstall = typeof CTX.pkg.scripts?.postinstall === 'string'
+      const has_prepack = typeof CTX.pkg.scripts?.prepack === 'string'
 
       // Check if prepack script should be disabled
       const disable_prepack = has_prepack && !prepack
@@ -206,7 +218,7 @@ async function build<O extends BuildOptions = BuildOptions>(
       disable_prepack && logger(argv, 'disable prepack script')
 
       // Execute pack command
-      exec(`yarn pack ${flags.join(' ')}`.trim(), dryRun)
+      exec(['yarn pack', flags.join(' ')].join(' '), dryRun)
       logger(argv, 'create tarball')
 
       // Renable postinstall script
@@ -217,16 +229,17 @@ async function build<O extends BuildOptions = BuildOptions>(
       disable_prepack && exec('toggle-scripts +prepack', dryRun)
       disable_prepack && logger(argv, 'renable prepack script')
     }
-  } catch (err) {
-    const error = err as Error & { code?: number; stderr?: string }
+  } catch (e: unknown) {
+    const error = e as Error & { code?: number; stderr?: string }
 
     if (!error.stderr) logger(argv, error.message, [], LogLevel.ERROR)
-    sh.echo(error.stderr || ch.red(inspect(error, false, null)))
-    sh.exit(error?.code ?? 1)
+    sh.echo(error.stderr ?? ch.red(inspect(error, false, null)))
+    return void sh.exit(error.code ?? 1)
   }
 
   // Log workflow end
-  logger(argv, 'build workflow complete', [$WORKSPACE], LogLevel.INFO)
+  logger(argv, 'build workflow complete', [CTX.npm_package_name], LogLevel.INFO)
+  return void sh.exit(0)
 }
 
 export default build

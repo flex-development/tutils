@@ -1,14 +1,15 @@
-import type ObjectPlain from './object-plain.type'
-
 /**
  * @file Type Definitions - KeysOptional
  * @module tutils/types/KeysOptional
  */
 
+import type ObjectPlain from './object-plain.type'
+
 /**
- * Constructs a type where all properties of `T` are optional.
+ * Creates a list of optional properties in `T`.
  *
  * @todo Get nested properties recursively
+ *
  * @template T - Object type
  */
 type KeysOptional<T extends ObjectPlain> = {

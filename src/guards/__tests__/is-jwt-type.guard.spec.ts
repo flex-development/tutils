@@ -1,31 +1,25 @@
-import type { Testcase } from '@tests/utils/types'
-import JwtType from '@tutils/enums/jwt-type.enum'
-import testSubject from '../is-jwt-type.guard'
-
 /**
  * @file Unit Tests - isJwtType
  * @module tutils/guards/tests/unit/isJwtType
  */
 
+import type { TestcaseFn } from '@tests/interfaces'
+import JwtType from '@tutils/enums/jwt-type.enum'
+import testSubject from '../is-jwt-type.guard'
+
 describe('unit:guards/isJwtType', () => {
-  type Case = Testcase<boolean> & { state: string; value: any }
+  interface Case extends TestcaseFn<typeof testSubject> {}
 
   const cases: Case[] = [
-    { expected: false, state: 'random string', value: 'a-random-string' },
-    { expected: true, state: 'JwtType.ACCESS', value: JwtType.ACCESS },
-    { expected: true, state: 'JwtType.VERIFICATION', value: JwtType.REFRESH },
-    {
-      expected: true,
-      state: 'JwtType.VERIFICATION',
-      value: JwtType.VERIFICATION
-    }
+    { expected: false, parameters: ['EMAIL'] },
+    { expected: true, parameters: [JwtType.ACCESS] },
+    { expected: true, parameters: [JwtType.REFRESH] },
+    { expected: true, parameters: [JwtType.VERIFICATION] }
   ]
 
-  it.each<Case>(cases)('should return $expected given $state', testcase => {
-    // Arrange
-    const { expected, value } = testcase
-
-    // Act + Expect
-    expect(testSubject(value)).toBe(expected)
+  cases.forEach(({ expected, parameters }) => {
+    it(`should return ${expected} given ${pf(parameters)}`, () => {
+      expect(testSubject(...parameters)).to.equal(expected)
+    })
   })
 })

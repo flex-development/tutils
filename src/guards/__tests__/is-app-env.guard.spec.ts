@@ -1,30 +1,28 @@
-import type { Testcase } from '@tests/utils/types'
-import AppEnv from '@tutils/enums/app-env.enum'
-import testSubject from '../is-app-env.guard'
-
 /**
  * @file Unit Tests - isAppEnv
  * @module tutils/guards/tests/unit/isAppEnv
  */
 
+import type { TestcaseFn } from '@tests/interfaces'
+import AppEnv from '@tutils/enums/app-env.enum'
+import testSubject from '../is-app-env.guard'
+
 describe('unit:guards/isAppEnv', () => {
-  type Case = Testcase<boolean> & { state: string; value: any }
+  interface Case extends TestcaseFn<typeof testSubject> {}
 
   const cases: Case[] = [
-    { expected: false, state: 'keyof AppEnv', value: 'PROD' },
-    { expected: false, state: 'random string', value: 'some-random-string' },
-    { expected: true, state: 'AppEnv.CI', value: AppEnv.CI },
-    { expected: true, state: 'AppEnv.DEV', value: AppEnv.DEV },
-    { expected: true, state: 'AppEnv.STG', value: AppEnv.STG },
-    { expected: true, state: 'AppEnv.PROD', value: AppEnv.PROD },
-    { expected: true, state: 'AppEnv.TEST', value: AppEnv.TEST }
+    { expected: false, parameters: ['cd'] },
+    { expected: false, parameters: ['PROD'] },
+    { expected: true, parameters: [AppEnv.CI] },
+    { expected: true, parameters: [AppEnv.DEV] },
+    { expected: true, parameters: [AppEnv.STG] },
+    { expected: true, parameters: [AppEnv.PROD] },
+    { expected: true, parameters: [AppEnv.TEST] }
   ]
 
-  it.each<Case>(cases)('should return $expected given $state', testcase => {
-    // Arrange
-    const { expected, value } = testcase
-
-    // Act + Expect
-    expect(testSubject(value)).toBe(expected)
+  cases.forEach(({ expected, parameters }) => {
+    it(`should return ${expected} given ${pf(parameters)}`, () => {
+      expect(testSubject(...parameters)).to.equal(expected)
+    })
   })
 })

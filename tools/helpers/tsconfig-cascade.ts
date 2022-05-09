@@ -1,34 +1,37 @@
-import merge from 'lodash.merge'
-import { TsConfig } from 'tsc-prog'
-import { loadSync as load } from 'tsconfig/dist/tsconfig'
-
 /**
  * @file Helpers - tsconfigCascade
  * @module tools/helpers/tsconfigCascade
  */
 
-export type TsCascadeConfig = [string, 'json' | `${string}.json`]
+import type { OrUndefined } from '@flex-development/tutils'
+import merge from 'lodash.mergewith'
+import type { TsConfig } from 'tsc-prog'
+import { loadSync as load } from 'tsconfig/dist/tsconfig'
+
+export type Config = [string, 'json' | `${string}.json`]
 
 /**
  * Deep merges TypeScript config files.
  *
- * @param {TsCascadeConfig[]} [configs=[]] - Array of suffix config items
- * @param {boolean} [root_paths=true] - Make aliases relative to `PROJECT_CWD`
+ * @param {Config[]} [configs=[]] - Array containing suffix of each config file
+ * @param {string} [baseUrl=process.env.PROJECT_CWD] - Base directory to resolve
+ * non-absolute module names from.
  * @return {TsConfig} Tsconfig object
  */
 const tsconfigCascade = (
-  configs: TsCascadeConfig[] = [],
-  root_paths: boolean = true
+  configs: Config[] = [],
+  baseUrl: OrUndefined<string> = process.env.PROJECT_CWD
 ): TsConfig => {
-  const $: TsCascadeConfig[] = configs.map(c => [c[0], `tsconfig.${c[1]}`])
-  const tsconfig = merge(...($.map(arg => load(...arg).config) as [TsConfig]))
+  const $: Config[] = configs.map(conf => [conf[0], `tsconfig.${conf[1]}`])
 
-  if (root_paths && tsconfig.compilerOptions?.paths) {
-    const root = process.env.PROJECT_CWD
-    const { paths } = tsconfig.compilerOptions
+  const tsconfigs: TsConfig[] = $.map(arg => load(...arg).config as TsConfig)
+  const tsconfig: TsConfig = merge({}, ...(tsconfigs as [TsConfig]))
 
-    for (const alias of Object.keys(paths)) {
-      tsconfig.compilerOptions.paths[alias][0] = `${root}/${paths[alias][0]}`
+  if (baseUrl && tsconfig.compilerOptions?.paths) {
+    for (const alias of Object.keys(tsconfig.compilerOptions.paths)) {
+      const paths = tsconfig.compilerOptions.paths[alias]!
+
+      tsconfig.compilerOptions.paths[alias] = paths.map(p => `${baseUrl}/${p}`)
     }
   }
 

@@ -1,11 +1,11 @@
-import { EmptyValue } from '@tutils/types'
-import isEmptyString from './is-empty-string.guard'
-import isNIL from './is-nil.guard'
-
 /**
  * @file Type Guards - isEmptyValue
  * @module tutils/guards/isEmptyValue
  */
+
+import type { EmptyValue } from '@tutils/types'
+import isEmptyString from './is-empty-string.guard'
+import isNIL from './is-nil.guard'
 
 /**
  * Checks if `value` is an empty string or `NIL`.

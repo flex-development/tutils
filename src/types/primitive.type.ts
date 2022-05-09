@@ -1,9 +1,9 @@
-import type JSONPrimitive from './json-primitive.type'
-
 /**
  * @file Type Definitions - Primitive
  * @module tutils/types/Primitive
  */
+
+import type JSONPrimitive from './json-primitive.type'
 
 /**
  * Type representing any [primitive][1] value.

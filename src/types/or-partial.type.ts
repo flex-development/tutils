@@ -9,6 +9,6 @@
  *
  * @template T - Value type
  */
-type OrPartial<T> = T | Partial<T>
+type OrPartial<T> = Partial<T> | T
 
 export default OrPartial

@@ -1,12 +1,12 @@
-import type JSONValue from './json-value.type'
-
 /**
  * @file Type Definitions - JSONArray
  * @module tutils/types/JSONArray
  */
 
+import type JSONValue from './json-value.type'
+
 /**
- * Types representing an array of [JSON data types][1].
+ * Type representing an array containing [JSON values][1].
  *
  * [1]: https://restfulapi.net/json-data-types
  */

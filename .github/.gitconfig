@@ -1,5 +1,5 @@
 # Git Configuration
-# See: http://michaelwales.com/articles/make-gitconfig-work-for-you/
+# See: http://michaelwales.com/articles/make-gitconfig-work-for-you
 
 # Git Helpers
 [alias]
@@ -52,7 +52,7 @@ restart = "!f() { rm -rf .git; echo \"removed .git directory.\"; }; f"
 ulc = "!f() { git reset HEAD~1 --soft; }; f"
 
 # Conventional Commits
-# See: https://www.conventionalcommits.org/
+# See: https://conventionalcommits.org/
 # See: https://github.com/angular/angular/blob/master/CONTRIBUTING.md#type
 [alias]
 # Changes that affect the build system or external dependencies

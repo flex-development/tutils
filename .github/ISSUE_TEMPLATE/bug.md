@@ -29,13 +29,21 @@ assignees: ''
 
 ## Environment
 
-<!-- Environment details. Put "N/A" where details are not necessary -->
+<!--
+Environment details. Put "N/A" where details are not applicable.
 
-- Node Version (e.g `v16.6.0`): ``
-- OS (e.g `iOS 14.7.1`, `macOS v11.3.1`): ``
-- Package Manager (e.g `yarn@3.0.2`): ``
-- Package version(s) (e.g `<=v1.1.0`): ``
-- Browser (e.g `Firefox Developer Edition 93.0b7`): ``
+Example:
+
+- Node Version: `v16.6.0`
+- OS: `macOS v11.3.1`
+- Package Manager: `yarn@3.2.0`
+- Package Version(s): `<=1.1.0`
+-->
+
+- Node Version: ``
+- OS: ``
+- Package Manager: ``
+- Package Version(s): ``
 
 ## Possible solution
 
