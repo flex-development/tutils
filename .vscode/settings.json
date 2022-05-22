@@ -12,6 +12,7 @@
     "editor.defaultFormatter": "dprint.dprint"
   },
   "dprint.path": "./node_modules/dprint/dprint",
+  "eslint.enable": true,
   "eslint.options": {
     "extensions": ["cjs", "md", "ts"],
     "overrideConfigFile": "./.eslintrc.cjs"
