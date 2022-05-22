@@ -13,7 +13,7 @@
   },
   "dprint.path": "./node_modules/dprint/dprint",
   "eslint.options": {
-    "extensions": [".cjs", ".md", ".ts"],
+    "extensions": ["cjs", "md", "ts"],
     "overrideConfigFile": "./.eslintrc.cjs"
   },
   "eslint.packageManager": "yarn",
