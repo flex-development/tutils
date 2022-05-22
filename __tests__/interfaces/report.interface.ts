@@ -1,9 +1,9 @@
 /**
- * @file Test Interfaces - Report
+ * @file Test Environment Interfaces - Report
  * @module tests/interfaces/Report
  */
 
-import type { MochaSuiteSummary, MochaTestSummary } from '@tests/types'
+import type { MochaSuiteSummary, MochaTestSummary } from '../types'
 
 /**
  * Custom test reporter output.

@@ -1,5 +1,5 @@
 /**
- * @file Test Interfaces - Testcase
+ * @file Test Environment Interfaces - Testcase
  * @module tests/interfaces/Testcase
  */
 

@@ -1,5 +1,5 @@
 /**
- * @file Entry Point - Global Test Interfaces
+ * @file Entry Point - Test Environment Interfaces
  * @module tests/interfaces
  */
 

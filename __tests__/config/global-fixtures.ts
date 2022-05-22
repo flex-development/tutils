@@ -1,6 +1,6 @@
 /**
  * @file Test Configuration - Global Fixtures
- * @module tests/config/globalFixtures
+ * @module tests/config/global-fixtures
  * @see https://mochajs.org/#global-setup-fixtures
  * @see https://mochajs.org/#global-teardown-fixtures
  */

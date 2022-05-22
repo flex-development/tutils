@@ -1,5 +1,5 @@
 /**
- * @file Test Interfaces - TestcaseFn
+ * @file Test Environment Interfaces - TestcaseFn
  * @module tests/interfaces/TestcaseFn
  */
 

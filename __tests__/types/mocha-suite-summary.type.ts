@@ -1,5 +1,5 @@
 /**
- * @file Test Type Definitions - MochaSuiteSummary
+ * @file Test Environment Types - MochaSuiteSummary
  * @module tests/types/MochaSuiteSummary
  */
 

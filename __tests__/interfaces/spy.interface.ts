@@ -1,5 +1,5 @@
 /**
- * @file Test Interfaces - Spy
+ * @file Test Environment Interfaces - Spy
  * @module tests/interfaces/Spy
  */
 

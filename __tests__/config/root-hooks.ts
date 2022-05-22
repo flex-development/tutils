@@ -1,12 +1,19 @@
 /**
  * @file Test Configuration - Root Hooks
- * @module tests/config/rootHooks
- * @see https://mochajs.org/#defining-a-root-hook-plugin
+ * @module tests/config/root-hooks
  */
 
 import type { RootHookObject } from 'mocha'
 import { inspect } from 'node:util'
 
+/**
+ * Root hooks.
+ *
+ * These functions run before or after **every test in every file**.
+ *
+ * @see https://mochajs.org/#available-root-hooks
+ * @see https://mochajs.org/#defining-a-root-hook-plugin
+ */
 export const mochaHooks: RootHookObject = {
   /**
    * Handles the test environment state after all tests are run.
@@ -25,8 +32,8 @@ export const mochaHooks: RootHookObject = {
    * - Resetting the history of all [stubs][1] created via the default sandbox
    * - Restoring all [fakes][2] created via the default sandbox
    *
-   * [1]: https://sinonjs.org/releases/v11.1.2/stubs
-   * [2]: https://sinonjs.org/releases/v11.1.2/fakes
+   * [1]: https://sinonjs.org/releases/v14/stubs
+   * [2]: https://sinonjs.org/releases/v14/fakes
    *
    * @param {Mocha.Context} this - Current test context
    * @return {void} Nothing when complete

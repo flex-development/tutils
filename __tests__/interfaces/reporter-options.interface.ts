@@ -1,5 +1,5 @@
 /**
- * @file Test Interfaces - ReporterOptions
+ * @file Test Environment Interfaces - ReporterOptions
  * @module tests/interfaces/ReporterOptions
  */
 

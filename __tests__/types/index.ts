@@ -1,5 +1,5 @@
 /**
- * @file Entry Point - Test Type Definitions
+ * @file Entry Point - Test Environment Types
  * @module tests/types
  */
 
