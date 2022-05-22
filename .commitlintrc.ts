@@ -34,6 +34,7 @@ const config: UserConfig = {
         'pkg',
         'release',
         'scripts',
+        'tests',
         'tools',
         'types',
         'typescript',
