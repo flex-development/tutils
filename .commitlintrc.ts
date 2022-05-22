@@ -30,11 +30,13 @@ const config: UserConfig = {
         'guards',
         'hybrid',
         'interfaces',
+        'pkg',
         'release',
         'scripts',
         'tools',
         'types',
         'typescript',
+        'vscode',
         'workflows',
         'yarn'
       ]
