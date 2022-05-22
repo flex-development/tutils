@@ -27,42 +27,73 @@ scopes, registry servers, and required environment variables.
 
 If you're already using Yarn globally, see the [Yarn 2 Migration docs][1].
 
-### Git Clone
+### Local Development
 
-```zsh
-git clone https://github.com/flex-development/tutils
-cd tutils
-yarn
-```
+Follow the steps below to setup your local development environment:
 
-Note that if you have a global Yarn configuration (or any `YARN_*` environment
-variables set), an error will be displayed in the terminal if any settings
-conflict with the project's Yarn configuration, or the Yarn 2 API. An error will
-also be displayed if you're missing any environment variables.
+1. Set Git username
 
-### Git Config
+   ```zsh
+   git config --global user.username <github-username>
+   ```
 
-The examples in this guide contain references to custom Git aliases.
+2. Open a shell startup file
 
-See [`.gitconfig`](.github/.gitconfig) for an exhausive list of aliases.
+   - e.g: `~/.bash_profile` `~/.bashrc`, `~/.profile`, `~/.zprofile`,
+     `~/.zshenv`, `~/.zshrc`
 
-### Environment
+3. Add the following to your chosen shell startup file:
+
+   ```zsh
+   [ -f $PWD/.env.defaults ] && . $PWD/.env.defaults
+   [ -f $PWD/.env ] && . $PWD/.env
+   [ -f $PWD/.env.local ] && . $PWD/.env.local
+
+   export GIT_USERNAME=$(git config user.username)
+   export PATH=$PWD/node_modules/.bin:$PATH
+   ```
+
+4. Save shell startup file and re-launch shell
+
+5. Clone the repository
+
+   ```zsh
+   git clone https://github.com/flex-development/tutils
+   cd tutils
+   yarn
+   ```
+
+   If you have a global Yarn config (or any `YARN_*` environment variables set),
+   an error will be displayed in the terminal if any settings conflict with the
+   project's Yarn config, or the Yarn 2 API. An error will also be displayed if
+   you're missing any environment variables.
+
+### Environment Variables
+
+#### Development
+
+| name                 |
+| -------------------- |
+| `CI`                 |
+| `GH_PAT`             |
+| `NODE_ENV`           |
+| `NPM_TOKEN`          |
+| `PROJECT_CWD` **\*** |
+| `SHELL` **\*\***     |
+| `TS_NODE_PROJECT`    |
+
+**\*** Provided by [Yarn 2 scripts and binaries][2]\
+**\*\*** Provided by local machine
 
 #### GitHub Actions
 
 Variables are prefixed by `secrets.` in [workflow](.github/workflows/) files.
 
-#### Yarn 2
+### Git Config
 
-| name                      |
-| ------------------------- |
-| `GH_PAT`                  |
-| `INIT_CWD` **\***         |
-| `NPM_TOKEN`               |
-| `PROJECT_CWD` **\***      |
-| `npm_package_name` **\*** |
+The examples in this guide contain references to custom Git aliases.
 
-**\*** Environment variable provided by [Yarn 2 scripts and binaries][2]
+See [`.gitconfig`](.github/.gitconfig) for an exhaustive list.
 
 ## Contributing Code
 
@@ -87,22 +118,24 @@ must confront the following criteria:
 When creating a new branch, the name should match the following format:
 
 ```zsh
-[prefix]/<TICKET-ID>-<branch_name>
- │           │      │
- │           │      └─⫸ a short, memorable name (possibly the future PR title)
- │           │
- │           └─⫸ check jira issue
+[prefix]/<github-username>/<issue-number>-<branch_name>
+ │        │                 │              │
+ │        │                 │              └─⫸ a short, memorable name (possibly the future PR title)
+ │        │                 │
+ │        │                 └─⫸ check github issue
+ │        │
+ │        └─⫸ your github username
  │
- └─⫸ bugfix|feat|hotfix|release
+ └─⫸ bugfix|feat|hotfix|release|support
 ```
 
 For example:
 
 ```zsh
-git chbf PROJ-4-authentication
+git chbf $GIT_USERNAME/4-authentication
 ```
 
-will create a new branch titled `feat/PROJ-4-authentication`.
+will create a new branch titled `feat/<your-github-username>/4-authentication`.
 
 ### Commit Messages
 
@@ -185,8 +218,9 @@ need to create a new issue regarding a test, or need to make a `wip` commit, use
 
 #### Running Tests
 
-- run test suites: `yarn test`
-- run test suites (with live coverage view): `yarn test:coverage`
+- `yarn test`
+- `yarn test:coverage`
+  - Navigate to `http://localhost:5000` to see coverage output
 
 ### Getting Help
 
@@ -196,9 +230,8 @@ possible, create a test to reproduce the error. Make sure to label your issue as
 
 ## Labels
 
-This project uses a well-defined list of labels to organize tickets and pull
-requests. Most labels are grouped into different categories (identified by the
-prefix, eg: `status:`).
+This project uses a well-defined list of labels to organize issues and pull
+requests. Most labels are scoped (i.e: `status:*`).
 
 A list of labels can be found in [`.github/labels.yml`](.github/labels.yml).
 
@@ -254,20 +287,19 @@ approved before the pull request is merged.
 In every repository, the `create a merge commit` and `squash and merge` options
 are enabled.
 
-- if a PR has a single commit, or the changes across commits are logically
-  grouped, use `squash and merge`
-- if a PR has multiple commits, not logically grouped, `create a merge commit`
+- **create a merge commit**: PR has multiple commits that are not grouped
+- **squash and merge**: PR has a single commit or changes across commits are grouped
 
 When merging, please make sure to use the following commit message format:
 
-```txt
-<type>[optional scope]: <pull-request-title> (#pull-request-n)
+```zsh
+<type>[optional scope]: <merge-request-title> (#merge-request-n)
  │     │                │
- │     │                └─⫸ check your pull request
+ │     │                └─⫸ check your merge request
  │     │
- │     └─⫸ see commitlint.config.js
+ │     └─⫸ see .commitlintrc.ts
  │
- └─⫸ build|ci|chore|docs|feat|fix|merge|perf|refactor|release|revert|style|test
+ └─⫸ build|ci|chore|docs|feat|fix|merge|perf|refactor|release|revert|style|test|wip
 ```
 
 e.g:
@@ -290,12 +322,12 @@ Before releasing, the following steps must be completed:
 
 1. Schedule a code freeze
 2. Create a new `release/*` branch
-   - where `*` is `<package.json#name-no-scope>@<package.json#version>`
+   - where `*` is `<package.json#name-no-scope>@<new-version>`
      - e.g: `tutils@1.1.0`
    - branch naming conventions **must be followed exactly**. the branch name is
      used to create distribution tags, locate drafted releases, and generate the
      correct workspace publish command
-   - `git chbr tutils@1.1.0`
+   - use the `git chbr` alias: `git chbr tutils@<new-version>`
 3. Decide what version bump the release needs (major, minor, patch)
    - versioning
      - `yarn release` (determines [bumps based on commits][13])
@@ -305,11 +337,11 @@ Before releasing, the following steps must be completed:
      - `yarn release --release-as patch`
    - a new release will be drafted
 4. Open a new pull request from `release/*` into `next`
-   - title the PR `release: <package.json#name>@<package.json#version>`
+   - title the PR `release: <package.json#name>@<new-version>`
      - e.g: `release: @flex-development/tutils@1.1.0`
    - link all issues being released
    - after review, `squash and merge` the PR:
-     `release: @flex-development/tutils@1.1.0 (#pull-request-n)`
+     `release: @flex-development/tutils@<new-version> (#pull-request-n)`
      - e.g: `release: @flex-development/tutils@1.1.0 (#3)`
    - once the PR is merged, the deployment workflow will be triggered
    - the PR reviewer should check to make sure the workflow completes all jobs
