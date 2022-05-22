@@ -168,9 +168,9 @@
   },
   "engines": {
     "node": ">=14",
-    "yarn": "3.2.0"
+    "yarn": "3.2.1"
   },
-  "packageManager": "yarn@3.2.0",
+  "packageManager": "yarn@3.2.1",
   "readme": "README.md",
   "sideEffects": false
 }
