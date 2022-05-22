@@ -1,8 +1,6 @@
-# Pre Commit Hook
-#
-# References:
-#
-# - https://typicode.github.io/husky
+#!/bin/sh
+
+# Pre-Push Workflow
 
 yarn check:types
 yarn test
