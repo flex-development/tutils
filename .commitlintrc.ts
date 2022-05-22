@@ -28,6 +28,7 @@ const config: UserConfig = {
         'exports',
         'github',
         'guards',
+        'husky',
         'hybrid',
         'interfaces',
         'pkg',
