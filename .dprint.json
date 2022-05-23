@@ -1,15 +1,20 @@
 {
   "excludes": [
     "**/.gitkeep",
-    "./.husky/_/*",
-    "./.yarn/**",
-    "./cjs/**",
-    "./coverage/**",
-    "./dist/**",
-    "./esm/**",
-    "./node_modules/**",
-    "./types/**",
-    "CHANGELOG.md"
+    "*.lock",
+    ".eslintignore",
+    ".husky/_/*",
+    ".markdownlintignore",
+    ".nvmrc",
+    ".yarn/**",
+    "CHANGELOG.md",
+    "__tests__/report.json",
+    "cjs/**",
+    "coverage/**",
+    "dist/**",
+    "esm/**",
+    "node_modules/**",
+    "types/**"
   ],
   "includes": ["**/*.{cjs,json,md,ts}"],
   "incremental": true,
@@ -33,9 +38,9 @@
   },
   "newLineKind": "lf",
   "plugins": [
-    "https://plugins.dprint.dev/json-0.15.1.wasm",
-    "https://plugins.dprint.dev/markdown-0.13.1.wasm",
-    "https://plugins.dprint.dev/typescript-0.68.0.wasm"
+    "https://plugins.dprint.dev/json-0.15.2.wasm",
+    "https://plugins.dprint.dev/markdown-0.13.2.wasm",
+    "https://plugins.dprint.dev/typescript-0.68.3.wasm"
   ],
   "typescript": {
     "arrowFunction.useParentheses": "preferNone",

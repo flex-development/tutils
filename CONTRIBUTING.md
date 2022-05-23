@@ -191,17 +191,17 @@ commit scopes and types.
 
 [dprint][7] is used to format code, and [ESLint][8] to lint files.
 
-#### dprint Configurations
-
-- [`.dprint.json`](.dprint.json)
-
-#### ESLint Configurations
+#### ESLint Configuration
 
 - [`.eslintrc.base.cjs`](.eslintrc.base.cjs)
 - [`.eslintrc.cjs`](.eslintrc.cjs)
 - [`.eslintrc.spec.cjs`](.eslintrc.spec.cjs)
 - [`.eslintrc.spellcheck.cjs`](.eslintrc.spellcheck.cjs)
 - [`.eslintignore`](.eslintignore)
+
+#### dprint Configuration
+
+- [`.dprint.json`](.dprint.json)
 
 ### Making Changes
 
@@ -317,12 +317,9 @@ e.g:
 
 ## Releasing
 
-This repository is configured to publish packages and releases when a
-`release/*` branch is merged.
-
-> Note: Publishing is executed via the [Continuous Deployment](./.github/workflows/cd.yml)
-> workflow. This is so invalid or malicious versions cannot be released without
-> merging those changes into `next` first.
+> Note: Package deployments and releases are executed via the [ContinuousDeployment](./.github/workflows/cd.yml) workflow. This is so invalid or
+> malicious versions cannot be published without merging those changes into
+> `next` first.
 
 Before releasing, the following steps must be completed:
 
