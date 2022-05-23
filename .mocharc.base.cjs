@@ -46,7 +46,6 @@ const config = {
   reporter: `${PWD}/__tests__/reporter/index.ts`,
   require: [
     'ts-node/register',
-    `${PWD}/tools/helpers/tsconfig-paths.cjs`,
     `${PWD}/__tests__/globals/index.ts`,
     `${PWD}/__tests__/config/global-fixtures.ts`,
     `${PWD}/__tests__/config/root-hooks.ts`
