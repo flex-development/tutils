@@ -27,13 +27,7 @@ const config = {
     tsconfigRootDir: __dirname,
     warnOnUnsupportedTypeScriptVersion: true
   },
-  plugins: [
-    '@typescript-eslint',
-    'jsdoc',
-    'markdown',
-    'spellcheck',
-    'unicorn'
-  ],
+  plugins: ['@typescript-eslint', 'jsdoc', 'markdown', 'spellcheck', 'unicorn'],
   rules: {
     '@typescript-eslint/adjacent-overload-signatures': 2,
     '@typescript-eslint/array-type': [
@@ -854,7 +848,7 @@ const config = {
       }
     },
     {
-      files: ['**/.eslintrc.*'],
+      files: ['.eslintrc.*'],
       rules: {
         'sort-keys': 0,
         'spellcheck/spell-checker': 0,
