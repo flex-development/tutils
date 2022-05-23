@@ -19,6 +19,5 @@ chai.config.truncateThreshold = 0
 chai.use(sinonChai)
 
 // Update global namespace
-global.chai = chai
 global.assert = chai.assert
 global.expect = chai.expect
