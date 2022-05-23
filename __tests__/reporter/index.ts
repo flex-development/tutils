@@ -5,25 +5,15 @@
  */
 
 import { ObjectEmpty } from '@flex-development/tutils'
-// @ts-expect-error ts(7016)
-import growl from 'growl'
 import ci from 'is-ci'
-import {
-  MochaOptions,
-  reporters,
-  Runner,
-  Stats,
-  Suite,
-  Test
-} from 'mocha'
+import { MochaOptions, reporters, Runner, Stats, Suite, Test } from 'mocha'
+import notifier from 'node-notifier'
 import fs from 'node:fs'
 import { Report, ReporterOptions } from 'tests/interfaces'
 
 /**
- * Writes test results to a `json` file and sends a [notification][1] when all
- * tests have been ran.
- *
- * [1]: https://github.com/growl/growl
+ * Writes test results to a `json` file and sends a notification when all tests
+ * have been ran.
  *
  * @extends {reporters.Spec}
  */
@@ -82,11 +72,7 @@ class Reporter extends reporters.Spec {
       for (const f of files) tests_map[f] = tests.filter(s => s.file === f)
 
       /** @const {Report} report - Test report */
-      const report = Reporter.reportCreate(
-        this.stats,
-        suites_map,
-        tests_map
-      )
+      const report = Reporter.reportCreate(this.stats, suites_map, tests_map)
 
       // Write report
       Reporter.reportDump(report, options.reporterOptions as ReporterOptions)
@@ -128,9 +114,10 @@ class Reporter extends reporters.Spec {
     }
 
     // Send notification
-    growl(message, {
-      image: './mocha-logo-96.png',
-      name: 'mocha',
+    notifier.notify({
+      message,
+      sound: true,
+      timeout: 10,
       title
     })
   }
