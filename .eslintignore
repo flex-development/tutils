@@ -1,8 +1,9 @@
 # ESLINT IGNORE
 # https://eslint.org/docs/user-guide/configuring#ignoring-files-and-directories
 
-# DIRECTORIES
+# DIRECTORIES & FILES
 .yarn/*
+CHANGELOG.md
 cjs/*
 coverage/*
 dist/*
@@ -10,9 +11,6 @@ esm/*
 node_modules/*
 types/*
 
-# FILES
-CHANGELOG.md
-
 # NEGATED PATTERNS
-!src/types/*
 !**/.*.*
+!src/types/*
