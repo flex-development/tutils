@@ -1,4 +1,7 @@
 {
+  "[ignore]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
   "[javascript]": {
     "editor.defaultFormatter": "dprint.dprint"
   },
@@ -8,8 +11,14 @@
   "[markdown]": {
     "editor.defaultFormatter": "dprint.dprint"
   },
+  "[shellscript]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
   "[typescript]": {
     "editor.defaultFormatter": "dprint.dprint"
+  },
+  "[yaml]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml"
   },
   "dprint.path": "./node_modules/dprint/dprint",
   "eslint.enable": true,
