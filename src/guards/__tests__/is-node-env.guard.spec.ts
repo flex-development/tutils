@@ -3,8 +3,8 @@
  * @module tutils/guards/tests/unit/isNodeEnv
  */
 
-import type { TestcaseFn } from '@tests/interfaces'
-import NodeEnv from '@tutils/enums/node-env.enum'
+import NodeEnv from 'src/enums/node-env.enum'
+import type { TestcaseFn } from 'tests/interfaces'
 import testSubject from '../is-node-env.guard'
 
 describe('unit:guards/isNodeEnv', () => {

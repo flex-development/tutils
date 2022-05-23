@@ -5,7 +5,6 @@
  */
 
 import { ObjectEmpty } from '@flex-development/tutils'
-import { Report, ReporterOptions } from '@tests/interfaces'
 // @ts-expect-error ts(7016)
 import growl from 'growl'
 import ci from 'is-ci'
@@ -18,6 +17,7 @@ import {
   Test
 } from 'mocha'
 import fs from 'node:fs'
+import { Report, ReporterOptions } from 'tests/interfaces'
 
 /**
  * Writes test results to a `json` file and sends a [notification][1] when all

@@ -7,7 +7,7 @@ declare global {
     }
 
     interface MochaOptions {
-      reporterOptions?: import('@tests/interfaces').ReporterOptions
+      reporterOptions?: import('tests/interfaces').ReporterOptions
     }
   }
 }

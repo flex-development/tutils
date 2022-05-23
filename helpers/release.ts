@@ -1,25 +1,24 @@
 #!/usr/bin/env ts-node
 
 /**
- * @file CLI - Release Workflow
- * @module tools/cli/release
+ * @file Helpers - Release CLI
+ * @module helpers/release
  */
 
 import grease from '@flex-development/grease'
 import type { IGreaseOptions } from '@flex-development/grease/interfaces'
-import LogLevel from '@flex-development/log/enums/log-level.enum'
-import logger from '@helpers/logger'
+import { LogLevel } from '@flex-development/log'
 import ch from 'chalk'
 import { inspect } from 'node:util'
 import sh from 'shelljs'
 import type { Argv } from 'yargs'
 import yargs from 'yargs'
 import { hideBin } from 'yargs/helpers'
+import logger from './logger'
+import PKG from './pkg'
 
-/**
- * Package release options.
- */
-export interface ReleaseOptions {
+/** CLI options. */
+interface Options {
   /**
    * Commit all staged changes, not just release files.
    *
@@ -34,6 +33,9 @@ export interface ReleaseOptions {
    */
   dryRun?: IGreaseOptions['dryRun']
 
+  /** @see Options.dryRun */
+  d?: Options['dryRun']
+
   /**
    * Is this the first release?
    *
@@ -41,12 +43,18 @@ export interface ReleaseOptions {
    */
   firstRelease?: IGreaseOptions['firstRelease']
 
+  /** @see Options.firstRelease */
+  f?: Options['firstRelease']
+
   /**
    * Only populate commits made under this path.
    *
    * @default process.cwd()
    */
   path?: IGreaseOptions['path']
+
+  /** @see Options.path */
+  p?: Options['path']
 
   /**
    * Create prerelease with optional tag id (e.g: `alpha`,`beta`, `dev`).
@@ -57,6 +65,9 @@ export interface ReleaseOptions {
    * Specify release type (like `npm version <major|minor|patch>`).
    */
   releaseAs?: IGreaseOptions['releaseAs']
+
+  /** @see Options.releaseAs */
+  r?: Options['releaseAs']
 
   /**
    * Save GitHub release as a draft instead of publishing it.
@@ -73,34 +84,14 @@ export interface ReleaseOptions {
   skip?: IGreaseOptions['skip']
 }
 
-export interface ReleaseOptionsWithAliases extends ReleaseOptions {
-  /** @see ReleaseOptions.commitAll */
-  a?: ReleaseOptions['commitAll']
+/** CLI arguments. */
+type Args = Exclude<Argv<Options>['argv'], Promise<Options>>
 
-  /** @see ReleaseOptions.dryRun */
-  d?: ReleaseOptions['dryRun']
+/** @const {string} WORKSPACE_NO_SCOPE - `PKG.name` name without scope */
+const WORKSPACE_NO_SCOPE: string = PKG.name.split('/')[1]!
 
-  /** @see ReleaseOptions.firstRelease */
-  f?: ReleaseOptions['firstRelease']
-
-  /** @see ReleaseOptions.path */
-  p?: ReleaseOptions['path']
-
-  /** @see ReleaseOptions.releaseAs */
-  r?: ReleaseOptions['releaseAs']
-}
-
-export type ReleaseArgs = Argv<ReleaseOptionsWithAliases>
-export type ReleaseArgv = Exclude<ReleaseArgs['argv'], Promise<any>>
-
-/** @const {string} workspace - Workspace name */
-const workspace: string = process.env.npm_package_name!
-
-/** @const {string} workspace_no_scope - Workspace name without scope */
-const workspace_no_scope: string = workspace.split('/')[1]!
-
-/** @const {ReleaseArgs} args - CLI arguments parser */
-const args = yargs(hideBin(process.argv), process.env.INIT_CWD)
+/** @const {Argv<Options>} args - CLI arguments parser */
+const args: Argv<Options> = yargs(hideBin(process.argv), process.cwd())
   .usage('$0 [options]')
   .option('commitAll', {
     alias: 'a',
@@ -147,23 +138,25 @@ const args = yargs(hideBin(process.argv), process.env.INIT_CWD)
     type: 'array'
   })
   .alias('help', 'h')
+  .alias('version', 'v')
   .pkgConf('release')
-  .wrap(98) as ReleaseArgs
+  .version(PKG.version)
+  .wrap(98) as Argv<Options>
 
-/** @const {ReleaseArgv} args - CLI arguments */
-const argv = args.argv as ReleaseArgv
+/** @const {Args} args - CLI arguments */
+const argv: Args = args.argv as Args
 
 /** @const {IGreaseOptions} options - `grease` options */
 const options: IGreaseOptions = {
   commitAll: true,
   gitTagFallback: false,
-  gitdir: process.env.PROJECT_CWD,
-  lernaPackage: workspace_no_scope,
+  gitdir: process.cwd(),
+  lernaPackage: WORKSPACE_NO_SCOPE,
   releaseAssets: ['./*.tgz'],
   releaseBranchWhitelist: ['release/*'],
-  releaseCommitMessageFormat: `release: ${workspace}@{{currentTag}}`,
+  releaseCommitMessageFormat: `release: ${PKG.name}@{{currentTag}}`,
   scripts: {
-    postchangelog: `yarn pack -o %s-%v.tgz ${(argv.d && '-n') ?? ''}`.trim(),
+    postchangelog: `yarn pack -o %s-%v.tgz${(argv.dryRun && ' -n') ?? ''}`,
     postcommit: 'git pnv',
     postgreaser: 'trash *.tgz',
     prerelease: 'yarn test'
@@ -171,7 +164,7 @@ const options: IGreaseOptions = {
   // `continuous-deployment` workflow will create new tag
   skip: { tag: true },
   skipUnstable: false,
-  tagPrefix: `${workspace_no_scope}@`,
+  tagPrefix: `${WORKSPACE_NO_SCOPE}@`,
   types: [
     /* eslint-disable sort-keys */
     { type: 'feat', section: ':sparkles: Features' },
@@ -194,8 +187,8 @@ const options: IGreaseOptions = {
 // Log workflow start
 logger(
   argv,
-  'starting release workflow',
-  [workspace, `[dry=${argv.dryRun}]`],
+  'starting release',
+  [PKG.name, `[dry=${argv.dryRun}]`],
   LogLevel.INFO
 )
 

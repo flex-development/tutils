@@ -1,6 +1,6 @@
 /**
  * @file Entry Point - Shims
- * @module tools/shims
+ * @module helpers/shims
  */
 
 require('./replace-all.cjs')

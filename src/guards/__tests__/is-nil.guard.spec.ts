@@ -3,7 +3,7 @@
  * @module tutils/guards/tests/unit/isNIL
  */
 
-import type { TestcaseFn } from '@tests/interfaces'
+import type { TestcaseFn } from 'tests/interfaces'
 import testSubject from '../is-nil.guard'
 
 describe('unit:guards/isNIL', () => {

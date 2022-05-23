@@ -24,8 +24,6 @@
     "noUnusedLocals": false,
     "noUnusedParameters": false,
     "paths": {
-      "@doubles/*": ["__doubles__/*"],
-      "@fixtures/*": ["__fixtures__/*"],
       "@flex-development/grease": [
         "node_modules/@flex-development/grease/esm/index"
       ],
@@ -36,10 +34,11 @@
       "@flex-development/log/*": ["node_modules/@flex-development/log/esm/*"],
       "@flex-development/tutils": ["src/index"],
       "@flex-development/tutils/*": ["src/*"],
-      "@helpers/*": ["tools/helpers/*"],
-      "@tests/*": ["__tests__/*"],
-      "@tutils": ["src/index"],
-      "@tutils/*": ["src/*"]
+      "doubles/*": ["__doubles__/*"],
+      "fixtures/*": ["__fixtures__/*"],
+      "src": ["src/index"],
+      "src/*": ["src/*"],
+      "tests/*": ["__tests__/*"]
     },
     "preserveConstEnums": true,
     "pretty": true,
@@ -66,10 +65,7 @@
   "ts-node": {
     "compilerOptions": {},
     "moduleTypes": {},
-    "require": [
-      "./tools/shims/index.cjs",
-      "./tools/helpers/tsconfig-paths.cjs"
-    ],
+    "require": ["./helpers/shims/index.cjs", "./helpers/tsconfig-paths.cjs"],
     "transpileOnly": true
   }
 }

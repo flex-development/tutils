@@ -3,7 +3,7 @@
  * @module tutils/guards/tests/functional/isEmptyValue
  */
 
-import type { Testcase } from '@tests/interfaces'
+import type { Testcase } from 'tests/interfaces'
 import * as isEmptyString from '../is-empty-string.guard'
 import testSubject from '../is-empty-value.guard'
 import * as isNIL from '../is-nil.guard'

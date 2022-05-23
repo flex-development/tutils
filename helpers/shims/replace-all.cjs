@@ -1,6 +1,6 @@
 /**
  * @file Shims - replaceAll
- * @module tools/shims/replaceAll
+ * @module helpers/shims/replaceAll
  */
 
 require('string.prototype.replaceall/shim')()

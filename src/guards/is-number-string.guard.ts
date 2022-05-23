@@ -3,7 +3,7 @@
  * @module tutils/guards/isNumberString
  */
 
-import type { NumberString } from '@tutils/types'
+import type { NumberString } from 'src/types'
 
 /**
  * Checks if `value` is a `number` or `string`.

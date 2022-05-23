@@ -174,7 +174,7 @@ const config = {
         'spellcheck/spell-checker': [
           SEVERITY,
           Object.assign({}, OPTIONS, {
-            skipWords: [...OPTIONS.skipWords, 'duid', 'nt', 'tutils']
+            skipWords: [...OPTIONS.skipWords, 'duid', 'nt', 'tutils', 'wid']
           })
         ]
       }

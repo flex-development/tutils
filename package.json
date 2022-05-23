@@ -69,7 +69,7 @@
   "module": "./esm/tutils.min.mjs",
   "types": "./types/index.d.ts",
   "scripts": {
-    "build": "ts-node ./tools/cli/build-pkg",
+    "build": "ts-node ./helpers/build",
     "check:ci": "yarn fix:cg && yarn check:types && yarn test && yarn build -t",
     "check:dedupe": "yarn dedupe --check",
     "check:deps": "yarn dlx @yarnpkg/doctor .",
@@ -88,15 +88,15 @@
     "fix:dedupe": "yarn dedupe --strategy=highest",
     "fix:format": "dprint fmt",
     "fix:style": "yarn check:style --fix",
-    "postinstall": "is-ci || bash ./tools/scripts/postinstall.sh",
+    "postinstall": "is-ci || bash ./scripts/postinstall.sh",
     "postpack": "toggle-scripts +postinstall",
     "postpublish": "toggle-scripts +prepack",
     "prepack": "toggle-scripts -postinstall && yarn build",
     "prepublishOnly": "toggle-scripts -prepack",
-    "release": "NODE_ENV=production ts-node ./tools/cli/release",
-    "test": "bash ./tools/scripts/test.sh",
+    "release": "NODE_ENV=production ts-node ./helpers/release",
+    "test": "bash ./scripts/test.sh",
     "test:ci": "CI=true yarn test",
-    "test:coverage": "yarn test; serve ./coverage/lcov-report"
+    "test:coverage": "yarn test; serve ./coverage/lcov-report -l 5000"
   },
   "devDependencies": {
     "@commitlint/cli": "16.2.4",

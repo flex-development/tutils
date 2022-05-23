@@ -14,6 +14,5 @@
   },
   "exclude": ["**/__doubles__", "**/__tests__"],
   "extends": "./tsconfig.json",
-  "files": [],
   "include": ["src"]
 }

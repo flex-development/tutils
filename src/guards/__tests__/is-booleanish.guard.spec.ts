@@ -3,7 +3,7 @@
  * @module tutils/guards/tests/unit/isBooleanish
  */
 
-import type { TestcaseFn } from '@tests/interfaces'
+import type { TestcaseFn } from 'tests/interfaces'
 import testSubject from '../is-booleanish.guard'
 
 describe('unit:guards/isBooleanish', () => {
