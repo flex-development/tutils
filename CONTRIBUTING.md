@@ -19,16 +19,6 @@ project. This includes, but is not limited to:
 
 ## Getting Started
 
-### Yarn
-
-This project uses Yarn 2. The Yarn configuration for this project can be found
-in [`.yarnrc.yml`](.yarnrc.yml). Consult the config file for a list of package
-scopes, registry servers, and required environment variables.
-
-If you're already using Yarn globally, see the [Yarn 2 Migration docs][1].
-
-### Local Development
-
 Follow the steps below to setup your local development environment:
 
 1. Set Git username
@@ -63,10 +53,12 @@ Follow the steps below to setup your local development environment:
    yarn
    ```
 
-   If you have a global Yarn config (or any `YARN_*` environment variables set),
-   an error will be displayed in the terminal if any settings conflict with the
-   project's Yarn config, or the Yarn 2 API. An error will also be displayed if
-   you're missing any environment variables.
+   **Note**: This project uses [Yarn 2][1]. Consult [`.yarnrc.yml`](.yarnrc.yml)
+   for an overview of configuration options and required environment variables.
+   Furthermore, if you already have a global Yarn configuration, or any `YARN_*`
+   environment variables set, an error will be thrown if any settings conflict
+   with the project's Yarn configuration, or the Yarn 2 API. Missing environment
+   variables will also yield an error.
 
 6. Install `nvm`
 
@@ -369,7 +361,7 @@ Before releasing, the following steps must be completed:
      - make sure all issues are closed and have the label `status:merged`
      - add the `status:released` label to all issues
 
-[1]: https://yarnpkg.com/getting-started/migration
+[1]: https://yarnpkg.com/getting-started
 [2]: https://github.com/nvm-sh/nvm#install--update-script
 [3]: https://yarnpkg.com/advanced/lifecycle-scripts#environment-variables
 [4]: https://github.com/typicode/husky
