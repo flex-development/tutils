@@ -14,26 +14,35 @@ const { Linter } = require('eslint')
  * @const config - ESLint configuration object
  */
 const config = {
-  env: {
-    mocha: true
-  },
-  extends: [],
-  globals: {
-    after: true,
-    afterEach: true,
-    assert: true,
-    before: true,
-    beforeEach: true,
-    describe: true,
-    expect: true,
-    faker: true,
-    it: true,
-    pf: true,
-    sandbox: true
-  },
   overrides: [
     {
-      files: ['**/*.spec.*'],
+      files: ['**/__tests__/*.spec.*'],
+      env: {
+        mocha: true
+      },
+      globals: {
+        after: true,
+        afterEach: true,
+        assert: true,
+        before: true,
+        beforeEach: true,
+        describe: true,
+        expect: true,
+        faker: true,
+        inspect: true,
+        it: true,
+        pf: true,
+        sandbox: true
+      },
+      plugins: [
+        '@typescript-eslint',
+        'chai-expect',
+        'istanbul',
+        'jest-formatting',
+        'mocha',
+        'spellcheck',
+        'unicorn'
+      ],
       rules: {
         '@typescript-eslint/no-base-to-string': 0,
         '@typescript-eslint/no-unused-expressions': 0,
@@ -78,7 +87,6 @@ const config = {
           }
         ],
         'mocha/valid-test-description': [2, { pattern: '^should.[a-z0-9]+.*' }],
-        'prefer-arrow-callback': 0,
         'promise/valid-params': 0,
         'unicorn/consistent-destructuring': 0,
         'unicorn/consistent-function-scoping': 0,
@@ -86,39 +94,41 @@ const config = {
         'unicorn/no-array-for-each': 0,
         'unicorn/prefer-at': 0,
         'unicorn/no-useless-undefined': 0
+      },
+      settings: {
+        'mocha/additionalCustomNames': []
+      }
+    },
+    {
+      files: ['**/.mocharc.*', '__tests__/reporter/index.ts'],
+      rules: {
+        '@typescript-eslint/strict-boolean-expressions': 0
       }
     },
     {
       files: ['**/.mocharc.*'],
       rules: {
-        '@typescript-eslint/strict-boolean-expressions': 0,
         'spellcheck/spell-checker': 0
+      }
+    },
+    {
+      files: [
+        '__tests__/config/global-fixtures.ts',
+        '__tests__/reporter/index.ts'
+      ],
+      rules: {
+        '@typescript-eslint/dot-notation': 0
       }
     },
     {
       files: ['__tests__/reporter/index.ts'],
       rules: {
-        '@typescript-eslint/dot-notation': 0,
         '@typescript-eslint/no-unsafe-call': 0,
         '@typescript-eslint/no-unsafe-member-access': 0,
-        '@typescript-eslint/strict-boolean-expressions': 0,
         'sort-keys': 0
       }
     }
-  ],
-  plugins: [
-    '@typescript-eslint',
-    'chai-expect',
-    'istanbul',
-    'jest-formatting',
-    'mocha',
-    'spellcheck',
-    'unicorn'
-  ],
-  rules: {},
-  settings: {
-    'mocha/additionalCustomNames': []
-  }
+  ]
 }
 
 module.exports = config

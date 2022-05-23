@@ -4,7 +4,6 @@
  */
 
 const { Linter } = require('eslint')
-const { overrides } = require('./.eslintrc.base.cjs')
 
 /**
  * @type {Linter.Config}
@@ -14,7 +13,8 @@ const config = {
   root: true,
   extends: ['./.eslintrc.base.cjs'],
   overrides: [
-    ...overrides,
+    ...require('./.eslintrc.base.cjs').overrides,
+    ...require('./.eslintrc.spec.cjs').overrides,
     {
       files: [
         'src/types/built-in.type.ts',

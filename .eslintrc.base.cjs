@@ -14,11 +14,7 @@ const config = {
     es2020: true,
     node: true
   },
-  extends: [
-    'eslint:recommended',
-    './.eslintrc.spec.cjs',
-    './.eslintrc.spellcheck.cjs'
-  ],
+  extends: ['eslint:recommended', './.eslintrc.spellcheck.cjs'],
   globals: {},
   parser: require.resolve('@typescript-eslint/parser'),
   parserOptions: {
@@ -504,6 +500,7 @@ const config = {
           'Chai',
           'Mocha',
           'NodeJS',
+          'PackageJson',
           'never',
           'unknown'
         ]
@@ -782,7 +779,6 @@ const config = {
     'unicorn/throw-new-error': 2
   },
   overrides: [
-    ...require('./.eslintrc.spec.cjs').overrides,
     {
       files: ['**/.*.*'],
       rules: {
@@ -848,7 +844,7 @@ const config = {
       }, {})
     },
     {
-      files: ['**/*.md/*.ts'],
+      files: ['**/*.md/*.js', '**/*.md/*.ts'],
       parser: require.resolve('@typescript-eslint/parser')
     },
     {
@@ -863,6 +859,14 @@ const config = {
         'sort-keys': 0,
         'spellcheck/spell-checker': 0,
         'unicorn/string-content': 0
+      }
+    },
+    {
+      files: ['helpers/pkg.ts'],
+      rules: {
+        '@typescript-eslint/no-require-imports': 0,
+        '@typescript-eslint/no-var-requires': 0,
+        'unicorn/prefer-module': 0
       }
     }
   ],
