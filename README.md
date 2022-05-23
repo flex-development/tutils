@@ -91,13 +91,5 @@ export { type IUserRaw as default, type UserRawAttribute }
 - Type Definitions: [`src/types`](src/types/index.ts)
 - Type Guards: [`src/guards`](src/guards/index.ts)
 
-## Development
-
-```zsh
-git clone https://github.com/flex-development/tutils
-cd tutils
-yarn
-```
-
 [1]: https://typescriptlang.org
 [2]: https://docs.github.com/en/packages/learn-github-packages/about-permissions-for-github-packages#about-scopes-and-permissions-for-package-registries
