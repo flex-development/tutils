@@ -90,5 +90,10 @@
       "format": "svg",
       "icon": "typings"
     }
-  ]
+  ],
+  "yaml.format.bracketSpacing": true,
+  "yaml.format.enable": true,
+  "yaml.format.printWidth": 80,
+  "yaml.format.proseWrap": "always",
+  "yaml.format.singleQuote": true
 }
