@@ -68,6 +68,20 @@ Follow the steps below to setup your local development environment:
    project's Yarn config, or the Yarn 2 API. An error will also be displayed if
    you're missing any environment variables.
 
+6. Install `nvm`
+
+   ```zsh
+   brew install nvm
+   ```
+
+   Looking for a `curl` or `wget` command? Visit the [nvm install][2] guide.
+
+7. Set node version
+
+   ```zsh
+   nvm use
+   ```
+
 ### Environment Variables
 
 #### Development
@@ -82,7 +96,7 @@ Follow the steps below to setup your local development environment:
 | `SHELL` **\*\***     |
 | `TS_NODE_PROJECT`    |
 
-**\*** Provided by [Yarn 2 scripts and binaries][2]\
+**\*** Provided by [Yarn 2 scripts and binaries][3]\
 **\*\*** Provided by local machine
 
 #### GitHub Actions
@@ -97,7 +111,7 @@ See [`.gitconfig`](.github/.gitconfig) for an exhaustive list.
 
 ## Contributing Code
 
-[Husky][3] is used to locally enforce coding and commit message standards, as
+[Husky][4] is used to locally enforce coding and commit message standards, as
 well as run test suites pre-push.
 
 Any code merged into the [development and production branches](#branching-model)
@@ -139,7 +153,7 @@ will create a new branch titled `feat/<your-github-username>/4-authentication`.
 
 ### Commit Messages
 
-This project follows [Conventional Commit][4] standards and uses [commitlint][5]
+This project follows [Conventional Commit][5] standards and uses [commitlint][6]
 to enforce those standards.
 
 This means every commit must conform to the following format:
@@ -183,7 +197,7 @@ commit scopes and types.
 
 ### Code Style
 
-[dprint][6] is used to format code, and [ESLint][7] to lint files.
+[dprint][7] is used to format code, and [ESLint][8] to lint files.
 
 #### dprint Configurations
 
@@ -203,18 +217,18 @@ Source code is located in [`src`](src) directory.
 
 ### Documentation
 
-- JavaScript & TypeScript: [JSDoc][8], linted with [`eslint-plugin-jsdoc`][9]
+- JavaScript & TypeScript: [JSDoc][9], linted with [`eslint-plugin-jsdoc`][10]
 
 Before making a pull request, be sure your code is well documented, as it will
 be part of your code review.
 
 ### Testing
 
-This project uses a [Mocha][10] x [Chai][11] workflow.
+This project uses a [Mocha][11] x [Chai][12] workflow.
 
 [Husky](#contributing-code) is configured to run tests before every push. If you
 need to create a new issue regarding a test, or need to make a `wip` commit, use
-`it.skip` to mark your tests as [pending][12].
+`it.skip` to mark your tests as [pending][13].
 
 #### Running Tests
 
@@ -330,7 +344,7 @@ Before releasing, the following steps must be completed:
    - use the `git chbr` alias: `git chbr tutils@<new-version>`
 3. Decide what version bump the release needs (major, minor, patch)
    - versioning
-     - `yarn release` (determines [bumps based on commits][13])
+     - `yarn release` (determines [bumps based on commits][14])
      - `yarn release --first-release`
      - `yarn release --release-as major`
      - `yarn release --release-as minor`
@@ -348,7 +362,7 @@ Before releasing, the following steps must be completed:
      as expected.
      - if successful, the workflow will:
        - wait for the [`ci`](.github/workflows/ci.yml) job to succeed
-       - publish package to the [GitHub Package Registry][14] and [NPM][15]
+       - publish package to the [GitHub Package Registry][15] and [NPM][16]
        - update the production branch (merge branch `next` into `main`)
        - publish the drafted release
    - the PR reviewer should go through the PR's linked issues and:
@@ -356,17 +370,18 @@ Before releasing, the following steps must be completed:
      - add the `status:released` label to all issues
 
 [1]: https://yarnpkg.com/getting-started/migration
-[2]: https://yarnpkg.com/advanced/lifecycle-scripts#environment-variables
-[3]: https://github.com/typicode/husky
-[4]: https://conventionalcommits.org
-[5]: https://github.com/conventional-changelog/commitlint
-[6]: https://dprint.dev
-[7]: https://eslint.org
-[8]: https://jsdoc.app
-[9]: https://github.com/gajus/eslint-plugin-jsdoc
-[10]: https://mochajs.org
-[11]: https://chaijs.com
-[12]: https://mochajs.org/#inclusive-tests
-[13]: https://conventionalcommits.org/en/v1.0.0
-[14]: https://github.com/features/packages
-[15]: https://npmjs.com
+[2]: https://github.com/nvm-sh/nvm#install--update-script
+[3]: https://yarnpkg.com/advanced/lifecycle-scripts#environment-variables
+[4]: https://github.com/typicode/husky
+[5]: https://conventionalcommits.org
+[6]: https://github.com/conventional-changelog/commitlint
+[7]: https://dprint.dev
+[8]: https://eslint.org
+[9]: https://jsdoc.app
+[10]: https://github.com/gajus/eslint-plugin-jsdoc
+[11]: https://mochajs.org
+[12]: https://chaijs.com
+[13]: https://mochajs.org/#inclusive-tests
+[14]: https://conventionalcommits.org/en/v1.0.0
+[15]: https://github.com/features/packages
+[16]: https://npmjs.com
