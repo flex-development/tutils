@@ -35,7 +35,7 @@ const config = {
   forbidOnly: true,
   forbidPending: false,
   fullTrace: true,
-  globals: ['assert', 'chai', 'expect', 'faker', 'pf', 'sandbox'],
+  globals: ['assert', 'expect', 'faker', 'pf', 'sandbox'],
   ignore: ['coverage', 'node_modules'],
   inlineDiffs: true,
   isWorker: false,

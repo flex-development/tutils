@@ -24,15 +24,11 @@ const config = {
     assert: true,
     before: true,
     beforeEach: true,
-    chai: true,
     describe: true,
-    echo: true,
     expect: true,
     faker: true,
-    inspect: true,
     it: true,
     pf: true,
-    restoreConsole: true,
     sandbox: true
   },
   overrides: [

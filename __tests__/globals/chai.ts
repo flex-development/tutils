@@ -4,7 +4,6 @@
  * @see https://chaijs.com
  */
 
-import { each } from '@tests/matchers'
 import chai from 'chai'
 import sinonChai from 'sinon-chai'
 
@@ -18,11 +17,6 @@ chai.config.truncateThreshold = 0
  * @see https://github.com/domenic/sinon-chai#installation-and-usage
  */
 chai.use(sinonChai)
-
-/**
- * Initialize custom matchers.
- */
-chai.use(each)
 
 // Update global namespace
 global.chai = chai
