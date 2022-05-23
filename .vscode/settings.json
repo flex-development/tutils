@@ -11,6 +11,9 @@
   "[markdown]": {
     "editor.defaultFormatter": "dprint.dprint"
   },
+  "[properties]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
   "[shellscript]": {
     "editor.defaultFormatter": "foxundermoon.shell-format"
   },
@@ -37,6 +40,7 @@
   },
   "markdownlint.ignore": "./.markdownlintignore",
   "prettier.enable": false,
+  "shellformat.flag": "-ci -fn -i=2 -sr",
   "typescript.tsdk": "./node_modules/typescript/lib",
   "vsicons.associations.files": [
     {
