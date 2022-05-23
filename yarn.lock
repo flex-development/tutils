@@ -1211,10 +1211,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:17.0.31":
-  version: 17.0.31
-  resolution: "@types/node@npm:17.0.31"
-  checksum: 704618350f8420d5c47db0f7778398e821b7724369946f5c441a7e6b9343295553936400eb8309f0b07d5e39c240988ab3456b983712ca86265dabc9aee4ad3d
+"@types/node@npm:14.18.18":
+  version: 14.18.18
+  resolution: "@types/node@npm:14.18.18"
+  checksum: a165225cd2603f6e62af8407449e4a4407305e03b41c1adf6b186fdf546e1a03c8214217659b5b36c556947c0c06234993ac880d4db6378136a7a810d47e0742
   languageName: node
   linkType: hard
 

@@ -159,7 +159,7 @@
     "typescript": ">=4.1.2"
   },
   "resolutions": {
-    "@types/node": "17.0.31"
+    "@types/node": "14.18.18"
   },
   "engines": {
     "node": ">=14",
