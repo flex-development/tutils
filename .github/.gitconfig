@@ -13,13 +13,13 @@ ar = "!f() { git remote add \"$0\" \"$1\"; }; f"
 b = "!f() { git branch $@; }; f"
 
 # Delete branch locally
-bdel= "!f() { git b -D $@; }; f"
+bdel = "!f() { git b -D $@; }; f"
 
 # Delete branch remotely
-bdelr= "!f() { git push origin --no-verify --delete $@; }; f"
+bdelr = "!f() { git push origin --no-verify --delete $@; }; f"
 
 # Rename branch
-bren= "!f() { git b -m $@; git puo $@; }; f"
+bren = "!f() { git b -m $@; git puo $@; }; f"
 
 # Checkout branch
 ch = "!f() { git checkout $@; }; f"
