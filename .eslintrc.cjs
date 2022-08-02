@@ -1,12 +1,11 @@
 /**
  * @file ESLint Configuration - Root
+ * @module config/eslint
  * @see https://eslint.org/docs/user-guide/configuring
  */
 
-const { Linter } = require('eslint')
-
 /**
- * @type {Linter.Config}
+ * @type {import('eslint').Linter.Config}
  * @const config - ESLint configuration object
  */
 const config = {
@@ -14,7 +13,12 @@ const config = {
   extends: ['./.eslintrc.base.cjs'],
   overrides: [
     ...require('./.eslintrc.base.cjs').overrides,
-    ...require('./.eslintrc.spec.cjs').overrides,
+    {
+      files: ['build.config.ts'],
+      rules: {
+        'unicorn/prefer-module': 0
+      }
+    },
     {
       files: [
         'src/types/built-in.type.ts',
@@ -38,7 +42,12 @@ const config = {
         '@typescript-eslint/no-redundant-type-constituents': 0
       }
     }
-  ]
+  ],
+  settings: {
+    react: {
+      version: require('./package.json').devDependencies.react
+    }
+  }
 }
 
 module.exports = config
