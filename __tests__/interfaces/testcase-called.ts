@@ -3,12 +3,10 @@
  * @module tests/interfaces/TestcaseCalled
  */
 
-import type Testcase from './testcase.interface'
+import type Testcase from './testcase'
 
 /**
  * Object representing a function call count test case.
- *
- * @see https://github.com/domenic/sinon-chai#assertions
  *
  * @extends {Testcase<number>}
  */
@@ -16,4 +14,4 @@ interface TestcaseCalled extends Testcase<number> {
   call: 'call' | 'not call'
 }
 
-export default TestcaseCalled
+export { type TestcaseCalled as default }

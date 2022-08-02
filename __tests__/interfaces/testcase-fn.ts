@@ -3,7 +3,7 @@
  * @module tests/interfaces/TestcaseFn
  */
 
-import type Testcase from './testcase.interface'
+import type Testcase from './testcase'
 
 /**
  * Object representing a function test case.
@@ -17,4 +17,4 @@ interface TestcaseFn<T extends (...args: any[]) => any>
   parameters: Parameters<T>
 }
 
-export default TestcaseFn
+export { type TestcaseFn as default }
