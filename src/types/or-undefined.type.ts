@@ -10,4 +10,4 @@
  */
 type OrUndefined<T> = T | undefined
 
-export default OrUndefined
+export { type OrUndefined as default }

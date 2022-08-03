@@ -23,4 +23,4 @@ type DocumentPartial<
   U extends string = DUID
 > = Omit<OrPartial<D>, U> & Record<U, UID>
 
-export default DocumentPartial
+export { type DocumentPartial as default }

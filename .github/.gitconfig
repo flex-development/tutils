@@ -1,151 +1,160 @@
-# Git Configuration
-# See: http://michaelwales.com/articles/make-gitconfig-work-for-you
+# GIT CONFIGURATION
+# http://michaelwales.com/articles/make-gitconfig-work-for-you
 
-# Git Helpers
+# aliases - basic helpers
 [alias]
-# Git add and commit - all in one step
+# add and commit
 ac = "!f() { git add .; git cm \"$@\"; }; f"
 
-# Add new git remote
+# add new remote
 ar = "!f() { git remote add \"$0\" \"$1\"; }; f"
 
-# Execute git branch command
+# git branch
 b = "!f() { git branch $@; }; f"
 
-# Delete branch locally
-bdel = "!f() { git b -D $@; }; f"
+# delete branch locally
+bdel = "!f() { git b -d $@; }; f"
 
-# Delete branch remotely
+# delete branch remotely
 bdelr = "!f() { git push origin --no-verify --delete $@; }; f"
 
-# Rename branch
+# rename branch
 bren = "!f() { git b -m $@; git puo $@; }; f"
 
-# Checkout branch
+# checkout branch
 ch = "!f() { git checkout $@; }; f"
 
-# Checkout and push new branch to origin
+# checkout and push new branch to origin
 chb = "!f() { git ch -b \"$@\"; git puo \"$@\"; }; f"
 
-# Checkout branch and pull latest version
+# checkout branch and pull latest version
 chp = "!f() { git ch $@; git pull; }; f"
 
-# Commit with message
-cm = "!f() { git commit -S -m \"$@\"; }; f"
+# commit with message
+cm = "!f() { git commit -s -m \"$@\"; }; f"
 
-# Create new local repo, perform initial commit, and push
-launch = "!f() { git init; git chore \"first commit\"; git b -M next; git rao $1; git puo next; }; f"
+# perform initial commit and push to branch main
+launch = "!f() { git chore \"first commit\"; git b -m main; git rao $1; git puo main; }; f"
 
-# Tell Git to start tracking branch and push to origin
+# create new local repo, perform initial commit, and push to branch main
+launchwithinit = "!f() { git init; git chore \"first commit\"; git b -m main; git rao $1; git puo main; }; f"
+
+# tell git to start tracking branch and push to origin
 puo = "!f() { git push origin --no-verify -u $@; }; f"
 
-# Add new remote origin
+# add new remote origin
 rao = "!f() { git remote add origin $@; }; f"
 
-# Rebase branch
+# rebase branch
 rb = "!f() { git rebase $@; }; f"
 
-# Remove local .git directory
+# remove local .git directory
 restart = "!f() { rm -rf .git; echo \"removed .git directory.\"; }; f"
 
-# Undo last commit
-ulc = "!f() { git reset HEAD~1 --soft; }; f"
+# undo last commit
+ulc = "!f() { git reset head~1 --soft; }; f"
 
-# Conventional Commits
-# See: https://conventionalcommits.org/
-# See: https://github.com/angular/angular/blob/master/CONTRIBUTING.md#type
+# aliases - branch naming conventions
 [alias]
-# Changes that affect the build system or external dependencies
-build = "!f() { git ac \"build: $@\"; }; f"
+# create new bugfix (feature) branch and push upstream
+chbb = "!f() { git chb feat/fix/$@; }; f"
 
-# Changes to our CI configuration files and scripts
-ci = "!f() { git ac \"ci: $@\"; }; f"
-
-# Changes that don't impact external users
-chore = "!f() { git ac \"chore: $@\"; }; f"
-
-# Documentation only changes
-docs = "!f() { git ac \"docs: $@\"; }; f"
-
-# New features
-feat = "!f() { git ac \"feat: $@\"; }; f"
-
-# Bug fixes
-fix = "!f() { git ac \"fix: $@\"; }; f"
-
-# Performance improvements
-perf = "!f() { git ac \"perf: $@\"; }; f"
-
-# Code improvements
-refactor = "!f() { git ac \"refactor: $@\"; }; f"
-
-# Revert past changes
-revert = "!f() { git ac \"revert: $@\"; }; f"
-
-# Changes that do not affect the meaning of the code
-style = "!f() { git ac \"style: $@\"; }; f"
-
-# Adding missing tests or correcting existing tests
-test = "!f() { git ac \"test: $@\"; }; f"
-
-# Work in progress (i.e feature implemented, but not tested)
-wip = "!f() { git ac \"wip: $@\"; }; f"
-
-# Branch Naming Conventions Aliases
-[alias]
-# Create a new bugfix branch and push upstream
-chbb = "!f() { git chb bugfix/$@; }; f"
-
-# Create a new hotfix branch and push upstream
+# create new hotfix branch and push upstream
 chbh = "!f() { git chb hotfix/$@; }; f"
 
-# Create a new feature branch and push upstream
+# create new feature branch and push upstream
 chbf = "!f() { git chb feat/$@; }; f"
 
-# Create a new release branch and push upstream
+# create new release branch and push upstream
 chbr = "!f() { git chb release/$@; }; f"
 
-# Create a new support branch and push upstream
-chbs = "!f() { git chb support/$@; }; f"
-
-# Helper Aliases
+# aliases - conventional commits
+# see: https://conventionalcommits.org
+# see: https://github.com/angular/angular/blob/master/contributing.md#type
 [alias]
-# Generate a SSH key
-keygen = "!f() { ssh-keygen -t rsa -b 4096 -C \"$@\"; }; f"
+# changes that affect the build system or external dependencies
+build = "!f() { git ac \"build: $@\"; }; f"
 
-# Recursively delete files matching a pattern
-pdel = "!f() { find . -type f -name \"$@\" -delete; }; f"
+# changes to our ci configuration files and scripts
+ci = "!f() { git ac \"ci: $@\"; }; f"
 
-# Generate a secret signing key
-signingkey = "!f() { openssl rand -base64 32; }; f"
+# changes that don't impact external users
+chore = "!f() { git ac \"chore: $@\"; }; f"
 
-# Husky
+# documentation only changes
+docs = "!f() { git ac \"docs: $@\"; }; f"
+
+# new features
+feat = "!f() { git ac \"feat: $@\"; }; f"
+
+# bug fixes
+fix = "!f() { git ac \"fix: $@\"; }; f"
+
+# performance improvements
+perf = "!f() { git ac \"perf: $@\"; }; f"
+
+# code improvements
+refactor = "!f() { git ac \"refactor: $@\"; }; f"
+
+# revert past changes
+revert = "!f() { git ac \"revert: $@\"; }; f"
+
+# changes that do not affect the meaning of the code
+style = "!f() { git ac \"style: $@\"; }; f"
+
+# adding missing tests or correcting existing tests
+test = "!f() { git ac \"test: $@\"; }; f"
+
+# work in progress (i.e feature implemented, but not tested)
+wip = "!f() { git ac \"wip: $@\"; }; f"
+
+# aliases - husky
 [alias]
-# Force push commits without running `pre-push` hook
+# force push commits without running `pre-push` hook
 fpnv = "!f() { git pnv --force ; }; f"
 
-# Push commits without running `pre-push` hook
+# push commits without running `pre-push` hook
 pnv = "!f() { git push --no-verify $@; }; f"
 
+# aliases - misc
+[alias]
+# generate a ssh key
+keygen = "!f() { ssh-keygen -t rsa -b 4096 -c \"$@\"; }; f"
+
+# recursively delete files matching a pattern
+pdel = "!f() { find . -type f -name \"$@\" -delete; }; f"
+
+# generate a secret signing key
+signingkey = "!f() { openssl rand -base64 32; }; f"
+
+[branch]
+autosetuprebase = always
+
+[checkout]
+defaultRemote = origin
+
+[color]
+ui = true
+
 [commit]
-gpgSign = true
+gpgsign = true
 
 [core]
-autocrlf = input
+autocrlf = false
 ignorecase = false
+safecrlf = false
 
 [gitflow "prefix"]
 feature = feat/
 hotfix = hotfix/
 release = release/
-support = support/
-versiontag = v
+support = feat/fix/
 
 [gpg]
 program = /usr/local/bin/gpg
 
 [init]
-defaultBranch = next
+defaultBranch = main
 
 [pull]
 rebase = true

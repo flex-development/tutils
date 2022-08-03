@@ -1,30 +1,40 @@
 /**
  * @file Lint Staged Configuration
+ * @module config/lint-staged
  * @see https://github.com/okonet/lint-staged
  */
 
-const { extensions } = require('./.vscode/settings.json')['eslint.options']
+/**
+ * @type {Record<string, string[]>}
+ * @const extensions - ESLint extensions
+ */
+const eslint = require('./.vscode/settings.json')['eslint.options']
 
 module.exports = {
   /**
-   * Attempt to fix code style.
+   * Fix code style.
    */
-  [`*.{${extensions.join(',')}}`]: ['yarn fix:style', 'git add -A'],
+  [`**/*.{${eslint.extensions.join(',')}}`]: ['yarn fix:lint', 'git add -A'],
 
   /**
-   * Attempt to fix formatting.
+   * Fix formatting and check spelling.
    */
-  '*': ['yarn fix:format', 'git add -A'],
+  '*': ['yarn fix:format', 'yarn check:spelling', 'git add -A'],
 
   /**
    * Run type check.
-   *
-   * @return {string} Type check command
    */
-  '{**/*.ts,**/tsconfig.*}': [() => 'yarn check:types'],
+  '{**/*.ts,**/tsconfig.*}': [
+    /**
+     * Returns the project's type checking command.
+     *
+     * @return {string} Type check command
+     */
+    () => 'yarn check:types'
+  ],
 
   /**
-   * Run local integrity check.
+   * Deduplicate dependencies.
    */
-  'yarn.lock': ['yarn check:dedupe']
+  'yarn.lock': ['yarn dedupe --check']
 }

@@ -16,4 +16,4 @@ type OmitByType<T extends ObjectPlain, P> = Pick<
   { [K in keyof T]: T[K] extends P ? never : K }[keyof T]
 >
 
-export default OmitByType
+export { type OmitByType as default }

@@ -15,4 +15,4 @@ import type PathN from './path-n.type'
  */
 type PathNT<T extends ObjectPlain> = PathN<T, keyof T> | keyof T
 
-export default PathNT
+export { type PathNT as default }

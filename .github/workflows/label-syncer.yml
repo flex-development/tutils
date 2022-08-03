@@ -10,14 +10,13 @@ on:
   push:
     branches:
       - main
-      - next
 jobs:
-  sync-labels:
+  labels:
     runs-on: ubuntu-latest
     steps:
       - id: checkout
         name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - id: sync
         name: Sync labels
         uses: micnncim/action-label-syncer@v1.3.0

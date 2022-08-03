@@ -8,4 +8,4 @@
  */
 type NullishBoolean = boolean | null
 
-export default NullishBoolean
+export { type NullishBoolean as default }

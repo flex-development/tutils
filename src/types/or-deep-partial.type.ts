@@ -13,4 +13,4 @@ import type DeepPartial from './deep-partial.type'
  */
 type OrDeepPartial<T> = DeepPartial<T> | T
 
-export default OrDeepPartial
+export { type OrDeepPartial as default }

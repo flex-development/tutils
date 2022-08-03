@@ -18,10 +18,13 @@ type PathValue<
   T extends ObjectPlain,
   P extends Path<T> = Path<T>
 > = P extends `${infer Key}.${infer Rest}`
-  ? Key extends keyof T ? Rest extends Path<T[Key]> ? PathValue<T[Key], Rest>
-  : never
-  : never
-  : P extends keyof T ? T[P]
+  ? Key extends keyof T
+    ? Rest extends Path<T[Key]>
+      ? PathValue<T[Key], Rest>
+      : never
+    : never
+  : P extends keyof T
+  ? T[P]
   : never
 
-export default PathValue
+export { type PathValue as default }

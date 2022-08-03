@@ -8,4 +8,4 @@
  */
 type NumberString = number | string
 
-export default NumberString
+export { type NumberString as default }

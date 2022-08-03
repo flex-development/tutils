@@ -19,4 +19,4 @@ type Path<T extends ObjectPlain> = PathNT<T> extends string | keyof T
   ? PathNT<T>
   : keyof T
 
-export default Path
+export { type Path as default }

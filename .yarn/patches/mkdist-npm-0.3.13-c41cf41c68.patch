@@ -1,0 +1,39 @@
+diff --git a/dist/chunks/make.cjs b/dist/chunks/make.cjs
+index ec67032bbdf596cbf4d98230b311d4b2970c0bac..96b30e29c73abeb992c87c28438b0d2cefd4a12f 100644
+--- a/dist/chunks/make.cjs
++++ b/dist/chunks/make.cjs
+@@ -21,7 +21,7 @@ const jsLoader = async (input, { options }) => {
+   const output = [];
+   let contents = await input.getContents();
+   if (options.declaration && !input.srcPath?.match(DECLARATION_RE)) {
+-    const cm = input.srcPath?.match(CM_LETTER_RE)?.[0] || "";
++    const cm = `.${options.ext ?? ''}`.match(CM_LETTER_RE)?.[0] || "";
+     const extension = `.d.${cm}ts`;
+     output.push({
+       contents,
+diff --git a/dist/chunks/make.mjs b/dist/chunks/make.mjs
+index 1ffbee38d621c14608746ebfcddb401e303f217e..367bd48315b72a90bcec41bf99a94887e37fe673 100644
+--- a/dist/chunks/make.mjs
++++ b/dist/chunks/make.mjs
+@@ -13,7 +13,7 @@ const jsLoader = async (input, { options }) => {
+   const output = [];
+   let contents = await input.getContents();
+   if (options.declaration && !input.srcPath?.match(DECLARATION_RE)) {
+-    const cm = input.srcPath?.match(CM_LETTER_RE)?.[0] || "";
++    const cm = `.${options.ext ?? ''}`.match(CM_LETTER_RE)?.[0] || "";
+     const extension = `.d.${cm}ts`;
+     output.push({
+       contents,
+diff --git a/dist/index.d.ts b/dist/index.d.ts
+index 475d5dc7068cf48a2a61ee7d182f1b83626b1925..bf51dfae93fbfa73f989a6ee35d198b30204e4c7 100644
+--- a/dist/index.d.ts
++++ b/dist/index.d.ts
+@@ -7,7 +7,7 @@ interface LoaderOptions {
+ interface MkdistOptions extends LoaderOptions {
+     rootDir?: string;
+     srcDir?: string;
+-    pattern?: string;
++    pattern?: string | string[];
+     distDir?: string;
+     cleanDist?: boolean;
+ }

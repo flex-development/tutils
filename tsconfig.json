@@ -1,11 +1,14 @@
 {
-  // See: https://github.com/tsconfig/bases/blob/main/bases/node14.json
+  // https://github.com/tsconfig/bases/blob/main/bases/node14.json
+  // https://github.com/tsconfig/bases/blob/main/bases/esm.json
+  // https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c
   "compilerOptions": {
     "allowJs": true,
     "allowUnreachableCode": false,
-    "alwaysStrict": true,
+    "alwaysStrict": false,
     "baseUrl": "./",
     "checkJs": false,
+    "declaration": true,
     "emitDecoratorMetadata": true,
     "esModuleInterop": true,
     "exactOptionalPropertyTypes": false,
@@ -13,9 +16,11 @@
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": false,
     "lib": ["dom", "es2020"],
-    "module": "commonjs",
+    "module": "es2022",
     "moduleResolution": "node",
+    "newLine": "lf",
     "noEmit": true,
+    "noEmitOnError": true,
     "noErrorTruncation": true,
     "noFallthroughCasesInSwitch": true,
     "noImplicitAny": true,
@@ -23,24 +28,17 @@
     "noUncheckedIndexedAccess": true,
     "noUnusedLocals": false,
     "noUnusedParameters": false,
+    "outDir": "dist",
     "paths": {
-      "@flex-development/grease": [
-        "node_modules/@flex-development/grease/esm/index"
-      ],
-      "@flex-development/grease/*": [
-        "node_modules/@flex-development/grease/esm/*"
-      ],
-      "@flex-development/log": ["node_modules/@flex-development/log/esm/index"],
-      "@flex-development/log/*": ["node_modules/@flex-development/log/esm/*"],
       "@flex-development/tutils": ["src/index"],
       "@flex-development/tutils/*": ["src/*"],
-      "doubles/*": ["__doubles__/*"],
       "fixtures/*": ["__fixtures__/*"],
       "src": ["src/index"],
       "src/*": ["src/*"],
       "tests/*": ["__tests__/*"]
     },
     "preserveConstEnums": true,
+    "preserveSymlinks": true,
     "pretty": true,
     "resolveJsonModule": true,
     "rootDir": "./",
@@ -50,22 +48,26 @@
     "strictPropertyInitialization": true,
     "suppressImplicitAnyIndexErrors": true,
     "target": "es2020",
-    "useDefineForClassFields": true
+    "useDefineForClassFields": true,
+    "useUnknownInCatchVariables": true
   },
-  "exclude": [
-    "./cjs",
-    "./coverage",
-    "./dist",
-    "./esm",
-    "./node_modules",
-    "./types"
+  "exclude": ["./coverage", "./dist", "./node_modules"],
+  "include": [
+    "**/**/*.cjs",
+    "**/**/*.mjs",
+    "**/**/*.ts",
+    "**/**/.*.cjs",
+    "**/**/.*.ts"
   ],
-  "include": ["**/*.cjs", "**/*.ts", "**/.*.cjs", "**/.*.ts"],
   // SEE: https://typestrong.org/ts-node/docs/configuration
   "ts-node": {
     "compilerOptions": {},
-    "moduleTypes": {},
-    "require": ["./helpers/shims/index.cjs", "./helpers/tsconfig-paths.cjs"],
+    "esm": true,
+    "experimentalSpecifierResolution": "node",
+    "moduleTypes": {
+      ".commitlintrc.ts": "cjs"
+    },
+    "require": ["./helpers/tsconfig-paths.cjs"],
     "transpileOnly": true
   }
 }

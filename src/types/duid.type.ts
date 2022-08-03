@@ -8,4 +8,4 @@
  */
 type DUID = 'id'
 
-export default DUID
+export { type DUID as default }

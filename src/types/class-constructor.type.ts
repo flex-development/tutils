@@ -18,4 +18,4 @@ type ClassConstructor<
   A extends any[] = any[]
 > = new (...args: A) => T
 
-export default ClassConstructor
+export { type ClassConstructor as default }

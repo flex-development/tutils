@@ -10,4 +10,4 @@
  */
 type TimestampUnix = number
 
-export default TimestampUnix
+export { type TimestampUnix as default }

@@ -21,4 +21,4 @@ import type JSONValue from './json-value.type'
  */
 type JSONObject = { [K in string]?: JSONValue }
 
-export default JSONObject
+export { type JSONObject as default }

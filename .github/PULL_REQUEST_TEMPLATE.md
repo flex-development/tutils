@@ -22,8 +22,9 @@ request here.
 
 ## Submission checklist
 
-- [ ] pr title prefixed with `PR:` (e.g: `PR: User authentication`)
-- [ ] pr title describes functionality (not vague title like `Update index.md`)
-- [ ] pr targets branch `next`
+- [ ] [pr naming conventions][1]
 - [ ] project was run locally to verify that there are no errors
 - [ ] documentation added or updated
+
+[1]:
+  https://github.com/flex-development/tutils/blob/main/CONTRIBUTING.md#pull-request-titles

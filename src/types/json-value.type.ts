@@ -14,4 +14,4 @@ import type JSONPrimitive from './json-primitive.type'
  */
 type JSONValue = JSONArray | JSONObject | JSONPrimitive
 
-export default JSONValue
+export { type JSONValue as default }

@@ -11,4 +11,4 @@
  */
 type OrPartial<T> = Partial<T> | T
 
-export default OrPartial
+export { type OrPartial as default }

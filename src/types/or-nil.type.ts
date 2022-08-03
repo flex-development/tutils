@@ -12,4 +12,4 @@ import type NIL from './nil.type'
  */
 type OrNil<T> = NIL | T
 
-export default OrNil
+export { type OrNil as default }

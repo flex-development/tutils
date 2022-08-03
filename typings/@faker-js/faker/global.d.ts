@@ -1,5 +1,5 @@
 declare global {
-  var faker: typeof import('@faker-js/faker')['default']
+  var faker: typeof import('@faker-js/faker')['faker']
 }
 
 export {}

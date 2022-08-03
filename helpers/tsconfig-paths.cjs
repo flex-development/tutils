@@ -1,43 +1,48 @@
 /**
  * @file Helpers - tsconfig-paths
  * @module helpers/tsconfig-paths
+ * @see https://github.com/dividab/tsconfig-paths
  */
 
-const path = require('path')
-const loadSync = require('tsconfig/dist/tsconfig').loadSync
+const path = require('node:path')
+const loadSync = require('tsconfig').loadSync
 const register = require('tsconfig-paths/lib/register').register
 
 /**
  * @type {string}
- * @const BASE_URL - Path to directory to begin resolving files from
+ * @const PWD - Path to root project directory
  */
-const BASE_URL = path.resolve(__dirname, '..')
+const PWD = path.resolve('.')
 
 /**
  * @type {string}
- * @const TSCONFIG - Name of tsconfig file
+ * @const TS_NODE_PROJECT - Name of tsconfig file
  */
-const TSCONFIG = process.env.TS_NODE_PROJECT ?? 'tsconfig.json'
+const TS_NODE_PROJECT = process.env.TS_NODE_PROJECT ?? 'tsconfig.json'
 
 /**
- * Resolve **all** `.cjs` files (includes barrel files).
- *
- * @see https://adrianfaciu.dev/posts/barrel-files
+ * @type {import('tsconfig.json')}
+ * @const tsconfig - Base tsconfig
  */
+const tsconfig = loadSync(PWD, 'tsconfig.json').config
+
+/**
+ * @type {import('tsconfig.json')}
+ * @const tsconfig2 - Secondary tsconfig
+ */
+const tsconfig2 = loadSync(PWD, TS_NODE_PROJECT).config
+
+/** resolve **all** `.cjs` files (includes barrel files) */
 require.extensions['.cjs'] = require.extensions['.js']
 
-/**
- * Install custom module loading function that respects paths in tsconfig(s).
- *
- * @see https://github.com/dividab/tsconfig-paths
- */
+/** install custom module loading function that respects paths in tsconfig(s) */
 register({
   addMatchAll: true,
-  baseUrl: BASE_URL,
-  mainFields: ['main'],
+  baseUrl: PWD,
+  cwd: PWD,
+  mainFields: ['module', 'main'],
   paths: {
-    // Always use paths from root tsconfig.json, but allow overrides
-    ...loadSync(BASE_URL, 'tsconfig.json').config.compilerOptions.paths,
-    ...loadSync(BASE_URL, TSCONFIG).config.compilerOptions.paths
+    ...tsconfig.compilerOptions.paths,
+    ...tsconfig2.compilerOptions.paths
   }
 })

@@ -10,4 +10,4 @@
  */
 type OneOrMany<T> = T | T[]
 
-export default OneOrMany
+export { type OneOrMany as default }
