@@ -24,4 +24,4 @@ type DeepPartialByHelper<
   pick: Path<T> /* Path<F> => excessively deep and possibly infinite */
 }
 
-export default DeepPartialByHelper
+export { type DeepPartialByHelper as default }

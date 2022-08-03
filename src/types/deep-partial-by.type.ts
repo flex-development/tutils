@@ -22,9 +22,10 @@ import type ObjectPlain from './object-plain.type'
  *  type DTOHelper = Helper<IPerson, { id: never  }>
  *  type CreatePersonDTO = DeepPartialBy<IPerson, DTOHelper>
  */
-type DeepPartialBy<
-  T extends ObjectPlain,
-  H extends Helper<T>
-> = DeepOmit<T, H['omit']> & DeepPartial<DeepPick<T, H['pick']>>
+type DeepPartialBy<T extends ObjectPlain, H extends Helper<T>> = DeepOmit<
+  T,
+  H['omit']
+> &
+  DeepPartial<DeepPick<T, H['pick']>>
 
-export default DeepPartialBy
+export { type DeepPartialBy as default }

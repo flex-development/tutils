@@ -10,4 +10,4 @@ import type NumberString from './number-string.type'
  */
 type UID = NumberString
 
-export default UID
+export { type UID as default }

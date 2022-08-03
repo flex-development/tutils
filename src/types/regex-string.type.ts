@@ -8,4 +8,4 @@
  */
 type RegexString = RegExp | string
 
-export default RegexString
+export { type RegexString as default }

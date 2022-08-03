@@ -12,8 +12,9 @@ import type ObjectPlain from './object-plain.type'
  * @template T - Object type
  * @template K - Required properties (top-level)
  */
-type PartialByRequired<T extends ObjectPlain, K extends keyof T> =
-  & Partial<Omit<T, K>>
-  & Pick<T, K>
+type PartialByRequired<T extends ObjectPlain, K extends keyof T> = Partial<
+  Omit<T, K>
+> &
+  Pick<T, K>
 
-export default PartialByRequired
+export { type PartialByRequired as default }

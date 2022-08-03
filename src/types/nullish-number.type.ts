@@ -8,4 +8,4 @@
  */
 type NullishNumber = number | null
 
-export default NullishNumber
+export { type NullishNumber as default }

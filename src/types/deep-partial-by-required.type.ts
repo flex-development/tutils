@@ -30,4 +30,4 @@ type DeepPartialByRequired<
   H extends Helper<T, Path<T>>
 > = DeepPartial<DeepOmit<T, H['omit']>> & DeepPick<T, H['pick']>
 
-export default DeepPartialByRequired
+export { type DeepPartialByRequired as default }

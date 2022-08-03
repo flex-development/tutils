@@ -12,4 +12,4 @@ import type JSONPrimitive from './json-primitive.type'
  */
 type Primitive = JSONPrimitive | bigint | symbol | undefined
 
-export default Primitive
+export { type Primitive as default }

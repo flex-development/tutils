@@ -11,10 +11,8 @@ import type ObjectPlain from './object-plain.type'
  * @template Obj - Object to update
  * @template DTO - Object to update with
  */
-type Overwrite<Obj extends ObjectPlain, DTO extends ObjectPlain> =
-  & {
-    [K in keyof Obj]: K extends keyof DTO ? DTO[K] : Obj[K]
-  }
-  & {}
+type Overwrite<Obj extends ObjectPlain, DTO extends ObjectPlain> = {
+  [K in keyof Obj]: K extends keyof DTO ? DTO[K] : Obj[K]
+} & {}
 
-export default Overwrite
+export { type Overwrite as default }

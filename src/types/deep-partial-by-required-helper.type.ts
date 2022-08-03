@@ -27,4 +27,4 @@ type DeepPartialByRequiredHelper<
   pick: P
 }
 
-export default DeepPartialByRequiredHelper
+export { type DeepPartialByRequiredHelper as default }

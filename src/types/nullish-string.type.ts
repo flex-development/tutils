@@ -8,4 +8,4 @@
  */
 type NullishString = string | null
 
-export default NullishString
+export { type NullishString as default }

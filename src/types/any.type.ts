@@ -8,4 +8,4 @@
  */
 type ANY = any
 
-export default ANY
+export { type ANY as default }

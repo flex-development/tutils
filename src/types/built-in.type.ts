@@ -10,4 +10,4 @@ import type Primitive from './primitive.type'
  */
 type BuiltIn = Date | Error | Function | Primitive | RegExp
 
-export default BuiltIn
+export { type BuiltIn as default }

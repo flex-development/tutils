@@ -15,4 +15,4 @@ import type ObjectPlain from './object-plain.type'
  */
 type KeysRequired<T extends ObjectPlain> = Exclude<keyof T, KeysOptional<T>>
 
-export default KeysRequired
+export { type KeysRequired as default }

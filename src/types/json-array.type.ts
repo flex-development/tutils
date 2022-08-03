@@ -12,4 +12,4 @@ import type JSONValue from './json-value.type'
  */
 type JSONArray = JSONValue[]
 
-export default JSONArray
+export { type JSONArray as default }

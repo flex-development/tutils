@@ -13,8 +13,7 @@ import type ObjectPlain from './object-plain.type'
  * @template T - Object type
  * @template K - Optional properties (top-level)
  */
-type PartialBy<T extends ObjectPlain, K extends keyof T> =
-  & Omit<T, K>
-  & Partial<Pick<T, K>>
+type PartialBy<T extends ObjectPlain, K extends keyof T> = Omit<T, K> &
+  Partial<Pick<T, K>>
 
-export default PartialBy
+export { type PartialBy as default }

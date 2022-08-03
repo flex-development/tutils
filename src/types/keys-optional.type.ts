@@ -16,4 +16,4 @@ type KeysOptional<T extends ObjectPlain> = {
   [K in keyof T]-?: undefined extends { [K2 in keyof T]: K2 }[K] ? K : never
 }[keyof T]
 
-export default KeysOptional
+export { type KeysOptional as default }

@@ -16,10 +16,12 @@ import type Path from './path.type'
  */
 type DeepPick<T extends ObjectPlain, P extends Path<T>> = OmitByType<
   {
-    [K in keyof T]: K extends P ? PathValue<T, K>
+    [K in keyof T]: K extends P
+      ? PathValue<T, K>
       : P extends `${infer Key}.${infer Rest}`
-        ? K extends Key
-          ? Rest extends Path<T[K]> ? { [K2 in Rest]: PathValue<T[K], Rest> }
+      ? K extends Key
+        ? Rest extends Path<T[K]>
+          ? { [K2 in Rest]: PathValue<T[K], Rest> }
           : never
         : never
       : never
@@ -27,4 +29,4 @@ type DeepPick<T extends ObjectPlain, P extends Path<T>> = OmitByType<
   never
 >
 
-export default DeepPick
+export { type DeepPick as default }
