@@ -21,23 +21,23 @@ const config = {
     },
     {
       files: [
-        'src/types/built-in.type.ts',
-        'src/types/deep-partial-by-helper.type.ts',
-        'src/types/deep-partial-by-required-helper.type.ts',
-        'src/types/overwrite.type.ts'
+        'src/types/built-in.ts',
+        'src/types/deep-partial-by-helper.ts',
+        'src/types/deep-partial-by-required-helper.ts',
+        'src/types/overwrite.ts'
       ],
       rules: {
         '@typescript-eslint/ban-types': 0
       }
     },
     {
-      files: ['src/types/deep-omit.type.ts'],
+      files: ['src/types/deep-omit.ts'],
       rules: {
         '@typescript-eslint/sort-type-union-intersection-members': 0
       }
     },
     {
-      files: ['src/types/or-never.type.ts'],
+      files: ['src/types/or-never.ts'],
       rules: {
         '@typescript-eslint/no-redundant-type-constituents': 0
       }
