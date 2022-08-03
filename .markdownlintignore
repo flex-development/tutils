@@ -2,5 +2,5 @@
 # https://github.com/DavidAnson/vscode-markdownlint#markdownlintignore
 
 # DIRECTORIES & FILES
-CHANGELOG.md
-LICENSE.md
+**/CHANGELOG.md
+**/LICENSE.md

@@ -19,7 +19,7 @@
 
 yarn test
 bump $@
-conventional-changelog -n ./changelog.config.json -i CHANGELOG.md -s
+yarn conventional-changelog -i CHANGELOG.md -s
 VERSION=$(fx package.json '.version')
 RELEASE_BRANCH=release/$VERSION
 git switch -c $RELEASE_BRANCH
