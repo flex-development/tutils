@@ -59,7 +59,7 @@ jobs:
             core.setOutput('tag', tag)
       - id: directory_check
         name: Check if package directory exists
-        uses: andstor/file-existence-action@v1.0.1
+        uses: andstor/file-existence-action@v1.1.0
         with:
           files: ${{ steps.release.outputs.directory }}
       - id: publish_args
