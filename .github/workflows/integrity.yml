@@ -42,7 +42,7 @@ jobs:
       # Use to check for cache-hit: steps.yarn-cache.outputs.cache-hit != 'true'
       - id: yarn-cache
         name: Restore yarn cache
-        uses: actions/cache@v2.1.6
+        uses: actions/cache@v3.0.5
         with:
           path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
           key: |
