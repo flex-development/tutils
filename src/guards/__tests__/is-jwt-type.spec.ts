@@ -5,7 +5,7 @@
 
 import JwtType from 'src/enums/jwt-type.enum'
 import type { TestcaseFn } from 'tests/interfaces'
-import testSubject from '../is-jwt-type.guard'
+import testSubject from '../is-jwt-type'
 
 describe('unit:guards/isJwtType', () => {
   interface Case extends TestcaseFn<typeof testSubject> {}

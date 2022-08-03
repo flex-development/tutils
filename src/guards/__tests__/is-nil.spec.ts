@@ -1,21 +1,23 @@
 /**
- * @file Unit Tests - isNumberString
- * @module tutils/guards/tests/unit/isNumberString
+ * @file Unit Tests - isNIL
+ * @module tutils/guards/tests/unit/isNIL
  */
 
 import type { TestcaseFn } from 'tests/interfaces'
-import testSubject from '../is-number-string.guard'
+import testSubject from '../is-nil'
 
-describe('unit:guards/isNumberString', () => {
+describe('unit:guards/isNIL', () => {
   interface Case extends TestcaseFn<typeof testSubject> {}
 
   const cases: Case[] = [
     { expected: false, parameters: [[]] },
     { expected: false, parameters: [{}] },
+    { expected: false, parameters: [13] },
     { expected: false, parameters: [true] },
     { expected: false, parameters: [false] },
-    { expected: true, parameters: [13] },
-    { expected: true, parameters: ['hello world'] }
+    { expected: false, parameters: ['string'] },
+    { expected: true, parameters: [null] },
+    { expected: true, parameters: [undefined] }
   ]
 
   cases.forEach(({ expected, parameters }) => {

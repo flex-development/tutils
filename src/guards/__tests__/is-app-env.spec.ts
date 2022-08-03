@@ -5,7 +5,7 @@
 
 import AppEnv from 'src/enums/app-env.enum'
 import type { TestcaseFn } from 'tests/interfaces'
-import testSubject from '../is-app-env.guard'
+import testSubject from '../is-app-env'
 
 describe('unit:guards/isAppEnv', () => {
   interface Case extends TestcaseFn<typeof testSubject> {}

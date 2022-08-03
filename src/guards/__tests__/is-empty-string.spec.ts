@@ -1,23 +1,22 @@
 /**
- * @file Unit Tests - isNIL
- * @module tutils/guards/tests/unit/isNIL
+ * @file Unit Tests - isEmptyString
+ * @module tutils/guards/tests/unit/isEmptyString
  */
 
 import type { TestcaseFn } from 'tests/interfaces'
-import testSubject from '../is-nil.guard'
+import testSubject from '../is-empty-string'
 
-describe('unit:guards/isNIL', () => {
+describe('unit:guards/isEmptyString', () => {
   interface Case extends TestcaseFn<typeof testSubject> {}
 
   const cases: Case[] = [
     { expected: false, parameters: [[]] },
     { expected: false, parameters: [{}] },
     { expected: false, parameters: [13] },
-    { expected: false, parameters: [true] },
     { expected: false, parameters: [false] },
-    { expected: false, parameters: ['string'] },
-    { expected: true, parameters: [null] },
-    { expected: true, parameters: [undefined] }
+    { expected: false, parameters: ['hello world'] },
+    { expected: true, parameters: [''] },
+    { expected: true, parameters: ['   '] }
   ]
 
   cases.forEach(({ expected, parameters }) => {

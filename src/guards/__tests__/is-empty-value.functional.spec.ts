@@ -4,9 +4,9 @@
  */
 
 import type { Testcase } from 'tests/interfaces'
-import * as isEmptyString from '../is-empty-string.guard'
-import testSubject from '../is-empty-value.guard'
-import * as isNIL from '../is-nil.guard'
+import * as isEmptyString from '../is-empty-string'
+import testSubject from '../is-empty-value'
+import * as isNIL from '../is-nil'
 
 describe('functional:guards/isEmptyValue', () => {
   interface Case extends Testcase<{ isEmptyString: number; isNIL: number }> {

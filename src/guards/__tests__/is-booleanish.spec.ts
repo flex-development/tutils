@@ -4,7 +4,7 @@
  */
 
 import type { TestcaseFn } from 'tests/interfaces'
-import testSubject from '../is-booleanish.guard'
+import testSubject from '../is-booleanish'
 
 describe('unit:guards/isBooleanish', () => {
   interface Case extends TestcaseFn<typeof testSubject> {}

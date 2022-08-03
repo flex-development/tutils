@@ -5,7 +5,7 @@
 
 import NodeEnv from 'src/enums/node-env.enum'
 import type { TestcaseFn } from 'tests/interfaces'
-import testSubject from '../is-node-env.guard'
+import testSubject from '../is-node-env'
 
 describe('unit:guards/isNodeEnv', () => {
   interface Case extends TestcaseFn<typeof testSubject> {}

@@ -4,8 +4,8 @@
  */
 
 import type { EmptyValue } from 'src/types'
-import isEmptyString from './is-empty-string.guard'
-import isNIL from './is-nil.guard'
+import isEmptyString from './is-empty-string'
+import isNIL from './is-nil'
 
 /**
  * Checks if `value` is an empty string or `NIL`.
