@@ -18,4 +18,4 @@ type Intersection<
   T2 extends ObjectPlain = ObjectPlain
 > = T1 & T2
 
-export default Intersection
+export { type Intersection as default }

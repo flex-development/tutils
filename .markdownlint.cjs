@@ -1,5 +1,6 @@
 /**
  * @file Markdownlint Configuration
+ * @module config/markdownlint
  * @see https://github.com/DavidAnson/markdownlint
  */
 
@@ -82,6 +83,7 @@ module.exports = {
   MD032: true,
   MD033: {
     allowed_elements: [
+      'a',
       'br',
       'code',
       'div',

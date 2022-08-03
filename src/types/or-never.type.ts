@@ -11,4 +11,4 @@
  */
 type OrNever<T> = T | never
 
-export default OrNever
+export { type OrNever as default }

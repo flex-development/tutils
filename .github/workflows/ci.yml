@@ -2,8 +2,8 @@
 #
 # References:
 #
-# - https://github.com/actions/checkout/tree/v2
-# - https://github.com/actions/setup-node/tree/v2
+# - https://github.com/actions/checkout
+# - https://github.com/actions/setup-node
 # - https://docs.github.com/actions/guides/building-and-testing-nodejs
 
 ---
@@ -12,8 +12,7 @@ on:
   pull_request:
   push:
     branches:
-      - next
-      - push-action/**
+      - main
   workflow_dispatch:
 jobs:
   ci:
@@ -24,31 +23,45 @@ jobs:
       NPM_TOKEN: ${{ secrets.NPM_TOKEN_ADMIN }}
     strategy:
       matrix:
-        node: [14.x, 16.x]
+        node: [16.16.0]
     steps:
       - id: checkout
         name: Checkout branch
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           ref: ${{ github.head_ref }}
       - id: node
-        name: Setup Node ${{ matrix.node }}
-        uses: actions/setup-node@v2
+        name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
           scope: '@${{ github.repository_owner }}'
-      - id: install-deps
+      - id: yarn
         name: Install dependencies
         run: yarn --immutable
-      - id: check-format
+        env:
+          HUSKY: 0
+      - id: format
         name: Check code formatting
         run: yarn check:format
-      - id: check-style
-        name: Check code style
-        run: yarn check:style
+      - id: lint
+        name: Check lint status
+        run: yarn check:lint
+      - id: spelling
+        name: Check spelling
+        run: yarn check:spelling
       - id: test
-        name: Run test suites
-        run: yarn test:ci
-      - id: build
-        name: Build project
-        run: NODE_ENV=production yarn build
+        name: Run tests
+        run: yarn test
+        env:
+          NODE_ENV: test
+          NODE_NO_WARNINGS: 1
+          NODE_OPTIONS: --es-module-specifier-resolution=node
+          TS_NODE_PROJECT: ./tsconfig.tsnode.json
+      - id: pack
+        name: Pack project
+        run: yarn pack -o %s-%v.tgz
+        env:
+          NODE_ENV: production
+          NODE_NO_WARNINGS: 1
+          NODE_OPTIONS: --es-module-specifier-resolution=node

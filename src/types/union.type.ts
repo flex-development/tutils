@@ -18,4 +18,4 @@ type Union<
   T2 extends ObjectPlain = ObjectPlain
 > = T1 & T2
 
-export default Union
+export { type Union as default }

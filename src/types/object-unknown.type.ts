@@ -10,4 +10,4 @@ import type IndexSignature from './index-signature.type'
  */
 type ObjectUnknown = { [Key in IndexSignature]?: unknown }
 
-export default ObjectUnknown
+export { type ObjectUnknown as default }

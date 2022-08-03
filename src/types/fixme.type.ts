@@ -8,4 +8,4 @@
  */
 type FIXME = any
 
-export default FIXME
+export { type FIXME as default }

@@ -11,4 +11,4 @@
  */
 type JSONPrimitive = boolean | number | string | null
 
-export default JSONPrimitive
+export { type JSONPrimitive as default }

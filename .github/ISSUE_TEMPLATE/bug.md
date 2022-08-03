@@ -2,7 +2,7 @@
 name: Bug report
 about: Spot an error? Create a bug report
 title: '🐛 '
-labels: 'type:fix,status:needs-triage'
+labels: 'status:needs-triage,type:fix'
 assignees: ''
 ---
 
@@ -34,9 +34,10 @@ Environment details. Put "N/A" where details are not applicable.
 
 Example:
 
+- Browser: `Firefox Developer Edition 93.0b7`
 - Node Version: `v16.6.0`
 - OS: `macOS v11.3.1`
-- Package Manager: `yarn@3.2.0`
+- Package Manager: `yarn@4.0.0-rc.14`
 - Package Version(s): `<=1.1.0`
 -->
 

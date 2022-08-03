@@ -1,7 +1,3 @@
-# Changelog
-
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
-
 ## [4.8.0](https://github.com/flex-development/tutils/compare/tutils@4.7.0...tutils@4.8.0) (2022-03-14)
 
 

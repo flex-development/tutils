@@ -10,4 +10,4 @@
  */
 type OrNull<T> = T | null
 
-export default OrNull
+export { type OrNull as default }
