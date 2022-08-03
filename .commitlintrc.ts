@@ -1,5 +1,6 @@
 /**
  * @file Commitlint Configuration
+ * @module config/commitlint
  * @see https://commitlint.js.org/#/guides-local-setup
  * @see https://commitlint.js.org/#/reference-configuration
  */
@@ -18,7 +19,6 @@ const config: UserConfig = {
       'always',
       [
         'cjs',
-        'deploy',
         'deps',
         'deps-dev',
         'deps-opt',
@@ -28,16 +28,18 @@ const config: UserConfig = {
         'exports',
         'github',
         'guards',
+        'helpers',
         'husky',
         'hybrid',
         'interfaces',
         'pkg',
+        'publish',
         'release',
         'scripts',
         'tests',
         'tools',
+        'ts',
         'types',
-        'typescript',
         'vscode',
         'workflows',
         'yarn'
