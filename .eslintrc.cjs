@@ -42,12 +42,7 @@ const config = {
         '@typescript-eslint/no-redundant-type-constituents': 0
       }
     }
-  ],
-  settings: {
-    react: {
-      version: require('./package.json').devDependencies.react
-    }
-  }
+  ]
 }
 
 module.exports = config

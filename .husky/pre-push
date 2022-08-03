@@ -1,6 +1,9 @@
 #!/bin/sh
 
 # Pre-Push Workflow
+#
+# References:
+#
+# - https://vitest.dev/guide/cli.html#changed
 
-yarn check:types
-yarn test
+yarn test --changed HEAD^

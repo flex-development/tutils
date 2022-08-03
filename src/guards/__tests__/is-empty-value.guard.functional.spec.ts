@@ -26,17 +26,17 @@ describe('functional:guards/isEmptyValue', () => {
     const fn2 = `isNIL ${times(expected.isNIL)}`
     const functions = `${fn1} and ${fn2}`
 
-    it(`should call ${functions} given ${pf(parameters)}`, function (this) {
+    it(`should call ${functions} given ${pf(parameters)}`, () => {
       // Arrange
-      const spy_isEmptyString = this.sandbox.spy(isEmptyString, 'default')
-      const spy_isNIL = this.sandbox.spy(isNIL, 'default')
+      const spy_isEmptyString = vi.spyOn(isEmptyString, 'default')
+      const spy_isNIL = vi.spyOn(isNIL, 'default')
 
       // Act
       testSubject(...parameters)
 
       // Expect
-      expect(spy_isEmptyString).to.have.callCount(expected.isEmptyString)
-      expect(spy_isNIL).to.have.callCount(expected.isNIL)
+      expect(spy_isEmptyString).toHaveBeenCalledTimes(expected.isEmptyString)
+      expect(spy_isNIL).toHaveBeenCalledTimes(expected.isNIL)
     })
   })
 })
