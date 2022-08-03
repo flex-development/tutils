@@ -20,5 +20,8 @@
       ]
     },
     "tagPrefix": "tutils@"
+  },
+  "writerOpts": {
+    "ignoreReverted": false
   }
 }
