@@ -37,7 +37,6 @@
       "import": "./dist/index.mjs",
       "require": "./dist/index.cjs"
     },
-    "./": "./",
     "./enums": {
       "types": "./dist/enums/index.d.ts",
       "import": "./dist/enums/index.mjs",
