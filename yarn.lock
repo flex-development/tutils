@@ -886,7 +886,12 @@ __metadata:
     "@commitlint/types": "npm:17.0.0"
     "@faker-js/faker": "npm:7.3.0"
     "@types/chai": "npm:4.3.1"
+    "@types/conventional-changelog": "npm:3.1.1"
+    "@types/conventional-changelog-config-spec": "npm:2.1.1"
+    "@types/conventional-changelog-writer": "npm:4.0.1"
+    "@types/conventional-commits-parser": "npm:3.0.2"
     "@types/eslint": "npm:8.4.5"
+    "@types/git-raw-commits": "npm:2.0.1"
     "@types/is-ci": "npm:3.0.0"
     "@types/node-notifier": "npm:8.0.2"
     "@types/prettier": "npm:2.6.4"
@@ -1329,6 +1334,71 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/conventional-changelog-config-spec@npm:2.1.1":
+  version: 2.1.1
+  resolution: "@types/conventional-changelog-config-spec@npm:2.1.1"
+  dependencies:
+    "@types/json-schema": "npm:*"
+  checksum: e235a4138c9f0c3c68450179f02b3c6484ee4cda066852fa6c167a749ee1979dc8df9991c3f9955c76643296d27f0257e7b252df430ec9bdcb4102b8ebcdb1ba
+  languageName: node
+  linkType: hard
+
+"@types/conventional-changelog-core@npm:*":
+  version: 4.2.1
+  resolution: "@types/conventional-changelog-core@npm:4.2.1"
+  dependencies:
+    "@types/conventional-changelog-writer": "npm:*"
+    "@types/conventional-commits-parser": "npm:*"
+    "@types/conventional-recommended-bump": "npm:*"
+    "@types/git-raw-commits": "npm:*"
+    "@types/node": "npm:*"
+    "@types/normalize-package-data": "npm:*"
+  checksum: 8c51268a157b84a9fd59beda3a9053e961e51d59fcb9d43ef1722611178a57b33b0d41f2cf2b4807c8dd17ba6fa4ebe27392916f1adc10c4740a4df08851305a
+  languageName: node
+  linkType: hard
+
+"@types/conventional-changelog-writer@npm:*, @types/conventional-changelog-writer@npm:4.0.1":
+  version: 4.0.1
+  resolution: "@types/conventional-changelog-writer@npm:4.0.1"
+  dependencies:
+    "@types/conventional-commits-parser": "npm:*"
+    "@types/node": "npm:*"
+  checksum: ded597513ca59388fee28a80ee8c1efb1766de3e76265923549cf4710bded6c925c3ef4bb850e43a315f99bdb66d15a7882ac82d9cd6b9401318e74e3a1f9fb9
+  languageName: node
+  linkType: hard
+
+"@types/conventional-changelog@npm:3.1.1":
+  version: 3.1.1
+  resolution: "@types/conventional-changelog@npm:3.1.1"
+  dependencies:
+    "@types/conventional-changelog-core": "npm:*"
+    "@types/conventional-changelog-writer": "npm:*"
+    "@types/conventional-commits-parser": "npm:*"
+    "@types/node": "npm:*"
+  checksum: fd838040c9df36077c5e6644369366bcf635d1725597d2761676de91cf27bac2ef1d405c2e2f5a768d89776587a9a3fde4a8b7496023190646def6cc6cc801c2
+  languageName: node
+  linkType: hard
+
+"@types/conventional-commits-parser@npm:*, @types/conventional-commits-parser@npm:3.0.2":
+  version: 3.0.2
+  resolution: "@types/conventional-commits-parser@npm:3.0.2"
+  dependencies:
+    "@types/node": "npm:*"
+  checksum: 0e233e667c8b258cc2dcd912d6e981a907cdc92a58efccc8af988bbce78323b49fe4f32a58968ccfb6a846762b9b12cfe10f3e24fa86a8f6c33e23eb6094c585
+  languageName: node
+  linkType: hard
+
+"@types/conventional-recommended-bump@npm:*":
+  version: 6.1.0
+  resolution: "@types/conventional-recommended-bump@npm:6.1.0"
+  dependencies:
+    "@types/conventional-changelog-core": "npm:*"
+    "@types/conventional-changelog-writer": "npm:*"
+    "@types/conventional-commits-parser": "npm:*"
+  checksum: f405d9b7a84c76c2a866774a27f438e4176103a689f918bba6ba078908d04fb91cae37ba239ec7c3027d134ac4249a141c79c75ed563f1189b224062059ef46e
+  languageName: node
+  linkType: hard
+
 "@types/eslint@npm:8.4.5":
   version: 8.4.5
   resolution: "@types/eslint@npm:8.4.5"
@@ -1350,6 +1420,15 @@ __metadata:
   version: 0.0.39
   resolution: "@types/estree@npm:0.0.39"
   checksum: 17875aa97e2734f4a6c5d1e7d4978888961f4c890694c6e0d1c51b17b3eaceba6be1478cf76c50730860002766e4a05c3e8afa12cccbcd5f0b628c458b607357
+  languageName: node
+  linkType: hard
+
+"@types/git-raw-commits@npm:*, @types/git-raw-commits@npm:2.0.1":
+  version: 2.0.1
+  resolution: "@types/git-raw-commits@npm:2.0.1"
+  dependencies:
+    "@types/node": "npm:*"
+  checksum: cfed9847000d9408a1bd09456507d602b9b21ae7af583f93b33dec671e7e0c40d2da01d4834bb75c8cc0044d620a5f2a4ad75e2a63b974a92c72aea301d289f5
   languageName: node
   linkType: hard
 
@@ -1418,7 +1497,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/normalize-package-data@npm:^2.4.0":
+"@types/normalize-package-data@npm:*, @types/normalize-package-data@npm:^2.4.0":
   version: 2.4.1
   resolution: "@types/normalize-package-data@npm:2.4.1"
   checksum: 4b597289520e45e54f408e91712f31fe7818e2c5d977eefecfae9db1f921a80247470d4f77da2dc8e1ef85bf0b5852ad64faf0106d88647421e45350d124f74f

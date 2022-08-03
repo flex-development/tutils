@@ -648,7 +648,7 @@ const config = {
   },
   overrides: [
     {
-      files: ['*.cjs', '*.mjs', '*.ts'],
+      files: ['*.cjs', '*.cts', '*.mjs', '*.ts'],
       rules: {
         '@typescript-eslint/await-thenable': 2,
         '@typescript-eslint/consistent-type-exports': [
@@ -798,7 +798,7 @@ const config = {
       }
     },
     {
-      files: ['*.cjs'],
+      files: ['*.cjs', '*.cts'],
       rules: {
         '@typescript-eslint/no-require-imports': 0,
         '@typescript-eslint/no-var-requires': 0,
@@ -806,7 +806,7 @@ const config = {
       }
     },
     {
-      files: ['*.d.ts', '*.ts'],
+      files: ['*.cts', '*.d.ts', '*.ts'],
       rules: {
         'no-undef': 0
       }

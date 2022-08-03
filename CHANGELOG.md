@@ -1,3 +1,38 @@
+## [4.9.0-dev.1](https://github.com/flex-development/tutils/compare/tutils@4.8.0...tutils@4.9.0-dev.1) (2022-08-03)
+
+
+### :sparkles: Features
+
+* **enums:** `HttpStatus` ([9e8c352](https://github.com/flex-development/tutils/commit/9e8c35291c7e979357576ef4855d8b8b6196d620))
+
+
+### :bug: Fixes
+
+* **exports:** `[DEP0148] DeprecationWarning: Use of deprecated folder mapping "./"` ([#36](https://github.com/flex-development/tutils/issues/36)) ([151b4ed](https://github.com/flex-development/tutils/commit/151b4edd7aa3bd92e36cf091fd65bc6b8bd4734f))
+* **guards:** `isNumberString` logic ([33dcfde](https://github.com/flex-development/tutils/commit/33dcfded658c8bccd4c3719265cdc21836226c38))
+
+
+### :house_with_garden: Housekeeping
+
+* refactor project architecture ([#30](https://github.com/flex-development/tutils/issues/30)) ([a1a564c](https://github.com/flex-development/tutils/commit/a1a564c5962872537eed48bcb75887d5effa52d9))
+* **github:** add commit scope `exports` ([af02010](https://github.com/flex-development/tutils/commit/af020102ea5c774482f22206be68c5e1f6481adb))
+* **github:** add commit scope `husky` ([ad3db94](https://github.com/flex-development/tutils/commit/ad3db941f3d2456254e16ec5e9ceb8b1cdb120c1))
+* **github:** add commit scope `tests` ([8afd47e](https://github.com/flex-development/tutils/commit/8afd47efd323893dfabb7cd65071a64e903d00fc))
+* **github:** add commit scopes `pkg` and `vscode` ([84bcfea](https://github.com/flex-development/tutils/commit/84bcfea5bf525c65eae2b94a412c2a5359fbd282))
+* **github:** add commit type `wip` ([d9f9450](https://github.com/flex-development/tutils/commit/d9f94501b5ee7d020c5e12ad3d4d53d05d27c586))
+* **github:** update feature request template comments ([2e65e86](https://github.com/flex-development/tutils/commit/2e65e86e4ab9f15212c54dc5cfe81767b2020b69))
+* **husky:** add shebang to scripts ([177a9d3](https://github.com/flex-development/tutils/commit/177a9d397a8ba8961016b8608fa21c03536dca2c))
+* **pkg:** add "interfaces" to `keywords` ([c72f47a](https://github.com/flex-development/tutils/commit/c72f47aba54fa4902fe4896e3e9a547c5297645b))
+* **release:** include reverted commits in changelog ([72bd60a](https://github.com/flex-development/tutils/commit/72bd60a293b095be12751a6f22cd9b2d2d655a02))
+* **release:** re-add `chore` and `test` type commits to changelog ([3895043](https://github.com/flex-development/tutils/commit/389504312c588385c7ae9031a6a7ab8a322544f8))
+* **release:** replace `yarn version` with `bump` ([4ea6736](https://github.com/flex-development/tutils/commit/4ea6736db60a0036e25ca86425b5c12ae693cd5f))
+* **release:** sort commit groups and commits ([50cee2e](https://github.com/flex-development/tutils/commit/50cee2ef59438017262eaa34122b8a83387ad3a7))
+
+
+### :zap: Refactors
+
+* **guards:** make `isUnixTimestamp` parameter optional ([1a20135](https://github.com/flex-development/tutils/commit/1a20135a591f39954a43bb1e4da13a15a65da852))
+
 ## [4.8.0](https://github.com/flex-development/tutils/compare/tutils@4.7.0...tutils@4.8.0) (2022-03-14)
 
 

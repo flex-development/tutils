@@ -33,7 +33,7 @@
   "eslint.enable": true,
   "eslint.nodePath": "./node_modules/eslint",
   "eslint.options": {
-    "extensions": ["cjs", "json", "md", "mjs", "ts", "yml"],
+    "extensions": ["cjs", "cts", "json", "md", "mjs", "ts", "yml"],
     "overrideConfigFile": "./.eslintrc.cjs"
   },
   "eslint.packageManager": "yarn",

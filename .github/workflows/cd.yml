@@ -104,7 +104,9 @@ jobs:
       - id: release-notes
         name: Generate release notes
         run: |
-          ./node_modules/.bin/conventional-changelog -n ./changelog.config.json -o RELEASE_NOTES.md
+          ./node_modules/.bin/ts-node ./node_modules/.bin/conventional-changelog -n ./changelog.config.cts -o RELEASE_NOTES.md
+        env:
+          TS_NODE_PROJECT: ./tsconfig.tsnode.json
       - id: tag
         name: Create and push new tag
         uses: rickstaa/action-create-tag@v1.3.7
