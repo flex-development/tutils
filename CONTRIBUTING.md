@@ -339,10 +339,15 @@ e.g:
 Before releasing, the following steps must be completed:
 
 1. Schedule a code freeze
-2. Decide what version bump the package needs (major, minor, or patch)
+2. Decide what type of version bump the package needs
+   - `yarn release <new-version>`
    - `yarn release major`
    - `yarn release minor`
    - `yarn release patch`
+   - `yarn release premajor --pre <dist-tag>`
+   - `yarn release preminor --pre <dist-tag>`
+   - `yarn release prepatch --pre <dist-tag>`
+   - `yarn release prerelease --pre <dist-tag>`
 3. Open a new PR from `release/*` into `main`
    - do **not** change the PR title
      - should match `release: <package.json#name>@<new-version>`
