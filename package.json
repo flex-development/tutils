@@ -6,68 +6,73 @@
     "enums",
     "interfaces",
     "type guards",
-    "type definitons",
+    "type definitions",
     "typescript utilities",
     "typescript"
   ],
+  "license": "BSD-3-Clause",
   "homepage": "https://github.com/flex-development/tutils",
-  "repository": "git://github.com/flex-development/tutils.git",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/flex-development/tutils.git"
+  },
   "bugs": {
     "url": "https://github.com/flex-development/tutils/issues"
   },
-  "license": "BSD-3-Clause",
-  "contributors": [
-    {
-      "name": "Lexus Drumgold",
-      "url": "https://github.com/unicornware"
-    }
-  ],
+  "author": {
+    "name": "Lexus Drumgold",
+    "url": "https://github.com/unicornware"
+  },
   "publishConfig": {
     "access": "public",
     "directory": "./"
   },
   "files": [
-    "CHANGELOG.md",
-    "CONTRIBUTING.md",
-    "cjs",
-    "esm",
-    "types"
+    "dist",
+    "src"
   ],
   "exports": {
     ".": {
-      "import": "./esm/tutils.mjs",
-      "require": "./cjs/tutils.cjs"
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./": "./",
     "./enums": {
-      "import": "./esm/enums/index.mjs",
-      "require": "./cjs/enums/index.cjs"
+      "types": "./dist/enums/index.d.ts",
+      "import": "./dist/enums/index.mjs",
+      "require": "./dist/enums/index.cjs"
     },
     "./enums/*": {
-      "import": "./esm/enums/*.mjs",
-      "require": "./cjs/enums/*.cjs"
+      "types": "./dist/enums/*.d.ts",
+      "import": "./dist/enums/*.mjs",
+      "require": "./dist/enums/*.cjs"
     },
     "./guards": {
-      "import": "./esm/guards/index.mjs",
-      "require": "./cjs/guards/index.cjs"
+      "types": "./dist/guards/index.d.ts",
+      "import": "./dist/guards/index.mjs",
+      "require": "./dist/guards/index.cjs"
     },
     "./guards/*": {
-      "import": "./esm/guards/*.mjs",
-      "require": "./cjs/guards/*.cjs"
+      "types": "./dist/guards/*.d.ts",
+      "import": "./dist/guards/*.mjs",
+      "require": "./dist/guards/*.cjs"
     },
     "./package.json": "./package.json",
     "./types": {
-      "import": "./esm/types/index.mjs",
-      "require": "./cjs/types/index.cjs"
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/types/index.mjs",
+      "require": "./dist/types/index.cjs"
     },
     "./types/*": {
-      "import": "./esm/types/*.mjs",
-      "require": "./cjs/types/*.cjs"
+      "types": "./dist/types/*.d.ts",
+      "import": "./dist/types/*.mjs",
+      "require": "./dist/types/*.cjs"
     }
   },
-  "main": "./cjs/tutils.min.cjs",
-  "module": "./esm/tutils.min.mjs",
-  "types": "./types/index.d.ts",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
   "scripts": {
     "build": "unbuild",
     "check:ci": "yarn fix:cg && yarn check:spelling && yarn check:types && yarn test && NODE_ENV=production yarn pack -o %s-%v.tgz && yarn clean:pack",
