@@ -97,7 +97,7 @@ jobs:
           ref: ${{ github.head_ref }}
       - id: setup-npmrc-gpr
         name: Setup .npmrc file [GPR]
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           always-auth: true
           cache: yarn
@@ -129,7 +129,7 @@ jobs:
           NODE_AUTH_TOKEN: ${{ env.PAT_GPR }}
       - id: setup-npmrc-npm
         name: Setup .npmrc file [NPM]
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           always-auth: true
           cache: yarn

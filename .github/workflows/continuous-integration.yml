@@ -32,7 +32,7 @@ jobs:
           ref: ${{ github.head_ref }}
       - id: setup-node
         name: Setup Node ${{ matrix.node }}
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           always-auth: true
           cache: yarn
