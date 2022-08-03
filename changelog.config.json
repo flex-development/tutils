@@ -6,16 +6,16 @@
       "releaseCommitMessageFormat": "release: {{currentTag}}",
       "types": [
         { "section": ":sparkles: Features", "type": "feat" },
-        { "section": ":bug: Bug Fixes", "type": "fix" },
+        { "section": ":bug: Fixes", "type": "fix" },
         { "section": ":fire: Performance Improvements", "type": "perf" },
-        { "section": ":rewind: Reverts", "type": "revert" },
-        { "section": ":pencil: Documentation", "type": "docs" },
         { "section": ":zap: Refactors", "type": "refactor" },
+        { "section": ":rewind: Reverts", "type": "revert" },
         { "section": ":package: Build", "type": "build" },
+        { "section": ":pencil: Documentation", "type": "docs" },
+        { "section": ":white_check_mark: Testing", "type": "test" },
         { "section": ":robot: Continuous Integration", "type": "ci" },
-        { "hidden": true, "type": "chore" },
+        { "section": ":house_with_garden: Housekeeping", "type": "chore" },
         { "hidden": true, "type": "style" },
-        { "hidden": true, "type": "test" },
         { "hidden": true, "type": "wip" }
       ]
     },
