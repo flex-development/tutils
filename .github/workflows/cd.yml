@@ -2,106 +2,71 @@
 #
 # References:
 #
-# - https://github.com/lewagon/wait-on-check-action/tree/v1.1.1
-# - https://github.com/actions/github-script/tree/v4
-# - https://github.com/andstor/file-existence-action/tree/v1.0.1
-# - https://github.com/actions/checkout/tree/v2
-# - https://github.com/actions/setup-node/tree/v2
-# - https://github.com/CasperWA/push-protected/tree/v2.5.0
-# - https://github.com/dawidd6/action-delete-branch/tree/v3.1.0
+# - https://github.com/actions/github-script
+# - https://github.com/actions/checkout
+# - https://github.com/actions/setup-node
+# - https://github.com/rickstaa/action-create-tag
+# - https://cli.github.com/manual/gh_release_create
+# - https://docs.github.com/en/actions/using-workflows/using-github-cli-in-workflows
 
 ---
 name: continuous-deployment
 on:
   pull_request:
     branches:
-      - next
+      - main
     types: [closed]
   workflow_dispatch:
     inputs:
-      tag:
-        description: release tag
+      version:
+        description: release version
         required: true
 jobs:
-  ci:
-    name: Wait for continuous-integration workflow to complete
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node: [16.x]
-    steps:
-      - id: wait
-        name: Wait for ci job
-        uses: lewagon/wait-on-check-action@v1.1.1
-        if: github.event_name != 'workflow_dispatch'
-        with:
-          allowed-conclusions: success
-          check-name: ci (${{ matrix.node }})
-          ref: ${{ github.ref }}
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          wait-interval: 20
   metadata:
-    name: Get deployment metadata
-    needs: ci
+    name: Metadata
     if: |
-      github.event.inputs.tag ||
-      (startsWith(github.event.pull_request.head.ref, 'release/') 
+      github.event.inputs.version ||
+      (startsWith(github.event.pull_request.head.ref, 'release/')
       && github.event.pull_request.merged == true)
     runs-on: ubuntu-latest
     outputs:
-      directory: ${{ steps.release.outputs.directory }}
-      publish_args: ${{ steps.publish_args.outputs.args }}
-      publish: ${{ steps.directory_check.outputs.files_exists }} == 'true'
+      artifact-name: ${{ steps.release.outputs.artifact-name }}
+      artifact-path: ${{ steps.release.outputs.artifact-path }}
+      dist-tag: ${{ steps.release.outputs.dist-tag }}
+      message: ${{ steps.release.outputs.message }}
+      prerelease: ${{ steps.release.outputs.prerelease }}
       tag: ${{ steps.release.outputs.tag }}
     steps:
       - id: release
-        name: Get release details
-        uses: actions/github-script@v4
+        name: Get release metadata
+        uses: actions/github-script@v6.1.0
         with:
           script: |
-            let tag
-             
-            if (context.payload.inputs) tag = context.payload.inputs.tag
+            const { payload, repo } = context
 
-            if (context.payload.pull_request) {
-              tag = context.payload.pull_request.head.ref.split('release/')[1]
+            let version
+
+            if (payload.pull_request) {
+              version = payload.pull_request.head.ref.split('release/')[1]
             }
 
-            const { 0: workspace_no_scope, 1: version } = tag.split('@')
+            if (payload.inputs) version = payload.inputs.version
 
-            const dir = './'
-            const workspace = `@${context.repo.owner}/${workspace_no_scope}`
+            const workspace = `@${repo.owner}/${repo.repo}`
+            const artifact_name = `${workspace.replace('/', '-')}-${version}`
+            const artifact_path = `./${artifact_name}.tgz`
 
-            core.exportVariable('version', version)
-            core.exportVariable('workspace', workspace)
+            let dist_tag = version.match(/(?!-)([a-z]+)/)?.[0].trim() ?? ''
+            if (dist_tag) dist_tag = `--tag ${dist_tag}`
 
-            core.setOutput('directory', dir)
-            core.setOutput('tag', tag)
-      - id: directory_check
-        name: Check if package directory exists
-        uses: andstor/file-existence-action@v1.0.1
-        with:
-          files: ${{ steps.release.outputs.directory }}
-      - id: publish_args
-        name: Get publish arguments
-        if: ${{ steps.directory_check.outputs.files_exists }} == 'true'
-        uses: actions/github-script@v4
-        with:
-          script: |
-            const workspace = process.env.workspace
-            const version = process.env.version
-
-            const tarball = `./${workspace.replace('/', '-')}-${version}.tgz`
-
-            let tag = process.env.version.split('-')[1] || ''
-
-            if (tag && tag.includes('.')) tag = tag.split('.')[0]
-            if (tag) tag = `--tag ${tag}`
-
-            core.setOutput('args', `${tarball} ${tag}`.trim())
-  publish-package:
-    name: Publish package to GPR & NPM
-    if: ${{ needs.metadata.outputs.publish }}
+            core.setOutput('artifact-name', artifact_name)
+            core.setOutput('artifact-path', artifact_path)
+            core.setOutput('dist-tag', dist_tag)
+            core.setOutput('message', `release: ${workspace}@${version}`)
+            core.setOutput('prerelease', !!dist_tag)
+            core.setOutput('tag', `${repo.repo}@${version}`)
+  publish-release:
+    name: Publish GitHub release
     needs: metadata
     runs-on: ubuntu-latest
     env:
@@ -109,101 +74,112 @@ jobs:
       NPM_TOKEN: ${{ secrets.NPM_TOKEN_ADMIN }}
     strategy:
       matrix:
-        node: [16.x]
+        node: [16.16.0]
     steps:
       - id: checkout
         name: Checkout branch
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
-          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+          ref: main
+      - id: node
+        name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node }}
+          scope: '@${{ github.repository_owner }}'
+      - id: yarn
+        name: Install dependencies
+        run: yarn --immutable
+        env:
+          HUSKY: 0
+          NODE_AUTH_TOKEN: ${{ env.GH_PAT }}
+      - id: pack
+        name: Pack project
+        run: yarn pack -o %s-%v.tgz
+        env:
+          NODE_ENV: production
+          NODE_NO_WARNINGS: 1
+          NODE_OPTIONS: --es-module-specifier-resolution=node
+      - id: release-notes
+        name: Generate release notes
+        run: |
+          ./node_modules/.bin/conventional-changelog -n ./changelog.config.json -o RELEASE_NOTES.md
+      - id: tag
+        name: Create and push new tag
+        uses: rickstaa/action-create-tag@v1.3.7
+        with:
+          force_push_tag: true
+          message: ${{ needs.metadata.outputs.message }}
+          tag: ${{ needs.metadata.outputs.tag }}
+      - id: publish
+        name: Create and publish release
+        run: gh release create $TAG $ASSET -t=$TAG -F=$NOTES_FILE -p=$PRERELEASE
+        env:
+          ASSET: ${{ needs.metadata.outputs.artifact-path }}
+          GITHUB_TOKEN: ${{ env.GH_PAT }}
+          NOTES_FILE: ./RELEASE_NOTES.md
+          PRERELEASE: ${{ needs.metadata.outputs.prerelease }}
+          TAG: ${{ needs.metadata.outputs.tag }}
+  publish-package:
+    name: Publish package to GPR & NPM
+    needs: [metadata, publish-release]
+    runs-on: ubuntu-latest
+    env:
+      GH_PAT: ${{ secrets.PAT_GPR_ADMIN }}
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN_ADMIN }}
+      SCOPE: '@${{ github.repository_owner }}'
+    strategy:
+      matrix:
+        node: [16.16.0]
+    steps:
+      - id: checkout
+        name: Checkout branch
+        uses: actions/checkout@v3
+        with:
+          ref: main
       - id: setup-npmrc-gpr
         name: Setup .npmrc file [GPR]
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           always-auth: true
           cache: yarn
           node-version: ${{ matrix.node }}
           registry-url: https://npm.pkg.github.com
-          scope: '@${{ github.repository_owner }}'
-      - id: dependencies
+          scope: ${{ env.SCOPE }}
+      - id: yarn
         name: Install dependencies
         run: yarn --immutable
         env:
+          HUSKY: 0
           NODE_AUTH_TOKEN: ${{ env.GH_PAT }}
-      - id: build
-        name: Build project
-        working-directory: ${{ needs.metadata.outputs.directory }}
-        run: NODE_ENV=production yarn build --tarball
+      - id: pack
+        name: Pack project
+        run: yarn pack -o %s-%v.tgz
+        env:
+          NODE_ENV: production
+          NODE_NO_WARNINGS: 1
+          NODE_OPTIONS: --es-module-specifier-resolution=node
       - id: publish-to-gpr
         name: Publish package [GPR]
-        working-directory: ${{ needs.metadata.outputs.directory }}
-        run: npm publish ${{ needs.metadata.outputs.publish_args }}
+        run: npm publish $ARTIFACT $DIST_TAG
         env:
+          ARTIFACT: ${{ needs.metadata.outputs.artifact-path }}
+          DIST_TAG: ${{ needs.metadata.outputs.dist-tag }}
           NODE_AUTH_TOKEN: ${{ env.GH_PAT }}
       - id: setup-npmrc-npm
         name: Setup .npmrc file [NPM]
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           always-auth: true
           cache: yarn
           node-version: ${{ matrix.node }}
           registry-url: https://registry.npmjs.org
-          scope: '@${{ github.repository_owner }}'
+          scope: ${{ env.SCOPE }}
       - id: publish-to-npm
         name: Publish package [NPM]
-        working-directory: ${{ needs.metadata.outputs.directory }}
-        run: npm publish ${{ needs.metadata.outputs.publish_args }}
+        run: npm publish $ARTIFACT $DIST_TAG
         env:
+          ARTIFACT: ${{ needs.metadata.outputs.artifact-path }}
+          DIST_TAG: ${{ needs.metadata.outputs.dist-tag }}
           NODE_AUTH_TOKEN: ${{ env.NPM_TOKEN }}
-  update-production-branch:
-    name: Update production branch
-    needs: publish-package
-    runs-on: ubuntu-latest
-    steps:
-      - id: checkout
-        name: Checkout branch
-        uses: actions/checkout@v2
-      - id: push
-        name: Push to protected branch 'main'
-        uses: CasperWA/push-protected@v2.5.0
-        with:
-          branch: main
-          token: ${{ secrets.PAT_REPO_ADMIN }}
-          unprotect_reviews: true
-  publish-release:
-    name: Publish GitHub Release
-    needs: [metadata, update-production-branch]
-    runs-on: ubuntu-latest
-    steps:
-      - id: publish
-        name: Publish GitHub release
-        uses: actions/github-script@v4
-        env:
-          TAG: ${{ needs.metadata.outputs.tag }}
-        with:
-          script: |
-            const endpoint = 'GET /repos/{owner}/{repo}/releases'
-            const releases = await github.paginate(endpoint, context.repo)
-
-            const tag = process.env.TAG
-            const release = releases.find(({ name }) => name.startsWith(tag))
-
-            if (release && release.draft) {
-              await github.repos.updateRelease({
-                ...context.repo,
-                draft: false, 
-                release_id: release.id, 
-                tag_name: tag
-              })
-            }
-  delete-release-branch:
-    name: Delete release branch
-    needs: [metadata, publish-release]
-    runs-on: ubuntu-latest
-    steps:
-      - id: delete
-        uses: dawidd6/action-delete-branch@v3.1.0
-        with:
-          branches: release/
-          github_token: ${{ github.token }}
-          suffix: ${{ needs.metadata.outputs.tag }}

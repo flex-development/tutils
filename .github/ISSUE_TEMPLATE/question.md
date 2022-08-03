@@ -2,7 +2,7 @@
 name: Question
 about: Get help
 title: '🧐 '
-labels: type:question
+labels: 'status:help-wanted,type:question'
 assignees: ''
 ---
 
