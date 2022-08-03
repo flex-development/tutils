@@ -6,21 +6,34 @@
 
 version: 2
 updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: daily
+    commit-message:
+      prefix: ci
+      include: scope
+    labels:
+      - type:ci
+    open-pull-requests-limit: 5
+    pull-request-branch-name:
+      separator: '-'
+    rebase-strategy: auto
+    target-branch: main
   - package-ecosystem: npm
-    directory: '/'
+    directory: /
     schedule:
       interval: daily
     commit-message:
       prefix: build
       include: scope
     ignore:
-      - dependency-name: 'husky'
+      - dependency-name: unbuild
     labels:
-      - scope:deps
       - type:build
     open-pull-requests-limit: 5
     pull-request-branch-name:
       separator: '-'
     rebase-strategy: auto
-    target-branch: next
+    target-branch: main
     versioning-strategy: increase
