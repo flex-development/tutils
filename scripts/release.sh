@@ -4,7 +4,7 @@
 #
 # References:
 #
-# - https://yarnpkg.com/cli/version
+# - https://github.com/JS-DevTools/version-bump-prompt#usage
 # - https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-cli
 
 # 1. run tests
@@ -18,7 +18,7 @@
 # 9. push release branch to origin
 
 yarn test
-yarn version -i $@
+bump $@
 conventional-changelog -n ./changelog.config.json -i CHANGELOG.md -s
 VERSION=$(fx package.json '.version')
 RELEASE_BRANCH=release/$VERSION
