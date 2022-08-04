@@ -1,3 +1,30 @@
+## [4.9.0-dev.2](https://github.com/flex-development/tutils/compare/tutils@4.9.0-dev.1...tutils@4.9.0-dev.2) (2022-08-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* **types:** `Union` definition
+* **types:** drop `.type` extension
+* **enums:** drop `.enum` extension
+* **guards:** drop `.guard` extension
+
+### :package: Build
+
+* **enums:** drop `.enum` extension ([43d858e](https://github.com/flex-development/tutils/commit/43d858e33888975deb394b189e73803a302ff02d))
+* **guards:** drop `.guard` extension ([bc33094](https://github.com/flex-development/tutils/commit/bc3309470d7b95952fb417e01904f35d17e796b2))
+* **types:** drop `.type` extension ([b3207a6](https://github.com/flex-development/tutils/commit/b3207a635770f73843a2b7a60656efb39a35cc66))
+
+
+### :bug: Fixes
+
+* **exports:** `Cannot find module 'src/enums/app-env.enum'` ([9c21876](https://github.com/flex-development/tutils/commit/9c21876fe03992b19926bcf155bdaa8ccb7faca6))
+* **types:** `Union` definition ([4df8656](https://github.com/flex-development/tutils/commit/4df8656c3083550922332f1ab3a50d6e38b158c7))
+
+
+### :zap: Refactors
+
+* **types:** loosen `Intersection` definition ([c5cf5b6](https://github.com/flex-development/tutils/commit/c5cf5b62fe7f5caeca6a3dd81bddc971b7ace9f6))
+
 ## [4.9.0-dev.1](https://github.com/flex-development/tutils/compare/tutils@4.8.0...tutils@4.9.0-dev.1) (2022-08-03)
 
 
