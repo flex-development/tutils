@@ -3,19 +3,14 @@
  * @module tutils/types/Intersection
  */
 
-import type ObjectPlain from './object-plain'
-
 /**
- * Combine two types.
+ * Combines `T1` and `T2`.
  *
- * @see https://typescriptlang.org/docs/handbook/unions-and-intersections.html#intersection-types
+ * @see https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes-func.html#intersections
  *
- * @template T1 - Object type 1
- * @template T2 - Object type 2
+ * @template T1 - Base type(s)
+ * @template T2 - Type(s) to combine with `T1`
  */
-type Intersection<
-  T1 extends ObjectPlain = ObjectPlain,
-  T2 extends ObjectPlain = ObjectPlain
-> = T1 & T2
+type Intersection<T1 = any, T2 = any> = T1 & T2
 
 export { type Intersection as default }
