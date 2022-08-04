@@ -11,7 +11,7 @@ import { computeAliases } from 'resolve-tspaths/dist/steps/computeAliases'
 import { generateChanges } from 'resolve-tspaths/dist/steps/generateChanges'
 import { getFilesToProcess } from 'resolve-tspaths/dist/steps/getFilesToProcess'
 import { loadTSConfig } from 'resolve-tspaths/dist/steps/loadTSConfig'
-import type { Alias, Change } from 'resolve-tspaths/dist/types'
+import type { Alias, Change, TextChange } from 'resolve-tspaths/dist/types'
 import {
   defineBuildConfig,
   type BuildConfig,
@@ -52,21 +52,37 @@ const config: BuildConfig = defineBuildConfig({
         ])
 
         /** @const {Alias[]} aliases - Path alias objects */
-        const aliases: Alias[] = computeAliases(rootDir, paths).map(alias => ({
-          ...alias,
-          aliasPaths: alias.aliasPaths.map(aliaspath => {
-            try {
-              return require.resolve(aliaspath)
-            } catch {
-              return aliaspath
-            }
-          })
-        }))
+        const aliases: Alias[] = computeAliases(rootDir, paths)
 
         /** @const {Change[]} changes - Changes to apply to build files */
         const changes: Change[] = generateChanges(files, aliases, {
           outPath: outDir,
           srcPath: path.resolve('src')
+        }).map(({ file, text, ...rest }) => {
+          /** @const {string} ext - {@link file} extension */
+          const ext: string = path.extname(file)
+
+          /**
+           * Text changes applied to {@link file}.
+           *
+           * Each change in {@link rest.changes} will be updated to include the
+           * current file extension, {@link ext}.
+           *
+           * @const {TextChange[]} changes
+           */
+          const changes: TextChange[] = (rest.changes ?? []).map(chg => ({
+            ...chg,
+            modified: !/node_modules/.test(path.resolve(file, chg.modified))
+              ? chg.modified + ext
+              : chg.modified
+          }))
+
+          // make sure file extensions are included in path transformations
+          for (const { modified } of changes) {
+            text = text.replace(modified.replace(ext, ''), modified)
+          }
+
+          return { changes, file, text }
         })
 
         return void applyChanges(changes)
