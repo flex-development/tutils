@@ -3,19 +3,15 @@
  * @module tutils/types/Union
  */
 
-import type ObjectPlain from './object-plain'
-
 /**
- * Allow either type `T1` or `T2`.
+ * Allow `T1` or `T2`.
  *
- * @template T1 - Object type 1
- * @template T2 - Object type 2
+ * @template T1 - Type(s) to allow
+ * @template T2 - Type(s) to allow in addition to `T1`
  *
- * @see https://typescriptlang.org/docs/handbook/unions-and-intersections.html#union-types
+ * @see https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#union-types
+ * @see https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes-func.html#unions
  */
-type Union<
-  T1 extends ObjectPlain = ObjectPlain,
-  T2 extends ObjectPlain = ObjectPlain
-> = T1 & T2
+type Union<T1 = any, T2 = any> = T1 | T2
 
 export { type Union as default }
