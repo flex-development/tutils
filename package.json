@@ -1,7 +1,7 @@
 {
   "name": "@flex-development/tutils",
   "description": "TypeScript utilities",
-  "version": "4.9.0-dev.1",
+  "version": "5.0.0-dev.1",
   "keywords": [
     "enums",
     "interfaces",
