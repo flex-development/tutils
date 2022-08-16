@@ -1,3 +1,22 @@
+## [tutils@5.0.0-alpha.1](https://github.com/flex-development/tutils/compare/tutils@5.0.0-dev.2...tutils@5.0.0-alpha.1) (2022-08-16)
+
+
+### ⚠ BREAKING CHANGES
+
+* **types:** remove `DocumentDeepPartial`
+* **types:** drop `DeepPartialBy`
+* **types:** drop `DeepPartialByHelper`
+* **types:** drop `DeepPartialByRequired`
+* **types:** drop `DeepPartialByRequiredHelper`
+* **types:** drop `PartialBy`
+* **types:** drop `PartialByRequired`
+
+### :zap: Refactors
+
+* **types:** remove unused and extraneous types ([bd2ff45](https://github.com/flex-development/tutils/commit/bd2ff45841dbe7ca43d7ebf6a36e0b12e49fdd42))
+* **types:** use `OrDeepPartial` in `DocumentPartial` ([dee309f](https://github.com/flex-development/tutils/commit/dee309f1c33082a203f5a12d08e62f99aab0c1a6))
+* **types:** remove `DocumentDeepPartial` ([e14d8e0](https://github.com/flex-development/tutils/commit/e14d8e05ed5bf0a9822012d869504fbcf7d3f454))
+
 ## [tutils@5.0.0-dev.2](https://github.com/flex-development/tutils/compare/tutils@5.0.0-dev.1...tutils@5.0.0-dev.2) (2022-08-16)
 
 
