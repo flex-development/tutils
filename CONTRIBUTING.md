@@ -359,13 +359,18 @@ Before deploying, the following steps must be completed:
    - after review, `squash and merge` PR
      - `release: @flex-development/tutils@<new-version> (#pull-request-n)`
        - e.g: `release: @flex-development/tutils@1.1.0 (#3)`
-   - once PR is merged, deployment workflow will be triggered
-   - PR reviewer should make sure workflow completes all jobs successfully
+   - on PR merge, [release workflow](.github/workflows/release.yml) will fire
      - if successful, the workflow will:
        - pack project
        - create and push new tag
        - create and publish github release
-       - publish package to [GitHub Package Registry][17] and [NPM][18]
+       - make sure all prereleased or released issues are closed
+       - delete the release branch
+     - on release publish, [publish workflow](.github/workflows/publish.yml)
+       will fire
+       - if successful, the workflow will:
+         - publish package to [github package registry][17]
+         - publish package to [npm][18]
 
 [1]: https://brew.sh
 [2]:

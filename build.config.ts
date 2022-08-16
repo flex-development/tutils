@@ -54,7 +54,11 @@ const config: BuildConfig = defineBuildConfig({
         /** @const {Alias[]} aliases - Path alias objects */
         const aliases: Alias[] = computeAliases(rootDir, paths)
 
-        /** @const {Change[]} changes - Changes to apply to build files */
+        /**
+         * Changes to apply to build files.
+         *
+         * @const {Change[]} changes
+         */
         const changes: Change[] = generateChanges(files, aliases, {
           outPath: outDir,
           srcPath: path.resolve('src')

@@ -1,4 +1,4 @@
-## [5.0.0-dev.1](https://github.com/flex-development/tutils/compare/tutils@4.9.0-dev.1...tutils@5.0.0-dev.1) (2022-08-04)
+## [tutils@5.0.0-dev.1](https://github.com/flex-development/tutils/compare/tutils@4.9.0-dev.1...tutils@5.0.0-dev.1) (2022-08-04)
 
 
 ### ⚠ BREAKING CHANGES
@@ -25,7 +25,7 @@
 
 * **types:** loosen `Intersection` definition ([c5cf5b6](https://github.com/flex-development/tutils/commit/c5cf5b62fe7f5caeca6a3dd81bddc971b7ace9f6))
 
-## [4.9.0-dev.1](https://github.com/flex-development/tutils/compare/tutils@4.8.0...tutils@4.9.0-dev.1) (2022-08-03)
+## [tutils@4.9.0-dev.1](https://github.com/flex-development/tutils/compare/tutils@4.8.0...tutils@4.9.0-dev.1) (2022-08-03)
 
 
 ### :sparkles: Features
@@ -60,21 +60,21 @@
 
 * **guards:** make `isUnixTimestamp` parameter optional ([1a20135](https://github.com/flex-development/tutils/commit/1a20135a591f39954a43bb1e4da13a15a65da852))
 
-## [4.8.0](https://github.com/flex-development/tutils/compare/tutils@4.7.0...tutils@4.8.0) (2022-03-14)
+## [tutils@4.8.0](https://github.com/flex-development/tutils/compare/tutils@4.7.0...tutils@4.8.0) (2022-03-14)
 
 
 ### :sparkles: Features
 
 * **enums:** `BsonTypeAlias`, `BsonTypeCode`, `ProjectRule`, `SortOrder` ([992fefb](https://github.com/flex-development/tutils/commit/992fefbc7c2c3ce548af1033dd3cf5a02cc42ef6))
 
-## [4.7.0](https://github.com/flex-development/tutils/compare/tutils@4.6.0...tutils@4.7.0) (2022-03-13)
+## [tutils@4.7.0](https://github.com/flex-development/tutils/compare/tutils@4.6.0...tutils@4.7.0) (2022-03-13)
 
 
 ### :sparkles: Features
 
 * **enums:** `CompareResult` ([16b2417](https://github.com/flex-development/tutils/commit/16b2417e8eba14cc05f51859128aa10f1fd45fdd))
 
-## [4.6.0](https://github.com/flex-development/tutils/compare/tutils@4.5.0...tutils@4.6.0) (2022-03-02)
+## [tutils@4.6.0](https://github.com/flex-development/tutils/compare/tutils@4.5.0...tutils@4.6.0) (2022-03-02)
 
 
 ### :sparkles: Features
@@ -85,7 +85,7 @@
 * **types:** `Numeric` ([462f102](https://github.com/flex-development/tutils/commit/462f102c424fe623c920cdae3d3a9cca54e0ae78))
 * **types:** `TimestampUnix` ([936651e](https://github.com/flex-development/tutils/commit/936651efaaef4166c861d6acc5b4836c4945a7de))
 
-## [4.5.0](https://github.com/flex-development/tutils/compare/tutils@4.4.0...tutils@4.5.0) (2022-02-06)
+## [tutils@4.5.0](https://github.com/flex-development/tutils/compare/tutils@4.4.0...tutils@4.5.0) (2022-02-06)
 
 
 ### :book: Documentation
@@ -99,7 +99,7 @@
 * **guards:** `isAppEnv` ([cc80fc9](https://github.com/flex-development/tutils/commit/cc80fc95a4aff2f3cae97f4919990ccae37a9751))
 * **guards:** `isUnixTimestamp` ([4401dc8](https://github.com/flex-development/tutils/commit/4401dc8c2de91d39a7761d3ce6386302ecd3da8e))
 
-## [4.4.0](https://github.com/flex-development/tutils/compare/tutils@4.3.0...tutils@4.4.0) (2021-11-12)
+## [tutils@4.4.0](https://github.com/flex-development/tutils/compare/tutils@4.3.0...tutils@4.4.0) (2021-11-12)
 
 
 ### :sparkles: Features
@@ -110,21 +110,21 @@
 * **guards:** `isNIL` ([011f516](https://github.com/flex-development/tutils/commit/011f516ca8e77477448d2634dc77bde742c561d5))
 * **guards:** `isNumberString` ([4d3bae0](https://github.com/flex-development/tutils/commit/4d3bae0801ae8e8e0b69aa410faddfa481f2a553))
 
-## [4.3.0](https://github.com/flex-development/tutils/compare/tutils@4.2.3...tutils@4.3.0) (2021-11-12)
+## [tutils@4.3.0](https://github.com/flex-development/tutils/compare/tutils@4.2.3...tutils@4.3.0) (2021-11-12)
 
 
 ### :sparkles: Features
 
 * **types:** `OrNil`, `OrNull`, `OrUndefined` ([23ea43e](https://github.com/flex-development/tutils/commit/23ea43ec605be7c601b50cb542f9666adeffd764))
 
-### [4.2.3](https://github.com/flex-development/tutils/compare/tutils@4.2.2...tutils@4.2.3) (2021-11-01)
+## [tutils@4.2.3](https://github.com/flex-development/tutils/compare/tutils@4.2.2...tutils@4.2.3) (2021-11-01)
 
 
 ### :bug: Fixes
 
 * package exports (actually) ([d6629ad](https://github.com/flex-development/tutils/commit/d6629ad7195281705f61db686d073c1a541e2781))
 
-### [4.2.2](https://github.com/flex-development/tutils/compare/tutils@4.2.1...tutils@4.2.2) (2021-10-31)
+## [tutils@4.2.2](https://github.com/flex-development/tutils/compare/tutils@4.2.1...tutils@4.2.2) (2021-10-31)
 
 
 ### :bug: Fixes
@@ -137,7 +137,7 @@
 * check for duplicate deps when `yarn.lock` changes ([b275a35](https://github.com/flex-development/tutils/commit/b275a35e0b4cb94d8a6d82dca02cf48e31e4f1ce))
 * update eslint config to handle dotfiles ([179617e](https://github.com/flex-development/tutils/commit/179617e647e35a8639849c6f913bce0affb17732))
 
-### [4.2.1](https://github.com/flex-development/tutils/compare/tutils@4.2.0...tutils@4.2.1) (2021-10-29)
+## [tutils@4.2.1](https://github.com/flex-development/tutils/compare/tutils@4.2.0...tutils@4.2.1) (2021-10-29)
 
 
 ### :bug: Fixes
@@ -154,7 +154,7 @@
 * **typescript:** add typings for `@vercel/ncc` ([46065f2](https://github.com/flex-development/tutils/commit/46065f20849d8b20bcba7959b4d16b63af92c8d5))
 * **typescript:** add typings for `tsc-prog/dist/utils/log` ([4e8a325](https://github.com/flex-development/tutils/commit/4e8a325124216c2d7afdc574aebcbeeca034bc02))
 
-## [4.2.0](https://github.com/flex-development/tutils/compare/tutils@4.1.1...tutils@4.2.0) (2021-10-22)
+## [tutils@4.2.0](https://github.com/flex-development/tutils/compare/tutils@4.1.1...tutils@4.2.0) (2021-10-22)
 
 
 ### :sparkles: Features
@@ -165,14 +165,14 @@
 * **types:** `EmptyString` ([ccf0af1](https://github.com/flex-development/tutils/commit/ccf0af1ed4e041a68ceb4856f6bdfd8a2911c591))
 * **types:** `UID` ([921883e](https://github.com/flex-development/tutils/commit/921883ee1eb0293d85d07462475f52505f80006d))
 
-### [4.1.1](https://github.com/flex-development/tutils/compare/tutils@4.1.0...tutils@4.1.1) (2021-10-16)
+## [tutils@4.1.1](https://github.com/flex-development/tutils/compare/tutils@4.1.0...tutils@4.1.1) (2021-10-16)
 
 
 ### :bug: Fixes
 
 * path remapping in `types` build output ([78d512a](https://github.com/flex-development/tutils/commit/78d512ae00dfc22194ff4e7a2476d5f3a93136a8))
 
-## [4.1.0](https://github.com/flex-development/tutils/compare/tutils@4.0.3...tutils@4.1.0) (2021-10-15)
+## [tutils@4.1.0](https://github.com/flex-development/tutils/compare/tutils@4.0.3...tutils@4.1.0) (2021-10-15)
 
 
 ### :hammer: Build
@@ -203,14 +203,14 @@
 * **tools:** cleanup project tools ([2186a3d](https://github.com/flex-development/tutils/commit/2186a3d70bc5763fcef42bd116657767e87e87d9))
 * **tools:** fix release workflow script ([828edc3](https://github.com/flex-development/tutils/commit/828edc36b5642faa2c6a61d4cf4afc68caeb97a3))
 
-### [4.0.3](https://github.com/flex-development/tutils/compare/tutils@4.0.2...tutils@4.0.3) (2021-10-14)
+## [tutils@4.0.3](https://github.com/flex-development/tutils/compare/tutils@4.0.2...tutils@4.0.3) (2021-10-14)
 
 
 ### :bug: Fixes
 
 * `Could not find a declaration file for module` (actually! 😉) ([5161733](https://github.com/flex-development/tutils/commit/51617335bf7137c429dd3b393f431caaf9fbd479))
 
-### [4.0.2](https://github.com/flex-development/tutils/compare/tutils@4.0.1...tutils@4.0.2) (2021-10-14)
+## [tutils@4.0.2](https://github.com/flex-development/tutils/compare/tutils@4.0.1...tutils@4.0.2) (2021-10-14)
 
 
 ### :bug: Fixes
@@ -237,7 +237,7 @@
 * **workflows:** push to **protected** branch 'main' ([efd8d22](https://github.com/flex-development/tutils/commit/efd8d22a460550c039ac4cc4432a6e2f65b333ca))
 * **workflows:** update `integrity` triggers ([f031e61](https://github.com/flex-development/tutils/commit/f031e61671a4969be3e7504e4ba316b3b31a7cbb))
 
-### [4.0.1](https://github.com/flex-development/tutils/compare/tutils@4.0.0...tutils@4.0.1) (2021-10-13)
+## [tutils@4.0.1](https://github.com/flex-development/tutils/compare/tutils@4.0.0...tutils@4.0.1) (2021-10-13)
 
 
 ### :bug: Fixes
@@ -258,7 +258,7 @@
 * **workflows:** update `continuous-integration` triggers ([96a59fd](https://github.com/flex-development/tutils/commit/96a59fddb6adfc94e54080ec1eb2f388e27e0ea2))
 * **workflows:** update `integrity` triggers ([9be038e](https://github.com/flex-development/tutils/commit/9be038e3825b36fa5d04d0e8717464dffecb3b41))
 
-## [4.0.0](https://github.com/flex-development/tutils/compare/tutils@4.0.0-dev.0...tutils@4.0.0) (2021-10-11)
+## [tutils@4.0.0](https://github.com/flex-development/tutils/compare/tutils@4.0.0-dev.0...tutils@4.0.0) (2021-10-11)
 
 
 ### ⚠ BREAKING CHANGES
@@ -282,7 +282,7 @@
 * **tools:** update `pkg` helper exports ([d7901d4](https://github.com/flex-development/tutils/commit/d7901d42dc4728b2b362f5bd91acf3b95bac69c6))
 * **tools:** update prerelease workflow ([47108c1](https://github.com/flex-development/tutils/commit/47108c18e27f7a583a27351c20246c2bf9dc8e7b))
 
-## [4.0.0-dev.0](https://github.com/flex-development/tutils/compare/tutils@3.1.7...tutils@4.0.0-dev.0) (2021-10-05)
+## [tutils@4.0.0-dev.0](https://github.com/flex-development/tutils/compare/tutils@3.1.7...tutils@4.0.0-dev.0) (2021-10-05)
 
 
 ### ⚠ BREAKING CHANGES
@@ -324,49 +324,49 @@
 * **tools:** update extension conversion logic in `build` workflow ([d12d950](https://github.com/flex-development/tutils/commit/d12d95009c96c32e2281e3f50399c35d464fc086))
 * upgrade to `husky@7.0.2` ([e3ad638](https://github.com/flex-development/tutils/commit/e3ad63826b8bc63043d7dff5e3fc410caaae7d7c))
 
-### [3.1.7](https://github.com/flex-development/tutils/compare/v3.1.6...v3.1.7) (2021-09-15)
+## [tutils@3.1.7](https://github.com/flex-development/tutils/compare/tutils@3.1.6...tutils@3.1.7) (2021-09-15)
 
 
 ### :hammer: Build
 
 * **deps-peer:** make `typescript>=2.7` optional ([9bfe059](https://github.com/flex-development/tutils/commit/9bfe059983bc11bdf8e587d7067eec22380fe8b6))
 
-### [3.1.6](https://github.com/flex-development/tutils/compare/v3.1.5...v3.1.6) (2021-09-15)
+## [tutils@3.1.6](https://github.com/flex-development/tutils/compare/tutils@3.1.5...tutils@3.1.6) (2021-09-15)
 
 
 ### :hammer: Build
 
 * **deps-peer:** add `typescript>=2.7` peer dependency ([e4d23dc](https://github.com/flex-development/tutils/commit/e4d23dc6998ea65900effc3d621d49f410a8afb2))
 
-### [3.1.5](https://github.com/flex-development/tutils/compare/v3.1.4...v3.1.5) (2021-09-05)
+## [tutils@3.1.5](https://github.com/flex-development/tutils/compare/tutils@3.1.4...tutils@3.1.5) (2021-09-05)
 
 
 ### :bug: Fixes
 
 * **scripts:** disable `postinstall` before tarball is packed ([a2243b0](https://github.com/flex-development/tutils/commit/a2243b0f61003cc448dedd761c7b23c1782244dc))
 
-### [3.1.4](https://github.com/flex-development/tutils/compare/v3.1.3...v3.1.4) (2021-09-04)
+## [tutils@3.1.4](https://github.com/flex-development/tutils/compare/tutils@3.1.3...tutils@3.1.4) (2021-09-04)
 
 
 ### :bug: Fixes
 
 * **scripts:** allow `postinstall` to fail quietly ([b8236b0](https://github.com/flex-development/tutils/commit/b8236b0254e4de395051db2451e08e74f14b1a12))
 
-### [3.1.3](https://github.com/flex-development/tutils/compare/v3.1.2...v3.1.3) (2021-09-04)
+## [tutils@3.1.3](https://github.com/flex-development/tutils/compare/tutils@3.1.2...tutils@3.1.3) (2021-09-04)
 
 
 ### :bug: Fixes
 
 * **scripts:** use `husky-run init` in `postinstall` script ([812ae42](https://github.com/flex-development/tutils/commit/812ae423e1fa68c82a29fb55de49fcea01e8022c))
 
-### [3.1.2](https://github.com/flex-development/tutils/compare/v3.1.1...v3.1.2) (2021-09-04)
+## [tutils@3.1.2](https://github.com/flex-development/tutils/compare/tutils@3.1.1...tutils@3.1.2) (2021-09-04)
 
 
 ### :bug: Fixes
 
 * **scripts:** only run `postinstall` in dev environments ([3824716](https://github.com/flex-development/tutils/commit/382471649eaf3e5c23048c9a5b812e14126b2f3e))
 
-### [3.1.1](https://github.com/flex-development/tutils/compare/v3.1.0...v3.1.1) (2021-09-04)
+## [tutils@3.1.1](https://github.com/flex-development/tutils/compare/tutils@3.1.0...tutils@3.1.1) (2021-09-04)
 
 
 ### :hammer: Build
@@ -414,7 +414,7 @@
 * **workflows:** add `repo-integrity` ([789c64e](https://github.com/flex-development/tutils/commit/789c64e111ba0ef4e3df690807bc59d5cff78abd))
 * **workflows:** add yarn env variables to `check` job ([572de6b](https://github.com/flex-development/tutils/commit/572de6b52547ab288aea7e7eb7b4dfed2d9d110f))
 
-## [3.1.0](https://github.com/flex-development/tutils/compare/v3.0.0...v3.1.0) (2021-05-27)
+## [tutils@3.1.0](https://github.com/flex-development/tutils/compare/tutils@3.0.0...tutils@3.1.0) (2021-05-27)
 
 
 ### :book: Documentation
@@ -427,7 +427,7 @@
 * **types:** `DeepPartialBy` ([fb212da](https://github.com/flex-development/tutils/commit/fb212da7b7cb357061b48081acf7073525446b09))
 * **types:** `DeepPartialByRequired` ([8a8b8e4](https://github.com/flex-development/tutils/commit/8a8b8e4d0898929ccc78daa21164a8f6041c5060))
 
-## [3.0.0](https://github.com/flex-development/tutils/compare/v2.0.0...v3.0.0) (2021-05-25)
+## [tutils@3.0.0](https://github.com/flex-development/tutils/compare/tutils@2.0.0...tutils@3.0.0) (2021-05-25)
 
 
 ### ⚠ BREAKING CHANGES
@@ -448,7 +448,7 @@
 * **types:** add `Overwrite` ([61ec34f](https://github.com/flex-development/tutils/commit/61ec34fec52630a21563d7439592f4228c67dcbf))
 * **types:** add `Split` ([215e603](https://github.com/flex-development/tutils/commit/215e603dffdde9a43a75addd50656934fcf95c3a))
 
-## [2.0.0](https://github.com/flex-development/tutils/compare/v1.0.0...v2.0.0) (2021-05-24)
+## [tutils@2.0.0](https://github.com/flex-development/tutils/compare/tutils@1.0.0...tutils@2.0.0) (2021-05-24)
 
 
 ### ⚠ BREAKING CHANGES
@@ -477,7 +477,7 @@
 
 * update github release script ([1536c78](https://github.com/flex-development/tutils/commit/1536c78d5dc8c4bc29e25a1870cf511fedc1e03d))
 
-## 1.0.0 (2021-05-21)
+## tutils@1.0.0 (2021-05-21)
 
 
 ### :sparkles: Features

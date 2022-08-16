@@ -4,6 +4,7 @@ autocrlf
 autosetuprebase
 bdel
 bdelr
+bdougie
 booleanish
 bren
 bson
@@ -13,6 +14,7 @@ chbf
 chbh
 chbr
 commitlintrc
+dawidd6
 dedupe
 dessant
 dohm
@@ -23,6 +25,7 @@ fpnv
 gpgsign
 hmarr
 iife
+keyid
 lcov
 lintstagedrc
 micnncim
@@ -34,6 +37,7 @@ npmrc
 nums
 nvmrc
 pdel
+pkgs
 preid
 rickstaa
 safecrlf

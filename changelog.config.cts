@@ -5,9 +5,19 @@
  */
 
 import type { Config } from 'conventional-changelog-cli'
+import type { Options } from 'conventional-changelog-core'
 import type { CommitGroup } from 'conventional-changelog-writer'
-import type { Commit } from 'conventional-commits-parser'
+import type { Commit, CommitRaw } from 'conventional-commits-parser'
+import dateformat from 'dateformat'
+import fs from 'node:fs'
 import pkg from './package.json'
+
+/**
+ * Git tag prefix.
+ *
+ * @const {string} TAG_PREFIX
+ */
+const TAG_PREFIX: string = pkg.name.split('/')[1]! + '@'
 
 /**
  * Changelog configuration options.
@@ -22,11 +32,10 @@ import pkg from './package.json'
  */
 const config: Config = {
   options: {
-    lernaPackage: pkg.name.split('/')[1],
     preset: {
       header: '',
       name: 'conventionalcommits',
-      releaseCommitMessageFormat: 'release: {{currentTag}}',
+      releaseCommitMessageFormat: `release: ${pkg.name}@{{version}}`,
       types: [
         { section: ':package: Build', type: 'build' },
         { section: ':house_with_garden: Housekeeping', type: 'chore' },
@@ -43,7 +52,46 @@ const config: Config = {
       ]
     },
     skipUnstable: false,
-    tagPrefix: '@'
+    tagPrefix: TAG_PREFIX,
+    /**
+     * Raw commit transformer.
+     *
+     * @see https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-core#transform-1
+     *
+     * @param {CommitRaw} commit - Raw commit object
+     * @param {Options.Transform.Callback} apply - Commit handler
+     * @return {void} Nothing when complete
+     */
+    transform(commit: CommitRaw, apply: Options.Transform.Callback): void {
+      commit.committerDate = dateformat(commit.committerDate, 'yyyy-mm-dd')
+
+      if (commit.gitTags) {
+        /**
+         * Regex expression used to check {@link commit.gitTags} for the release
+         * {@link commit} belongs to.
+         *
+         * @const {RegExp} vgx
+         */
+        const vgx: RegExp = TAG_PREFIX
+          ? new RegExp(`tag:\\s*[=]?${TAG_PREFIX}(.+?)[,)]`, 'gi')
+          : /tag:\s*[=v]?(.+?)[),]/gi
+
+        commit = Object.assign({}, commit, {
+          version: vgx.exec(commit.gitTags)?.[1] ?? undefined
+        })
+      }
+
+      commit.notes = commit.notes.map(note => ({
+        ...note,
+        text: note.text.replace(/(\n?\n?Signed-off-by:).+/gm, '')
+      }))
+
+      return void apply(null, {
+        ...commit,
+        raw: commit,
+        shortHash: commit.hash.slice(0, 7)
+      })
+    }
   },
   parserOpts: {
     issuePrefixesCaseSensitive: true
@@ -96,6 +144,7 @@ const config: Config = {
         ? a.header.localeCompare(b.header) || by_date
         : by_date
     },
+    headerPartial: fs.readFileSync('templates/changelog/header.hbs', 'utf8'),
     ignoreReverted: false
   }
 }

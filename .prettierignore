@@ -2,10 +2,12 @@
 # https://prettier.io/docs/en/ignore.html
 
 # DIRECTORIES & FILES
+**/*.hbs
 **/*.md
 **/*.snap
 **/.gitignore
 **/.gitkeep
+**/.npmignore
 **/.npmignore
 .eslintcache
 .eslintignore
