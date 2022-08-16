@@ -32,6 +32,7 @@ npmrc
 nums
 nvmrc
 pdel
+preid
 rickstaa
 safecrlf
 syncer

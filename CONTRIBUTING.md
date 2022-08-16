@@ -330,27 +330,30 @@ e.g:
 - `perf(web): decrease page loading time #26`
 - `release: @flex-development/tutils@1.0.0 #13`
 
-## Releasing
+## Deployment
 
 > Note: Package and release publication is executed via GitHub workflow.\
 > This is so invalid or malicious versions cannot be published without merging those
 > changes into `main` first.
 
-Before releasing, the following steps must be completed:
+Before deploying, the following steps must be completed:
 
 1. Schedule a code freeze
 2. Decide what type of version bump the package needs
-   - `yarn release <new-version>`
-   - `yarn release major`
-   - `yarn release minor`
-   - `yarn release patch`
-   - `yarn release premajor --pre <dist-tag>`
-   - `yarn release preminor --pre <dist-tag>`
-   - `yarn release prepatch --pre <dist-tag>`
-   - `yarn release prerelease --pre <dist-tag>`
-3. Open a new PR from `release/*` into `main`
-   - do **not** change the PR title
-     - should match `release: <package.json#name>@<new-version>`
+   - `yarn recommended-bump`
+3. Bump version
+   - `bump <new-version>`
+   - `bump major`
+   - `bump minor`
+   - `bump patch`
+   - `bump premajor --preid <dist-tag>`
+   - `bump preminor --preid <dist-tag>`
+   - `bump prepatch --preid <dist-tag>`
+   - `bump prerelease --preid <dist-tag>`
+4. `yarn conventional-changelog -i CHANGELOG.md -s`
+5. `yarn release`
+6. Open PR from `release/*` into `main`
+   - PR title should match `release: <package.json#name>@<new-version>`
      - e.g: `release: @flex-development/tutils@1.1.0`
    - link all issues being released
    - after review, `squash and merge` PR

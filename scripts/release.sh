@@ -1,28 +1,23 @@
 #!/bin/sh
 
 # Local Release Workflow
-#
-# References:
-#
-# - https://github.com/JS-DevTools/version-bump-prompt#usage
-# - https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-cli
 
 # 1. run tests
-# 2. bump package version
-# 3. update changelog
-# 4. get new package version
-# 5. get release branch name
-# 6. switch to release branch
-# 7. stage release assets
-# 8. commit release assets
-# 9. push release branch to origin
+# 2. pack project
+# 3. get new package version
+# 4. get release branch name
+# 5. switch to release branch
+# 6. stage changes
+# 7. commit changes
+# 8. push release branch to origin
+# 9. cleanup
 
-yarn test
-bump $@
-yarn conventional-changelog -i CHANGELOG.md -s
-VERSION=$(fx package.json '.version')
+yarn test:cov
+yarn pack -o %s-%v.tgz
+VERSION=$(jq .version package.json -r)
 RELEASE_BRANCH=release/$VERSION
 git switch -c $RELEASE_BRANCH
-git add CHANGELOG.md package.json
-git commit -s -m "release: $(fx package.json '.name')@$VERSION" --no-verify
+git add .
+git commit -s -m "release: $(jq .name package.json -r)@$VERSION" --no-verify
 git push origin -u --no-verify $RELEASE_BRANCH
+yarn clean:pack
