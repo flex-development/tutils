@@ -68,46 +68,6 @@ chbf = "!f() { git chb feat/$@; }; f"
 # create new release branch and push upstream
 chbr = "!f() { git chb release/$@; }; f"
 
-# aliases - conventional commits
-# see: https://conventionalcommits.org
-# see: https://github.com/angular/angular/blob/master/contributing.md#type
-[alias]
-# changes that affect the build system or external dependencies
-build = "!f() { git ac \"build: $@\"; }; f"
-
-# changes to our ci configuration files and scripts
-ci = "!f() { git ac \"ci: $@\"; }; f"
-
-# changes that don't impact external users
-chore = "!f() { git ac \"chore: $@\"; }; f"
-
-# documentation only changes
-docs = "!f() { git ac \"docs: $@\"; }; f"
-
-# new features
-feat = "!f() { git ac \"feat: $@\"; }; f"
-
-# bug fixes
-fix = "!f() { git ac \"fix: $@\"; }; f"
-
-# performance improvements
-perf = "!f() { git ac \"perf: $@\"; }; f"
-
-# code improvements
-refactor = "!f() { git ac \"refactor: $@\"; }; f"
-
-# revert past changes
-revert = "!f() { git ac \"revert: $@\"; }; f"
-
-# changes that do not affect the meaning of the code
-style = "!f() { git ac \"style: $@\"; }; f"
-
-# adding missing tests or correcting existing tests
-test = "!f() { git ac \"test: $@\"; }; f"
-
-# work in progress (i.e feature implemented, but not tested)
-wip = "!f() { git ac \"wip: $@\"; }; f"
-
 # aliases - husky
 [alias]
 # force push commits without running `pre-push` hook
@@ -115,17 +75,6 @@ fpnv = "!f() { git pnv --force ; }; f"
 
 # push commits without running `pre-push` hook
 pnv = "!f() { git push --no-verify $@; }; f"
-
-# aliases - misc
-[alias]
-# generate a ssh key
-keygen = "!f() { ssh-keygen -t rsa -b 4096 -c \"$@\"; }; f"
-
-# recursively delete files matching a pattern
-pdel = "!f() { find . -type f -name \"$@\" -delete; }; f"
-
-# generate a secret signing key
-signingkey = "!f() { openssl rand -base64 32; }; f"
 
 [branch]
 autosetuprebase = always
@@ -151,13 +100,16 @@ release = release/
 support = feat/fix/
 
 [gpg]
-program = /usr/local/bin/gpg
+program = gpg2
 
 [init]
 defaultBranch = main
 
 [pull]
 rebase = true
+
+[rebase]
+autoStash = true
 
 [url "git@bitbucket.org:"]
 insteadOf = bb:
