@@ -1,0 +1,69 @@
+# Query Linked Issues
+#
+# List issues linked to a pull request.
+#
+# References:
+#
+# - https://docs.github.com/graphql/reference/objects#pullrequest
+# - https://github.com/actions/github-script
+# - https://github.com/octokit/graphql-action
+
+---
+name: query-linked-issues
+on:
+  workflow_dispatch:
+    inputs:
+      limit:
+        description: max number of issues to retrieve
+        required: false
+      pr:
+        description: pull request number
+        required: true
+permissions:
+  issues: read
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+jobs:
+  query-linked-issues:
+    runs-on: ubuntu-latest
+    steps:
+      - id: query
+        name: Query linked issues
+        uses: octokit/graphql-action@v2.2.22
+        with:
+          query: |
+            query ($owner: String!, $repo: String!, $pr: Int!, $limit: Int = 20) {
+              repository(owner: $owner, name: $repo) {
+                pullRequest(number: $pr) {
+                  closingIssuesReferences(
+                    first: $limit
+                    orderBy: { direction: ASC, field: CREATED_AT }
+                  ) {
+                    edges {
+                      node {
+                        number
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          limit: ${{ github.event.inputs.limit }}
+          owner: ${{ github.repository_owner }}
+          pr: ${{ github.event.inputs.pr }}
+          repo: ${{ github.event.repository.name }}
+      - id: log
+        name: Log linked issues
+        uses: actions/github-script@v6.1.1
+        env:
+          DATA: ${{ steps.query.outputs.data }}
+        with:
+          script: |
+            const { pullRequest } = JSON.parse(process.env.DATA).repository
+            const { edges } = pullRequest.closingIssuesReferences
+
+            const issues = edges.map(edge => edge.node.number)
+
+            for (const issue_number of issues) {
+              console.log(await github.rest.issues.get({ ...context.repo, issue_number }))
+            }

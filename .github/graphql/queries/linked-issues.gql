@@ -1,0 +1,16 @@
+query ($owner: String!, $repo: String!, $pr: Int!, $limit: Int = 20) {
+  repository(owner: $owner, name: $repo) {
+    pullRequest(number: $pr) {
+      closingIssuesReferences(
+        first: $limit
+        orderBy: { direction: ASC, field: CREATED_AT }
+      ) {
+        edges {
+          node {
+            number
+          }
+        }
+      }
+    }
+  }
+}
