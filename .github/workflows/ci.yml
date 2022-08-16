@@ -57,6 +57,13 @@ jobs:
       - id: spelling
         name: Check spelling
         run: yarn check:spelling
+      - id: pack
+        name: Pack project
+        run: yarn pack -o %s-%v.tgz
+        env:
+          NODE_ENV: production
+          NODE_NO_WARNINGS: 1
+          NODE_OPTIONS: --es-module-specifier-resolution=node
       - id: test
         name: Run tests
         run: yarn test
@@ -65,10 +72,3 @@ jobs:
           NODE_NO_WARNINGS: 1
           NODE_OPTIONS: --es-module-specifier-resolution=node
           TS_NODE_PROJECT: ./tsconfig.tsnode.json
-      - id: pack
-        name: Pack project
-        run: yarn pack -o %s-%v.tgz
-        env:
-          NODE_ENV: production
-          NODE_NO_WARNINGS: 1
-          NODE_OPTIONS: --es-module-specifier-resolution=node
