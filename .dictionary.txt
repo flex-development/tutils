@@ -21,12 +21,14 @@ esbenp
 fbca
 fpnv
 gpgsign
+hmarr
 iife
 lcov
 lintstagedrc
 micnncim
 mkdist
 nocheck
+noreply
 npmjs
 npmrc
 nums

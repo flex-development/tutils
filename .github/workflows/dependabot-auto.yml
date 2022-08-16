@@ -1,0 +1,74 @@
+# Dependabot Auto
+#
+# Automatically approve Dependabot pull requests and enable auto-merge.
+#
+# Note: @dependabot generates Yarn v1 lockfiles despite this project using a different Yarn version.
+# This breaks the project lockfile. A workaround has been implemented to autofix lockfiles and
+# deduplicate dependencies. See https://github.com/dependabot/dependabot-core/issues/1297 to check
+# if the workaround is safe to remove.
+#
+# References:
+#
+# - https://cli.github.com/manual/gh_pr_merge
+# - https://cli.github.com/manual/gh_pr_review
+# - https://docs.github.com/actions/using-workflows/events-that-trigger-workflows#pull_request
+# - https://docs.github.com/code-security/dependabot/working-with-dependabot/automating-dependabot-with-github-actions
+# - https://github.com/actions/checkout
+# - https://github.com/actions/setup-node
+# - https://github.com/dependabot/fetch-metadata
+# - https://github.com/hmarr/debug-action
+
+---
+name: dependabot-auto
+on: pull_request
+permissions:
+  contents: write
+  pull-requests: write
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  YARN_ENABLE_IMMUTABLE_INSTALLS: false
+jobs:
+  dependabot-auto:
+    if: github.actor == 'dependabot[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - id: debug
+        name: Print environment variables and event payload
+        uses: hmarr/debug-action@v2.0.1
+      - id: metadata
+        name: Fetch metadata
+        uses: dependabot/fetch-metadata@v1.3.3
+        with:
+          skip-commit-verification: true
+      - id: checkout
+        name: Checkout ${{ github.head_ref }}
+        uses: actions/checkout@v3.0.2
+        with:
+          persist-credentials: ${{ steps.metadata.outputs.package-ecosystem == 'npm' }}
+          ref: ${{ github.head_ref }}
+      - id: lockfile-fix
+        name: Fix yarn.lock
+        if: steps.metadata.outputs.package-ecosystem == 'npm'
+        run: yarn --mode=update-lockfile
+      - id: dedupe
+        name: Deduplicate dependencies
+        if: steps.metadata.outputs.package-ecosystem == 'npm'
+        run: yarn dedupe --mode=update-lockfile
+      - id: lockfile-push
+        name: Push yarn.lock
+        if: steps.metadata.outputs.package-ecosystem == 'npm'
+        run: |
+          git config --global user.name '${{ github.actor }}'
+          git config --global user.email '49699333+${{ github.actor }}@users.noreply.github.com'
+          git add yarn.lock
+          git status
+          git diff-index --quiet HEAD || git commit -m 'chore(yarn): fix lockfile' && git push -f
+      - id: approve-pr
+        name: Approve pull request
+        run: gh pr review ${{ github.event.number }} --approve
+      - id: enable-auto-merge
+        name: Enable auto-merge
+        if: |
+          steps.metadata.outputs.package-ecosystem == 'github-actions' ||
+          steps.metadata.outputs.update-type != 'version-update:semver-major'
+        run: gh pr merge ${{ github.event.number }} --auto --squash

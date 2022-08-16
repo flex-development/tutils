@@ -1,9 +1,0 @@
-# Dependabot Auto Merge Configuration
-#
-# References:
-#
-# - https://github.com/ahmadnassri/action-dependabot-auto-merge#match-properties
-
-- match:
-  dependency_type: all
-  update_type: all
