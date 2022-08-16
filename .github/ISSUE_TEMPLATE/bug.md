@@ -34,15 +34,12 @@ Environment details. Put "N/A" where details are not applicable.
 
 Example:
 
-- Browser: `Firefox Developer Edition 93.0b7`
-- Node Version: `v16.6.0`
-- OS: `macOS v11.3.1`
+- Node Version: `16.16.0`
 - Package Manager: `yarn@4.0.0-rc.14`
 - Package Version(s): `<=1.1.0`
 -->
 
 - Node Version: ``
-- OS: ``
 - Package Manager: ``
 - Package Version(s): ``
 
