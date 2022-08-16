@@ -11,6 +11,12 @@
 const tsconfig = require('tsconfig/dist/tsconfig').loadSync(__dirname).config
 
 /**
+ * @type {boolean}
+ * @const jsx - JSX check
+ */
+const jsx = Boolean(tsconfig.compilerOptions.jsx)
+
+/**
  * @type {import('eslint').Linter.Config}
  * @const config - ESLint configuration object
  */
@@ -27,6 +33,7 @@ const config = {
   globals: {
     Chai: 'readonly',
     Console: 'readonly',
+    JSX: 'readonly',
     LoadHook: 'readonly',
     LoadHookContext: 'readonly',
     LoadHookResult: 'readonly',
@@ -40,7 +47,7 @@ const config = {
   parser: require.resolve('@typescript-eslint/parser'),
   parserOptions: {
     ecmaFeatures: {
-      jsx: Boolean(tsconfig.compilerOptions.jsx),
+      jsx,
       impliedStrict: true
     },
     emitDecoratorMetadata: tsconfig.compilerOptions.emitDecoratorMetadata,
@@ -245,7 +252,7 @@ const config = {
         allowShortCircuit: true,
         allowTaggedTemplates: true,
         allowTernary: true,
-        enforceForJSX: false
+        enforceForJSX: jsx
       }
     ],
     '@typescript-eslint/no-unused-vars': [
@@ -330,7 +337,7 @@ const config = {
       1,
       {
         definedTags: ['visibleName'],
-        jsxTags: false
+        jsxTags: jsx
       }
     ],
     'jsdoc/check-types': [1, { unifyParentAndChildTypeChecks: true }],
