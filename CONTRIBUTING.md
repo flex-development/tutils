@@ -363,9 +363,6 @@ Before releasing, the following steps must be completed:
        - create and push new tag
        - create and publish github release
        - publish package to [GitHub Package Registry][17] and [NPM][18]
-   - PR reviewer should go through the PR's linked issues and:
-     - add `status:merged` label
-     - add `status:released` label
 
 [1]: https://brew.sh
 [2]:

@@ -97,6 +97,10 @@
   description: needs verification and minimal reproduction
   color: e7034b
 
+- name: status:prereleased
+  description: merged and prereleased
+  color: e7034b
+
 - name: status:released
   description: merged and released
   color: e7034b
