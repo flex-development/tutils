@@ -54,7 +54,6 @@
     "**/.DS_Store": true,
     "**/yarn.lock": true
   },
-
   "git.autofetch": true,
   "git.enableSmartCommit": true,
   "markdownlint.ignore": "./.markdownlintignore",
@@ -129,5 +128,8 @@
       "icon": "typings"
     }
   ],
-  "workbench.iconTheme": "vscode-icons"
+  "workbench.iconTheme": "vscode-icons",
+  "yaml.schemas": {
+    "https://json.schemastore.org/github-workflow": "/.github/workflows/*.yml"
+  }
 }
