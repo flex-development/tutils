@@ -5,6 +5,12 @@
 # - https://docs.github.com/en/code-security/supply-chain-security/keeping-your-dependencies-updated-automatically/configuration-options-for-dependency-updates
 
 version: 2
+registries:
+  gpr:
+    type: npm-registry
+    url: https://npm.pkg.github.com
+    username: ${{ github.repository_owner }}
+    password: ${{ secrets.PAT_GPR_ADMIN }}
 updates:
   - package-ecosystem: github-actions
     directory: /
@@ -26,3 +32,5 @@ updates:
       - dependency-name: unbuild
     labels:
       - type:build
+    registries:
+      - gpr
