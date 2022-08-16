@@ -301,13 +301,13 @@ merged, PR titles are expected to adhere to the same rules.
 
 ## Merge Strategies
 
-In every repository, the `create a merge commit` and `squash and merge` options
-are enabled.
+In every repository, the `rebase and merge` and `squash and merge` options are
+enabled.
 
-- **create a merge commit**: PR has multiple commits that are not grouped
-- **squash and merge**: PR has one commit or a group of multiple commits
+- **rebase and merge**: PR has one commit or commits that are not grouped
+- **squash and merge**: PR has one commit or a group of commits
 
-Make sure to follow [commit message standards](#commit-messages):
+When squashing, be sure to follow [commit message standards](#commit-messages):
 
 ```zsh
 <type>[optional scope][!]: <pull-request-title> (#pull-request-n)
