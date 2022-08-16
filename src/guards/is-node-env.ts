@@ -12,7 +12,6 @@ import NodeEnv from 'src/enums/node-env'
  * @return {boolean} `true` if `value` is valid node environment
  */
 const isNodeEnv = (value: any = process.env.NODE_ENV): value is NodeEnv => {
-  if (typeof value !== 'string') return false
   return Object.values(NodeEnv).includes(value as NodeEnv)
 }
 

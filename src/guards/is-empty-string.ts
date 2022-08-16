@@ -12,8 +12,7 @@ import type { EmptyString } from 'src/types'
  * @return {boolean} `true` if `value` is an empty string
  */
 const isEmptyString = (value?: any): value is EmptyString => {
-  if (typeof value !== 'string') return false
-  return value.trim() === ''
+  return typeof value !== 'string' ? false : value.trim() === ''
 }
 
 export default isEmptyString

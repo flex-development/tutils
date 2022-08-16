@@ -12,7 +12,6 @@ import AppEnv from 'src/enums/app-env'
  * @return {boolean} `true` if `value` is valid app environment
  */
 const isAppEnv = (value?: any): value is AppEnv => {
-  if (typeof value !== 'string') return false
   return Object.values(AppEnv).includes(value as AppEnv)
 }
 
