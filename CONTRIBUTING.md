@@ -65,17 +65,17 @@ Follow the steps below to setup your local development environment:
    # PATH
    # 1. local node_modules
    [ -d $PWD/node_modules/.bin ] && export PATH=$PWD/node_modules/.bin:$PATH
-   
+
    # DOTENV ZSH PLUGIN
    # - https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/dotenv
    export ZSH_DOTENV_FILE=.env.zsh
-   
+
    # NVM
    # - https://github.com/nvm-sh/nvm
    export NVM_DIR=$HOME/.nvm
-   
+
    # ---------------------------------------------------------------------------
-   
+
    # LOAD ENVIRONMENT VARIABLES IN CURRENT WORKING DIRECTORY
    # 1. $GITHUB_WORKSPACE
    [ -d $PWD/.git ] && export GITHUB_WORKSPACE=$(git rev-parse --show-toplevel)

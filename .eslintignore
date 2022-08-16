@@ -4,8 +4,6 @@
 # DIRECTORIES & FILES
 **/*.snap
 **/.DS_Store
-**/CHANGELOG.md
-**/LICENSE.md
 .eslintcache
 .yarn/*
 __tests__/report.json

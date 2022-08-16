@@ -2,6 +2,7 @@
 # https://prettier.io/docs/en/ignore.html
 
 # DIRECTORIES & FILES
+**/*.md
 **/*.snap
 **/.gitignore
 **/.gitkeep
@@ -13,7 +14,6 @@
 .nvmrc
 .prettierignore
 .yarn/*
-CHANGELOG.md
 __tests__/report.json
 coverage/*
 dist/*
