@@ -30,7 +30,7 @@ jobs:
   integrity-check:
     runs-on: ubuntu-latest
     env:
-      GH_PAT: ${{ secrets.PAT_GPR_ADMIN }}
+      GITHUB_TOKEN: ${{ secrets.PAT_GPR_ADMIN }}
       NODE_AUTH_TOKEN: ${{ secrets.PAT_GPR_ADMIN }}
       NPM_TOKEN: ${{ secrets.NPM_TOKEN_ADMIN }}
     strategy:
