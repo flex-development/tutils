@@ -5,22 +5,30 @@
 # - https://github.com/micnncim/action-label-syncer
 
 ---
-name: label-syncer
+name: labels
 on:
   push:
     branches:
       - main
+    paths:
+      - .github/labels.yml
+      - .github/workflows/labels.yml
+  workflow_dispatch:
+permissions:
+  issues: write
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 jobs:
   labels:
     runs-on: ubuntu-latest
     steps:
       - id: checkout
-        name: Checkout
-        uses: actions/checkout@v3
+        name: Checkout ${{ github.ref_name }}
+        uses: actions/checkout@v3.0.2
+        with:
+          ref: ${{ github.ref }}
       - id: sync
         name: Sync labels
         uses: micnncim/action-label-syncer@v1.3.0
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
         with:
           manifest: .github/labels.yml
