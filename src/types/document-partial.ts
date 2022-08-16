@@ -6,7 +6,7 @@
 import type DUID from './duid'
 import type ObjectPlain from './object-plain'
 import type ObjectUnknown from './object-unknown'
-import type OrPartial from './or-partial'
+import type OrDeepPartial from './or-deep-partial'
 import type UID from './uid'
 
 /**
@@ -21,6 +21,6 @@ import type UID from './uid'
 type DocumentPartial<
   D extends ObjectPlain = ObjectUnknown,
   U extends string = DUID
-> = Omit<OrPartial<D>, U> & Record<U, UID>
+> = Omit<OrDeepPartial<D>, U> & Record<U, UID>
 
 export { type DocumentPartial as default }
