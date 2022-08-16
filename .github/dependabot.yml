@@ -28,8 +28,6 @@ updates:
     commit-message:
       prefix: build
       include: scope
-    ignore:
-      - dependency-name: unbuild
     labels:
       - type:build
     registries:
