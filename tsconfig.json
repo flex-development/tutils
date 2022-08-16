@@ -16,7 +16,7 @@
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": false,
     "lib": ["dom", "es2020"],
-    "module": "es2022",
+    "module": "esnext",
     "moduleResolution": "node",
     "newLine": "lf",
     "noEmit": true,
