@@ -895,7 +895,7 @@ __metadata:
     "@types/git-raw-commits": "npm:2.0.1"
     "@types/is-ci": "npm:3.0.0"
     "@types/node-notifier": "npm:8.0.2"
-    "@types/prettier": "npm:2.6.4"
+    "@types/prettier": "npm:2.7.0"
     "@typescript-eslint/eslint-plugin": "npm:5.32.0"
     "@typescript-eslint/parser": "npm:5.32.0"
     "@vates/toggle-scripts": "npm:1.0.0"
@@ -1520,10 +1520,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/prettier@npm:2.6.4":
-  version: 2.6.4
-  resolution: "@types/prettier@npm:2.6.4"
-  checksum: 180e4ac989bfd7032294017cc53398227283c95b924d46b5da2cffdcc02da47692d1005955da3fc8bd65695f25402e3f365a04ddac30b15073e8348c41bc4765
+"@types/prettier@npm:2.7.0":
+  version: 2.7.0
+  resolution: "@types/prettier@npm:2.7.0"
+  checksum: ee4924676c522c0fcd10c7e03b225f09b420f5e2113cd70663539e963028bc6df3afe48055595398afeadb4871d23843d877822e673ffc62db17f23e455e0f29
   languageName: node
   linkType: hard
 
