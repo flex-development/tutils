@@ -15,11 +15,6 @@ updates:
       include: scope
     labels:
       - type:ci
-    open-pull-requests-limit: 5
-    pull-request-branch-name:
-      separator: '-'
-    rebase-strategy: auto
-    target-branch: main
   - package-ecosystem: npm
     directory: /
     schedule:
@@ -31,9 +26,3 @@ updates:
       - dependency-name: unbuild
     labels:
       - type:build
-    open-pull-requests-limit: 5
-    pull-request-branch-name:
-      separator: '-'
-    rebase-strategy: auto
-    target-branch: main
-    versioning-strategy: increase
