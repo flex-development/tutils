@@ -23,12 +23,10 @@ jobs:
         uses: lee-dohm/no-response@v0.5.0
         with:
           closeComment: >
-            This issue has been automatically closed because there has been no
-            response to our request for more information from the original
-            author. With only the information that is currently available, there
-            isn't enough information to take action. Please reach out if you
-            have or find the answers needed so next steps, if any, can be
-            determined.
+            This issue has been automatically closed because there has been no response to our
+            request for more information from the original author. With only the information that is
+            currently available, there isn't enough information to take action. Please reach out if
+            you have or find the answers needed so next steps, if any, can be determined.
           daysUntilClose: 7
           responseRequiredLabel: status:awaiting-answers
           token: ${{ github.token }}

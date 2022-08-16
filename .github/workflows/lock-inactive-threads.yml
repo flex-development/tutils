@@ -19,12 +19,12 @@ jobs:
         with:
           github-token: ${{ github.token }}
           issue-lock-comment: >
-            This issue has been automatically locked since there has not been
-            any recent activity after it was closed. Please open a new issue for
-            related bugs or features. Be sure to reference this issue.
+            This issue has been automatically locked since there has not been any recent activity
+            after it was closed. Please open a new issue for related bugs or features. Be sure to
+            reference this issue.
           issue-lock-inactive-days: 30
           pr-lock-comment: >
-            This pull request has been automatically locked since there has not
-            been any recent activity after it was closed. Please open a new
-            issue for related bugs or features. Be sure to reference this issue.
+            This pull request has been automatically locked since there has not been any recent
+            activity after it was closed. Please open a new issue for related bugs or features. Be
+            sure to reference this issue.
           pr-lock-inactive-days: 30

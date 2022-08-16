@@ -35,6 +35,12 @@
         "switchCaseIndent": true,
         "variant": 0
       }
+    },
+    {
+      "files": ["*.yml"],
+      "options": {
+        "printWidth": 100
+      }
     }
   ]
 }
