@@ -14,9 +14,11 @@ import GithubActionsReporter from 'vitest-github-actions-reporter'
 /**
  * Creates a {@link UserConfig} object for test environments.
  *
- * @return {UserConfig} Vitest configuration options
+ * @return {Promise<UserConfig>} Vitest configuration options
  */
-const config = (): UserConfig => {
+const config = async (): Promise<UserConfig> => {
+  const { BaseSequencer } = await import('vitest/node')
+
   /**
    * Path to tsconfig file.
    *
@@ -90,6 +92,23 @@ const config = (): UserConfig => {
       },
       restoreMocks: true,
       root: process.cwd(),
+      sequence: {
+        sequencer: class Sequencer extends BaseSequencer {
+          /**
+           * Determines test file execution order.
+           *
+           * @public
+           * @override
+           * @async
+           *
+           * @param {string[]} files - Paths to test files
+           * @return {Promise<string[]>} `files` sorted
+           */
+          public override async sort(files: string[]): Promise<string[]> {
+            return (await super.sort(files)).sort((a, b) => a.localeCompare(b))
+          }
+        }
+      },
       setupFiles: ['./__tests__/setup/index.ts'],
       silent: false,
       snapshotFormat: {
