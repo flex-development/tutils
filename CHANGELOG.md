@@ -1,3 +1,58 @@
+## [tutils@5.0.0-dev.2](https://github.com/flex-development/tutils/compare/tutils@5.0.0-dev.1...tutils@5.0.0-dev.2) (2022-08-16)
+
+
+### :package: Build
+
+* fix .npmignore ([068eb2e](https://github.com/flex-development/tutils/commit/068eb2ef085c7e51b45d0aadf61f54569905e813))
+* **deps-dev:** bump @faker-js/faker from 7.3.0 to 7.4.0 ([71421d2](https://github.com/flex-development/tutils/commit/71421d22288102c1dc1b32d87c5c967847d1e437))
+* **deps-dev:** bump @types/chai from 4.3.1 to 4.3.3 ([eddba63](https://github.com/flex-development/tutils/commit/eddba635894c0a24823cbbb74d297b37a99e3a19))
+* **deps-dev:** bump @types/prettier from 2.6.4 to 2.7.0 ([647f9c0](https://github.com/flex-development/tutils/commit/647f9c063fa3b2127a29eb6957874f16a289a6eb))
+* **deps-dev:** bump @typescript-eslint/eslint-plugin from 5.32.0 to 5.33.1 ([a69a946](https://github.com/flex-development/tutils/commit/a69a946a219f3fdc2df62fbc21a2592c8583a763))
+* **deps-dev:** bump @typescript-eslint/parser from 5.32.0 to 5.33.1 ([af40d7b](https://github.com/flex-development/tutils/commit/af40d7bbe2fc211b773b6ce3af715e812094c3b3))
+* **deps-dev:** bump cspell from 6.5.0 to 6.6.1 ([88b2e86](https://github.com/flex-development/tutils/commit/88b2e86c78d697360a4b835782a9c669dd50bbc2))
+* **deps-dev:** bump eslint from 8.21.0 to 8.22.0 ([6f7fca8](https://github.com/flex-development/tutils/commit/6f7fca87a2428f00b1ff8baafeb40d8e57ecdfaf))
+* **deps-dev:** bump eslint-plugin-jsdoc from 39.3.4 to 39.3.6 ([96d75e3](https://github.com/flex-development/tutils/commit/96d75e3c68a3ede3eff0c83842df8ec832980ac5))
+* **deps-dev:** bump tsconfig-paths from 4.0.0 to 4.1.0 ([ba3539d](https://github.com/flex-development/tutils/commit/ba3539d9184a130efbd7fc1029526c9ecea5f198))
+* **deps-dev:** bump unbuild from 0.7.6 to 0.8.8 ([dd82974](https://github.com/flex-development/tutils/commit/dd8297462aceafb059b06651f7f4ac6128be43d0))
+
+
+### :robot: Continuous Integration
+
+* add gpr registry config for [@dependabot](https://github.com/dependabot) ([05b5ca7](https://github.com/flex-development/tutils/commit/05b5ca738c2663d4ccac6c73993ee4cba4aefaa7))
+* remove ignored dependencies for [@dependabot](https://github.com/dependabot) ([748fba1](https://github.com/flex-development/tutils/commit/748fba1d52c17301e3503ea028e7179185c6bb4f))
+* **deps:** bump actions/github-script from 6.1.0 to 6.1.1 ([#51](https://github.com/flex-development/tutils/issues/51)) ([aa078c1](https://github.com/flex-development/tutils/commit/aa078c1e6940b098d538bdeea096cf74e61697ca))
+* **workflows:** `label-linked-issues` ([f0ef3bc](https://github.com/flex-development/tutils/commit/f0ef3bcee88c2c37cc4397df6d901a6ec6d6ce5f))
+* **workflows:** `query-linked-issues` ([d510013](https://github.com/flex-development/tutils/commit/d510013f4fda4a0420450b327109686b67782cf4))
+* **workflows:** close inactionable issues after `14` days ([b2f70a4](https://github.com/flex-development/tutils/commit/b2f70a4821c6f52288b86a1845578b989ba61546))
+* **workflows:** lock inactive threads after `60` days ([6a590f2](https://github.com/flex-development/tutils/commit/6a590f28f60d78882079ad2010881c0504947cf8))
+* **workflows:** refactor `integrity` ([00008a1](https://github.com/flex-development/tutils/commit/00008a195c63ec19a2a6f10e3ee3508dcfc1f49b))
+* **workflows:** refactor ci workflow ([3eafccb](https://github.com/flex-development/tutils/commit/3eafccb2e2e37c96154755d996f3ba914ff92092))
+* **workflows:** refactor release and package publishing ([2ae4721](https://github.com/flex-development/tutils/commit/2ae47213476c10e1937fba2cac4f540797debc3d))
+* **workflows:** reimplement [@dependabot](https://github.com/dependabot) auto approve and merge ([173d1ae](https://github.com/flex-development/tutils/commit/173d1ae388d3ac15c375f5e5a571b65fa31f7b68))
+* **workflows:** reimplement label management workflow ([85d4de9](https://github.com/flex-development/tutils/commit/85d4de9d88dfe09eb3082a3622ffd2b8b8e98c1d))
+* **workflows:** reimplement pr auto approval ([16ea0a4](https://github.com/flex-development/tutils/commit/16ea0a48037ff36d322b7b3c20b589a7f36b538b))
+
+
+### :pencil: Documentation
+
+* `rebase and merge` ([facbd14](https://github.com/flex-development/tutils/commit/facbd1479b540d26c4ec36b7db98335b4a040d42))
+* **pkg:** fix license badge ([b4c41ea](https://github.com/flex-development/tutils/commit/b4c41ea6af131c41d2614d4098a6230bc07bd3f0))
+
+
+### :house_with_garden: Housekeeping
+
+* prevent prettier from formatting markdown ([6c67427](https://github.com/flex-development/tutils/commit/6c67427c59d3ffa47c9f284f18fee6ae5f33bba2))
+* update jsx check in eslint config ([9302f4c](https://github.com/flex-development/tutils/commit/9302f4cf432e26e77fa8ac300b95eab3ca3c0813))
+* update sample gitconfig ([8bf65b4](https://github.com/flex-development/tutils/commit/8bf65b4e34fcbf393ef4e0b8e947316a52f2cfb5))
+* **github:** add label `scope:typescript` ([a7b5619](https://github.com/flex-development/tutils/commit/a7b5619dc2f0727dc14dc3c0f01e640cbda48752))
+* **github:** cleanup bug report environment section starter ([d60974d](https://github.com/flex-development/tutils/commit/d60974dcc3c1ee9525827fe63f5b301e91a31184))
+* **release:** update local workflow ([5b057b2](https://github.com/flex-development/tutils/commit/5b057b27ca1927dbbdfe3ea255997526202792bb))
+* **tests:** fix path alias recognition ([65e625e](https://github.com/flex-development/tutils/commit/65e625ee0c137a6d4aef277c8be87467e816f94d))
+* **tests:** run tests in alphabetical order ([e0cc8cc](https://github.com/flex-development/tutils/commit/e0cc8cc9af833fdec47b1550c585667d1c9d8724))
+* **ts:** update module code generation ([c22f6fb](https://github.com/flex-development/tutils/commit/c22f6fb1cf33b37252eb2d7f0c4adba1677ccea0))
+* **vscode:** update workspace settings ([4dcc616](https://github.com/flex-development/tutils/commit/4dcc616b0263c79fe7439b6545d97e4caf107e44))
+* **yarn:** cleanup yarn environment ([71871db](https://github.com/flex-development/tutils/commit/71871db8747baee1587d3e971d10f63254fb5777))
+
 ## [tutils@5.0.0-dev.1](https://github.com/flex-development/tutils/compare/tutils@4.9.0-dev.1...tutils@5.0.0-dev.1) (2022-08-04)
 
 
