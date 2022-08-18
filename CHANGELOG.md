@@ -1,3 +1,17 @@
+## [tutils@5.0.0](https://github.com/flex-development/tutils/compare/tutils@5.0.0-alpha.1...tutils@5.0.0) (2022-08-17)
+
+
+### :sparkles: Features
+
+* **types:** `ContinuousValue` ([2c95cd1](https://github.com/flex-development/tutils/commit/2c95cd11efdc9446e6a77d4030d9ceb15c82b090))
+* **types:** `NumberLike` ([a7af5d6](https://github.com/flex-development/tutils/commit/a7af5d6b7195c545b0e03890302b54f8590b2927))
+* **types:** `StringLike` ([c01856e](https://github.com/flex-development/tutils/commit/c01856eb036acf762487cc9ccf5de2f9539b10a1))
+
+
+### :house_with_garden: Housekeeping
+
+* **release:** fix release date for `tutils@5.0.0-dev.2` ([2b8e28d](https://github.com/flex-development/tutils/commit/2b8e28dff1797c095af879330cc6776d8880cb72))
+
 ## [tutils@5.0.0-alpha.1](https://github.com/flex-development/tutils/compare/tutils@5.0.0-dev.2...tutils@5.0.0-alpha.1) (2022-08-16)
 
 
