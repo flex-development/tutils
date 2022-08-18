@@ -17,7 +17,7 @@
 * **types:** use `OrDeepPartial` in `DocumentPartial` ([dee309f](https://github.com/flex-development/tutils/commit/dee309f1c33082a203f5a12d08e62f99aab0c1a6))
 * **types:** remove `DocumentDeepPartial` ([e14d8e0](https://github.com/flex-development/tutils/commit/e14d8e05ed5bf0a9822012d869504fbcf7d3f454))
 
-## [tutils@5.0.0-dev.2](https://github.com/flex-development/tutils/compare/tutils@5.0.0-dev.1...tutils@5.0.0-dev.2) (2022-08-16)
+## [tutils@5.0.0-dev.2](https://github.com/flex-development/tutils/compare/tutils@5.0.0-dev.1...tutils@5.0.0-dev.2) (2022-08-15)
 
 
 ### :package: Build
