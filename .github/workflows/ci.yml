@@ -20,7 +20,6 @@ permissions:
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   HUSKY: 0
-  NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   REF: ${{ github.head_ref || github.ref_name }}
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
