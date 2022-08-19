@@ -6,11 +6,25 @@
 
 import type { Config } from 'conventional-changelog-cli'
 import type { Options } from 'conventional-changelog-core'
-import type { CommitGroup } from 'conventional-changelog-writer'
+import type {
+  CommitGroup,
+  GeneratedContext
+} from 'conventional-changelog-writer'
 import type { Commit, CommitRaw } from 'conventional-commits-parser'
 import dateformat from 'dateformat'
 import fs from 'node:fs'
 import pkg from './package.json'
+
+/**
+ * Changlog context.
+ *
+ * @extends {GeneratedContext}
+ */
+interface Context extends GeneratedContext {
+  currentTag: string
+  linkCompare: boolean
+  previousTag: string
+}
 
 /**
  * Git tag prefix.
@@ -143,6 +157,51 @@ const config: Config = {
       return a.header && b.header
         ? a.header.localeCompare(b.header) || by_date
         : by_date
+    },
+    /**
+     * Modifies `context` before the changelog is generated.
+     *
+     * This includes:
+     *
+     * - Setting the release date to the current date
+     * - Setting the current release tag
+     * - Setting the previous release tag
+     * - Setting compare link generation
+     *
+     * @see https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-core#finalizecontext
+     * @see https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-writer#finalizecontext
+     *
+     * @param {GeneratedContext} context - Generated changelog context
+     * @return {Context} Final changelog context
+     */
+    finalizeContext(context: GeneratedContext): Context {
+      /**
+       * Use current date as release date instead of date of most recent commit.
+       *
+       * @see https://github.com/conventional-changelog/conventional-changelog/blob/master/packages/conventional-changelog-writer/lib/util.js#L194-L196
+       */
+      context.date = dateformat(new Date(), 'yyyy-mm-dd')
+
+      /**
+       * Release tag for upcoming version.
+       *
+       * @const {string} currentTag
+       */
+      const currentTag: string = TAG_PREFIX + pkg.version
+
+      /**
+       * Release tag for previous version.
+       *
+       * @const {string} previousTag
+       */
+      const previousTag: string = context.gitSemverTags[0]!
+
+      return {
+        ...context,
+        currentTag,
+        linkCompare: currentTag !== previousTag,
+        previousTag
+      }
     },
     headerPartial: fs.readFileSync('templates/changelog/header.hbs', 'utf8'),
     ignoreReverted: false
