@@ -353,12 +353,12 @@ Before deploying, the following steps must be completed:
 4. `yarn conventional-changelog -i CHANGELOG.md -s`
 5. `yarn release`
 6. Open PR from `release/*` into `main`
-   - PR title should match `release: <package.json#name>@<new-version>`
-     - e.g: `release: @flex-development/tutils@1.1.0`
+   - PR title should match `release: <release-tag>`
+     - e.g: `release: 1.1.0`
    - link all issues being released
    - after review, `squash and merge` PR
-     - `release: @flex-development/tutils@<new-version> (#pull-request-n)`
-       - e.g: `release: @flex-development/tutils@1.1.0 (#3)`
+     - `release: <release-tag> (#pull-request-n)`
+       - e.g: `release: 1.1.0 (#3)`
    - on PR merge, [release workflow](.github/workflows/release.yml) will fire
      - if successful, the workflow will:
        - pack project
@@ -374,7 +374,7 @@ Before deploying, the following steps must be completed:
 
 [1]: https://brew.sh
 [2]:
-  https://docs.github.com/en/authentication/managing-commit-signature-verification/about-commit-signature-verification#gpg-commit-signature-verification
+  https://docs.github.com/authentication/managing-commit-signature-verification/about-commit-signature-verification#gpg-commit-signature-verification
 [3]: https://yarnpkg.com/getting-started
 [4]: https://yarnpkg.com/advanced/lifecycle-scripts#environment-variables
 [5]: https://github.com/typicode/husky

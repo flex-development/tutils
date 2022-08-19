@@ -49,7 +49,7 @@ const config: Config = {
     preset: {
       header: '',
       name: 'conventionalcommits',
-      releaseCommitMessageFormat: `release: ${pkg.name}@{{version}}`,
+      releaseCommitMessageFormat: 'release: {{currentTag}}',
       types: [
         { section: ':package: Build', type: 'build' },
         { section: ':house_with_garden: Housekeeping', type: 'chore' },

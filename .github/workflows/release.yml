@@ -134,7 +134,7 @@ jobs:
       - id: tag
         name: Create annotated tag
         run: |
-          git tag --annotate --force --sign $TAG --message "${{ format('release: @{0}@{1}', github.repository, needs.metadata.outputs.version) }}"
+          git tag --annotate --force --sign $TAG --message "release: $TAG"
           git tag --verify $TAG
           git push origin --tags
         env:
