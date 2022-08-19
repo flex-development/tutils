@@ -9,7 +9,6 @@
 # - https://docs.github.com/actions/using-workflows/events-that-trigger-workflows#workflow_dispatch
 # - https://docs.github.com/actions/using-workflows/using-github-cli-in-workflows
 # - https://github.com/actions/checkout
-# - https://github.com/actions/github-script
 # - https://github.com/bdougie/close-issues-based-on-label
 # - https://github.com/crazy-max/ghaction-import-gpg
 # - https://github.com/dawidd6/action-delete-branch
@@ -39,7 +38,7 @@ jobs:
     env:
       REF: ${{ github.event.inputs.sha || github.head_ref }}
     outputs:
-      prerelease: ${{ steps.prerelease.outputs.result }}
+      prerelease: ${{ steps.dist-tag.outputs.prerelease }}
       tag: ${{ steps.tag.outputs.result }}
       version: ${{ steps.version.outputs.result }}
     steps:
@@ -66,14 +65,6 @@ jobs:
         uses: flex-development/dist-tag-action@1.1.0
         with:
           target: ${{ steps.version.outputs.result }}
-      - id: prerelease
-        name: Check for prerelease
-        uses: actions/github-script@v6.1.1
-        env:
-          DIST_TAG: ${{ steps.dist-tag.outputs.tag }}
-        with:
-          # todo: calculate number of prereleases to include in release notes
-          script: return !!process.env.DIST_TAG
   publish:
     needs: metadata
     permissions:
@@ -129,7 +120,6 @@ jobs:
           NODE_OPTIONS: --es-module-specifier-resolution=node
       - id: release-notes
         name: Generate release notes
-        # todo: handle prereleases
         run: yarn conventional-changelog -o $NOTES_FILE
         env:
           TS_NODE_PROJECT: ./tsconfig.tsnode.json
