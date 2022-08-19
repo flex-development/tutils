@@ -62,7 +62,7 @@
   description: type definitions
   color: 74cefc
 
-- name: scope:typescript
+- name: scope:ts
   description: typescript support
   color: 74cefc
 
