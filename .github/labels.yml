@@ -98,7 +98,7 @@
   color: e7034b
 
 - name: status:needs-triage
-  description: needs verification and minimal reproduction
+  description: needs further assessment
   color: e7034b
 
 - name: status:prereleased
@@ -121,7 +121,7 @@
 # types of issues, pull requests, and discussions
 
 - name: type:build
-  description: build system or external dependencies
+  description: changes to the build system or external dependencies
   color: 0052cc
 
 - name: type:chore
@@ -129,23 +129,23 @@
   color: 0052cc
 
 - name: type:ci
-  description: continuous integration and deployment
+  description: ci/cd configuration
   color: 0052cc
 
 - name: type:discussion
-  description: discussion topic
+  description: discussion topics
   color: 0052cc
 
 - name: type:docs
-  description: improvements or additions to documentation
+  description: documentation improvements
   color: 0052cc
 
 - name: type:feat
-  description: new feature or request
+  description: new features and improvements
   color: 0052cc
 
 - name: type:fix
-  description: something isn't working
+  description: bug reports and fixes
   color: 0052cc
 
 - name: type:perf
@@ -161,5 +161,5 @@
   color: 0052cc
 
 - name: type:task
-  description: project task
+  description: project tasks
   color: 0052cc
