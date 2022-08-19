@@ -61,7 +61,7 @@ jobs:
           steps.version.outputs.result }}"
       - id: dist-tag
         name: Get dist tag
-        uses: flex-development/dist-tag-action@1.0.0
+        uses: flex-development/dist-tag-action@1.1.0
         with:
           target: ${{ steps.version.outputs.result }}
       - id: prerelease
