@@ -5,12 +5,6 @@
 # - https://docs.github.com/en/code-security/supply-chain-security/keeping-your-dependencies-updated-automatically/configuration-options-for-dependency-updates
 
 version: 2
-registries:
-  gpr:
-    type: npm-registry
-    url: https://npm.pkg.github.com
-    username: flexdevelopment
-    password: ${{ secrets.PAT_ADMIN }}
 updates:
   - package-ecosystem: github-actions
     directory: /
@@ -32,5 +26,3 @@ updates:
       include: scope
     labels:
       - type:build
-    registries:
-      - gpr

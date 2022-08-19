@@ -69,7 +69,6 @@ jobs:
     needs: metadata
     permissions:
       contents: write
-      packages: read
     runs-on: ubuntu-latest
     environment:
       name: production
