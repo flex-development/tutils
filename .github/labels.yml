@@ -54,6 +54,10 @@
   description: package release
   color: 74cefc
 
+- name: scope:tests
+  description: testing
+  color: 74cefc
+
 - name: scope:types
   description: type definitions
   color: 74cefc
