@@ -184,15 +184,15 @@ This means every commit must conform to the following format:
 
 - `build`: Changes that affect the build system or external dependencies
 - `ci`: Changes to our CI/CD configuration files and scripts
-- `chore`: Changes that don't impact external users
-- `docs`: Documentation only changes
+- `chore`: Housekeeping tasks / changes that don't impact external users
+- `docs`: Documentation improvements
 - `feat`: New features
 - `fix`: Bug fixes
 - `perf`: Performance improvements
 - `refactor`: Code improvements
 - `revert`: Revert past changes
 - `style`: Changes that do not affect the meaning of the code
-- `test`: Adding missing tests or correcting existing tests
+- `test`: Change that impact the test suite
 - `wip`: Working on changes, but you need to go to bed :wink:
 
 e.g:
