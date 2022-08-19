@@ -111,7 +111,7 @@
     "@types/conventional-changelog-writer": "4.0.1",
     "@types/conventional-commits-parser": "3.0.2",
     "@types/dateformat": "5.0.0",
-    "@types/eslint": "8.4.5",
+    "@types/eslint": "8.4.6",
     "@types/git-raw-commits": "2.0.1",
     "@types/is-ci": "3.0.0",
     "@types/node-notifier": "8.0.2",
