@@ -5,24 +5,24 @@
  */
 
 /**
- * @type {Record<string, string[]>}
- * @const extensions - ESLint extensions
+ * @type {string[]}
+ * @const exts - ESLint extensions
  */
-const eslint = require('./.vscode/settings.json')['eslint.options']
+const exts = require('./.vscode/settings.json')['eslint.options'].extensions
 
 module.exports = {
   /**
-   * Fix code style.
+   * Check code style.
    */
-  [`**/*.{${eslint.extensions.join(',')}}`]: ['yarn fix:lint', 'git add -A'],
+  [`**/*.{${exts.join(',')}}`]: ['yarn fix:lint'],
 
   /**
-   * Fix formatting and check spelling.
+   * Check code formatting and spelling.
    */
-  '*': ['yarn fix:format', 'yarn check:spelling', 'git add -A'],
+  '*': ['yarn fix:format', 'yarn check:spelling'],
 
   /**
-   * Run type check.
+   * Check types.
    */
   '{**/*.ts,**/tsconfig.*}': [
     /**
@@ -34,7 +34,7 @@ module.exports = {
   ],
 
   /**
-   * Deduplicate dependencies.
+   * Check for duplicate dependencies in lockfile.
    */
-  'yarn.lock': ['yarn dedupe --check']
+  '**/yarn.lock': ['yarn dedupe --check']
 }
