@@ -2,9 +2,8 @@
 #
 # References:
 #
-# - https://github.com/actions/cache
 # - https://github.com/actions/checkout
-# - https://github.com/actions/setup-node
+# - https://yarnpkg.com/cli/dedupe
 
 ---
 name: integrity
@@ -22,51 +21,25 @@ on:
       - .yarnrc.yml
       - yarn.lock
   workflow_dispatch:
-permissions:
-  packages: read
 env:
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   REF: ${{ github.head_ref || github.ref_name }}
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 jobs:
   integrity:
-    if: github.actor != 'dependabot[bot]'
+    permissions:
+      packages: read
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node: [16.16.0]
     steps:
       - id: checkout
         name: Checkout ${{ env.REF }}
         uses: actions/checkout@v3.0.2
         with:
+          persist-credentials: false
           ref: ${{ env.REF }}
-      - id: setup-node
-        name: Use Node.js ${{ matrix.node }}
-        uses: actions/setup-node@v3.4.1
-        with:
-          node-version: ${{ matrix.node }}
-          scope: ${{ format('@{0}', github.repository_owner) }}
-      # why not setup-node 2.2+ cache option (yet)?
-      # see: https://github.com/belgattitude/nextjs-monorepo-example/pull/369
-      - id: cache-dir-path
-        name: Get yarn cache directory path
-        run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
-      - id: cache # use this to check for `cache-hit` (`steps.cache.outputs.cache-hit != 'true'`)
-        name: Restore yarn cache
-        uses: actions/cache@v3.0.7
-        with:
-          key: yarn-cache-folder-${{ hashFiles('**/yarn.lock', '.yarnrc.yml') }}
-          path: ${{ steps.cache-dir-path.outputs.dir }}
-          restore-keys: yarn-cache-folder-
-      - id: yarn
-        name: Install dependencies
-        run: yarn
-        env:
-          HUSKY: 0
       - id: dedupe-check
-        name: Check for duplicate dependencies in lock file
+        name: Check for duplicate dependencies in lockfile
         run: yarn dedupe --check
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
