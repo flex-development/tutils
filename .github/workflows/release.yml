@@ -54,11 +54,13 @@ jobs:
       - id: version
         name: Get version
         run: echo "::set-output name=result::$(jq .version package.json -r)"
+      - id: tag-prefix
+        name: Get release tag prefix
+        run: echo "::set-output name=result::$(jq .tagPrefix package.json -r)"
       - id: tag
         name: Get release tag
         run: |
-          echo "::set-output name=result::${{ github.event.repository.name }}@${{
-          steps.version.outputs.result }}"
+          echo "::set-output name=result::${{ format('{0}{1}', steps.tag-prefix.outputs.result, steps.version.outputs.result) }}"
       - id: dist-tag
         name: Get dist tag
         uses: flex-development/dist-tag-action@1.1.0
