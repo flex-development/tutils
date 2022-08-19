@@ -9,8 +9,8 @@ registries:
   gpr:
     type: npm-registry
     url: https://npm.pkg.github.com
-    username: ${{ github.repository_owner }}
-    password: ${{ secrets.PAT_GPR_ADMIN }}
+    username: flexdevelopment
+    password: ${{ secrets.PAT_ADMIN }}
 updates:
   - package-ecosystem: github-actions
     directory: /
