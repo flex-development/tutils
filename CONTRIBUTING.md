@@ -244,9 +244,10 @@ Be sure to use [`it.skip`][15] or [`it.todo`][16] where appropriate.
 
 ### Getting Help
 
-If you need help, make note of any issues in their respective files. Whenever
-possible, create a test to reproduce the error. If you need help with a test,
-don't forget to use [`it.skip`][15] and/or [`it.todo`][16].
+If you need help, make note of any issues in their respective files in the form
+of a [JSDoc comment][12]. If you need help with a test, don't forget to use
+[`it.skip`][15] and/or [`it.todo`][16]. Afterwards, [start a discussion in the
+Q&A category][17].
 
 ## Labels
 
@@ -257,20 +258,21 @@ A list of labels can be found in [`.github/labels.yml`](.github/labels.yml).
 
 ## Opening Issues
 
-Before opening an issue please make sure, you have:
+Before opening an issue, make sure you have:
 
 - read the documentation
-- searched open issues for an existing issue with the same topic
-- search closed issues for a solution or feedback
+- checked that the issue hasn't already been filed by searching open issues
+- searched closed issues for solution(s) or feedback
 
 If you haven't found a related open issue, or feel that a closed issue should be
-re-visited, open a new issue. A well-written issue has the following traits:
+re-visited, open a new issue.
 
-- follows an [issue template](.github/ISSUE_TEMPLATE)
-- is [labeled](#labels) appropriately
-- contains a well-written summary of the feature, bug, or problem statement
-- contains a minimal, inlined code example (if applicable)
+A well-written issue
+
+- contains a well-written summary of the bug, feature, or improvement
+- contains a [minimal, reproducible example][18] (if applicable)
 - includes links to related articles and documentation (if any)
+- includes an emoji in the title :wink:
 
 ## Pull Requests
 
@@ -369,8 +371,8 @@ Before deploying, the following steps must be completed:
      - on release publish, [publish workflow](.github/workflows/publish.yml)
        will fire
        - if successful, the workflow will:
-         - publish package to [github package registry][17]
-         - publish package to [npm][18]
+         - publish package to [github package registry][19]
+         - publish package to [npm][20]
 
 [1]: https://brew.sh
 [2]:
@@ -389,5 +391,7 @@ Before deploying, the following steps must be completed:
 [14]: https://vitest.dev
 [15]: https://vitest.dev/api/#test-skip
 [16]: https://vitest.dev/api/#test-todo
-[17]: https://github.com/features/packages
-[18]: https://npmjs.com
+[17]: https://github.com/flex-development/tutils/discussions/new?category=q-a
+[18]: https://stackoverflow.com/help/minimal-reproducible-example
+[19]: https://github.com/features/packages
+[20]: https://npmjs.com

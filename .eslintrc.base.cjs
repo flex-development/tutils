@@ -1048,6 +1048,39 @@ const config = {
       }
     },
     {
+      files: ['.github/ISSUE_TEMPLATE/*.yml'],
+      overrides: [
+        {
+          files: ['.github/ISSUE_TEMPLATE/config.yml'],
+          rules: {
+            'yml/sort-keys': [
+              2,
+              {
+                order: { caseSensitive: true, type: 'asc' },
+                pathPattern: '^$'
+              }
+            ]
+          }
+        }
+      ],
+      rules: {
+        'yml/sort-keys': [
+          2,
+          {
+            order: [
+              'name',
+              'description',
+              'title',
+              'assignees',
+              'labels',
+              'body'
+            ],
+            pathPattern: '^$'
+          }
+        ]
+      }
+    },
+    {
       files: ['.github/dependabot.yml', '.github/workflows/*.yml'],
       rules: {
         'yml/sort-keys': 0
