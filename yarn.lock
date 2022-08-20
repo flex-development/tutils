@@ -949,7 +949,7 @@ __metadata:
     ts-node: "npm:10.9.1"
     tsconfig: "npm:7.0.0"
     tsconfig-paths: "npm:4.1.0"
-    unbuild: "npm:0.8.8"
+    unbuild: "npm:0.8.9"
     version-bump-prompt: "npm:6.1.0"
     vite-tsconfig-paths: "npm:3.5.0"
     vitest: "npm:0.22.0"
@@ -2195,9 +2195,9 @@ __metadata:
   linkType: hard
 
 "caniuse-lite@npm:^1.0.30001370":
-  version: 1.0.30001378
-  resolution: "caniuse-lite@npm:1.0.30001378"
-  checksum: 3de1af5f68c388df1acd6e4a3baf2de4d37f0f62453ce534af7371f7c4614ff17ec8ff4c045bc5efac6b801fdc1e65ed17fa7a757b365d89038d68d1bb9bdf99
+  version: 1.0.30001379
+  resolution: "caniuse-lite@npm:1.0.30001379"
+  checksum: 82d06d324323f08f135bf6ab54b15a0ccf985ca9754aede56f9119d78d7b7b401623a85d22285861c5af41b816b43e097cb4bcc40edcf1db90d53de987ffb59a
   languageName: node
   linkType: hard
 
@@ -3024,7 +3024,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"defu@npm:^6.0.0":
+"defu@npm:^6.0.0, defu@npm:^6.1.0":
   version: 6.1.0
   resolution: "defu@npm:6.1.0"
   checksum: 76a5d40771c53371acecb562d7ffbaa068c5dc97bab3421d659227fe9e14ac40ef4343efbc91b77a9efa6ab3fa943a9bd150d8b3738c92b758201961112a31df
@@ -3606,7 +3606,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"esbuild@npm:^0.15.0":
+"esbuild@npm:^0.15.5":
   version: 0.15.5
   resolution: "esbuild@npm:0.15.5"
   dependencies:
@@ -6114,7 +6114,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mlly@npm:^0.5.13, mlly@npm:^0.5.9":
+"mlly@npm:^0.5.13":
   version: 0.5.13
   resolution: "mlly@npm:0.5.13"
   dependencies:
@@ -6722,7 +6722,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pathe@npm:^0.3.3, pathe@npm:^0.3.4, pathe@npm:^0.3.5":
+"pathe@npm:^0.3.4, pathe@npm:^0.3.5":
   version: 0.3.5
   resolution: "pathe@npm:0.3.5"
   checksum: 2726188a624c6ff0db3e9d8a50286cb273973eedc8b4b444d884ed57b7c9d8ba3d0bebdb71165b0fddb7e46928f8246cb008354d2d089c7b29dee38a6be60090
@@ -7290,7 +7290,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rollup-plugin-esbuild@npm:^4.9.1":
+"rollup-plugin-esbuild@npm:^4.9.3":
   version: 4.9.3
   resolution: "rollup-plugin-esbuild@npm:4.9.3"
   dependencies:
@@ -7306,7 +7306,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rollup@npm:^2.75.6, rollup@npm:^2.77.2":
+"rollup@npm:^2.75.6, rollup@npm:^2.78.0":
   version: 2.78.1
   resolution: "rollup@npm:2.78.1"
   dependencies:
@@ -8265,9 +8265,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"unbuild@npm:0.8.8":
-  version: 0.8.8
-  resolution: "unbuild@npm:0.8.8"
+"unbuild@npm:0.8.9":
+  version: 0.8.9
+  resolution: "unbuild@npm:0.8.9"
   dependencies:
     "@rollup/plugin-alias": "npm:^3.1.9"
     "@rollup/plugin-commonjs": "npm:^22.0.2"
@@ -8277,29 +8277,29 @@ __metadata:
     "@rollup/pluginutils": "npm:^4.2.1"
     chalk: "npm:^5.0.1"
     consola: "npm:^2.15.3"
-    defu: "npm:^6.0.0"
-    esbuild: "npm:^0.15.0"
+    defu: "npm:^6.1.0"
+    esbuild: "npm:^0.15.5"
     globby: "npm:^13.1.2"
     hookable: "npm:^5.1.1"
     jiti: "npm:^1.14.0"
     magic-string: "npm:^0.26.2"
     mkdirp: "npm:^1.0.4"
     mkdist: "npm:^0.3.13"
-    mlly: "npm:^0.5.9"
+    mlly: "npm:^0.5.13"
     mri: "npm:^1.2.0"
-    pathe: "npm:^0.3.3"
+    pathe: "npm:^0.3.5"
     pkg-types: "npm:^0.3.3"
     pretty-bytes: "npm:^6.0.0"
     rimraf: "npm:^3.0.2"
-    rollup: "npm:^2.77.2"
+    rollup: "npm:^2.78.0"
     rollup-plugin-dts: "npm:^4.2.2"
-    rollup-plugin-esbuild: "npm:^4.9.1"
+    rollup-plugin-esbuild: "npm:^4.9.3"
     scule: "npm:^0.3.2"
     typescript: "npm:^4.7.4"
     untyped: "npm:^0.4.5"
   bin:
     unbuild: dist/cli.mjs
-  checksum: 6761889e24d694269e0d1ba2a6896664164d26b4c79d4663e7652b82c11b6a961d1f68de5872b6e3ddd5391c4f89fff0633359a19c2c3028ba3d159241c20b00
+  checksum: 3968e39f2158f45dfd1865b3a01f22819c075fa1b0687e002a47b160fcbaaaaca3b6cd5dde018b81e8fd2102bf99b088a1330b93f05fe8d8c0b14da8b6e3cd4c
   languageName: node
   linkType: hard
 
