@@ -914,7 +914,7 @@ __metadata:
     "@typescript-eslint/eslint-plugin": "npm:5.33.1"
     "@typescript-eslint/parser": "npm:5.33.1"
     "@vates/toggle-scripts": "npm:1.0.0"
-    "@vitest/coverage-c8": "npm:0.22.0"
+    "@vitest/coverage-c8": "npm:0.22.1"
     "@vitest/ui": "npm:0.22.0"
     chai: "npm:4.3.6"
     conventional-changelog-cli: "npm:2.2.2"
@@ -1698,13 +1698,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vitest/coverage-c8@npm:0.22.0":
-  version: 0.22.0
-  resolution: "@vitest/coverage-c8@npm:0.22.0"
+"@vitest/coverage-c8@npm:0.22.1":
+  version: 0.22.1
+  resolution: "@vitest/coverage-c8@npm:0.22.1"
   dependencies:
     c8: "npm:^7.12.0"
-    vitest: "npm:0.22.0"
-  checksum: 9c583c9beeec1bdd2b9549757bba97010024ef97be0c637484575b167d387d0d6c10481cddac7fdc3edefdb4006e96b2544d4bc3e39f3bff440d3a4317433005
+    vitest: "npm:0.22.1"
+  checksum: 0da31c613e421afc70d8070fa2b9791e06874e178df578524a8fd1b4ea9f1f2c684844705186fac2f6763273b17f1f4d48fca9cacfd1cb62e4d21c099f3682c7
   languageName: node
   linkType: hard
 
@@ -7941,7 +7941,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tinyspy@npm:^1.0.0, tinyspy@npm:^1.0.2":
+"tinyspy@npm:^1.0.2":
   version: 1.0.2
   resolution: "tinyspy@npm:1.0.2"
   checksum: ee528f34ff63b3209881233401d1048b69565f917772d4f899b814a2a700be1039047c3149e98a6d6a64b94055defd46256025b205969d4059c61c4ad22697c4
@@ -8515,42 +8515,6 @@ __metadata:
   peerDependencies:
     vitest: ">=0.16.0"
   checksum: bb7d983aa1785887dc1d5de398e1d19619bff5b522e14c92c84ab1ee5d14f32025ea7a03f84dc1c4dcd6a0aa13170891a56c9ed955ff9c7bb1778e2e95003273
-  languageName: node
-  linkType: hard
-
-"vitest@npm:0.22.0":
-  version: 0.22.0
-  resolution: "vitest@npm:0.22.0"
-  dependencies:
-    "@types/chai": "npm:^4.3.3"
-    "@types/chai-subset": "npm:^1.3.3"
-    "@types/node": "npm:*"
-    chai: "npm:^4.3.6"
-    debug: "npm:^4.3.4"
-    local-pkg: "npm:^0.4.2"
-    tinypool: "npm:^0.2.4"
-    tinyspy: "npm:^1.0.0"
-    vite: "npm:^2.9.12 || ^3.0.0-0"
-  peerDependencies:
-    "@edge-runtime/vm": "*"
-    "@vitest/browser": "*"
-    "@vitest/ui": "*"
-    happy-dom: "*"
-    jsdom: "*"
-  peerDependenciesMeta:
-    "@edge-runtime/vm":
-      optional: true
-    "@vitest/browser":
-      optional: true
-    "@vitest/ui":
-      optional: true
-    happy-dom:
-      optional: true
-    jsdom:
-      optional: true
-  bin:
-    vitest: vitest.mjs
-  checksum: 3a48d7acf25b38a3b07e3515764c3e7f5f61625ef0c2a321cbeb81604122cf30679715ac786271e368ffc79c1576260753b596b600edddf5d775eba673c6ff28
   languageName: node
   linkType: hard
 
