@@ -44,19 +44,19 @@ jobs:
         name: Checkout ${{ github.head_ref }}
         uses: actions/checkout@v3.0.2
         with:
-          persist-credentials: ${{ steps.metadata.outputs.package-ecosystem == 'npm' }}
+          persist-credentials: ${{ steps.metadata.outputs.package-ecosystem == 'npm_and_yarn' }}
           ref: ${{ github.head_ref }}
       - id: lockfile-fix
         name: Fix yarn.lock
-        if: steps.metadata.outputs.package-ecosystem == 'npm'
+        if: steps.metadata.outputs.package-ecosystem == 'npm_and_yarn'
         run: yarn --mode=update-lockfile
       - id: dedupe
         name: Deduplicate dependencies
-        if: steps.metadata.outputs.package-ecosystem == 'npm'
+        if: steps.metadata.outputs.package-ecosystem == 'npm_and_yarn'
         run: yarn dedupe --mode=update-lockfile
       - id: lockfile-push
         name: Push yarn.lock
-        if: steps.metadata.outputs.package-ecosystem == 'npm'
+        if: steps.metadata.outputs.package-ecosystem == 'npm_and_yarn'
         run: |
           git config --global user.name '${{ github.actor }}'
           git config --global user.email '49699333+${{ github.actor }}@users.noreply.github.com'
@@ -69,6 +69,6 @@ jobs:
       - id: enable-auto-merge
         name: Enable auto-merge
         if: |
-          steps.metadata.outputs.package-ecosystem == 'github-actions' ||
+          steps.metadata.outputs.package-ecosystem == 'github_actions' ||
           steps.metadata.outputs.update-type != 'version-update:semver-major'
         run: gh pr merge ${{ github.event.number }} --auto --squash
