@@ -10,7 +10,6 @@ updates:
     directory: /
     schedule:
       interval: daily
-      time: '11:00'
     commit-message:
       prefix: ci
       include: scope
@@ -20,7 +19,6 @@ updates:
     directory: /
     schedule:
       interval: daily
-      time: '11:00'
     commit-message:
       prefix: build
       include: scope
