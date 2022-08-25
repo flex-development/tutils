@@ -30,6 +30,7 @@ jobs:
   integrity:
     permissions:
       packages: read
+    if: github.actor != 'dependabot[bot]'
     runs-on: ubuntu-latest
     steps:
       - id: checkout
