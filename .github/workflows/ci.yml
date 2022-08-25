@@ -17,7 +17,10 @@ on:
       - hotfix/**
       - main
   workflow_dispatch:
+permissions:
+  packages: read
 env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   HUSKY: 0
   REF: ${{ github.head_ref || github.ref_name }}
 concurrency:
@@ -37,7 +40,6 @@ jobs:
         name: Checkout ${{ env.REF }}
         uses: actions/checkout@v3.0.2
         with:
-          persist-credentials: false
           ref: ${{ env.REF }}
       - id: yarn
         name: Install dependencies

@@ -28,6 +28,8 @@ concurrency:
   cancel-in-progress: true
 jobs:
   integrity:
+    permissions:
+      packages: read
     runs-on: ubuntu-latest
     steps:
       - id: checkout
@@ -39,3 +41,5 @@ jobs:
       - id: dedupe-check
         name: Check for duplicate dependencies in lockfile
         run: yarn dedupe --check
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
