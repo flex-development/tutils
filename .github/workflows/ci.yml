@@ -6,6 +6,7 @@
 # - https://docs.github.com/actions/using-workflows/events-that-trigger-workflows#push
 # - https://docs.github.com/actions/using-workflows/events-that-trigger-workflows#workflow_dispatch
 # - https://github.com/actions/checkout
+# - https://github.com/hmarr/debug-action
 
 ---
 name: continuous-integration
@@ -34,6 +35,9 @@ jobs:
       !startsWith(github.event.head_commit.message, 'release:')
     runs-on: ubuntu-latest
     steps:
+      - id: debug
+        name: Print environment variables and event payload
+        uses: hmarr/debug-action@v2.0.1
       - id: checkout
         name: Checkout ${{ env.REF }}
         uses: actions/checkout@v3.0.2
