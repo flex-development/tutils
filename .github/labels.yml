@@ -136,10 +136,6 @@
   description: ci/cd configuration
   color: 0052cc
 
-- name: type:discussion
-  description: discussion topics
-  color: 0052cc
-
 - name: type:docs
   description: documentation improvements
   color: 0052cc
