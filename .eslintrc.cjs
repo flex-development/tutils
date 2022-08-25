@@ -14,12 +14,6 @@ const config = {
   overrides: [
     ...require('./.eslintrc.base.cjs').overrides,
     {
-      files: ['build.config.ts'],
-      rules: {
-        'unicorn/prefer-module': 0
-      }
-    },
-    {
       files: [
         'src/types/built-in.ts',
         'src/types/deep-partial-by-helper.ts',
