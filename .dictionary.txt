@@ -1,5 +1,3 @@
-ahmadnassri
-anson
 ardatan
 autocrlf
 autosetuprebase
@@ -15,7 +13,7 @@ chbfix
 chbhotfix
 chbrelease
 commitlintrc
-dawidd6
+dawidd
 dedupe
 dessant
 dohm
@@ -34,16 +32,12 @@ lintstagedrc
 micnncim
 mkdist
 nocheck
-noreply
-npmjs
 npmrc
 nums
 nvmrc
 ohmyzsh
-pdel
 pkgs
 preid
-rickstaa
 safecrlf
 syncer
 tsnode
