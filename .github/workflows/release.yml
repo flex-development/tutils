@@ -136,7 +136,7 @@ jobs:
         name: Publish release
         run: gh release create $TAG *.tgz -t=$TAG -F=$NOTES_FILE -p=$PRERELEASE
         env:
-          GITHUB_TOKEN: ${{ secrets.PAT_ADMIN }}
+          GITHUB_TOKEN: ${{ secrets.PAT_BOT }}
           PRERELEASE: ${{ needs.metadata.outputs.prerelease }}
   cleanup:
     needs: [metadata, publish]

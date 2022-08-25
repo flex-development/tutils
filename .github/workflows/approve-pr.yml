@@ -17,7 +17,7 @@ on:
     types:
       - review_requested
 env:
-  GITHUB_TOKEN: ${{ secrets.PAT_ADMIN }}
+  GITHUB_TOKEN: ${{ secrets.PAT_BOT }}
 jobs:
   approve-pr:
     if: github.event.requested_reviewer.login == 'flexdevelopment'
