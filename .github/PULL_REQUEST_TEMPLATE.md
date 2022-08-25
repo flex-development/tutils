@@ -4,27 +4,36 @@
 
 ## Tests
 
-<!--
-What did you test? List tests, include snippet from test suites, or write "N/A"
-if tests were not needed.
--->
-
-## Additional context
-
-<!--
-Add any other information (docs, files, issue references, etc) about the pull
-request here.
--->
+<!-- What did you test? List tests, include snippet from test suites, or write "N/A" if tests were not needed. -->
 
 ## Linked issues
 
-<!-- closes #[issue number], fixes #[issue number] -->
+<!--
+A list of linked issues and/or pull requests.
+
+- <closes|fixes|resolves> #<issue-number>
+- <prereleases|releases> #<pr-number>
+-->
+
+## Related documents
+
+<!-- A list of related documents (e.g. docs, proposals, specs, etc), if any. -->
+
+-
+-
+-
+
+## Additional context
+
+<!-- Include additional details here. Be sure to note if any tolerable vulnerabilities or warnings have been introduced. -->
 
 ## Submission checklist
 
-- [ ] [pr naming conventions][1]
-- [ ] project was run locally to verify that there are no errors
+- [ ] self-review performed
+- [ ] tests added and/or updated
 - [ ] documentation added or updated
+- [ ] new, **tolerable** vulnerabilities and/or warnings documented, if any
+- [ ] [pr naming conventions][1]
 
 [1]:
-  https://github.com/flex-development/tutils/blob/main/CONTRIBUTING.md#pull-request-titles
+    https://github.com/flex-development/tutils/blob/main/CONTRIBUTING.md#pull-request-titles

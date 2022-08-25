@@ -283,16 +283,18 @@ https://github.com/flex-development/tutils/compare/main...$branch
 
 where `$branch` is the name of the branch you'd like to merge into `main`.
 
+All PRs are subject to review before being merged into `main`.
+
+Before submitting a PR, be sure you have:
+
+- performed a self-review of your changes
+- added and/or updated relevant tests
+- added and/or updated relevant documentation
+
 Every PR you open should:
 
-- follow [**this template**](.github/PULL_REQUEST_TEMPLATE.md)
+- [follow this template](.github/PULL_REQUEST_TEMPLATE.md)
 - [be titled appropriately](#pull-request-titles)
-- be assigned to yourself
-- be [labeled](#labels) appropriately
-
-**Note**: All PRs are subject to code reviews before being merged into `main`.
-If any changes are requested, they'll need to be implemented before the PR is
-approved and merged.
 
 ### Pull Request Titles
 
