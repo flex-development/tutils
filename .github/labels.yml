@@ -30,7 +30,7 @@
   description: commonjs
   color: 74cefc
 
-- name: scope:deps
+- name: scope:dependencies
   description: dependency updates
   color: 74cefc
 
