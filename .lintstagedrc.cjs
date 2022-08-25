@@ -14,12 +14,12 @@ module.exports = {
   /**
    * Check code style.
    */
-  [`**/*.{${exts.join(',')}}`]: ['yarn fix:lint'],
+  [`**/*.{${exts.join(',')}}`]: ['yarn check:lint'],
 
   /**
    * Check code formatting and spelling.
    */
-  '*': ['yarn fix:format', 'yarn check:spelling'],
+  '*': ['yarn check:format', 'yarn check:spelling'],
 
   /**
    * Check types.
