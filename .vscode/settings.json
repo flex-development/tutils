@@ -47,7 +47,6 @@
     "extensions": ["cjs", "cts", "gql", "json", "md", "mjs", "ts", "yml"],
     "overrideConfigFile": "./.eslintrc.cjs"
   },
-  "eslint.packageManager": "yarn",
   "eslint.validate": [
     "graphql",
     "javascript",
