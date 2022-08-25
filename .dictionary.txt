@@ -1,5 +1,6 @@
 ahmadnassri
 anson
+ardatan
 autocrlf
 autosetuprebase
 bdel
@@ -23,9 +24,11 @@ esbenp
 fbca
 fpnv
 gpgsign
+graphqlrc
 hmarr
 iife
 keyid
+larsgw
 lcov
 lintstagedrc
 micnncim

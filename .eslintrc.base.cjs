@@ -834,6 +834,14 @@ const config = {
       }
     },
     {
+      files: ['*.gql'],
+      extends: ['plugin:@graphql-eslint/operations-all'],
+      rules: {
+        '@graphql-eslint/no-anonymous-operations': 0,
+        '@graphql-eslint/require-id-when-available': 0
+      }
+    },
+    {
       files: ['*.json'],
       extends: ['plugin:jsonc/prettier'],
       parser: require.resolve('jsonc-eslint-parser'),

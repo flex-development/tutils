@@ -44,11 +44,17 @@
   "eslint.enable": true,
   "eslint.nodePath": "./node_modules/eslint",
   "eslint.options": {
-    "extensions": ["cjs", "cts", "json", "md", "mjs", "ts", "yml"],
+    "extensions": ["cjs", "cts", "gql", "json", "md", "mjs", "ts", "yml"],
     "overrideConfigFile": "./.eslintrc.cjs"
   },
   "eslint.packageManager": "yarn",
-  "eslint.validate": ["javascript", "json", "markdown", "typescript"],
+  "eslint.validate": [
+    "graphql",
+    "javascript",
+    "json",
+    "markdown",
+    "typescript"
+  ],
   "files.associations": {
     "*.snap": "jest-snapshot",
     ".env.zsh": "shellscript",
@@ -86,6 +92,11 @@
       "extensions": [".eslintrc.base.cjs"],
       "format": "svg",
       "icon": "eslint"
+    },
+    {
+      "extensions": [".graphqlrc.ts"],
+      "format": "svg",
+      "icon": "graphql"
     },
     {
       "extensions": [".lintstagedrc.cjs"],

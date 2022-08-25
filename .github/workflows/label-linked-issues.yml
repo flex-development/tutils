@@ -45,8 +45,8 @@ jobs:
         uses: octokit/graphql-action@v2.2.22
         with:
           query: |
-            query ($owner: String!, $repo: String!, $pr: Int!, $limit: Int = 20) {
-              repository(owner: $owner, name: $repo) {
+            query ($limit: Int = 20, $owner: String!, $pr: Int!, $repo: String!) {
+              repository(name: $repo, owner: $owner) {
                 pullRequest(number: $pr) {
                   closingIssuesReferences(
                     first: $limit
