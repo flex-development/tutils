@@ -35,10 +35,7 @@ Follow the steps below to setup your local development environment:
 5. Update `~/.gitconfig`
 
    ```sh
-   git config --global color.ui true
    git config --global commit.gpgsign true
-   git config --global core.ignorecase false
-   git config --global pull.rebase true
    git config --global user.email <email>
    git config --global user.name <name>
    git config --global user.username <username>
