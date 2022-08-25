@@ -74,7 +74,7 @@
   "types": "./dist/index.d.ts",
   "scripts": {
     "build": "unbuild",
-    "check:ci": "yarn dedupe --check && yarn check:format && yarn check:lint && yarn check:spelling && yarn check:types && NODE_ENV=production yarn pack -o %s-%v.tgz && yarn clean:pack && yarn test",
+    "check:ci": "yarn dedupe --check && yarn check:format && yarn check:lint && yarn check:spelling && yarn check:types && NODE_ENV=production yarn pack -o %s-%v.tgz && yarn clean:pack && yarn test:cov",
     "check:format": "prettier --check .",
     "check:lint": "eslint --cache --exit-on-fatal-error --ext cjs,cts,gql,json,md,mjs,ts,yml --max-warnings 0 .",
     "check:spelling": "cspell lint --color --no-progress --relative $@ \"**\"",

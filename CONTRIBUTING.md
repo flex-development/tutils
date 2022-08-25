@@ -94,15 +94,16 @@ Follow the steps below to setup your local development environment:
 
 #### Development
 
-| name                |
-| ------------------- |
-| `CI`                |
-| `NODE_ENV`          |
-| `NODE_NO_WARNINGS`  |
-| `NODE_OPTIONS`      |
-| `PROJECT_CWD`**\*** |
-| `TS_NODE_PROJECT`   |
-| `ZSH_DOTENV_FILE`   |
+| name                    |
+| ----------------------- |
+| `CI`                    |
+| `NODE_ENV`              |
+| `NODE_NO_WARNINGS`      |
+| `NODE_OPTIONS`          |
+| `PROJECT_CWD`**\***     |
+| `TS_NODE_PROJECT`       |
+| `VITEST_SEGFAULT_RETRY` |
+| `ZSH_DOTENV_FILE`       |
 
 **\*** Provided by [Yarn 2 scripts and binaries][4]
 

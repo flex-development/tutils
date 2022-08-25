@@ -14,6 +14,7 @@ interface ImportMetaEnv extends Readonly<import('vite').ImportMetaEnv> {
   readonly VITEST_WORKER_ID: `${number}`
   readonly VITE_ROOT: string
   readonly VITE_USER_NODE_ENV: import('@flex-development/tutils').NodeEnv.TEST
+  readonly VITEST_SEGFAULT_RETRY: import('@flex-development/tutils').Numeric
 }
 
 interface ImportMeta {

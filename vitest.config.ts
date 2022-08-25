@@ -59,14 +59,6 @@ const config = async (): Promise<UserConfig> => {
       hookTimeout: 10 * 1000,
       include: ['**/__tests__/*.spec.ts'],
       isolate: true,
-      /**
-       * Using `--coverage` results in a `Fatal error` if `maxThreads` **and**
-       * `minThreads` sn't set to `1`.
-       *
-       * @see https://github.com/vitest-dev/vitest/issues/1171
-       */
-      maxThreads: 1,
-      minThreads: 1,
       mockReset: true,
       outputFile: {
         json: './__tests__/report.json'
