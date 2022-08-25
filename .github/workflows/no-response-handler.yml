@@ -18,14 +18,14 @@ on:
 permissions:
   issues: write
 jobs:
-  handler:
+  no-response-handler:
     runs-on: ubuntu-latest
     steps:
       - id: close
         name: Close issues after 14 days
         uses: lee-dohm/no-response@v0.5.0
         with:
-          closeComment: >
+          closeComment: |
             This issue has been automatically closed because there has been no response to our
             request for more information from the original author. With only the information that is
             currently available, there isn't enough information to take action. Please reach out if
