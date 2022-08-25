@@ -29,12 +29,10 @@ concurrency:
 jobs:
   ci:
     if: |
-      github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch' ||
-      !startsWith(github.event.head_commit.message, 'release:') || github.actor == 'dependabot[bot]'
+      github.event_name == 'pull_request' ||
+      github.event_name == 'workflow_dispatch' ||
+      !startsWith(github.event.head_commit.message, 'release:')
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node: [16.16.0]
     steps:
       - id: checkout
         name: Checkout ${{ env.REF }}
