@@ -14,26 +14,9 @@ const config = {
   overrides: [
     ...require('./.eslintrc.base.cjs').overrides,
     {
-      files: [
-        'src/types/built-in.ts',
-        'src/types/deep-partial-by-helper.ts',
-        'src/types/deep-partial-by-required-helper.ts',
-        'src/types/overwrite.ts'
-      ],
+      files: ['src/types/built-in.ts', 'src/types/overwrite.ts'],
       rules: {
         '@typescript-eslint/ban-types': 0
-      }
-    },
-    {
-      files: ['src/types/deep-omit.ts'],
-      rules: {
-        '@typescript-eslint/sort-type-union-intersection-members': 0
-      }
-    },
-    {
-      files: ['src/types/or-never.ts'],
-      rules: {
-        '@typescript-eslint/no-redundant-type-constituents': 0
       }
     }
   ]
