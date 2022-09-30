@@ -19,6 +19,7 @@ dessant
 dohm
 duid
 esbenp
+esbuild
 fbca
 fpnv
 gpgsign
@@ -29,7 +30,7 @@ keyid
 larsgw
 lcov
 micnncim
-mkdist
+mkbuild
 nocheck
 npmrc
 nums
@@ -39,7 +40,6 @@ pkgs
 preid
 safecrlf
 syncer
-tspaths
 vates
 vitest
 vsicons
