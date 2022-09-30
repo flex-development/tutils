@@ -60,7 +60,21 @@
   },
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
+  "types": "./dist/index.d.mts",
+  "typesVersions": {
+    "*": {
+      "*.cjs": [
+        "./dist/*.d.cts",
+        "./dist/*/index.d.cts",
+        "./dist/index.d.cts"
+      ],
+      "*": [
+        "./dist/*.d.mts",
+        "./dist/*/index.d.mts",
+        "./dist/index.d.mts"
+      ]
+    }
+  },
   "scripts": {
     "build": "unbuild",
     "check:ci": "yarn dedupe --check && yarn check:format && yarn check:lint && yarn check:spelling && yarn check:types && yarn check:types:build && NODE_ENV=production yarn pack -o %s-%v.tgz && yarn clean:pack && yarn test:cov",
