@@ -29,38 +29,31 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/index.mjs",
       "require": "./dist/index.cjs"
     },
     "./enums": {
-      "types": "./dist/enums/index.d.ts",
       "import": "./dist/enums/index.mjs",
       "require": "./dist/enums/index.cjs"
     },
     "./enums/*": {
-      "types": "./dist/enums/*.d.ts",
       "import": "./dist/enums/*.mjs",
       "require": "./dist/enums/*.cjs"
     },
     "./guards": {
-      "types": "./dist/guards/index.d.ts",
       "import": "./dist/guards/index.mjs",
       "require": "./dist/guards/index.cjs"
     },
     "./guards/*": {
-      "types": "./dist/guards/*.d.ts",
       "import": "./dist/guards/*.mjs",
       "require": "./dist/guards/*.cjs"
     },
     "./package.json": "./package.json",
     "./types": {
-      "types": "./dist/types/index.d.ts",
       "import": "./dist/types/index.mjs",
       "require": "./dist/types/index.cjs"
     },
     "./types/*": {
-      "types": "./dist/types/*.d.ts",
       "import": "./dist/types/*.mjs",
       "require": "./dist/types/*.cjs"
     }
