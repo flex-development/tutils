@@ -4,7 +4,6 @@
  */
 
 import type EmptyString from './empty-string'
-import type NumberString from './number-string'
 
 /**
  * Semantic version string schema.
@@ -15,6 +14,6 @@ import type NumberString from './number-string'
 type SemanticVersion = `${number}.${number}.${number}${
   | EmptyString
   | `-${number | `${string}${EmptyString | `.${number}`}`}`
-  | `+${NumberString}`}`
+  | `+${number | string}`}`
 
 export type { SemanticVersion as default }
