@@ -166,7 +166,7 @@
     "mkdist": "patch:mkdist@npm:0.3.13#.yarn/patches/mkdist-npm-0.3.13-c41cf41c68.patch"
   },
   "engines": {
-    "node": ">=14.16",
+    "node": ">=14",
     "yarn": "4.0.0-rc.14"
   },
   "packageManager": "yarn@4.0.0-rc.14",
