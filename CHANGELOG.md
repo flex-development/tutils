@@ -1,3 +1,99 @@
+## [tutils@5.0.1](https://github.com/flex-development/tutils/compare/tutils@5.0.0...tutils@5.0.1) (2022-09-30)
+
+
+### :package: Build
+
+* require at least node.js 14 ([572ca73](https://github.com/flex-development/tutils/commit/572ca7302ae528c822964d1be44dad772273d8b1))
+* set `typesVersions` ([20cfa15](https://github.com/flex-development/tutils/commit/20cfa15b15f9b45374a63882030d0f01498bb155))
+* use `mkbuild` to build project ([94e3cc1](https://github.com/flex-development/tutils/commit/94e3cc154428e18b3d4da83aa2e729e26f51b52b))
+* **deps-dev:** bump @types/eslint from 8.4.5 to 8.4.6 ([#56](https://github.com/flex-development/tutils/issues/56)) ([0bd61c6](https://github.com/flex-development/tutils/commit/0bd61c64e8d90a2252879fd37cc0be82de5a79b3))
+* **deps-dev:** bump @typescript-eslint/eslint-plugin from 5.33.1 to 5.34.0 ([#64](https://github.com/flex-development/tutils/issues/64)) ([3f91307](https://github.com/flex-development/tutils/commit/3f913073edc2dcf4f484365a0345f1e48882e78d))
+* **deps-dev:** bump @typescript-eslint/eslint-plugin from 5.34.0 to 5.35.1 ([#67](https://github.com/flex-development/tutils/issues/67)) ([03cf64d](https://github.com/flex-development/tutils/commit/03cf64d8707ed9d793f770e8fc01d087e3309c7f))
+* **deps-dev:** bump @typescript-eslint/parser from 5.33.1 to 5.34.0 ([#65](https://github.com/flex-development/tutils/issues/65)) ([11cb8b9](https://github.com/flex-development/tutils/commit/11cb8b9efda8f211f8fbb6f54e54e0950cdf89b3))
+* **deps-dev:** bump @typescript-eslint/parser from 5.34.0 to 5.35.1 ([#66](https://github.com/flex-development/tutils/issues/66)) ([dfc4796](https://github.com/flex-development/tutils/commit/dfc479649ca926c30387367605aec2a6ba23470d))
+* **deps-dev:** bump @vitest/coverage-c8 from 0.22.0 to 0.22.1 ([#62](https://github.com/flex-development/tutils/issues/62)) ([3f2eb47](https://github.com/flex-development/tutils/commit/3f2eb473fa0e2efd9c62a8b6c2efd915b90d3fe0))
+* **deps-dev:** bump @vitest/ui from 0.22.0 to 0.22.1 ([#60](https://github.com/flex-development/tutils/issues/60)) ([91363f6](https://github.com/flex-development/tutils/commit/91363f6e88e2911953d2560cc02408c49eebdbc2))
+* **deps-dev:** bump cspell from 6.6.1 to 6.7.0 ([#58](https://github.com/flex-development/tutils/issues/58)) ([8bb6770](https://github.com/flex-development/tutils/commit/8bb67700a3fc2e1a3c0eb810fd0fd65d26b9a8d2))
+* **deps-dev:** bump cspell from 6.7.0 to 6.8.0 ([#63](https://github.com/flex-development/tutils/issues/63)) ([a500255](https://github.com/flex-development/tutils/commit/a5002552e279beafa57e29af753e58d6b298e352))
+* **deps-dev:** bump eslint-plugin-jsonc from 2.3.1 to 2.4.0 ([1e45ef3](https://github.com/flex-development/tutils/commit/1e45ef33bbb9d7c46411ab4fe9a412172525ddbe))
+* **deps-dev:** bump eslint-plugin-promise from 6.0.0 to 6.0.1 ([#69](https://github.com/flex-development/tutils/issues/69)) ([5ec7516](https://github.com/flex-development/tutils/commit/5ec751632a2bdc7d10b38b95a1530e07a9dc63d6))
+* **deps-dev:** bump eslint-plugin-react from 7.30.1 to 7.31.0 ([#68](https://github.com/flex-development/tutils/issues/68)) ([5bde4b7](https://github.com/flex-development/tutils/commit/5bde4b7c276dafc5285864a3401b7448bf5e0002))
+* **deps-dev:** bump pretty-format from 28.1.3 to 29.0.0 ([efc38f9](https://github.com/flex-development/tutils/commit/efc38f97116398686654087c6ccf0f2bd9bb45f6))
+* **deps-dev:** bump unbuild from 0.8.8 to 0.8.9 ([#61](https://github.com/flex-development/tutils/issues/61)) ([4add30f](https://github.com/flex-development/tutils/commit/4add30f6a2a449cee762c2049ca369363c7663d7))
+* **deps-dev:** bump vitest from 0.22.0 to 0.22.1 ([#59](https://github.com/flex-development/tutils/issues/59)) ([0de2679](https://github.com/flex-development/tutils/commit/0de267942eccd09b68ea72413c1ff555b188e045))
+* **exports:** remove extraneous conditional `types` exports ([13b7990](https://github.com/flex-development/tutils/commit/13b7990b9b5f1b45a630b248444fc96d7f13c1d3))
+* **pkg:** set type to `module` ([59fcf62](https://github.com/flex-development/tutils/commit/59fcf62c5e02c8b90e12388d3af919493f33710e))
+
+
+### :robot: Continuous Integration
+
+* let [@dependabot](https://github.com/dependabot) check for new versions at random times ([7e4b90e](https://github.com/flex-development/tutils/commit/7e4b90e0679ec201e62d55b464978d8009843a5b))
+* refactor [@dependabot](https://github.com/dependabot) workflow ([df65f3f](https://github.com/flex-development/tutils/commit/df65f3fa1152fcf728fca9fa3221d98293405d1a))
+* **deps:** bump flex-development/dist-tag-action from 1.0.0 to 1.1.0 ([#55](https://github.com/flex-development/tutils/issues/55)) ([678c3d0](https://github.com/flex-development/tutils/commit/678c3d048e7ca0fbc267d08702f93f734442e4fc))
+* **workflows:** `add-to-project` ([20ee547](https://github.com/flex-development/tutils/commit/20ee5479a6acf87bd44de40fe43b5a51d198255c))
+* **workflows:** `dependabot-auto-fix` ([70d519a](https://github.com/flex-development/tutils/commit/70d519afb5bd575282524da664ecad03f096c47f))
+* **workflows:** add debug step to ci workflow ([f2f1d17](https://github.com/flex-development/tutils/commit/f2f1d173d91541d494ee28829375f4c6a2bb7e02))
+* **workflows:** add gh pat for [@dependabot](https://github.com/dependabot) ([d1ccb27](https://github.com/flex-development/tutils/commit/d1ccb270ea25a8b26d57ed8eaabff9dc69529618))
+* **workflows:** add test coverage output to ci workflow ([8cfe138](https://github.com/flex-development/tutils/commit/8cfe13836b494a6be840bb869cb5389c75c35236))
+* **workflows:** add test coverage output to ci workflow ([4d7d787](https://github.com/flex-development/tutils/commit/4d7d78736eb4ff3945e7ef5854c3e222c584d22f))
+* **workflows:** cleanup ci workflow ([712557c](https://github.com/flex-development/tutils/commit/712557c6a7f8c79b1c18173241ba79b2fe73011a))
+* **workflows:** cleanup workflow environments and options ([39246d3](https://github.com/flex-development/tutils/commit/39246d3b7b152882c85a85d3c995d257c750adee))
+* **workflows:** fix [@dependabot](https://github.com/dependabot) package ecosystem conditionals ([070cba5](https://github.com/flex-development/tutils/commit/070cba5fc19096f095396dbd4e03329628847f7f))
+* **workflows:** refactor `integrity` ([2eb58c0](https://github.com/flex-development/tutils/commit/2eb58c06f3137292fa7262b65b615cc52e069d8b))
+* **workflows:** remove `query-linked-issues` ([eacd6f9](https://github.com/flex-development/tutils/commit/eacd6f9a37cb66af251228e937278d67ac63efb1))
+* **workflows:** run ci workflow on push to feature and hotfix branches ([c23029a](https://github.com/flex-development/tutils/commit/c23029ae6be2fb00292d8d9bc4f06fd333186724))
+* **workflows:** sign [@dependabot](https://github.com/dependabot) lockfile fix commits ([e16048a](https://github.com/flex-development/tutils/commit/e16048a1a67abb2b5d6f5f632a7845e2120c5cbe))
+* **workflows:** skip `integrity` for [@dependabot](https://github.com/dependabot) ([5b2aba2](https://github.com/flex-development/tutils/commit/5b2aba2fbd70d068fe84b425826766d7993e19d8))
+* **workflows:** skip ci workflow when [@dependabot](https://github.com/dependabot) pushes to `main` ([1a646fb](https://github.com/flex-development/tutils/commit/1a646fbf78b6191d461e534b387445f826c87a54))
+* **workflows:** sync workflow and job names ([b52337a](https://github.com/flex-development/tutils/commit/b52337a8442d476ace665d5606a3bf0e07533d69))
+* **workflows:** try using `secrets.PAT_ADMIN` to trigger pr synchronize event for [@dependabot](https://github.com/dependabot) ([05d88e5](https://github.com/flex-development/tutils/commit/05d88e5c5313b99623d3aca0e10f50047083d1b9))
+* **workflows:** update prerelease check ([178a617](https://github.com/flex-development/tutils/commit/178a6176d2094b44e3ec602f85e9e97661fd42ea))
+* **workflows:** use `secrets.PAT_BOT` ([071ef4d](https://github.com/flex-development/tutils/commit/071ef4dab79be1c67dc0b704a4a7890e84395f24))
+
+
+### :pencil: Documentation
+
+* zsh ([1fe945f](https://github.com/flex-development/tutils/commit/1fe945f7bdeeaca807027ad798433c6bdc46fc2f))
+* **github:** update commit scope descriptions ([a85a7d8](https://github.com/flex-development/tutils/commit/a85a7d830b6d051ec9a1924c64f17d3ae173cdbd))
+
+
+### :house_with_garden: Housekeeping
+
+* cleanup ([4064cb7](https://github.com/flex-development/tutils/commit/4064cb7d1d636dbd945b358aacc09b7bbdd086a0))
+* cleanup cspell dictionary ([0a9659f](https://github.com/flex-development/tutils/commit/0a9659ff4e7ef07d9e6de95c12473faa37ec30fc))
+* cleanup eslint config ([3821ca4](https://github.com/flex-development/tutils/commit/3821ca4f5c4163f3170d39cef0df37102e7cdec0))
+* eslint x graphql support ([eb52b2e](https://github.com/flex-development/tutils/commit/eb52b2ee4a022fa5be87b96faddcc44a2fe7c49c))
+* fix private registry login for [@dependabot](https://github.com/dependabot) ([378917c](https://github.com/flex-development/tutils/commit/378917c9bb7f226ce1dd24259c7b2b1f5c30bd45))
+* only run checks in lint-staged config ([172d10c](https://github.com/flex-development/tutils/commit/172d10c6ca63879baf86bf7a48307b3f98f3a619))
+* only run checks in lint-staged config ([ae7f0db](https://github.com/flex-development/tutils/commit/ae7f0dbb73e455462cc6b85c1cef4757c6f8d40a))
+* remove duplicate `**/.npmignore` entry from `.prettierignore` ([9210257](https://github.com/flex-development/tutils/commit/9210257691971586e729aa0783ba99fd18f0a92f))
+* set specific time for version checks by [@dependabot](https://github.com/dependabot) ([cf428a8](https://github.com/flex-development/tutils/commit/cf428a820dd50700c5a8584f1fda6f02a62fe2db))
+* update jsx check in eslint config ([f366f2f](https://github.com/flex-development/tutils/commit/f366f2f334ab84ca7412ff878b87cba377abf5fd))
+* update sample gitconfig ([246a401](https://github.com/flex-development/tutils/commit/246a401cdcd20b34de19544f074649dace058bd1))
+* **github:** add label `scope:tests` ([35909a1](https://github.com/flex-development/tutils/commit/35909a138f222d7457cadb56932680ce5923b9b0))
+* **github:** configure issue template chooser ([f9746d2](https://github.com/flex-development/tutils/commit/f9746d2941641c3c4045164c1ed20d7f18ddab90))
+* **github:** convert issue templates to issue forms ([a741573](https://github.com/flex-development/tutils/commit/a7415736adb05f474008c4677148809782f3970e))
+* **github:** remove `type:discussion` label ([3aa5bc3](https://github.com/flex-development/tutils/commit/3aa5bc330ac894d7290fb408738a993b66730417))
+* **github:** rename label `scope:deps` to `scope:dependencies` ([198561e](https://github.com/flex-development/tutils/commit/198561ec3048d1eeeb08c341a9b281efb8f3e486))
+* **github:** rename label `scope:typescript` to `scope:ts` ([f9b6530](https://github.com/flex-development/tutils/commit/f9b6530641a58d6c3f594f22e8619d7bebbcf912))
+* **github:** update label descriptions ([74ba0e8](https://github.com/flex-development/tutils/commit/74ba0e81b1f92bb09b793bf36207885076dd8a8d))
+* **github:** update pull request template ([bebd4e2](https://github.com/flex-development/tutils/commit/bebd4e29fe55547a116237dfc289f5996f993462))
+* **release:** read tag prefix from `package.json` ([6b08e88](https://github.com/flex-development/tutils/commit/6b08e882434485d9378ae624db30560a6f0d3322))
+* **release:** update commit message format ([9aa4449](https://github.com/flex-development/tutils/commit/9aa4449f2eda18c9a2d943b3968392dcaad02167))
+* **release:** use current date as release date ([43a2225](https://github.com/flex-development/tutils/commit/43a2225be34125784d14b5b277b7066f20b5600c))
+* **vscode:** cleanup eslint settings ([53571ab](https://github.com/flex-development/tutils/commit/53571ab5047fd2beb3df85411ac3212a03cbf7bd))
+* **vscode:** let prettier handle shellscript files ([118cde5](https://github.com/flex-development/tutils/commit/118cde5b118205cfb5f75cd6bd9743a1ba9c9df6))
+* **yarn:** configure `flex-development` scope ([d24d03e](https://github.com/flex-development/tutils/commit/d24d03ea7a014c72f396e7052d645ddabb31f611))
+* **yarn:** fix lockfile ruined by [@dependabot](https://github.com/dependabot) ([d73bba2](https://github.com/flex-development/tutils/commit/d73bba26ea60a050c606dce97026b091ec56c4ad))
+* **yarn:** fix lockfile ruined by [@dependabot](https://github.com/dependabot) ([87574e4](https://github.com/flex-development/tutils/commit/87574e4836c5fe0bf8fab98106049da9533fb024))
+* **yarn:** fix lockfile ruined by [@dependabot](https://github.com/dependabot) ([705612d](https://github.com/flex-development/tutils/commit/705612d822f3dfaeabe12dcc76d305c30314594d))
+* **yarn:** remove registry restrictions ([793a0ca](https://github.com/flex-development/tutils/commit/793a0cad95fd78b9c91425f771e1e330c474462b))
+
+
+### :white_check_mark: Testing
+
+* update vitest environment ([8b79d00](https://github.com/flex-development/tutils/commit/8b79d004cb6ef40e0e395ee80acbd9d4b1ab3e94))
+
 ## [tutils@5.0.0](https://github.com/flex-development/tutils/compare/tutils@5.0.0-alpha.1...tutils@5.0.0) (2022-08-17)
 
 
