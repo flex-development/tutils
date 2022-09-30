@@ -6,14 +6,13 @@
 import type ObjectPlain from './object-plain'
 
 /**
- * Creates a list of optional properties in `T`.
- *
- * @todo Get nested properties recursively
+ * Extracts all optional keys from `T`.
  *
  * @template T - Object type
  */
-type KeysOptional<T extends ObjectPlain> = {
-  [K in keyof T]-?: undefined extends { [K2 in keyof T]: K2 }[K] ? K : never
-}[keyof T]
+type KeysOptional<T extends ObjectPlain> = Exclude<
+  { [K in keyof T]: T extends Record<K, T[K]> ? never : K }[keyof T],
+  undefined
+>
 
 export { type KeysOptional as default }
