@@ -38,6 +38,7 @@ nvmrc
 ohmyzsh
 pkgs
 preid
+promisable
 safecrlf
 syncer
 vates
