@@ -2,10 +2,8 @@
   "arrowParens": "avoid",
   "bracketSameLine": false,
   "bracketSpacing": true,
-  "endOfLine": "lf",
   "htmlWhitespaceSensitivity": "css",
   "jsxSingleQuote": true,
-  "printWidth": 80,
   "proseWrap": "always",
   "quoteProps": "as-needed",
   "semi": false,
@@ -20,7 +18,6 @@
         "*.txt",
         ".editorconfig",
         ".env*",
-        ".gitconfig",
         ".husky/commit-msg",
         ".husky/pre-commit",
         ".husky/pre-push"
@@ -34,12 +31,6 @@
         "spaceRedirects": true,
         "switchCaseIndent": true,
         "variant": 0
-      }
-    },
-    {
-      "files": ["*.yml"],
-      "options": {
-        "printWidth": 100
       }
     }
   ]

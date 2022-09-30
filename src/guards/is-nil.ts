@@ -3,7 +3,7 @@
  * @module tutils/guards/isNIL
  */
 
-import type { NIL } from 'src/types'
+import type { NIL } from '#src/types'
 
 /**
  * Checks if `value` is a {@link NIL}.

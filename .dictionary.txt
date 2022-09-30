@@ -28,7 +28,6 @@ iife
 keyid
 larsgw
 lcov
-lintstagedrc
 micnncim
 mkdist
 nocheck
@@ -40,7 +39,6 @@ pkgs
 preid
 safecrlf
 syncer
-tsnode
 tspaths
 vates
 vitest

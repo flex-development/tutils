@@ -3,7 +3,7 @@
  * @module tutils/guards/tests/unit/isEmptyString
  */
 
-import type { TestcaseFn } from 'tests/interfaces'
+import type { TestcaseFn } from '#tests/interfaces'
 import testSubject from '../is-empty-string'
 
 describe('unit:guards/isEmptyString', () => {

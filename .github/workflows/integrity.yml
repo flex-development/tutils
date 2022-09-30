@@ -8,6 +8,9 @@
 ---
 name: integrity
 on:
+  create:
+    branches:
+      - main
   pull_request:
     paths:
       - .github/workflows/integrity.yml

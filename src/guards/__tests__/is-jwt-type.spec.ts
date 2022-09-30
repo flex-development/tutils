@@ -3,8 +3,8 @@
  * @module tutils/guards/tests/unit/isJwtType
  */
 
-import JwtType from 'src/enums/jwt-type'
-import type { TestcaseFn } from 'tests/interfaces'
+import JwtType from '#src/enums/jwt-type'
+import type { TestcaseFn } from '#tests/interfaces'
 import testSubject from '../is-jwt-type'
 
 describe('unit:guards/isJwtType', () => {

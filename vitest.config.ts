@@ -10,26 +10,35 @@ import path from 'node:path'
 import type { UserConfig } from 'vite'
 import tsconfigpaths from 'vite-tsconfig-paths'
 import GithubActionsReporter from 'vitest-github-actions-reporter'
+import { BaseSequencer } from 'vitest/node'
 
 /**
  * Creates a {@link UserConfig} object for test environments.
  *
- * @return {Promise<UserConfig>} Vitest configuration options
+ * @return {UserConfig} Vitest configuration options
  */
-const config = async (): Promise<UserConfig> => {
-  const { BaseSequencer } = await import('vitest/node')
+const config = (): UserConfig => {
+  /**
+   * Absolute path to [experimental loader for Node.js][1].
+   *
+   * [1]: https://nodejs.org/docs/latest-v16.x/api/esm.html#loaders
+   *
+   * @const {string} NODE_LOADER_PATH
+   */
+  const NODE_LOADER_PATH: string = path.resolve('loader.mjs')
 
   /**
-   * Path to tsconfig file.
+   * Absolute path to tsconfig file.
    *
    * @const {string} TSCONFIG_PATH
    */
-  const TSCONFIG_PATH: string = path.resolve('tsconfig.tsnode.json')
+  const TSCONFIG_PATH: string = path.resolve('tsconfig.json')
 
   return {
     define: {
-      'import.meta.env.CI': ci,
-      'import.meta.env.NODE_ENV': JSON.stringify(NodeEnv.TEST)
+      'import.meta.env.CI': JSON.stringify(ci),
+      'import.meta.env.NODE_ENV': JSON.stringify(NodeEnv.TEST),
+      'process.env.NODE_OPTIONS': JSON.stringify(`--loader=${NODE_LOADER_PATH}`)
     },
     mode: NodeEnv.TEST,
     plugins: [tsconfigpaths({ projects: [TSCONFIG_PATH] })],
@@ -43,7 +52,7 @@ const config = async (): Promise<UserConfig> => {
           '**/__mocks__/**',
           '**/__tests__/**',
           '**/index.ts',
-          'src/types/'
+          'src/types'
         ],
         extension: ['.ts'],
         include: ['src'],

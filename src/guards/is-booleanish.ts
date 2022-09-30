@@ -3,7 +3,7 @@
  * @module tutils/guards/isBooleanish
  */
 
-import type { Booleanish } from 'src/types'
+import type { Booleanish } from '#src/types'
 
 /**
  * Checks if `value` is {@link Booleanish}.

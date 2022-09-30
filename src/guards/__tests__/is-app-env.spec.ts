@@ -3,8 +3,8 @@
  * @module tutils/guards/tests/unit/isAppEnv
  */
 
-import AppEnv from 'src/enums/app-env'
-import type { TestcaseFn } from 'tests/interfaces'
+import AppEnv from '#src/enums/app-env'
+import type { TestcaseFn } from '#tests/interfaces'
 import testSubject from '../is-app-env'
 
 describe('unit:guards/isAppEnv', () => {

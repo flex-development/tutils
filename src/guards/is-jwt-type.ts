@@ -3,7 +3,7 @@
  * @module tutils/guards/isJwtType
  */
 
-import JwtType from 'src/enums/jwt-type'
+import JwtType from '#src/enums/jwt-type'
 
 /**
  * Checks if `value` is a {@link JwtType}.

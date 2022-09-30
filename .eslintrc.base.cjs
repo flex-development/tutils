@@ -5,10 +5,10 @@
  */
 
 /**
- * @type {import('tsconfig.json')}
+ * @type {typeof import('./tsconfig.json')}
  * @const tsconfig - Tsconfig object
  */
-const tsconfig = require('tsconfig/dist/tsconfig').loadSync(__dirname).config
+const tsconfig = require('./tsconfig.json')
 
 /**
  * @type {boolean}
@@ -22,7 +22,7 @@ const jsx = Boolean(tsconfig.compilerOptions.jsx)
  */
 const config = {
   env: {
-    [tsconfig.compilerOptions.target]: true,
+    [require('./tsconfig.build.json').compilerOptions.target]: true,
     node: true
   },
   extends: [
@@ -44,7 +44,7 @@ const config = {
     ResolveHookContext: 'readonly',
     ResolveHookResult: 'readonly'
   },
-  parser: require.resolve('@typescript-eslint/parser'),
+  parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
       jsx,
@@ -120,9 +120,10 @@ const config = {
       {
         allowArgumentsExplicitlyTypedAsAny: true,
         allowDirectConstAssertionInArrowFunctions: true,
-        allowHigherOrderFunctions: true,
+        allowHigherOrderFunctions: false,
         allowTypedFunctionExpressions: true,
-        allowedNames: []
+        allowedNames: [],
+        shouldTrackReferences: true
       }
     ],
     '@typescript-eslint/init-declarations': 0,
@@ -191,7 +192,7 @@ const config = {
     '@typescript-eslint/no-explicit-any': 0,
     '@typescript-eslint/no-extra-non-null-assertion': 2,
     '@typescript-eslint/no-extra-parens': 0,
-    '@typescript-eslint/no-extra-semi': 2,
+    '@typescript-eslint/no-extra-semi': 0,
     '@typescript-eslint/no-extraneous-class': [
       2,
       {
@@ -490,7 +491,7 @@ const config = {
     'node/no-new-require': 2,
     'node/no-path-concat': 2,
     'node/no-process-env': 0,
-    'node/no-process-exit': 2,
+    'node/no-process-exit': 0,
     'node/no-unpublished-bin': 0,
     'node/no-unpublished-import': 0,
     'node/no-unpublished-require': 0,
@@ -530,7 +531,6 @@ const config = {
     'unicorn/better-regex': [2, { sortCharacterClasses: true }],
     'unicorn/catch-error-name': [2, { name: 'e' }],
     'unicorn/consistent-destructuring': 2,
-    'unicorn/consistent-function-scoping': 2,
     'unicorn/custom-error-definition': 2,
     'unicorn/empty-brace-spaces': 2,
     'unicorn/error-message': 2,
@@ -797,25 +797,29 @@ const config = {
       }
     },
     {
-      files: ['*.cjs', '*.md/*.cjs', '*.mjs'],
+      files: ['*.cjs', '*.md/*.cjs', '*.js', '*.jsx', '*.mjs'],
       rules: {
         '@typescript-eslint/explicit-module-boundary-types': 0,
-        '@typescript-eslint/no-implicit-any-catch': 0,
-        '@typescript-eslint/restrict-template-expressions': 0
+        '@typescript-eslint/no-implicit-any-catch': 0
       }
     },
     {
       files: ['*.cjs', '*.cts'],
       rules: {
         '@typescript-eslint/no-require-imports': 0,
-        '@typescript-eslint/no-var-requires': 0,
-        'unicorn/prefer-module': 0
+        '@typescript-eslint/no-var-requires': 0
       }
     },
     {
       files: ['*.cts', '*.d.ts', '*.ts'],
       rules: {
         'no-undef': 0
+      }
+    },
+    {
+      files: ['*.cts'],
+      rules: {
+        'unicorn/prefer-module': 0
       }
     },
     {
@@ -842,15 +846,14 @@ const config = {
       }
     },
     {
-      files: ['*.json'],
+      files: ['*.json', '*.json5', '*.jsonc'],
       extends: ['plugin:jsonc/prettier'],
-      parser: require.resolve('jsonc-eslint-parser'),
+      parser: 'jsonc-eslint-parser',
       plugins: ['jsonc'],
       rules: {
         'jsonc/no-bigint-literals': 2,
         'jsonc/no-binary-expression': 2,
         'jsonc/no-binary-numeric-literals': 2,
-        'jsonc/no-comments': 2,
         'jsonc/no-escape-sequence-in-identifier': 2,
         'jsonc/no-hexadecimal-numeric-literals': 2,
         'jsonc/no-infinity': 2,
@@ -914,24 +917,25 @@ const config = {
             pathPattern: '^$'
           }
         ],
-
         'jsonc/valid-json-number': 2,
         'jsonc/vue-custom-block/no-parsing-error': 2
       }
     },
     {
+      files: ['*.json5', '*.jsonc'],
+      rules: {
+        'jsonc/no-comments': 0
+      }
+    },
+    {
       files: ['*.md'],
-      parser: require.resolve('eslint-plugin-markdownlint/parser'),
+      parser: 'eslint-plugin-markdownlint/parser',
       plugins: ['markdown', 'markdownlint'],
-      processor: 'markdown/markdown',
-      rules: Object.entries(require('./.markdownlint.cjs')).reduce((acc, e) => {
-        if (/^md\d+/i.test(e[0])) acc[`markdownlint/${e[0]}`] = [1, e[1]]
-        return acc
-      }, {})
+      processor: 'markdown/markdown'
     },
     {
       files: ['*.yml'],
-      parser: require.resolve('yaml-eslint-parser'),
+      parser: 'yaml-eslint-parser',
       plugins: ['yml'],
       rules: {
         'prettier/prettier': 0,
@@ -1002,7 +1006,6 @@ const config = {
         faker: true,
         it: true,
         pf: true,
-        restoreConsole: true,
         suite: true,
         test: true,
         vi: true,
@@ -1028,7 +1031,6 @@ const config = {
         'promise/prefer-await-to-callbacks': 0,
         'promise/valid-params': 0,
         'unicorn/consistent-destructuring': 0,
-        'unicorn/consistent-function-scoping': 0,
         'unicorn/explicit-length-check': 0,
         'unicorn/no-array-for-each': 0,
         'unicorn/prefer-at': 0,
@@ -1044,14 +1046,9 @@ const config = {
       }
     },
     {
-      files: ['.eslintrc.*', '.lintstagedrc.cjs'],
-      rules: {
-        'sort-keys': 0
-      }
-    },
-    {
       files: ['.eslintrc.*'],
       rules: {
+        'sort-keys': 0,
         'unicorn/string-content': 0
       }
     },

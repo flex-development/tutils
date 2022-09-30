@@ -3,7 +3,7 @@
  * @module tutils/guards/isEmptyValue
  */
 
-import type { EmptyValue } from 'src/types'
+import type { EmptyValue } from '#src/types'
 import isEmptyString from './is-empty-string'
 import isNIL from './is-nil'
 

@@ -3,7 +3,7 @@
  * @module tutils/guards/isAppEnv
  */
 
-import AppEnv from 'src/enums/app-env'
+import AppEnv from '#src/enums/app-env'
 
 /**
  * Checks if `value` is an {@link AppEnv}.

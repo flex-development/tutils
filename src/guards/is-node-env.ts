@@ -3,7 +3,7 @@
  * @module tutils/guards/isNodeEnv
  */
 
-import NodeEnv from 'src/enums/node-env'
+import NodeEnv from '#src/enums/node-env'
 
 /**
  * Checks if `value` is a {@link NodeEnv}.

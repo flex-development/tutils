@@ -3,7 +3,7 @@
  * @module tutils/guards/tests/unit/isNumberString
  */
 
-import type { TestcaseFn } from 'tests/interfaces'
+import type { TestcaseFn } from '#tests/interfaces'
 import testSubject from '../is-number-string'
 
 describe('unit:guards/isNumberString', () => {

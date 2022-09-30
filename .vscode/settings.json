@@ -13,21 +13,34 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[jest-snapshot]": {
-    "editor.rulers": [120],
+    "editor.rulers": [130],
     "editor.wordWrap": "wordWrapColumn",
-    "editor.wordWrapColumn": 120,
-    "rewrap.wrappingColumn": 120
+    "editor.wordWrapColumn": 130,
+    "rewrap.wrappingColumn": 130
   },
   "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[markdown]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+  "[properties]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
   "[shellscript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.rulers": [100],
+    "editor.wordWrap": "wordWrapColumn",
+    "editor.wordWrapColumn": 100,
+    "rewrap.wrappingColumn": 100
   },
   "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[txt]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[yaml]": {
@@ -44,15 +57,27 @@
   "eslint.enable": true,
   "eslint.nodePath": "./node_modules/eslint",
   "eslint.options": {
-    "extensions": ["cjs", "cts", "gql", "json", "md", "mjs", "ts", "yml"],
+    "extensions": [
+      "cjs",
+      "cts",
+      "gql",
+      "json",
+      "jsonc",
+      "md",
+      "mjs",
+      "ts",
+      "yml"
+    ],
     "overrideConfigFile": "./.eslintrc.cjs"
   },
   "eslint.validate": [
     "graphql",
     "javascript",
     "json",
+    "jsonc",
     "markdown",
-    "typescript"
+    "typescript",
+    "yaml"
   ],
   "files.associations": {
     "*.snap": "jest-snapshot",
@@ -75,7 +100,7 @@
   "prettier.ignorePath": "./.prettierignore",
   "prettier.prettierPath": "./node_modules/prettier",
   "prettier.resolveGlobalModules": false,
-  "prettier.useEditorConfig": false,
+  "prettier.useEditorConfig": true,
   "shellformat.flag": "-ci -fn -i=2 -sr",
   "typescript.suggest.completeFunctionCalls": true,
   "typescript.suggest.completeJSDocs": true,
@@ -83,32 +108,17 @@
   "typescript.updateImportsOnFileMove.enabled": "always",
   "vsicons.associations.files": [
     {
-      "extensions": [".commitlintrc.ts"],
-      "format": "svg",
-      "icon": "commitlint"
-    },
-    {
       "extensions": [".eslintrc.base.cjs"],
       "format": "svg",
       "icon": "eslint"
     },
     {
-      "extensions": [".graphqlrc.ts"],
+      "extensions": [".graphqlrc.yml"],
       "format": "svg",
       "icon": "graphql"
     },
     {
-      "extensions": [".lintstagedrc.cjs"],
-      "format": "svg",
-      "icon": "lintstagedrc"
-    },
-    {
-      "extensions": [".markdownlint.cjs", ".markdownlintignore"],
-      "format": "svg",
-      "icon": "markdownlint"
-    },
-    {
-      "extensions": ["tsnode.json"],
+      "extensions": ["build.json"],
       "format": "svg",
       "icon": "tsconfig"
     },
@@ -133,6 +143,11 @@
       "extensions": ["__snapshots__"],
       "format": "svg",
       "icon": "temp"
+    },
+    {
+      "extensions": ["patches"],
+      "format": "svg",
+      "icon": "include"
     },
     {
       "extensions": ["setup"],

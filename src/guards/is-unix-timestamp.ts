@@ -3,7 +3,7 @@
  * @module tutils/guards/isUnixTimestamp
  */
 
-import type { TimestampUnix } from 'src/types'
+import type { TimestampUnix } from '#src/types'
 
 /**
  * Checks if `timestamp` is a valid [unix timestamp][1].
