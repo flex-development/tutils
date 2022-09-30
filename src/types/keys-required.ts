@@ -3,16 +3,16 @@
  * @module tutils/types/KeysRequired
  */
 
-import type KeysOptional from './keys-optional'
 import type ObjectPlain from './object-plain'
 
 /**
- * Creates a list of required properties in `T`.
- *
- * @todo Get nested properties recursively
+ * Extracts all required keys from `T`.
  *
  * @template T - Object type
  */
-type KeysRequired<T extends ObjectPlain> = Exclude<keyof T, KeysOptional<T>>
+type KeysRequired<T extends ObjectPlain> = Exclude<
+  { [K in keyof T]: T extends Record<K, T[K]> ? K : never }[keyof T],
+  undefined
+>
 
 export { type KeysRequired as default }
