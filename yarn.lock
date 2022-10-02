@@ -818,6 +818,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@flex-development/toggle-pkg-type@npm:1.0.0":
+  version: 1.0.0
+  resolution: "@flex-development/toggle-pkg-type@npm:1.0.0::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40flex-development%2Ftoggle-pkg-type%2F1.0.0%2F2b551bd2ad2bc88ae1adb80afdecfc29a0705902"
+  bin:
+    toggle-pkg-type: dist/cli.mjs
+  checksum: 5060b7a49b1100d9281fdd1e99a6308b48657d7cfc0f029048b0613ec497787952ad3a175807290bdf4afaf00f6ff2e8c655aa50794b1003e212974a9ea7f8c9
+  languageName: node
+  linkType: hard
+
 "@flex-development/tutils@npm:5.0.1, @flex-development/tutils@workspace:.":
   version: 0.0.0-use.local
   resolution: "@flex-development/tutils@workspace:."
@@ -827,6 +836,7 @@ __metadata:
     "@commitlint/types": "npm:17.0.0"
     "@faker-js/faker": "npm:7.5.0"
     "@flex-development/mkbuild": "npm:1.0.0-alpha.6"
+    "@flex-development/toggle-pkg-type": "npm:1.0.0"
     "@graphql-eslint/eslint-plugin": "npm:3.11.2"
     "@types/chai": "npm:4.3.3"
     "@types/conventional-changelog": "npm:3.1.1"
