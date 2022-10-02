@@ -791,10 +791,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@flex-development/mkbuild@npm:1.0.0-alpha.5":
-  version: 1.0.0-alpha.5
-  resolution: "@flex-development/mkbuild@npm:1.0.0-alpha.5::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40flex-development%2Fmkbuild%2F1.0.0-alpha.5%2F91739c326aeef247d9cf8ce557453507bdd3ff26"
+"@flex-development/mkbuild@npm:1.0.0-alpha.6":
+  version: 1.0.0-alpha.6
+  resolution: "@flex-development/mkbuild@npm:1.0.0-alpha.6::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40flex-development%2Fmkbuild%2F1.0.0-alpha.6%2Feafa02640ad813d30c234739773eb1790df9e60d"
   dependencies:
+    "@flex-development/tutils": "npm:5.0.1"
     colorette: "npm:2.0.19"
     consola: "npm:2.15.3"
     cosmiconfig: "npm:7.0.1"
@@ -813,11 +814,11 @@ __metadata:
     typescript: ">=3.7.2"
   bin:
     mkbuild: dist/cli.mjs
-  checksum: 5d3d2e0ebcdd0447f9a00dfd049e7fd96c33c6334b68dd103631f631fe6d60545ec6c7ebb50f07988c689ae0ef7b771e0e38551db2770754dc1ef93718a88623
+  checksum: 9ebe00b31081c6f2c1eba70aa5a9d38ad0e85f950da11cdf54b38197f219b05d773706e7afc20366f26afe4e2d3eb32af5ec13bd57f73c031d9923a5490c1589
   languageName: node
   linkType: hard
 
-"@flex-development/tutils@workspace:.":
+"@flex-development/tutils@npm:5.0.1, @flex-development/tutils@workspace:.":
   version: 0.0.0-use.local
   resolution: "@flex-development/tutils@workspace:."
   dependencies:
@@ -825,7 +826,7 @@ __metadata:
     "@commitlint/config-conventional": "npm:17.1.0"
     "@commitlint/types": "npm:17.0.0"
     "@faker-js/faker": "npm:7.5.0"
-    "@flex-development/mkbuild": "npm:1.0.0-alpha.5"
+    "@flex-development/mkbuild": "npm:1.0.0-alpha.6"
     "@graphql-eslint/eslint-plugin": "npm:3.11.2"
     "@types/chai": "npm:4.3.3"
     "@types/conventional-changelog": "npm:3.1.1"
