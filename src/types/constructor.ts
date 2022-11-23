@@ -3,19 +3,14 @@
  * @module tutils/types/Constructor
  */
 
-import type ObjectPlain from './object-plain'
-
 /**
- * [Object class][1] type.
+ * Matches a [`class` constructor][1].
  *
- * [1]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Classes
+ * [1]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Classes/constructor
  *
- * @template T - Object type
+ * @template P - Class prototype
  * @template A - Constructor arguments
  */
-type Constructor<
-  T extends ObjectPlain = ObjectPlain,
-  A extends any[] = any[]
-> = new (...args: A) => T
+type Constructor<P, A extends unknown[] = any[]> = new (...args: A) => P
 
 export { type Constructor as default }
