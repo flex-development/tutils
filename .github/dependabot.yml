@@ -26,6 +26,8 @@ updates:
     commit-message:
       prefix: build
       include: scope
+    ignore:
+      - dependency-name: typescript
     labels:
       - scope:dependencies
       - type:build

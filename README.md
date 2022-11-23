@@ -1,72 +1,58 @@
 # tutils
 
-[![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
-[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
-[![module type: cjs+esm](https://img.shields.io/badge/module%20type-cjs%2besm-brightgreen)](https://github.com/voxpelli/badges-cjs-esm)
 [![npm](https://img.shields.io/npm/v/@flex-development/tutils.svg)](https://npmjs.com/package/@flex-development/tutils)
+[![module type: cjs+esm](https://img.shields.io/badge/module%20type-cjs%2Besm-brightgreen)](https://github.com/voxpelli/badges-cjs-esm)
 [![license](https://img.shields.io/github/license/flex-development/tutils.svg)](LICENSE.md)
-[![typescript](https://badgen.net/badge/-/typescript?color=2a72bc&icon=typescript&label)](https://typescriptlang.org)
+[![conventional commits](https://img.shields.io/badge/-conventional%20commits-fe5196?logo=conventional-commits&logoColor=ffffff)](https://conventionalcommits.org/)
+[![github actions](http://img.shields.io/badge/-github%20actions-2088ff?style=flat&logo=github-actions&logoColor=ffffff)](https://github.com/features/actions)
+[![typescript](https://img.shields.io/badge/-typescript-3178c6?logo=typescript&logoColor=ffffff)](https://typescriptlang.org/)
+[![vitest](https://img.shields.io/badge/-vitest-6e9f18?style=flat&logo=vitest&logoColor=ffffff)](https://vitest.dev/)
+[![yarn](https://img.shields.io/badge/-yarn-2c8ebb?style=flat&logo=yarn&logoColor=ffffff)](https://yarnpkg.com/)
 
-> TypeScript utilities.
+TypeScript utilities.
+
+## Contents
+
+- [What is this?](#what-is-this)
+- [When should I use this?](#when-should-i-use-this)
+- [Install](#install)
+- [Use](#use)
+
+## What is this?
+
+This package contains [TypeScript][1] utilities used by the [Flex Development][2] (FLDV) team.
+
+It includes enums, interfaces, types, and type guards.
+
+## When should I use this?
+
+Use this package when you need a variety of TypeScript utilities.
+
+Note that although this project is publicly available, it is **intended for mainly internal use**.
 
 ## Install
 
 ```sh
-yarn add @flex-development/tutils
+yarn add -D @flex-development/tutils
 ```
 
-### GitHub Package Registry
-
-To install from the GitHub Package Registry, setup a `.npmrc` or `.yarnrc.yml`
-file to authenticate with the registry. A [Personal Access Token with at least
-the `read:packages` scope][1] is required.
-
-#### `.npmrc`
-
-```utf-8
-//npm.pkg.github.com/:_authToken=${GH_PAT}
-@flex-development:registry=https://npm.pkg.github.com/
-```
-
-#### `.yarnrc.yml`
-
-```yaml
-npmRegistries:
-  //npm.pkg.github.com:
-    npmAlwaysAuth: true
-    npmAuthToken: ${GH_PAT}
-
-npmScopes:
-  flex-development:
-    npmRegistryServer: https://npm.pkg.github.com
-```
-
-### Git
-
-For details on requesting a specific branch, commit, or tag, see
-[npm-install][2] or [Git - Protocols | Yarn][3].
-
-#### NPM
+From Git:
 
 ```sh
-npm i flex-development/tutils
+yarn add -D @flex-development/tutils@flex-development/tutils
 ```
 
-#### Yarn
+<blockquote>
+  <small>
+    See <a href='https://yarnpkg.com/features/protocols#git'>Git - Protocols | Yarn</a>
+    &nbsp;for details on requesting a specific branch, commit, or tag.
+  </small>
+</blockquote>
 
-```sh
-yarn add @flex-development/tutils@flex-development/tutils
-```
-
-## Usage
+## Use
 
 ```typescript
-import type {
-  NullishNumber,
-  NullishString,
-  OrNull,
-  Path
-} from '@flex-development/tutils'
+import type { Nullable, Path } from '@flex-development/tutils'
 
 /**
  * Object representing a `User` entity **(from the database)**.
@@ -75,27 +61,19 @@ import type {
  *
  * [1]: https://sequelize.org/v7/manual/getters-setters-virtuals#virtual-fields
  */
-interface IUserRaw {
+interface IUser {
   created_at: number
   email: Lowercase<string>
   id: number
-  name: { first: NullishString; last: NullishString }
-  updated_at: NullishNumber
+  name: { first: Nullable<string>; last: Nullable<string> }
+  updated_at: Nullable<number>
 }
 
-/** {@link IUserRaw} attributes. */
-type UserRawAttribute = Path<IUserRaw> // 'created_at' | 'email' | 'id' | 'name' | 'name.first' | 'name.last' | 'updated_at'
+/** {@linkcode IUser} attributes. */
+type UserAttribute = Path<IUser> // 'created_at' | 'email' | 'id' | 'name' | 'name.first' | 'name.last' | 'updated_at'
 
-export { type IUserRaw as default, type UserRawAttribute }
+export type { IUser as default, UserAttribute }
 ```
 
-### Exports
-
-- Enums: [`src/enums`](src/enums/index.ts)
-- Type Definitions: [`src/types`](src/types/index.ts)
-- Type Guards: [`src/guards`](src/guards/index.ts)
-
-[1]:
-  https://docs.github.com/en/packages/learn-github-packages/about-permissions-for-github-packages#about-scopes-and-permissions-for-package-registries
-[2]: https://docs.npmjs.com/cli/v8/commands/npm-install#description
-[3]: https://yarnpkg.com/features/protocols#git
+[1]: https://typescriptlang.org/
+[2]: https://flexdevelopment.llc

@@ -3,7 +3,7 @@
  * @module tests/interfaces/AssertionResult
  */
 
-import type { Nullable } from '@flex-development/tutils'
+import type { Nullable } from '#src'
 
 /**
  * Test assertion summary object produced by the `vitest` [`JsonReporter`][1].

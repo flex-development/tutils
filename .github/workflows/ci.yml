@@ -9,7 +9,7 @@
 # - https://github.com/hmarr/debug-action
 
 ---
-name: continuous-integration
+name: ci
 on:
   pull_request:
   push:
@@ -71,11 +71,10 @@ jobs:
         run: yarn pack -o %s-%v.tgz
         env:
           NODE_ENV: production
-          NODE_NO_WARNINGS: 1
       - id: test
         name: Run tests
         run: yarn test:cov
         env:
-          NODE_ENV: test
           NODE_NO_WARNINGS: 1
+          NODE_OPTIONS: --loader=./loader.mjs
           VITEST_SEGFAULT_RETRY: 3

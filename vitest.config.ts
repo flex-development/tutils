@@ -1,23 +1,27 @@
 /**
  * @file Vitest Configuration
  * @module config/vitest
- * @see https://vitest.dev/config
+ * @see https://vitest.dev/config/
  */
 
-import { NodeEnv } from '@flex-development/tutils'
+import { NodeEnv } from '#src'
 import ci from 'is-ci'
 import path from 'node:path'
-import type { UserConfig } from 'vite'
 import tsconfigpaths from 'vite-tsconfig-paths'
 import GithubActionsReporter from 'vitest-github-actions-reporter'
+import {
+  defineConfig,
+  type UserConfig,
+  type UserConfigExport
+} from 'vitest/config'
 import { BaseSequencer } from 'vitest/node'
 
 /**
- * Creates a {@link UserConfig} object for test environments.
+ * Vitest configuration export.
  *
- * @return {UserConfig} Vitest configuration options
+ * @const {UserConfigExport} config
  */
-const config = (): UserConfig => {
+const config: UserConfigExport = defineConfig((): UserConfig => {
   /**
    * Absolute path to [experimental loader for Node.js][1].
    *
@@ -48,12 +52,7 @@ const config = (): UserConfig => {
       coverage: {
         all: true,
         clean: true,
-        exclude: [
-          '**/__mocks__/**',
-          '**/__tests__/**',
-          '**/index.ts',
-          'src/types'
-        ],
+        exclude: ['**/__mocks__/**', '**/__tests__/**', '**/index.ts'],
         extension: ['.ts'],
         include: ['src'],
         reporter: ['json-summary', 'lcov', 'text'],
@@ -117,9 +116,9 @@ const config = (): UserConfig => {
         min: false,
         printFunctionName: true
       },
-      testTimeout: 10 * 1000
+      testTimeout: 15 * 1000
     }
   }
-}
+})
 
 export default config

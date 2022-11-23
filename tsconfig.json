@@ -12,8 +12,9 @@
     "exactOptionalPropertyTypes": false,
     "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
-    "isolatedModules": false,
-    "lib": ["dom", "es2020"],
+    "importsNotUsedAsValues": "error",
+    "isolatedModules": true,
+    "lib": ["es2020"],
     "module": "esnext",
     "moduleDetection": "force",
     "moduleResolution": "node",
@@ -32,9 +33,7 @@
       "#fixtures/*": ["__fixtures__/*"],
       "#src": ["src/index"],
       "#src/*": ["src/*"],
-      "#tests/*": ["__tests__/*"],
-      "@flex-development/tutils": ["src/index"],
-      "@flex-development/tutils/*": ["src/*"]
+      "#tests/*": ["__tests__/*"]
     },
     "preserveConstEnums": true,
     "preserveSymlinks": true,
@@ -58,8 +57,7 @@
     "**/**.mjs",
     "**/**.mts",
     "**/**.ts",
-    "**/.*.cjs",
-    "**/.*.ts"
+    "**/.*.cjs"
   ],
   "ts-node": {
     "compilerOptions": {},
