@@ -24,7 +24,7 @@
     "rewrap.wrappingColumn": 130
   },
   "[markdown]": {
-    "editor.defaultFormatter": "DavidAnson.vscode-markdownlint",
+    "editor.defaultFormatter": "vscode.markdown-language-features",
     "editor.rulers": [
       {
         "color": "var(--vscode-editorRuler-foreground)",
@@ -137,9 +137,16 @@
   "files.trimTrailingWhitespace": true,
   "git.autofetch": true,
   "git.enableSmartCommit": true,
-  "markdownlint.ignore": "./.markdownlintignore",
   "markdown.extension.toc.slugifyMode": "github",
   "markdown.extension.toc.updateOnSave": false,
+  "markdownlint.ignore": "./.markdownlintignore",
+  "markdownlint.lintWorkspaceGlobs": [
+    "**/*.md",
+    "!**/node_modules",
+    "!**/.git",
+    "!**/CHANGELOG.md",
+    "!**/LICENSE.md"
+  ],
   "npm-intellisense.scanDevDependencies": true,
   "prettier.enable": false,
   "prettier.useEditorConfig": false,
