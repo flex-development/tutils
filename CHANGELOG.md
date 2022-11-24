@@ -1,3 +1,97 @@
+## [tutils@6.0.0-alpha.1](https://github.com/flex-development/tutils/compare/tutils@5.0.1...tutils@6.0.0-alpha.1) (2022-11-23)
+
+
+### ⚠ BREAKING CHANGES
+
+* **exports:** export `.` and `./package.json` only
+* **types:** remove `NumberString`
+* **types:** remove `OmitByType`
+* **types:** remove `RegexString`
+* **types:** remove `DeepPick`
+* **types:** remove `DeepPartial`
+* **types:** remove `Or*`
+* **types:** remove `Nullish*`
+* **types:** `OrNil` -> `Nilable`
+* **types:** remove `Union`
+* **types:** remove `UID`
+* **types:** remove `OrDeepPartial`
+* **types:** remove `PickByType`
+* **types:** remove `Intersection`
+* **types:** remove `DUID`
+* **types:** remove `DocumentPartial`
+* **types:** remove `DeepOmit`
+* **types:** remove `DeepRequired`
+* **types:** `OrPromise` -> `Promisable`
+* **types:** `ClassConstructor` -> `Constructor`
+
+### :package: Build
+
+* require node `>=14.16` ([f4a01a4](https://github.com/flex-development/tutils/commit/f4a01a426c0047830ed3ff46418f37a37ae7a5db))
+* **deps-peer:** add `typescript>=4.7` (optional) ([aa6c1d5](https://github.com/flex-development/tutils/commit/aa6c1d5885a00ac09f5e6ba29afaab8faa0efcba))
+* **exports:** export `.` and `./package.json` only ([cf1edd4](https://github.com/flex-development/tutils/commit/cf1edd4731bca78d2bd694c89b6f0e7e51102c5e))
+
+
+### :robot: Continuous Integration
+
+* **deps:** Bump actions/add-to-project from 0.3.0 to 0.4.0 ([#85](https://github.com/flex-development/tutils/issues/85)) ([da49a5f](https://github.com/flex-development/tutils/commit/da49a5f9ccf3aebc8e85450c4cf0c8a832e0b29b))
+* **deps:** bump actions/checkout from 3.0.2 to 3.1.0 ([#77](https://github.com/flex-development/tutils/issues/77)) ([3a5b4a6](https://github.com/flex-development/tutils/commit/3a5b4a6b97a2464df8e8bc79006071065f9e084b))
+* **deps:** bump actions/github-script from 6.1.1 to 6.3.1 ([#75](https://github.com/flex-development/tutils/issues/75)) ([be9055d](https://github.com/flex-development/tutils/commit/be9055dfe8f857ee31ab86d568d40f1c30b9e197))
+* **deps:** bump actions/github-script from 6.3.1 to 6.3.2 ([#79](https://github.com/flex-development/tutils/issues/79)) ([73bba8a](https://github.com/flex-development/tutils/commit/73bba8a2fd7adf5dab263f665803730c7f07d684))
+* **deps:** bump actions/github-script from 6.3.2 to 6.3.3 ([#81](https://github.com/flex-development/tutils/issues/81)) ([9bbbafd](https://github.com/flex-development/tutils/commit/9bbbafd1e9711ee134ec1a1990a5e8818cfeddca))
+* **deps:** bump actions/setup-node from 3.4.1 to 3.5.0 ([#72](https://github.com/flex-development/tutils/issues/72)) ([19c2491](https://github.com/flex-development/tutils/commit/19c249103f4e7e6e562c15b13134062e5935568d))
+* **deps:** Bump crazy-max/ghaction-import-gpg from 5.1.0 to 5.2.0 ([#83](https://github.com/flex-development/tutils/issues/83)) ([7a3acec](https://github.com/flex-development/tutils/commit/7a3acec213fba2b6fb6c2f0666d83fa79e80d918))
+* **deps:** bump dependabot/fetch-metadata from 1.3.3 to 1.3.4 ([#76](https://github.com/flex-development/tutils/issues/76)) ([87c92b9](https://github.com/flex-development/tutils/commit/87c92b93171f6e839beb2a8bdf257674471295e8))
+* **deps:** Bump dependabot/fetch-metadata from 1.3.4 to 1.3.5 ([#84](https://github.com/flex-development/tutils/issues/84)) ([6eb6090](https://github.com/flex-development/tutils/commit/6eb609027f1173bd74b35de3b02ebff2a2a8fffb))
+* **deps:** bump flex-development/dist-tag-action from 1.1.0 to 1.1.1 ([#73](https://github.com/flex-development/tutils/issues/73)) ([c821b01](https://github.com/flex-development/tutils/commit/c821b014519724bb86320d28c74cf7cc06e54b92))
+* **deps:** bump hmarr/debug-action from 2.0.1 to 2.1.0 ([#78](https://github.com/flex-development/tutils/issues/78)) ([35b6396](https://github.com/flex-development/tutils/commit/35b639648ed7832920901990302cdad132c23764))
+
+
+### :sparkles: Features
+
+* **types:** `Class` ([3dd5638](https://github.com/flex-development/tutils/commit/3dd5638ef89f7c2b7c904fe2e1cc74c71044884b))
+* **types:** `LiteralUnion` ([fc987d3](https://github.com/flex-development/tutils/commit/fc987d34aacb47ac93ddee23a140bdc7a20b8856))
+* **types:** `Opaque` ([5a6fe9b](https://github.com/flex-development/tutils/commit/5a6fe9b563ef0bca722babe94ee7d7c888d8fd80))
+* **types:** `Predicate` ([ed21f07](https://github.com/flex-development/tutils/commit/ed21f07166df17381393847933becc89fb25e576))
+* **types:** `SemanticVersion` ([c3212d9](https://github.com/flex-development/tutils/commit/c3212d987b0fb00eb97999ee3efda5fb19f77f19))
+* **types:** `Simplify` ([29d5151](https://github.com/flex-development/tutils/commit/29d51519d69948d61e2d92a6ddf13b1f99e1031a))
+
+
+### :bug: Fixes
+
+* **cjs:** missing `default` exports ([4d2d9fc](https://github.com/flex-development/tutils/commit/4d2d9fcae7818217e55fc4ab04781dc81ba87534))
+
+
+### :house_with_garden: Housekeeping
+
+* cleanup eslint overrides ([10d28ee](https://github.com/flex-development/tutils/commit/10d28eeef001afc78ffc33c363adff24ad5a11d4))
+* ensure all eslint overrides are in config file ([e19f58a](https://github.com/flex-development/tutils/commit/e19f58a9856a030c81b667043dbca765a74e7a15))
+* update project architecture ([c2b2c41](https://github.com/flex-development/tutils/commit/c2b2c41a7c4fa80e61a130a1d72e8dc01ed4e7d4))
+
+
+### :zap: Refactors
+
+* **types:** `KeysOptional` logic ([4ccae04](https://github.com/flex-development/tutils/commit/4ccae046cd08577bc3c67c8c1536f8f09a3abb46))
+* **types:** `KeysRequired` logic ([23aab45](https://github.com/flex-development/tutils/commit/23aab452896b531ee257017a1d6555ae9c82d3f1))
+* **types:** `ClassConstructor` -> `Constructor` ([f6d8af2](https://github.com/flex-development/tutils/commit/f6d8af25983c23a2e55337b8cff4470e9ee05b98))
+* **types:** `OrNil` -> `Nilable` ([b0c17d7](https://github.com/flex-development/tutils/commit/b0c17d7dc0679f4bfbff554b86b48aff2ec30b08))
+* **types:** `OrPromise` -> `Promisable` ([a6f25d1](https://github.com/flex-development/tutils/commit/a6f25d19f1dc58414365b27f0dbaa66514f03712))
+* **types:** remove `DeepOmit` ([9617b62](https://github.com/flex-development/tutils/commit/9617b6299455f16252918d9aa7409a91824c7c2b))
+* **types:** remove `DeepPartial` ([d632b7a](https://github.com/flex-development/tutils/commit/d632b7a16011cbdfebe055b51eefaa0749424080))
+* **types:** remove `DeepPick` ([7275cb6](https://github.com/flex-development/tutils/commit/7275cb65cefc0de95cb488a3fdf60079b7f1444e))
+* **types:** remove `DeepRequired` ([656f937](https://github.com/flex-development/tutils/commit/656f937d856d640eff7952fb80dea2caec580355))
+* **types:** remove `DocumentPartial` ([1fd729d](https://github.com/flex-development/tutils/commit/1fd729d94d5f6a21140a3bf9d9d0cbc1c83920f4))
+* **types:** remove `DUID` ([61c1550](https://github.com/flex-development/tutils/commit/61c1550ff183d5823764497342ee65a669f78e73))
+* **types:** remove `Intersection` ([bc53cee](https://github.com/flex-development/tutils/commit/bc53cee635cce0cd4e1496e152041453e04a35d7))
+* **types:** remove `Nullish*` ([f082c18](https://github.com/flex-development/tutils/commit/f082c18072e3432319d737e05ccdf191bc7326dd))
+* **types:** remove `NumberString` ([ffbc26f](https://github.com/flex-development/tutils/commit/ffbc26f2f70e7b973ed884fbdc6097d1c399e602))
+* **types:** remove `OmitByType` ([5f45c71](https://github.com/flex-development/tutils/commit/5f45c712051e3ee7c7d021875692900933bb362f))
+* **types:** remove `Or*` ([3312dc0](https://github.com/flex-development/tutils/commit/3312dc041757577fd2607d7b58557280ae576207))
+* **types:** remove `OrDeepPartial` ([854e34c](https://github.com/flex-development/tutils/commit/854e34c2771ab8a2f976984f2aacfa00d696a963))
+* **types:** remove `PickByType` ([fc12dfd](https://github.com/flex-development/tutils/commit/fc12dfda5c1e56c3788d51a76dbb1c8c04cdb95e))
+* **types:** remove `RegexString` ([84236c8](https://github.com/flex-development/tutils/commit/84236c8d897b004b1a766ca730e0ded47e00e4fc))
+* **types:** remove `UID` ([96a2268](https://github.com/flex-development/tutils/commit/96a22682242c3536a67ebb4575c0cfeb62d18fc9))
+* **types:** remove `Union` ([da728ea](https://github.com/flex-development/tutils/commit/da728eaaa218ebf49a022fcbc08df0e7b20c3cf6))
+
 ## [tutils@5.0.1](https://github.com/flex-development/tutils/compare/tutils@5.0.0...tutils@5.0.1) (2022-09-30)
 
 
