@@ -172,6 +172,14 @@
     "vitest-github-actions-reporter": "0.9.0",
     "yaml-eslint-parser": "1.1.0"
   },
+  "peerDependencies": {
+    "typescript": ">=4.7"
+  },
+  "peerDependenciesMeta": {
+    "typescript": {
+      "optional": true
+    }
+  },
   "resolutions": {
     "@ardatan/sync-fetch": "larsgw/sync-fetch#head=worker_threads",
     "esbuild": "0.15.15"

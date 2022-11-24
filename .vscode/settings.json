@@ -149,6 +149,7 @@
   "typescript.suggest.completeJSDocs": true,
   "typescript.tsdk": "./node_modules/typescript/lib",
   "typescript.updateImportsOnFileMove.enabled": "always",
+  "versionlens.npm.dependencyProperties": ["dependencies", "devDependencies"],
   "vsicons.associations.files": [
     {
       "extensions": [".eslintrc.base.cjs"],
