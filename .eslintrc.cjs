@@ -18,6 +18,12 @@ const config = {
       rules: {
         '@typescript-eslint/ban-types': 0
       }
+    },
+    {
+      files: ['src/types/is-tuple.ts'],
+      rules: {
+        '@typescript-eslint/no-unused-vars': 0
+      }
     }
   ]
 }

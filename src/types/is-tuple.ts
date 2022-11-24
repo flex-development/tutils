@@ -10,7 +10,6 @@
  *
  * @template T - Value type
  */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 type IsTuple<T> = T extends [infer A]
   ? T
   : T extends [infer A, infer B]
@@ -22,6 +21,5 @@ type IsTuple<T> = T extends [infer A]
   : T extends [infer A, infer B, infer C, infer D, infer E]
   ? T
   : never
-/* eslint-enable @typescript-eslint/no-unused-vars */
 
 export { type IsTuple as default }
