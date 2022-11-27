@@ -24,6 +24,12 @@ const config = {
       rules: {
         '@typescript-eslint/no-unused-vars': 0
       }
+    },
+    {
+      files: ['src/interfaces/map-like.ts'],
+      rules: {
+        '@typescript-eslint/consistent-indexed-object-style': 0
+      }
     }
   ]
 }

@@ -22,7 +22,7 @@ TypeScript utilities.
 
 This package contains [TypeScript][1] utilities used by the [Flex Development][2] (FLDV) team.
 
-It includes enums, types, and type guards.
+It includes enums, interfaces, types, and type guards.
 
 ## When should I use this?
 
