@@ -4,7 +4,6 @@
  * @see https://vitest.dev/config/
  */
 
-import { NodeEnv } from '#src'
 import ci from 'is-ci'
 import path from 'node:path'
 import tsconfigpaths from 'vite-tsconfig-paths'
@@ -23,15 +22,6 @@ import { BaseSequencer } from 'vitest/node'
  */
 const config: UserConfigExport = defineConfig((): UserConfig => {
   /**
-   * Absolute path to [experimental loader for Node.js][1].
-   *
-   * [1]: https://nodejs.org/docs/latest-v16.x/api/esm.html#loaders
-   *
-   * @const {string} NODE_LOADER_PATH
-   */
-  const NODE_LOADER_PATH: string = path.resolve('loader.mjs')
-
-  /**
    * Absolute path to tsconfig file.
    *
    * @const {string} TSCONFIG_PATH
@@ -41,10 +31,9 @@ const config: UserConfigExport = defineConfig((): UserConfig => {
   return {
     define: {
       'import.meta.env.CI': JSON.stringify(ci),
-      'import.meta.env.NODE_ENV': JSON.stringify(NodeEnv.TEST),
-      'process.env.NODE_OPTIONS': JSON.stringify(`--loader=${NODE_LOADER_PATH}`)
+      'import.meta.env.NODE_ENV': JSON.stringify('test')
     },
-    mode: NodeEnv.TEST,
+    mode: 'test',
     plugins: [tsconfigpaths({ projects: [TSCONFIG_PATH] })],
     test: {
       allowOnly: !ci,
