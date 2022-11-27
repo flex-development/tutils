@@ -1,3 +1,10 @@
+## [tutils@6.0.0-alpha.3](https://github.com/flex-development/tutils/compare/tutils@6.0.0-alpha.2...tutils@6.0.0-alpha.3) (2022-11-27)
+
+
+### :sparkles: Features
+
+* **types:** `OrLowercase`, `OrUppercase` ([f449e95](https://github.com/flex-development/tutils/commit/f449e955c2a8a17304e5180cbc6b7ce8b2681f7e))
+
 ## [tutils@6.0.0-alpha.2](https://github.com/flex-development/tutils/compare/tutils@6.0.0-alpha.1...tutils@6.0.0-alpha.2) (2022-11-27)
 
 
