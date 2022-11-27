@@ -1,3 +1,17 @@
+## [tutils@6.0.0-alpha.2](https://github.com/flex-development/tutils/compare/tutils@6.0.0-alpha.1...tutils@6.0.0-alpha.2) (2022-11-27)
+
+
+### :robot: Continuous Integration
+
+* **workflows:** add node.js matrix to `ci` workflow ([017aa94](https://github.com/flex-development/tutils/commit/017aa94329652b09b8ebf30fc0d4f4d02820f4a9))
+* **workflows:** archive code coverage and production artifacts ([953b2b6](https://github.com/flex-development/tutils/commit/953b2b61fb8f10a47ca61a2edc4bb6139952fb4f))
+* **workflows:** use environment files ([f3847fa](https://github.com/flex-development/tutils/commit/f3847fa73a12c33f44a26b871a4706f1cc13bb8a))
+
+
+### :sparkles: Features
+
+* **interfaces:** `MapLike` ([45d6242](https://github.com/flex-development/tutils/commit/45d6242bbc4f3acbc08c20967091f8b6d69afd59))
+
 ## [tutils@6.0.0-alpha.1](https://github.com/flex-development/tutils/compare/tutils@5.0.1...tutils@6.0.0-alpha.1) (2022-11-23)
 
 
