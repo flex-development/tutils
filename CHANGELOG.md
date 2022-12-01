@@ -1,3 +1,10 @@
+## [tutils@6.0.0-alpha.4](https://github.com/flex-development/tutils/compare/tutils@6.0.0-alpha.3...tutils@6.0.0-alpha.4) (2022-12-01)
+
+
+### :sparkles: Features
+
+* **types:** [`JSONObject`] select value type with generic ([aea1f33](https://github.com/flex-development/tutils/commit/aea1f33ded81c0602ea10263980676773d190e33))
+
 ## [tutils@6.0.0-alpha.3](https://github.com/flex-development/tutils/compare/tutils@6.0.0-alpha.2...tutils@6.0.0-alpha.3) (2022-11-27)
 
 
