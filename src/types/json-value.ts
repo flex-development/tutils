@@ -1,17 +1,17 @@
 /**
- * @file Type Definitions - JSONValue
- * @module tutils/types/JSONValue
+ * @file Type Definitions - JsonValue
+ * @module tutils/types/JsonValue
  */
 
-import type JSONArray from './json-array'
-import type JSONObject from './json-object'
-import type JSONPrimitive from './json-primitive'
+import type JsonArray from './json-array'
+import type JsonObject from './json-object'
+import type JsonPrimitive from './json-primitive'
 
 /**
  * [JSON data types][1].
  *
  * [1]: https://restfulapi.net/json-data-types
  */
-type JSONValue = JSONArray | JSONObject | JSONPrimitive
+type JsonValue = JsonArray | JsonObject | JsonPrimitive
 
-export type { JSONValue as default }
+export type { JsonValue as default }

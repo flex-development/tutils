@@ -1,9 +1,9 @@
 /**
- * @file Type Definitions - JSONObject
- * @module tutils/types/JSONObject
+ * @file Type Definitions - JsonObject
+ * @module tutils/types/JsonObject
  */
 
-import type JSONValue from './json-value'
+import type JsonValue from './json-value'
 
 /**
  * Type representing a [JSON][1] object.
@@ -14,11 +14,11 @@ import type JSONValue from './json-value'
  * The type should **not**, however, be used as a direct return type as the user
  * would have to double-cast it: `object as unknown as CustomResponse`.
  *
- * Instead, the return type should extend `JSONObject` to ensure the return type
- * is JSON-compatible: `interface CustomResponse extends JSONObject { … }`.
+ * Instead, the return type should extend `JsonObject` to ensure the return type
+ * is JSON-compatible: `interface CustomResponse extends JsonObject { … }`.
  *
  * [1]: https://restfulapi.net/json-data-types
  */
-type JSONObject = { [K in string]?: JSONValue }
+type JsonObject = { [K in string]?: JsonValue }
 
-export type { JSONObject as default }
+export type { JsonObject as default }

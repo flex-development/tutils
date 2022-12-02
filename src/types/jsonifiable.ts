@@ -3,7 +3,7 @@
  * @module tutils/types/Jsonifiable
  */
 
-import type JSONPrimitive from './json-primitive'
+import type JsonPrimitive from './json-primitive'
 import type JsonifiableArray from './jsonifiable-array'
 import type JsonifiableObject from './jsonifiable-object'
 
@@ -12,6 +12,6 @@ import type JsonifiableObject from './jsonifiable-object'
  *
  * Can be used to type values that are expected to pass `JSON.stringify`.
  */
-type Jsonifiable = JsonifiableArray | JsonifiableObject | JSONPrimitive
+type Jsonifiable = JsonifiableArray | JsonifiableObject | JsonPrimitive
 
 export type { Jsonifiable as default }

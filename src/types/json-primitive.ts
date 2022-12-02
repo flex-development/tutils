@@ -1,6 +1,6 @@
 /**
- * @file Type Definitions - JSONPrimitive
- * @module tutils/types/JSONPrimitive
+ * @file Type Definitions - JsonPrimitive
+ * @module tutils/types/JsonPrimitive
  */
 
 /**
@@ -9,6 +9,6 @@
  * [1]: https://developer.mozilla.org/docs/Glossary/Primitive
  * [2]: https://restfulapi.net/json-data-types
  */
-type JSONPrimitive = boolean | number | string | null
+type JsonPrimitive = boolean | number | string | null
 
-export { type JSONPrimitive as default }
+export type { JsonPrimitive as default }

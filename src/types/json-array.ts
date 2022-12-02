@@ -1,15 +1,15 @@
 /**
- * @file Type Definitions - JSONArray
- * @module tutils/types/JSONArray
+ * @file Type Definitions - JsonArray
+ * @module tutils/types/JsonArray
  */
 
-import type JSONValue from './json-value'
+import type JsonValue from './json-value'
 
 /**
  * Type representing an array containing [JSON values][1].
  *
  * [1]: https://restfulapi.net/json-data-types
  */
-type JSONArray = JSONValue[]
+type JsonArray = JsonValue[]
 
-export { type JSONArray as default }
+export type { JsonArray as default }
