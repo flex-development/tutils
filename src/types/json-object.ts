@@ -18,9 +18,7 @@ import type JSONValue from './json-value'
  * is JSON-compatible: `interface CustomResponse extends JSONObject { … }`.
  *
  * [1]: https://restfulapi.net/json-data-types
- *
- * @template T - JSON value type
  */
-type JSONObject<T extends JSONValue = JSONValue> = { [K in string]?: T }
+type JSONObject = { [K in string]?: JSONValue }
 
-export { type JSONObject as default }
+export type { JSONObject as default }

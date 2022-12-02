@@ -12,9 +12,6 @@ import type JSONPrimitive from './json-primitive'
  *
  * [1]: https://restfulapi.net/json-data-types
  */
-type JSONValue =
-  | JSONArray
-  | JSONObject<JSONArray | JSONPrimitive | { [K in string]?: JSONValue }>
-  | JSONPrimitive
+type JSONValue = JSONArray | JSONObject | JSONPrimitive
 
-export { type JSONValue as default }
+export type { JSONValue as default }
