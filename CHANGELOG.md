@@ -1,3 +1,35 @@
+## [tutils@6.0.0-alpha.5](https://github.com/flex-development/tutils/compare/tutils@6.0.0-alpha.4...tutils@6.0.0-alpha.5) (2022-12-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* **types:** make `JsonObject` work as expected with `exactOptionalPropertyTypes`
+* **types:** `JSON*` -> `Json*`
+
+### :sparkles: Features
+
+* **types:** `Jsonifiable`, `JsonifiableArray`, `JsonifiableObject` ([d3b4e43](https://github.com/flex-development/tutils/commit/d3b4e43b56487157fd143d5de9aed9c9eea834bb))
+
+
+### :bug: Fixes
+
+* **types:** make `JsonObject` work as expected with `exactOptionalPropertyTypes` ([64e5daa](https://github.com/flex-development/tutils/commit/64e5daaf394b9c10e3d962a4f8d12958bad51b2f))
+
+
+### :house_with_garden: Housekeeping
+
+* **ts:** enforce `exactOptionalPropertyTypes` ([3d562a7](https://github.com/flex-development/tutils/commit/3d562a730794ce79a68df18565c901516d6f522a))
+
+
+### :zap: Refactors
+
+* **types:** `JSON*` -> `Json*` ([bd3193f](https://github.com/flex-development/tutils/commit/bd3193f109766d1d1081bf17afe0802806d20579))
+
+
+### :rewind: Reverts
+
+* **types:** aea1f33ded81c0602ea10263980676773d190e33 ([2dd3c8f](https://github.com/flex-development/tutils/commit/2dd3c8fda32d88cce2c73e1b655057fd016bf14a))
+
 ## [tutils@6.0.0-alpha.4](https://github.com/flex-development/tutils/compare/tutils@6.0.0-alpha.3...tutils@6.0.0-alpha.4) (2022-12-01)
 
 
