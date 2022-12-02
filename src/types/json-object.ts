@@ -19,6 +19,6 @@ import type JsonValue from './json-value'
  *
  * [1]: https://restfulapi.net/json-data-types
  */
-type JsonObject = { [K in string]?: JsonValue }
+type JsonObject = { [K in string]: JsonValue }
 
 export type { JsonObject as default }
