@@ -5,6 +5,7 @@
 
 import type JsonPrimitive from './json-primitive'
 import type JsonifiableArray from './jsonifiable-array'
+import type JsonifiableInstance from './jsonifiable-instance'
 import type JsonifiableObject from './jsonifiable-object'
 
 /**
@@ -12,6 +13,10 @@ import type JsonifiableObject from './jsonifiable-object'
  *
  * Can be used to type values that are expected to pass `JSON.stringify`.
  */
-type Jsonifiable = JsonifiableArray | JsonifiableObject | JsonPrimitive
+type Jsonifiable =
+  | JsonifiableArray
+  | JsonifiableInstance
+  | JsonifiableObject
+  | JsonPrimitive
 
 export type { Jsonifiable as default }
