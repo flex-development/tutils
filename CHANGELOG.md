@@ -1,3 +1,15 @@
+## [tutils@6.0.0-alpha.6](https://github.com/flex-development/tutils/compare/tutils@6.0.0-alpha.5...tutils@6.0.0-alpha.6) (2022-12-02)
+
+
+### :sparkles: Features
+
+* **types:** `JsonifiableInstance` ([6789428](https://github.com/flex-development/tutils/commit/6789428556c1413a4c3e7650b714d36c40973d08))
+
+
+### :bug: Fixes
+
+* **types:** make `JsonifiableObject` extendable ([bb49d82](https://github.com/flex-development/tutils/commit/bb49d82c86de5fe49d3559d6c3d02c1f002a1d8a))
+
 ## [tutils@6.0.0-alpha.5](https://github.com/flex-development/tutils/compare/tutils@6.0.0-alpha.4...tutils@6.0.0-alpha.5) (2022-12-02)
 
 
