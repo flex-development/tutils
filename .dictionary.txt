@@ -17,6 +17,7 @@ gpgsign
 graphqlrc
 hmarr
 iife
+jsonifiable
 keyid
 larsgw
 lcov
