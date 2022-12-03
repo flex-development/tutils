@@ -12,6 +12,10 @@ export type { default as Constructor } from './constructor'
 export type { default as ContinuousValue } from './continuous-value'
 export type { default as EmptyString } from './empty-string'
 export type { default as EmptyValue } from './empty-value'
+// prettier-ignore
+export type {
+  default as ExactOptionalPropertyTypes
+} from './exact-optional-property-types'
 export type { default as FIXME } from './fixme'
 export type { default as IndexSignature } from './index-signature'
 export type { default as Join } from './join'

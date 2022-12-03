@@ -14,7 +14,11 @@ const config = {
   overrides: [
     ...require('./.eslintrc.base.cjs').overrides,
     {
-      files: ['src/types/built-in.ts', 'src/types/overwrite.ts'],
+      files: [
+        'src/types/built-in.ts',
+        'src/types/exact-optional-property-types.ts',
+        'src/types/overwrite.ts'
+      ],
       rules: {
         '@typescript-eslint/ban-types': 0
       }
