@@ -1,3 +1,10 @@
+## [tutils@6.0.0-alpha.7](https://github.com/flex-development/tutils/compare/tutils@6.0.0-alpha.6...tutils@6.0.0-alpha.7) (2022-12-02)
+
+
+### :sparkles: Features
+
+* **types:** `ExactOptionalPropertyTypes` ([6a8cb77](https://github.com/flex-development/tutils/commit/6a8cb7783fd0c4bd35a632b30253efc30d6b23cf))
+
 ## [tutils@6.0.0-alpha.6](https://github.com/flex-development/tutils/compare/tutils@6.0.0-alpha.5...tutils@6.0.0-alpha.6) (2022-12-02)
 
 
