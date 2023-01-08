@@ -39,7 +39,6 @@ const config = {
     LoadHookResult: 'readonly',
     LoaderHookFormat: 'readonly',
     NodeJS: 'readonly',
-    ResolveFilename: 'readonly',
     ResolveHook: 'readonly',
     ResolveHookContext: 'readonly',
     ResolveHookResult: 'readonly'
@@ -338,7 +337,7 @@ const config = {
     'jsdoc/check-tag-names': [
       1,
       {
-        definedTags: ['next', 'visibleName'],
+        definedTags: ['experimental', 'next', 'visibleName'],
         jsxTags: jsx
       }
     ],
@@ -418,7 +417,7 @@ const config = {
       {
         exemptAsync: false,
         exemptGenerators: true,
-        reportMissingReturnForUndefinedTypes: false
+        reportMissingReturnForUndefinedTypes: true
       }
     ],
     'jsdoc/require-returns-description': 1,
@@ -466,6 +465,7 @@ const config = {
     'no-array-constructor': 0,
     'no-case-declarations': 0,
     'no-duplicate-imports': 0,
+    'no-empty': [2, { allowEmptyCatch: true }],
     'no-empty-function': 0,
     'no-ex-assign': 0,
     'no-invalid-this': 0,
@@ -604,8 +604,9 @@ const config = {
     'unicorn/no-useless-spread': 2,
     'unicorn/no-useless-undefined': 2,
     'unicorn/no-zero-fractions': 2,
-    'unicorn/number-literal-case': 2,
-    'unicorn/numeric-separators-style': 2,
+    'unicorn/number-literal-case': 0,
+    // https://github.com/sindresorhus/eslint-plugin-unicorn/issues/2003
+    'unicorn/numeric-separators-style': 0,
     'unicorn/prefer-add-event-listener': 2,
     'unicorn/prefer-array-find': 2,
     'unicorn/prefer-array-flat': [2, { functions: [] }],
@@ -618,7 +619,7 @@ const config = {
     'unicorn/prefer-default-parameters': 2,
     'unicorn/prefer-export-from': [2, { ignoreUsedVariables: true }],
     'unicorn/prefer-includes': 2,
-    'unicorn/prefer-json-parse-buffer': 2,
+    'unicorn/prefer-json-parse-buffer': 0,
     'unicorn/prefer-math-trunc': 2,
     'unicorn/prefer-module': 2,
     'unicorn/prefer-negative-index': 2,
@@ -679,7 +680,7 @@ const config = {
         '@typescript-eslint/no-base-to-string': [
           2,
           {
-            ignoredTypeNames: ['RegExp']
+            ignoredTypeNames: ['Error', 'RegExp', 'URL', 'URLSearchParams']
           }
         ],
         '@typescript-eslint/no-floating-promises': [
@@ -828,14 +829,9 @@ const config = {
       files: ['*.d.ts'],
       rules: {
         '@typescript-eslint/ban-types': 0,
-        '@typescript-eslint/lines-between-class-members': 0,
-        '@typescript-eslint/no-redundant-type-constituents': 0,
         '@typescript-eslint/triple-slash-reference': 0,
         'jsdoc/no-undefined-types': 0,
-        'jsdoc/require-file-overview': 0,
         'no-var': 0,
-        'unicorn/filename-case': 0,
-        'unicorn/no-empty-file': 0,
         'unicorn/no-keyword-prefix': 0
       }
     },
@@ -995,16 +991,18 @@ const config = {
       }
     },
     {
-      files: ['**/__tests__/*.spec.*'],
+      files: ['**/__tests__/*.spec.ts', '**/__tests__/*.spec-d.ts'],
       globals: {
         afterAll: true,
         afterEach: true,
         assert: true,
+        assertType: true,
         beforeAll: true,
         beforeEach: true,
         chai: true,
         describe: true,
         expect: true,
+        expectTypeOf: true,
         faker: true,
         it: true,
         pf: true,
@@ -1034,6 +1032,7 @@ const config = {
         'promise/prefer-await-to-callbacks': 0,
         'promise/valid-params': 0,
         'unicorn/consistent-destructuring': 0,
+        'unicorn/error-message': 0,
         'unicorn/explicit-length-check': 0,
         'unicorn/no-array-for-each': 0,
         'unicorn/no-useless-undefined': 0,
@@ -1047,6 +1046,13 @@ const config = {
       rules: {
         'jsdoc/check-indentation': 0,
         'unicorn/no-keyword-prefix': 0
+      }
+    },
+    {
+      files: ['**/typings/**/*.d.ts', '*-env.d.ts'],
+      rules: {
+        'jsdoc/require-file-overview': 0,
+        'unicorn/filename-case': 0
       }
     },
     {
@@ -1122,6 +1128,9 @@ const config = {
         enum: {
           name: 'namepath-defining',
           required: ['name', 'type']
+        },
+        experimental: {
+          name: 'none'
         },
         extends: {
           name: 'namepath-defining',

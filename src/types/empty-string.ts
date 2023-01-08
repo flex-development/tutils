@@ -8,4 +8,4 @@
  */
 type EmptyString = ''
 
-export { type EmptyString as default }
+export type { EmptyString as default }

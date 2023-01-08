@@ -8,4 +8,4 @@
 
 yarn check:types
 yarn check:types:build
-lint-staged
+lint-staged --config=.lintstagedrc.json

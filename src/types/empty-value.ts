@@ -11,4 +11,4 @@ import type NIL from './nil'
  */
 type EmptyValue = EmptyString | NIL
 
-export { type EmptyValue as default }
+export type { EmptyValue as default }

@@ -17,11 +17,9 @@ const config: Config = defineBuildConfig({
     { ext: '.mjs', format: 'esm' },
     { ext: '.cjs', format: 'cjs' }
   ],
-  platform: 'neutral',
   sourcemap: true,
   sourcesContent: false,
   target: 'node' + pkg.engines.node.replace(/^\D+/, ''),
-  treeShaking: true,
   tsconfig: 'tsconfig.build.json'
 })
 

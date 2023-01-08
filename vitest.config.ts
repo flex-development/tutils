@@ -21,30 +21,28 @@ import { BaseSequencer } from 'vitest/node'
  * @const {UserConfigExport} config
  */
 const config: UserConfigExport = defineConfig((): UserConfig => {
-  /**
-   * Absolute path to tsconfig file.
-   *
-   * @const {string} TSCONFIG_PATH
-   */
-  const TSCONFIG_PATH: string = path.resolve('tsconfig.json')
-
   return {
     define: {
       'import.meta.env.CI': JSON.stringify(ci),
       'import.meta.env.NODE_ENV': JSON.stringify('test')
     },
-    mode: 'test',
-    plugins: [tsconfigpaths({ projects: [TSCONFIG_PATH] })],
+    plugins: [tsconfigpaths({ projects: [path.resolve('tsconfig.json')] })],
     test: {
       allowOnly: !ci,
       clearMocks: true,
       coverage: {
         all: true,
         clean: true,
-        exclude: ['**/__mocks__/**', '**/__tests__/**', '**/index.ts'],
+        exclude: [
+          '**/__mocks__/**',
+          '**/__tests__/**',
+          '**/index.ts',
+          'src/interfaces/',
+          'src/types/'
+        ],
         extension: ['.ts'],
         include: ['src'],
-        reporter: ['json-summary', 'lcov', 'text'],
+        reporter: [ci ? 'lcovonly' : 'lcov', 'text'],
         reportsDirectory: './coverage',
         skipFull: false
       },
@@ -54,12 +52,10 @@ const config: UserConfigExport = defineConfig((): UserConfig => {
       ],
       globals: true,
       hookTimeout: 10 * 1000,
-      include: ['**/__tests__/*.spec.ts'],
+      include: ['**/__tests__/*.spec.ts', '**/__tests__/*.spec-d.ts'],
       isolate: true,
       mockReset: true,
-      outputFile: {
-        json: './__tests__/report.json'
-      },
+      outputFile: { json: './__tests__/report.json' },
       passWithNoTests: true,
       reporters: [
         'json',
@@ -105,7 +101,14 @@ const config: UserConfigExport = defineConfig((): UserConfig => {
         min: false,
         printFunctionName: true
       },
-      testTimeout: 15 * 1000
+      testTimeout: 15 * 1000,
+      typecheck: {
+        allowJs: false,
+        checker: 'tsc',
+        ignoreSourceErrors: false,
+        include: ['**/__tests__/*.spec-d.ts'],
+        tsconfig: path.resolve('tsconfig.typecheck.json')
+      }
     }
   }
 })

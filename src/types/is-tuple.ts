@@ -22,4 +22,4 @@ type IsTuple<T> = T extends [infer A]
   ? T
   : never
 
-export { type IsTuple as default }
+export type { IsTuple as default }

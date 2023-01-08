@@ -10,4 +10,4 @@
  */
 type IndexSignature = number | string | symbol
 
-export { type IndexSignature as default }
+export type { IndexSignature as default }

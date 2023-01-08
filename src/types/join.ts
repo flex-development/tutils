@@ -18,4 +18,4 @@ type Join<
   Delimiter extends string = ''
 > = `${String1 & string}${Delimiter}${String2 & string}`
 
-export { type Join as default }
+export type { Join as default }

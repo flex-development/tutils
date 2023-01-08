@@ -8,4 +8,4 @@
  */
 type Booleanish = boolean | 'false' | 'true'
 
-export { type Booleanish as default }
+export type { Booleanish as default }

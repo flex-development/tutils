@@ -27,4 +27,4 @@ type PathValue<
   ? T[P]
   : never
 
-export { type PathValue as default }
+export type { PathValue as default }

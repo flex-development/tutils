@@ -17,4 +17,4 @@ type Split<S extends string, D extends string> = string extends S
   ? [T, ...Split<U, D>]
   : [S]
 
-export { type Split as default }
+export type { Split as default }

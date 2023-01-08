@@ -22,4 +22,4 @@ type PathN<T extends ObjectPlain, K extends keyof T> = K extends string
     : never
   : never
 
-export { type PathN as default }
+export type { PathN as default }

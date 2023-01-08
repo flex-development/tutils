@@ -10,4 +10,4 @@ import type IndexSignature from './index-signature'
  */
 type ObjectPlain = { [Key in IndexSignature]?: any }
 
-export { type ObjectPlain as default }
+export type { ObjectPlain as default }

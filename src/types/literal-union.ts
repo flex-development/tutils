@@ -34,4 +34,4 @@ import type Primitive from './primitive'
  */
 type LiteralUnion<L, P extends Primitive> = L | (P & Record<never, never>)
 
-export { type LiteralUnion as default }
+export type { LiteralUnion as default }

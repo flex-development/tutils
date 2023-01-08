@@ -17,4 +17,4 @@ type Class<P, A extends unknown[] = any[]> = Constructor<P, A> & {
   prototype: P
 }
 
-export { type Class as default }
+export type { Class as default }

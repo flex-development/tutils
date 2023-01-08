@@ -15,4 +15,4 @@ type KeysRequired<T extends ObjectPlain> = Exclude<
   undefined
 >
 
-export { type KeysRequired as default }
+export type { KeysRequired as default }

@@ -13,4 +13,4 @@
  */
 type Constructor<P, A extends unknown[] = any[]> = new (...args: A) => P
 
-export { type Constructor as default }
+export type { Constructor as default }

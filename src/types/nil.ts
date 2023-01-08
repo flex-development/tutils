@@ -8,4 +8,4 @@
  */
 type NIL = null | undefined
 
-export { type NIL as default }
+export type { NIL as default }

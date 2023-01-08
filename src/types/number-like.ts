@@ -10,4 +10,4 @@ import type Numeric from './numeric'
  */
 type NumberLike = Numeric | number
 
-export { type NumberLike as default }
+export type { NumberLike as default }

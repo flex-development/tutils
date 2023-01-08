@@ -12,4 +12,4 @@
  */
 type Promisable<T> = PromiseLike<T> | T
 
-export { type Promisable as default }
+export type { Promisable as default }

@@ -10,4 +10,4 @@
  */
 type ContinuousValue = Date | number
 
-export { type ContinuousValue as default }
+export type { ContinuousValue as default }

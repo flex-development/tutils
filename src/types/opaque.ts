@@ -21,4 +21,4 @@ declare const tag: unique symbol
  */
 type Opaque<B, T = unknown> = B & { readonly [tag]: T }
 
-export { type Opaque as default }
+export type { Opaque as default }

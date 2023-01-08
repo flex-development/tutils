@@ -12,4 +12,4 @@ import type NIL from './nil'
  */
 type Nilable<T> = NIL | T
 
-export { type Nilable as default }
+export type { Nilable as default }

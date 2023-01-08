@@ -15,4 +15,4 @@ type Overwrite<Obj extends ObjectPlain, DTO extends ObjectPlain> = {
   [K in keyof Obj]: K extends keyof DTO ? DTO[K] : Obj[K]
 } & {}
 
-export { type Overwrite as default }
+export type { Overwrite as default }

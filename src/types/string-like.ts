@@ -8,4 +8,4 @@
  */
 type StringLike = { toString(): string }
 
-export { type StringLike as default }
+export type { StringLike as default }

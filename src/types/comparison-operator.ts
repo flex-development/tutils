@@ -8,4 +8,4 @@
  */
 type ComparisonOperator = '!=' | '<' | '<=' | '=' | '>' | '>='
 
-export { type ComparisonOperator as default }
+export type { ComparisonOperator as default }

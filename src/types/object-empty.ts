@@ -8,4 +8,4 @@
  */
 type ObjectEmpty = Record<string, never>
 
-export { type ObjectEmpty as default }
+export type { ObjectEmpty as default }

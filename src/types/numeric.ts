@@ -8,4 +8,4 @@
  */
 type Numeric = `${number}`
 
-export { type Numeric as default }
+export type { Numeric as default }
