@@ -17,6 +17,7 @@ on:
   pull_request:
     types:
       - review_requested
+      - synchronize
 env:
   GITHUB_TOKEN: ${{ secrets.PAT_BOT }}
 jobs:
