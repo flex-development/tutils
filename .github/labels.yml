@@ -46,6 +46,10 @@
   description: type guards
   color: 74cefc
 
+- name: scope:install
+  description: package install
+  color: 74cefc
+
 - name: scope:interfaces
   description: object types
   color: 74cefc
