@@ -58,6 +58,18 @@ body:
     validations:
       required: true
   - id: package-manager
+    type: dropdown
+    attributes:
+      label: Package manager
+      description: Package manager you are using
+      options:
+        - npm
+        - other
+        - pnpm
+        - yarn
+    validations:
+      required: true
+  - id: package-manager-version
     type: input
     attributes:
       label: Package manager version
@@ -68,7 +80,7 @@ body:
     type: dropdown
     attributes:
       label: Operating system (environment)
-      description: Provide the operating system that you are using
+      description: Operating system you are using
       options:
         - linux
         - macos
