@@ -22,7 +22,9 @@ env:
   GITHUB_TOKEN: ${{ secrets.PAT_BOT }}
 jobs:
   approve-pr:
-    if: github.event.requested_reviewer.login == 'flexdevelopment'
+    if: |
+      github.event_name == 'synchronize' ||
+      github.event.requested_reviewer.login == 'flexdevelopment'
     runs-on: ubuntu-latest
     steps:
       - id: dependabot-metadata
