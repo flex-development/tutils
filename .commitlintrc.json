@@ -21,6 +21,7 @@
         "github",
         "guards",
         "hybrid",
+        "install",
         "interfaces",
         "patches",
         "pkg",
