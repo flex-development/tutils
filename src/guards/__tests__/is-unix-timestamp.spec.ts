@@ -4,7 +4,7 @@
  */
 
 import type { TestcaseFn } from '#tests/interfaces'
-import testSubject from '../is-number-string'
+import testSubject from '../is-unix-timestamp'
 
 describe('unit:guards/isUnixTimestamp', () => {
   interface Case extends TestcaseFn<typeof testSubject> {}
