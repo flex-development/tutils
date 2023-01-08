@@ -1,3 +1,63 @@
+## [tutils@6.0.0-alpha.8](https://github.com/flex-development/tutils/compare/tutils@6.0.0-alpha.7...tutils@6.0.0-alpha.8) (2023-01-07)
+
+
+### :package: Build
+
+* **deps-dev:** Bump typescript from 5.0.0-dev.20230102 to 5.0.0-dev.20230107 ([#99](https://github.com/flex-development/tutils/issues/99)) ([464ff16](https://github.com/flex-development/tutils/commit/464ff16789ff6428b92edea30bb4995919346de9))
+
+
+### :robot: Continuous Integration
+
+* [[@dependabot](https://github.com/dependabot)] fix npm package-ecosystem x yarn integration ([fafde91](https://github.com/flex-development/tutils/commit/fafde91939529269cd568149b1d0bbab5a319a7b))
+* **deps:** Bump actions/checkout from 3.1.0 to 3.2.0 ([#95](https://github.com/flex-development/tutils/issues/95)) ([9a83d69](https://github.com/flex-development/tutils/commit/9a83d6904711d7b02f372c3aa579917bcd839e8b))
+* **deps:** Bump actions/checkout from 3.2.0 to 3.3.0 ([#97](https://github.com/flex-development/tutils/issues/97)) ([af0a62b](https://github.com/flex-development/tutils/commit/af0a62b6f8bb99efd9df6e5f809d62002d6160b3))
+* **deps:** Bump actions/setup-node from 3.5.1 to 3.6.0 ([#96](https://github.com/flex-development/tutils/issues/96)) ([10f5d6c](https://github.com/flex-development/tutils/commit/10f5d6cf0bff4c8ba228c23059c6dc7e106229a0))
+* **deps:** Bump actions/upload-artifact from 3.1.1 to 3.1.2 ([#98](https://github.com/flex-development/tutils/issues/98)) ([48203dc](https://github.com/flex-development/tutils/commit/48203dcaa5f2b2ae78807ae1eeed7cea20f2c011))
+* **deps:** Bump dessant/lock-threads from 3.0.0 to 4.0.0 ([#94](https://github.com/flex-development/tutils/issues/94)) ([3dcfbd0](https://github.com/flex-development/tutils/commit/3dcfbd0760f89a46b67893117592263682f03e12))
+* **deps:** Bump flex-development/dist-tag-action from 1.1.1 to 1.1.2 ([#86](https://github.com/flex-development/tutils/issues/86)) ([ab884fc](https://github.com/flex-development/tutils/commit/ab884fc0c7dd055078fce025bad67e477c456a04))
+* **deps:** bump octokit/graphql-action from 2.2.22 to 2.2.23 ([#80](https://github.com/flex-development/tutils/issues/80)) ([781e329](https://github.com/flex-development/tutils/commit/781e329b7e9c0b8397d2d8ec8bc63403ddb560fc))
+* **workflows:** [`add-to-project`] add items from repo admin account ([fdfe418](https://github.com/flex-development/tutils/commit/fdfe41836e08b5a45036bf84708764d383af27fa))
+* **workflows:** [`add-to-project`] run workflow when pr is synchronized ([9b89cdf](https://github.com/flex-development/tutils/commit/9b89cdfd9fb04ae5c3a13aec1c945cd48eb2f62e))
+* **workflows:** [`approve-pr`] fix workflow run when pr is synchronized ([921e1aa](https://github.com/flex-development/tutils/commit/921e1aabf58569876915f71462def9a4fce9e2cc))
+* **workflows:** [`approve-pr`] run workflow when pr is synchronized ([e814b9c](https://github.com/flex-development/tutils/commit/e814b9c538674880ea9f315f385c2fb30e42b5ca))
+* **workflows:** [`ci`] split ci job into multiple jobs ([ef0262f](https://github.com/flex-development/tutils/commit/ef0262ff1fc9542305557f3c045c6824b7504f74))
+* **workflows:** [`dependabot-auto`] sign lockfile fix commit ([a4237a2](https://github.com/flex-development/tutils/commit/a4237a2396e9c7204ed366d1d4d5a25f9f7fce2d))
+* **workflows:** [`publish`] cleanup registry scope ([abf0f12](https://github.com/flex-development/tutils/commit/abf0f126062bf834b34145224b5acdf10e57dfd7))
+* **workflows:** [`publish`] use node version file ([38018a8](https://github.com/flex-development/tutils/commit/38018a843240e44c5494c9a83833776696a3c220))
+* **workflows:** add `typescript-canary` ([293fc9a](https://github.com/flex-development/tutils/commit/293fc9a75389318a973291947c92481c88507b04))
+
+
+### :pencil: Documentation
+
+* add "contributor covenant code of conduct" ([e0cbd62](https://github.com/flex-development/tutils/commit/e0cbd62421e870248e143ee883695a951611d624))
+* cleanup `README` badges ([88db5ff](https://github.com/flex-development/tutils/commit/88db5ff2a6b42a15edd87e2b979c9f4bd69b114d))
+
+
+### :sparkles: Features
+
+* **types:** `TypedArray` ([44f9b91](https://github.com/flex-development/tutils/commit/44f9b912bc4f881d38bdeeb3ee1a34841f4ea67a))
+
+
+### :bug: Fixes
+
+* **install:** [git] make `postinstall` script work with git install ([e5cc5fe](https://github.com/flex-development/tutils/commit/e5cc5fec9c58df812550cfdd645e652cb9b7ca55))
+
+
+### :house_with_garden: Housekeeping
+
+* add `tsconfig.temp.json` to `.prettierignore` ([ea795d0](https://github.com/flex-development/tutils/commit/ea795d0a31708cae40ea850783692739c69324af))
+* update project architecture ([334626b](https://github.com/flex-development/tutils/commit/334626b0a8c717f50dbced1e0ee3f96b43404824))
+* **github:** add "package manager" dropdown to bug report template ([210d478](https://github.com/flex-development/tutils/commit/210d4784ec22e4b7384ade4709efdd6dd7779e0e))
+* **github:** add "typescript version" input to bug report template ([d5b0e5f](https://github.com/flex-development/tutils/commit/d5b0e5f0974102eb79db6e990f71ceeb27bbba3e))
+* **github:** add commit scope `install` ([fe0a46f](https://github.com/flex-development/tutils/commit/fe0a46fa5711fd9c3700820ac4beef07c924ed83))
+* **github:** add label `scope:install` ([fe4c5d1](https://github.com/flex-development/tutils/commit/fe4c5d1e694e08e965339b12722e7b39f029ca22))
+* **github:** add label `status:triaged` ([6e0b81f](https://github.com/flex-development/tutils/commit/6e0b81f8668c873418d8dfaf2839c5cc97a7ff4c))
+
+
+### :white_check_mark: Testing
+
+* **guards:** [`isUnixTimestamp`] fix test subject import ([caf50cf](https://github.com/flex-development/tutils/commit/caf50cf0672019454d84397539e9e6e72f8632a9))
+
 ## [tutils@6.0.0-alpha.7](https://github.com/flex-development/tutils/compare/tutils@6.0.0-alpha.6...tutils@6.0.0-alpha.7) (2022-12-02)
 
 
