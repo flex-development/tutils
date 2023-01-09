@@ -9,7 +9,7 @@ declare global {
   /**
    * {@link LoadHook} context.
    */
-  declare interface LoadHookContext {
+  interface LoadHookContext {
     /**
      * Export conditions of relevant `package.json`.
      */
@@ -29,7 +29,7 @@ declare global {
   /**
    * {@link LoadHook} result.
    */
-  declare interface LoadHookResult {
+  interface LoadHookResult {
     /**
      * Module format.
      */
@@ -63,7 +63,7 @@ declare global {
    * Node.js `load` hook after last user-supplied `load` hook
    * @return {Promise<LoadHookResult>} Hook result
    */
-  declare type LoadHook = (
+  type LoadHook = (
     url: string,
     context: LoadHookContext,
     defaultLoad: LoadHook
@@ -72,7 +72,7 @@ declare global {
   /**
    * {@link ResolveHook} context.
    */
-  declare interface ResolveHookContext {
+  interface ResolveHookContext {
     /**
      * Export conditions of relevant `package.json`.
      */
@@ -93,7 +93,7 @@ declare global {
   /**
    * {@link ResolveHook} result.
    */
-  declare interface ResolveHookResult {
+  interface ResolveHookResult {
     /**
      * Module format hint for {@linkcode LoadHook}.
      *
@@ -130,7 +130,7 @@ declare global {
    * or default Node.js `resolve` hook after last user-supplied `resolve` hook
    * @return {Promise<ResolveHookResult>} Hook result
    */
-  declare type ResolveHook = (
+  type ResolveHook = (
     specifier: string,
     context: ResolveHookContext,
     nextResolve: ResolveHook
