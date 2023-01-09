@@ -55,7 +55,7 @@ jobs:
           ref: ${{ env.REF }}
       - id: node
         name: Setup Node.js
-        uses: actions/setup-node@v3.5.1
+        uses: actions/setup-node@v3.6.0
         with:
           cache: yarn
           cache-dependency-path: yarn.lock
@@ -80,7 +80,7 @@ jobs:
           ref: ${{ env.REF }}
       - id: node
         name: Setup Node.js
-        uses: actions/setup-node@v3.5.1
+        uses: actions/setup-node@v3.6.0
         with:
           cache: yarn
           cache-dependency-path: yarn.lock
@@ -105,7 +105,7 @@ jobs:
           ref: ${{ env.REF }}
       - id: node
         name: Setup Node.js
-        uses: actions/setup-node@v3.5.1
+        uses: actions/setup-node@v3.6.0
         with:
           cache: yarn
           cache-dependency-path: yarn.lock
@@ -130,7 +130,7 @@ jobs:
           ref: ${{ env.REF }}
       - id: node
         name: Setup Node.js
-        uses: actions/setup-node@v3.5.1
+        uses: actions/setup-node@v3.6.0
         with:
           cache: yarn
           cache-dependency-path: yarn.lock
@@ -163,7 +163,7 @@ jobs:
           ref: ${{ env.REF }}
       - id: node
         name: Setup Node.js
-        uses: actions/setup-node@v3.5.1
+        uses: actions/setup-node@v3.6.0
         with:
           cache: yarn
           cache-dependency-path: yarn.lock
@@ -199,7 +199,7 @@ jobs:
           ref: ${{ env.REF }}
       - id: node
         name: Setup Node.js v${{ matrix.node-version }}
-        uses: actions/setup-node@v3.5.1
+        uses: actions/setup-node@v3.6.0
         with:
           cache: yarn
           cache-dependency-path: yarn.lock
@@ -224,7 +224,7 @@ jobs:
           ref: ${{ env.REF }}
       - id: node
         name: Setup Node.js
-        uses: actions/setup-node@v3.5.1
+        uses: actions/setup-node@v3.6.0
         with:
           cache: yarn
           cache-dependency-path: yarn.lock
