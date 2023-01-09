@@ -164,7 +164,6 @@
   "resolutions": {
     "@ardatan/sync-fetch": "larsgw/sync-fetch#head=worker_threads",
     "esbuild": "0.16.16",
-    "typescript": "5.0.0-dev.20221215",
     "vitest@npm:0.26.3": "patch:vitest@npm%3A0.26.3#patches/vitest+0.26.3.dev.patch"
   },
   "engines": {
