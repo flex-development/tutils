@@ -1,3 +1,31 @@
+## [tutils@6.0.0-alpha.9](https://github.com/flex-development/tutils/compare/tutils@6.0.0-alpha.8...tutils@6.0.0-alpha.9) (2023-01-08)
+
+
+### :package: Build
+
+* **deps-dev:** Bump esbuild from 0.16.15 to 0.16.16 ([#101](https://github.com/flex-development/tutils/issues/101)) ([94f94e6](https://github.com/flex-development/tutils/commit/94f94e67be999432a6ed8135bb4b0da5e1fbc1d0))
+* **deps-dev:** Bump typescript from 5.0.0-dev.20230107 to 5.0.0-dev.20230108 ([#102](https://github.com/flex-development/tutils/issues/102)) ([c872ad1](https://github.com/flex-development/tutils/commit/c872ad124992f6efbeef0a9f8399bb7c2a68117e))
+
+
+### :robot: Continuous Integration
+
+* **deps:** Bump actions/setup-node from 3.5.1 to 3.6.0 ([#103](https://github.com/flex-development/tutils/issues/103)) ([069d364](https://github.com/flex-development/tutils/commit/069d3648b6ba1da763de8c8f40c783216b3ba5f3))
+
+
+### :bug: Fixes
+
+* **ts:** missing types in build output ([e62e94b](https://github.com/flex-development/tutils/commit/e62e94b3980a55869516652176cc3c79c5d65957))
+
+
+### :house_with_garden: Housekeeping
+
+* **ts:** fix custom typings ([2832024](https://github.com/flex-development/tutils/commit/283202464640d16e9a01d3d6ea818b7cb8f4373e))
+
+
+### :zap: Refactors
+
+* **ts:** catch build output errors early ([9f373ac](https://github.com/flex-development/tutils/commit/9f373ac80b0b6a7c14a3ed90ad2ba83059cb4f3d))
+
 ## [tutils@6.0.0-alpha.8](https://github.com/flex-development/tutils/compare/tutils@6.0.0-alpha.7...tutils@6.0.0-alpha.8) (2023-01-07)
 
 
