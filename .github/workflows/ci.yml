@@ -179,7 +179,7 @@ jobs:
         run: yarn add -D typescript@${{ matrix.typescript-version }}
       - id: typecheck
         name: Run typecheck
-        run: yarn check:types && yarn check:types:build
+        run: yarn check:types
   test:
     needs: setup
     runs-on: ubuntu-latest
@@ -240,6 +240,9 @@ jobs:
         run: yarn pack -o %s-%v.tgz
         env:
           NODE_ENV: production
+      - id: typecheck
+        name: Run typecheck
+        run: yarn check:types:build
       - id: version
         name: Get package version
         run: echo "result=$(jq .version package.json -r)" >> $GITHUB_OUTPUT
