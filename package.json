@@ -114,7 +114,7 @@
     "conventional-changelog-cli": "2.2.2",
     "conventional-recommended-bump": "6.1.0",
     "cspell": "6.18.1",
-    "esbuild": "0.16.16",
+    "esbuild": "0.16.17",
     "eslint": "8.31.0",
     "eslint-config-prettier": "8.6.0",
     "eslint-plugin-chai-expect": "3.0.0",
@@ -163,7 +163,7 @@
   },
   "resolutions": {
     "@ardatan/sync-fetch": "larsgw/sync-fetch#head=worker_threads",
-    "esbuild": "0.16.16",
+    "esbuild": "0.16.17",
     "vitest@npm:0.26.3": "patch:vitest@npm%3A0.26.3#patches/vitest+0.26.3.dev.patch"
   },
   "engines": {
