@@ -148,7 +148,7 @@
     "typescript": "5.0.0-dev.20221215",
     "version-bump-prompt": "6.1.0",
     "vite": "4.0.4",
-    "vite-tsconfig-paths": "4.0.3",
+    "vite-tsconfig-paths": "4.0.5",
     "vitest": "0.26.3",
     "vitest-github-actions-reporter": "0.9.0",
     "yaml-eslint-parser": "1.1.0"
