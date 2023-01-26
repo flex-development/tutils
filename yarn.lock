@@ -1097,7 +1097,7 @@ __metadata:
     node-notifier: "npm:10.0.1"
     prettier: "npm:2.8.3"
     prettier-plugin-sh: "npm:0.12.8"
-    pretty-format: "npm:29.3.1"
+    pretty-format: "npm:29.4.0"
     serve: "npm:14.2.0"
     trash-cli: "npm:5.0.0"
     ts-dedent: "npm:2.2.0"
@@ -1452,12 +1452,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jest/schemas@npm:^29.0.0":
-  version: 29.0.0
-  resolution: "@jest/schemas@npm:29.0.0"
+"@jest/schemas@npm:^29.4.0":
+  version: 29.4.0
+  resolution: "@jest/schemas@npm:29.4.0"
   dependencies:
-    "@sinclair/typebox": "npm:^0.24.1"
-  checksum: 174f589fa0326e4f393cf56ac45beb8412e2ccd7c6040b45062035d80c95f5ae71512dab5757906b923ebfcd9c2b57ea40986377e0c06ad10ab2e24b561ac28d
+    "@sinclair/typebox": "npm:^0.25.16"
+  checksum: 310b1a37600a5ba54b510666954d1ea15babbaefcb0d0e0e65245d52bafd796a9f9665220066fe6694487a9b4cbf97552bfb998873f7cfeba74813cc86d35d86
   languageName: node
   linkType: hard
 
@@ -1651,10 +1651,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sinclair/typebox@npm:^0.24.1":
-  version: 0.24.51
-  resolution: "@sinclair/typebox@npm:0.24.51"
-  checksum: 57177ef84d72f5291b97a845450311b0e2dad0a9a96e1254668e98f27fe083eed7f175543ebd0486bf8e2bed0a5b8be931bdb255158f6cafbd597ff83030c676
+"@sinclair/typebox@npm:^0.25.16":
+  version: 0.25.21
+  resolution: "@sinclair/typebox@npm:0.25.21"
+  checksum: 16fdf623cc7c19e4195ee79858febf480f20dd3cff47e1b103163d534d94f4ee02dc6bf372d18d100c08a5bfecfc3865f5e59759cc99c11042e103ff8971b3cd
   languageName: node
   linkType: hard
 
@@ -6989,14 +6989,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pretty-format@npm:29.3.1":
-  version: 29.3.1
-  resolution: "pretty-format@npm:29.3.1"
+"pretty-format@npm:29.4.0":
+  version: 29.4.0
+  resolution: "pretty-format@npm:29.4.0"
   dependencies:
-    "@jest/schemas": "npm:^29.0.0"
+    "@jest/schemas": "npm:^29.4.0"
     ansi-styles: "npm:^5.0.0"
     react-is: "npm:^18.0.0"
-  checksum: 503343a44ed74584c2e89fe3be6142636477b515179484b25ad3fe0b44f35d8a189cff3b002759d17c9751b1510dbbb4caa3e91ef3432c302de1c8aa78cde0f8
+  checksum: 242a9b6b42b9394bcc0ec6c5da127ad78e6e59197094390a19513a6445a51521d387d39b991cd1cc215266a9b4b095963275ec4bb55ea1ec99589b6cec469924
   languageName: node
   linkType: hard
 
