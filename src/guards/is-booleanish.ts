@@ -6,12 +6,12 @@
 import type { Booleanish } from '#src/types'
 
 /**
- * Checks if `value` is {@link Booleanish}.
+ * Checks if the given `value` is a boolean, `'false'`, or `'true'`.
  *
- * @param {any} [value] - Value to check
- * @return {boolean} `true` if `value` is a `boolean`, `'false'`, or `'true'`
+ * @param {unknown} value - Value to evaluate
+ * @return {value is Booleanish} `true` if `value` is {@linkcode Booleanish}
  */
-const isBooleanish = (value?: any): value is Booleanish => {
+const isBooleanish = (value: unknown): value is Booleanish => {
   return typeof value === 'boolean' || value === 'false' || value === 'true'
 }
 

@@ -8,12 +8,12 @@ import isEmptyString from './is-empty-string'
 import isNIL from './is-nil'
 
 /**
- * Checks if `value` is an empty string or `NIL`.
+ * Checks if the given `value` is an empty string, `null`, or `undefined`.
  *
- * @param {any} [value] - Value to check
- * @return {boolean} `true` if `value` is empty string, `null`, or `undefined`
+ * @param {unknown} value - Value to evaluate
+ * @return {value is EmptyValue} `true` if `value` is empty
  */
-const isEmptyValue = (value?: any): value is EmptyValue => {
+const isEmptyValue = (value: unknown): value is EmptyValue => {
   return isEmptyString(value) || isNIL(value)
 }
 

@@ -6,12 +6,12 @@
 import JwtType from '#src/enums/jwt-type'
 
 /**
- * Checks if `value` is a {@link JwtType}.
+ * Checks if the given `value` is a valid JSON web token type.
  *
- * @param {any} [value] - Value to check
- * @return {boolean} `true` if `value` is valid jwt type
+ * @param {unknown} value - Value to evaluate
+ * @return {value is JwtType} `true` if `value` is {@linkcode JwtType}
  */
-const isJwtType = (value?: any): value is JwtType => {
+const isJwtType = (value: unknown): value is JwtType => {
   return Object.values(JwtType).includes(value as JwtType)
 }
 

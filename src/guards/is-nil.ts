@@ -6,12 +6,12 @@
 import type { NIL } from '#src/types'
 
 /**
- * Checks if `value` is a {@link NIL}.
+ * Checks if the given `value` is `null` or `undefined`.
  *
- * @param {any} [value] - Value to check
- * @return {boolean} `true` if `value` is `null` or `undefined`
+ * @param {unknown} value - Value to evaluate
+ * @return {value is NIL} `true` if `value` is {@linkcode NIL}
  */
-const isNIL = (value?: any): value is NIL => {
+const isNIL = (value: unknown): value is NIL => {
   return value === null || value === undefined
 }
 

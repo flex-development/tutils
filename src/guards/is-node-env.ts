@@ -6,12 +6,12 @@
 import NodeEnv from '#src/enums/node-env'
 
 /**
- * Checks if `value` is a {@link NodeEnv}.
+ * Checks if the given `value` is a valid node environment.
  *
- * @param {any} [value=process.env.NODE_ENV] - Value to check
- * @return {boolean} `true` if `value` is valid node environment
+ * @param {unknown} [value=process.env.NODE_ENV] - Value to evaluate
+ * @return {value is NodeEnv} `true` if `value` is {@linkcode NodeEnv}
  */
-const isNodeEnv = (value: any = process.env.NODE_ENV): value is NodeEnv => {
+const isNodeEnv = (value: unknown = process.env.NODE_ENV): value is NodeEnv => {
   return Object.values(NodeEnv).includes(value as NodeEnv)
 }
 

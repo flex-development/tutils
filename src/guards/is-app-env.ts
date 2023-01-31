@@ -6,12 +6,12 @@
 import AppEnv from '#src/enums/app-env'
 
 /**
- * Checks if `value` is an {@link AppEnv}.
+ * Checks if the given `value` is a valid app environment.
  *
- * @param {any} [value] - Value to check
- * @return {boolean} `true` if `value` is valid app environment
+ * @param {unknown} value - Value to evaluate
+ * @return {value is AppEnv} `true` if `value` is {@linkcode AppEnv}
  */
-const isAppEnv = (value?: any): value is AppEnv => {
+const isAppEnv = (value: unknown): value is AppEnv => {
   return Object.values(AppEnv).includes(value as AppEnv)
 }
 
