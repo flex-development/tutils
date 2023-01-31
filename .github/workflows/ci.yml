@@ -39,7 +39,7 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 jobs:
-  setup:
+  metadata:
     if: |
       github.event_name == 'pull_request' ||
       github.event_name == 'workflow_dispatch' ||
@@ -71,7 +71,7 @@ jobs:
           key: ${{ runner.os }}-${{ github.run_id }}
           path: ${{ env.CACHE_PATH }}
   format:
-    needs: setup
+    needs: metadata
     runs-on: ubuntu-latest
     steps:
       - id: checkout
@@ -96,7 +96,7 @@ jobs:
         name: Check code formatting
         run: yarn check:format
   lint:
-    needs: setup
+    needs: metadata
     runs-on: ubuntu-latest
     steps:
       - id: checkout
@@ -121,7 +121,7 @@ jobs:
         name: Check lint status
         run: yarn check:lint
   spelling:
-    needs: setup
+    needs: metadata
     runs-on: ubuntu-latest
     steps:
       - id: checkout
@@ -146,7 +146,7 @@ jobs:
         name: Check spelling
         run: yarn check:spelling
   typescript:
-    needs: setup
+    needs: metadata
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -182,7 +182,7 @@ jobs:
         name: Run typecheck
         run: yarn typecheck
   test:
-    needs: setup
+    needs: metadata
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -215,7 +215,7 @@ jobs:
         name: Run tests
         run: yarn test:cov --segfault-retry=3
   build:
-    needs: setup
+    needs: metadata
     runs-on: ubuntu-latest
     steps:
       - id: checkout
