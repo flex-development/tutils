@@ -30,6 +30,7 @@ pkgs
 pnpm
 preid
 promisable
+stringafiable
 syncer
 vates
 yarnrc
