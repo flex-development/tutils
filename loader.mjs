@@ -1,19 +1,25 @@
 /**
  * @file Custom Loader
  * @module loader
- * @see https://github.com/TypeStrong/ts-node/issues/1007
  * @see https://nodejs.org/docs/latest-v16.x/api/esm.html#loaders
  */
 
+import * as mlly from '@flex-development/mlly'
+import * as esbuild from 'esbuild'
 import path from 'node:path'
-import { createEsmHooks, register } from 'ts-node'
-import { createMatchPath, loadConfig } from 'tsconfig-paths'
+import { fileURLToPath, pathToFileURL } from 'node:url'
+import tsconfig from './tsconfig.json' assert { type: 'json' }
+
+// add support for extensionless files in "bin" scripts
+// https://github.com/nodejs/modules/issues/488
+mlly.EXTENSION_FORMAT_MAP.set('', mlly.Format.COMMONJS)
 
 /**
- * @type {import('ts-node').NodeLoaderHooksAPI2}
- * @const hooks - `ts-node` loader hooks
+ * URL of current working directory.
+ *
+ * @const {URL} cwd
  */
-const hooks = createEsmHooks(register())
+const cwd = pathToFileURL(tsconfig.compilerOptions.baseUrl)
 
 /**
  * Determines how `url` should be interpreted, retrieved, and parsed.
@@ -23,27 +29,71 @@ const hooks = createEsmHooks(register())
  *
  * @async
  *
- * @param {string} url - Module URL
+ * @param {string} url - Resolved module URL
  * @param {LoadHookContext} context - Hook context
- * @param {LoadHook} nextLoad - Subsequent `load` hook in the chain or default
- * Node.js `load` hook after last user-supplied `load` hook
  * @return {Promise<LoadHookResult>} Hook result
  */
-export const load = async (url, context, nextLoad) => {
-  // support for extensionless files in "bin" scripts
-  // https://github.com/nodejs/modules/issues/488#issuecomment-804895142
-  if (/^file:\/{3}.*\/bin\//.test(url) && !path.extname(url)) {
-    context.format = 'commonjs'
+export const load = async (url, context) => {
+  // get module format
+  context.format = context.format ?? (await mlly.getFormat(url))
+
+  // validate import assertions
+  mlly.validateAssertions(url, context.format, context.importAssertions)
+
+  /**
+   * File extension of {@linkcode url}.
+   *
+   * @const {string} ext
+   */
+  const ext = path.extname(url)
+
+  /**
+   * Source code.
+   *
+   * @var {Uint8Array | string | undefined} source
+   */
+  let source = await mlly.getSource(url, { format: context.format })
+
+  // transform typescript files
+  if (/^\.(?:cts|mts|tsx?)$/.test(ext) && !/\.d\.(?:cts|mts|ts)$/.test(url)) {
+    // resolve path aliases
+    source = await mlly.resolveAliases(source, {
+      aliases: tsconfig.compilerOptions.paths,
+      conditions: context.conditions,
+      cwd,
+      parent: url
+    })
+
+    // resolve modules
+    source = await mlly.resolveModules(source, {
+      conditions: context.conditions,
+      parent: url
+    })
+
+    // transpile source code
+    const { code } = await esbuild.transform(source, {
+      format: ext === '.cts' ? 'cjs' : 'esm',
+      loader: /^[cm]/.test(ext) ? 'ts' : ext.slice(1),
+      minify: false,
+      sourcefile: fileURLToPath(url),
+      sourcemap: 'inline',
+      tsconfigRaw: { compilerOptions: tsconfig.compilerOptions }
+    })
+
+    // set source code to transpiled source
+    source = code
   }
 
-  return hooks.load(url, context, nextLoad)
+  return { format: context.format, shortCircuit: true, source }
 }
 
 /**
- * Resolves a file URL for a given module specifier and parent URL, and
- * optionally its format (such as `'module'`) as a hint to {@linkcode load}.
+ * Resolves the given module `specifier`.
  *
- * **Note**: Path aliases found in tsconfig(s) are respected during resolution.
+ * Adds supports for:
+ *
+ * - Path alias resolution
+ * - Extensionless file and directory index resolution
  *
  * @see {@linkcode ResolveHookContext}
  * @see https://nodejs.org/docs/latest-v16.x/api/esm.html#resolvespecifier-context-nextresolve
@@ -52,38 +102,30 @@ export const load = async (url, context, nextLoad) => {
  *
  * @param {string} specifier - Module specifier
  * @param {ResolveHookContext} context - Hook context
- * @param {ResolveHook} nextResolve - Subsequent `resolve` hook in the chain
- * or default Node.js `resolve` hook after last user-supplied `resolve` hook
  * @return {Promise<ResolveHookResult>} Hook result
  * @throws {Error}
  */
-export const resolve = async (specifier, context, nextResolve) => {
+export const resolve = async (specifier, context) => {
+  const { conditions, parentURL: parent } = context
+
+  // resolve path alias
+  specifier = await mlly.resolveAlias(specifier, {
+    aliases: tsconfig.compilerOptions.paths,
+    conditions,
+    cwd,
+    parent
+  })
+
   /**
-   * @type {import('tsconfig-paths').ConfigLoaderResult}
-   * @const result - `tsconfig-paths` config loader result
+   * Resolved module URL.
+   *
+   * @const {URL} url
    */
-  const result = loadConfig(path.resolve('.'))
+  const url = await mlly.resolveModule(specifier, { conditions, parent })
 
-  if (result.resultType === 'failed') throw new Error(result.message)
-
-  specifier =
-    createMatchPath(
-      result.absoluteBaseUrl,
-      result.paths,
-      result.mainFields,
-      result.addMatchAll
-    )(specifier, undefined, undefined, [
-      '.cjs',
-      '.cts',
-      '.js',
-      '.json',
-      '.jsx',
-      '.mdx',
-      '.mjs',
-      '.mts',
-      '.ts',
-      '.tsx'
-    ]) ?? specifier
-
-  return hooks.resolve(specifier, context, nextResolve)
+  return {
+    format: await mlly.getFormat(url),
+    shortCircuit: true,
+    url: url.href
+  }
 }

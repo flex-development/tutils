@@ -13,6 +13,7 @@ fbca
 gpgsign
 hmarr
 iife
+infile
 jsonifiable
 keyid
 larsgw
@@ -20,6 +21,7 @@ lcov
 lintstagedrc
 micnncim
 mkbuild
+mlly
 nocheck
 npmrc
 nums
@@ -30,5 +32,4 @@ preid
 promisable
 syncer
 vates
-vitest
 yarnrc

@@ -1,14 +1,14 @@
 # tutils
 
 [![npm](https://img.shields.io/npm/v/@flex-development/tutils.svg)](https://npmjs.com/package/@flex-development/tutils)
-[![license](https://img.shields.io/github/license/flex-development/tutils.svg)](LICENSE.md)
 [![module type: cjs+esm](https://img.shields.io/badge/module%20type-cjs%2Besm-brightgreen)](https://github.com/voxpelli/badges-cjs-esm)
+[![license](https://img.shields.io/github/license/flex-development/tutils.svg)](LICENSE.md)
 [![conventional commits](https://img.shields.io/badge/-conventional%20commits-fe5196?logo=conventional-commits&logoColor=ffffff)](https://conventionalcommits.org/)
 [![typescript](https://img.shields.io/badge/-typescript-3178c6?logo=typescript&logoColor=ffffff)](https://typescriptlang.org/)
 [![vitest](https://img.shields.io/badge/-vitest-6e9f18?style=flat&logo=vitest&logoColor=ffffff)](https://vitest.dev/)
 [![yarn](https://img.shields.io/badge/-yarn-2c8ebb?style=flat&logo=yarn&logoColor=ffffff)](https://yarnpkg.com/)
 
-TypeScript utilities.
+[TypeScript][1] utilities.
 
 ## Contents
 
@@ -19,26 +19,22 @@ TypeScript utilities.
 
 ## What is this?
 
-This package contains [TypeScript][1] utilities used by the [Flex Development][2] (FLDV) team.
-
-It includes enums, interfaces, types, and type guards.
+This package contains a set of general [TypeScript][1] utilities. It includes enums, interfaces, types, and type guards.
 
 ## When should I use this?
 
-Use this package when you need a variety of TypeScript utilities.
-
-Note that although this project is publicly available, it is **intended for mainly internal use**.
+**TODO**: when should i use this?
 
 ## Install
 
 ```sh
-yarn add -D @flex-development/tutils
+yarn add @flex-development/tutils
 ```
 
 From Git:
 
 ```sh
-yarn add -D @flex-development/tutils@flex-development/tutils
+yarn add @flex-development/tutils@flex-development/tutils
 ```
 
 <blockquote>
@@ -75,4 +71,3 @@ export type { IUser as default, UserAttribute }
 ```
 
 [1]: https://typescriptlang.org/
-[2]: https://flexdevelopment.llc

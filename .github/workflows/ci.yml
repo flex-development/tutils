@@ -4,6 +4,7 @@
 #
 # - https://docs.github.com/actions/automating-builds-and-tests/building-and-testing-nodejs
 # - https://docs.github.com/actions/learn-github-actions/contexts
+# - https://docs.github.com/actions/learn-github-actions/expressions
 # - https://docs.github.com/actions/using-jobs/using-a-matrix-for-your-jobs
 # - https://docs.github.com/actions/using-workflows/events-that-trigger-workflows#pull_request
 # - https://docs.github.com/actions/using-workflows/events-that-trigger-workflows#push
@@ -179,7 +180,7 @@ jobs:
         run: yarn add -D typescript@${{ matrix.typescript-version }}
       - id: typecheck
         name: Run typecheck
-        run: yarn check:types
+        run: yarn typecheck
   test:
     needs: setup
     runs-on: ubuntu-latest

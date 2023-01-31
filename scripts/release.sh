@@ -5,17 +5,19 @@
 # 1. run typecheck
 # 2. run tests
 # 3. pack project
-# 4. get new package version
-# 5. get release branch name
-# 6. switch to release branch
-# 7. stage changes
-# 8. commit changes
-# 9. push release branch to origin
-# 10. cleanup
+# 4. run check:types:build
+# 5. get new package version
+# 6. get release branch name
+# 7. switch to release branch
+# 8. stage changes
+# 9. commit changes
+# 10. push release branch to origin
+# 11. cleanup
 
 yarn typecheck
 yarn test:cov
 yarn pack -o %s-%v.tgz
+yarn check:types:build
 VERSION=$(jq .version package.json -r)
 RELEASE_BRANCH=release/$VERSION
 git switch -c $RELEASE_BRANCH

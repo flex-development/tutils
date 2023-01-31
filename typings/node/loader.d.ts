@@ -1,15 +1,11 @@
-import type { Nullable, TypedArray } from '#src/types'
+import type { Nullable, TypedArray } from '#src'
+import type { Format } from '@flex-development/mlly'
 
 declare global {
   /**
-   * Module formats.
-   */
-  type Format = 'builtin' | 'commonjs' | 'json' | 'module' | 'wasm'
-
-  /**
    * {@link LoadHook} context.
    */
-  interface LoadHookContext {
+  declare interface LoadHookContext {
     /**
      * Export conditions of relevant `package.json`.
      */
@@ -29,11 +25,11 @@ declare global {
   /**
    * {@link LoadHook} result.
    */
-  interface LoadHookResult {
+  declare interface LoadHookResult {
     /**
      * Module format.
      */
-    format: Format
+    format: Format | Lowercase<keyof typeof Format>
 
     /**
      * Signal that the current {@linkcode ResolveHook} intends to terminate the
@@ -63,7 +59,7 @@ declare global {
    * Node.js `load` hook after last user-supplied `load` hook
    * @return {Promise<LoadHookResult>} Hook result
    */
-  type LoadHook = (
+  declare type LoadHook = (
     url: string,
     context: LoadHookContext,
     defaultLoad: LoadHook
@@ -72,7 +68,7 @@ declare global {
   /**
    * {@link ResolveHook} context.
    */
-  interface ResolveHookContext {
+  declare interface ResolveHookContext {
     /**
      * Export conditions of relevant `package.json`.
      */
@@ -93,13 +89,13 @@ declare global {
   /**
    * {@link ResolveHook} result.
    */
-  interface ResolveHookResult {
+  declare interface ResolveHookResult {
     /**
      * Module format hint for {@linkcode LoadHook}.
      *
      * **Note**: Hint may be ignored.
      */
-    format?: Nullable<Format> | undefined
+    format?: Nullable<Format | Lowercase<keyof typeof Format>> | undefined
 
     /**
      * Signal that the current {@linkcode ResolveHook} intends to terminate the
@@ -130,7 +126,7 @@ declare global {
    * or default Node.js `resolve` hook after last user-supplied `resolve` hook
    * @return {Promise<ResolveHookResult>} Hook result
    */
-  type ResolveHook = (
+  declare type ResolveHook = (
     specifier: string,
     context: ResolveHookContext,
     nextResolve: ResolveHook

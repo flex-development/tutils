@@ -45,7 +45,7 @@ yarn-error.log*
 __tests__/report.json
 codecov
 coverage/
-tsconfig.temp.json
+tsconfig*temp.json
 vitest.config.*.timestamp-*.mjs
 !__fixtures__/node_modules/
 
@@ -57,6 +57,10 @@ vitest.config.*.timestamp-*.mjs
 # ------------------------------------------------------------------------------
 dist/
 !typings/**/dist/
+
+# Releases
+# ------------------------------------------------------------------------------
+RELEASE_NOTES.md
 
 # Misc
 # ------------------------------------------------------------------------------

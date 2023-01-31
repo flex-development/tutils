@@ -31,9 +31,6 @@ updates:
       prefix: build
       include: scope
     directory: /
-    ignore:
-      - dependency-name: '@vitest/*'
-      - dependency-name: vitest
     labels:
       - scope:dependencies
       - type:build

@@ -31,6 +31,7 @@ const config = {
     'plugin:prettier/recommended'
   ],
   globals: {
+    BufferEncoding: 'readonly',
     Chai: 'readonly',
     Console: 'readonly',
     JSX: jsx ? 'readonly' : false,
@@ -474,6 +475,7 @@ const config = {
     'no-magic-numbers': 0,
     'no-restricted-imports': 0,
     'no-shadow': 0,
+    'no-sparse-arrays': 0,
     'no-unused-expressions': 0,
     'no-unused-vars': 0,
     'no-use-before-define': 0,
@@ -1035,6 +1037,7 @@ const config = {
         'unicorn/error-message': 0,
         'unicorn/explicit-length-check': 0,
         'unicorn/no-array-for-each': 0,
+        'unicorn/no-hex-escape': 0,
         'unicorn/no-useless-undefined': 0,
         'unicorn/prefer-at': 0,
         'unicorn/prefer-dom-node-append': 0,
