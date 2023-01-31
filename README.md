@@ -16,6 +16,7 @@
 - [When should I use this?](#when-should-i-use-this)
 - [Install](#install)
 - [Use](#use)
+- [Related](#related)
 
 ## What is this?
 
@@ -70,4 +71,11 @@ type UserAttribute = Path<IUser> // 'created_at' | 'email' | 'id' | 'name' | 'na
 export type { IUser as default, UserAttribute }
 ```
 
+## Related
+
+- [`pkg-types`][2] - TypeScript definitions for `package.json`
+- [`tsconfig-types`][3] - TypeScript definitions for `tsconfig.json`
+
 [1]: https://typescriptlang.org/
+[2]: https://github.com/flex-development/pkg-types
+[3]: https://github.com/flex-development/tsconfig-types
