@@ -9,6 +9,7 @@
 # - https://docs.github.com/actions/using-workflows/events-that-trigger-workflows#pull_request
 # - https://docs.github.com/actions/using-workflows/events-that-trigger-workflows#push
 # - https://docs.github.com/actions/using-workflows/events-that-trigger-workflows#workflow_dispatch
+# - https://docs.github.com/actions/using-workflows/workflow-commands-for-github-actions
 # - https://github.com/actions/cache
 # - https://github.com/actions/cache/discussions/650
 # - https://github.com/actions/checkout
@@ -45,6 +46,8 @@ jobs:
       github.event_name == 'workflow_dispatch' ||
       !startsWith(github.event.head_commit.message, 'release:')
     runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.version.outputs.result }}
     steps:
       - id: debug
         name: Print environment variables and event payload
@@ -70,6 +73,9 @@ jobs:
         with:
           key: ${{ runner.os }}-${{ github.run_id }}
           path: ${{ env.CACHE_PATH }}
+      - id: version
+        name: Get package version
+        run: echo "result=$(jq .version package.json -r)" >> $GITHUB_OUTPUT
   format:
     needs: metadata
     runs-on: ubuntu-latest
@@ -244,13 +250,10 @@ jobs:
       - id: typecheck
         name: Run typecheck
         run: yarn check:types:build
-      - id: version
-        name: Get package version
-        run: echo "result=$(jq .version package.json -r)" >> $GITHUB_OUTPUT
       - id: archive
         name: Archive production artifacts
         uses: actions/upload-artifact@v3.1.2
         with:
           name: |
-            ${{ format('@{0}-{1}-{2}', github.repository_owner, github.event.repository.name, steps.version.outputs.result) }}
+            ${{ format('@{0}-{1}-{2}', github.repository_owner, github.event.repository.name, needs.metadata.outputs.version) }}
           path: '*.tgz'
