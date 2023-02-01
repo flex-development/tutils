@@ -18,6 +18,7 @@ export type {
 } from './exact-optional-property-types'
 export type { default as FIXME } from './fixme'
 export type { default as IndexSignature } from './index-signature'
+export type { default as IsTuple } from './is-tuple'
 export type { default as Join } from './join'
 export type { default as JsonArray } from './json-array'
 export type { default as JsonObject } from './json-object'
