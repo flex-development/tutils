@@ -5,6 +5,7 @@
 
 export { default as isAppEnv } from './is-app-env'
 export { default as isBigInt } from './is-big-int'
+export { default as isBoolean } from './is-boolean'
 export { default as isBooleanish } from './is-booleanish'
 export { default as isEmptyString } from './is-empty-string'
 export { default as isEmptyValue } from './is-empty-value'
