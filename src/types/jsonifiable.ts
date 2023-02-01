@@ -9,7 +9,7 @@ import type JsonifiableInstance from './jsonifiable-instance'
 import type JsonifiableObject from './jsonifiable-object'
 
 /**
- * Matches a value that can be losslessly converted to JSON.
+ * A value that can be losslessly converted to JSON.
  *
  * Can be used to type values that are expected to pass `JSON.stringify`.
  */

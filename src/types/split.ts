@@ -4,17 +4,17 @@
  */
 
 /**
- * Constructs a string array by splitting string `S` using delimiter `D`.
+ * Creates a string array by splitting a string using the given delimiter.
  *
- * @template S - String to split
- * @template D - String delimiter
+ * @template Str - String to split
+ * @template Delimiter - String delimiter
  */
-type Split<S extends string, D extends string> = string extends S
+type Split<Str extends string, Delimiter extends string> = string extends Str
   ? string[]
-  : S extends ''
+  : Str extends ''
   ? []
-  : S extends `${infer T}${D}${infer U}`
-  ? [T, ...Split<U, D>]
-  : [S]
+  : Str extends `${infer T}${Delimiter}${infer U}`
+  ? [T, ...Split<U, Delimiter>]
+  : [Str]
 
 export type { Split as default }

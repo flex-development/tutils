@@ -6,7 +6,7 @@
 import type IndexSignature from './index-signature'
 
 /**
- * Type representing any plain object (`{}`) value.
+ * A plain object.
  */
 type ObjectPlain = { [Key in IndexSignature]?: any }
 

@@ -6,7 +6,7 @@
 import type IndexSignature from './index-signature'
 
 /**
- * Type representing any object.
+ * Any object.
  */
 type ObjectUnknown = { [Key in IndexSignature]?: unknown }
 

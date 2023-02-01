@@ -6,9 +6,9 @@
 /**
  * Comparison function return values.
  *
- * Comparison functions are expected to return a negative value if the first
- * argument is less than the second argument, zero if they're equal, and a
- * positive value otherwise.
+ * Comparison functions are expected to return a negative number if one argument
+ * is less than the other, a positive number if an argument is greater than the
+ * other, or zero (`0`) if the arguments are equal.
  *
  * @enum {number}
  */

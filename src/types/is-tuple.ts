@@ -8,7 +8,7 @@
  *
  * [1]: https://tutorialsteacher.com/typescript/typescript-tuple
  *
- * @template T - Value type
+ * @template T - Type to evaluate
  */
 type IsTuple<T> = T extends [infer A]
   ? T

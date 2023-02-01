@@ -6,7 +6,7 @@
 import type Constructor from './constructor'
 
 /**
- * Matches a [`class` object][1].
+ * A [`class`][1].
  *
  * [1]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Classes
  *

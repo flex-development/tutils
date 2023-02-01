@@ -6,7 +6,7 @@
 import type Jsonifiable from './jsonifiable'
 
 /**
- * Matches an array whose items can be losslessly converted to JSON.
+ * An array whose items can be losslessly converted to JSON.
  *
  * @see [`Jsonifiable`]({@link ./jsonifiable.ts})
  */

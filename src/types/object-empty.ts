@@ -4,7 +4,7 @@
  */
 
 /**
- * Type representing any empty object.
+ * An empty object.
  */
 type ObjectEmpty = Record<string, never>
 

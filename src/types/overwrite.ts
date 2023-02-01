@@ -6,13 +6,13 @@
 import type ObjectPlain from './object-plain'
 
 /**
- * Replaces existing properties in `Obj` with those in `DTO`.
+ * Replaces existing properties in object `U` with properties in object `D`.
  *
- * @template Obj - Object to update
- * @template DTO - Object to update with
+ * @template U - Object to update
+ * @template D - Data transfer object
  */
-type Overwrite<Obj extends ObjectPlain, DTO extends ObjectPlain> = {
-  [K in keyof Obj]: K extends keyof DTO ? DTO[K] : Obj[K]
+type Overwrite<U extends ObjectPlain, D extends ObjectPlain> = {
+  [K in keyof U]: K extends keyof D ? D[K] : U[K]
 } & {}
 
 export type { Overwrite as default }

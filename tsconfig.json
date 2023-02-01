@@ -30,6 +30,7 @@
     "noUnusedParameters": false,
     "outDir": "dist",
     "paths": {
+      "#fixtures/*": ["__fixtures__/*"],
       "#src": ["src/index"],
       "#src/*": ["src/*"],
       "#tests/*": ["__tests__/*"]

@@ -303,7 +303,26 @@ const config = {
         allowTemplateLiterals: true
       }
     ],
-    '@typescript-eslint/sort-type-union-intersection-members': 2,
+    '@typescript-eslint/sort-type-constituents': [
+      2,
+      {
+        checkIntersections: true,
+        checkUnions: true,
+        groupOrder: [
+          'named',
+          'keyword',
+          'operator',
+          'literal',
+          'function',
+          'import',
+          'conditional',
+          'object',
+          'tuple',
+          'intersection',
+          'union'
+        ]
+      }
+    ],
     '@typescript-eslint/triple-slash-reference': [
       2,
       {
@@ -1015,6 +1034,8 @@ const config = {
       },
       plugins: ['chai-expect', 'jest-formatting'],
       rules: {
+        '@typescript-eslint/ban-types': 0,
+        '@typescript-eslint/consistent-indexed-object-style': 0,
         '@typescript-eslint/no-base-to-string': 0,
         '@typescript-eslint/no-empty-function': 0,
         '@typescript-eslint/no-unused-expressions': 0,

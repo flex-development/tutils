@@ -6,7 +6,7 @@
 import type Jsonifiable from './jsonifiable'
 
 /**
- * Matches an object that can be losslessly converted to JSON.
+ * An object that can be losslessly converted to JSON.
  *
  * For objects with `toJSON` methods, use [`JsonifiableInstance`][1] instead.
  *
@@ -15,6 +15,6 @@ import type Jsonifiable from './jsonifiable'
  *
  * @see [`Jsonifiable`][2]
  */
-type JsonifiableObject = { [K in string]?: Jsonifiable }
+type JsonifiableObject = { [K in string]?: Jsonifiable | undefined }
 
 export type { JsonifiableObject as default }

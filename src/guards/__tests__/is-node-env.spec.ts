@@ -3,7 +3,7 @@
  * @module tutils/guards/tests/unit/isNodeEnv
  */
 
-import NodeEnv from '#src/enums/node-env'
+import { NodeEnv } from '#src/enums'
 import type { TestcaseFn } from '#tests/interfaces'
 import testSubject from '../is-node-env'
 

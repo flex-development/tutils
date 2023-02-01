@@ -3,7 +3,10 @@
  * @module tutils/types/Opaque
  */
 
-declare const tag: unique symbol
+/**
+ * Token symbol for {@linkcode Opaque}.
+ */
+declare const token: unique symbol
 
 /**
  * Creates an [opaque type][1].
@@ -19,6 +22,6 @@ declare const tag: unique symbol
  * @template B - Base type
  * @template T - Type token
  */
-type Opaque<B, T = unknown> = B & { readonly [tag]: T }
+type Opaque<B, T = unknown> = B & { readonly [token]: T }
 
 export type { Opaque as default }

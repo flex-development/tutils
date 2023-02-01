@@ -6,7 +6,7 @@
 import type Jsonifiable from './jsonifiable'
 
 /**
- * Matches an object with a `toJSON` method.
+ * An object with a `toJSON` method.
  *
  * When invoked, the object can be losslessly converted to JSON.
  *
