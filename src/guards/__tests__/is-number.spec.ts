@@ -9,6 +9,7 @@ describe('unit:guards/isNumber', () => {
   it('should return false if value is not a number', () => {
     // Arrange
     const cases: Parameters<typeof testSubject>[] = [
+      [Symbol('is-number')],
       [Number.NaN],
       [faker.datatype.array()],
       [faker.string.numeric()]
