@@ -3,6 +3,7 @@ bdougie
 booleanish
 bson
 cefc
+codecov
 commitlintrc
 dawidd
 dedupe

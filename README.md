@@ -1,6 +1,7 @@
 # tutils
 
 [![npm](https://img.shields.io/npm/v/@flex-development/tutils.svg)](https://npmjs.com/package/@flex-development/tutils)
+[![codecov](https://codecov.io/gh/flex-development/tutils/branch/main/graph/badge.svg?token=ZT857Z0ITA)](https://codecov.io/gh/flex-development/tutils)
 [![module type: cjs+esm](https://img.shields.io/badge/module%20type-cjs%2Besm-brightgreen)](https://github.com/voxpelli/badges-cjs-esm)
 [![license](https://img.shields.io/github/license/flex-development/tutils.svg)](LICENSE.md)
 [![conventional commits](https://img.shields.io/badge/-conventional%20commits-fe5196?logo=conventional-commits&logoColor=ffffff)](https://conventionalcommits.org/)
