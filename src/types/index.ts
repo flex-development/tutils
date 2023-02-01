@@ -17,6 +17,7 @@ export type {
   default as ExactOptionalPropertyTypes
 } from './exact-optional-property-types'
 export type { default as FIXME } from './fixme'
+export type { default as Fn } from './fn'
 export type { default as IndexSignature } from './index-signature'
 export type { default as IsTuple } from './is-tuple'
 export type { default as Join } from './join'
