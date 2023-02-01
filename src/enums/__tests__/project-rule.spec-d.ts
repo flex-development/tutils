@@ -6,7 +6,7 @@
 import type TestSubject from '../project-rule'
 
 describe('unit-d:enums/ProjectRule', () => {
-  it('should match [OMIT = 8]', () => {
+  it('should match [OMIT = 0]', () => {
     expectTypeOf<typeof TestSubject>().toHaveProperty('OMIT').toEqualTypeOf<0>()
   })
 
