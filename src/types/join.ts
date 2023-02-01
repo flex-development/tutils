@@ -3,19 +3,24 @@
  * @module tutils/types/Join
  */
 
-import type IndexSignature from './index-signature'
-
 /**
- * Concatenates strings `String1` and `String2`.
+ * Concatenates an array of strings and/or numbers using the given delimiter.
  *
- * @template String1 - String to split
- * @template String2 - String delimiter
+ * @template Arr - Array to concatenate
  * @template Delimiter - String delimiter
  */
 type Join<
-  String1 extends IndexSignature,
-  String2 extends IndexSignature,
+  Arr extends readonly (number | string)[],
   Delimiter extends string = ''
-> = `${String1 & string}${Delimiter}${String2 & string}`
+> = Arr extends []
+  ? ''
+  : Arr extends [number | string]
+  ? `${Arr[0]}`
+  : Arr extends readonly [
+      number | string,
+      ...infer Rest extends (number | string)[]
+    ]
+  ? `${Arr[0]}${Delimiter}${Join<Rest, Delimiter>}`
+  : string
 
 export type { Join as default }
