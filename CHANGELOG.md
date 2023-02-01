@@ -1,3 +1,132 @@
+## [tutils@6.0.0-alpha.10](https://github.com/flex-development/tutils/compare/tutils@6.0.0-alpha.9...tutils@6.0.0-alpha.10) (2023-02-01)
+
+
+### ⚠ BREAKING CHANGES
+
+* **enums:** remove `BsonTypeAlias`, `BsonTypeCode`
+* **enums:** remove `JwtType`
+* **guards:** remove `isJwtType`
+* **types:** remove `TimestampUnix`
+* **guards:** remove `isUnixTimestamp`
+* **types:** remove `SemanticVersion`
+* **types:** [`Join`] concatenate array
+* **guards:** require `value` parameter
+* **guards:** remove `isNumberString`
+* **types:** `StringLike` -> `Stringafiable`
+
+### :package: Build
+
+* **deps-dev:** Bump @commitlint/cli from 17.4.0 to 17.4.1 ([#105](https://github.com/flex-development/tutils/issues/105)) ([a722ea3](https://github.com/flex-development/tutils/commit/a722ea3f7706765c56f8ef9e44b8e2addd62005b))
+* **deps-dev:** Bump @commitlint/cli from 17.4.1 to 17.4.2 ([#115](https://github.com/flex-development/tutils/issues/115)) ([f8b3f17](https://github.com/flex-development/tutils/commit/f8b3f17edc8a17800309c15670536d15eb54437c))
+* **deps-dev:** Bump @commitlint/config-conventional from 17.4.0 to 17.4.2 ([#113](https://github.com/flex-development/tutils/issues/113)) ([fe92ae1](https://github.com/flex-development/tutils/commit/fe92ae12cd839259ff5ae4b12a9c885ad4c3bb57))
+* **deps-dev:** Bump @graphql-eslint/eslint-plugin from 3.14.3 to 3.15.0 ([#142](https://github.com/flex-development/tutils/issues/142)) ([a22bc76](https://github.com/flex-development/tutils/commit/a22bc7612085b5d740089285cb0684b4e0064133))
+* **deps-dev:** Bump @typescript-eslint/eslint-plugin from 5.48.0 to 5.48.1 ([#106](https://github.com/flex-development/tutils/issues/106)) ([e6a4c62](https://github.com/flex-development/tutils/commit/e6a4c62287d3d6b6679b165dc6d80790eea64cf5))
+* **deps-dev:** Bump @typescript-eslint/eslint-plugin from 5.48.1 to 5.48.2 ([#122](https://github.com/flex-development/tutils/issues/122)) ([d4b8a7e](https://github.com/flex-development/tutils/commit/d4b8a7ee95dd3236879a9d00c42522911b8dd672))
+* **deps-dev:** Bump @typescript-eslint/eslint-plugin from 5.48.2 to 5.49.0 ([#135](https://github.com/flex-development/tutils/issues/135)) ([d10b599](https://github.com/flex-development/tutils/commit/d10b599f69f5e6e2c886a287e17f74c7943f2b61))
+* **deps-dev:** Bump @typescript-eslint/eslint-plugin from 5.49.0 to 5.50.0 ([#153](https://github.com/flex-development/tutils/issues/153)) ([17c70e3](https://github.com/flex-development/tutils/commit/17c70e39995d8c94f3ca253f80df20571b51d5d2))
+* **deps-dev:** Bump @typescript-eslint/parser from 5.48.0 to 5.48.1 ([#108](https://github.com/flex-development/tutils/issues/108)) ([75b2e18](https://github.com/flex-development/tutils/commit/75b2e189117d62d1b194f55815d528ff7ec93475))
+* **deps-dev:** Bump @typescript-eslint/parser from 5.48.1 to 5.48.2 ([#123](https://github.com/flex-development/tutils/issues/123)) ([0832b6d](https://github.com/flex-development/tutils/commit/0832b6d5d9b9e8d8e91ceb88f9ea6f3096f9ca1c))
+* **deps-dev:** Bump @typescript-eslint/parser from 5.48.2 to 5.49.0 ([#138](https://github.com/flex-development/tutils/issues/138)) ([769ad82](https://github.com/flex-development/tutils/commit/769ad82f3705e2acb16769b96848024fed0440cc))
+* **deps-dev:** Bump @typescript-eslint/parser from 5.49.0 to 5.50.0 ([#155](https://github.com/flex-development/tutils/issues/155)) ([76cd700](https://github.com/flex-development/tutils/commit/76cd70076b4d29b103bde9f3b2e8dc059ee7953c))
+* **deps-dev:** Bump cspell from 6.18.1 to 6.19.2 ([#125](https://github.com/flex-development/tutils/issues/125)) ([0c60bd7](https://github.com/flex-development/tutils/commit/0c60bd707550bf3974fd57f81d7727c1399459d8))
+* **deps-dev:** Bump esbuild from 0.16.16 to 0.16.17 ([#112](https://github.com/flex-development/tutils/issues/112)) ([0cabd6c](https://github.com/flex-development/tutils/commit/0cabd6c46d7e91bd7333cff16d337be693331502))
+* **deps-dev:** Bump esbuild from 0.16.17 to 0.17.0 ([#118](https://github.com/flex-development/tutils/issues/118)) ([a46d677](https://github.com/flex-development/tutils/commit/a46d67748578a73b582784dce5d77a105d50eb23))
+* **deps-dev:** Bump esbuild from 0.17.0 to 0.17.1 ([#120](https://github.com/flex-development/tutils/issues/120)) ([02d7b8f](https://github.com/flex-development/tutils/commit/02d7b8f759d8be37478a2292edc91bd304829f5b))
+* **deps-dev:** Bump esbuild from 0.17.1 to 0.17.2 ([#124](https://github.com/flex-development/tutils/issues/124)) ([4c3cec0](https://github.com/flex-development/tutils/commit/4c3cec0441415a6ee898d3b87b67d2eb6597f91d))
+* **deps-dev:** Bump esbuild from 0.17.2 to 0.17.3 ([#127](https://github.com/flex-development/tutils/issues/127)) ([e22cdbe](https://github.com/flex-development/tutils/commit/e22cdbe8db5c13d1dffbb3f2d5990b878580d019))
+* **deps-dev:** Bump esbuild from 0.17.3 to 0.17.4 ([#132](https://github.com/flex-development/tutils/issues/132)) ([935057b](https://github.com/flex-development/tutils/commit/935057b70ac35a6c76346ca3fac5ec497912e763))
+* **deps-dev:** Bump esbuild from 0.17.4 to 0.17.5 ([#147](https://github.com/flex-development/tutils/issues/147)) ([4d61b9a](https://github.com/flex-development/tutils/commit/4d61b9a99a63640e040609b96d197d328b34fe9c))
+* **deps-dev:** Bump eslint from 8.31.0 to 8.32.0 ([#116](https://github.com/flex-development/tutils/issues/116)) ([427e5c5](https://github.com/flex-development/tutils/commit/427e5c583ea0535abc07cc6bc5b527df4b2fa0d3))
+* **deps-dev:** Bump eslint from 8.32.0 to 8.33.0 ([#149](https://github.com/flex-development/tutils/issues/149)) ([e11374b](https://github.com/flex-development/tutils/commit/e11374b43009c520ca504467903126aa380887c1))
+* **deps-dev:** Bump eslint-plugin-jsdoc from 39.6.4 to 39.6.6 ([#128](https://github.com/flex-development/tutils/issues/128)) ([3216cd1](https://github.com/flex-development/tutils/commit/3216cd10674c867cd23e3c5e8eaa90ee2d4dee49))
+* **deps-dev:** Bump eslint-plugin-jsdoc from 39.6.6 to 39.6.7 ([#133](https://github.com/flex-development/tutils/issues/133)) ([55c77ec](https://github.com/flex-development/tutils/commit/55c77ec4ed830ef12b393d746378a0f24f701234))
+* **deps-dev:** Bump eslint-plugin-jsdoc from 39.6.7 to 39.6.8 ([#139](https://github.com/flex-development/tutils/issues/139)) ([baa5def](https://github.com/flex-development/tutils/commit/baa5def54e7735564e78c12b3f51a90d927b5325))
+* **deps-dev:** Bump eslint-plugin-jsdoc from 39.6.8 to 39.7.4 ([#150](https://github.com/flex-development/tutils/issues/150)) ([992695e](https://github.com/flex-development/tutils/commit/992695e150c7198e2d9f2fbf6cb22e8efe72cf3a))
+* **deps-dev:** Bump eslint-plugin-jsdoc from 39.7.4 to 39.7.5 ([#154](https://github.com/flex-development/tutils/issues/154)) ([98f5370](https://github.com/flex-development/tutils/commit/98f5370970ce30c1a2c6480dff54775103fbf788))
+* **deps-dev:** Bump prettier from 2.8.2 to 2.8.3 ([#117](https://github.com/flex-development/tutils/issues/117)) ([8af91c7](https://github.com/flex-development/tutils/commit/8af91c7244bc7c7a866fac0e3bc0b929dbf6ebf3))
+* **deps-dev:** Bump pretty-format from 29.3.1 to 29.4.0 ([#141](https://github.com/flex-development/tutils/issues/141)) ([2661963](https://github.com/flex-development/tutils/commit/2661963366833b11ce3b64bf8e5695cc9425e993))
+* **deps-dev:** Bump pretty-format from 29.4.0 to 29.4.1 ([#144](https://github.com/flex-development/tutils/issues/144)) ([2a6e613](https://github.com/flex-development/tutils/commit/2a6e6137e64b8960a756bc3067157744fa99174b))
+* **deps-dev:** Bump serve from 14.1.2 to 14.2.0 ([#140](https://github.com/flex-development/tutils/issues/140)) ([6853b43](https://github.com/flex-development/tutils/commit/6853b4395c8425900ff9217ec40d3d048e8e1712))
+* **deps-dev:** Bump vite-tsconfig-paths from 4.0.3 to 4.0.5 ([#131](https://github.com/flex-development/tutils/issues/131)) ([06bbf03](https://github.com/flex-development/tutils/commit/06bbf030e9bfb28a8fed0d669595ad53eea0f93a))
+* **ts:** remove `typesVersions` ([bb70364](https://github.com/flex-development/tutils/commit/bb70364b7236c061463707b7dfe10ee5a4d9289d))
+
+
+### :robot: Continuous Integration
+
+* **deps:** Bump actions/cache from 3.2.2 to 3.2.3 ([#109](https://github.com/flex-development/tutils/issues/109)) ([6b415ba](https://github.com/flex-development/tutils/commit/6b415ba88a0d95c0e951531b01bc324d87cf914c))
+* **deps:** Bump actions/cache from 3.2.3 to 3.2.4 ([#152](https://github.com/flex-development/tutils/issues/152)) ([2809f28](https://github.com/flex-development/tutils/commit/2809f289ea0bcaf6ccf2174819673aeddb600a30))
+* **deps:** Bump actions/github-script from 6.3.3 to 6.4.0 ([#146](https://github.com/flex-development/tutils/issues/146)) ([7812e7f](https://github.com/flex-development/tutils/commit/7812e7f0eaa94cd581967df3e2bd6fd46293910f))
+* **deps:** Bump dependabot/fetch-metadata from 1.3.5 to 1.3.6 ([#137](https://github.com/flex-development/tutils/issues/137)) ([2294bfa](https://github.com/flex-development/tutils/commit/2294bfa4eaf5ba58f8502e2f755c431830992000))
+* **workflows:** [`approve-pr`] refactor approval step conditional ([c7da441](https://github.com/flex-development/tutils/commit/c7da4411469bb072d665293721838504826eea42))
+* **workflows:** [`ci`] `jobs.setup` -> `jobs.metadata` ([6aa1706](https://github.com/flex-development/tutils/commit/6aa1706e7694fda056035c40ad8b70a8204552cc))
+* **workflows:** [`ci`] add `version` output to `metadata` job ([5e9924f](https://github.com/flex-development/tutils/commit/5e9924f0d7d615142e11eda1c2a2e39e42634860))
+* **workflows:** [`ci`] make typescript matrix dynamic ([07a70ab](https://github.com/flex-development/tutils/commit/07a70abc7949ac516e2515cafad785cd2609f9d5))
+* **workflows:** [`ci`] refactor `metadata` job conditional ([963fc36](https://github.com/flex-development/tutils/commit/963fc369ade5e2d9d4f6301d8605231563fa61f5))
+* **workflows:** [`ci`] upload coverage report to codecov ([5e6a844](https://github.com/flex-development/tutils/commit/5e6a844fc696bf878a2f17cb1f98a0a16e8c8279))
+* **workflows:** [`integrity`] update `pull_request` event activity types ([b2c14d4](https://github.com/flex-development/tutils/commit/b2c14d437323899a0e060af1f5247da5cd74e18a))
+* **workflows:** [`typescript-canary`] add `tsconfig.json` prep step ([ed06243](https://github.com/flex-development/tutils/commit/ed06243f518f7bc8af0a87209965875ef1391e2c))
+* **workflows:** [`typescript-canary`] print typescript version ([1768fa1](https://github.com/flex-development/tutils/commit/1768fa1560d07507ad2bc9dd24b57588f6a79f73))
+* **workflows:** [`typescript-canary`] run workflow daily ([ef9594e](https://github.com/flex-development/tutils/commit/ef9594e157fb13ea00f0cb2db4264c5384915a79))
+* **yarn:** fix typescript matrix testing ([24ad4fe](https://github.com/flex-development/tutils/commit/24ad4fec84800225ef4666ee71a170fbb595d455))
+
+
+### :pencil: Documentation
+
+* related ([d4a07c7](https://github.com/flex-development/tutils/commit/d4a07c74b6d83dc901a7eaaf19c82b82314688b5))
+
+
+### :sparkles: Features
+
+* **guards:** `isBigInt` ([70d2b0f](https://github.com/flex-development/tutils/commit/70d2b0fd5f1b1fde86c0213c62147d7c6570f90a))
+* **guards:** `isBoolean` ([e7cfedd](https://github.com/flex-development/tutils/commit/e7cfedd3b60d21e219302286a52e47e2fcfc97d5))
+* **guards:** `isFunction` ([6219e77](https://github.com/flex-development/tutils/commit/6219e77c6086dfb2e0b836fab56846f0d3481635))
+* **guards:** `isJsonPrimitive` ([1c91304](https://github.com/flex-development/tutils/commit/1c91304c90438c44357a50ae7994ec97a63d9cc2))
+* **guards:** `isNull` ([818d625](https://github.com/flex-development/tutils/commit/818d62508cf7912324c3d1651d21d7153a705203))
+* **guards:** `isNumber` ([d64f34c](https://github.com/flex-development/tutils/commit/d64f34c71f5b745d0218d4854ac476c7146964e9))
+* **guards:** `isNumeric` ([10e807f](https://github.com/flex-development/tutils/commit/10e807f15b26dc9b7034bc312bb21fa4233362db))
+* **guards:** `isObjectPlain` ([e885589](https://github.com/flex-development/tutils/commit/e8855891ee35eea7284d1e690499aa7f6e0fe234))
+* **guards:** `isPrimitive` ([282e260](https://github.com/flex-development/tutils/commit/282e2605da73ef61fb766bfa93f4026515408b92))
+* **guards:** `isString` ([503bd02](https://github.com/flex-development/tutils/commit/503bd02e225e7165a09077144022261efa8fca28))
+* **guards:** `isSymbol` ([05aeb91](https://github.com/flex-development/tutils/commit/05aeb91330ab90a248de6b02a5018ebe51cbad7c))
+* **guards:** `isUndefined` ([9f3a6d7](https://github.com/flex-development/tutils/commit/9f3a6d780623f10cd00a00d7b3b866137ac24d7d))
+* **types:** `Fn` ([6e140b4](https://github.com/flex-development/tutils/commit/6e140b4797516d9f684c8ae5aeffc43edf71e007))
+
+
+### :bug: Fixes
+
+* **types:** export `IsTuple` ([682700e](https://github.com/flex-development/tutils/commit/682700e222754a5c91820d3d5d0beb9db8522d41))
+
+
+### :house_with_garden: Housekeeping
+
+* update project architecture ([d9b3565](https://github.com/flex-development/tutils/commit/d9b3565b5997aa389e782e8c1468cb7a6522b7d0))
+* **github:** add commit scope `build` ([e79b8ef](https://github.com/flex-development/tutils/commit/e79b8ef01965c05ff54cd44a75d66bc253669bd8))
+* **github:** add commit scope `nvm` ([c461ecb](https://github.com/flex-development/tutils/commit/c461ecbf72b97e79d065830e9ccd37ef8c8f1881))
+* **github:** configure sponsor button ([a8c5750](https://github.com/flex-development/tutils/commit/a8c5750ca0cf59e880032574d8b357d9cf8bb925))
+* **github:** remove "tests" section from pull request template ([0b892f1](https://github.com/flex-development/tutils/commit/0b892f1d6b030253ca5850e0c07915e0a90cc8c4))
+* **tests:** codecov integration ([b32e474](https://github.com/flex-development/tutils/commit/b32e4742fd05ab995b528186c9f9f8b0a9d3ad0c))
+
+
+### :zap: Refactors
+
+* **enums:** remove `BsonTypeAlias`, `BsonTypeCode` ([5185d7b](https://github.com/flex-development/tutils/commit/5185d7b3c5974a4dc9c08edce931aca2acef2386))
+* **enums:** remove `JwtType` ([05df830](https://github.com/flex-development/tutils/commit/05df830b231768105489025d867e0367417f4c26))
+* **guards:** remove `isJwtType` ([a26a779](https://github.com/flex-development/tutils/commit/a26a77967f92f9e79d6750d871ab45ad6df61666))
+* **guards:** remove `isNumberString` ([d6158df](https://github.com/flex-development/tutils/commit/d6158df1891bee8ac7df39d18a483fef318a77f9))
+* **guards:** remove `isUnixTimestamp` ([884c766](https://github.com/flex-development/tutils/commit/884c76614bcc0c8defb6fc1258e79c9de028a21b))
+* **guards:** require `value` parameter ([2e38928](https://github.com/flex-development/tutils/commit/2e38928a5d6aa60cf7b9959910760892aa035d81))
+* **types:** [`Join`] concatenate array ([387872c](https://github.com/flex-development/tutils/commit/387872c3829b3c8c56adb05f8a7153173033fede))
+* **types:** `StringLike` -> `Stringafiable` ([98599eb](https://github.com/flex-development/tutils/commit/98599eb63a7c61051e515212699060d5541d8a01))
+* **types:** remove `SemanticVersion` ([f646dbd](https://github.com/flex-development/tutils/commit/f646dbd745620563472cd719d5676397efc6879d))
+* **types:** remove `TimestampUnix` ([7bff682](https://github.com/flex-development/tutils/commit/7bff6828918536353abf5032025ffa3183ca3d53))
+
+
+### :white_check_mark: Testing
+
+* **enums:** [`ProjectRule`] fix test name ([f04d376](https://github.com/flex-development/tutils/commit/f04d376bd485ae3933e091bedd19251a3aa6bd36))
+* **guards:** reformat tests ([62a5e73](https://github.com/flex-development/tutils/commit/62a5e7378501621c27245e0c46f1d94847271e4f))
+* **ts:** add type tests ([429bc12](https://github.com/flex-development/tutils/commit/429bc122f328e11a340232b56ba8eb25c4e9b9be))
+
 ## [tutils@6.0.0-alpha.9](https://github.com/flex-development/tutils/compare/tutils@6.0.0-alpha.8...tutils@6.0.0-alpha.9) (2023-01-08)
 
 
