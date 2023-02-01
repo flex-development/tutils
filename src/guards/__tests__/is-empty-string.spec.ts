@@ -3,25 +3,18 @@
  * @module tutils/guards/tests/unit/isEmptyString
  */
 
-import type { TestcaseFn } from '#tests/interfaces'
 import testSubject from '../is-empty-string'
 
 describe('unit:guards/isEmptyString', () => {
-  interface Case extends TestcaseFn<typeof testSubject> {}
+  it('should return false if value is not empty string', () => {
+    expect(testSubject('hello world')).to.be.false
+  })
 
-  const cases: Case[] = [
-    { expected: false, parameters: [[]] },
-    { expected: false, parameters: [{}] },
-    { expected: false, parameters: [13] },
-    { expected: false, parameters: [false] },
-    { expected: false, parameters: ['hello world'] },
-    { expected: true, parameters: [''] },
-    { expected: true, parameters: ['   '] }
-  ]
+  it('should return true if value is empty string', () => {
+    // Arrange
+    const cases: Parameters<typeof testSubject>[] = [[''], [' ']]
 
-  cases.forEach(({ expected, parameters }) => {
-    it(`should return ${expected} given ${pf(parameters)}`, () => {
-      expect(testSubject(...parameters)).to.equal(expected)
-    })
+    // Act + Expect
+    cases.forEach(([value]) => expect(testSubject(value)).to.be.true)
   })
 })

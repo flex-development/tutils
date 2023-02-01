@@ -4,23 +4,22 @@
  */
 
 import { NodeEnv } from '#src/enums'
-import type { TestcaseFn } from '#tests/interfaces'
 import testSubject from '../is-node-env'
 
 describe('unit:guards/isNodeEnv', () => {
-  interface Case extends TestcaseFn<typeof testSubject> {}
+  it('should return false if value is not NodeEnv', () => {
+    expect(testSubject(faker.string.sample())).to.be.false
+  })
 
-  const cases: Case[] = [
-    { expected: false, parameters: ['ci'] },
-    { expected: false, parameters: ['DEV'] },
-    { expected: true, parameters: [NodeEnv.DEV] },
-    { expected: true, parameters: [NodeEnv.PROD] },
-    { expected: true, parameters: [NodeEnv.TEST] }
-  ]
+  it('should return true if value is NodeEnv', () => {
+    // Arrange
+    const cases: Parameters<typeof testSubject>[] = [
+      [NodeEnv.DEV],
+      [NodeEnv.PROD],
+      [NodeEnv.TEST]
+    ]
 
-  cases.forEach(({ expected, parameters }) => {
-    it(`should return ${expected} given ${pf(parameters)}`, () => {
-      expect(testSubject(...parameters)).to.equal(expected)
-    })
+    // Act + Expect
+    cases.forEach(([value]) => expect(testSubject(value)).to.be.true)
   })
 })

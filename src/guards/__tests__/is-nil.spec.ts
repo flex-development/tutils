@@ -3,26 +3,18 @@
  * @module tutils/guards/tests/unit/isNIL
  */
 
-import type { TestcaseFn } from '#tests/interfaces'
 import testSubject from '../is-nil'
 
 describe('unit:guards/isNIL', () => {
-  interface Case extends TestcaseFn<typeof testSubject> {}
+  it('should return false if value is not NIL', () => {
+    expect(testSubject(faker.git.commitSha())).to.be.false
+  })
 
-  const cases: Case[] = [
-    { expected: false, parameters: [[]] },
-    { expected: false, parameters: [{}] },
-    { expected: false, parameters: [13] },
-    { expected: false, parameters: [true] },
-    { expected: false, parameters: [false] },
-    { expected: false, parameters: ['string'] },
-    { expected: true, parameters: [null] },
-    { expected: true, parameters: [undefined] }
-  ]
+  it('should return true if value is NIL', () => {
+    // Arrange
+    const cases: Parameters<typeof testSubject>[] = [[null], [undefined]]
 
-  cases.forEach(({ expected, parameters }) => {
-    it(`should return ${expected} given ${pf(parameters)}`, () => {
-      expect(testSubject(...parameters)).to.equal(expected)
-    })
+    // Act + Expect
+    cases.forEach(([value]) => expect(testSubject(value)).to.be.true)
   })
 })

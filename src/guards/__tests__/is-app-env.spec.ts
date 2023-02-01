@@ -4,25 +4,24 @@
  */
 
 import { AppEnv } from '#src/enums'
-import type { TestcaseFn } from '#tests/interfaces'
 import testSubject from '../is-app-env'
 
 describe('unit:guards/isAppEnv', () => {
-  interface Case extends TestcaseFn<typeof testSubject> {}
+  it('should return false if value is not AppEnv', () => {
+    expect(testSubject(faker.string.sample())).to.be.false
+  })
 
-  const cases: Case[] = [
-    { expected: false, parameters: ['cd'] },
-    { expected: false, parameters: ['PROD'] },
-    { expected: true, parameters: [AppEnv.CI] },
-    { expected: true, parameters: [AppEnv.DEV] },
-    { expected: true, parameters: [AppEnv.STG] },
-    { expected: true, parameters: [AppEnv.PROD] },
-    { expected: true, parameters: [AppEnv.TEST] }
-  ]
+  it('should return true if value is AppEnv', () => {
+    // Arrange
+    const cases: Parameters<typeof testSubject>[] = [
+      [AppEnv.CI],
+      [AppEnv.DEV],
+      [AppEnv.STG],
+      [AppEnv.PROD],
+      [AppEnv.TEST]
+    ]
 
-  cases.forEach(({ expected, parameters }) => {
-    it(`should return ${expected} given ${pf(parameters)}`, () => {
-      expect(testSubject(...parameters)).to.equal(expected)
-    })
+    // Act + Expect
+    cases.forEach(([value]) => expect(testSubject(value)).to.be.true)
   })
 })

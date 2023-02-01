@@ -4,22 +4,22 @@
  */
 
 import { JwtType } from '#src/enums'
-import type { TestcaseFn } from '#tests/interfaces'
 import testSubject from '../is-jwt-type'
 
 describe('unit:guards/isJwtType', () => {
-  interface Case extends TestcaseFn<typeof testSubject> {}
+  it('should return false if value is not JwtType', () => {
+    expect(testSubject(faker.string.sample())).to.be.false
+  })
 
-  const cases: Case[] = [
-    { expected: false, parameters: ['EMAIL'] },
-    { expected: true, parameters: [JwtType.ACCESS] },
-    { expected: true, parameters: [JwtType.REFRESH] },
-    { expected: true, parameters: [JwtType.VERIFICATION] }
-  ]
+  it('should return true if value is JwtType', () => {
+    // Arrange
+    const cases: Parameters<typeof testSubject>[] = [
+      [JwtType.ACCESS],
+      [JwtType.REFRESH],
+      [JwtType.VERIFICATION]
+    ]
 
-  cases.forEach(({ expected, parameters }) => {
-    it(`should return ${expected} given ${pf(parameters)}`, () => {
-      expect(testSubject(...parameters)).to.equal(expected)
-    })
+    // Act + Expect
+    cases.forEach(([value]) => expect(testSubject(value)).to.be.true)
   })
 })

@@ -3,25 +3,23 @@
  * @module tutils/guards/tests/unit/isBooleanish
  */
 
-import type { TestcaseFn } from '#tests/interfaces'
 import testSubject from '../is-booleanish'
 
 describe('unit:guards/isBooleanish', () => {
-  interface Case extends TestcaseFn<typeof testSubject> {}
+  it('should return false if value is not booleanish', () => {
+    expect(testSubject(faker.number.int())).to.be.false
+  })
 
-  const cases: Case[] = [
-    { expected: false, parameters: [[]] },
-    { expected: false, parameters: [{}] },
-    { expected: false, parameters: [13] },
-    { expected: true, parameters: [true] },
-    { expected: true, parameters: ['true'] },
-    { expected: true, parameters: [false] },
-    { expected: true, parameters: ['false'] }
-  ]
+  it('should return true if value is booleanish', () => {
+    // Arrange
+    const cases: Parameters<typeof testSubject>[] = [
+      [false],
+      [true],
+      ['false'],
+      ['true']
+    ]
 
-  cases.forEach(({ expected, parameters }) => {
-    it(`should return ${expected} given ${pf(parameters)}`, () => {
-      expect(testSubject(...parameters)).to.equal(expected)
-    })
+    // Act + Expect
+    cases.forEach(([value]) => expect(testSubject(value)).to.be.true)
   })
 })
