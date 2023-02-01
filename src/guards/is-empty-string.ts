@@ -4,6 +4,7 @@
  */
 
 import type { EmptyString } from '#src/types'
+import isString from './is-string'
 
 /**
  * Checks if the given `value` is an empty string.
@@ -12,7 +13,7 @@ import type { EmptyString } from '#src/types'
  * @return {value is EmptyString} `true` if `value` is empty string
  */
 const isEmptyString = (value: unknown): value is EmptyString => {
-  return typeof value !== 'string' ? false : value.trim() === ''
+  return isString(value) ? value.trim() === '' : false
 }
 
 export default isEmptyString
