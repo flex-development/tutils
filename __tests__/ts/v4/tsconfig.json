@@ -1,12 +1,10 @@
 {
   "compilerOptions": {
-    "allowImportingTsExtensions": true,
     "allowJs": true,
     "allowUnreachableCode": false,
     "alwaysStrict": false,
-    "baseUrl": ".",
+    "baseUrl": "../../..",
     "checkJs": false,
-    "customConditions": ["import", "node", "default"],
     "declaration": false,
     "declarationMap": false,
     "emitDecoratorMetadata": false,
@@ -14,9 +12,11 @@
     "exactOptionalPropertyTypes": true,
     "experimentalDecorators": false,
     "forceConsistentCasingInFileNames": true,
+    "importsNotUsedAsValues": "error",
+    "isolatedModules": true,
     "lib": ["es2020"],
     "module": "esnext",
-    "moduleResolution": "bundler",
+    "moduleResolution": "node",
     "newLine": "lf",
     "noEmit": true,
     "noErrorTruncation": true,
@@ -27,7 +27,7 @@
     "noUncheckedIndexedAccess": true,
     "noUnusedLocals": false,
     "noUnusedParameters": false,
-    "outDir": "dist",
+    "outDir": "../../../dist",
     "paths": {
       "#fixtures/*": ["__fixtures__/*"],
       "#src": ["src/index"],
@@ -39,9 +39,7 @@
     "preserveSymlinks": false,
     "pretty": true,
     "resolveJsonModule": true,
-    "resolvePackageJsonExports": true,
-    "resolvePackageJsonImports": true,
-    "rootDir": ".",
+    "rootDir": "../../..",
     "skipDefaultLibCheck": false,
     "skipLibCheck": true,
     "sourceMap": true,
@@ -50,10 +48,8 @@
     "strictPropertyInitialization": true,
     "target": "esnext",
     "useDefineForClassFields": true,
-    "useUnknownInCatchVariables": true,
-    "verbatimModuleSyntax": true
+    "useUnknownInCatchVariables": true
   },
   "exclude": ["**/coverage", "**/dist", "**/node_modules"],
-  "include": ["**/**.mjs", "**/**.mts", "**/**.ts"],
-  "references": [{ "path": "./tsconfig.cjs.json" }]
+  "include": ["**/**.mjs", "**/**.mts", "**/**.ts"]
 }

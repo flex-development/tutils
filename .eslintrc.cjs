@@ -9,7 +9,6 @@
  * @const config - ESLint configuration object
  */
 const config = {
-  root: true,
   extends: ['./.eslintrc.base.cjs'],
   overrides: [
     ...require('./.eslintrc.base.cjs').overrides,
@@ -35,7 +34,8 @@ const config = {
         '@typescript-eslint/consistent-indexed-object-style': 0
       }
     }
-  ]
+  ],
+  root: true
 }
 
 module.exports = config

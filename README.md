@@ -1,5 +1,6 @@
 # tutils
 
+[![github release](https://img.shields.io/github/v/release/flex-development/tutils.svg?include_prereleases&sort=semver)](https://github.com/flex-development/tutils/releases/latest)
 [![npm](https://img.shields.io/npm/v/@flex-development/tutils.svg)](https://npmjs.com/package/@flex-development/tutils)
 [![codecov](https://codecov.io/gh/flex-development/tutils/branch/main/graph/badge.svg?token=ZT857Z0ITA)](https://codecov.io/gh/flex-development/tutils)
 [![module type: cjs+esm](https://img.shields.io/badge/module%20type-cjs%2Besm-brightgreen)](https://github.com/voxpelli/badges-cjs-esm)
@@ -9,7 +10,7 @@
 [![vitest](https://img.shields.io/badge/-vitest-6e9f18?style=flat&logo=vitest&logoColor=ffffff)](https://vitest.dev/)
 [![yarn](https://img.shields.io/badge/-yarn-2c8ebb?style=flat&logo=yarn&logoColor=ffffff)](https://yarnpkg.com/)
 
-[TypeScript][1] utilities.
+[TypeScript][1]-friendly utilities.
 
 ## Contents
 
@@ -21,7 +22,8 @@
 
 ## What is this?
 
-This package contains a set of general [TypeScript][1] utilities. It includes enums, interfaces, types, and type guards.
+This package contains a set of [TypeScript][1]-friendly utilities. It includes enums, interfaces, type definitions, and
+type guards.
 
 ## When should I use this?
 

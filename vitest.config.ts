@@ -4,8 +4,9 @@
  * @see https://vitest.dev/config/
  */
 
+import pathe from '@flex-development/pathe'
 import ci from 'is-ci'
-import path from 'node:path'
+import pupa from 'pupa'
 import tsconfigpaths from 'vite-tsconfig-paths'
 import GithubActionsReporter from 'vitest-github-actions-reporter'
 import {
@@ -13,7 +14,7 @@ import {
   type UserConfig,
   type UserConfigExport
 } from 'vitest/config'
-import { BaseSequencer } from 'vitest/node'
+import { BaseSequencer, type WorkspaceSpec } from 'vitest/node'
 
 /**
  * Vitest configuration export.
@@ -30,13 +31,26 @@ const config: UserConfigExport = defineConfig((): UserConfig => {
    */
   const LINT_STAGED: boolean = !!Number.parseInt(process.env.LINT_STAGED ?? '0')
 
+  /**
+   * Boolean indicating if the current running version of [`typescript`][1] is
+   * at least `5`.
+   *
+   * @const {boolean} TYPESCRIPT_V5
+   */
+  const TYPESCRIPT_V5: boolean =
+    process.env.TYPESCRIPT_VERSION?.startsWith('5') ?? true
+
   return {
-    define: {
-      'import.meta.env.NODE_ENV': JSON.stringify('test')
-    },
-    plugins: [tsconfigpaths({ projects: [path.resolve('tsconfig.json')] })],
+    define: {},
+    plugins: [tsconfigpaths({ projects: [pathe.resolve('tsconfig.json')] })],
     test: {
       allowOnly: !ci,
+      benchmark: {},
+      chaiConfig: {
+        includeStack: true,
+        showDiff: true,
+        truncateThreshold: 0
+      },
       clearMocks: true,
       coverage: {
         all: !LINT_STAGED,
@@ -51,20 +65,17 @@ const config: UserConfigExport = defineConfig((): UserConfig => {
         ],
         extension: ['.ts'],
         include: ['src'],
+        provider: 'c8',
         reporter: [ci ? 'lcovonly' : 'lcov', 'text'],
         reportsDirectory: './coverage',
         skipFull: false
       },
-      globalSetup: [
-        './__tests__/setup/setup.ts',
-        './__tests__/setup/teardown.ts'
-      ],
+      environment: 'node',
+      environmentOptions: {},
+      globalSetup: [],
       globals: true,
       hookTimeout: 10 * 1000,
-      include: [
-        '**/__tests__/*.spec.ts',
-        LINT_STAGED ? '**/__tests__/*.spec-d.ts' : ''
-      ].filter(pattern => pattern.length > 0),
+      include: [`**/__tests__/*.spec${LINT_STAGED ? ',spec-d' : ''}.{ts,tsx}`],
       isolate: true,
       mockReset: true,
       outputFile: { json: './__tests__/report.json' },
@@ -82,9 +93,9 @@ const config: UserConfigExport = defineConfig((): UserConfig => {
        * @return {string} Custom snapshot path
        */
       resolveSnapshotPath(file: string, extension: string): string {
-        return path.resolve(
-          path.resolve(path.dirname(path.dirname(file)), '__snapshots__'),
-          path.basename(file).replace(/\.spec.tsx?/, '') + extension
+        return pathe.resolve(
+          pathe.resolve(pathe.dirname(pathe.dirname(file)), '__snapshots__'),
+          pathe.basename(file).replace(/\.spec.tsx?/, '') + extension
         )
       },
       restoreMocks: true,
@@ -98,29 +109,40 @@ const config: UserConfigExport = defineConfig((): UserConfig => {
            * @override
            * @async
            *
-           * @param {string[]} files - Paths to test files
-           * @return {Promise<string[]>} `files` sorted
+           * @param {WorkspaceSpec[]} specs - Workspace spec objects
+           * @return {Promise<WorkspaceSpec[]>} `files` sorted
            */
-          public override async sort(files: string[]): Promise<string[]> {
-            return (await super.sort(files)).sort((a, b) => a.localeCompare(b))
+          public override async sort(
+            specs: WorkspaceSpec[]
+          ): Promise<WorkspaceSpec[]> {
+            return (await super.sort(specs)).sort(([, file1], [, file2]) => {
+              return file1.localeCompare(file2)
+            })
           }
         }
       },
       setupFiles: ['./__tests__/setup/index.ts'],
       silent: false,
+      singleThread: true,
+      slowTestThreshold: 3000,
       snapshotFormat: {
         callToJSON: true,
         min: false,
+        printBasicPrototype: false,
         printFunctionName: true
       },
-      testTimeout: 15 * 1000,
+      testTimeout: 10 * 1000,
       typecheck: {
         allowJs: false,
         checker: 'tsc',
         ignoreSourceErrors: false,
         include: ['**/__tests__/*.spec-d.ts'],
-        tsconfig: path.resolve('tsconfig.typecheck.json')
-      }
+        tsconfig: pupa('{0}/tsconfig.typecheck.json', {
+          0: pathe.resolve(TYPESCRIPT_V5 ? '' : '__tests__/ts/v4')
+        })
+      },
+      unstubEnvs: true,
+      unstubGlobals: true
     }
   }
 })

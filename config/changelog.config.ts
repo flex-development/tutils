@@ -1,5 +1,5 @@
 /**
- * @file Changelog Configuration
+ * @file Configuration - Changelog
  * @module config/changelog
  * @see https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-conventionalcommits
  * @see https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-core
@@ -8,7 +8,13 @@
  * @see https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/git-raw-commits
  */
 
-import { CompareResult, isNIL } from '#src'
+import {
+  Type,
+  parserPreset,
+  type Commit
+} from '@flex-development/commitlint-config'
+import pathe from '@flex-development/pathe'
+import { CompareResult, isNIL } from '@flex-development/tutils'
 import addStream from 'add-stream'
 import conventionalChangelog from 'conventional-changelog'
 import type { Options } from 'conventional-changelog-core'
@@ -16,7 +22,6 @@ import type {
   CommitGroup,
   GeneratedContext
 } from 'conventional-changelog-writer'
-import type { Commit, ICommit } from 'conventional-commits-parser'
 import dateformat from 'dateformat'
 import type mri from 'mri'
 import {
@@ -26,12 +31,21 @@ import {
   type ReadStream,
   type WriteStream
 } from 'node:fs'
-import path from 'node:path'
 import type { Readable } from 'node:stream'
 import sade from 'sade'
 import semver from 'semver'
 import tempfile from 'tempfile'
-import pkg from './package.json' assert { type: 'json' }
+import pkg from '../package.json' assert { type: 'json' }
+
+/**
+ * Parsed commit with additional fields.
+ *
+ * @extends {Commit}
+ */
+interface CommitEnhanced extends Commit {
+  raw: Commit
+  version?: string
+}
 
 /**
  * CLI flags.
@@ -136,7 +150,8 @@ sade('changelog', true)
      *
      * @const {Readable} changelog
      */
-    const changelog: Readable = conventionalChangelog(
+    // @ts-expect-error type definitions are incorrect
+    const changelog: Readable = conventionalChangelog<Commit>(
       {
         append: false,
         debug: debug ? console.debug.bind(console) : undefined,
@@ -146,25 +161,24 @@ sade('changelog', true)
             : typeof outputUnreleased === 'string'
             ? !!outputUnreleased.trim()
             : false,
-        pkg: { path: path.resolve('package.json') },
-        // @ts-expect-error ts(2322)
+        pkg: { path: pathe.resolve('package.json') },
         preset: {
           header: '',
-          name: 'conventionalcommits',
+          name: parserPreset.name,
           releaseCommitMessageFormat: 'release: {{currentTag}}',
           types: [
-            { section: ':package: Build', type: 'build' },
-            { section: ':house_with_garden: Housekeeping', type: 'chore' },
-            { section: ':robot: Continuous Integration', type: 'ci' },
-            { section: ':pencil: Documentation', type: 'docs' },
-            { section: ':sparkles: Features', type: 'feat' },
-            { section: ':bug: Fixes', type: 'fix' },
-            { section: ':fire: Performance Improvements', type: 'perf' },
-            { section: ':zap: Refactors', type: 'refactor' },
-            { section: ':rewind: Reverts', type: 'revert' },
-            { hidden: true, type: 'style' },
-            { section: ':white_check_mark: Testing', type: 'test' },
-            { hidden: true, type: 'wip' }
+            { section: ':package: Build', type: Type.BUILD },
+            { section: ':house_with_garden: Housekeeping', type: Type.CHORE },
+            { section: ':robot: Continuous Integration', type: Type.CI },
+            { section: ':pencil: Documentation', type: Type.DOCS },
+            { section: ':sparkles: Features', type: Type.FEAT },
+            { section: ':bug: Fixes', type: Type.FIX },
+            { section: ':fire: Performance Improvements', type: Type.PERF },
+            { section: ':mechanical_arm: Refactors', type: Type.REFACTOR },
+            { section: ':wastebasket: Reverts', type: Type.REVERT },
+            { hidden: true, type: Type.STYLE },
+            { section: ':white_check_mark: Testing', type: Type.TEST },
+            { hidden: true, type: Type.WIP }
           ]
         },
         releaseCount,
@@ -183,27 +197,23 @@ sade('changelog', true)
         transform(commit: Commit, apply: Options.Transform.Callback): void {
           return void apply(null, {
             ...commit,
-            committerDate: dateformat(
-              commit.committerDate!,
-              'yyyy-mm-dd',
-              true
-            ),
+            committerDate: dateformat(commit.committerDate, 'yyyy-mm-dd', true),
             mentions: commit.mentions.filter(m => m !== 'flexdevelopment'),
             // @ts-expect-error ts(2322)
             raw: commit,
             references: commit.references.filter(ref => ref.action !== null),
-            shortHash: commit.hash!.slice(0, 7),
-            version: commit.gitTags
-              ? vgx.exec(commit.gitTags)?.[1] ?? 'unreleased'
-              : 'unreleased'
+            version: commit.gitTags ? vgx.exec(commit.gitTags)?.[1] : undefined
           })
-        }
+        },
+        warn: parserPreset.parserOpts.warn
       },
-      {},
       {},
       {
-        issuePrefixesCaseSensitive: true
+        debug: debug ? parserPreset.parserOpts.warn : undefined,
+        format:
+          '%B%n-hash-%n%H%n-shortHash-%n%h%n-gitTags-%n%d%n-committerDate-%n%ci%n'
       },
+      parserPreset.parserOpts,
       {
         /**
          * Sorts commit groups in descending order by group title.
@@ -234,11 +244,11 @@ sade('changelog', true)
          *
          * @see https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-writer#commitssort
          *
-         * @param {ICommit} a - Commit object
-         * @param {ICommit} b - Commit object to compare to `b`
+         * @param {Commit} a - Commit object
+         * @param {Commit} b - Commit object to compare to `b`
          * @return {number} Compare result
          */
-        commitsSort(a: ICommit, b: ICommit): number {
+        commitsSort(a: Commit, b: Commit): number {
           /**
            * Compare result for {@linkcode b.committerDate} and
            * {@linkcode a.committerDate}.
@@ -268,15 +278,15 @@ sade('changelog', true)
          *
          * @param {GeneratedContext} context - Generated changelog context
          * @param {Options} options - `conventional-changelog-core` options
-         * @param {ICommit[]} commits - Commits for release
-         * @param {ICommit | undefined} key - Release commit
+         * @param {CommitEnhanced[]} commits - Commits for release
+         * @param {CommitEnhanced?} key - Release commit
          * @return {GeneratedContext} Final changelog context
          */
         finalizeContext(
           context: GeneratedContext,
           options: Options,
-          commits: ICommit[],
-          key: ICommit | undefined
+          commits: CommitEnhanced[],
+          key?: CommitEnhanced
         ): GeneratedContext {
           const { gitSemverTags = [], isPatch, linkCompare } = context
           let { currentTag, previousTag, version = '' } = context
@@ -284,16 +294,16 @@ sade('changelog', true)
           /**
            * First commit in release.
            *
-           * @const {ICommit | undefined} first_commit
+           * @const {CommitEnhanced?} first_commit
            */
-          const first_commit: ICommit | undefined = commits.at(0)
+          const first_commit: CommitEnhanced | undefined = commits.at(0)
 
           /**
            * Last commit in release.
            *
-           * @const {ICommit | undefined} last_commit
+           * @const {CommitEnhanced?} last_commit
            */
-          const last_commit: ICommit | undefined = commits.at(-1)
+          const last_commit: CommitEnhanced | undefined = commits.at(-1)
 
           // set version
           if ([version, pkg.tagPrefix + version].includes(gitSemverTags[0]!)) {
@@ -313,8 +323,8 @@ sade('changelog', true)
 
             // try setting previous tag based on current tag
             if (gitSemverTags.includes(currentTag ?? '')) {
-              const { version } = key
-              previousTag = gitSemverTags[gitSemverTags.indexOf(version!) + 1]
+              const { version = '' } = key
+              previousTag = gitSemverTags[gitSemverTags.indexOf(version) + 1]
               if (!previousTag) previousTag = last_commit?.hash ?? undefined
             }
           } else {
@@ -348,7 +358,10 @@ sade('changelog', true)
             repoUrl: pkg.repository.slice(0, -4)
           }
         },
-        headerPartial: readFileSync('templates/changelog/header.hbs', 'utf8'),
+        headerPartial: readFileSync(
+          'config/templates/changelog/header.hbs',
+          'utf8'
+        ),
         ignoreReverted: false
       }
     ).on('error', err => console.error(err.stack))

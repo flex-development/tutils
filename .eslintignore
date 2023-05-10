@@ -3,21 +3,22 @@
 
 # DIRECTORIES & FILES
 **/*.snap
-**/.DS_Store
+**/*config.*.timestamp*
+**/__tests__/report.json
+**/coverage/
 **/dist/
 **/node_modules/
-__tests__/report.json
-coverage/
-tsconfig*temp.json
-vitest.config.*.timestamp-*.mjs
+**/tsconfig*temp.json
 yarn.lock
 
 # NEGATED PATTERNS
+!**/.eslintrc*
+!**/__fixtures__/**/dist/
+!**/__fixtures__/**/node_modules/
+!**/typings/**/dist/
 !.codecov.yml
-!.commitlintrc.json
+!.commitlintrc.*
 !.cspell.json
-!.eslintrc.base.cjs
-!.eslintrc.cjs
 !.github/
 !.graphqlrc.yml
 !.lintstagedrc.json
