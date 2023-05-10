@@ -178,7 +178,7 @@
     "@ardatan/sync-fetch": "larsgw/sync-fetch#head=worker_threads"
   },
   "engines": {
-    "node": ">=14.16",
+    "node": ">=16.20.0",
     "yarn": "4.0.0-rc.39"
   },
   "packageManager": "yarn@4.0.0-rc.39",
