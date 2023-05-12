@@ -10,11 +10,11 @@ import type Constructor from './constructor'
  *
  * [1]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Classes
  *
- * @template P - Class prototype
- * @template A - Class `constructor` arguments
+ * @template T - Class prototype
+ * @template A - Class constructor arguments
  */
-type Class<P, A extends unknown[] = any[]> = Constructor<P, A> & {
-  prototype: P
+type Class<T, A extends unknown[] = any[]> = Constructor<T, A> & {
+  prototype: T
 }
 
 export type { Class as default }

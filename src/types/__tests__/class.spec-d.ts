@@ -3,11 +3,14 @@
  * @module tutils/types/tests/unit-d/Class
  */
 
-import Person from '#fixtures/person'
 import type TestSubject from '../class'
 
 describe('unit-d:types/Class', () => {
+  class Subscriber {
+    constructor(public email: string, public name: string) {}
+  }
+
   it('should match class declaration', () => {
-    assertType<TestSubject<Person, [string, string]>>(Person)
+    assertType<TestSubject<Subscriber, [string, string]>>(Subscriber)
   })
 })
