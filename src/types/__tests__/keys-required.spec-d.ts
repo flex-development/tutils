@@ -1,11 +1,11 @@
 /**
- * @file Type Tests - KeysRequired
- * @module tutils/types/tests/unit-d/KeysRequired
+ * @file Type Tests - RequiredKeys
+ * @module tutils/types/tests/unit-d/RequiredKeys
  */
 
 import type TestSubject from '../keys-required'
 
-describe('unit-d:types/KeysRequired', () => {
+describe('unit-d:types/RequiredKeys', () => {
   it('should extract required keys from T', () => {
     // Arrange
     type T = { display_name?: string; username: string }
