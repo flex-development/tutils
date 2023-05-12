@@ -3,12 +3,13 @@
   "description": "TypeScript-friendly utilities",
   "version": "6.0.0-alpha.10",
   "keywords": [
+    "definitions",
     "enums",
     "interfaces",
-    "type guards",
-    "type definitions",
-    "typescript utilities",
-    "typescript"
+    "type-definitions",
+    "type-guards",
+    "typescript-utilities",
+    "utilities"
   ],
   "license": "BSD-3-Clause",
   "homepage": "https://github.com/flex-development/tutils",

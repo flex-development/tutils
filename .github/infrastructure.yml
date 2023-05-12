@@ -79,9 +79,6 @@ labels:
   - name: scope:esm
     description: es modules
     color: 74cefc
-  - name: scope:guards
-    description: type guards
-    color: 74cefc
   - name: scope:install
     description: package install
     color: 74cefc
@@ -205,10 +202,10 @@ repository:
   topics:
     - enums
     - interfaces
-    - type-guards
     - type-definitions
-    - typescript-utilities
+    - type-guards
     - typescript
+    - typescript-utilities
   visibility: public
   vulnerability_alerts: true
   web_commit_signoff_required: true
