@@ -18,6 +18,7 @@ export type { default as EnsureString } from './ensure-string'
 export type {
   default as ExactOptionalPropertyTypes
 } from './exact-optional-property-types'
+export type { default as Fallback } from './fallback'
 export type { default as FIXME } from './fixme'
 export type { default as Fn } from './fn'
 export type { default as Get } from './get'
