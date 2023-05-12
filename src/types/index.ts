@@ -13,6 +13,7 @@ export type { default as AbstractConstructor } from './constructor-abstract'
 export type { default as ContinuousValue } from './continuous-value'
 export type { default as EmptyString } from './empty-string'
 export type { default as EmptyValue } from './empty-value'
+export type { default as EnsureString } from './ensure-string'
 // prettier-ignore
 export type {
   default as ExactOptionalPropertyTypes
