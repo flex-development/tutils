@@ -8,9 +8,9 @@
  *
  * [1]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Classes/constructor
  *
- * @template P - Class prototype
+ * @template T - Class prototype
  * @template A - Constructor arguments
  */
-type Constructor<P, A extends unknown[] = any[]> = new (...args: A) => P
+type Constructor<T, A extends unknown[] = any[]> = new (...args: A) => T
 
 export type { Constructor as default }
