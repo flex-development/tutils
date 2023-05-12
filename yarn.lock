@@ -1362,7 +1362,7 @@ __metadata:
     tempfile: "npm:5.0.0"
     trash-cli: "npm:5.0.0"
     ts-dedent: "npm:2.2.0"
-    typescript: "npm:5.1.0-beta"
+    typescript: "npm:5.1.0-dev.20230512"
     version-bump-prompt: "npm:6.1.0"
     vite: "npm:4.3.5"
     vite-tsconfig-paths: "npm:4.2.0"
@@ -8809,13 +8809,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:5.1.0-beta":
-  version: 5.1.0-beta
-  resolution: "typescript@npm:5.1.0-beta"
+"typescript@npm:5.1.0-dev.20230512":
+  version: 5.1.0-dev.20230512
+  resolution: "typescript@npm:5.1.0-dev.20230512"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: b48af60cecab067787f1743205538c07f36d489719f2240c314c736f7a9e7afa07929e38dea75bfc02467d64dd77f5eaeb465b8bff17c21805f52442b60eb8ff
+  checksum: 190c6139f50e45d7ffd4704cfae87ec59b24e074d7fd7e11f3482450094f438a6df858a52571b5980e514a4756ff912daf606727826a6d3a70e2373fbe271ec0
   languageName: node
   linkType: hard
 
@@ -8829,13 +8829,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@npm%3A5.1.0-beta#optional!builtin<compat/typescript>":
-  version: 5.1.0-beta
-  resolution: "typescript@patch:typescript@npm%3A5.1.0-beta#optional!builtin<compat/typescript>::version=5.1.0-beta&hash=1f5320"
+"typescript@patch:typescript@npm%3A5.1.0-dev.20230512#optional!builtin<compat/typescript>":
+  version: 5.1.0-dev.20230512
+  resolution: "typescript@patch:typescript@npm%3A5.1.0-dev.20230512#optional!builtin<compat/typescript>::version=5.1.0-dev.20230512&hash=1f5320"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 68d5f488b36d87e62fdc5724cf7044f2ef58f621153c01d5f9041992497a09ad50454b44afef7341039733705f37e50a3f22334a63bc0d7c0132fb5712c4a916
+  checksum: 09965df87014ed4479fedba896777e6a7caca48e04a4cc4b00460dab00acd381d46327c8fa7d922cfd4728b875b2d724afdb4a93991cd7f9e9adc3bdd152d2a6
   languageName: node
   linkType: hard
 
