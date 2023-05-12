@@ -3,16 +3,12 @@
  * @module tutils/types/Fn
  */
 
-import type ANY from './any'
-
 /**
  * A function.
  *
- * @template Args - Arguments type
- * @template Ret - Return type
+ * @template A - Arguments type
+ * @template R - Return type
  */
-type Fn<Args extends ANY[] = ANY[], Ret extends ANY = ANY> = (
-  ...args: Args
-) => Ret
+type Fn<A extends any[] = any[], R = any> = (...args: A) => R
 
 export type { Fn as default }

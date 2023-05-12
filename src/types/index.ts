@@ -3,7 +3,6 @@
  * @module tutils/types
  */
 
-export type { default as ANY } from './any'
 export type { default as Booleanish } from './booleanish'
 export type { default as BuiltIn } from './built-in'
 export type { default as Class } from './class'

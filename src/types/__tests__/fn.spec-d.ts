@@ -3,17 +3,16 @@
  * @module tutils/types/tests/unit-d/Fn
  */
 
-import type ANY from '../any'
 import type TestSubject from '../fn'
 
 describe('unit-d:types/Fn', () => {
-  it('should be callable with Args', () => {
-    expectTypeOf<TestSubject>().parameters.toEqualTypeOf<ANY[]>()
+  it('should be callable with A', () => {
+    expectTypeOf<TestSubject>().parameters.toEqualTypeOf<any[]>()
     expectTypeOf<TestSubject<[string]>>().parameters.toEqualTypeOf<[string]>()
   })
 
-  it('should return Ret', () => {
-    expectTypeOf<TestSubject>().returns.toEqualTypeOf<ANY>()
-    expectTypeOf<TestSubject<ANY, string>>().returns.toBeString()
+  it('should return R', () => {
+    expectTypeOf<TestSubject>().returns.toBeAny()
+    expectTypeOf<TestSubject<any, string>>().returns.toBeString()
   })
 })
