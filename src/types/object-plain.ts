@@ -3,11 +3,11 @@
  * @module tutils/types/ObjectPlain
  */
 
-import type IndexSignature from './index-signature'
-
 /**
- * A plain object.
+ * Type representing a plain old JavaScript object (POJO).
+ *
+ * @see https://masteringjs.io/tutorials/fundamentals/pojo
  */
-type ObjectPlain = { [Key in IndexSignature]?: any }
+type ObjectPlain = { [K in string | symbol]?: unknown }
 
 export type { ObjectPlain as default }

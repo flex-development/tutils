@@ -7,12 +7,15 @@ import type { ObjectPlain } from '#src/types'
 import isNull from './is-null'
 
 /**
- * Checks if the given `value` is a plain object.
+ * Checks if the given `value` is a plain object (i.e. [POJO][1]).
  *
- * A plain object is an object created by the [`Object`][1] constructor or an
+ * A plain object is an object created by the [`Object`][2] constructor or an
  * object with a `[[Prototype]]` of `null`.
  *
- * [1]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
+ * [1]: https://masteringjs.io/tutorials/fundamentals/pojo
+ * [2]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
+ *
+ * @see {@linkcode ObjectPlain}
  *
  * @param {unknown} value - Value to evaluate
  * @return {value is ObjectPlain} `true` if `value` is plain object
