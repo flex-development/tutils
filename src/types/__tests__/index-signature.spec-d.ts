@@ -4,14 +4,13 @@
  */
 
 import type TestSubject from '../index-signature'
+import type NumberString from '../number-string'
 
 describe('unit-d:types/IndexSignature', () => {
-  it('should extract number', () => {
-    expectTypeOf<TestSubject>().extract<number>().toBeNumber()
-  })
-
-  it('should extract string', () => {
-    expectTypeOf<TestSubject>().extract<string>().toBeString()
+  it('should extract NumberString', () => {
+    expectTypeOf<TestSubject>()
+      .extract<NumberString>()
+      .toEqualTypeOf<NumberString>()
   })
 
   it('should extract symbol', () => {
