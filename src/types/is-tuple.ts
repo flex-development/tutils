@@ -3,23 +3,19 @@
  * @module tutils/types/IsTuple
  */
 
+import type IfAny from './if-any'
+
 /**
- * Determines if `T` is a [tuple][1] type.
+ * Returns a boolean indicating if `T` is a [tuple][1] type.
  *
- * [1]: https://tutorialsteacher.com/typescript/typescript-tuple
+ * [1]: https://www.codecademy.com/resources/docs/typescript/tuples
  *
  * @template T - Type to evaluate
  */
-type IsTuple<T> = T extends [infer A]
-  ? T
-  : T extends [infer A, infer B]
-  ? T
-  : T extends [infer A, infer B, infer C]
-  ? T
-  : T extends [infer A, infer B, infer C, infer D]
-  ? T
-  : T extends [infer A, infer B, infer C, infer D, infer E]
-  ? T
-  : never
+type IsTuple<T> = IfAny<
+  T,
+  false,
+  T extends [infer U, ...infer Rest] ? true : false
+>
 
 export type { IsTuple as default }
