@@ -10,8 +10,8 @@
  *
  * @see https://github.com/microsoft/TypeScript/issues/15300
  *
- * @template T - Complex type
+ * @template T - Type to evaluate
  */
-type Simplify<T> = { [K in keyof T]: T[K] }
+type Simplify<T> = { [K in keyof T]: T[K] } & {}
 
 export type { Simplify as default }
