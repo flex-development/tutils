@@ -1,5 +1,5 @@
 /**
- * @file Type Guards - isBoolean
+ * @file Utilities - isBoolean
  * @module tutils/utils/isBoolean
  */
 

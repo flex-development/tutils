@@ -1,5 +1,5 @@
 /**
- * @file Type Guards - isNumeric
+ * @file Utilities - isNumeric
  * @module tutils/utils/isNumeric
  */
 

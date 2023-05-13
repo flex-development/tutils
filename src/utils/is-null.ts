@@ -1,5 +1,5 @@
 /**
- * @file Type Guards - isNull
+ * @file Utilities - isNull
  * @module tutils/utils/isNull
  */
 

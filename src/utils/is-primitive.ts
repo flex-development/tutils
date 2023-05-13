@@ -1,5 +1,5 @@
 /**
- * @file Type Guards - isPrimitive
+ * @file Utilities - isPrimitive
  * @module tutils/utils/isPrimitive
  */
 

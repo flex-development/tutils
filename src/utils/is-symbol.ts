@@ -1,5 +1,5 @@
 /**
- * @file Type Guards - isSymbol
+ * @file Utilities - isSymbol
  * @module tutils/utils/isSymbol
  */
 

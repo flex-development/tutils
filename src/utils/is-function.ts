@@ -1,5 +1,5 @@
 /**
- * @file Type Guards - isFunction
+ * @file Utilities - isFunction
  * @module tutils/utils/isFunction
  */
 

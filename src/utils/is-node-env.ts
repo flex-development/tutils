@@ -1,5 +1,5 @@
 /**
- * @file Type Guards - isNodeEnv
+ * @file Utilities - isNodeEnv
  * @module tutils/utils/isNodeEnv
  */
 

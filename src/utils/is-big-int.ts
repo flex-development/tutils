@@ -1,5 +1,5 @@
 /**
- * @file Type Guards - isBigInt
+ * @file Utilities - isBigInt
  * @module tutils/utils/isBigInt
  */
 

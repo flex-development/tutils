@@ -1,5 +1,5 @@
 /**
- * @file Type Guards - isString
+ * @file Utilities - isString
  * @module tutils/utils/isString
  */
 

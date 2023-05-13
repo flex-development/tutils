@@ -1,5 +1,5 @@
 /**
- * @file Type Guards - isAppEnv
+ * @file Utilities - isAppEnv
  * @module tutils/utils/isAppEnv
  */
 

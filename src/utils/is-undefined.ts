@@ -1,5 +1,5 @@
 /**
- * @file Type Guards - isUndefined
+ * @file Utilities - isUndefined
  * @module tutils/utils/isUndefined
  */
 

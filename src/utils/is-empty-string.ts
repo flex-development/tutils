@@ -1,5 +1,5 @@
 /**
- * @file Type Guards - isEmptyString
+ * @file Utilities - isEmptyString
  * @module tutils/utils/isEmptyString
  */
 

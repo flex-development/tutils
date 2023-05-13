@@ -1,5 +1,5 @@
 /**
- * @file Type Guards - isJsonPrimitive
+ * @file Utilities - isJsonPrimitive
  * @module tutils/utils/isJsonPrimitive
  */
 

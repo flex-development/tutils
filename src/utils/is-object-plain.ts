@@ -1,5 +1,5 @@
 /**
- * @file Type Guards - isObjectPlain
+ * @file Utilities - isObjectPlain
  * @module tutils/utils/isObjectPlain
  */
 
