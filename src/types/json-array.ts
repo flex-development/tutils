@@ -10,6 +10,6 @@ import type JsonValue from './json-value'
  *
  * [1]: https://restfulapi.net/json-data-types
  */
-type JsonArray = JsonValue[]
+type JsonArray = JsonValue[] | readonly JsonValue[]
 
 export type { JsonArray as default }
