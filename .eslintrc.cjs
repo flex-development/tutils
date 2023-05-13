@@ -16,6 +16,7 @@ const config = {
       files: [
         'src/types/built-in.ts',
         'src/types/exact-optional-property-types.ts',
+        'src/types/fn.ts',
         'src/types/overwrite.ts'
       ],
       rules: {

@@ -9,6 +9,6 @@
  * @template A - Arguments type
  * @template R - Return type
  */
-type Fn<A extends any[] = any[], R = any> = (...args: A) => R
+type Fn<A extends any[] = any[], R = any> = Function & ((...args: A) => R)
 
 export type { Fn as default }
