@@ -24,6 +24,12 @@ const config = {
       }
     },
     {
+      files: ['src/types/built-in.ts'],
+      rules: {
+        '@typescript-eslint/array-type': 0
+      }
+    },
+    {
       files: ['src/types/is-tuple.ts'],
       rules: {
         '@typescript-eslint/no-unused-vars': 0
