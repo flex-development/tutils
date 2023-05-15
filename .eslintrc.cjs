@@ -31,7 +31,11 @@ const config = {
       }
     },
     {
-      files: ['src/types/is-tuple.ts'],
+      files: [
+        'src/types/head.ts',
+        'src/types/is-tuple.ts',
+        'src/types/tail.ts'
+      ],
       rules: {
         '@typescript-eslint/no-unused-vars': 0
       }
