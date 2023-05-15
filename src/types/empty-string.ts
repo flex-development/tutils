@@ -4,7 +4,7 @@
  */
 
 /**
- * Type representing an empty string.
+ * An empty string.
  */
 type EmptyString = ''
 

@@ -11,13 +11,11 @@ export type { default as ComparisonOperator } from './comparison-operator'
 export type { default as Constructor } from './constructor'
 export type { default as AbstractConstructor } from './constructor-abstract'
 export type { default as ContinuousValue } from './continuous-value'
+export type { default as EmptyArray } from './empty-array'
 export type { default as EmptyString } from './empty-string'
 export type { default as EmptyValue } from './empty-value'
 export type { default as EnsureString } from './ensure-string'
-// prettier-ignore
-export type {
-  default as ExactOptionalPropertyTypes
-} from './exact-optional-property-types'
+export type { default as ExactOptionalPropertyTypes } from './exact-optional-property-types'
 export type { default as Fallback } from './fallback'
 export type { default as FIXME } from './fixme'
 export type { default as Fn } from './fn'
