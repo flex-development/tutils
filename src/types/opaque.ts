@@ -4,9 +4,9 @@
  */
 
 /**
- * Token symbol for {@linkcode Opaque}.
+ * {@linkcode Opaque} type token key.
  */
-declare const token: unique symbol
+export declare const tag: unique symbol
 
 /**
  * Creates an [opaque type][1].
@@ -17,11 +17,15 @@ declare const token: unique symbol
  * The type token parameter, `T`, allows TypeScript to differentiate between
  * opaque types with the same base type.
  *
- * [1]: https://codemix.com/opaque-types-in-javascript/
+ * [1]: https://codemix.com/opaque-types-in-javascript
+ *
+ * @see https://github.com/Microsoft/TypeScript/issues/202
+ * @see https://github.com/Microsoft/TypeScript/issues/15408
+ * @see https://github.com/Microsoft/TypeScript/issues/15807
  *
  * @template B - Base type
  * @template T - Type token
  */
-type Opaque<B, T = unknown> = B & { readonly [token]: T }
+type Opaque<B, T = unknown> = B & { readonly [tag]: T }
 
 export type { Opaque as default }
