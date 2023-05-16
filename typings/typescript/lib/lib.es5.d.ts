@@ -1,4 +1,9 @@
-import type { OneOrMany } from '@flex-development/tutils'
+import type {
+  OneOrMany,
+  Trim,
+  TrimEnd,
+  TrimStart
+} from '@flex-development/tutils'
 
 declare global {
   interface String {
@@ -45,5 +50,32 @@ declare global {
      * @return {Uppercase<T>} Uppercase string
      */
     toUpperCase<T extends string>(): Uppercase<T>
+
+    /**
+     * Removes leading and trailing whitespace characters from a string.
+     *
+     * @template T - String being trimmed
+     *
+     * @return {Trim<T>} String with leading and trailing whitespaces removed
+     */
+    trim<T extends string>(): Trim<T>
+
+    /**
+     * Removes trailing whitespace characters from a string.
+     *
+     * @template T - String being trimmed
+     *
+     * @return {TrimEnd<T>} String with trailing whitespaces removed
+     */
+    trimEnd<T extends string>(): TrimEnd<T>
+
+    /**
+     * Removes leading whitespace characters from a string.
+     *
+     * @template T - String being trimmed
+     *
+     * @return {TrimStart<T>} String with leading whitespaces removed
+     */
+    trimStart<T extends string>(): TrimStart<T>
   }
 }

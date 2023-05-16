@@ -6,7 +6,7 @@
 import type TestSubject from '../trim-end'
 
 describe('unit-d:types/TrimEnd', () => {
-  it('should remove trailing whitespaces from T', () => {
+  it('should return T without trailing whitespaces', () => {
     expectTypeOf<TestSubject<' foo '>>().toEqualTypeOf<' foo'>()
   })
 })
