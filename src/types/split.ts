@@ -3,18 +3,23 @@
  * @module tutils/types/Split
  */
 
+import type EnsureString from './ensure-string'
+
 /**
- * Creates a string array by splitting a string using the given delimiter.
+ * Splits string `S` using the given `Delimiter`.
  *
- * @template Str - String to split
+ * @template T - String to split
  * @template Delimiter - String delimiter
  */
-type Split<Str extends string, Delimiter extends string> = string extends Str
+type Split<
+  T extends string,
+  Delimiter extends RegExp | string | undefined
+> = RegExp extends Delimiter
   ? string[]
-  : Str extends ''
+  : T extends `${infer Head}${EnsureString<Delimiter>}${infer Tail}`
+  ? [Head, ...Split<Tail, Delimiter>]
+  : T extends Delimiter
   ? []
-  : Str extends `${infer T}${Delimiter}${infer U}`
-  ? [T, ...Split<U, Delimiter>]
-  : [Str]
+  : [T]
 
 export type { Split as default }

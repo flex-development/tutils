@@ -6,13 +6,13 @@
 import type TestSubject from '../split'
 
 describe('unit-d:types/Split', () => {
-  it('should split Str using Delimiter', () => {
+  it('should equal T.split(Delimiter)', () => {
     // Arrange
-    type Str = 'foo.0.bar'
-    type Delimiter = '.'
-    type Expected = ['foo', '0', 'bar']
+    type T = 'publisher.email'
 
     // Expect
-    expectTypeOf<TestSubject<Str, Delimiter>>().toEqualTypeOf<Expected>()
+    expectTypeOf<TestSubject<T, undefined>>().toEqualTypeOf<[T]>()
+    expectTypeOf<TestSubject<T, RegExp>>().toEqualTypeOf<string[]>()
+    expectTypeOf<TestSubject<T, '.'>>().toEqualTypeOf<['publisher', 'email']>()
   })
 })

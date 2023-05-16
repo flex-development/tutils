@@ -1,5 +1,6 @@
 import type {
   OneOrMany,
+  Split,
   Trim,
   TrimEnd,
   TrimStart
@@ -7,6 +8,24 @@ import type {
 
 declare global {
   interface String {
+    /**
+     * Split a string into substrings using the specified separator and return
+     * them as an array.
+     *
+     * @template T - String being split
+     * @template Delimiter - String delimiter
+     *
+     * @param {Delimiter} [separator] - String or regular expression identifying
+     * the character or characters to use when separating the string. If
+     * omitted, a single-element array containing the entire string is returned
+     * @param {number | undefined} [limit] - Value used to limit array size
+     * @return {Split<T, Delimiter>} Substring array
+     */
+    split<T extends string, Delimiter extends RegExp | string | undefined>(
+      separator?: Delimiter,
+      limit?: number
+    ): Split<T, Delimiter>
+
     /**
      * Converts all alphabetic characters to lowercase, taking into account the
      * host environment's current locale.
