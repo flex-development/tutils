@@ -8,7 +8,7 @@
  *
  * @see https://www.typescriptlang.org/docs/handbook/2/template-literal-types.html#uppercasestringtype
  *
- * @template T - String type
+ * @template T - String type to evaluate
  */
 type OrUppercase<T extends string> = T | Uppercase<T>
 
