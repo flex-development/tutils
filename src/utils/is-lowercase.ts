@@ -9,10 +9,12 @@ import lowercase from './lowercase'
 /**
  * Checks if `value` is a lowercase string.
  *
+ * @template T - Lowercase string
+ *
  * @param {unknown} value - Value to check
- * @return {value is Lowercase<string>} `true` if `value` is lowercase string
+ * @return {value is Lowercase<T>} `true` if `value` is lowercase string
  */
-const isLowercase = (value: unknown): value is Lowercase<string> => {
+function isLowercase<T extends string>(value: unknown): value is Lowercase<T> {
   return isString(value) && value === lowercase(value)
 }
 

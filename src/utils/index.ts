@@ -3,11 +3,13 @@
  * @module tutils/utils
  */
 
+export { default as capitalize } from './capitalize'
 export { default as isAppEnv } from './is-app-env'
 export { default as isArray } from './is-array'
 export { default as isBigInt } from './is-big-int'
 export { default as isBoolean } from './is-boolean'
 export { default as isBooleanish } from './is-booleanish'
+export { default as isCapitalized } from './is-capitalized'
 export { default as isDate } from './is-date'
 export { default as isEmptyString } from './is-empty-string'
 export { default as isEmptyValue } from './is-empty-value'
