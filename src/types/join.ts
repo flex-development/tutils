@@ -3,24 +3,32 @@
  * @module tutils/types/Join
  */
 
+import type Fallback from './fallback'
+import type Joinable from './joinable'
+
 /**
- * Concatenates an array of strings and/or numbers using the given delimiter.
+ * Joins an array of {@linkcode Joinable} items using the given `Delimiter`.
  *
- * @template Arr - Array to concatenate
+ * @template A - Array to evaluate
  * @template Delimiter - String delimiter
  */
 type Join<
-  Arr extends readonly (number | string)[],
-  Delimiter extends string = ''
-> = Arr extends []
+  A extends readonly Joinable[],
+  Delimiter extends string = '.'
+> = A extends []
   ? ''
-  : Arr extends [number | string]
-  ? `${Arr[0]}`
-  : Arr extends readonly [
-      number | string,
-      ...infer Rest extends (number | string)[]
+  : A extends readonly [Joinable?]
+  ? `${Fallback<A[0], ''>}`
+  : A extends readonly [
+      infer Head extends Joinable,
+      ...infer Tail extends readonly Joinable[]
     ]
-  ? `${Arr[0]}${Delimiter}${Join<Rest, Delimiter>}`
+  ? `${Fallback<Head, ''>}${Delimiter}${Join<Tail, Delimiter>}`
+  : A extends readonly [
+      ...infer First extends readonly Joinable[],
+      infer Last extends Joinable
+    ]
+  ? `${Join<First, Delimiter>}${Delimiter}${Fallback<Last, ''>}`
   : string
 
 export type { Join as default }
