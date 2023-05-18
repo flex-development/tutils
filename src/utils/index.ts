@@ -5,6 +5,7 @@
 
 export { default as capitalize } from './capitalize'
 export { default as equal } from './equal'
+export { default as includes } from './includes'
 export { default as isAppEnv } from './is-app-env'
 export { default as isArray } from './is-array'
 export { default as isBigInt } from './is-big-int'

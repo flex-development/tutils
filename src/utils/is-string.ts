@@ -4,9 +4,9 @@
  */
 
 /**
- * Checks if the given `value` is a string.
+ * Checks if `value` is a string.
  *
- * @param {unknown} value - Value to evaluate
+ * @param {unknown} value - Value to check
  * @return {value is string} `true` if `value` is a string
  */
 const isString = (value: unknown): value is string => typeof value === 'string'

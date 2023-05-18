@@ -4,16 +4,17 @@
  */
 
 import type { Booleanish } from '#src/types'
+import includes from './includes'
 import isBoolean from './is-boolean'
 
 /**
- * Checks if the given `value` is a boolean, `'false'`, or `'true'`.
+ * Checks if `value` is a boolean, `'false'`, or `'true'`.
  *
- * @param {unknown} value - Value to evaluate
+ * @param {unknown} value - Value to check
  * @return {value is Booleanish} `true` if `value` is {@linkcode Booleanish}
  */
 const isBooleanish = (value: unknown): value is Booleanish => {
-  return isBoolean(value) || value === 'false' || value === 'true'
+  return isBoolean(value) || includes(['false', 'true'], value)
 }
 
 export default isBooleanish
