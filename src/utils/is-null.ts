@@ -3,12 +3,14 @@
  * @module tutils/utils/isNull
  */
 
+import equal from './equal'
+
 /**
- * Checks if the given `value` is `null`.
+ * Checks if `value` is `null`.
  *
- * @param {unknown} value - Value to evaluate
+ * @param {unknown} value - Value to check
  * @return {value is null} `true` if `value` is `null`
  */
-const isNull = (value: unknown): value is null => value === null
+const isNull = (value: unknown): value is null => equal(value, null)
 
 export default isNull

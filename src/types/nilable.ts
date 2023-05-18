@@ -6,7 +6,7 @@
 import type NIL from './nil'
 
 /**
- * Type representing a value that also be `NIL`.
+ * Constructs a union type of {@linkcode NIL} and `T`.
  *
  * @template T - Value type
  */

@@ -9,8 +9,8 @@ describe('unit:utils/isObjectPlain', () => {
   it('should return false if value is not plain object', () => {
     // Arrange
     const cases: Parameters<typeof testSubject>[] = [
-      [faker.datatype.array()],
-      [new Date()],
+      [[]],
+      [faker.date.anytime()],
       [null]
     ]
 
@@ -21,7 +21,7 @@ describe('unit:utils/isObjectPlain', () => {
   it('should return true if value is plain object', () => {
     // Arrange
     const cases: Parameters<typeof testSubject>[] = [
-      [{ x: 0, y: 0 }],
+      [{ zodiac: faker.person.zodiacSign() }],
       [Object.create(null)]
     ]
 

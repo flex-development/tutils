@@ -4,7 +4,7 @@
  */
 
 /**
- * Constructs a type where the value can be any type, or `null`.
+ * Constructs a union type of `T` and `null`.
  *
  * @template T - Value type
  */

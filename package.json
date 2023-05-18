@@ -81,6 +81,9 @@
     "typecheck": "vitest typecheck --run",
     "typecheck:watch": "vitest typecheck"
   },
+  "dependencies": {
+    "dequal": "2.0.3"
+  },
   "devDependencies": {
     "@commitlint/cli": "17.6.3",
     "@faker-js/faker": "8.0.1",

@@ -3,6 +3,7 @@
  * @module tutils/utils/isMap
  */
 
+import equal from './equal'
 import isObject from './is-object'
 
 /**
@@ -15,7 +16,7 @@ import isObject from './is-object'
  * @return {value is Map<K, V>} `true` if `value` is {@linkcode Map} instance
  */
 function isMap<K, V>(value: unknown): value is Map<K, V> {
-  return isObject(value) && Reflect.get(value, 'constructor') === Map
+  return isObject(value) && equal(Reflect.get(value, 'constructor'), Map)
 }
 
 export default isMap

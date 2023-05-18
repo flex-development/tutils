@@ -4,6 +4,7 @@
  */
 
 import type { Integer } from '#src/types'
+import equal from './equal'
 import isNumber from './is-number'
 
 /**
@@ -15,7 +16,7 @@ import isNumber from './is-number'
  * @return {value is Integer} `true` if `value` is an integer
  */
 function isInteger(value: unknown): value is Integer {
-  return isNumber(value) && value % 1 === 0
+  return isNumber(value) && equal(value % 1, 0)
 }
 
 export default isInteger

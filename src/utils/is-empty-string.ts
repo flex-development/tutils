@@ -4,16 +4,18 @@
  */
 
 import type { EmptyString } from '#src/types'
+import equal from './equal'
 import isString from './is-string'
+import trim from './trim'
 
 /**
- * Checks if the given `value` is an empty string.
+ * Checks if `value` is an empty string.
  *
- * @param {unknown} value - Value to evaluate
+ * @param {unknown} value - Value to check
  * @return {value is EmptyString} `true` if `value` is empty string
  */
 const isEmptyString = (value: unknown): value is EmptyString => {
-  return isString(value) ? value.trim() === '' : false
+  return isString(value) && equal(trim(value), '')
 }
 
 export default isEmptyString

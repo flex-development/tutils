@@ -3,12 +3,16 @@
  * @module tutils/utils/isUndefined
  */
 
+import equal from './equal'
+
 /**
- * Checks if the given `value` is `undefined`.
+ * Checks if `value` is `undefined`.
  *
- * @param {unknown} value - Value to evaluate
+ * @param {unknown} value - Value to check
  * @return {value is undefined} `true` if `value` is `undefined`
  */
-const isUndefined = (value: unknown): value is undefined => value === undefined
+const isUndefined = (value: unknown): value is undefined => {
+  return equal(value, undefined)
+}
 
 export default isUndefined

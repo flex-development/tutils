@@ -3,6 +3,7 @@
  * @module tutils/utils/isSet
  */
 
+import equal from './equal'
 import isObject from './is-object'
 
 /**
@@ -14,7 +15,7 @@ import isObject from './is-object'
  * @return {value is Set<T>} `true` if `value` is {@linkcode Set} instance
  */
 function isSet<T>(value: unknown): value is Set<T> {
-  return isObject(value) && Reflect.get(value, 'constructor') === Set
+  return isObject(value) && equal(Reflect.get(value, 'constructor'), Set)
 }
 
 export default isSet

@@ -7,7 +7,7 @@ import testSubject from '../is-undefined'
 
 describe('unit:utils/isUndefined', () => {
   it('should return false if value is not undefined', () => {
-    expect(testSubject(faker.datatype.array())).to.be.false
+    expect(testSubject(faker.date.anytime())).to.be.false
   })
 
   it('should return true if value is undefined', () => {

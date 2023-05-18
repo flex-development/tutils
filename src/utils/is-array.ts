@@ -3,6 +3,7 @@
  * @module tutils/utils/isArray
  */
 
+import equal from './equal'
 import isObject from './is-object'
 
 /**
@@ -14,7 +15,7 @@ import isObject from './is-object'
  * @return {value is ReadonlyArray<T> | T[]} `true` if `value` is an array
  */
 function isArray<T>(value: unknown): value is T[] | readonly T[] {
-  return isObject(value) && Reflect.get(value, 'constructor') === Array
+  return isObject(value) && equal(Reflect.get(value, 'constructor'), Array)
 }
 
 export default isArray

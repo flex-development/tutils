@@ -3,6 +3,7 @@
  * @module tutils/utils/isRegExp
  */
 
+import equal from './equal'
 import isObject from './is-object'
 
 /**
@@ -12,7 +13,7 @@ import isObject from './is-object'
  * @return {value is RegExp} `true` if `value` is {@linkcode RegExp} instance
  */
 function isRegExp(value: unknown): value is RegExp {
-  return isObject(value) && Reflect.get(value, 'constructor') === RegExp
+  return isObject(value) && equal(Reflect.get(value, 'constructor'), RegExp)
 }
 
 export default isRegExp

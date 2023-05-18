@@ -3,6 +3,7 @@
  * @module tutils/utils/isDate
  */
 
+import equal from './equal'
 import isObject from './is-object'
 
 /**
@@ -12,7 +13,7 @@ import isObject from './is-object'
  * @return {value is Date} `true` if `value` is {@linkcode Date} instance
  */
 function isDate(value: unknown): value is Date {
-  return isObject(value) && Reflect.get(value, 'constructor') === Date
+  return isObject(value) && equal(Reflect.get(value, 'constructor'), Date)
 }
 
 export default isDate

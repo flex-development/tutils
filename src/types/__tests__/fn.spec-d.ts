@@ -6,13 +6,15 @@
 import type TestSubject from '../fn'
 
 describe('unit-d:types/Fn', () => {
+  type A = [string, RegExp | string | undefined, (number | undefined)?]
+  type R = string[]
+  type Subject = TestSubject<A, R>
+
   it('should be callable with A', () => {
-    expectTypeOf<TestSubject>().parameters.toEqualTypeOf<any[]>()
-    expectTypeOf<TestSubject<[string]>>().parameters.toEqualTypeOf<[string]>()
+    expectTypeOf<Subject>().parameters.toEqualTypeOf<A>()
   })
 
   it('should return R', () => {
-    expectTypeOf<TestSubject>().returns.toBeAny()
-    expectTypeOf<TestSubject<any, string>>().returns.toBeString()
+    expectTypeOf<Subject>().returns.toEqualTypeOf<R>()
   })
 })

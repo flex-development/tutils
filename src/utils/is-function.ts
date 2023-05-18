@@ -6,11 +6,16 @@
 import type { Fn } from '#src/types'
 
 /**
- * Checks if the given `value` is a function.
+ * Checks if `value` is a function.
  *
- * @param {unknown} value - Value to evaluate
- * @return {value is Fn} `true` if `value` is a function
+ * @template A - Function arguments type
+ * @template R - Function return type
+ *
+ * @param {unknown} value - Value to check
+ * @return {value is Fn<A, R>} `true` if `value` is a function
  */
-const isFunction = (value: unknown): value is Fn => typeof value === 'function'
+function isFunction<A extends any[], R>(value: unknown): value is Fn<A, R> {
+  return typeof value === 'function'
+}
 
 export default isFunction

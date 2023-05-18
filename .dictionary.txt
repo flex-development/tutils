@@ -5,6 +5,7 @@ cefc
 codecov
 commitlintrc
 dedupe
+dequal
 dessant
 dohm
 fbca

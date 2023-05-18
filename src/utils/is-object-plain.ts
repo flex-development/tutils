@@ -4,10 +4,11 @@
  */
 
 import type { ObjectPlain } from '#src/types'
+import equal from './equal'
 import isNull from './is-null'
 
 /**
- * Checks if the given `value` is a plain object (i.e. [POJO][1]).
+ * Checks if `value` is a plain object (i.e. [POJO][1]).
  *
  * A plain object is an object created by the [`Object`][2] constructor or an
  * object with a `[[Prototype]]` of `null`.
@@ -17,7 +18,7 @@ import isNull from './is-null'
  *
  * @see {@linkcode ObjectPlain}
  *
- * @param {unknown} value - Value to evaluate
+ * @param {unknown} value - Value to check
  * @return {value is ObjectPlain} `true` if `value` is plain object
  */
 const isObjectPlain = (value: unknown): value is ObjectPlain => {
@@ -51,7 +52,7 @@ const isObjectPlain = (value: unknown): value is ObjectPlain => {
       }
 
       // prototypes are equal => value is plain object
-      plain = Object.getPrototypeOf(value) === proto
+      plain = equal(Object.getPrototypeOf(value), proto)
 
       break
   }
