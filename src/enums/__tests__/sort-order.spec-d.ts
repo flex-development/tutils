@@ -6,15 +6,13 @@
 import type TestSubject from '../sort-order'
 
 describe('unit-d:enums/SortOrder', () => {
-  it('should match [ASCENDING = 1]', () => {
-    expectTypeOf<typeof TestSubject>()
-      .toHaveProperty('ASCENDING')
-      .toEqualTypeOf<1>()
+  it('should match [ASC = 1]', () => {
+    expectTypeOf<typeof TestSubject>().toHaveProperty('ASC').toEqualTypeOf<1>()
   })
 
-  it('should match [DESCENDING = 1]', () => {
+  it('should match [DESC = 1]', () => {
     expectTypeOf<typeof TestSubject>()
-      .toHaveProperty('DESCENDING')
+      .toHaveProperty('DESC')
       .toEqualTypeOf<-1>()
   })
 })
