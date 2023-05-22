@@ -6,6 +6,7 @@
 export type { default as At } from './at'
 export type { default as Booleanish } from './booleanish'
 export type { default as BuiltIn } from './built-in'
+export type { default as BuiltInObject } from './built-in-object'
 export type { default as Class } from './class'
 export type { default as AbstractClass } from './class-abstract'
 export type { default as ComparisonOperator } from './comparison-operator'
