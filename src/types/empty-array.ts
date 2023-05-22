@@ -6,6 +6,6 @@
 /**
  * An empty array.
  */
-type EmptyArray = []
+type EmptyArray = Readonly<[]> | []
 
 export type { EmptyArray as default }

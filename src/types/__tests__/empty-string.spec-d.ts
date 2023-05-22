@@ -6,7 +6,7 @@
 import type TestSubject from '../empty-string'
 
 describe('unit-d:types/EmptyString', () => {
-  it('should equal type of ""', () => {
+  it('should equal ""', () => {
     expectTypeOf<TestSubject>().toEqualTypeOf<''>()
   })
 })

@@ -4,7 +4,8 @@
  */
 
 /**
- * A string that contains only numbers.
+ * A string that contains only numbers (not including the leading `-` if the
+ * numeric is negative).
  */
 type Numeric = `${number}`
 
