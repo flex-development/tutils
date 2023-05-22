@@ -9,7 +9,7 @@ import type IfTuple from './if-tuple'
 import type Numeric from './numeric'
 
 /**
- * Constructs a union type of array indices.
+ * Constructs a union of array indices.
  *
  * @example
  *  Indices<['a', 'b']>        // '0' | '1'
