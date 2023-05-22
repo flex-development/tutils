@@ -4,11 +4,11 @@
  */
 
 /**
- * Type representing an awaitable or synchronous value.
+ * An awaitable or synchronous value.
  *
  * @see https://github.com/microsoft/TypeScript/issues/31394
  *
- * @template T - Value type
+ * @template T - Type to evalute
  */
 type Promisable<T> = PromiseLike<T> | T
 

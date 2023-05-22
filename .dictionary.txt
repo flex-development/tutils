@@ -29,6 +29,7 @@ pkgs
 preid
 promisable
 stringafiable
+tryit
 tscu
 unstub
 vates
