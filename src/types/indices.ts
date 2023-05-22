@@ -3,6 +3,7 @@
  * @module tutils/types/Indices
  */
 
+import type EmptyArray from './empty-array'
 import type IfArray from './if-array'
 import type IfTuple from './if-tuple'
 import type Numeric from './numeric'
@@ -11,17 +12,23 @@ import type Numeric from './numeric'
  * Constructs a union type of array indices.
  *
  * @example
- *  type Example = { a: string[] }
- *  Indices<['a', 'b']>    // '0' | '1'
- *  Indices<Example['a']>  // number | `${number}`
- *  Indices<Example>       // never
+ *  Indices<['a', 'b']>        // '0' | '1'
+ *  Indices<string[]>          // number | `${number}`
+ *  Indices<{ a: string[] }>   // never
+ *  Indices<EmptyArray>        // never
  *
  * @template T - Type to evaluate
  */
 type Indices<T> = IfArray<
-  T,
+  NonNullable<T>,
   unknown,
-  IfTuple<T, Extract<keyof T, Numeric>, Numeric | number>,
+  NonNullable<T> extends EmptyArray
+    ? never
+    : IfTuple<
+        NonNullable<T>,
+        Extract<keyof NonNullable<T>, Numeric>,
+        Numeric | number
+      >,
   never
 >
 
