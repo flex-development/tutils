@@ -3,16 +3,12 @@
  * @module tutils/types/RequiredKeys
  */
 
-import type ObjectPlain from './object-plain'
-
 /**
  * Extracts all required keys from `T`.
  *
- * @todo support nested keys
- *
- * @template T - Object type to evaluate
+ * @template T - Type to evaluate
  */
-type RequiredKeys<T extends ObjectPlain> = Exclude<
+type RequiredKeys<T> = Exclude<
   { [K in keyof T]: T extends Record<K, T[K]> ? K : never }[keyof T],
   undefined
 >
