@@ -4,6 +4,7 @@
  */
 
 import type Author from '#fixtures/author.interface'
+import type Book from '#fixtures/book.interface'
 import type At from '../at'
 import type EmptyArray from '../empty-array'
 import type EmptyObject from '../empty-object'
@@ -55,12 +56,9 @@ describe('unit-d:types/Get', () => {
 
   it('should equal T[K] with respect for dot notation', () => {
     // Arrange
-    type T = {
+    type T = Omit<Book, 'authors'> & {
       authors: [Author]
       donated_by?: { email: Lowercase<string>; name: string }
-      isbn: number
-      readers: Map<string, string[]>
-      title: string
     }
     type K1 = 'authors.0'
     type K2 = 'authors.0.display_name'

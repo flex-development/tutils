@@ -4,6 +4,8 @@
  */
 
 import type Author from '#fixtures/author.interface'
+import type Book from '#fixtures/book.interface'
+import type Publisher from '#fixtures/publisher.interface'
 import type EmptyArray from '../empty-array'
 import type EmptyObject from '../empty-object'
 import type EmptyString from '../empty-string'
@@ -27,22 +29,17 @@ describe('unit-d:types/Path', () => {
 
   it('should equal union if T extends ObjectAny', () => {
     // Arrange
-    interface Book {
+    type T = Omit<Book, 'publisher'> & {
       authors: Author[]
       fn?: Fn & { id: number & { tag: 'book' } }
-      isbn: number
-      publisher: {
+      publisher: Omit<Publisher, 'display_name'> & {
         display_name?: { value: string }
-        email: Lowercase<string>
         fn?: Fn & { id: number & { tag: 'publisher' } }
-        name: string
       }
-      readers: Map<string, string[]>
-      title: string
     }
 
     // Expect
-    expectTypeOf<TestSubject<Book>>().toEqualTypeOf<
+    expectTypeOf<TestSubject<T>>().toEqualTypeOf<
       | 'authors'
       | 'fn.id.tag'
       | 'fn.id'

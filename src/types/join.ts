@@ -3,6 +3,7 @@
  * @module tutils/types/Join
  */
 
+import type EmptyArray from './empty-array'
 import type Fallback from './fallback'
 import type Joinable from './joinable'
 
@@ -15,7 +16,7 @@ import type Joinable from './joinable'
 type Join<
   A extends readonly Joinable[],
   Delimiter extends string = '.'
-> = A extends []
+> = A extends EmptyArray
   ? ''
   : A extends readonly [Joinable?]
   ? `${Fallback<A[0], ''>}`

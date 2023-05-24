@@ -23,7 +23,12 @@ interface Book {
   /**
    * Book publisher.
    */
-  publisher: Publisher
+  publisher?: Publisher
+
+  /**
+   * Book readers.
+   */
+  readers: Map<string, string[]>
 
   /**
    * Book title.
