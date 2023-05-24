@@ -8,6 +8,7 @@
     "interfaces",
     "type-definitions",
     "type-guards",
+    "type-programming",
     "typescript-utilities",
     "utilities"
   ],
