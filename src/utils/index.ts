@@ -6,6 +6,7 @@
 export { default as at } from './at'
 export { default as capitalize } from './capitalize'
 export { default as cast } from './cast'
+export { default as chunk } from './chunk'
 export { default as clamp } from './clamp'
 export { default as count } from './count'
 export { default as equal } from './equal'
