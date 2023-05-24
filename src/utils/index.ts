@@ -3,6 +3,7 @@
  * @module tutils/utils
  */
 
+export { default as at } from './at'
 export { default as capitalize } from './capitalize'
 export { default as cast } from './cast'
 export { default as clamp } from './clamp'
