@@ -204,6 +204,8 @@ repository:
     - interfaces
     - type-definitions
     - type-guards
+    - type-programming
+    - types
     - typescript
     - typescript-utilities
   visibility: public
