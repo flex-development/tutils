@@ -1,12 +1,40 @@
 import type {
   OneOrMany,
   Split,
+  Timestamp,
   Trim,
   TrimEnd,
   TrimStart
 } from '@flex-development/tutils'
 
 declare global {
+  interface DateConstructor {
+    /**
+     * Returns the number of milliseconds elapsed since midnight, January 1,
+     * 1970 Universal Coordinated Time (UTC).
+     *
+     * @return {Timestamp<'unix'>} Unix timestamp
+     */
+    now(): Timestamp<'unix'>
+  }
+
+  interface Date {
+    /**
+     * Returns the stored time value in milliseconds since midnight, January 1,
+     * 1970 UTC.
+     *
+     * @return {Timestamp<'unix'>} Unix timestamp
+     */
+    getTime(): Timestamp<'unix'>
+
+    /**
+     * Returns a date as a string value in ISO format.
+     *
+     * @return {Timestamp<'iso'>} ISO 8601 timestamp
+     */
+    toISOString(): Timestamp<'iso'>
+  }
+
   interface String {
     /**
      * Split a string into substrings using the specified separator and return

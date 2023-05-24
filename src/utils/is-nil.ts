@@ -8,9 +8,9 @@ import isNull from './is-null'
 import isUndefined from './is-undefined'
 
 /**
- * Checks if the given `value` is `null` or `undefined`.
+ * Checks if `value` is `null` or `undefined`.
  *
- * @param {unknown} value - Value to evaluate
+ * @param {unknown} value - Value to check
  * @return {value is NIL} `true` if `value` is {@linkcode NIL}
  */
 const isNIL = (value: unknown): value is NIL => {

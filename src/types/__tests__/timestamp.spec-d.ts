@@ -8,11 +8,11 @@ import type TestSubject from '../timestamp'
 import type TimestampFormat from '../timestamp-format'
 
 describe('unit-d:types/Timestamp', () => {
-  it('should extend number if Format extends "unix"', () => {
+  it('should extend number if F extends "unix"', () => {
     expectTypeOf<TestSubject<'unix'>>().toMatchTypeOf<number>()
   })
 
-  it('should extend string if Format extends "iso"', () => {
+  it('should extend string if F extends "iso"', () => {
     expectTypeOf<TestSubject<'iso'>>().toMatchTypeOf<string>()
   })
 

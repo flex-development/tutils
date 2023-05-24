@@ -16,10 +16,10 @@ import type TimestampFormat from './timestamp-format'
  * @see {@linkcode TimestampFormat}
  * @see https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Date
  *
- * @template Format - Timestamp format
+ * @template F - Timestamp format
  */
-type Timestamp<Format extends TimestampFormat> = Opaque<
-  Format extends 'unix' ? number : Format extends 'iso' ? string : NumberString,
+type Timestamp<F extends TimestampFormat> = Opaque<
+  F extends 'unix' ? number : F extends 'iso' ? string : NumberString,
   '$timestamp'
 >
 
