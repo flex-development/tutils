@@ -3,6 +3,7 @@
  * @module tutils/types
  */
 
+export type { default as Assign } from './assign'
 export type { default as At } from './at'
 export type { default as Booleanish } from './booleanish'
 export type { default as BuiltIn } from './built-in'
