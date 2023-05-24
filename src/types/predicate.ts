@@ -13,9 +13,9 @@ import type Fn from './fn'
  *
  * @param {T} item - Current array item
  * @param {number} index - Index of `item` in `array`
- * @param {T[]} array - Original array
- * @return {boolean} `true` when condition is met, `false` otherwise
+ * @param {ReadonlyArray<T>} array - Array being queried
+ * @return {boolean} `true` if condition is met, `false` otherwise
  */
-type Predicate<T = unknown> = Fn<[T, number, T[]], boolean>
+type Predicate<T = unknown> = Fn<[T, number, readonly T[]], boolean>
 
 export type { Predicate as default }
