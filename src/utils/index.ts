@@ -4,6 +4,7 @@
  */
 
 export { default as capitalize } from './capitalize'
+export { default as cast } from './cast'
 export { default as equal } from './equal'
 export { default as includes } from './includes'
 export { default as intersection } from './intersection'
@@ -39,6 +40,7 @@ export { default as isSymbol } from './is-symbol'
 export { default as isUndefined } from './is-undefined'
 export { default as isUppercase } from './is-uppercase'
 export { default as lowercase } from './lowercase'
+export { default as passthrough } from './passthrough'
 export { default as split } from './split'
 export { default as trim } from './trim'
 export { default as trimEnd } from './trim-end'
