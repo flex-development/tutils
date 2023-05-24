@@ -3,7 +3,7 @@
  * @module tests/reporters/Notifier
  */
 
-import type { OneOrMany } from '#src'
+import { isArray, type OneOrMany } from '#src'
 import notifier from 'node-notifier'
 import type NotificationCenter from 'node-notifier/notifiers/notificationcenter'
 import { performance } from 'node:perf_hooks'
@@ -142,7 +142,7 @@ class Notifier implements Reporter {
   protected tests(tasks: OneOrMany<Task> = []): Test[] {
     const { mode } = this.ctx
 
-    return (Array.isArray(tasks) ? tasks : [tasks]).flatMap(task => {
+    return (isArray<Task>(tasks) ? tasks : [tasks]).flatMap(task => {
       const { type } = task
 
       return mode === 'typecheck' && type === 'suite' && task.tasks.length === 0

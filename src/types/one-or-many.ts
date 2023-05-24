@@ -4,10 +4,10 @@
  */
 
 /**
- * Restricts a type to type `T` or an array of `T` values.
+ * Constructs a union of `T` and an array of `T` values.
  *
- * @template T - Value type
+ * @template T - Type to evaluate
  */
-type OneOrMany<T> = T | T[]
+type OneOrMany<T> = T | T[] | readonly T[]
 
 export type { OneOrMany as default }
