@@ -5,6 +5,7 @@
 
 export { default as capitalize } from './capitalize'
 export { default as cast } from './cast'
+export { default as clamp } from './clamp'
 export { default as count } from './count'
 export { default as equal } from './equal'
 export { default as includes } from './includes'
