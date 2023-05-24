@@ -3,16 +3,16 @@
  * @module tutils/types/Overwrite
  */
 
-import type ObjectPlain from './object-plain'
+import type Simplify from './simplify'
 
 /**
- * Replaces existing properties in object `U` with properties in object `D`.
+ * Replaces existing properties in `T` with properties in `U`.
  *
- * @template U - Object to update
- * @template D - Data transfer object
+ * @template T - Base type
+ * @template U - Type containing replacement values
  */
-type Overwrite<U extends ObjectPlain, D extends ObjectPlain> = {
-  [K in keyof U]: K extends keyof D ? D[K] : U[K]
-} & {}
+type Overwrite<T, U> = Simplify<{
+  [K in keyof T]: K extends keyof U ? U[K] : T[K]
+}>
 
 export type { Overwrite as default }
