@@ -4,6 +4,7 @@
  */
 
 import type ObjectPlain from './object-plain'
+import type Simplify from './simplify'
 
 /**
  * Removes `undefined` from optional properties.
@@ -12,12 +13,12 @@ import type ObjectPlain from './object-plain'
  *
  * [1]: https://github.com/Microsoft/TypeScript/issues/46969
  *
- * @template T - Object type
+ * @template T - Type to evaluate
  */
-type ExactOptionalPropertyTypes<T extends ObjectPlain> = {
+type ExactOptionalPropertyTypes<T extends ObjectPlain> = Simplify<{
   [K in keyof T]: Exclude<T[K], undefined> extends never
     ? T[K]
     : Exclude<T[K], undefined>
-} & {}
+}>
 
 export type { ExactOptionalPropertyTypes as default }
