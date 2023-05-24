@@ -8,9 +8,14 @@
  */
 interface Author {
   /**
-   * Author's email address.
+   * Author display name.
    */
-  email: Lowercase<string>
+  display_name?: string | undefined
+
+  /**
+   * Author's public email address.
+   */
+  email?: Lowercase<string>
 
   /**
    * Author's first name.

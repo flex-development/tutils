@@ -55,26 +55,25 @@ describe('unit-d:types/Get', () => {
 
   it('should equal T[K] with respect for dot notation', () => {
     // Arrange
-    type AuthorEnhanced = Author & { display_name?: { value: string } }
     type T = {
-      authors: [AuthorEnhanced]
+      authors: [Author]
       donated_by?: { email: Lowercase<string>; name: string }
       isbn: number
       readers: Map<string, string[]>
       title: string
     }
     type K1 = 'authors.0'
-    type K2 = 'authors.0.display_name.value'
+    type K2 = 'authors.0.display_name'
     type K3 = 'authors.0.email'
     type K4 = 'authors.-1.email'
     type K5 = 'authors.-2.email'
     type K6 = 'donated_by.name'
 
     // Expect
-    expectTypeOf<TestSubject<T, K1>>().toEqualTypeOf<AuthorEnhanced>()
+    expectTypeOf<TestSubject<T, K1>>().toEqualTypeOf<Author>()
     expectTypeOf<TestSubject<T, K2>>().toEqualTypeOf<string | undefined>()
-    expectTypeOf<TestSubject<T, K3>>().toEqualTypeOf<Lowercase<string>>()
-    expectTypeOf<TestSubject<T, K4>>().toEqualTypeOf<Lowercase<string>>()
+    expectTypeOf<TestSubject<T, K3>>().toEqualTypeOf<Author['email']>()
+    expectTypeOf<TestSubject<T, K4>>().toEqualTypeOf<Author['email']>()
     expectTypeOf<TestSubject<T, K5>>().toBeUndefined()
     expectTypeOf<TestSubject<T, K6>>().toEqualTypeOf<string | undefined>()
   })

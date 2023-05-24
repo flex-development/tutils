@@ -28,12 +28,7 @@ describe('unit-d:types/Path', () => {
   it('should equal union if T extends ObjectAny', () => {
     // Arrange
     interface Book {
-      authors: {
-        display_name?: { value: string }
-        email: Lowercase<string>
-        first_name: string
-        last_name: string
-      }[]
+      authors: Author[]
       fn?: Fn & { id: number & { tag: 'book' } }
       isbn: number
       publisher: {
@@ -63,7 +58,6 @@ describe('unit-d:types/Path', () => {
       | 'publisher'
       | 'readers'
       | 'title'
-      | `authors.${number}.display_name.value`
       | `authors.${number}.display_name`
       | `authors.${number}.email`
       | `authors.${number}.first_name`
@@ -104,7 +98,13 @@ describe('unit-d:types/Path', () => {
     type A1 = Author[] & { matcher: RegExp }
     type A2 = { matcher: RegExp } & [Author]
     type E1 = Numeric | 'matcher' | `${Numeric}.${keyof Author}`
-    type E2 = '0.email' | '0.first_name' | '0.last_name' | '0' | 'matcher'
+    type E2 =
+      | '0.display_name'
+      | '0.email'
+      | '0.first_name'
+      | '0.last_name'
+      | '0'
+      | 'matcher'
 
     // Expect
     expectTypeOf<TestSubject<A1>>().toEqualTypeOf<E1>()
