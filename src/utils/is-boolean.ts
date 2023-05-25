@@ -4,9 +4,9 @@
  */
 
 /**
- * Checks if the given `value` is a boolean.
+ * Checks if `value` is a boolean.
  *
- * @param {unknown} value - Value to evaluate
+ * @param {unknown} value - Value to check
  * @return {value is boolean} `true` if `value` is a boolean
  */
 const isBoolean = (value: unknown): value is boolean => {

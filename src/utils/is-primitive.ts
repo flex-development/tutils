@@ -10,11 +10,11 @@ import isSymbol from './is-symbol'
 import isUndefined from './is-undefined'
 
 /**
- * Checks if the given `value` is a [primitive][1].
+ * Checks if `value` is a [primitive][1].
  *
  * [1]: https://developer.mozilla.org/docs/Glossary/Primitive
  *
- * @param {unknown} value - Value to evaluate
+ * @param {unknown} value - Value to check
  * @return {value is Primitive} `true` if `value` is a primitive
  */
 const isPrimitive = (value: unknown): value is Primitive => {
