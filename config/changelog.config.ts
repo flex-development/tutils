@@ -260,7 +260,7 @@ sade('changelog', true)
             new Date(a.committerDate).getTime()
 
           return a.header && b.header
-            ? a.header.localeCompare(b.header) || by_date
+            ? (a.header.localeCompare(b.header) as number) || by_date
             : by_date
         },
         /**

@@ -1,4 +1,5 @@
 import type {
+  CompareResult,
   OneOrMany,
   Split,
   Timestamp,
@@ -36,6 +37,27 @@ declare global {
   }
 
   interface String {
+    /**
+     * Determines whether two strings are equivalent in the current or specified
+     * locale.
+     *
+     * @see {@linkcode Intl.CollatorOptions}
+     *
+     * @param {string} that - String to compare to target string
+     * @param {OneOrMany<string> | undefined} [locales] - A string with a BCP 47
+     * language tag, or an array of such strings. If more than one locale string
+     * is included, they should be listed in descending order of priority so
+     * that the first entry is the preferred locale. If omitted, the default
+     * locale of the JavaScript runtime will be used
+     * @param {Intl.CollatorOptions | undefined} [options] - Comparison options
+     * @return {CompareResult} Comparison result
+     */
+    localeCompare(
+      that: string,
+      locales?: OneOrMany<string> | undefined,
+      options?: Intl.CollatorOptions | undefined
+    ): CompareResult
+
     /**
      * Split a string into substrings using the specified separator and return
      * them as an array.

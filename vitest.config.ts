@@ -61,7 +61,8 @@ const config: UserConfigExport = defineConfig((): UserConfig => {
           '**/__tests__/**',
           '**/index.ts',
           'src/interfaces/',
-          'src/types/'
+          'src/types/',
+          'src/utils/*.options.ts'
         ],
         extension: ['.ts'],
         include: ['src'],

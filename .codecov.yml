@@ -91,3 +91,4 @@ ignore:
   - '**/index.ts'
   - src/interfaces/
   - src/types/
+  - src/utils/*.options.ts

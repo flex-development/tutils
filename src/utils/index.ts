@@ -3,6 +3,8 @@
  * @module tutils/utils
  */
 
+export { default as alphabetize } from './alphabetize'
+export type { default as AlphabetizeOptions } from './alphabetize.options'
 export { default as at } from './at'
 export { default as capitalize } from './capitalize'
 export { default as cast } from './cast'
@@ -50,6 +52,7 @@ export { default as lowercase } from './lowercase'
 export { default as passthrough } from './passthrough'
 export { default as pull } from './pull'
 export { default as select } from './select'
+export { default as sort } from './sort'
 export { default as split } from './split'
 export { default as timeiso } from './timeiso'
 export { default as timestamp } from './timestamp'
