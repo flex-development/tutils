@@ -10,9 +10,9 @@ import type EmptyString from './empty-string'
 import type Fallback from './fallback'
 import type IfEqual from './if-equal'
 import type IfUndefined from './if-undefined'
-import type IndexSignature from './index-signature'
 import type NumberString from './number-string'
 import type Numeric from './numeric'
+import type PropertyKey from './property-key'
 
 /**
  * Retrieves a property value from `T`.
@@ -23,7 +23,7 @@ import type Numeric from './numeric'
  * @template K - Property paths
  * @template F - Fallback value
  */
-type Get<T, K extends IndexSignature, F = undefined> = T extends
+type Get<T, K extends PropertyKey, F = undefined> = T extends
   | EmptyArray
   | EmptyObject
   | EmptyString

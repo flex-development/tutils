@@ -3,7 +3,7 @@
  * @module tutils/utils/isObject
  */
 
-import type { IndexSignature } from '#src/types'
+import type { PropertyKey } from '#src/types'
 import isNull from './is-null'
 
 /**
@@ -11,10 +11,10 @@ import isNull from './is-null'
  * pojos).
  *
  * @param {unknown} value - Value to check
- * @return {value is Record<IndexSignature, any>} `true` if `value` is non-null
+ * @return {value is Record<PropertyKey, any>} `true` if `value` is non-null
  * object
  */
-const isObject = (value: unknown): value is Record<IndexSignature, any> => {
+const isObject = (value: unknown): value is Record<PropertyKey, any> => {
   return typeof value === 'object' && !isNull(value)
 }
 

@@ -3,7 +3,7 @@
  * @module tutils/utils/diff
  */
 
-import type { Fn, IndexSignature, Nilable, NumberString } from '#src/types'
+import type { Fn, Nilable, NumberString, PropertyKey } from '#src/types'
 import includes from './includes'
 import intersects from './intersects'
 
@@ -21,7 +21,7 @@ import intersects from './intersects'
  * @param {Nilable<Fn<[T], K>>} [identity] - Identity key function
  * @return {T[]} Array of items from `array1` not included in `array2`
  */
-function diff<T, K extends IndexSignature = NumberString>(
+function diff<T, K extends PropertyKey = NumberString>(
   array1: readonly T[],
   array2: readonly T[],
   identity?: Nilable<Fn<[T], K>>

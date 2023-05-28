@@ -3,7 +3,7 @@
  * @module tutils/utils/unique
  */
 
-import type { Fn, IndexSignature, NumberString } from '#src/types'
+import type { Fn, NumberString, PropertyKey } from '#src/types'
 import includes from './includes'
 
 /**
@@ -19,7 +19,7 @@ import includes from './includes'
  * @param {Fn<[T], K>} [identity] - Function used to identify array items
  * @return {T[]} `array` with duplicates removed
  */
-function unique<T, K extends IndexSignature = NumberString>(
+function unique<T, K extends PropertyKey = NumberString>(
   array: readonly T[],
   identity?: Fn<[T], K>
 ): T[] {

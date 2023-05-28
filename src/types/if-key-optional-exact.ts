@@ -3,8 +3,8 @@
  * @module tutils/types/IfExactOptionalKey
  */
 
-import type IndexSignature from './index-signature'
 import type IsExactOptionalKey from './is-key-optional-exact'
+import type PropertyKey from './property-key'
 
 /**
  * Conditional type that resolves depending on whether or not `K` is an exact
@@ -19,7 +19,7 @@ import type IsExactOptionalKey from './is-key-optional-exact'
  */
 type IfExactOptionalKey<
   T,
-  K extends IndexSignature,
+  K extends PropertyKey,
   True,
   False
 > = IsExactOptionalKey<T, K> extends true ? True : False

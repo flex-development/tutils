@@ -1,12 +1,12 @@
 /**
- * @file Type Tests - IndexSignature
- * @module tutils/types/tests/unit-d/IndexSignature
+ * @file Type Tests - PropertyKey
+ * @module tutils/types/tests/unit-d/PropertyKey
  */
 
-import type TestSubject from '../index-signature'
 import type NumberString from '../number-string'
+import type TestSubject from '../property-key'
 
-describe('unit-d:types/IndexSignature', () => {
+describe('unit-d:types/PropertyKey', () => {
   it('should extract NumberString', () => {
     expectTypeOf<TestSubject>()
       .extract<NumberString>()

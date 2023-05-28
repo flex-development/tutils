@@ -3,7 +3,7 @@
  * @module tutils/utils/equal
  */
 
-import type { Fn, IndexSignature, Nilable, NumberString } from '#src/types'
+import type { Fn, Nilable, NumberString, PropertyKey } from '#src/types'
 import { dequal } from 'dequal'
 import isFunction from './is-function'
 
@@ -24,7 +24,7 @@ import isFunction from './is-function'
  * @param {Nilable<Fn<[A | B], K>>} [identity] - Identity key function
  * @return {boolean} `true` if `a` and `b` are deeply equal
  */
-function equal<A, B, K extends IndexSignature = NumberString>(
+function equal<A, B, K extends PropertyKey = NumberString>(
   a: A,
   b: B,
   identity?: Nilable<Fn<[A | B], K>>

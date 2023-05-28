@@ -3,8 +3,8 @@
  * @module tutils/types/IfOptionalKey
  */
 
-import type IndexSignature from './index-signature'
 import type IsOptionalKey from './is-key-optional'
+import type PropertyKey from './property-key'
 
 /**
  * Conditional type that resolves depending on whether or not `K` is an optional
@@ -17,7 +17,7 @@ import type IsOptionalKey from './is-key-optional'
  * @template True - Type if `K` is optional property
  * @template False - Type if `K` is not optional property
  */
-type IfOptionalKey<T, K extends IndexSignature, True, False> = IsOptionalKey<
+type IfOptionalKey<T, K extends PropertyKey, True, False> = IsOptionalKey<
   T,
   K
 > extends true

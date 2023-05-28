@@ -3,11 +3,11 @@
  * @module tutils/types/EmptyObject
  */
 
-import type IndexSignature from './index-signature'
+import type PropertyKey from './property-key'
 
 /**
  * An empty object.
  */
-type EmptyObject = Record<IndexSignature, never>
+type EmptyObject = Record<PropertyKey, never>
 
 export type { EmptyObject as default }

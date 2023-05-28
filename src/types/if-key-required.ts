@@ -3,8 +3,8 @@
  * @module tutils/types/IfRequiredKey
  */
 
-import type IndexSignature from './index-signature'
 import type IsRequiredKey from './is-key-required'
+import type PropertyKey from './property-key'
 
 /**
  * Conditional type that resolves depending on whether or not `K` is a required
@@ -17,7 +17,7 @@ import type IsRequiredKey from './is-key-required'
  * @template True - Type if `K` is required property
  * @template False - Type if `K` is not required property
  */
-type IfRequiredKey<T, K extends IndexSignature, True, False> = IsRequiredKey<
+type IfRequiredKey<T, K extends PropertyKey, True, False> = IsRequiredKey<
   T,
   K
 > extends true

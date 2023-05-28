@@ -9,12 +9,12 @@ import type EmptyString from './empty-string'
 import type Fn from './fn'
 import type Get from './get'
 import type Head from './head'
-import type IndexSignature from './index-signature'
 import type Indices from './indices'
 import type Keys from './keys'
 import type NumberString from './number-string'
 import type ObjectAny from './object-any'
 import type Primitive from './primitive'
+import type PropertyKey from './property-key'
 
 /**
  * Constructs a union of nested and top-level property paths.
@@ -28,7 +28,7 @@ import type Primitive from './primitive'
  * @template T - Type to evaluate
  * @template K - Keys to begin building union
  */
-type Path<T, K extends IndexSignature = Keys<T>> = T extends
+type Path<T, K extends PropertyKey = Keys<T>> = T extends
   | EmptyArray
   | EmptyObject
   | EmptyString

@@ -3,7 +3,7 @@
  * @module tutils/utils/group
  */
 
-import type { Fn, IndexSignature, NumberString } from '#src/types'
+import type { Fn, NumberString, PropertyKey } from '#src/types'
 
 /**
  * Groups each item in `array`.
@@ -19,7 +19,7 @@ import type { Fn, IndexSignature, NumberString } from '#src/types'
  * @param {Fn<[T], K>} identity - Identity key function
  * @return {Partial<Record<K, T[]>>} Groups object
  */
-function group<T, K extends IndexSignature = NumberString>(
+function group<T, K extends PropertyKey = NumberString>(
   array: readonly T[],
   identity: Fn<[T], K>
 ): Partial<Record<K, T[]>> {

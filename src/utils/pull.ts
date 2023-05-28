@@ -3,7 +3,7 @@
  * @module tutils/utils/pull
  */
 
-import type { Fn, IndexSignature, Nilable, NumberString } from '#src/types'
+import type { Fn, Nilable, NumberString, PropertyKey } from '#src/types'
 import includes from './includes'
 import select from './select'
 
@@ -18,7 +18,7 @@ import select from './select'
  * @param {Nilable<Fn<[T], K>>} [identity] - Identity key function
  * @return {T[]} New array without items in `drop`
  */
-function pull<T, K extends IndexSignature = NumberString>(
+function pull<T, K extends PropertyKey = NumberString>(
   array: readonly T[],
   drop: readonly T[],
   identity?: Nilable<Fn<[T], K>>

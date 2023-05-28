@@ -6,10 +6,10 @@
 import type {
   Fn,
   IfString,
-  IndexSignature,
   NIL,
   Nilable,
-  NumberString
+  NumberString,
+  PropertyKey
 } from '#src/types'
 import equal from './equal'
 import isString from './is-string'
@@ -36,7 +36,7 @@ import isString from './is-string'
  */
 function includes<
   T extends string | readonly unknown[],
-  K extends IndexSignature = NumberString
+  K extends PropertyKey = NumberString
 >(
   value: T,
   target: unknown,

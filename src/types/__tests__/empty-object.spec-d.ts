@@ -4,14 +4,14 @@
  */
 
 import type TestSubject from '../empty-object'
-import type IndexSignature from '../index-signature'
+import type PropertyKey from '../property-key'
 
 describe('unit-d:types/EmptyObject', () => {
-  it('should have keys of type IndexSignature', () => {
-    expectTypeOf<keyof TestSubject>().toEqualTypeOf<IndexSignature>()
+  it('should have keys of type PropertyKey', () => {
+    expectTypeOf<keyof TestSubject>().toEqualTypeOf<PropertyKey>()
   })
 
   it('should have properties of type never', () => {
-    expectTypeOf<TestSubject[IndexSignature]>().toBeNever()
+    expectTypeOf<TestSubject[PropertyKey]>().toBeNever()
   })
 })

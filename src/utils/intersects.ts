@@ -3,7 +3,7 @@
  * @module tutils/utils/intersects
  */
 
-import type { Fn, IndexSignature, Nilable, NumberString } from '#src/types'
+import type { Fn, Nilable, NumberString, PropertyKey } from '#src/types'
 import intersection from './intersection'
 
 /**
@@ -23,7 +23,7 @@ import intersection from './intersection'
  * @param {Nilable<Fn<[T], K>>} [identity] - Identity key function
  * @return {boolean} `true` if `array1` and `array2` intersect
  */
-function intersects<T, K extends IndexSignature = NumberString>(
+function intersects<T, K extends PropertyKey = NumberString>(
   array1: readonly T[],
   array2: readonly T[],
   identity?: Nilable<Fn<[T], K>>
