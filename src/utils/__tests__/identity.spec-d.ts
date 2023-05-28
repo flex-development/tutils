@@ -1,11 +1,11 @@
 /**
- * @file Type Tests - passthrough
- * @module tutils/utils/tests/unit-d/passthrough
+ * @file Type Tests - identity
+ * @module tutils/utils/tests/unit-d/identity
  */
 
-import type testSubject from '../passthrough'
+import type testSubject from '../identity'
 
-describe('unit-d:utils/passthrough', () => {
+describe('unit-d:utils/identity', () => {
   type T = number
 
   it('should be callable with [T]', () => {
