@@ -12,7 +12,7 @@ import type Head from './head'
 import type Indices from './indices'
 import type Keys from './keys'
 import type NumberString from './number-string'
-import type ObjectAny from './object-any'
+import type ObjectCurly from './object-curly'
 import type Primitive from './primitive'
 import type PropertyKey from './property-key'
 
@@ -58,7 +58,7 @@ type Path<T, K extends PropertyKey = Keys<T>> = T extends
           ? NonNullable<Get<T, K>> extends infer U
             ? K | `${K}.${Path<Omit<NonNullable<U>, keyof Fn>>}`
             : never
-          : NonNullable<Get<T, K>> extends ObjectAny
+          : NonNullable<Get<T, K>> extends ObjectCurly
           ? NonNullable<Get<T, K>> extends infer U
             ? K | `${K}.${Path<NonNullable<U>>}`
             : never

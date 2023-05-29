@@ -3,7 +3,7 @@
  * @module tutils/types/ExactOptionalPropertyTypes
  */
 
-import type ObjectAny from './object-any'
+import type ObjectCurly from './object-curly'
 import type Simplify from './simplify'
 
 /**
@@ -15,7 +15,7 @@ import type Simplify from './simplify'
  *
  * @template T - Type to evaluate
  */
-type ExactOptionalPropertyTypes<T extends ObjectAny> = Simplify<{
+type ExactOptionalPropertyTypes<T extends ObjectCurly> = Simplify<{
   [K in keyof T]: Exclude<T[K], undefined> extends never
     ? T[K]
     : Exclude<T[K], undefined>

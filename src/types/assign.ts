@@ -7,7 +7,7 @@ import type EmptyArray from './empty-array'
 import type EmptyObject from './empty-object'
 import type Head from './head'
 import type Merge from './merge'
-import type ObjectAny from './object-any'
+import type ObjectCurly from './object-curly'
 import type OneOrMany from './one-or-many'
 import type Simplify from './simplify'
 
@@ -21,14 +21,14 @@ import type Simplify from './simplify'
  * @template U - Source object or source object array
  */
 type Assign<
-  T extends ObjectAny,
-  U extends OneOrMany<ObjectAny> = EmptyObject
+  T extends ObjectCurly,
+  U extends OneOrMany<ObjectCurly> = EmptyObject
 > = U extends EmptyArray | EmptyObject
   ? T
-  : U extends ObjectAny
+  : U extends ObjectCurly
   ? Merge<T, U>
   : Simplify<
-      U extends [infer H, ...infer Rest extends readonly ObjectAny[]]
+      U extends [infer H, ...infer Rest extends readonly ObjectCurly[]]
         ? Assign<H & Omit<T, keyof H>, Rest>
         : Assign<T, Head<U>>
     >

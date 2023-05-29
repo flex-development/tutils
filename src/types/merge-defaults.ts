@@ -8,7 +8,7 @@ import type EmptyObject from './empty-object'
 import type Head from './head'
 import type IfNever from './if-never'
 import type Merge from './merge'
-import type ObjectAny from './object-any'
+import type ObjectCurly from './object-curly'
 import type OneOrMany from './one-or-many'
 
 /**
@@ -23,13 +23,13 @@ import type OneOrMany from './one-or-many'
  * @template U - Source object or source object array
  */
 type MergeDefaults<
-  T extends ObjectAny,
+  T extends ObjectCurly,
   U extends OneOrMany<Partial<T>> = EmptyObject
 > = U extends EmptyArray | EmptyObject
   ? T
   : U extends Partial<T>
   ? MergeDefaults<T, [U]>
-  : U extends [infer H, ...infer Rest extends readonly ObjectAny[]]
+  : U extends [infer H, ...infer Rest extends readonly ObjectCurly[]]
   ? Merge<
       T,
       {
@@ -41,7 +41,7 @@ type MergeDefaults<
             >
           : never
       }
-    > extends infer V extends ObjectAny
+    > extends infer V extends ObjectCurly
     ? Rest extends readonly Partial<V>[]
       ? MergeDefaults<V, Rest>
       : never

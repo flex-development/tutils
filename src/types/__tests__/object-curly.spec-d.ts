@@ -1,14 +1,15 @@
 /**
- * @file Type Tests - ObjectAny
- * @module tutils/types/tests/unit-d/ObjectAny
+ * @file Type Tests - ObjectCurly
+ * @module tutils/types/tests/unit-d/ObjectCurly
  */
 
+import type Person from '#fixtures/person.interface'
 import type Fn from '../fn'
-import type TestSubject from '../object-any'
+import type TestSubject from '../object-curly'
 import type ObjectPlain from '../object-plain'
 import type Primitive from '../primitive'
 
-describe('unit-d:types/ObjectAny', () => {
+describe('unit-d:types/ObjectCurly', () => {
   it('should match class instance objects', () => {
     expectTypeOf(new Date()).toMatchTypeOf<TestSubject>()
     expectTypeOf(new Map()).toMatchTypeOf<TestSubject>()
@@ -17,17 +18,21 @@ describe('unit-d:types/ObjectAny', () => {
 
   it('should match pojos', () => {
     expectTypeOf<ObjectPlain>().toMatchTypeOf<TestSubject>()
+    expectTypeOf<Person>().toMatchTypeOf<TestSubject>()
   })
 
   it('should not match arrays', () => {
     expectTypeOf<unknown[]>().not.toMatchTypeOf<TestSubject>()
+    expectTypeOf<readonly unknown[]>().not.toMatchTypeOf<TestSubject>()
   })
 
   it('should not match functions', () => {
     expectTypeOf<Fn>().not.toMatchTypeOf<TestSubject>()
+    expectTypeOf<Readonly<Fn>>().not.toMatchTypeOf<TestSubject>()
   })
 
   it('should not match primitives', () => {
     expectTypeOf<Primitive>().not.toMatchTypeOf<TestSubject>()
+    expectTypeOf<Readonly<Primitive>>().not.toMatchTypeOf<TestSubject>()
   })
 })

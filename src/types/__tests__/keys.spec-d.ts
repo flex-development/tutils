@@ -27,7 +27,7 @@ describe('unit-d:types/Keys', () => {
     expectTypeOf<TestSubject<EmptyString>>().toBeNever()
   })
 
-  it('should equal union if T extends ObjectAny', () => {
+  it('should equal union if T extends ObjectCurly', () => {
     expectTypeOf<TestSubject<Author>>().toEqualTypeOf<keyof Author>()
     expectTypeOf<TestSubject<Error>>().toEqualTypeOf<keyof Error>()
     expectTypeOf<TestSubject<RangeError>>().toEqualTypeOf<keyof RangeError>()

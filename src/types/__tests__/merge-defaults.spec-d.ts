@@ -17,7 +17,7 @@ describe('unit-d:types/MergeDefaults', () => {
     expectTypeOf<TestSubject<Author>>().toEqualTypeOf<Author>()
   })
 
-  it('should merge defaults into T if U extends ObjectAny', () => {
+  it('should merge defaults into T if U extends ObjectCurly', () => {
     // Arrange
     type U = { email: Lowercase<string>; first_name?: string }
     type Expected = Merge<Author, Omit<U, 'first_name'>>
@@ -26,7 +26,7 @@ describe('unit-d:types/MergeDefaults', () => {
     expectTypeOf<TestSubject<Author, U>>().toEqualTypeOf<Expected>()
   })
 
-  it('should merge defaults into T if U extends readonly ObjectAny[]', () => {
+  it('should merge defaults into T if U extends readonly ObjectCurly[]', () => {
     // Arrange
     type U1 = { display_name: string; first_name?: string }[]
     type U2 = [{ display_name: string }, { first_name?: string }]

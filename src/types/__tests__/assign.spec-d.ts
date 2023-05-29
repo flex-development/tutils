@@ -17,7 +17,7 @@ describe('unit-d:types/Assign', () => {
     expectTypeOf<TestSubject<Author>>().toEqualTypeOf<Author>()
   })
 
-  it('should merge U into T if U extends ObjectAny', () => {
+  it('should merge U into T if U extends ObjectCurly', () => {
     // Arrange
     type U = { email: Lowercase<string> }
 
@@ -25,7 +25,7 @@ describe('unit-d:types/Assign', () => {
     expectTypeOf<TestSubject<Author, U>>().toEqualTypeOf<Merge<Author, U>>()
   })
 
-  it('should merge U into T if U extends readonly ObjectAny[]', () => {
+  it('should merge U into T if U extends readonly ObjectCurly[]', () => {
     // Arrange
     type U1 = [{ display_name: string }, { email: Lowercase<string> }]
     type U2 = { display_name: string; email: Lowercase<string> }[]

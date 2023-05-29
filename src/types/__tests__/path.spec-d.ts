@@ -27,7 +27,7 @@ describe('unit-d:types/Path', () => {
     expectTypeOf<TestSubject<EmptyString>>().toBeNever()
   })
 
-  it('should equal union if T extends ObjectAny', () => {
+  it('should equal union if T extends ObjectCurly', () => {
     // Arrange
     type T = Omit<Book, 'publisher'> & {
       authors: Author[]
