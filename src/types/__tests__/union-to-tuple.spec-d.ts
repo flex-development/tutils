@@ -7,6 +7,10 @@ import type TestSubject from '../union-to-tuple'
 
 describe('unit-d:types/UnionToTuple', () => {
   it('should convert U to tuple', () => {
-    expectTypeOf<TestSubject<0 | 1 | 2>>().toEqualTypeOf<[0, 1, 2]>()
+    // Arrange
+    type U = 'x' | 'y' | 'z'
+
+    // Expect
+    expectTypeOf<TestSubject<U>>().toEqualTypeOf<['x', 'y', 'z']>()
   })
 })
