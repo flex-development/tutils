@@ -4,7 +4,7 @@
  */
 
 /**
- * Returns a boolean indicating if `T` is type `never`.
+ * Returns a boolean indicating if `T` is `never`.
  *
  * @template T - Type to evaluate
  */

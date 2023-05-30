@@ -4,7 +4,7 @@
  */
 
 /**
- * Returns a boolean indicating if `T` is type `any`.
+ * Returns a boolean indicating if `T` is `any`.
  *
  * @template T - Type to evaluate
  */
