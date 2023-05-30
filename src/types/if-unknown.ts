@@ -6,14 +6,13 @@
 import type IsUnknown from './is-unknown'
 
 /**
- * Conditional type that resolves depending on whether or not `T` is type
- * `unknown`.
+ * Returns a type that indicates if `T` is `unknown`.
  *
  * @see {@linkcode IsUnknown}
  *
  * @template T - Type to evaluate
- * @template True - Type if `T` is type `unknown`
- * @template False - Type if `T` is not type `unknown`
+ * @template True - Type if `T` is `unknown`
+ * @template False - Type if `T` is not `unknown`
  */
 type IfUnknown<T, True, False> = IsUnknown<T> extends true ? True : False
 

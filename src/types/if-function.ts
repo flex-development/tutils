@@ -6,14 +6,13 @@
 import type IsFunction from './is-function'
 
 /**
- * Conditional type that resolves depending on whether or not `T` extends
- * `Fn`.
+ * Returns a type that indicates if `T` is a function.
  *
  * @see {@linkcode IsFunction}
  *
  * @template T - Type to evaluate
- * @template True - Type if `T` extends `Fn`
- * @template False - Type if `T` does not extend `Fn`
+ * @template True - Type if `T` is a function
+ * @template False - Type if `T` is not a function
  */
 type IfFunction<T, True, False> = IsFunction<T> extends true ? True : False
 

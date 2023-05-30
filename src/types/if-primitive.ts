@@ -6,14 +6,13 @@
 import type IsPrimitive from './is-primitive'
 
 /**
- * Conditional type that resolves depending on whether or not `T` extends
- * `Primitive`.
+ * Returns a type that indicates if `T` is a `Primitive`.
  *
  * @see {@linkcode IsPrimitive}
  *
  * @template T - Type to evaluate
- * @template True - Type if `T` extends `Primitive`
- * @template False - Type if `T` does not extend `Primitive`
+ * @template True - Type if `T` is a `Primitive`
+ * @template False - Type if `T` is not a `Primitive`
  */
 type IfPrimitive<T, True, False> = IsPrimitive<T> extends true ? True : False
 

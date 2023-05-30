@@ -6,14 +6,13 @@
 import type IsNull from './is-null'
 
 /**
- * Conditional type that resolves depending on whether or not `T` extends
- * `null`.
+ * Returns a type that indicates if `T` is `null`.
  *
  * @see {@linkcode IsNull}
  *
  * @template T - Type to evaluate
- * @template True - Type if `T` extends `null`
- * @template False - Type if `T` does not extend `null`
+ * @template True - Type if `T` is `null`
+ * @template False - Type if `T` is not `null`
  */
 type IfNull<T, True, False> = IsNull<T> extends true ? True : False
 

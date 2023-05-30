@@ -6,14 +6,13 @@
 import type IsJsonPrimitive from './is-json-primitive'
 
 /**
- * Conditional type that resolves depending on whether or not `T` extends
- * `JsonPrimitive`.
+ * Returns a type that indicates if `T` is a `JsonPrimitive`.
  *
  * @see {@linkcode IsJsonPrimitive}
  *
  * @template T - Type to evaluate
- * @template True - Type if `T` extends `JsonPrimitive`
- * @template False - Type if `T` does not extend `JsonPrimitive`
+ * @template True - Type if `T` is a `JsonPrimitive`
+ * @template False - Type if `T` is not a `JsonPrimitive`
  */
 type IfJsonPrimitive<T, True, False> = IsJsonPrimitive<T> extends true
   ? True

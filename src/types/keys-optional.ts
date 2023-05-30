@@ -9,7 +9,9 @@
  * @template T - Type to evaluate
  */
 type OptionalKeys<T> = Exclude<
-  { [K in keyof T]: T extends Record<K, T[K]> ? never : K }[keyof T],
+  NonNullable<T> extends infer U
+    ? { [K in keyof U]: U extends Record<K, U[K]> ? never : K }[keyof U]
+    : never,
   undefined
 >
 

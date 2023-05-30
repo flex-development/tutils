@@ -4,7 +4,7 @@
  */
 
 /**
- * Type representing a `null` or `undefined` value.
+ * A `null` or `undefined` value.
  */
 type NIL = null | undefined
 

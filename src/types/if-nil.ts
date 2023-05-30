@@ -6,13 +6,13 @@
 import type IsNil from './is-nil'
 
 /**
- * Conditional type that resolves depending on whether or not `T` extends `NIL`.
+ * Returns a type that indicates if `T` is `NIL`.
  *
  * @see {@linkcode IsNil}
  *
  * @template T - Type to evaluate
- * @template True - Type if `T` is `nil`
- * @template False - Type if `T` is not `nil`
+ * @template True - Type if `T` is `NIL`
+ * @template False - Type if `T` is not `NIL`
  */
 type IfNil<T, True, False> = IsNil<T> extends true ? True : False
 

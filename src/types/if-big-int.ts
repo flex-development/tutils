@@ -6,14 +6,13 @@
 import type IsBigInt from './is-big-int'
 
 /**
- * Conditional type that resolves depending on whether or not `T` extends
- * `bigint`.
+ * Returns a type that indicates if `T` is a `bigint`.
  *
  * @see {@linkcode IsBigInt}
  *
  * @template T - Type to evaluate
- * @template True - Type if `T` extends `bigint`
- * @template False - Type if `T` does not extend `bigint`
+ * @template True - Type if `T` is a `bigint`
+ * @template False - Type if `T` is not a `bigint`
  */
 type IfBigInt<T, True, False> = IsBigInt<T> extends true ? True : False
 

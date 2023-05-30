@@ -7,8 +7,7 @@ import type IsExactOptionalKey from './is-key-optional-exact'
 import type PropertyKey from './property-key'
 
 /**
- * Conditional type that resolves depending on whether or not `K` is an exact
- * optional property of `T`.
+ * Returns a type that indicates if `K` is an exact optional property of `T`.
  *
  * @see {@linkcode IsExactOptionalKey}
  *

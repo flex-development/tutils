@@ -6,16 +6,15 @@
 import type IsTuple from './is-tuple'
 
 /**
- * Conditional type that resolves depending on whether or not `T` is a
- * [tuple][1] type.
+ * Returns a type that indicates if `T` is a [tuple][1].
  *
  * [1]: https://www.codecademy.com/resources/docs/typescript/tuples
  *
  * @see {@linkcode IsTuple}
  *
  * @template T - Type to evaluate
- * @template True - Type if `T` is tuple type
- * @template False - Type if `T` is not tuple type
+ * @template True - Type if `T` is a tuple
+ * @template False - Type if `T` is not a tuple
  */
 type IfTuple<T, True, False> = IsTuple<T> extends true ? True : False
 

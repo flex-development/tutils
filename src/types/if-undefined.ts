@@ -6,14 +6,13 @@
 import type IsUndefined from './is-undefined'
 
 /**
- * Conditional type that resolves depending on whether or not `T` extends
- * `undefined`.
+ * Returns a type that indicates if `T` is `undefined`.
  *
  * @see {@linkcode IsUndefined}
  *
  * @template T - Type to evaluate
- * @template True - Type if `T` extends `undefined`
- * @template False - Type if `T` does not extend `undefined`
+ * @template True - Type if `T` is `undefined`
+ * @template False - Type if `T` is not `undefined`
  */
 type IfUndefined<T, True, False> = IsUndefined<T> extends true ? True : False
 

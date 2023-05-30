@@ -6,8 +6,7 @@
 import type IsEqual from './is-equal'
 
 /**
- * Conditional type that resolves depending on whether or not `A` and `B` are
- * equal.
+ * Returns a type that indicates if `A` and `B` are equal.
  *
  * @see {@linkcode IsEqual}
  *

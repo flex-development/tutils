@@ -3,11 +3,13 @@
  * @module tutils/types/IsBoolean
  */
 
+import type IfAnyOrNever from './if-any-or-never'
+
 /**
- * Returns a boolean indicating if `T` extends `boolean`.
+ * Returns a boolean indicating if `T` is a `boolean`.
  *
  * @template T - Type to evaluate
  */
-type IsBoolean<T> = T extends boolean ? true : false
+type IsBoolean<T> = IfAnyOrNever<T, false, [T] extends [boolean] ? true : false>
 
 export type { IsBoolean as default }

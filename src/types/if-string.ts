@@ -6,14 +6,13 @@
 import type IsString from './is-string'
 
 /**
- * Conditional type that resolves depending on whether or not `T` extends
- * `string`.
+ * Returns a type that indicates if `T` is a `string`.
  *
  * @see {@linkcode IsString}
  *
  * @template T - Type to evaluate
- * @template True - Type if `T` extends `string`
- * @template False - Type if `T` does not extend `string`
+ * @template True - Type if `T` is a `string`
+ * @template False - Type if `T` is not a `string`
  */
 type IfString<T, True, False> = IsString<T> extends true ? True : False
 

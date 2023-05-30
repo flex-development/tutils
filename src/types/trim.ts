@@ -10,8 +10,6 @@ import type TrimStart from './trim-start'
 /**
  * Removes leading and trailing whitespaces from string `T`.
  *
- * @see {@linkcode Whitespace}
- *
  * @template T - String to trim
  */
 type Trim<T extends string> = EnsureString<TrimStart<TrimEnd<T>>>

@@ -3,11 +3,13 @@
  * @module tutils/types/IsNull
  */
 
+import type IfAnyOrNever from './if-any-or-never'
+
 /**
- * Returns a boolean indicating if `T` extends `null`.
+ * Returns a boolean indicating if `T` is `null`.
  *
  * @template T - Type to evaluate
  */
-type IsNull<T> = T extends null ? true : false
+type IsNull<T> = IfAnyOrNever<T, false, [T] extends [null] ? true : false>
 
 export type { IsNull as default }

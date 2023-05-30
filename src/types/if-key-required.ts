@@ -7,8 +7,7 @@ import type IsRequiredKey from './is-key-required'
 import type PropertyKey from './property-key'
 
 /**
- * Conditional type that resolves depending on whether or not `K` is a required
- * property of `T`.
+ * Returns a type that indicates if `K` is a required property of `T`.
  *
  * @see {@linkcode IsRequiredKey}
  *

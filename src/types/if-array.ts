@@ -6,8 +6,7 @@
 import type IsArray from './is-array'
 
 /**
- * Conditional type that resolves depending on whether or not `T` is an array of
- * type `V`.
+ * Returns a type that indicates if `T` is an array of type `V`.
  *
  * @see {@linkcode IsArray}
  *
