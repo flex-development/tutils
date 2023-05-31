@@ -8,13 +8,11 @@ import type TestSubject from '../empty-value'
 import type NIL from '../nil'
 
 describe('unit-d:types/EmptyValue', () => {
-  it('should extract EmptyString', () => {
-    expectTypeOf<TestSubject>()
-      .extract<EmptyString>()
-      .toEqualTypeOf<EmptyString>()
+  it('should extract NIL', () => {
+    expectTypeOf<TestSubject>().extract<NIL>().not.toBeNever()
   })
 
-  it('should extract NIL', () => {
-    expectTypeOf<TestSubject>().extract<NIL>().toEqualTypeOf<NIL>()
+  it('should extract EmptyString', () => {
+    expectTypeOf<TestSubject>().extract<EmptyString>().not.toBeNever()
   })
 })

@@ -3,8 +3,7 @@
  * @module tutils/types/Falsy
  */
 
-import type EmptyString from './empty-string'
-import type NIL from './nil'
+import type EmptyValue from './empty-value'
 
 /**
  * Falsy values union.
@@ -18,6 +17,6 @@ import type NIL from './nil'
  * - `null`
  * - `undefined`
  */
-type Falsy = EmptyString | NIL | 0 | 0n | false
+type Falsy = EmptyValue | 0 | 0n | false
 
 export type { Falsy as default }

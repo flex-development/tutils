@@ -7,7 +7,13 @@ import type EmptyString from './empty-string'
 import type NIL from './nil'
 
 /**
- * Type representing `null`, `undefined`, and empty strings.
+ * Empty values union.
+ *
+ * Empty value types include:
+ *
+ * - `''`
+ * - `null`
+ * - `undefined`
  */
 type EmptyValue = EmptyString | NIL
 

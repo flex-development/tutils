@@ -3,9 +3,8 @@
  * @module tutils/types/tests/unit-d/Falsy
  */
 
-import type EmptyString from '../empty-string'
+import type EmptyValue from '../empty-value'
 import type TestSubject from '../falsy'
-import type NIL from '../nil'
 
 describe('unit-d:types/Falsy', () => {
   it('should extract 0', () => {
@@ -16,12 +15,8 @@ describe('unit-d:types/Falsy', () => {
     expectTypeOf<TestSubject>().extract<0n>().not.toBeNever()
   })
 
-  it('should extract NIL', () => {
-    expectTypeOf<TestSubject>().extract<NIL>().not.toBeNever()
-  })
-
-  it('should extract EmptyString', () => {
-    expectTypeOf<TestSubject>().extract<EmptyString>().not.toBeNever()
+  it('should extract EmptyValue', () => {
+    expectTypeOf<TestSubject>().extract<EmptyValue>().not.toBeNever()
   })
 
   it('should extract false', () => {
