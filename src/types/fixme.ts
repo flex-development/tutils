@@ -4,7 +4,9 @@
  */
 
 /**
- * Helper type indicating a type that needs a better type definition.
+ * Alias for `any`.
+ *
+ * Indicates a better type definition is required.
  */
 type FIXME = any
 
