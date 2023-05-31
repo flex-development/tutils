@@ -4,7 +4,7 @@
  */
 
 import type { SortOrder } from '#src/enums'
-import type { OneOrMany } from '#src/types'
+import type { OneOrMany, Optional } from '#src/types'
 
 /**
  * Options for sorting an array alphabetically.
@@ -17,21 +17,21 @@ type AlphabetizeOptions = {
    *
    * @default 'upper'
    */
-  caseFirst?: 'false' | 'lower' | 'upper' | undefined
+  caseFirst?: Optional<'false' | 'lower' | 'upper'>
 
   /**
    * Ignore punctuation.
    *
    * @default false
    */
-  ignorePunctuation?: boolean | undefined
+  ignorePunctuation?: Optional<boolean>
 
   /**
    * Locale matching algorithm to use.
    *
    * @default 'best fit'
    */
-  localeMatcher?: 'best fit' | 'lookup' | undefined
+  localeMatcher?: Optional<'best fit' | 'lookup'>
 
   /**
    * A string with a BCP 47 language tag, or an array of such strings.
@@ -41,21 +41,21 @@ type AlphabetizeOptions = {
    *
    * If `undefined`, the default locale of the JavaScript runtime will be used.
    */
-  locales?: OneOrMany<string> | undefined
+  locales?: Optional<OneOrMany<string>>
 
   /**
    * Use numeric collation, such that `'1' < '2' < '10'`.
    *
    * @default true
    */
-  numeric?: boolean | undefined
+  numeric?: Optional<boolean>
 
   /**
    * Sort order rule.
    *
    * @default SortOrder.ASC
    */
-  order?: SortOrder | undefined
+  order?: Optional<SortOrder>
 
   /**
    * Which differences in the strings should lead to non-zero result values.
@@ -74,7 +74,7 @@ type AlphabetizeOptions = {
    *
    * @default 'variant'
    */
-  sensitivity?: 'accent' | 'base' | 'case' | 'variant' | undefined
+  sensitivity?: Optional<'accent' | 'base' | 'case' | 'variant'>
 }
 
 export type { AlphabetizeOptions as default }

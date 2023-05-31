@@ -11,6 +11,7 @@ import type IfRequiredKey from './if-key-required'
 import type IfNever from './if-never'
 import type NumberString from './number-string'
 import type Pick from './pick'
+import type Optional from './optional'
 import type Simplify from './simplify'
 import type UnionToIntersection from './union-to-intersection'
 
@@ -38,7 +39,7 @@ type Omit<T, K extends NumberString> = Simplify<
                   T,
                   F,
                   U & { [key in F]?: V },
-                  U & { [key in F]?: V | undefined }
+                  U & { [key in F]?: Optional<V> }
                 >
               >
             : never

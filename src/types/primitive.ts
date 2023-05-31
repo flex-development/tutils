@@ -4,12 +4,13 @@
  */
 
 import type JsonPrimitive from './json-primitive'
+import type Optional from './optional'
 
 /**
- * Type representing any [primitive][1] value.
+ * Any [primitive][1] value.
  *
  * [1]: https://developer.mozilla.org/docs/Glossary/Primitive
  */
-type Primitive = JsonPrimitive | bigint | symbol | undefined
+type Primitive = Optional<JsonPrimitive | bigint | symbol>
 
 export type { Primitive as default }

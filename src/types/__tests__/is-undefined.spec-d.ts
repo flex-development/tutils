@@ -4,11 +4,12 @@
  */
 
 import type TestSubject from '../is-undefined'
+import type Optional from '../optional'
 
 describe('unit-d:types/IsUndefined', () => {
   it('should equal false if [T] does not extend [undefined]', () => {
+    expectTypeOf<TestSubject<Optional<string>>>().toEqualTypeOf<false>()
     expectTypeOf<TestSubject<null>>().toEqualTypeOf<false>()
-    expectTypeOf<TestSubject<string | undefined>>().toEqualTypeOf<false>()
   })
 
   it('should equal false if T is any', () => {

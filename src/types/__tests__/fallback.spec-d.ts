@@ -4,6 +4,7 @@
  */
 
 import type TestSubject from '../fallback'
+import type Optional from '../optional'
 
 describe('unit-d:types/Fallback', () => {
   it('should equal Exclude<T, Condition> | F if T extends Condition', () => {
@@ -11,7 +12,7 @@ describe('unit-d:types/Fallback', () => {
     type Condition = undefined
     type Expected = Exclude<T, Condition> | F
     type F = null
-    type T = string | undefined
+    type T = Optional<string>
 
     // Expect
     expectTypeOf<TestSubject<T, F, Condition>>().toEqualTypeOf<Expected>()

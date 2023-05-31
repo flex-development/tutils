@@ -4,13 +4,10 @@
  */
 
 import type TestSubject from '../nil'
+import type Optional from '../optional'
 
 describe('unit-d:types/NIL', () => {
-  it('should extract null', () => {
-    expectTypeOf<TestSubject>().extract<null>().toBeNull()
-  })
-
-  it('should extract undefined', () => {
-    expectTypeOf<TestSubject>().extract<undefined>().toBeUndefined()
+  it('should equal Optional<null>', () => {
+    expectTypeOf<TestSubject>().toEqualTypeOf<Optional<null>>()
   })
 })

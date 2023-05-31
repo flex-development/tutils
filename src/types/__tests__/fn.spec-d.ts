@@ -4,9 +4,10 @@
  */
 
 import type TestSubject from '../fn'
+import type Optional from '../optional'
 
 describe('unit-d:types/Fn', () => {
-  type A = [string, RegExp | string | undefined, (number | undefined)?]
+  type A = [string, Optional<string> | RegExp, Optional<number>?]
   type R = string[]
   type Subject = TestSubject<A, R>
 

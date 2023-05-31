@@ -10,6 +10,7 @@ import type IfNever from './if-never'
 import type Merge from './merge'
 import type ObjectCurly from './object-curly'
 import type OneOrMany from './one-or-many'
+import type Optional from './optional'
 
 /**
  * Assigns properties from one or more source objects to target object `T` for
@@ -37,7 +38,7 @@ type MergeDefaults<
           ? IfNever<
               Extract<V, undefined>,
               V,
-              Exclude<V, H[K & keyof H] | undefined> | H[K & keyof H]
+              Exclude<V, Optional<H[K & keyof H]>> | H[K & keyof H]
             >
           : never
       }

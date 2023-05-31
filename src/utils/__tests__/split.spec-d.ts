@@ -3,14 +3,14 @@
  * @module tutils/utils/tests/unit-d/split
  */
 
-import type { Split } from '#src/types'
+import type { Optional, Split } from '#src/types'
 import type testSubject from '../split'
 
 describe('unit-d:utils/split', () => {
   it('should return Split<T, Delimiter>', () => {
     // Arrange
     type T = string
-    type Delimiter = RegExp | string | undefined
+    type Delimiter = Optional<RegExp | string>
 
     // Expect
     expectTypeOf<typeof testSubject<T, Delimiter>>().returns.toEqualTypeOf<

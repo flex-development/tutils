@@ -10,6 +10,7 @@ import type EmptyArray from '../empty-array'
 import type EmptyObject from '../empty-object'
 import type EmptyString from '../empty-string'
 import type TestSubject from '../get'
+import type Optional from '../optional'
 
 describe('unit-d:types/Get', () => {
   type F = undefined
@@ -69,10 +70,10 @@ describe('unit-d:types/Get', () => {
 
     // Expect
     expectTypeOf<TestSubject<T, K1>>().toEqualTypeOf<Author>()
-    expectTypeOf<TestSubject<T, K2>>().toEqualTypeOf<string | undefined>()
+    expectTypeOf<TestSubject<T, K2>>().toEqualTypeOf<Optional<string>>()
     expectTypeOf<TestSubject<T, K3>>().toEqualTypeOf<Author['email']>()
     expectTypeOf<TestSubject<T, K4>>().toEqualTypeOf<Author['email']>()
     expectTypeOf<TestSubject<T, K5>>().toBeUndefined()
-    expectTypeOf<TestSubject<T, K6>>().toEqualTypeOf<string | undefined>()
+    expectTypeOf<TestSubject<T, K6>>().toEqualTypeOf<Optional<string>>()
   })
 })

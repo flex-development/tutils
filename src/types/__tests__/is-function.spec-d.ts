@@ -5,10 +5,11 @@
 
 import type Fn from '../fn'
 import type TestSubject from '../is-function'
+import type Optional from '../optional'
 
 describe('unit-d:types/IsFunction', () => {
   it('should equal false if [T] does not extend [Fn]', () => {
-    expectTypeOf<TestSubject<Fn | undefined>>().toEqualTypeOf<false>()
+    expectTypeOf<TestSubject<Optional<Fn>>>().toEqualTypeOf<false>()
     expectTypeOf<TestSubject<readonly string[]>>().toEqualTypeOf<false>()
   })
 

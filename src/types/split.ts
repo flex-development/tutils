@@ -6,6 +6,7 @@
 import type EmptyArray from './empty-array'
 import type EmptyString from './empty-string'
 import type EnsureString from './ensure-string'
+import type Optional from './optional'
 
 /**
  * Splits string `S` using the given `Delimiter`.
@@ -17,7 +18,7 @@ import type EnsureString from './ensure-string'
  */
 type Split<
   T extends string,
-  Delimiter extends RegExp | string | undefined = undefined
+  Delimiter extends Optional<RegExp | string> = undefined
 > = RegExp extends Delimiter
   ? T extends EmptyString
     ? EmptyArray

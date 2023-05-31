@@ -3,9 +3,11 @@
  * @module tutils/types/nil
  */
 
+import type Optional from './optional'
+
 /**
- * A `null` or `undefined` value.
+ * Constructs a union of `null` and `undefined`.
  */
-type NIL = null | undefined
+type NIL = Optional<null>
 
 export type { NIL as default }

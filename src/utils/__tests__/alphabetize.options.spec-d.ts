@@ -4,7 +4,7 @@
  */
 
 import type { SortOrder } from '#src/enums'
-import type { OneOrMany } from '#src/types'
+import type { OneOrMany, Optional } from '#src/types'
 import type TestSubject from '../alphabetize.options'
 
 describe('unit-d:utils/AlphabetizeOptions', () => {
@@ -12,45 +12,45 @@ describe('unit-d:utils/AlphabetizeOptions', () => {
     expectTypeOf<TestSubject>().toMatchTypeOf<Intl.CollatorOptions>()
   })
 
-  it('should match [caseFirst?: "false" | "lower" | "upper" | undefined]', () => {
+  it('should match [caseFirst?: Optional<"false" | "lower" | "upper">]', () => {
     expectTypeOf<TestSubject>()
       .toHaveProperty('caseFirst')
-      .toEqualTypeOf<'false' | 'lower' | 'upper' | undefined>()
+      .toEqualTypeOf<Optional<'false' | 'lower' | 'upper'>>()
   })
 
-  it('should match [ignorePunctuation?: boolean | undefined]', () => {
+  it('should match [ignorePunctuation?: Optional<boolean>]', () => {
     expectTypeOf<TestSubject>()
       .toHaveProperty('ignorePunctuation')
-      .toEqualTypeOf<boolean | undefined>()
+      .toEqualTypeOf<Optional<boolean>>()
   })
 
-  it('should match [localeMatcher?: "best fit" | "lookup" | undefined]', () => {
+  it('should match [localeMatcher?: Optional<"best fit" | "lookup">]', () => {
     expectTypeOf<TestSubject>()
       .toHaveProperty('localeMatcher')
-      .toEqualTypeOf<'best fit' | 'lookup' | undefined>()
+      .toEqualTypeOf<Optional<'best fit' | 'lookup'>>()
   })
 
-  it('should match [locales?: OneOrMany<string> | undefined]', () => {
+  it('should match [locales?: Optional<OneOrMany<string>>]', () => {
     expectTypeOf<TestSubject>()
       .toHaveProperty('locales')
-      .toEqualTypeOf<OneOrMany<string> | undefined>()
+      .toEqualTypeOf<Optional<OneOrMany<string>>>()
   })
 
-  it('should match [numeric?: boolean | undefined]', () => {
+  it('should match [numeric?: Optional<boolean>]', () => {
     expectTypeOf<TestSubject>()
       .toHaveProperty('numeric')
-      .toEqualTypeOf<boolean | undefined>()
+      .toEqualTypeOf<Optional<boolean>>()
   })
 
-  it('should match [order?: SortOrder | undefined]', () => {
+  it('should match [order?: Optional<SortOrder>]', () => {
     expectTypeOf<TestSubject>()
       .toHaveProperty('order')
-      .toEqualTypeOf<SortOrder | undefined>()
+      .toEqualTypeOf<Optional<SortOrder>>()
   })
 
-  it('should match [sensitivity?: "accent" | "base" | "case" | "variant" | undefined]', () => {
+  it('should match [sensitivity?: Optional<"accent" | "base" | "case" | "variant">]', () => {
     expectTypeOf<TestSubject>()
       .toHaveProperty('sensitivity')
-      .toEqualTypeOf<'accent' | 'base' | 'case' | 'variant' | undefined>()
+      .toEqualTypeOf<Optional<'accent' | 'base' | 'case' | 'variant'>>()
   })
 })

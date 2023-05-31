@@ -4,6 +4,7 @@
  */
 
 import type Jsonifiable from './jsonifiable'
+import type Optional from './optional'
 
 /**
  * An object that can be losslessly converted to JSON.
@@ -15,6 +16,6 @@ import type Jsonifiable from './jsonifiable'
  *
  * @see [`Jsonifiable`][2]
  */
-type JsonifiableObject = { [K in string]?: Jsonifiable | undefined }
+type JsonifiableObject = { [K in string]?: Optional<Jsonifiable> }
 
 export type { JsonifiableObject as default }

@@ -7,6 +7,7 @@ import type Get from './get'
 import type IfAnyOrNever from './if-any-or-never'
 import type IfEqual from './if-equal'
 import type IfOptionalKey from './if-key-optional'
+import type Optional from './optional'
 import type PropertyKey from './property-key'
 
 /**
@@ -30,7 +31,7 @@ type IsExactOptionalKey<T, K extends PropertyKey> = IfAnyOrNever<
           U,
           K,
           Get<Required<U>, K> extends infer V
-            ? IfEqual<V, V | undefined, false, true>
+            ? IfEqual<V, Optional<V>, false, true>
             : false,
           false
         >
