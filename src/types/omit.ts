@@ -13,6 +13,7 @@ import type NumberString from './number-string'
 import type Pick from './pick'
 import type Optional from './optional'
 import type Simplify from './simplify'
+import type Stringify from './stringify'
 import type UnionToIntersection from './union-to-intersection'
 
 /**
@@ -27,7 +28,7 @@ import type UnionToIntersection from './union-to-intersection'
  */
 type Omit<T, K extends NumberString> = Simplify<
   UnionToIntersection<
-    Head<`${K}`> extends infer H extends string
+    Head<Stringify<K>> extends infer H extends string
       ? Pick<T, Exclude<keyof T, H | symbol>> extends infer U
         ? K extends `${infer F}.${infer Rest}`
           ? Omit<NonNullable<Get<T, F>>, Rest> extends infer V

@@ -4,10 +4,11 @@
  */
 
 import type TestSubject from '../numeric'
+import type Stringify from '../stringify'
 
 describe('unit-d:types/Numeric', () => {
-  it('should equal `${number}`', () => {
-    expectTypeOf<TestSubject>().toEqualTypeOf<`${number}`>()
+  it('should equal Stringify<number>`', () => {
+    expectTypeOf<TestSubject>().toEqualTypeOf<Stringify<number>>()
   })
 
   it('should match positive numeric', () => {

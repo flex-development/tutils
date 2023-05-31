@@ -4,17 +4,14 @@
  */
 
 import type TestSubject from '../booleanish'
+import type Stringify from '../stringify'
 
 describe('unit-d:types/Booleanish', () => {
+  it('should extract Stringify<boolean>', () => {
+    expectTypeOf<TestSubject>().extract<Stringify<boolean>>().toBeString()
+  })
+
   it('should extract boolean', () => {
     expectTypeOf<TestSubject>().extract<boolean>().toBeBoolean()
-  })
-
-  it('should extract "false"', () => {
-    expectTypeOf<TestSubject>().extract<'false'>().toEqualTypeOf<'false'>()
-  })
-
-  it('should extract "true"', () => {
-    expectTypeOf<TestSubject>().extract<'true'>().toEqualTypeOf<'true'>()
   })
 })

@@ -3,9 +3,11 @@
  * @module tutils/types/Booleanish
  */
 
+import type Stringify from './stringify'
+
 /**
- * Boolean and string values representing `true` or `false`.
+ * Constructs a union of types that represent `true` or `false`.
  */
-type Booleanish = boolean | 'false' | 'true'
+type Booleanish = Stringify<boolean> | boolean
 
 export type { Booleanish as default }
