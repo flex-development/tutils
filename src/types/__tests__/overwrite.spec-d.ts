@@ -13,6 +13,7 @@ import type EmptyObject from '../empty-object'
 import type OneOrMany from '../one-or-many'
 import type { tag } from '../opaque'
 import type TestSubject from '../overwrite'
+import type Partial from '../partial'
 
 describe('unit-d:types/Overwrite', () => {
   it('should equal T if U is any', () => {

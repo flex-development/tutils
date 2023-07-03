@@ -12,6 +12,7 @@ import type Indices from '../indices'
 import type TestSubject from '../is-key-required'
 import type Nilable from '../nilable'
 import type Numeric from '../numeric'
+import type Partial from '../partial'
 import type Stringify from '../stringify'
 
 describe('unit-d:types/IsRequiredKey', () => {

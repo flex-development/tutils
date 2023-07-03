@@ -3,7 +3,9 @@
  * @module tutils/types/Partial
  */
 
+import type EmptyObject from './empty-object'
 import type Fn from './fn'
+import type IfTrue from './if-true'
 import type NumberLike from './number-like'
 import type Primitive from './primitive'
 import type Simplify from './simplify'
@@ -11,12 +13,14 @@ import type Simplify from './simplify'
 /**
  * Constructs a type with all properties of `T` set to optional.
  *
- * @todo implement optional array item recursion
  * @todo examples
  *
  * @template T - Type to evaluate
  */
-type Partial<T> = T extends unknown
+type Partial<
+  T,
+  R extends EmptyObject & { arrays?: true } = EmptyObject
+> = T extends unknown
   ? {
       [K in keyof T]?: T[K] extends infer V
         ? V extends Readonly<Fn>
@@ -28,9 +32,8 @@ type Partial<T> = T extends unknown
             ? V
             : Partial<V>
           : T extends readonly unknown[]
-          ? // preserve PartialNative functionality for plain arrays
-            K extends NumberLike | keyof unknown[]
-            ? V
+          ? K extends NumberLike | keyof unknown[]
+            ? IfTrue<R['arrays'], Simplify<Partial<V>>, V>
             : Simplify<Partial<V>>
           : Simplify<Partial<V>>
         : never

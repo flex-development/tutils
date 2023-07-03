@@ -12,6 +12,7 @@ import type Indices from '../indices'
 import type TestSubject from '../is-key-optional'
 import type Nilable from '../nilable'
 import type Numeric from '../numeric'
+import type Partial from '../partial'
 import type PropertyKey from '../property-key'
 import type Stringify from '../stringify'
 
