@@ -100,7 +100,7 @@
     "@flex-development/pathe": "1.0.3",
     "@flex-development/toggle-pkg-type": "2.0.0",
     "@flex-development/tsconfig-utils": "1.1.2",
-    "@graphql-eslint/eslint-plugin": "3.19.1",
+    "@graphql-eslint/eslint-plugin": "3.19.3",
     "@types/chai": "4.3.5",
     "@types/chai-quantifiers": "1.0.1",
     "@types/chai-string": "1.4.2",
