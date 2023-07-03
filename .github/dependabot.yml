@@ -30,6 +30,21 @@ updates:
       prefix: build
       include: scope
     directory: /
+    groups:
+      conventional-changelog:
+        patterns:
+          - conventional-changelog
+          - conventional-changelog-conventionalcommits
+          - conventional-changelog-core
+          - conventional-changelog-writer
+          - conventional-recommended-bump
+      typescript-eslint:
+        patterns:
+          - '@typescript-eslint/*'
+      vitest:
+        patterns:
+          - '@vitest/*'
+          - vitest
     ignore:
       - dependency-name: vitest
     labels:
