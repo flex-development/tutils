@@ -210,7 +210,7 @@ describe('unit-d:types/Partial', () => {
       >()
     })
 
-    describe('Readonly<Fn> extends T', () => {
+    describe('Fn extends T', () => {
       it('should equal PartialNative<T>', () => {
         // Arrange
         type T = Readonly<Fn>
