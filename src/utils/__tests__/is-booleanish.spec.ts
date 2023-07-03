@@ -7,16 +7,18 @@ import testSubject from '../is-booleanish'
 
 describe('unit:utils/isBooleanish', () => {
   it('should return false if value is not booleanish', () => {
-    expect(testSubject(faker.number.int())).to.be.false
+    expect(testSubject(faker.number.int({ min: 3 }))).to.be.false
   })
 
   it('should return true if value is booleanish', () => {
     // Arrange
     const cases: Parameters<typeof testSubject>[] = [
-      [false],
-      [true],
+      [0],
+      [1],
       ['false'],
-      ['true']
+      ['true'],
+      [false],
+      [true]
     ]
 
     // Act + Expect

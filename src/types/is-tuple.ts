@@ -4,18 +4,45 @@
  */
 
 import type IfAnyOrNever from './if-any-or-never'
+import type IsLiteral from './is-literal'
+import type Length from './length'
 
 /**
- * Returns a boolean indicating if `T` is a [tuple][1].
+ * Returns a boolean indicating if `T` extends a [tuple][1].
  *
  * [1]: https://www.codecademy.com/resources/docs/typescript/tuples
+ *
+ * @example
+ *  type X = IsTuple<readonly ['a', 'b'?]>
+ *  // true
+ * @example
+ *  type X = IsTuple<EmptyArray>
+ *  // true
+ * @example
+ *  type X = IsTuple<Nilable<['a', 'b'?]>>
+ *  // boolean
+ * @example
+ *  type X = IsTuple<Optional<'a' | 'b'>[]>
+ *  // false
+ * @example
+ *  type X = IsTuple<string[]>
+ *  // false
+ * @example
+ *  type X = IsTuple<any>
+ *  // false
+ * @example
+ *  type X = IsTuple<never>
+ *  // false
+ * @example
+ *  type X = IsTuple<unknown>
+ *  // false
  *
  * @template T - Type to evaluate
  */
 type IsTuple<T> = IfAnyOrNever<
   T,
   false,
-  [T] extends [[infer U, ...infer Rest]] ? true : false
+  T extends readonly unknown[] ? IsLiteral<Length<T>, number> : false
 >
 
 export type { IsTuple as default }

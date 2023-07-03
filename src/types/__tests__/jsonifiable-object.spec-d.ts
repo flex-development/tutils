@@ -8,11 +8,17 @@ import type TestSubject from '../jsonifiable-object'
 import type Optional from '../optional'
 
 describe('unit-d:types/JsonifiableObject', () => {
-  it('should have keys of type string', () => {
-    expectTypeOf<keyof TestSubject>().toBeString()
+  describe('keys', () => {
+    it('should equal string', () => {
+      expectTypeOf<keyof TestSubject>().toBeString()
+    })
   })
 
-  it('should have properties of type Optional<Jsonifiable>', () => {
-    expectTypeOf<TestSubject[string]>().toEqualTypeOf<Optional<Jsonifiable>>()
+  describe('properties', () => {
+    it('should equal JsonValue', () => {
+      expectTypeOf<TestSubject[keyof TestSubject]>().toEqualTypeOf<
+        Optional<Jsonifiable>
+      >()
+    })
   })
 })

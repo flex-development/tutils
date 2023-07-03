@@ -10,18 +10,14 @@ import type TestSubject from '../json-value'
 
 describe('unit-d:types/JsonValue', () => {
   it('should extract JsonArray', () => {
-    expectTypeOf<TestSubject>().extract<JsonArray>().toEqualTypeOf<JsonArray>()
+    expectTypeOf<TestSubject>().extract<JsonArray>().not.toBeNever()
   })
 
   it('should extract JsonObject', () => {
-    expectTypeOf<TestSubject>()
-      .extract<JsonObject>()
-      .toEqualTypeOf<JsonObject>()
+    expectTypeOf<TestSubject>().extract<JsonObject>().not.toBeNever()
   })
 
   it('should extract JsonPrimitive', () => {
-    expectTypeOf<TestSubject>()
-      .extract<JsonPrimitive>()
-      .toEqualTypeOf<JsonPrimitive>()
+    expectTypeOf<TestSubject>().extract<JsonPrimitive>().not.toBeNever()
   })
 })

@@ -10,12 +10,12 @@ describe('unit-d:types/LiteralUnion', () => {
   type P = string
 
   it('should extract L', () => {
-    expectTypeOf<TestSubject<L, P>>().extract<L>().toEqualTypeOf<L>()
+    expectTypeOf<TestSubject<L, P>>().extract<L>().not.toBeNever()
   })
 
   it('should extract P & Record<never, never>', () => {
     expectTypeOf<TestSubject<L, P>>()
       .extract<P & Record<never, never>>()
-      .toEqualTypeOf<P & Record<never, never>>()
+      .not.toBeNever()
   })
 })

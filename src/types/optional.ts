@@ -6,6 +6,10 @@
 /**
  * Constructs a union of `T` and `undefined`.
  *
+ * @example
+ *  type X = Optional<string>
+ *  // string | undefined
+ *
  * @template T - Type to evaluate
  */
 type Optional<T> = T | undefined

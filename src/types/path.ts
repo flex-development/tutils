@@ -3,70 +3,126 @@
  * @module tutils/types/Path
  */
 
-import type EmptyArray from './empty-array'
-import type EmptyObject from './empty-object'
-import type EmptyString from './empty-string'
+import type At from './at'
+import type BuiltIn from './built-in'
+import type Dot from './dot'
 import type Fn from './fn'
 import type Get from './get'
-import type Head from './head'
+import type IfAny from './if-any'
+import type IfNegative from './if-negative'
+import type IfNumber from './if-number'
+import type IfSymbol from './if-symbol'
 import type Indices from './indices'
-import type Keys from './keys'
+import type Join from './join'
+import type Keyof from './keyof'
+import type Length from './length'
+import type Nilable from './nilable'
 import type NumberString from './number-string'
-import type ObjectCurly from './object-curly'
+import type Opaque from './opaque'
 import type Primitive from './primitive'
 import type PropertyKey from './property-key'
+import type Stringify from './stringify'
+import type Subtract from './subtract'
+import type UnwrapNumeric from './unwrap-numeric'
 
 /**
  * Constructs a union of nested and top-level property paths.
  *
- * Non-enumerable paths are not included for builtin objects and primitives.
+ * Nested and array-indexable paths are expressed using dot notation.
  *
- * Nested and array-indexable paths will be expressed using dot notation.
+ * Non-enumerable property paths can be filtered out by setting `E` to `true`.
  *
- * @see {@linkcode Keys}
+ * **Note**: TypeScript does not track enumerability. Non-enumerable properties
+ * are removed for {@linkcode BuiltIn} types only.
+ *
+ * @todo examples
+ *
+ * @see https://github.com/microsoft/TypeScript/issues/9726
  *
  * @template T - Type to evaluate
- * @template K - Keys to begin building union
+ * @template E - Enumerable property paths only
  */
-type Path<T, K extends PropertyKey = Keys<T>> = T extends
-  | EmptyArray
-  | EmptyObject
-  | EmptyString
-  ? never
-  : Extract<
-      K extends NumberString
-        ? NonNullable<T> extends readonly unknown[]
-          ? NonNullable<T> extends infer U
-            ? Head<NonNullable<T>> extends infer R
-              ?
-                  | Indices<NonNullable<U>>
-                  | Path<Omit<NonNullable<U>, keyof any[]>>
-                  | `${Indices<NonNullable<U>>}.${Path<R>}`
-              : never
+type Path<T, E extends Nilable<boolean> = false> = Extract<
+  IfAny<
+    T,
+    keyof T,
+    T extends unknown
+      ? {
+          [H in keyof (T extends string
+            ? number extends Length<T>
+              ? Opaque<T>
+              : T & {
+                  [N in Stringify<Indices<T>> as IfNegative<N, never, N>]: At<
+                    T,
+                    N
+                  >
+                }
+            : T extends Primitive
+            ? Opaque<T>
+            : T) as IfSymbol<
+            H,
+            never,
+            E extends true
+              ? T extends string | readonly unknown[]
+                ? IfNumber<
+                    H,
+                    H,
+                    H extends Keyof<unknown[] | string> ? never : H
+                  >
+                : T extends Readonly<Exclude<BuiltIn, Error>>
+                ? H extends Keyof<Exclude<BuiltIn, Error>>
+                  ? never
+                  : H
+                : H
+              : H
+          > extends infer H extends PropertyKey
+            ? T extends string | readonly unknown[]
+              ? number extends Length<T>
+                ? H
+                : number extends H
+                ? never
+                : H
+              : H
+            : never]: (
+            T extends string | readonly unknown[]
+              ? number extends Length<T>
+                ? H
+                : H extends Stringify<Indices<T>>
+                ? UnwrapNumeric<H> extends infer N extends number
+                  ? UnwrapNumeric<
+                      Exclude<`-${Subtract<Length<Required<T>>, N>}`, '-0'>
+                    > extends infer M extends number
+                    ? M | N
+                    : never
+                  : never
+                : H
+              : H
+          ) extends infer H extends PropertyKey
+            ?
+                | H
+                | Stringify<H>
+                | (Get<T, H> extends infer V
+                    ? [H, NonNullable<V>] extends [number, string]
+                      ? T extends readonly unknown[]
+                        ? Path<V, E> extends infer P extends NumberString
+                          ? Join<[Stringify<H>, P], Dot>
+                          : never
+                        : never
+                      : Readonly<Fn> extends V
+                      ? never
+                      : Path<V, E> extends infer P extends NumberString
+                      ? Join<[Stringify<H>, P], Dot>
+                      : never
+                    : never)
             : never
-          : NonNullable<Get<T, K>> extends readonly unknown[]
-          ? NonNullable<Get<T, K>> extends infer U
-            ? Head<NonNullable<Get<T, K>>> extends infer R
-              ?
-                  | K
-                  | `${K}.${Indices<NonNullable<U>>}.${Path<R>}`
-                  | `${K}.${Indices<NonNullable<U>>}`
-                  | `${K}.${Path<Omit<NonNullable<U>, keyof any[]>>}`
-              : never
-            : never
-          : NonNullable<Get<T, K>> extends Readonly<Fn>
-          ? NonNullable<Get<T, K>> extends infer U
-            ? K | `${K}.${Path<Omit<NonNullable<U>, keyof Fn>>}`
-            : never
-          : NonNullable<Get<T, K>> extends ObjectCurly
-          ? NonNullable<Get<T, K>> extends infer U
-            ? K | `${K}.${Path<NonNullable<U>>}`
-            : never
-          : Get<T, K> extends Readonly<Primitive>
-          ? K
-          : never
-        : never,
-      string
-    >
+        } extends infer X
+        ? X[keyof X]
+        : never
+      : never
+  >,
+  NumberString
+> extends infer P extends NumberString
+  ? P
+  : never
 
 export type { Path as default }

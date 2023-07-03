@@ -3,9 +3,11 @@
  * @module tutils/types/Head
  */
 
-import type IfArray from './if-array'
-import type IfString from './if-string'
-import type NumberString from './number-string'
+import type EmptyArray from './empty-array'
+import type EmptyString from './empty-string'
+import type IfAny from './if-any'
+import type Join from './join'
+import type Optional from './optional'
 
 /**
  * Returns the head of `T`.
@@ -14,22 +16,32 @@ import type NumberString from './number-string'
  *
  * - `never` if `T` is not an array or string
  * - first item in `T` if `T` is an array
- * - first segment before the first delimiter if `T` is a string
+ * - first segment in `T` if `T` is a string
+ *
+ * @todo examples
  *
  * @template T - Type to evaluate
  * @template D - String delimiter
  */
-type Head<T, D extends string = '.'> = T extends string | readonly unknown[]
-  ? IfString<
-      T,
-      T extends `${infer First}${D}${NumberString}` ? First : T,
-      IfArray<
-        T,
-        unknown,
-        T extends [infer First, ...infer Rest] ? First : T[0],
-        T
-      >
-    >
-  : never
+type Head<
+  T extends string | readonly unknown[],
+  D extends string = EmptyString
+> = IfAny<
+  T,
+  never,
+  T extends string
+    ? T extends EmptyString
+      ? never
+      : T extends Join<[infer H extends string, D, string], EmptyString>
+      ? H
+      : T
+    : T extends Readonly<EmptyArray>
+    ? never
+    : T extends readonly [infer H extends T[0], ...T[number][]]
+    ? H
+    : T extends readonly [(infer H extends T[0])?, ...T[number][]]
+    ? Optional<H>
+    : never
+>
 
 export type { Head as default }

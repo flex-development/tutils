@@ -5,16 +5,31 @@
 
 import type TestSubject from '../if-nil'
 import type NIL from '../nil'
+import type Primitive from '../primitive'
 
 describe('unit-d:types/IfNil', () => {
-  type False = false
-  type True = true
+  type F = 0
+  type T = 1
 
-  it('should equal False if IsNil<T> extends false', () => {
-    expectTypeOf<TestSubject<NIL[], True, False>>().toEqualTypeOf<False>()
+  it('should equal F if IsNil<U> extends false', () => {
+    expectTypeOf<TestSubject<NIL[], T, F>>().toEqualTypeOf<F>()
   })
 
-  it('should equal True if IsNil<T> extends true', () => {
-    expectTypeOf<TestSubject<NIL, True, False>>().toEqualTypeOf<True>()
+  it('should equal F if U is any', () => {
+    expectTypeOf<TestSubject<any, T, F>>().toEqualTypeOf<F>()
+  })
+
+  it('should equal F if U is never', () => {
+    expectTypeOf<TestSubject<never, T, F>>().toEqualTypeOf<F>()
+  })
+
+  it('should equal T if IsNil<U> extends true', () => {
+    expectTypeOf<TestSubject<NIL, T, F>>().toEqualTypeOf<T>()
+  })
+
+  describe('unions', () => {
+    it('should distribute over unions', () => {
+      expectTypeOf<TestSubject<Primitive, T, F>>().toEqualTypeOf<F | T>()
+    })
   })
 })

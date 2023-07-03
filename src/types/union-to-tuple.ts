@@ -3,20 +3,37 @@
  * @module tutils/types/UnionToTuple
  */
 
+import type EmptyArray from './empty-array'
 import type Fn from './fn'
 import type UnionToIntersection from './union-to-intersection'
 
 /**
- * Converts `U` to a [tuple][1] type.
+ * Convert a union to a [tuple][1].
  *
  * [1]: https://www.codecademy.com/resources/docs/typescript/tuples
  *
- * @template U - Type to evaluate
+ * @example
+ *  type X = UnionToTuple<0 | 1 | 2>
+ *  // [0, 1, 2]
+ * @example
+ *  type X = UnionToTuple<number | string>
+ *  // [number, string]
+ * @example
+ *  type X = UnionToTuple<any>
+ *  // [any]
+ * @example
+ *  type X = UnionToTuple<never>
+ *  // []
+ * @example
+ *  type X = UnionToTuple<unknown>
+ *  // [unknown]
+ *
+ * @template T - Type to evaluate
  */
-type UnionToTuple<U> = UnionToIntersection<
-  U extends never ? never : Fn<[U], U>
+type UnionToTuple<T> = UnionToIntersection<
+  T extends never ? never : Fn<[T], T>
 > extends Fn<[never], infer W>
-  ? [...UnionToTuple<Exclude<U, W>>, W]
-  : []
+  ? [...UnionToTuple<Exclude<T, W>>, W]
+  : EmptyArray
 
 export type { UnionToTuple as default }

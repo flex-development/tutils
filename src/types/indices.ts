@@ -4,32 +4,60 @@
  */
 
 import type EmptyArray from './empty-array'
-import type IfArray from './if-array'
-import type IfTuple from './if-tuple'
-import type Numeric from './numeric'
+import type EmptyString from './empty-string'
+import type Length from './length'
+import type NaturalRange from './range-natural'
+import type Subtract from './subtract'
+import type UnwrapNumeric from './unwrap-numeric'
 
 /**
- * Constructs a union of array indices.
+ * Constructs a union of indices.
+ *
+ * **Note**: Includes negative indices.
  *
  * @example
- *  Indices<['a', 'b']>        // '0' | '1'
- *  Indices<string[]>          // number | `${number}`
- *  Indices<{ a: string[] }>   // never
- *  Indices<EmptyArray>        // never
+ *  type X = Indices<['a', 'b', 'c'?]>
+ *  // -1 | -2 | -3 | 0 | 1 | 2
+ * @example
+ *  type X = Indices<'abc'>
+ *  // -1 | -2 | -3 | 0 | 1 | 2
+ * @example
+ *  type X = Indices<string[]>
+ *  // number
+ * @example
+ *  type X = Indices<string>
+ *  // number
+ * @example
+ *  type X = Indices<any>
+ *  // number
+ * @example
+ *  type X = Indices<never>
+ *  // never
+ * @example
+ *  type X = Indices<EmptyString>
+ *  // never
+ * @example
+ *  type X = Indices<Readonly<EmptyArray>>
+ *  // never
  *
  * @template T - Type to evaluate
  */
-type Indices<T> = IfArray<
-  NonNullable<T>,
-  unknown,
-  NonNullable<T> extends EmptyArray
+type Indices<T extends string | readonly unknown[]> = (
+  T extends EmptyString | Readonly<EmptyArray>
     ? never
-    : IfTuple<
-        NonNullable<T>,
-        Extract<keyof NonNullable<T>, Numeric>,
-        Numeric | number
-      >,
-  never
->
+    : Length<T> extends infer L extends number
+    ? number extends L
+      ? L
+      : NaturalRange<L> extends infer R extends number
+      ? Length<Required<T>> extends infer L extends number
+        ? {
+            [K in R]: K | UnwrapNumeric<Exclude<`-${Subtract<L, K>}`, '-0'>>
+          }[R]
+        : never
+      : never
+    : never
+) extends infer I extends number
+  ? I
+  : never
 
 export type { Indices as default }

@@ -4,16 +4,31 @@
  */
 
 import type TestSubject from '../if-boolean'
+import type Primitive from '../primitive'
 
 describe('unit-d:types/IfBoolean', () => {
-  type False = false
-  type True = true
+  type F = 0
+  type T = 1
 
-  it('should equal False if IsBoolean<T> extends false', () => {
-    expectTypeOf<TestSubject<boolean[], True, False>>().toEqualTypeOf<False>()
+  it('should equal F if IsBoolean<U> extends false', () => {
+    expectTypeOf<TestSubject<boolean[], T, F>>().toEqualTypeOf<F>()
   })
 
-  it('should equal True if IsBoolean<T> extends true', () => {
-    expectTypeOf<TestSubject<boolean, True, False>>().toEqualTypeOf<True>()
+  it('should equal F if U is any', () => {
+    expectTypeOf<TestSubject<any, T, F>>().toEqualTypeOf<F>()
+  })
+
+  it('should equal F if U is never', () => {
+    expectTypeOf<TestSubject<never, T, F>>().toEqualTypeOf<F>()
+  })
+
+  it('should equal T if IsBoolean<U> extends true', () => {
+    expectTypeOf<TestSubject<boolean, T, F>>().toEqualTypeOf<T>()
+  })
+
+  describe('unions', () => {
+    it('should distribute over unions', () => {
+      expectTypeOf<TestSubject<Primitive, T, F>>().toEqualTypeOf<F | T>()
+    })
   })
 })

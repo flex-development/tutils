@@ -7,11 +7,15 @@ import type TestSubject from '../json-object'
 import type JsonValue from '../json-value'
 
 describe('unit-d:types/JsonObject', () => {
-  it('should have keys of type string', () => {
-    expectTypeOf<keyof TestSubject>().toBeString()
+  describe('keys', () => {
+    it('should equal string', () => {
+      expectTypeOf<keyof TestSubject>().toBeString()
+    })
   })
 
-  it('should have properties of type JsonValue', () => {
-    expectTypeOf<TestSubject[string]>().toEqualTypeOf<JsonValue>()
+  describe('properties', () => {
+    it('should equal JsonValue', () => {
+      expectTypeOf<TestSubject[keyof TestSubject]>().toEqualTypeOf<JsonValue>()
+    })
   })
 })

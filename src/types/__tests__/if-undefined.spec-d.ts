@@ -4,16 +4,31 @@
  */
 
 import type TestSubject from '../if-undefined'
+import type Primitive from '../primitive'
 
 describe('unit-d:types/IfUndefined', () => {
-  type False = false
-  type True = true
+  type F = 0
+  type T = 1
 
-  it('should equal False if IsUndefined<T> extends false', () => {
-    expectTypeOf<TestSubject<undefined[], True, False>>().toEqualTypeOf<False>()
+  it('should equal F if IsUndefined<U> extends false', () => {
+    expectTypeOf<TestSubject<undefined[], T, F>>().toEqualTypeOf<F>()
   })
 
-  it('should equal True if IsUndefined<T> extends true', () => {
-    expectTypeOf<TestSubject<undefined, True, False>>().toEqualTypeOf<True>()
+  it('should equal F if U is any', () => {
+    expectTypeOf<TestSubject<any, T, F>>().toEqualTypeOf<F>()
+  })
+
+  it('should equal F if U is never', () => {
+    expectTypeOf<TestSubject<never, T, F>>().toEqualTypeOf<F>()
+  })
+
+  it('should equal T if IsUndefined<U> extends true', () => {
+    expectTypeOf<TestSubject<undefined, T, F>>().toEqualTypeOf<T>()
+  })
+
+  describe('unions', () => {
+    it('should distribute over unions', () => {
+      expectTypeOf<TestSubject<Primitive, T, F>>().toEqualTypeOf<F | T>()
+    })
   })
 })

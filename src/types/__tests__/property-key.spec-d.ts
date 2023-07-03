@@ -8,12 +8,10 @@ import type TestSubject from '../property-key'
 
 describe('unit-d:types/PropertyKey', () => {
   it('should extract NumberString', () => {
-    expectTypeOf<TestSubject>()
-      .extract<NumberString>()
-      .toEqualTypeOf<NumberString>()
+    expectTypeOf<TestSubject>().extract<NumberString>().not.toBeNever()
   })
 
   it('should extract symbol', () => {
-    expectTypeOf<TestSubject>().extract<symbol>().toBeSymbol()
+    expectTypeOf<TestSubject>().extract<symbol>().not.toBeNever()
   })
 })

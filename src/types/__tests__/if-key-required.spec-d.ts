@@ -4,25 +4,45 @@
  */
 
 import type Author from '#fixtures/author.interface'
+import type Book from '#fixtures/book.interface'
 import type TestSubject from '../if-key-required'
 
 describe('unit-d:types/IfRequiredKey', () => {
-  type False = false
-  type True = true
+  type F = 0
+  type T = 1
 
-  it('should equal False if IsRequiredKey<T, K> extends false', () => {
-    // Arrange
-    type K = 'email'
-
-    // Expect
-    expectTypeOf<TestSubject<Author, K, True, False>>().toEqualTypeOf<False>()
+  it('should equal F if IsRequiredKey<U, K> extends false', () => {
+    expectTypeOf<TestSubject<Author, 'email', T, F>>().toEqualTypeOf<F>()
   })
 
-  it('should equal True if IsRequiredKey<T, K> extends true', () => {
-    // Arrange
-    type K = 'first_name'
+  it('should equal F if K is any', () => {
+    expectTypeOf<TestSubject<Author, any, T, F>>().toEqualTypeOf<F>()
+  })
 
-    // Expect
-    expectTypeOf<TestSubject<Author, K, True, False>>().toEqualTypeOf<True>()
+  it('should equal F if K is never', () => {
+    expectTypeOf<TestSubject<Author, never, T, F>>().toEqualTypeOf<F>()
+  })
+
+  it('should equal F if U is any', () => {
+    expectTypeOf<TestSubject<any, 'email', T, F>>().toEqualTypeOf<F>()
+  })
+
+  it('should equal F if U is never', () => {
+    expectTypeOf<TestSubject<never, 'first_name', T, F>>().toEqualTypeOf<F>()
+  })
+
+  it('should equal T if IsRequiredKey<U, K> extends true', () => {
+    expectTypeOf<TestSubject<Author, 'first_name', T, F>>().toEqualTypeOf<T>()
+  })
+
+  describe('unions', () => {
+    it('should distribute over unions', () => {
+      // Arrange
+      type U = Author | Book
+      type K = 'email' | 'first_name' | 'isbn' | 'publisher'
+
+      // Expect
+      expectTypeOf<TestSubject<U, K, T, F>>().toEqualTypeOf<F | T>()
+    })
   })
 })

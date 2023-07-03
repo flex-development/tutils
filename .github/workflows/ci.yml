@@ -236,7 +236,7 @@ jobs:
         typescript-version:
           - ${{ needs.preflight.outputs.version-typescript }}
           - latest
-          - ~4.9.0
+          - 5.0.4
     steps:
       - id: checkout
         name: Checkout ${{ env.REF_NAME }}
@@ -268,15 +268,10 @@ jobs:
         if: steps.test-files-check.outputs.files_exists == 'true'
         name: Install typescript@${{ matrix.typescript-version }}
         run: yarn add -D typescript@${{ matrix.typescript-version }}
-      - id: set-typescript-version
-        if: steps.test-files-check.outputs.files_exists == 'true'
-        name: Set env.TYPESCRIPT_VERSION
-        run: |
-          echo "TYPESCRIPT_VERSION=$(jq .devDependencies.typescript package.json -r)" >>$GITHUB_ENV
       - id: print-typescript-version
         if: steps.test-files-check.outputs.files_exists == 'true'
         name: Print TypeScript version
-        run: echo $TYPESCRIPT_VERSION
+        run: jq .devDependencies.typescript package.json -r
       - id: typecheck
         if: steps.test-files-check.outputs.files_exists == 'true'
         name: Run typecheck
@@ -352,6 +347,10 @@ jobs:
       - gitguardian
       - preflight
     runs-on: ubuntu-latest
+    env:
+      TARFILE: |
+        ${{ startsWith(github.ref_name, 'release/') && format('@{0}-{1}-{2}.tgz', github.repository_owner, github.event.repository.name, needs.preflight.outputs.version)
+        || format('@{0}-{1}-{2}+{3}.tgz', github.repository_owner, github.event.repository.name, needs.preflight.outputs.version, github.event.pull_request.head.sha || github.sha) }}
     steps:
       - id: checkout
         name: Checkout ${{ env.REF_NAME }}
@@ -372,12 +371,18 @@ jobs:
         with:
           key: ${{ runner.os }}-${{ github.run_id }}
           path: ${{ env.CACHE_PATH }}
+      - id: local-binaries
+        name: Add local binaries to $PATH
+        run: echo "$GITHUB_WORKSPACE/$CACHE_PATH/.bin" >> $GITHUB_PATH
       - id: pack
         name: Pack project
-        run: yarn pack -o %s-%v.tgz
+        run: yarn pack -o ${{ env.TARFILE }}
       - id: typecheck
         name: Run typecheck
         run: yarn check:types:build
+      - id: attw
+        name: Analyze types distribution
+        run: attw ${{ env.TARFILE }}
       - id: pkg-size-report
         name: Package size report
         run: yarn pkg-size
@@ -385,6 +390,5 @@ jobs:
         name: Archive production artifacts
         uses: actions/upload-artifact@v3.1.2
         with:
-          name: |
-            ${{ format('@{0}-{1}-{2}', github.repository_owner, github.event.repository.name, needs.preflight.outputs.version) }}
-          path: '*.tgz'
+          name: ${{ env.TARFILE }}
+          path: ${{ env.TARFILE }}

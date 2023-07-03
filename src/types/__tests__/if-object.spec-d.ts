@@ -4,16 +4,31 @@
  */
 
 import type TestSubject from '../if-object'
+import type Nilable from '../nilable'
 
 describe('unit-d:types/IfObject', () => {
-  type False = false
-  type True = true
+  type F = 0
+  type T = 1
 
-  it('should equal False if IsObject<T> extends false', () => {
-    expectTypeOf<TestSubject<string, True, False>>().toEqualTypeOf<False>()
+  it('should equal F if IsObject<U> extends false', () => {
+    expectTypeOf<TestSubject<string, T, F>>().toEqualTypeOf<F>()
   })
 
-  it('should equal True if IsObject<T> extends true', () => {
-    expectTypeOf<TestSubject<object, True, False>>().toEqualTypeOf<True>()
+  it('should equal F if U is any', () => {
+    expectTypeOf<TestSubject<any, T, F>>().toEqualTypeOf<F>()
+  })
+
+  it('should equal F if U is never', () => {
+    expectTypeOf<TestSubject<never, T, F>>().toEqualTypeOf<F>()
+  })
+
+  it('should equal T if IsObject<U> extends true', () => {
+    expectTypeOf<TestSubject<object, T, F>>().toEqualTypeOf<T>()
+  })
+
+  describe('unions', () => {
+    it('should distribute over unions', () => {
+      expectTypeOf<TestSubject<Nilable<object>, T, F>>().toEqualTypeOf<F | T>()
+    })
   })
 })

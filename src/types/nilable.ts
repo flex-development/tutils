@@ -6,9 +6,13 @@
 import type NIL from './nil'
 
 /**
- * Constructs a union type of {@linkcode NIL} and `T`.
+ * Constructs a union of {@linkcode NIL} and `T`.
  *
- * @template T - Value type
+ * @example
+ *  type X = Nilable<string>
+ *  // string | null | undefined
+ *
+ * @template T - Type to evaluate
  */
 type Nilable<T> = NIL | T
 

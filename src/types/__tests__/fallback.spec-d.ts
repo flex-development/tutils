@@ -4,21 +4,27 @@
  */
 
 import type TestSubject from '../fallback'
-import type Optional from '../optional'
+import type NIL from '../nil'
+import type Nilable from '../nilable'
 
 describe('unit-d:types/Fallback', () => {
-  it('should equal Exclude<T, Condition> | F if T extends Condition', () => {
+  type C = NIL
+
+  it('should equal Exclude<T, C> | F if T extends C', () => {
     // Arrange
-    type Condition = undefined
-    type Expected = Exclude<T, Condition> | F
-    type F = null
-    type T = Optional<string>
+    type T = Nilable<string>
+    type F = number
 
     // Expect
-    expectTypeOf<TestSubject<T, F, Condition>>().toEqualTypeOf<Expected>()
+    expectTypeOf<TestSubject<T, F, C>>().toEqualTypeOf<Exclude<T, C> | F>()
   })
 
-  it('should equal T if T does not extend Condition', () => {
-    expectTypeOf<TestSubject<string, string>>().toBeString()
+  it('should equal T if T does not extend C', () => {
+    // Arrange
+    type T = string
+    type F = null
+
+    // Expect
+    expectTypeOf<TestSubject<T, F, C>>().toEqualTypeOf<T>()
   })
 })

@@ -3,20 +3,28 @@
  * @module tutils/types/Fallback
  */
 
-import type NIL from './nil'
-
 /**
  * Fallback value helper.
  *
- * Resolves to `Exclude<T, Condition> | F` if `T` extends `Condition`, or `T`
- * otherwise.
+ * Resolves to `Exclude<T, C> | F` if `T` extends `C`, or `T` otherwise.
  *
- * @template T - Value to evaluate
+ * @example
+ *  type X = Fallback<string | undefined, number>
+ *  // number | string
+ * @example
+ *  type X = Fallback<Nilable<string>, number, NIL>
+ *  // number | string
+ * @example
+ *  type X = Fallback<string | undefined, never>
+ *  // number
+ * @example
+ *  type X = Fallback<number, string>
+ *  // number
+ *
+ * @template T - Type to evaluate
  * @template F - Fallback value type
- * @template Condition - Fallback condition
+ * @template C - Fallback condition type
  */
-type Fallback<T, F, Condition = NIL> = T extends Condition
-  ? Exclude<T, Condition> | F
-  : T
+type Fallback<T, F, C = undefined> = T extends C ? Exclude<T, C> | F : T
 
 export type { Fallback as default }

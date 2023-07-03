@@ -3,6 +3,7 @@
  * @module tests/fixtures/Book
  */
 
+import type { Nullable, Simplify } from '#src/types'
 import type Author from './author.interface'
 import type Publisher from './publisher.interface'
 
@@ -23,7 +24,7 @@ interface Book {
   /**
    * Book publisher.
    */
-  publisher?: Publisher
+  publisher?: Nullable<Simplify<Publisher>>
 
   /**
    * Book readers.

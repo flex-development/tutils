@@ -6,14 +6,27 @@
 import type IsAnyOrNever from './is-any-or-never'
 
 /**
- * Returns a type that indicates if `T` is `any` or `never`.
+ * Returns a type that indicates if `U` is `any` or `never`.
  *
  * @see {@linkcode IsAnyOrNever}
  *
- * @template T - Type to evaluate
- * @template True - Type if `T` is `any` or `never`
- * @template False - Type if `T` is not `any` or `never`
+ * @example
+ *  type X = IfAnyOrNever<any, 1, 0>
+ *  // 1
+ * @example
+ *  type X = IfAnyOrNever<never, 1, 0>
+ *  // 1
+ * @example
+ *  type X = IfAnyOrNever<unknown, 1, 0>
+ *  // 0
+ * @example
+ *  type X = IfAnyOrNever<{ hello: string; world: string }, 1, 0>
+ *  // 0
+ *
+ * @template U - Type to evaluate
+ * @template T - Type if `U` is `any` or `never`
+ * @template F - Type if `U` is not `any` or `never`
  */
-type IfAnyOrNever<T, True, False> = IsAnyOrNever<T> extends true ? True : False
+type IfAnyOrNever<U, T, F> = IsAnyOrNever<U> extends true ? T : F
 
 export type { IfAnyOrNever as default }

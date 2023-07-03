@@ -89,6 +89,6 @@ ignore:
   - '**/__mocks__/**'
   - '**/__tests__/**'
   - '**/index.ts'
-  - src/interfaces/
-  - src/types/
+  - '**/interfaces'
+  - '**/types'
   - src/utils/*.options.ts

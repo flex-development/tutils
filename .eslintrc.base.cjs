@@ -1166,7 +1166,9 @@ const config = {
       implementsReplacesDocs: true,
       overrideReplacesDocs: true,
       preferredTypes: {
-        '*': false
+        '*': false,
+        '.<>': false,
+        'Array<>': { replacement: '[]' }
       },
       structuredTags: {
         const: {

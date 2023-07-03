@@ -4,16 +4,31 @@
  */
 
 import type TestSubject from '../if-string'
+import type Primitive from '../primitive'
 
 describe('unit-d:types/IfString', () => {
-  type False = false
-  type True = true
+  type F = 0
+  type T = 1
 
-  it('should equal False if IsString<T> extends false', () => {
-    expectTypeOf<TestSubject<string[], True, False>>().toEqualTypeOf<False>()
+  it('should equal F if IsString<U> extends false', () => {
+    expectTypeOf<TestSubject<string[], T, F>>().toEqualTypeOf<F>()
   })
 
-  it('should equal True if IsString<T> extends true', () => {
-    expectTypeOf<TestSubject<string, True, False>>().toEqualTypeOf<True>()
+  it('should equal F if U is any', () => {
+    expectTypeOf<TestSubject<any, T, F>>().toEqualTypeOf<F>()
+  })
+
+  it('should equal F if U is never', () => {
+    expectTypeOf<TestSubject<never, T, F>>().toEqualTypeOf<F>()
+  })
+
+  it('should equal T if IsString<U> extends true', () => {
+    expectTypeOf<TestSubject<string, T, F>>().toEqualTypeOf<T>()
+  })
+
+  describe('unions', () => {
+    it('should distribute over unions', () => {
+      expectTypeOf<TestSubject<Primitive, T, F>>().toEqualTypeOf<F | T>()
+    })
   })
 })

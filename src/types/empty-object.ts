@@ -3,11 +3,18 @@
  * @module tutils/types/EmptyObject
  */
 
-import type PropertyKey from './property-key'
+/**
+ * Unique {@linkcode EmptyObject} symbol.
+ *
+ * @internal
+ *
+ * @const {symbol} tag
+ */
+export declare const tag: unique symbol
 
 /**
  * An empty object.
  */
-type EmptyObject = Record<PropertyKey, never>
+type EmptyObject = { [tag]?: never }
 
 export type { EmptyObject as default }

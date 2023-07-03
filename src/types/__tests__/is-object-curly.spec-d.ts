@@ -4,18 +4,14 @@
  */
 
 import type Book from '#fixtures/book.interface'
-import type Fn from '../fn'
+import type Vehicle from '#fixtures/vehicle'
+import type EmptyObject from '../empty-object'
 import type TestSubject from '../is-object-curly'
-import type ObjectCurly from '../object-curly'
-import type ObjectPlain from '../object-plain'
-import type Primitive from '../primitive'
-import type Simplify from '../simplify'
+import type Nilable from '../nilable'
 
 describe('unit-d:types/IsObjectCurly', () => {
-  it('should equal false if [T] does not extend [ObjectCurly]', () => {
-    expectTypeOf<TestSubject<Fn>>().toEqualTypeOf<false>()
-    expectTypeOf<TestSubject<Primitive | RegExp>>().toEqualTypeOf<false>()
-    expectTypeOf<TestSubject<readonly Primitive[]>>().toEqualTypeOf<false>()
+  it('should equal false if T does not extend ObjectCurly', () => {
+    expectTypeOf<TestSubject<unknown>>().toEqualTypeOf<false>()
   })
 
   it('should equal false if T is any', () => {
@@ -26,11 +22,15 @@ describe('unit-d:types/IsObjectCurly', () => {
     expectTypeOf<TestSubject<never>>().toEqualTypeOf<false>()
   })
 
-  it('should equal true if [T] extends [ObjectCurly]', () => {
+  it('should equal true if T extends ObjectCurly', () => {
     expectTypeOf<TestSubject<Book>>().toEqualTypeOf<true>()
-    expectTypeOf<TestSubject<ObjectCurly>>().toEqualTypeOf<true>()
-    expectTypeOf<TestSubject<ObjectPlain>>().toEqualTypeOf<true>()
-    expectTypeOf<TestSubject<RegExp>>().toEqualTypeOf<true>()
-    expectTypeOf<TestSubject<Simplify<Book>>>().toEqualTypeOf<true>()
+    expectTypeOf<TestSubject<EmptyObject>>().toEqualTypeOf<true>()
+    expectTypeOf<TestSubject<Vehicle>>().toEqualTypeOf<true>()
+  })
+
+  describe('unions', () => {
+    it('should distribute over unions', () => {
+      expectTypeOf<TestSubject<Nilable<Vehicle>>>().toEqualTypeOf<boolean>()
+    })
   })
 })

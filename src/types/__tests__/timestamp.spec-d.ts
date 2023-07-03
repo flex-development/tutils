@@ -20,10 +20,10 @@ describe('unit-d:types/Timestamp', () => {
 
   it('should match [readonly [tag]: TimestampToken]', () => {
     // Arrange
-    type Expected = { readonly [tag]: TimestampToken }
+    type Expect = { readonly [tag]: TimestampToken }
 
     // Expect
-    expectTypeOf<TestSubject<TimestampFormat>>().toMatchTypeOf<Expected>()
+    expectTypeOf<TestSubject<TimestampFormat>>().toMatchTypeOf<Expect>()
   })
 
   describe('F extends "iso"', () => {

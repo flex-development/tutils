@@ -6,8 +6,12 @@
 /**
  * Constructs a union of `T` and an array of `T` values.
  *
+ * @example
+ *  type X = OneOrMany<string>
+ *  // string | readonly string[]
+ *
  * @template T - Type to evaluate
  */
-type OneOrMany<T> = T | T[] | readonly T[]
+type OneOrMany<T> = T | readonly T[]
 
 export type { OneOrMany as default }

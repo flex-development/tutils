@@ -3,24 +3,36 @@
  * @module tutils/types/IfRequiredKey
  */
 
+import type IfNever from './if-never'
 import type IsRequiredKey from './is-key-required'
 import type PropertyKey from './property-key'
 
 /**
- * Returns a type that indicates if `K` is a required property of `T`.
+ * Returns a type that indicates if `K` extends a required property of `U`.
  *
  * @see {@linkcode IsRequiredKey}
  *
- * @template T - Type to evaluate
+ * @todo examples
+ *
+ * @template U - Type to evaluate
  * @template K - Key to evaluate
- * @template True - Type if `K` is required property
- * @template False - Type if `K` is not required property
+ * @template T - Type if `K` extends required property
+ * @template F - Type if `K` does not extend required property
  */
-type IfRequiredKey<T, K extends PropertyKey, True, False> = IsRequiredKey<
-  T,
-  K
-> extends true
-  ? True
-  : False
+type IfRequiredKey<U, K extends PropertyKey, T, F> = IfNever<
+  U,
+  F,
+  IfNever<
+    K,
+    F,
+    U extends unknown
+      ? K extends unknown
+        ? IsRequiredKey<U, K> extends true
+          ? T
+          : F
+        : F
+      : F
+  >
+>
 
 export type { IfRequiredKey as default }

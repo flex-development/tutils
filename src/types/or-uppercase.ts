@@ -4,11 +4,18 @@
  */
 
 /**
- * Adds uppercase alternatives to `T`.
+ * Constructs a union of `T` and its uppercase alternatives.
  *
  * @see https://www.typescriptlang.org/docs/handbook/2/template-literal-types.html#uppercasestringtype
  *
- * @template T - String type to evaluate
+ * @example
+ *  type X = OrUppercase<'and'>
+ *  // 'AND' | 'and'
+ * @example
+ *  type X = OrUppercase<'crlf' | 'lf'>
+ *  // 'CRLF' | 'LF' | 'crlf' | 'lf'
+ *
+ * @template T - Type to evaluate
  */
 type OrUppercase<T extends string> = T | Uppercase<T>
 

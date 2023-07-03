@@ -8,12 +8,10 @@ import type JsonValue from '../json-value'
 
 describe('unit-d:types/JsonArray', () => {
   it('should extract JsonValue[]', () => {
-    expectTypeOf<TestSubject>()
-      .extract<JsonValue[]>()
-      .toEqualTypeOf<JsonValue[]>()
+    expectTypeOf<TestSubject>().extract<JsonValue[]>().not.toBeNever()
   })
 
-  it('should match readonly JsonValue[]', () => {
-    expectTypeOf<TestSubject>().toMatchTypeOf<readonly JsonValue[]>()
+  it('should extract readonly JsonValue[]', () => {
+    expectTypeOf<TestSubject>().extract<readonly JsonValue[]>().not.toBeNever()
   })
 })

@@ -6,105 +6,384 @@
 import type Author from '#fixtures/author.interface'
 import type Book from '#fixtures/book.interface'
 import type Publisher from '#fixtures/publisher.interface'
+import type Vehicle from '#fixtures/vehicle'
 import type EmptyArray from '../empty-array'
 import type EmptyObject from '../empty-object'
 import type EmptyString from '../empty-string'
 import type Fn from '../fn'
-import type Numeric from '../numeric'
+import type Indices from '../indices'
+import type Keyof from '../keyof'
+import type NIL from '../nil'
+import type Nilable from '../nilable'
+import type NumberLike from '../number-like'
+import type NumberString from '../number-string'
+import type { tag } from '../opaque'
 import type TestSubject from '../path'
-import type Timestamp from '../timestamp'
+import type Stringify from '../stringify'
 
 describe('unit-d:types/Path', () => {
-  it('should equal never if T extends EmptyArray', () => {
-    expectTypeOf<TestSubject<EmptyArray>>().toBeNever()
+  type IndicesAll<T extends string | readonly unknown[]> =
+    Indices<T> extends infer I ? I | Stringify<I> : never
+
+  it('should equal NumberString if T is any', () => {
+    expectTypeOf<TestSubject<any>>().toEqualTypeOf<NumberString>()
   })
 
-  it('should equal never if T extends EmptyObject', () => {
-    expectTypeOf<TestSubject<EmptyObject>>().toBeNever()
+  it('should equal never if T is never', () => {
+    expectTypeOf<TestSubject<never>>().toBeNever()
   })
 
-  it('should equal never if T extends EmptyString', () => {
-    expectTypeOf<TestSubject<EmptyString>>().toBeNever()
+  it('should equal never if T is unknown', () => {
+    expectTypeOf<TestSubject<unknown>>().toBeNever()
   })
 
-  it('should equal union if T extends ObjectCurly', () => {
-    // Arrange
-    type T = Omit<Book, 'publisher'> & {
-      authors: Author[]
-      fn?: Fn & { id: number & { tag: 'book' } }
-      publisher: Omit<Publisher, 'display_name'> & {
-        display_name?: { value: string }
-        fn?: Fn & { id: number & { tag: 'publisher' } }
-      }
-    }
+  describe('T extends ObjectCurly', () => {
+    it('should construct union of property paths', () => {
+      // Arrange
+      type T = Publisher & { readonly id: 'publisher' }
 
-    // Expect
-    expectTypeOf<TestSubject<T>>().toEqualTypeOf<
-      | 'authors'
-      | 'fn.id.tag'
-      | 'fn.id'
-      | 'fn'
-      | 'isbn'
-      | 'publisher.display_name.value'
-      | 'publisher.display_name'
-      | 'publisher.email'
-      | 'publisher.fn.id.tag'
-      | 'publisher.fn.id'
-      | 'publisher.fn'
-      | 'publisher.name'
-      | 'publisher'
-      | 'readers'
-      | 'title'
-      | `authors.${number}.display_name`
-      | `authors.${number}.email`
-      | `authors.${number}.first_name`
-      | `authors.${number}.last_name`
-      | `authors.${number}`
-    >()
+      // Expect
+      expectTypeOf<TestSubject<T>>().toEqualTypeOf<
+        | keyof T
+        | `display_name.${keyof T['display_name']}`
+        | `display_name.value.${Stringify<keyof string>}`
+        | `display_name.value.length.${keyof number}`
+        | `email.${Stringify<keyof string>}`
+        | `email.length.${keyof number}`
+        | `id.${Exclude<Stringify<keyof string>, NumberLike>}`
+        | `id.${Indices<T['id']>}`
+        | `id.length.${keyof number}`
+        | `name.${Stringify<keyof string>}`
+        | `name.length.${keyof number}`
+      >()
+    })
+
+    it('should equal never if Keyof<T> is never', () => {
+      expectTypeOf<TestSubject<{}>>().toBeNever()
+      expectTypeOf<TestSubject<EmptyObject>>().toBeNever()
+    })
+
+    describe('E extends true', () => {
+      type E = true
+
+      it('should construct union of enumerable property paths', () => {
+        // Arrange
+        type T = Book & { readonly id: 'book' }
+
+        // Expect
+        expectTypeOf<TestSubject<T, true>>().toEqualTypeOf<
+          | keyof T
+          | `authors.${Indices<T['authors']>}.${keyof T['authors'][0]}`
+          | `authors.${Indices<T['authors']>}.display_name.${Indices<string>}`
+          | `authors.${Indices<T['authors']>}.email.${Indices<string>}`
+          | `authors.${Indices<T['authors']>}.first_name.${Indices<string>}`
+          | `authors.${Indices<T['authors']>}.last_name.${Indices<string>}`
+          | `authors.${Indices<T['authors']>}`
+          | `id.${Indices<T['id']>}`
+          | `publisher.${keyof Publisher}`
+          | `publisher.display_name.${keyof Publisher['display_name']}`
+          | `publisher.display_name.value.${Indices<string>}`
+          | `publisher.email.${Indices<Publisher['email']>}`
+          | `publisher.name.${Indices<Publisher['name']>}`
+          | `title.${Indices<T['title']>}`
+        >()
+      })
+
+      it('should equal never if Keyof<T> is never', () => {
+        expectTypeOf<TestSubject<{}, E>>().toBeNever()
+        expectTypeOf<TestSubject<EmptyObject, E>>().toBeNever()
+      })
+    })
   })
 
-  it('should equal union if T extends Readonly<Fn>', () => {
-    // Arrange
-    type F1 = Fn
-    type F2Obj = { '0': { '1': { '2': { '3': { '4': { '5': number } } } } } }
-    type F2 = Readonly<F2Obj & Fn>
-    type E1 = never
-    type E2 = '0.1.2.3.4.5' | '0.1.2.3.4' | '0.1.2.3' | '0.1.2' | '0.1' | '0'
+  describe('T extends Primitive', () => {
+    it('should equal never if Keyof<T> is never', () => {
+      expectTypeOf<TestSubject<NIL>>().toBeNever()
+      expectTypeOf<TestSubject<null>>().toBeNever()
+      expectTypeOf<TestSubject<undefined>>().toBeNever()
+    })
 
-    // Expect
-    expectTypeOf<TestSubject<F1>>().toEqualTypeOf<E1>()
-    expectTypeOf<TestSubject<F2>>().toEqualTypeOf<E2>()
+    describe('T extends bigint', () => {
+      it('should construct union of property paths', () => {
+        // Arrange
+        type Expect = 'toLocaleString' | 'toString' | 'valueOf'
+
+        // Expect
+        expectTypeOf<TestSubject<bigint>>().toEqualTypeOf<Expect>()
+      })
+
+      describe('E extends true', () => {
+        it('should construct union of enumerable property paths', () => {
+          // Arrange
+          type T = bigint & { [tag]: 'bigint'; readonly id: 'bigint' }
+
+          // Expect
+          expectTypeOf<TestSubject<T, true>>().toEqualTypeOf<
+            'id' | `id.${Indices<T['id']>}`
+          >()
+        })
+      })
+    })
+
+    describe('T extends boolean', () => {
+      it('should construct union of property paths', () => {
+        // Arrange
+        type T = boolean
+
+        // Expect
+        expectTypeOf<TestSubject<T>>().toEqualTypeOf<keyof T>()
+      })
+
+      describe('E extends true', () => {
+        it('should construct union of enumerable property paths', () => {
+          // Arrange
+          type T = boolean & { [tag]: 'boolean'; readonly id: 'boolean' }
+          type Expect = 'id' | `id.${Indices<T['id']>}`
+
+          // Expect
+          expectTypeOf<TestSubject<T, true>>().toEqualTypeOf<Expect>()
+        })
+      })
+    })
+
+    describe('T extends number', () => {
+      it('should construct union of property paths', () => {
+        // Arrange
+        type T = number
+
+        // Expect
+        expectTypeOf<TestSubject<T>>().toEqualTypeOf<keyof T>()
+      })
+
+      describe('E extends true', () => {
+        it('should construct union of enumerable property paths', () => {
+          // Arrange
+          type T = number & { [tag]: 'number'; readonly id: 'number' }
+          type Expect = 'id' | `id.${Indices<T['id']>}`
+
+          // Expect
+          expectTypeOf<TestSubject<T, true>>().toEqualTypeOf<Expect>()
+        })
+      })
+    })
+
+    describe('T extends string', () => {
+      describe('IsLiteral<Indices<T>> extends true', () => {
+        it('should construct union of property paths', () => {
+          // Arrange
+          type T = 'book'
+
+          // Expect
+          expectTypeOf<TestSubject<T>>().toEqualTypeOf<
+            | IndicesAll<T>
+            | Stringify<Exclude<keyof T, NumberLike>>
+            | `length.${keyof number}`
+          >()
+        })
+
+        describe('E extends true', () => {
+          type E = true
+
+          it('should equal Indices<T>', () => {
+            // Arrange
+            type T1 = EmptyString
+            type T2 = 'book'
+
+            // Expect
+            expectTypeOf<TestSubject<T1, E>>().toEqualTypeOf<IndicesAll<T1>>()
+            expectTypeOf<TestSubject<T2, E>>().toEqualTypeOf<IndicesAll<T2>>()
+          })
+        })
+      })
+
+      describe('number extends Indices<T>', () => {
+        it('should construct union of property paths', () => {
+          // Arrange
+          type T = string
+
+          // Expect
+          expectTypeOf<TestSubject<T>>().toEqualTypeOf<
+            | IndicesAll<T>
+            | Stringify<Exclude<keyof T, NumberLike>>
+            | `length.${keyof number}`
+          >()
+        })
+
+        describe('E extends true', () => {
+          type E = true
+
+          it('should construct union of enumerable property paths', () => {
+            // Arrange
+            type T = string & { [tag]: 'string'; readonly id: 'string' }
+            type Expect = IndicesAll<T> | 'id' | `id.${Indices<T['id']>}`
+
+            // Expect
+            expectTypeOf<TestSubject<T, E>>().toEqualTypeOf<Expect>()
+          })
+        })
+      })
+    })
+
+    describe('T extends symbol', () => {
+      it('should construct union of property paths', () => {
+        expectTypeOf<TestSubject<symbol>>().toEqualTypeOf<
+          | 'description'
+          | 'toString'
+          | 'valueOf'
+          | `description.${Stringify<keyof string>}`
+          | `description.length.${keyof number}`
+        >()
+      })
+
+      describe('E extends true', () => {
+        it('should construct union of enumerable property paths', () => {
+          // Arrange
+          type T = symbol & { [tag]: 'symbol'; readonly id: 'symbol' }
+          type Expect = 'id' | `id.${Indices<T['id']>}`
+
+          // Expect
+          expectTypeOf<TestSubject<T, true>>().toEqualTypeOf<Expect>()
+        })
+      })
+    })
   })
 
-  it('should equal union if T extends Readonly<Primitive>', () => {
-    // Arrange
-    type P1 = boolean
-    type P2 = string & { tag: string }
-    type P3 = Readonly<P2>
-    type P4 = Timestamp<'unix'>
+  describe('T extends Readonly<Fn>', () => {
+    it('should construct union of property paths', () => {
+      expectTypeOf<TestSubject<Readonly<Fn>>>().toEqualTypeOf<
+        | 'apply'
+        | 'arguments'
+        | 'bind'
+        | 'call'
+        | 'caller'
+        | 'length'
+        | 'name'
+        | 'prototype'
+        | 'toString'
+        | `length.${keyof number}`
+        | `name.${Stringify<keyof string>}`
+        | `name.length.${keyof number}`
+      >()
+    })
 
-    // Expect
-    expectTypeOf<TestSubject<P1>>().toBeNever()
-    expectTypeOf<TestSubject<P2>>().toEqualTypeOf<'tag'>()
-    expectTypeOf<TestSubject<P3>>().toEqualTypeOf<'tag'>()
-    expectTypeOf<TestSubject<P4>>().toBeNever()
+    describe('E extends true', () => {
+      it('should construct union of enumerable property paths', () => {
+        // Arrange
+        type T = Readonly<Fn> & { [tag]: 'fn'; readonly id: 'fn' }
+        type Expect = 'id' | `id.${Indices<T['id']>}`
+
+        // Expect
+        expectTypeOf<TestSubject<T, true>>().toEqualTypeOf<Expect>()
+      })
+    })
   })
 
-  it('should equal union if T extends readonly unknown[]', () => {
-    // Arrange
-    type A1 = Author[] & { matcher: RegExp }
-    type A2 = { matcher: RegExp } & [Author]
-    type E1 = Numeric | 'matcher' | `${Numeric}.${keyof Author}`
-    type E2 =
-      | '0.display_name'
-      | '0.email'
-      | '0.first_name'
-      | '0.last_name'
-      | '0'
-      | 'matcher'
+  describe('T extends readonly unknown[]', () => {
+    describe('IsLiteral<Indices<T>> extends true', () => {
+      it('should construct union of property paths', () => {
+        // Arrange
+        type T = [Author, Author?]
 
-    // Expect
-    expectTypeOf<TestSubject<A1>>().toEqualTypeOf<E1>()
-    expectTypeOf<TestSubject<A2>>().toEqualTypeOf<E2>()
+        // Expect
+        expectTypeOf<TestSubject<T>>().toEqualTypeOf<
+          | IndicesAll<T>
+          | Stringify<Exclude<keyof T, number>>
+          | `${Indices<T>}.${keyof T[0]}`
+          | `${Indices<T>}.display_name.${Stringify<keyof string>}`
+          | `${Indices<T>}.display_name.length.${keyof number}`
+          | `${Indices<T>}.email.${Stringify<keyof string>}`
+          | `${Indices<T>}.email.length.${keyof number}`
+          | `${Indices<T>}.first_name.${Stringify<keyof string>}`
+          | `${Indices<T>}.first_name.length.${keyof number}`
+          | `${Indices<T>}.last_name.${Stringify<keyof string>}`
+          | `${Indices<T>}.last_name.length.${keyof number}`
+          | `length.${keyof number}`
+        >()
+      })
+
+      describe('E extends true', () => {
+        type E = true
+
+        it('should construct union of enumerable property paths', () => {
+          // Arrange
+          type T = ['author', Author]
+
+          // Expect
+          expectTypeOf<TestSubject<T, E>>().toEqualTypeOf<
+            | IndicesAll<T>
+            | `${-1 | 1}.display_name.${Indices<string>}`
+            | `${-1 | 1}.display_name`
+            | `${-1 | 1}.email.${Indices<string>}`
+            | `${-1 | 1}.email`
+            | `${-1 | 1}.first_name.${Indices<string>}`
+            | `${-1 | 1}.first_name`
+            | `${-1 | 1}.last_name.${Indices<string>}`
+            | `${-1 | 1}.last_name`
+            | `${-2 | 0}.${Indices<T[0]>}`
+          >()
+        })
+
+        it('should equal never if T extends Readonly<EmptyArray>', () => {
+          expectTypeOf<TestSubject<EmptyArray, E>>().toBeNever()
+          expectTypeOf<TestSubject<Readonly<EmptyArray>, E>>().toBeNever()
+        })
+      })
+    })
+
+    describe('number extends Indices<T>', () => {
+      it('should construct union of property paths', () => {
+        // Arrange
+        type T = Author[]
+
+        // Expect
+        expectTypeOf<TestSubject<T>>().toEqualTypeOf<
+          | IndicesAll<T>
+          | Stringify<Exclude<keyof T, number>>
+          | `${Indices<T>}.${keyof T[0]}`
+          | `${Indices<T>}.display_name.${Stringify<keyof string>}`
+          | `${Indices<T>}.display_name.length.${keyof number}`
+          | `${Indices<T>}.email.${Stringify<keyof string>}`
+          | `${Indices<T>}.email.length.${keyof number}`
+          | `${Indices<T>}.first_name.${Stringify<keyof string>}`
+          | `${Indices<T>}.first_name.length.${keyof number}`
+          | `${Indices<T>}.last_name.${Stringify<keyof string>}`
+          | `${Indices<T>}.last_name.length.${keyof number}`
+          | `length.${keyof number}`
+        >()
+      })
+
+      describe('E extends true', () => {
+        it('should construct union of enumerable property paths', () => {
+          // Arrange
+          type T = Author[] & { [tag]: 'Author[]'; readonly id: 'Author[]' }
+
+          // Expect
+          expectTypeOf<TestSubject<T, true>>().toEqualTypeOf<
+            | IndicesAll<T>
+            | 'id'
+            | `${Indices<T>}.${keyof T[0]}`
+            | `${Indices<T>}.display_name.${Indices<string>}`
+            | `${Indices<T>}.email.${Indices<string>}`
+            | `${Indices<T>}.first_name.${Indices<string>}`
+            | `${Indices<T>}.last_name.${Indices<string>}`
+            | `id.${Indices<T['id']>}`
+          >()
+        })
+      })
+    })
+  })
+
+  describe('unions', () => {
+    it('should distribute over unions', () => {
+      // Arrange
+      type T = Nilable<Author | Vehicle>
+
+      // Expect
+      expectTypeOf<TestSubject<T, true>>().toEqualTypeOf<
+        | Keyof<T>
+        | `${keyof Author}.${Indices<string>}`
+        | `${keyof Omit<Vehicle, 'year'>}.${Indices<string>}`
+      >()
+    })
   })
 })

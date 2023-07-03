@@ -6,8 +6,14 @@
 import type Stringify from './stringify'
 
 /**
- * A string that contains only numbers (not including the leading `-` if the
- * numeric is negative).
+ * A string containing only numbers (not including the leading `-` if negative).
+ *
+ * @example
+ *  '-1'
+ * @example
+ *  '0'
+ * @example
+ *  '1'
  */
 type Numeric = Stringify<number>
 

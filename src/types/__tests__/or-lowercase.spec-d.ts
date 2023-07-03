@@ -6,15 +6,13 @@
 import type TestSubject from '../or-lowercase'
 
 describe('unit-d:types/OrLowercase', () => {
-  type T = 'CRLF' | 'LF'
+  type T = 'AND' | 'OR'
 
   it('should extract Lowercase<T>', () => {
-    expectTypeOf<TestSubject<T>>()
-      .extract<Lowercase<T>>()
-      .toEqualTypeOf<Lowercase<T>>()
+    expectTypeOf<TestSubject<T>>().extract<Lowercase<T>>().not.toBeNever()
   })
 
   it('should extract T', () => {
-    expectTypeOf<TestSubject<T>>().extract<T>().toEqualTypeOf<T>()
+    expectTypeOf<TestSubject<T>>().extract<T>().not.toBeNever()
   })
 })

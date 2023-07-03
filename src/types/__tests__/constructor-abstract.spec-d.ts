@@ -3,19 +3,22 @@
  * @module tutils/types/tests/unit-d/AbstractConstructor
  */
 
+import type Vehicle from '#fixtures/vehicle'
 import type TestSubject from '../constructor-abstract'
 
 describe('unit-d:types/AbstractConstructor', () => {
-  abstract class Vehicle {
-    constructor(
-      public readonly vin: number,
-      public readonly make: string,
-      public readonly model: string,
-      public readonly year: number
-    ) {}
-  }
+  it('should equal abstract new (...args: A) => T', () => {
+    // Arrange
+    type A = [
+      Vehicle['vin'],
+      Vehicle['make'],
+      Vehicle['model'],
+      Vehicle['year']
+    ]
 
-  it('should match abstract class declaration', () => {
-    assertType<TestSubject<Vehicle, [number, string, string, number]>>(Vehicle)
+    // Expect
+    expectTypeOf<TestSubject<Vehicle, A>>().toEqualTypeOf<
+      abstract new (...args: A) => Vehicle
+    >()
   })
 })

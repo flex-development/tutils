@@ -8,7 +8,7 @@
  *
  * [1]: https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-2.html#abstract-construct-signatures
  *
- * @template T - Class prototype
+ * @template T - Constructor instance type
  * @template A - Constructor arguments
  */
 type AbstractConstructor<T, A extends unknown[] = any[]> = abstract new (

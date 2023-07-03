@@ -6,16 +6,15 @@
 import type TestSubject from '../if-any-or-never'
 
 describe('unit-d:types/IfAnyOrNever', () => {
-  type False = false
-  type True = true
+  type F = 0
+  type T = 1
 
-  it('should equal False if IsAnyOrNever<T> extends false', () => {
-    expectTypeOf<TestSubject<any[], True, False>>().toEqualTypeOf<False>()
-    expectTypeOf<TestSubject<never[], True, False>>().toEqualTypeOf<False>()
+  it('should equal F if IsAnyOrNever<U> extends false', () => {
+    expectTypeOf<TestSubject<unknown, T, F>>().toEqualTypeOf<F>()
   })
 
-  it('should equal True if IsAnyOrNever<T> extends true', () => {
-    expectTypeOf<TestSubject<any, True, False>>().toEqualTypeOf<True>()
-    expectTypeOf<TestSubject<never, True, False>>().toEqualTypeOf<True>()
+  it('should equal T if IsAnyOrNever<U> extends true', () => {
+    expectTypeOf<TestSubject<any, T, F>>().toEqualTypeOf<T>()
+    expectTypeOf<TestSubject<never, T, F>>().toEqualTypeOf<T>()
   })
 })

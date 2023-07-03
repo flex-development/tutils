@@ -23,6 +23,8 @@ export declare const tag: unique symbol
  * @see https://github.com/Microsoft/TypeScript/issues/15408
  * @see https://github.com/Microsoft/TypeScript/issues/15807
  *
+ * @todo examples
+ *
  * @template B - Base type
  * @template T - Type token
  */

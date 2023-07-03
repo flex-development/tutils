@@ -3,42 +3,47 @@
  * @module tutils/types/IsExactOptionalKey
  */
 
+import type Dot from './dot'
 import type Get from './get'
 import type IfAnyOrNever from './if-any-or-never'
-import type IfEqual from './if-equal'
-import type IfOptionalKey from './if-key-optional'
-import type Optional from './optional'
+import type IfNever from './if-never'
+import type ExactOptionalKeys from './keys-optional-exact'
+import type Numeric from './numeric'
 import type PropertyKey from './property-key'
+import type UnwrapNumeric from './unwrap-numeric'
 
 /**
  * Returns a boolean indicating if `K` is an exact optional property of `T`.
  *
  * Supports dot-notation for nested paths and array indexing.
  *
- * @see https://www.typescriptlang.org/tsconfig#exactOptionalPropertyTypes
+ * @see {@linkcode ExactOptionalKeys}
+ *
+ * @todo examples
  *
  * @template T - Type to evaluate
- * @template K - Key to evaluate
+ * @template K - Keys to evaluate
  */
-type IsExactOptionalKey<T, K extends PropertyKey> = IfAnyOrNever<
-  K,
+type IsExactOptionalKey<T, K extends PropertyKey> = IfNever<
+  T,
   false,
-  (
-    K extends `${infer H}.${infer Rest}`
-      ? IsExactOptionalKey<T[H & keyof T], Rest>
-      : NonNullable<T> extends infer U
-      ? IfOptionalKey<
-          U,
-          K,
-          Get<Required<U>, K> extends infer V
-            ? IfEqual<V, Optional<V>, false, true>
-            : false,
-          false
-        >
+  IfAnyOrNever<
+    K,
+    false,
+    T extends unknown
+      ? K extends `${infer H}${Dot}${infer R}`
+        ? IsExactOptionalKey<NonNullable<Get<T, H>>, R>
+        : ExactOptionalKeys<T> extends infer Q extends keyof T
+        ? K extends Q
+          ? true
+          : K extends Numeric
+          ? UnwrapNumeric<K> extends Q
+            ? true
+            : false
+          : false
+        : never
       : false
-  ) extends infer R
-    ? IfEqual<R, boolean, false, R>
-    : never
+  >
 >
 
 export type { IsExactOptionalKey as default }

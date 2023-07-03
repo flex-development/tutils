@@ -4,9 +4,13 @@
  */
 
 /**
- * Constructs a union type of `T` and `null`.
+ * Constructs a union of `T` and `null`.
  *
- * @template T - Value type
+ * @example
+ *  type X = Nullable<string>
+ *  // string | null
+ *
+ * @template T - Type to evaluate
  */
 type Nullable<T> = T | null
 

@@ -10,8 +10,8 @@ import type AbstractConstructor from './constructor-abstract'
  *
  * [1]: https://www.typescriptlang.org/docs/handbook/2/classes#abstract-classes-and-members
  *
- * @template T - Class prototype
- * @template A - Class constructor arguments
+ * @template T - Class instance type
+ * @template A - Constructor arguments
  */
 type AbstractClass<T, A extends unknown[] = any[]> = AbstractConstructor<
   T,

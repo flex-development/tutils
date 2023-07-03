@@ -4,12 +4,11 @@
  */
 
 import type TestSubject from '../is-array'
-import type Nullable from '../nullable'
+import type Nilable from '../nilable'
 
 describe('unit-d:types/IsArray', () => {
-  it('should equal false if [T] does not extend [readonly V[]]', () => {
-    expectTypeOf<TestSubject<Nullable<string[]>>>().toEqualTypeOf<false>()
-    expectTypeOf<TestSubject<string[], number>>().toEqualTypeOf<false>()
+  it('should equal false if T does not extend readonly V[]', () => {
+    expectTypeOf<TestSubject<unknown>>().toEqualTypeOf<false>()
   })
 
   it('should equal false if T is any', () => {
@@ -20,8 +19,15 @@ describe('unit-d:types/IsArray', () => {
     expectTypeOf<TestSubject<never>>().toEqualTypeOf<false>()
   })
 
-  it('should equal true if [T] extends [readonly V[]]', () => {
-    expectTypeOf<TestSubject<string[]>>().toEqualTypeOf<true>()
-    expectTypeOf<TestSubject<string[], string>>().toEqualTypeOf<true>()
+  it('should equal true if T extends readonly V[]', () => {
+    expectTypeOf<TestSubject<bigint[]>>().toEqualTypeOf<true>()
+    expectTypeOf<TestSubject<bigint[], bigint | number>>().toEqualTypeOf<true>()
+    expectTypeOf<TestSubject<readonly ['a'], string>>().toEqualTypeOf<true>()
+  })
+
+  describe('unions', () => {
+    it('should distribute over unions', () => {
+      expectTypeOf<TestSubject<Nilable<string[]>>>().toEqualTypeOf<boolean>()
+    })
   })
 })

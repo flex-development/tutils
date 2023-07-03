@@ -6,14 +6,27 @@
 import type IsNever from './is-never'
 
 /**
- * Returns a type that indicates if `T` is `never`.
+ * Returns a type that indicates if `U` is `never`.
  *
  * @see {@linkcode IsNever}
  *
- * @template T - Type to evaluate
- * @template True - Type if `T` is `never`
- * @template False - Type if `T` is not `never`
+ * @example
+ *  type X = IfNever<never, 1, 0>
+ *  // 1
+ * @example
+ *  type X = IfNever<any, 1, 0>
+ *  // 0
+ * @example
+ *  type X = IfNever<unknown, 1, 0>
+ *  // 0
+ * @example
+ *  type X = IfNever<{ hello: string; world: string }, 1, 0>
+ *  // 0
+ *
+ * @template U - Type to evaluate
+ * @template T - Type if `U` is `never`
+ * @template F - Type if `U` is not `never`
  */
-type IfNever<T, True, False> = IsNever<T> extends true ? True : False
+type IfNever<U, T, F> = IsNever<U> extends true ? T : F
 
 export type { IfNever as default }

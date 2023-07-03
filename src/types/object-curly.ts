@@ -12,11 +12,14 @@ import type Simplify from './simplify'
  * Curly-braced objects are `object` types that are **not** arrays or functions
  * (e.g. instance objects, pojos).
  *
- * **Note**: Curly-braced object types **cannot** have `call` or `concat`
- * properties.
+ * **Note**: Curly-braced object types **cannot** have a `Symbol.unscopables` or
+ * `arguments` property.
  */
 type ObjectCurly = Simplify<
-  { [K in PropertyKey]?: any } & { call?: never; concat?: never }
+  {
+    [Symbol.unscopables]?: never
+    arguments?: never
+  } & { [K in PropertyKey]?: any }
 >
 
 export type { ObjectCurly as default }

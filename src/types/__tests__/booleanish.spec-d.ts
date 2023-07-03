@@ -11,6 +11,14 @@ describe('unit-d:types/Booleanish', () => {
     expectTypeOf<TestSubject>().extract<Stringify<boolean>>().toBeString()
   })
 
+  it('should extract 0', () => {
+    expectTypeOf<TestSubject>().extract<0>().toBeNumber()
+  })
+
+  it('should extract 1', () => {
+    expectTypeOf<TestSubject>().extract<1>().toBeNumber()
+  })
+
   it('should extract boolean', () => {
     expectTypeOf<TestSubject>().extract<boolean>().toBeBoolean()
   })

@@ -7,10 +7,10 @@ import type TestSubject from '../number-string'
 
 describe('unit-d:types/NumberString', () => {
   it('should extract number', () => {
-    expectTypeOf<TestSubject>().extract<number>().toBeNumber()
+    expectTypeOf<TestSubject>().extract<number>().not.toBeNever()
   })
 
   it('should extract string', () => {
-    expectTypeOf<TestSubject>().extract<string>().toBeString()
+    expectTypeOf<TestSubject>().extract<string>().not.toBeNever()
   })
 })

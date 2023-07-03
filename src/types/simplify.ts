@@ -12,6 +12,6 @@
  *
  * @template T - Type to evaluate
  */
-type Simplify<T> = { [K in keyof T]: T[K] } & {}
+type Simplify<T> = T extends unknown ? { [K in keyof T]: T[K] } : never
 
 export type { Simplify as default }

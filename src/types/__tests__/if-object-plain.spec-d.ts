@@ -4,22 +4,33 @@
  */
 
 import type Book from '#fixtures/book.interface'
+import type Vehicle from '#fixtures/vehicle'
 import type TestSubject from '../if-object-plain'
-import type Simplify from '../simplify'
+import type Nilable from '../nilable'
 
 describe('unit-d:types/IfObjectPlain', () => {
-  type False = false
-  type True = true
+  type F = 0
+  type T = 1
 
-  it('should equal False if IsObjectPlain<T> extends false', () => {
-    expectTypeOf<TestSubject<Book, True, False>>().toEqualTypeOf<False>()
+  it('should equal F if IsObjectPlain<U> extends false', () => {
+    expectTypeOf<TestSubject<Book, T, F>>().toEqualTypeOf<F>()
   })
 
-  it('should equal True if IsObjectPlain<T> extends true', () => {
-    // Arrange
-    type T = Simplify<Book>
+  it('should equal F if U is any', () => {
+    expectTypeOf<TestSubject<any, T, F>>().toEqualTypeOf<F>()
+  })
 
-    // Expect
-    expectTypeOf<TestSubject<T, True, False>>().toEqualTypeOf<True>()
+  it('should equal F if U is never', () => {
+    expectTypeOf<TestSubject<never, T, F>>().toEqualTypeOf<F>()
+  })
+
+  it('should equal T if IsObjectPlain<U> extends true', () => {
+    expectTypeOf<TestSubject<Vehicle, T, F>>().toEqualTypeOf<T>()
+  })
+
+  describe('unions', () => {
+    it('should distribute over unions', () => {
+      expectTypeOf<TestSubject<Nilable<Vehicle>, T, F>>().toEqualTypeOf<F | T>()
+    })
   })
 })

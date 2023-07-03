@@ -14,7 +14,7 @@ import type TypedArray from './typed-array'
  */
 type BuiltIn =
   | AggregateError
-  | Array<any>
+  | any[]
   | ArrayBuffer
   | AsyncGenerator
   | AsyncGeneratorFunction
@@ -26,6 +26,7 @@ type BuiltIn =
   | EvalError
   | FinalizationRegistry<any>
   | Fn
+  | Function
   | Generator
   | GeneratorFunction
   | Intl.Collator
@@ -44,6 +45,7 @@ type BuiltIn =
   | Primitive
   | Promise<any>
   | RangeError
+  | Readonly<Fn>
   | ReferenceError
   | RegExp
   | Set<any>
@@ -55,6 +57,7 @@ type BuiltIn =
   | WeakMap<any, any>
   | WeakRef<any>
   | WeakSet<any>
+  | readonly any[]
   | typeof Intl
   | typeof Proxy
   | typeof Reflect

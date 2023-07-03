@@ -6,7 +6,7 @@
 import type TestSubject from '../stringafiable'
 
 describe('unit-d:types/Stringafiable', () => {
-  it('should match [toString(): string]', () => {
+  it('should match [toString: () => string]', () => {
     expectTypeOf<TestSubject>()
       .toHaveProperty('toString')
       .toEqualTypeOf<() => string>()

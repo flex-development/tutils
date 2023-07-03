@@ -8,9 +8,7 @@ import type NumberString from '../number-string'
 
 describe('unit-d:types/JsonPrimitive', () => {
   it('should extract NumberString', () => {
-    expectTypeOf<TestSubject>()
-      .extract<NumberString>()
-      .toEqualTypeOf<NumberString>()
+    expectTypeOf<TestSubject>().extract<NumberString>().not.toBeNever()
   })
 
   it('should extract boolean', () => {

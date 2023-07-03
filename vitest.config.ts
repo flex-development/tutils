@@ -6,7 +6,6 @@
 
 import pathe from '@flex-development/pathe'
 import ci from 'is-ci'
-import pupa from 'pupa'
 import tsconfigpaths from 'vite-tsconfig-paths'
 import GithubActionsReporter from 'vitest-github-actions-reporter'
 import {
@@ -31,15 +30,6 @@ const config: UserConfigExport = defineConfig((): UserConfig => {
    */
   const LINT_STAGED: boolean = !!Number.parseInt(process.env.LINT_STAGED ?? '0')
 
-  /**
-   * Boolean indicating if the current running version of [`typescript`][1] is
-   * at least `5`.
-   *
-   * @const {boolean} TYPESCRIPT_V5
-   */
-  const TYPESCRIPT_V5: boolean =
-    process.env.TYPESCRIPT_VERSION?.startsWith('5') ?? true
-
   return {
     define: {},
     plugins: [tsconfigpaths({ projects: [pathe.resolve('tsconfig.json')] })],
@@ -57,11 +47,11 @@ const config: UserConfigExport = defineConfig((): UserConfig => {
         clean: true,
         cleanOnRerun: true,
         exclude: [
-          '**/__mocks__/**',
-          '**/__tests__/**',
+          '**/__mocks__/',
+          '**/__tests__/',
           '**/index.ts',
-          'src/interfaces/',
-          'src/types/',
+          '**/interfaces/',
+          '**/types/',
           'src/utils/*.options.ts'
         ],
         extension: ['.ts'],
@@ -75,8 +65,11 @@ const config: UserConfigExport = defineConfig((): UserConfig => {
       environmentOptions: {},
       globalSetup: [],
       globals: true,
+      hideSkippedTests: false,
       hookTimeout: 10 * 1000,
-      include: [`**/__tests__/*.spec${LINT_STAGED ? ',spec-d' : ''}.{ts,tsx}`],
+      include: [
+        `**/__tests__/*.${LINT_STAGED ? '{spec,spec-d}' : 'spec'}.{ts,tsx}`
+      ],
       isolate: true,
       mockReset: true,
       outputFile: { json: './__tests__/report.json' },
@@ -138,9 +131,7 @@ const config: UserConfigExport = defineConfig((): UserConfig => {
         checker: 'tsc',
         ignoreSourceErrors: false,
         include: ['**/__tests__/*.spec-d.ts'],
-        tsconfig: pupa('{0}/tsconfig.typecheck.json', {
-          0: pathe.resolve(TYPESCRIPT_V5 ? '' : '__tests__/ts/v4')
-        })
+        tsconfig: pathe.resolve('tsconfig.typecheck.json')
       },
       unstubEnvs: true,
       unstubGlobals: true

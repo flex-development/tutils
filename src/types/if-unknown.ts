@@ -6,14 +6,27 @@
 import type IsUnknown from './is-unknown'
 
 /**
- * Returns a type that indicates if `T` is `unknown`.
+ * Returns a type that indicates if `U` is `unknown`.
  *
  * @see {@linkcode IsUnknown}
  *
- * @template T - Type to evaluate
- * @template True - Type if `T` is `unknown`
- * @template False - Type if `T` is not `unknown`
+ * @example
+ *  type X = IfUnknown<unknown, 1, 0>
+ *  // 1
+ * @example
+ *  type X = IfUnknown<any, 1, 0>
+ *  // 0
+ * @example
+ *  type X = IfUnknown<never, 1, 0>
+ *  // 0
+ * @example
+ *  type X = IfUnknown<{ hello: string; world: string }, 1, 0>
+ *  // 0
+ *
+ * @template U - Type to evaluate
+ * @template T - Type if `U` is `unknown`
+ * @template F - Type if `U` is not `unknown`
  */
-type IfUnknown<T, True, False> = IsUnknown<T> extends true ? True : False
+type IfUnknown<U, T, F> = IsUnknown<U> extends true ? T : F
 
 export type { IfUnknown as default }

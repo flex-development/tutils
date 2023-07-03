@@ -1,4 +1,6 @@
+abcdefghijklmnopqrstuvwyz
 ardatan
+attw
 bdougie
 booleanish
 cefc
@@ -31,6 +33,9 @@ promisable
 stringafiable
 tryit
 tscu
+uncapitalize
 unstub
 vates
+vitest
 yarnrc
+zyxwvutsrqponmlkjihgfedcba

@@ -4,32 +4,42 @@
  */
 
 import type EmptyArray from './empty-array'
+import type EmptyString from './empty-string'
 import type Fallback from './fallback'
 import type Joinable from './joinable'
+import type NIL from './nil'
+import type Stringify from './stringify'
 
 /**
- * Joins an array of {@linkcode Joinable} items using the given `Delimiter`.
+ * Converts array `T` to a single string delimited by `S`.
  *
- * @template A - Array to evaluate
- * @template Delimiter - String delimiter
+ * If `S` is omitted, items will be separated with a comma (`,`).
+ *
+ * @see {@linkcode Joinable}
+ * @see https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array/join
+ *
+ * @todo examples
+ *
+ * @template T - Array to join
+ * @template S - Array item separator
  */
 type Join<
-  A extends readonly Joinable[],
-  Delimiter extends string = '.'
-> = A extends EmptyArray
-  ? ''
-  : A extends readonly [Joinable?]
-  ? `${Fallback<A[0], ''>}`
-  : A extends readonly [
-      infer Head extends Joinable,
-      ...infer Tail extends readonly Joinable[]
+  T extends readonly Joinable[],
+  S extends string = ','
+> = T extends Readonly<EmptyArray>
+  ? EmptyString
+  : T extends readonly [Joinable?]
+  ? Stringify<Fallback<T[0], EmptyString, NIL>>
+  : T extends readonly [
+      infer H extends Joinable,
+      ...infer R extends readonly Joinable[]
     ]
-  ? `${Fallback<Head, ''>}${Delimiter}${Join<Tail, Delimiter>}`
-  : A extends readonly [
-      ...infer First extends readonly Joinable[],
-      infer Last extends Joinable
+  ? `${Fallback<H, EmptyString, NIL>}${S}${Join<R, S>}`
+  : T extends readonly [
+      ...infer R extends readonly Joinable[],
+      infer L extends Joinable
     ]
-  ? `${Join<First, Delimiter>}${Delimiter}${Fallback<Last, ''>}`
+  ? `${Join<R, S>}${S}${Fallback<L, EmptyString, NIL>}`
   : string
 
 export type { Join as default }

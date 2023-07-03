@@ -4,10 +4,14 @@
  */
 
 import type Numeric from './numeric'
+import type NegativeNumeric from './numeric-negative'
 
 /**
- * A string that contains only numbers or a number.
+ * A number, or a string that contains only numbers.
+ *
+ * @see {@linkcode NegativeNumeric}
+ * @see {@linkcode Numeric}
  */
-type NumberLike = Numeric | number
+type NumberLike = NegativeNumeric | Numeric | number
 
 export type { NumberLike as default }

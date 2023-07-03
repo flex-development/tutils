@@ -8,7 +8,7 @@
  *
  * [1]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Classes/constructor
  *
- * @template T - Class prototype
+ * @template T - Constructor instance type
  * @template A - Constructor arguments
  */
 type Constructor<T, A extends unknown[] = any[]> = new (...args: A) => T

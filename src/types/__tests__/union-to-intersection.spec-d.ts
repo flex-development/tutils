@@ -6,14 +6,21 @@
 import type TestSubject from '../union-to-intersection'
 
 describe('unit-d:types/UnionToIntersection', () => {
-  it('should convert U to intersection', () => {
+  it('should convert T to intersection if T is a union', () => {
     // Arrange
-    type U1 = number
-    type U2 = { first_name: string } | { last_name: string }
-    type E1 = U1
-    type E2 = { first_name: string } & { last_name: string }
+    type T = { x: 0 } | { x: 1 }
 
-    expectTypeOf<TestSubject<U1>>().toEqualTypeOf<E1>()
-    expectTypeOf<TestSubject<U2>>().toEqualTypeOf<E2>()
+    // Expect
+    expectTypeOf<TestSubject<T>>().toEqualTypeOf<{ x: 0 } & { x: 1 }>()
+  })
+
+  it('should equal T if T is not a union', () => {
+    expectTypeOf<TestSubject<any>>().toBeAny()
+    expectTypeOf<TestSubject<number>>().toBeNumber()
+    expectTypeOf<TestSubject<unknown>>().toBeUnknown()
+  })
+
+  it('should equal unknown if T is never', () => {
+    expectTypeOf<TestSubject<never>>().toBeUnknown()
   })
 })

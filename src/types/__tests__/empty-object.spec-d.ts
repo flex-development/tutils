@@ -4,14 +4,10 @@
  */
 
 import type TestSubject from '../empty-object'
-import type PropertyKey from '../property-key'
+import type { tag } from '../empty-object'
 
 describe('unit-d:types/EmptyObject', () => {
-  it('should have keys of type PropertyKey', () => {
-    expectTypeOf<keyof TestSubject>().toEqualTypeOf<PropertyKey>()
-  })
-
-  it('should have properties of type never', () => {
-    expectTypeOf<TestSubject[PropertyKey]>().toBeNever()
+  it('should match [[tag]?: never]', () => {
+    expectTypeOf<TestSubject[typeof tag]>().toBeUndefined()
   })
 })

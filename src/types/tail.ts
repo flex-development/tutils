@@ -3,9 +3,10 @@
  * @module tutils/types/Tail
  */
 
-import type IfArray from './if-array'
-import type IfString from './if-string'
-import type NumberString from './number-string'
+import type EmptyArray from './empty-array'
+import type EmptyString from './empty-string'
+import type IfAny from './if-any'
+import type Join from './join'
 
 /**
  * Returns the tail of `T`.
@@ -16,20 +17,26 @@ import type NumberString from './number-string'
  * - all items in `T` after the first if `T` is an array
  * - all segments after the first delimiter in `T` if `T` is a string
  *
- * @template T - Path to evaluate
+ * @todo examples
+ *
+ * @template T - Type to evaluate
  * @template D - String delimiter
  */
-type Tail<T, D extends string = '.'> = T extends string | readonly unknown[]
-  ? IfString<
-      T,
-      T extends `${NumberString}${D}${infer Last}` ? Last : T,
-      IfArray<
-        T,
-        unknown,
-        T extends [infer Elements, ...infer Last] ? Last : T,
-        T
-      >
-    >
-  : never
+type Tail<
+  T extends string | readonly unknown[],
+  D extends string = EmptyString
+> = IfAny<
+  T,
+  never,
+  T extends string
+    ? T extends Join<[string, D, infer R extends string], EmptyString>
+      ? R
+      : T
+    : T extends Readonly<EmptyArray>
+    ? T
+    : T extends readonly [T[0]?, ...infer R extends T[number][]]
+    ? R
+    : T
+>
 
 export type { Tail as default }

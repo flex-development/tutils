@@ -5,20 +5,31 @@
 
 import type TestSubject from '../if-json-primitive'
 import type JsonPrimitive from '../json-primitive'
+import type Primitive from '../primitive'
 
 describe('unit-d:types/IfJsonPrimitive', () => {
-  type False = false
-  type True = true
+  type F = 0
+  type T = 1
 
-  it('should equal False if IsJsonPrimitive<T> extends false', () => {
-    expectTypeOf<
-      TestSubject<JsonPrimitive[], True, False>
-    >().toEqualTypeOf<False>()
+  it('should equal F if IsJsonPrimitive<U> extends false', () => {
+    expectTypeOf<TestSubject<JsonPrimitive[], T, F>>().toEqualTypeOf<F>()
   })
 
-  it('should equal True if IsJsonPrimitive<T> extends true', () => {
-    expectTypeOf<
-      TestSubject<JsonPrimitive, True, False>
-    >().toEqualTypeOf<True>()
+  it('should equal F if U is any', () => {
+    expectTypeOf<TestSubject<any, T, F>>().toEqualTypeOf<F>()
+  })
+
+  it('should equal F if U is never', () => {
+    expectTypeOf<TestSubject<never, T, F>>().toEqualTypeOf<F>()
+  })
+
+  it('should equal T if IsJsonPrimitive<U> extends true', () => {
+    expectTypeOf<TestSubject<JsonPrimitive, T, F>>().toEqualTypeOf<T>()
+  })
+
+  describe('unions', () => {
+    it('should distribute over unions', () => {
+      expectTypeOf<TestSubject<Primitive, T, F>>().toEqualTypeOf<F | T>()
+    })
   })
 })

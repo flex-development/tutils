@@ -8,9 +8,8 @@ import type Nilable from '../nilable'
 import type Timestamp from '../timestamp'
 
 describe('unit-d:types/IsString', () => {
-  it('should equal false if [T] does not extend [string]', () => {
-    expectTypeOf<TestSubject<Nilable<string>>>().toEqualTypeOf<false>()
-    expectTypeOf<TestSubject<number>>().toEqualTypeOf<false>()
+  it('should equal false if T does not extend string', () => {
+    expectTypeOf<TestSubject<unknown>>().toEqualTypeOf<false>()
   })
 
   it('should equal false if T is any', () => {
@@ -21,8 +20,14 @@ describe('unit-d:types/IsString', () => {
     expectTypeOf<TestSubject<never>>().toEqualTypeOf<false>()
   })
 
-  it('should equal true if [T] extends [string]', () => {
+  it('should equal true if T extends string', () => {
     expectTypeOf<TestSubject<Timestamp<'iso'>>>().toEqualTypeOf<true>()
     expectTypeOf<TestSubject<string>>().toEqualTypeOf<true>()
+  })
+
+  describe('unions', () => {
+    it('should distribute over unions', () => {
+      expectTypeOf<TestSubject<Nilable<string>>>().toEqualTypeOf<boolean>()
+    })
   })
 })

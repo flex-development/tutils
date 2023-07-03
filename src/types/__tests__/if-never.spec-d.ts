@@ -6,14 +6,14 @@
 import type TestSubject from '../if-never'
 
 describe('unit-d:types/IfNever', () => {
-  type False = false
-  type True = true
+  type False = 0
+  type True = 1
 
-  it('should equal False if IsNever<T> extends false', () => {
+  it('should equal F if IsNever<U> extends false', () => {
     expectTypeOf<TestSubject<never[], True, False>>().toEqualTypeOf<False>()
   })
 
-  it('should equal True if IsNever<T> extends true', () => {
+  it('should equal T if IsNever<U> extends true', () => {
     expectTypeOf<TestSubject<never, True, False>>().toEqualTypeOf<True>()
   })
 })

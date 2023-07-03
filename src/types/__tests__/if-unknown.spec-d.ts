@@ -6,14 +6,14 @@
 import type TestSubject from '../if-unknown'
 
 describe('unit-d:types/IfUnknown', () => {
-  type False = false
-  type True = true
+  type F = 0
+  type T = 1
 
-  it('should equal False if IsUnknown<T> extends false', () => {
-    expectTypeOf<TestSubject<unknown[], True, False>>().toEqualTypeOf<False>()
+  it('should equal F if IsUnknown<U> extends false', () => {
+    expectTypeOf<TestSubject<unknown[], T, F>>().toEqualTypeOf<F>()
   })
 
-  it('should equal True if IsUnknown<T> extends true', () => {
-    expectTypeOf<TestSubject<unknown, True, False>>().toEqualTypeOf<True>()
+  it('should equal T if IsUnknown<U> extends true', () => {
+    expectTypeOf<TestSubject<unknown, T, F>>().toEqualTypeOf<T>()
   })
 })

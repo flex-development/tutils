@@ -3,14 +3,16 @@
  * @module tutils/types/tests/unit-d/Constructor
  */
 
+import type Vehicle from '#fixtures/vehicle'
 import type TestSubject from '../constructor'
 
 describe('unit-d:types/Constructor', () => {
-  class Dog {
-    constructor(public name: string) {}
-  }
+  it('should equal new (...args: A) => T', () => {
+    // Arrange
+    type T = Vehicle
+    type A = [Vehicle['vin']]
 
-  it('should match class declaration', () => {
-    assertType<TestSubject<Dog, [string, string]>>(Dog)
+    // Expect
+    expectTypeOf<TestSubject<T, A>>().toEqualTypeOf<new (...args: A) => T>()
   })
 })
