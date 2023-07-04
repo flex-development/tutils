@@ -248,12 +248,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commitlint/cli@npm:17.6.5":
-  version: 17.6.5
-  resolution: "@commitlint/cli@npm:17.6.5"
+"@commitlint/cli@npm:17.6.6":
+  version: 17.6.6
+  resolution: "@commitlint/cli@npm:17.6.6"
   dependencies:
     "@commitlint/format": "npm:^17.4.4"
-    "@commitlint/lint": "npm:^17.6.5"
+    "@commitlint/lint": "npm:^17.6.6"
     "@commitlint/load": "npm:^17.5.0"
     "@commitlint/read": "npm:^17.5.1"
     "@commitlint/types": "npm:^17.4.4"
@@ -264,7 +264,7 @@ __metadata:
     yargs: "npm:^17.0.0"
   bin:
     commitlint: cli.js
-  checksum: 9bc387ae28dea3fef4b67beb4a2527e6aaa2cf1597f48e3f374e2841e78689f32fd9110a0e95d6b6cb2c6b514d0c9dab7cb0df9d24718480802db32ea3d7a100
+  checksum: 03c61899c8a98d768dc376823660e39c64edeef90844b29778ca3be4cc021d7c3eac9d0e2f15e389311ae529f18ea711bc7d7d58e1715d039cc95e007f7b70f1
   languageName: node
   linkType: hard
 
@@ -319,7 +319,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commitlint/lint@npm:^17.6.5":
+"@commitlint/lint@npm:^17.6.6":
   version: 17.6.6
   resolution: "@commitlint/lint@npm:17.6.6"
   dependencies:
@@ -1490,7 +1490,7 @@ __metadata:
   resolution: "@flex-development/tutils@workspace:."
   dependencies:
     "@arethetypeswrong/cli": "npm:0.4.2"
-    "@commitlint/cli": "npm:17.6.5"
+    "@commitlint/cli": "npm:17.6.6"
     "@faker-js/faker": "npm:8.0.2"
     "@flex-development/commitlint-config": "npm:1.0.1"
     "@flex-development/decorator-regex": "npm:1.0.0"
