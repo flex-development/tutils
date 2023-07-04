@@ -4,10 +4,12 @@
  */
 
 import type Book from '#fixtures/book.interface'
+import type Publisher from '#fixtures/publisher.interface'
 import type Vehicle from '#fixtures/vehicle'
 import type EmptyArray from '../empty-array'
 import type EmptyObject from '../empty-object'
 import type Fn from '../fn'
+import type Nilable from '../nilable'
 import type Nullable from '../nullable'
 import type NumberString from '../number-string'
 import type TestSubject from '../values'
@@ -38,9 +40,11 @@ describe('unit-d:types/Values', () => {
       expectTypeOf<TestSubject<T>>().toEqualTypeOf<T[keyof T][]>()
     })
 
-    it('should equal EmptyArray if EmptyObject extends T', () => {
-      expectTypeOf<TestSubject<{}>>().toEqualTypeOf<EmptyArray>()
-      expectTypeOf<TestSubject<EmptyObject>>().toEqualTypeOf<EmptyArray>()
+    describe('EmptyObject extends T', () => {
+      it('should equal EmptyArray if EmptyObject extends T', () => {
+        expectTypeOf<TestSubject<{}>>().toEqualTypeOf<EmptyArray>()
+        expectTypeOf<TestSubject<EmptyObject>>().toEqualTypeOf<EmptyArray>()
+      })
     })
   })
 
@@ -80,6 +84,17 @@ describe('unit-d:types/Values', () => {
         // Expect
         expectTypeOf<TestSubject<T>>().toEqualTypeOf<T>()
       })
+    })
+  })
+
+  describe('unions', () => {
+    it('should distribute over unions', () => {
+      // Arrange
+      type T = Nilable<Book | Publisher>
+      type Expect = Book[keyof Book][] | Publisher[keyof Publisher][] | []
+
+      // Expect
+      expectTypeOf<TestSubject<T>>().toEqualTypeOf<Expect>()
     })
   })
 })

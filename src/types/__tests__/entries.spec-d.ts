@@ -9,6 +9,7 @@ import type EmptyArray from '../empty-array'
 import type EmptyObject from '../empty-object'
 import type TestSubject from '../entries'
 import type Fn from '../fn'
+import type Nilable from '../nilable'
 import type Nullable from '../nullable'
 import type Numeric from '../numeric'
 
@@ -46,9 +47,11 @@ describe('unit-d:types/Entries', () => {
       >()
     })
 
-    it('should equal EmptyArray if EmptyObject extends T', () => {
-      expectTypeOf<TestSubject<{}>>().toEqualTypeOf<EmptyArray>()
-      expectTypeOf<TestSubject<EmptyObject>>().toEqualTypeOf<EmptyArray>()
+    describe('EmptyObject extends T', () => {
+      it('should equal EmptyArray if EmptyObject extends T', () => {
+        expectTypeOf<TestSubject<{}>>().toEqualTypeOf<EmptyArray>()
+        expectTypeOf<TestSubject<EmptyObject>>().toEqualTypeOf<EmptyArray>()
+      })
     })
   })
 
@@ -90,6 +93,27 @@ describe('unit-d:types/Entries', () => {
         // Expect
         expectTypeOf<TestSubject<T>>().toEqualTypeOf<[Numeric, T[0]][]>()
       })
+    })
+  })
+
+  describe('unions', () => {
+    it('should distribute over unions', () => {
+      expectTypeOf<TestSubject<Nilable<Book | Vehicle>>>().toEqualTypeOf<
+        | (
+            | ['authors', Book['authors']]
+            | ['isbn', Book['isbn']]
+            | ['publisher', Book['publisher']]
+            | ['readers', Book['readers']]
+            | ['title', Book['title']]
+          )[]
+        | (
+            | ['make', Vehicle['make']]
+            | ['model', Vehicle['model']]
+            | ['vin', Vehicle['vin']]
+            | ['year', Vehicle['year']]
+          )[]
+        | []
+      >()
     })
   })
 })
