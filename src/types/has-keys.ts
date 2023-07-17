@@ -4,7 +4,7 @@
  */
 
 import type IfNever from './if-never'
-import type Keyof from './keyof'
+import type Objectify from './objectify'
 
 /**
  * Returns a boolean indicating if `T` has any keys.
@@ -39,7 +39,7 @@ import type Keyof from './keyof'
 type HasKeys<T> = IfNever<
   T,
   false,
-  T extends unknown ? IfNever<Keyof<T>, false, true> : false
+  T extends unknown ? IfNever<keyof Objectify<T>, false, true> : false
 >
 
 export type { HasKeys as default }

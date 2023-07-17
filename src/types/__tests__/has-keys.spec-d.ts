@@ -10,7 +10,7 @@ import type NIL from '../nil'
 import type Primitive from '../primitive'
 
 describe('unit-d:types/HasKeys', () => {
-  it('should equal false if [Keyof<T>] extends [never]', () => {
+  it('should equal false if IsNever<keyof Objectify<T>> extends true', () => {
     expectTypeOf<TestSubject<NIL>>().toEqualTypeOf<false>()
     expectTypeOf<TestSubject<EmptyObject>>().toEqualTypeOf<false>()
     expectTypeOf<TestSubject<unknown>>().toEqualTypeOf<false>()
@@ -20,7 +20,7 @@ describe('unit-d:types/HasKeys', () => {
     expectTypeOf<TestSubject<never>>().toEqualTypeOf<false>()
   })
 
-  it('should equal true if [Keyof<T>] does not extend [never]', () => {
+  it('should equal true if IsNever<keyof Objectify<T>> extends false', () => {
     expectTypeOf<TestSubject<Vehicle>>().toEqualTypeOf<true>()
   })
 
@@ -30,7 +30,7 @@ describe('unit-d:types/HasKeys', () => {
 
   describe('unions', () => {
     it('should distribute over unions', () => {
-      expectTypeOf<TestSubject<Primitive>>().toEqualTypeOf<boolean>()
+      expectTypeOf<TestSubject<Primitive | Vehicle>>().toEqualTypeOf<boolean>()
     })
   })
 })
