@@ -6,6 +6,7 @@
 import type EmptyObject from './empty-object'
 import type IfAny from './if-any'
 import type IfNever from './if-never'
+import type Nilable from './nilable'
 import type Primitive from './primitive'
 import type PropertyKey from './property-key'
 import type Stringify from './stringify'
@@ -19,13 +20,13 @@ import type Stringify from './stringify'
  *
  * @template T - Type to evaluate
  */
-type Invert<T extends { [K in PropertyKey]?: Primitive }> = IfAny<
+type Invert<T extends Nilable<{ [K in PropertyKey]?: Primitive }>> = IfAny<
   T,
   Record<PropertyKey, PropertyKey>,
   IfNever<
     T,
     Record<never, never>,
-    T extends unknown
+    T extends object
       ? EmptyObject extends T
         ? Record<never, never>
         : {
@@ -35,7 +36,7 @@ type Invert<T extends { [K in PropertyKey]?: Primitive }> = IfAny<
                 : Stringify<V>
               : never]: K
           }
-      : never
+      : Record<never, never>
   >
 >
 

@@ -8,7 +8,6 @@ import type EmptyObject from '../empty-object'
 import type Fn from '../fn'
 import type Indices from '../indices'
 import type TestSubject from '../keyof'
-import type NIL from '../nil'
 import type Nilable from '../nilable'
 import type NumberLike from '../number-like'
 import type { tag } from '../opaque'
@@ -41,7 +40,8 @@ describe('unit-d:types/Keyof', () => {
       expectTypeOf<TestSubject<T2>>().toEqualTypeOf<keyof T2>()
     })
 
-    it('should equal never if typeof EmptyObjectTag extends keyof T', () => {
+    it('should equal never if EmptyObjectTag extends T', () => {
+      expectTypeOf<TestSubject<{}>>().toBeNever()
       expectTypeOf<TestSubject<EmptyObject>>().toBeNever()
     })
 
@@ -56,8 +56,7 @@ describe('unit-d:types/Keyof', () => {
   })
 
   describe('T extends Primitive', () => {
-    it('should equal never if keyof T is never', () => {
-      expectTypeOf<TestSubject<NIL>>().toBeNever()
+    it('should equal never if IsNever<keyof Remap<T>> extends true', () => {
       expectTypeOf<TestSubject<null>>().toBeNever()
       expectTypeOf<TestSubject<undefined>>().toBeNever()
     })

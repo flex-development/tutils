@@ -51,4 +51,13 @@ describe('unit-d:types/Invert', () => {
       })
     })
   })
+
+  describe('T extends NIL', () => {
+    type Expect = Record<never, never>
+
+    it('should equal Record<never, never>', () => {
+      expectTypeOf<TestSubject<null>>().toEqualTypeOf<Expect>()
+      expectTypeOf<TestSubject<undefined>>().toEqualTypeOf<Expect>()
+    })
+  })
 })

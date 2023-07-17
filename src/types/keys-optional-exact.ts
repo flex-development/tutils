@@ -10,7 +10,7 @@ import type OptionalKeys from './keys-optional'
 import type PropertyKey from './property-key'
 
 /**
- * Constructs a union of exact optional keys.
+ * Construct a union of `T`'s exact optional property keys.
  *
  * @see https://www.typescriptlang.org/tsconfig#exactOptionalPropertyTypes
  *

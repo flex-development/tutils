@@ -5,22 +5,18 @@
 
 import type IfAny from './if-any'
 import type IfEqual from './if-equal'
-import type IfIndexSignature from './if-index-signature'
-import type IfLiteral from './if-literal'
-import type IfTuple from './if-tuple'
 import type Indices from './indices'
 import type Intersection from './intersection'
+import type Invert from './invert'
 import type Length from './length'
-import type Opaque from './opaque'
-import type { tag as OpaqueTag } from './opaque'
-import type Primitive from './primitive'
+import type Objectify from './objectify'
 import type PropertyKey from './property-key'
 import type Stringify from './stringify'
 import type Subtract from './subtract'
 import type UnwrapNumeric from './unwrap-numeric'
 
 /**
- * Constructs a union of required keys.
+ * Construct a union of `T`'s required property keys.
  *
  * @todo document index signature clobbering
  *
@@ -59,64 +55,40 @@ type RequiredKeys<T> = IfAny<
   never,
   Extract<
     T extends unknown
-      ? {
-          [H in keyof (T extends Opaque<unknown>
-            ? T
-            : T extends Primitive
-            ? Omit<Opaque<T>, typeof OpaqueTag>
-            : T) as IfIndexSignature<
-            T,
-            H,
-            IfTuple<T, never, IfLiteral<T, string, never, H>>,
-            H
-          >]: IfIndexSignature<
-            T,
-            H,
-            H,
-            IfEqual<
-              { [K in H]: T[K & keyof T] },
+      ? Objectify<T> extends infer U
+        ? Invert<{
+            [H in keyof U as IfEqual<
+              { [K in H]: U[K] },
               {
-                [K in keyof Required<
-                  T extends Opaque<unknown>
-                    ? T
-                    : T extends Primitive
-                    ? Omit<Opaque<T>, typeof OpaqueTag>
-                    : T
-                > as Intersection<K, H>]: Required<T>[K & keyof T]
+                [K in keyof Required<U> as Intersection<K, H>]: Required<U>[K]
               },
-              T extends readonly unknown[]
-                ? IfTuple<
-                    T,
-                    H extends Stringify<Indices<T>>
-                      ? UnwrapNumeric<H> extends infer N extends number
-                        ?
-                            | N
-                            | UnwrapNumeric<
-                                Exclude<
-                                  `-${Subtract<Length<Required<T>>, N>}`,
-                                  '-0'
-                                >
+              T extends string | readonly unknown[]
+                ? Indices<T> extends infer I extends number
+                  ? number extends I
+                    ? H
+                    : H extends Stringify<I>
+                    ? UnwrapNumeric<H> extends infer N extends number
+                      ?
+                          | N
+                          | UnwrapNumeric<
+                              Exclude<
+                                `-${Subtract<Length<Required<T>>, N>}`,
+                                '-0'
                               >
-                        : never
-                      : H,
-                    H
-                  >
+                            >
+                      : never
+                    : number extends H
+                    ? T extends string
+                      ? I
+                      : never
+                    : H
+                  : H
                 : H,
-              T extends readonly unknown[]
-                ? H extends keyof unknown[]
-                  ? H
-                  : never
-                : never
-            >
-          >
-        } extends infer X
-        ?
-            | X[keyof X]
-            | (T extends string
-                ? number extends Length<T>
-                  ? never
-                  : Indices<T>
-                : never)
+              never
+            >]: PropertyKey
+          }> extends infer X
+          ? X[keyof X]
+          : never
         : never
       : never,
     PropertyKey

@@ -9,7 +9,6 @@ import type EmptyObject from '../empty-object'
 import type Fn from '../fn'
 import type Indices from '../indices'
 import type TestSubject from '../keys-optional-exact'
-import type NIL from '../nil'
 import type Optional from '../optional'
 
 describe('unit-d:types/ExactOptionalKeys', () => {
@@ -36,14 +35,14 @@ describe('unit-d:types/ExactOptionalKeys', () => {
       expectTypeOf<TestSubject<T2>>().toEqualTypeOf<keyof Vehicle>()
     })
 
-    it('should equal never if Keyof<T> is never', () => {
+    it('should equal never if IsNever<keyof Objectify<T>> extends true', () => {
+      expectTypeOf<TestSubject<{}>>().toBeNever()
       expectTypeOf<TestSubject<EmptyObject>>().toBeNever()
     })
   })
 
   describe('T extends Primitive', () => {
-    it('should equal never if Keyof<T> is never', () => {
-      expectTypeOf<TestSubject<NIL>>().toBeNever()
+    it('should equal never if IsNever<keyof Objectify<T>> extends true', () => {
       expectTypeOf<TestSubject<null>>().toBeNever()
       expectTypeOf<TestSubject<undefined>>().toBeNever()
     })

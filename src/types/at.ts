@@ -8,10 +8,7 @@ import type EmptyString from './empty-string'
 import type Fallback from './fallback'
 import type IfAny from './if-any'
 import type IfAnyOrNever from './if-any-or-never'
-import type IfKeys from './if-keys'
 import type IfNever from './if-never'
-import type IfTuple from './if-tuple'
-import type Indices from './indices'
 import type Integer from './integer'
 import type Intersection from './intersection'
 import type IsNever from './is-never'
@@ -21,67 +18,11 @@ import type Nilable from './nilable'
 import type NumberLike from './number-like'
 import type Numeric from './numeric'
 import type NegativeNumeric from './numeric-negative'
-import type Opaque from './opaque'
 import type Optional from './optional'
-import type Primitive from './primitive'
-import type PropertyKey from './property-key'
 import type NaturalRange from './range-natural'
 import type Reverse from './reverse'
 import type Split from './split'
 import type Stringify from './stringify'
-import type UnwrapNumeric from './unwrap-numeric'
-
-/**
- * Returns a boolean indicating if `K` can be used to index `T` (i.e. `T[K]`).
- *
- * Numeric {@linkcode Indices} are excluded from `keyof T` when `T` is a tuple.
- *
- * @internal
- *
- * @template T - Type to evaluate
- * @template K - Keys to evaluate
- */
-type Has<
-  T extends Nilable<string | readonly unknown[]>,
-  K extends NumberLike
-> = IfNever<
-  T,
-  false,
-  IfNever<
-    K,
-    false,
-    T extends string | readonly unknown[]
-      ? K extends PropertyKey
-        ? IfKeys<
-            {
-              [H in keyof (T extends Primitive ? Opaque<T> : T) as Intersection<
-                number extends H
-                  ? never
-                  : IfTuple<
-                      T,
-                      H extends Stringify<Indices<T>> ? never : H,
-                      H
-                    > extends infer Q extends PropertyKey
-                  ? IfNever<
-                      Q,
-                      Q,
-                      Q extends Numeric
-                        ? Q | UnwrapNumeric<Q>
-                        : Q extends number
-                        ? Q | Stringify<Q>
-                        : Q
-                    >
-                  : never,
-                K
-              >]: H
-            },
-            true,
-            false
-          >
-        : false
-      : false
-  >
->
 
 /**
  * Indexes array `T` at `K`.
@@ -160,9 +101,9 @@ type Index<
 type Splitter<T extends string> = Split<T, EmptyString>
 
 /**
- * Indexes `T` at `K`.
+ * Get an item or character in `T` at `K`.
  *
- * Supports negative indices.
+ * Negative indices count from the end of `T`.
  *
  * @see https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array/at
  * @see https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String/at
@@ -199,7 +140,7 @@ type Splitter<T extends string> = Split<T, EmptyString>
  *  // string | undefined
  *
  * @template T - Type to evaluate
- * @template K - Index
+ * @template K - Zero-based index
  * @template F - Fallback value type
  */
 type At<
@@ -212,17 +153,15 @@ type At<
   IfNever<
     K,
     F,
-    T extends unknown
+    T extends string | readonly unknown[]
       ? K extends NumberLike
-        ? Has<T, K> extends true
-          ? Fallback<T[K extends keyof T ? K : UnwrapNumeric<K> & keyof T], F>
-          : T extends string
+        ? T extends string
           ? Index<Splitter<T>, K, F>
           : T extends readonly unknown[]
           ? Index<T, K, F>
           : never
         : never
-      : never
+      : F
   >
 >
 

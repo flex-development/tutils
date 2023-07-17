@@ -27,20 +27,22 @@ describe('unit-d:types/At', () => {
     expectTypeOf<TestSubject<never, 0, F>>().toEqualTypeOf<F>()
   })
 
+  describe('T extends NIL', () => {
+    it('should equal F', () => {
+      // Arrange
+      type K = 0
+      type F = EmptyString
+
+      // Expect
+      expectTypeOf<TestSubject<null, K, F>>().toEqualTypeOf<F>()
+      expectTypeOf<TestSubject<undefined, K, F>>().toEqualTypeOf<F>()
+    })
+  })
+
   describe('T extends readonly unknown[]', () => {
     describe('IsTuple<T> extends true', () => {
       it('should equal F if K is never', () => {
         expectTypeOf<TestSubject<['a'], never, F>>().toEqualTypeOf<F>()
-      })
-
-      it('should equal Fallback<T[K], F> if Has<T, K> extends true', () => {
-        // Arrange
-        type T = { '3': number | undefined } & [Vehicle]
-        type K = '3' | 3
-        type Expect = Fallback<T[K], F>
-
-        // Expect
-        expectTypeOf<TestSubject<T, K, F>>().toEqualTypeOf<Expect>()
       })
 
       it('should equal Fallback<T[number], F> if K is any', () => {
@@ -157,16 +159,6 @@ describe('unit-d:types/At', () => {
         expectTypeOf<TestSubject<T, '1' | 1, F>>().toEqualTypeOf<Expect>()
         expectTypeOf<TestSubject<T, Integer, F>>().toEqualTypeOf<Expect>()
         expectTypeOf<TestSubject<T, any, F>>().toEqualTypeOf<Expect>()
-      })
-
-      it('should equal Fallback<T[K], F> if Has<T, K> extends true', () => {
-        // Arrange
-        type T = Vehicle[] & { '3': number | undefined }
-        type K = '3' | 3
-        type Expect = Fallback<T[K], F>
-
-        // Expect
-        expectTypeOf<TestSubject<T, K, F>>().toEqualTypeOf<Expect>()
       })
     })
   })
@@ -293,16 +285,6 @@ describe('unit-d:types/At', () => {
         expectTypeOf<TestSubject<T, '1' | 1, F>>().toEqualTypeOf<Expect>()
         expectTypeOf<TestSubject<T, Integer, F>>().toEqualTypeOf<Expect>()
         expectTypeOf<TestSubject<T, any, F>>().toEqualTypeOf<Expect>()
-      })
-
-      it('should equal Fallback<T[K], F> if Has<T, K> extends true', () => {
-        // Arrange
-        type T = string & { '3': number | undefined }
-        type K = '3' | 3
-        type Expect = Fallback<T[K], F>
-
-        // Expect
-        expectTypeOf<TestSubject<T, K, F>>().toEqualTypeOf<Expect>()
       })
     })
   })
