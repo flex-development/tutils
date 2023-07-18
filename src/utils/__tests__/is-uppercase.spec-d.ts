@@ -7,6 +7,10 @@ import type testSubject from '../is-uppercase'
 
 describe('unit-d:utils/isUppercase', () => {
   it('should guard Uppercase<T>', () => {
-    expectTypeOf<typeof testSubject>().guards.toEqualTypeOf<Uppercase<string>>()
+    // Arrange
+    type T = 'and'
+
+    // Expect
+    expectTypeOf<typeof testSubject<T>>().guards.toEqualTypeOf<Uppercase<T>>()
   })
 })

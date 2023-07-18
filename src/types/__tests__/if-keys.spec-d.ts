@@ -3,7 +3,7 @@
  * @module tutils/types/tests/unit-d/IfKeys
  */
 
-import type Vehicle from '#fixtures/vehicle'
+import type Vehicle from '#fixtures/types/vehicle'
 import type TestSubject from '../if-keys'
 import type Nilable from '../nilable'
 

@@ -3,7 +3,7 @@
  * @module tutils/types/tests/unit-d/Class
  */
 
-import type Vehicle from '#fixtures/vehicle'
+import type Vehicle from '#fixtures/types/vehicle'
 import type TestSubject from '../class'
 import type Constructor from '../constructor'
 

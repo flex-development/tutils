@@ -3,6 +3,7 @@
  * @module fixtures/FLOAT
  */
 
+import type { Float } from '#src/types'
 import INT from './integer'
 
-export default INT / 100
+export default (INT / 100) as Float

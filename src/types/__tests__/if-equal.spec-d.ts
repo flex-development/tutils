@@ -3,7 +3,7 @@
  * @module tutils/types/tests/unit-d/IfEqual
  */
 
-import type Book from '#fixtures/book.interface'
+import type Book from '#fixtures/interfaces/book'
 import type Digit from '../digit'
 import type TestSubject from '../if-equal'
 

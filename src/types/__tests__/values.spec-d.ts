@@ -3,9 +3,9 @@
  * @module tutils/types/tests/unit-d/Values
  */
 
-import type Book from '#fixtures/book.interface'
-import type Publisher from '#fixtures/publisher.interface'
-import type Vehicle from '#fixtures/vehicle'
+import type Book from '#fixtures/interfaces/book'
+import type Publisher from '#fixtures/interfaces/publisher'
+import type Vehicle from '#fixtures/types/vehicle'
 import type EmptyArray from '../empty-array'
 import type EmptyObject from '../empty-object'
 import type Fn from '../fn'

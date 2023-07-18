@@ -3,7 +3,7 @@
  * @module tutils/types/tests/unit-d/At
  */
 
-import type Vehicle from '#fixtures/vehicle'
+import type Vehicle from '#fixtures/types/vehicle'
 import type TestSubject from '../at'
 import type EmptyArray from '../empty-array'
 import type EmptyString from '../empty-string'

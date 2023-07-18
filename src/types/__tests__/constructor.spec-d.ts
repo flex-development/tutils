@@ -3,7 +3,7 @@
  * @module tutils/types/tests/unit-d/Constructor
  */
 
-import type Vehicle from '#fixtures/vehicle'
+import type Vehicle from '#fixtures/types/vehicle'
 import type TestSubject from '../constructor'
 
 describe('unit-d:types/Constructor', () => {

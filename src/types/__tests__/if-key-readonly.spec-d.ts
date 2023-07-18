@@ -3,8 +3,8 @@
  * @module tutils/types/tests/unit-d/IfReadonlyKey
  */
 
-import type Book from '#fixtures/book.interface'
-import type Vehicle from '#fixtures/vehicle'
+import type Book from '#fixtures/interfaces/book'
+import type Vehicle from '#fixtures/types/vehicle'
 import type TestSubject from '../if-key-readonly'
 
 describe('unit-d:types/IfReadonlyKey', () => {

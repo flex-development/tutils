@@ -7,6 +7,10 @@ import type testSubject from '../is-lowercase'
 
 describe('unit-d:utils/isLowercase', () => {
   it('should guard Lowercase<T>', () => {
-    expectTypeOf<typeof testSubject>().guards.toEqualTypeOf<Lowercase<string>>()
+    // Arrange
+    type T = 'AND'
+
+    // Expect
+    expectTypeOf<typeof testSubject<T>>().guards.toEqualTypeOf<Lowercase<T>>()
   })
 })

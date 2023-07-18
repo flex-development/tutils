@@ -34,7 +34,7 @@ describe('unit:utils/timeunix', () => {
 
     // Expect
     expect(error).to.be.instanceof(RangeError)
-    expect(error).to.have.property('cause').deep.equal({ date })
-    expect(error).to.have.property('message').equal('Invalid date')
+    expect(error).to.have.deep.property('cause', { date })
+    expect(error).to.have.property('message', 'Invalid date')
   })
 })

@@ -7,6 +7,6 @@ import type testSubject from '../is-string'
 
 describe('unit-d:utils/isString', () => {
   it('should guard string', () => {
-    expectTypeOf<typeof testSubject>().guards.toBeString()
+    expectTypeOf<typeof testSubject>().guards.toEqualTypeOf<string>()
   })
 })

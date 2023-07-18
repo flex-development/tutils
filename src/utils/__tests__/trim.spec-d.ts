@@ -9,7 +9,7 @@ import type testSubject from '../trim'
 describe('unit-d:utils/trim', () => {
   it('should return Trim<T>', () => {
     // Arrange
-    type T = ' baz '
+    type T = ' hello '
 
     // Expect
     expectTypeOf<typeof testSubject<T>>().returns.toEqualTypeOf<Trim<T>>()

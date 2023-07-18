@@ -7,7 +7,7 @@ import testSubject from '../is-primitive'
 
 describe('unit:utils/isPrimitive', () => {
   it('should return false if value is not primitive value', () => {
-    expect(testSubject(faker.datatype.array())).to.be.false
+    expect(testSubject([faker.string.nanoid()])).to.be.false
   })
 
   it('should return true if value is primitive value', () => {

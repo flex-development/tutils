@@ -3,7 +3,7 @@
  * @module tutils/types/tests/unit-d/PartialNative
  */
 
-import type Vehicle from '#fixtures/vehicle'
+import type Vehicle from '#fixtures/types/vehicle'
 import type TestSubject from '../partial-native'
 
 describe('unit-d:types/PartialNative', () => {

@@ -3,7 +3,7 @@
  * @module tutils/types/tests/unit-d/Crush
  */
 
-import type Vehicle from '#fixtures/vehicle'
+import type Vehicle from '#fixtures/types/vehicle'
 import type TestSubject from '../crush'
 import type EmptyObject from '../empty-object'
 import type Fn from '../fn'

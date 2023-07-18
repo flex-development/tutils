@@ -3,8 +3,8 @@
  * @module tutils/types/tests/unit-d/ExactOptionalKeys
  */
 
-import type Author from '#fixtures/author.interface'
-import type Vehicle from '#fixtures/vehicle'
+import type Author from '#fixtures/interfaces/author'
+import type Vehicle from '#fixtures/types/vehicle'
 import type EmptyObject from '../empty-object'
 import type Fn from '../fn'
 import type Indices from '../indices'

@@ -3,9 +3,9 @@
  * @module tutils/types/tests/unit-d/Get
  */
 
-import type Author from '#fixtures/author.interface'
-import type Book from '#fixtures/book.interface'
-import type Vehicle from '#fixtures/vehicle'
+import type Author from '#fixtures/interfaces/author'
+import type Book from '#fixtures/interfaces/book'
+import type Vehicle from '#fixtures/types/vehicle'
 import type At from '../at'
 import type EmptyArray from '../empty-array'
 import type EmptyObject from '../empty-object'

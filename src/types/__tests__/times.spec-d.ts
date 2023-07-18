@@ -3,7 +3,7 @@
  * @module tutils/types/tests/unit-d/Times
  */
 
-import type Vehicle from '#fixtures/vehicle'
+import type Vehicle from '#fixtures/types/vehicle'
 import type EmptyArray from '../empty-array'
 import type TestSubject from '../times'
 

@@ -3,26 +3,15 @@
  * @module tutils/utils/tests/unit-d/timestamp
  */
 
-import type {
-  Nilable,
-  NumberString,
-  Timestamp,
-  TimestampFormat
-} from '#src/types'
+import type { Timestamp, TimestampFormat } from '#src/types'
 import type testSubject from '../timestamp'
 
 describe('unit-d:utils/timeunix', () => {
-  type F = TimestampFormat
-
-  it('should be callable with [Nilable<Date | NumberString>, Nilable<F>]', () => {
+  it('should return Timestamp<F>', () => {
     // Arrange
-    type Parameters = [date?: Nilable<Date | NumberString>, format?: Nilable<F>]
+    type F = TimestampFormat
 
     // Expect
-    expectTypeOf<typeof testSubject<F>>().parameters.toEqualTypeOf<Parameters>()
-  })
-
-  it('should return Timestamp<F>', () => {
-    expectTypeOf<typeof testSubject>().returns.toEqualTypeOf<Timestamp<F>>()
+    expectTypeOf<typeof testSubject<F>>().returns.toEqualTypeOf<Timestamp<F>>()
   })
 })

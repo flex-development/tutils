@@ -1,6 +1,6 @@
 /**
  * @file Test Fixtures - Publisher
- * @module tests/fixtures/Publisher
+ * @module tests/fixtures/interfaces/Publisher
  */
 
 /**

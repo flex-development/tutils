@@ -56,8 +56,8 @@ const config: UserConfigExport = defineConfig((): UserConfig => {
         ],
         extension: ['.ts'],
         include: ['src'],
-        provider: 'c8',
-        reporter: [ci ? 'lcovonly' : 'lcov', 'text'],
+        provider: 'v8',
+        reporter: [ci ? 'lcovonly' : 'html', 'text'],
         reportsDirectory: './coverage',
         skipFull: false
       },

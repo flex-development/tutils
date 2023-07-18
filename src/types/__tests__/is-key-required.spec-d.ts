@@ -3,9 +3,9 @@
  * @module tutils/types/tests/unit-d/IsRequiredKey
  */
 
-import type Author from '#fixtures/author.interface'
-import type Book from '#fixtures/book.interface'
-import type Vehicle from '#fixtures/vehicle'
+import type Author from '#fixtures/interfaces/author'
+import type Book from '#fixtures/interfaces/book'
+import type Vehicle from '#fixtures/types/vehicle'
 import type EmptyString from '../empty-string'
 import type Fn from '../fn'
 import type Indices from '../indices'

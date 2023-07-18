@@ -3,7 +3,7 @@
  * @module tutils/types/tests/unit-d/Remap
  */
 
-import type Vehicle from '#fixtures/vehicle'
+import type Vehicle from '#fixtures/types/vehicle'
 import type At from '../at'
 import type Fn from '../fn'
 import type IfNumeric from '../if-numeric'

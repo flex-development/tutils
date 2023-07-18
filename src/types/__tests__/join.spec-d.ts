@@ -3,7 +3,7 @@
  * @module tutils/types/tests/unit-d/Join
  */
 
-import type Vehicle from '#fixtures/vehicle'
+import type Vehicle from '#fixtures/types/vehicle'
 import type Dot from '../dot'
 import type EmptyArray from '../empty-array'
 import type EmptyString from '../empty-string'

@@ -1,11 +1,11 @@
 /**
  * @file Test Fixtures - Book
- * @module tests/fixtures/Book
+ * @module tests/fixtures/interfaces/Book
  */
 
 import type { Nullable, Simplify } from '#src/types'
-import type Author from './author.interface'
-import type Publisher from './publisher.interface'
+import type Author from './author'
+import type Publisher from './publisher'
 
 /**
  * Object representing a book.

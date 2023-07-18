@@ -3,7 +3,7 @@
  * @module tutils/types/tests/unit-d/Keyof
  */
 
-import type Vehicle from '#fixtures/vehicle'
+import type Vehicle from '#fixtures/types/vehicle'
 import type EmptyObject from '../empty-object'
 import type Fn from '../fn'
 import type Indices from '../indices'

@@ -3,7 +3,7 @@
  * @module tutils/types/tests/unit-d/HasKeys
  */
 
-import type Vehicle from '#fixtures/vehicle'
+import type Vehicle from '#fixtures/types/vehicle'
 import type EmptyObject from '../empty-object'
 import type TestSubject from '../has-keys'
 import type NIL from '../nil'

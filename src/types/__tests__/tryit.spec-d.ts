@@ -3,7 +3,7 @@
  * @module tutils/types/tests/unit-d/Tryit
  */
 
-import type Book from '#fixtures/book.interface'
+import type Book from '#fixtures/interfaces/book'
 import type NumberString from '../number-string'
 import type TestSubject from '../tryit'
 

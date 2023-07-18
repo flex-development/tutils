@@ -3,4 +3,6 @@
  * @module fixtures/INTEGER
  */
 
-export default 13
+import type { Integer } from '#src/types'
+
+export default 13 as Integer

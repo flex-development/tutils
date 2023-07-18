@@ -7,8 +7,10 @@ import type testSubject from '../is-capitalized'
 
 describe('unit-d:utils/isCapitalized', () => {
   it('should guard Capitalize<T>', () => {
-    expectTypeOf<typeof testSubject>().guards.toEqualTypeOf<
-      Capitalize<string>
-    >()
+    // Arrange
+    type T = 'fred'
+
+    // Expect
+    expectTypeOf<typeof testSubject<T>>().guards.toEqualTypeOf<Capitalize<T>>()
   })
 })

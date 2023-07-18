@@ -3,10 +3,10 @@
  * @module tutils/types/tests/unit-d/Overwrite
  */
 
-import type Author from '#fixtures/author.interface'
-import type Book from '#fixtures/book.interface'
-import type Person from '#fixtures/person.interface'
-import type Vehicle from '#fixtures/vehicle'
+import type Author from '#fixtures/interfaces/author'
+import type Book from '#fixtures/interfaces/book'
+import type Person from '#fixtures/interfaces/person'
+import type Vehicle from '#fixtures/types/vehicle'
 import type Assign from '../assign'
 import type EmptyArray from '../empty-array'
 import type EmptyObject from '../empty-object'

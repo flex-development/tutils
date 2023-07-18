@@ -3,7 +3,7 @@
  * @module tutils/types/tests/unit-d/IfObjectCurly
  */
 
-import type Book from '#fixtures/book.interface'
+import type Book from '#fixtures/interfaces/book'
 import type TestSubject from '../if-object-curly'
 import type Nilable from '../nilable'
 

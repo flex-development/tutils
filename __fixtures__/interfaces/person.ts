@@ -1,6 +1,6 @@
 /**
  * @file Test Fixtures - Person
- * @module tests/fixtures/Person
+ * @module tests/fixtures/interfaces/Person
  */
 
 /**

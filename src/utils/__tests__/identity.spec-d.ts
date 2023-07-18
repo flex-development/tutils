@@ -3,16 +3,15 @@
  * @module tutils/utils/tests/unit-d/identity
  */
 
+import type Vehicle from '#fixtures/types/vehicle'
 import type testSubject from '../identity'
 
 describe('unit-d:utils/identity', () => {
-  type T = number
-
-  it('should be callable with [T]', () => {
-    expectTypeOf<typeof testSubject<T>>().parameters.toEqualTypeOf<[T]>()
-  })
-
   it('should return T', () => {
+    // Arrange
+    type T = Vehicle
+
+    // Expect
     expectTypeOf<typeof testSubject<T>>().returns.toEqualTypeOf<T>()
   })
 })

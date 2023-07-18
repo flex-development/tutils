@@ -8,7 +8,7 @@ import type testSubject from '../is-set'
 describe('unit-d:utils/isSet', () => {
   it('should guard Set<T>', () => {
     // Arrange
-    type T = string
+    type T = number
 
     // Expect
     expectTypeOf<typeof testSubject<T>>().guards.toEqualTypeOf<Set<T>>()

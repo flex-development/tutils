@@ -3,7 +3,7 @@
  * @module tutils/types/tests/unit-d/IsObjectPlain
  */
 
-import type Vehicle from '#fixtures/vehicle'
+import type Vehicle from '#fixtures/types/vehicle'
 import type EmptyObject from '../empty-object'
 import type TestSubject from '../is-object-plain'
 import type Nilable from '../nilable'

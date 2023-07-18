@@ -3,8 +3,8 @@
  * @module tutils/types/tests/unit-d/IfRequiredKey
  */
 
-import type Author from '#fixtures/author.interface'
-import type Book from '#fixtures/book.interface'
+import type Author from '#fixtures/interfaces/author'
+import type Book from '#fixtures/interfaces/book'
 import type TestSubject from '../if-key-required'
 
 describe('unit-d:types/IfRequiredKey', () => {

@@ -1,0 +1,17 @@
+diff --git a/dist/index.d.ts b/dist/index.d.ts
+index v0.33.0..v0.33.0
+--- a/dist/index.d.ts
++++ b/dist/index.d.ts
+@@ -115,1 +115,1 @@
+-        <Expected>(...MISMATCH: MismatchArgs<Equal<Actual, Expected, Options['branded']>, Options['positive']>): true;
++        <Expected>(...MISMATCH: MismatchArgs<Equal<Actual, Expected>, Options['positive']>): true;
+diff --git a/dist/vendor-cli-api.bf4b62a8.js b/dist/vendor-cli-api.bf4b62a8.js
+index v0.33.0..v0.33.0
+--- a/dist/vendor-cli-api.bf4b62a8.js
++++ b/dist/vendor-cli-api.bf4b62a8.js
+@@ -11958,3 +11958,2 @@
+-    const suite = lastSuite;
+-    while (lastSuite !== file && lastSuite.end < index)
+-      lastSuite = suite.suite;
++    while (lastSuite !== file && lastSuite.end < index)
++      lastSuite = lastSuite.suite;

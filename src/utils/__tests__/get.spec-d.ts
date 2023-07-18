@@ -3,7 +3,7 @@
  * @module tutils/utils/tests/unit-d/get
  */
 
-import type Person from '#fixtures/person.interface'
+import type Person from '#fixtures/interfaces/person'
 import type { EmptyString, Get } from '#src/types'
 import type testSubject from '../get'
 

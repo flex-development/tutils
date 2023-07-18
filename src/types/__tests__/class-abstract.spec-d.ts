@@ -3,7 +3,7 @@
  * @module tutils/types/tests/unit-d/AbstractClass
  */
 
-import type Vehicle from '#fixtures/vehicle'
+import type Vehicle from '#fixtures/types/vehicle'
 import type TestSubject from '../class-abstract'
 
 describe('unit-d:types/AbstractClass', () => {

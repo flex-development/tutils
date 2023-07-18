@@ -3,7 +3,7 @@
  * @module tutils/types/tests/unit-d/ObjectCurly
  */
 
-import type Person from '#fixtures/person.interface'
+import type Person from '#fixtures/interfaces/person'
 import type Fn from '../fn'
 import type TestSubject from '../object-curly'
 import type ObjectPlain from '../object-plain'

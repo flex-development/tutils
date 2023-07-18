@@ -3,7 +3,7 @@
  * @module tutils/types/tests/unit-d/IsTuple
  */
 
-import type Vehicle from '#fixtures/vehicle'
+import type Vehicle from '#fixtures/types/vehicle'
 import type EmptyArray from '../empty-array'
 import type TestSubject from '../is-tuple'
 import type Nilable from '../nilable'

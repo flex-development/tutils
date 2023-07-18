@@ -3,7 +3,7 @@
  * @module tutils/types/tests/unit-d/Intersection
  */
 
-import type Vehicle from '#fixtures/vehicle'
+import type Vehicle from '#fixtures/types/vehicle'
 import type Dot from '../dot'
 import type Indices from '../indices'
 import type TestSubject from '../intersection'

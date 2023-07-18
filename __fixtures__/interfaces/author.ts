@@ -1,6 +1,6 @@
 /**
  * @file Test Fixtures - Author
- * @module tests/fixtures/Author
+ * @module tests/fixtures/interfaces/Author
  */
 
 /**

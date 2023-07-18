@@ -6,7 +6,7 @@
 import type TestSubject from '../compare-result'
 
 describe('unit-d:enums/CompareResult', () => {
-  it('should match [EQUAL = 8]', () => {
+  it('should match [EQUAL = 0]', () => {
     expectTypeOf<typeof TestSubject>()
       .toHaveProperty('EQUAL')
       .toEqualTypeOf<0>()
