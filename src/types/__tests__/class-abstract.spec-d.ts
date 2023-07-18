@@ -5,12 +5,11 @@
 
 import type Vehicle from '#fixtures/vehicle'
 import type TestSubject from '../class-abstract'
-import type AbstractConstructor from '../constructor-abstract'
 
 describe('unit-d:types/AbstractClass', () => {
   type T = Vehicle
 
-  it('should extend AbstractConstructor<T, A>', () => {
+  it('should match Omit<abstract new (...args: A) => T, "prototype">', () => {
     // Arrange
     type A = [
       Vehicle['vin'],
@@ -20,7 +19,9 @@ describe('unit-d:types/AbstractClass', () => {
     ]
 
     // Expect
-    expectTypeOf<TestSubject<T, A>>().toMatchTypeOf<AbstractConstructor<T, A>>()
+    expectTypeOf<TestSubject<T, A>>().toMatchTypeOf<
+      Omit<abstract new (...args: A) => T, 'prototype'>
+    >()
   })
 
   it('should match [prototype: T]', () => {

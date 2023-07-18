@@ -3,8 +3,6 @@
  * @module tutils/types/Class
  */
 
-import type Constructor from './constructor'
-
 /**
  * A [`class`][1].
  *
@@ -13,7 +11,8 @@ import type Constructor from './constructor'
  * @template T - Class instance type
  * @template A - Constructor arguments
  */
-type Class<T, A extends unknown[] = any[]> = Constructor<T, A> & {
+type Class<T, A extends readonly unknown[] = any[]> = {
+  new (...args: A): T
   prototype: T
 }
 

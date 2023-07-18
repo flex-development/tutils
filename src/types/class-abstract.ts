@@ -13,9 +13,9 @@ import type AbstractConstructor from './constructor-abstract'
  * @template T - Class instance type
  * @template A - Constructor arguments
  */
-type AbstractClass<T, A extends unknown[] = any[]> = AbstractConstructor<
-  T,
-  A
+type AbstractClass<T, A extends readonly unknown[] = any[]> = Omit<
+  AbstractConstructor<T, A>,
+  'prototype'
 > & { prototype: T }
 
 export type { AbstractClass as default }

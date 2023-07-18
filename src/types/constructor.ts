@@ -11,6 +11,8 @@
  * @template T - Constructor instance type
  * @template A - Constructor arguments
  */
-type Constructor<T, A extends unknown[] = any[]> = new (...args: A) => T
+type Constructor<T, A extends readonly unknown[] = any[]> = new (
+  ...args: A
+) => T
 
 export type { Constructor as default }
