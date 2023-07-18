@@ -174,7 +174,7 @@
     "yaml-eslint-parser": "1.2.2"
   },
   "peerDependencies": {
-    "typescript": ">=4.9.0"
+    "typescript": ">=5.0.4"
   },
   "peerDependenciesMeta": {
     "typescript": {
