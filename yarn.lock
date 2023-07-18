@@ -9494,7 +9494,7 @@ __metadata:
 
 "vitest@patch:vitest@npm%3A0.33.0#patches/vitest+0.33.0.dev.patch::locator=%40flex-development%2Ftutils%40workspace%3A.":
   version: 0.33.0
-  resolution: "vitest@patch:vitest@npm%3A0.33.0#patches/vitest+0.33.0.dev.patch::version=0.33.0&hash=31800b&locator=%40flex-development%2Ftutils%40workspace%3A."
+  resolution: "vitest@patch:vitest@npm%3A0.33.0#patches/vitest+0.33.0.dev.patch::version=0.33.0&hash=578689&locator=%40flex-development%2Ftutils%40workspace%3A."
   dependencies:
     "@types/chai": "npm:^4.3.5"
     "@types/chai-subset": "npm:^1.3.3"
@@ -9548,7 +9548,7 @@ __metadata:
       optional: true
   bin:
     vitest: vitest.mjs
-  checksum: 31770fe9501de694c659e9443ac38877113d7b6cb6c6bfb508484dfb0076790621ff66e946315d70742cc59e05828ee085f464005012aba2a1a0ec65c8124594
+  checksum: 7e964f411f5ba4b1ee493768cc9739f3df9aa3f7eb556bd7ac239ed0d75e7185ff334e7540e52c4ef4347a7b8af15713c4fd51eb168e46f31d601e59cd3a18be
   languageName: node
   linkType: hard
 

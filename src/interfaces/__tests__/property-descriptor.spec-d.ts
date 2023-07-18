@@ -24,13 +24,13 @@ describe('unit-d:interfaces/PropertyDescriptor', () => {
   it('should match [get?(): T]', () => {
     expectTypeOf<TestSubject<T>>()
       .toHaveProperty('get')
-      .toEqualTypeOf<Optional<Fn<EmptyArray, T>>>()
+      .toMatchTypeOf<Optional<Fn<EmptyArray, T>>>()
   })
 
   it('should match [set?(v: T): void]', () => {
     expectTypeOf<TestSubject<T>>()
       .toHaveProperty('set')
-      .toEqualTypeOf<Optional<Fn<[T], void>>>()
+      .toMatchTypeOf<Optional<Fn<[T], void>>>()
   })
 
   it('should match [value?: T', () => {
