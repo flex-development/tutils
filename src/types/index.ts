@@ -27,6 +27,7 @@ export type { default as ExactOptionalPropertyTypes } from './exact-optional-pro
 export type { default as Fallback } from './fallback'
 export type { default as Falsy } from './falsy'
 export type { default as FIXME } from './fixme'
+export type { default as Flat } from './flat'
 export type { default as Float } from './float'
 export type { default as Fn } from './fn'
 export type { default as Get } from './get'
