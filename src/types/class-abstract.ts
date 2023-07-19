@@ -4,6 +4,7 @@
  */
 
 import type AbstractConstructor from './constructor-abstract'
+import type Omit from './omit'
 
 /**
  * An [`abstract class`][1].

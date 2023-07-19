@@ -5,6 +5,7 @@
 
 import type EmptyArray from './empty-array'
 import type EmptyObject from './empty-object'
+import type OmitNative from './omit-native'
 
 /**
  * Construct a tuple from a record.
@@ -24,7 +25,7 @@ type TupleFromRecord<
     ? Acc
     : Acc['length'] extends infer I extends number
     ? I extends keyof M
-      ? TupleFromRecord<Omit<M, I>, F, [...Acc, M[I]]>
+      ? TupleFromRecord<OmitNative<M, I>, F, [...Acc, M[I]]>
       : TupleFromRecord<M, F, [...Acc, F]>
     : never
   : never

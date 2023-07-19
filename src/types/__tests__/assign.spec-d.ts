@@ -9,6 +9,7 @@ import type TestSubject from '../assign'
 import type EmptyArray from '../empty-array'
 import type EmptyObject from '../empty-object'
 import type Nilable from '../nilable'
+import type Omit from '../omit'
 import type { tag } from '../opaque'
 import type PropertyKey from '../property-key'
 

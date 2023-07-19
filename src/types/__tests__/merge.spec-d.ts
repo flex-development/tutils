@@ -11,6 +11,7 @@ import type EmptyObject from '../empty-object'
 import type TestSubject from '../merge'
 import type Nilable from '../nilable'
 import type Nullable from '../nullable'
+import type Omit from '../omit'
 import type { tag } from '../opaque'
 import type PropertyKey from '../property-key'
 

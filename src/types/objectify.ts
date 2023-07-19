@@ -37,9 +37,7 @@ type Objectify<T> = IsAny<T> extends true
         : T extends Opaque<unknown>
         ? T
         : T extends Primitive
-        ? {
-            [H in keyof Opaque<T> as H extends typeof opaque ? never : H]: H
-          }
+        ? { [H in keyof Opaque<T> as H extends typeof opaque ? never : H]: H }
         : T)]: K extends keyof T ? T[K] : never
     }
   : never
