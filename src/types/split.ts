@@ -7,11 +7,13 @@ import type EmptyArray from './empty-array'
 import type EmptyString from './empty-string'
 import type IfAny from './if-any'
 import type IfNever from './if-never'
+import type NIL from './nil'
+import type Nilable from './nilable'
 import type Optional from './optional'
 import type Stringify from './stringify'
 
 /**
- * Converts string `T` to an array of substrings.
+ * Construct a substring array.
  *
  * @todo examples
  *
@@ -22,7 +24,7 @@ import type Stringify from './stringify'
  * @template Acc - Substring accumulator
  */
 type Split<
-  T extends string,
+  T extends Nilable<string>,
   S extends Optional<RegExp | string> = undefined,
   Acc extends readonly string[] = EmptyArray
 > = IfAny<
@@ -31,7 +33,9 @@ type Split<
   IfNever<
     T,
     EmptyArray,
-    T extends object
+    T extends NIL
+      ? EmptyArray
+      : T extends object
       ? S extends undefined
         ? [T]
         : string[]
