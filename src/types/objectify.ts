@@ -25,9 +25,9 @@ import type PropertyKey from './property-key'
  * @template T - Type to evaluate
  */
 type Objectify<T> = IsAny<T> extends true
-  ? Record<PropertyKey, T>
+  ? { [K in PropertyKey]: T }
   : IsNever<T> extends true
-  ? Record<PropertyKey & T, T>
+  ? { [K in never]: T }
   : T extends unknown
   ? {
       [K in keyof (EmptyObject extends T

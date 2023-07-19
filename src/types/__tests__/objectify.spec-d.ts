@@ -12,24 +12,20 @@ import type { tag as opaque } from '../opaque'
 import type PropertyKey from '../property-key'
 
 describe('unit-d:types/Objectify', () => {
+  it('should equal {} if T is never', () => {
+    expectTypeOf<TestSubject<never>>().toEqualTypeOf<{}>()
+  })
+
   it('should equal {} if T is unknown', () => {
     expectTypeOf<TestSubject<unknown>>().toEqualTypeOf<{}>()
   })
 
-  it('should equal Record<PropertyKey, T> if T is any', () => {
+  it('should equal { [K in PropertyKey]: T } if T is any', () => {
     // Arrange
     type T = any
 
     // Expect
-    expectTypeOf<TestSubject<T>>().toEqualTypeOf<Record<PropertyKey, T>>()
-  })
-
-  it('should equal Record<T, T> if T is never', () => {
-    // Arrange
-    type T = never
-
-    // Expect
-    expectTypeOf<TestSubject<T>>().toEqualTypeOf<Record<T, T>>()
+    expectTypeOf<TestSubject<T>>().toEqualTypeOf<{ [K in PropertyKey]: T }>()
   })
 
   describe('T extends ObjectCurly', () => {
@@ -47,6 +43,7 @@ describe('unit-d:types/Objectify', () => {
 
     describe('EmptyObject extends T', () => {
       it('should equal {}', () => {
+        expectTypeOf<TestSubject<{}>>().toEqualTypeOf<{}>()
         expectTypeOf<TestSubject<EmptyObject>>().toEqualTypeOf<{}>()
       })
     })

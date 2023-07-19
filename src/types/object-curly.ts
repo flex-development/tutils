@@ -4,7 +4,6 @@
  */
 
 import type PropertyKey from './property-key'
-import type Simplify from './simplify'
 
 /**
  * A curly-braced object.
@@ -12,14 +11,13 @@ import type Simplify from './simplify'
  * Curly-braced objects are `object` types that are **not** arrays or functions
  * (e.g. instance objects, pojos).
  *
- * **Note**: Curly-braced object types **cannot** have a `Symbol.unscopables` or
- * `arguments` property.
+ * **Note**: The properties {@linkcode Symbol.unscopables} and `arguments` are
+ * used to identify arrays and functions.
  */
-type ObjectCurly = Simplify<
-  {
-    [Symbol.unscopables]?: never
-    arguments?: never
-  } & { [K in PropertyKey]?: any }
->
+type ObjectCurly = {
+  [x: PropertyKey]: any
+  readonly [Symbol.unscopables]?: never
+  readonly arguments?: never
+}
 
 export type { ObjectCurly as default }
