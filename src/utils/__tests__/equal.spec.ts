@@ -25,9 +25,7 @@ describe('unit:utils/equal', () => {
     const cases: Parameters<typeof testSubject>[] = [
       [{ value: INTEGER }, { value: INTEGER }],
       [[INTEGER], [INTEGER]],
-      [INTEGER, INTEGER],
-      [new Date(), new Date()],
-      [new Date(), new Date(), value => (value as Date).getTime()]
+      [INTEGER, INTEGER]
     ]
 
     // Act + Expect

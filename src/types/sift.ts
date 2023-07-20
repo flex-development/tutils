@@ -5,10 +5,31 @@
 
 import type EmptyArray from './empty-array'
 import type Falsy from './falsy'
-import type IfAnyOrNever from './if-any-or-never'
-import type IfEqual from './if-equal'
+import type IfNever from './if-never'
 import type IfTuple from './if-tuple'
-import type UnionToTuple from './union-to-tuple'
+import type IsAnyOrNever from './is-any-or-never'
+import type Nilable from './nilable'
+import type Subtract from './subtract'
+import type Writable from './writable'
+
+/**
+ * Construct a tuple by spreading each array in `M`.
+ *
+ * @internal
+ *
+ * @template M - Tuple elements map
+ * @template I - Current index
+ * @template Acc - Tuple elements accumulator
+ */
+type BuildTuple<
+  M extends unknown[][],
+  I extends number = M['length'],
+  Acc extends readonly unknown[] = EmptyArray
+> = I extends 0
+  ? Acc
+  : Subtract<I, 1> extends infer N extends number
+  ? BuildTuple<M, N, [...M[N], ...Acc]>
+  : never
 
 /**
  * Removes {@linkcode Falsy} values from `T`.
@@ -17,7 +38,7 @@ import type UnionToTuple from './union-to-tuple'
  *  type X = Sift<readonly [EmptyString, 0, 0n, false, null, undefined]>
  *  // []
  * @example
- *  type X = Sift<readonly [Nilable<string>, 0, boolean]>
+ *  type X = Sift<readonly [Nilable<string>, 0, boolean?]>
  *  // [string, true]
  * @example
  *  type X = Sift<Nilable<string>[]>
@@ -31,16 +52,18 @@ import type UnionToTuple from './union-to-tuple'
  *
  * @template T - Array to filter
  */
-type Sift<T extends readonly unknown[]> = IfAnyOrNever<
-  T,
-  EmptyArray,
-  T extends Readonly<EmptyArray>
-    ? T
-    : T extends readonly (infer I)[]
-    ? Exclude<I, Falsy> extends infer V
-      ? IfEqual<I, V, T, IfTuple<T, UnionToTuple<V>, V[]>>
-      : never
+type Sift<T extends Nilable<readonly unknown[]>> = IsAnyOrNever<T> extends true
+  ? EmptyArray
+  : T extends readonly unknown[]
+  ? Writable<{
+      [K in keyof T]-?: Exclude<T[K], Falsy> extends infer V
+        ? IfTuple<T, IfNever<V, EmptyArray, [V]>, V>
+        : never
+    }> extends infer U
+    ? U extends unknown[][]
+      ? BuildTuple<U>
+      : U
     : never
->
+  : EmptyArray
 
 export type { Sift as default }
