@@ -15,6 +15,10 @@ import isString from './is-string'
  * [1]: https://developer.mozilla.org/docs/Glossary/Primitive
  * [2]: https://restfulapi.net/json-data-types
  *
+ * @see {@linkcode JsonPrimitive}
+ *
+ * @todo examples
+ *
  * @param {unknown} value - Value to check
  * @return {value is JsonPrimitive} `true` if `value` is primitive JSON value
  */
