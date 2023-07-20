@@ -3,14 +3,8 @@
  * @module tutils/utils/includes
  */
 
-import type {
-  Fn,
-  IfString,
-  NIL,
-  Nilable,
-  NumberString,
-  PropertyKey
-} from '#src/types'
+import type { Fn, IfString, NIL, Nilable, PropertyKey } from '#src/types'
+import cast from './cast'
 import equal from './equal'
 import isString from './is-string'
 
@@ -25,26 +19,30 @@ import isString from './is-string'
  * items to unique keys. If provided, two items with the same identity key will
  * be considered equal.
  *
+ * @todo examples
+ *
  * @template T - Value to search
  * @template K - Identity key type
  *
  * @param {T} value - Value to search
  * @param {unknown} target - Search target
- * @param {Nilable<Fn<[T[0]], K>>} [identity] - Identity key function
- * @param {number | undefined} [position=0] - Position to begin search
- * @return {boolean} `true` if `data` includes `target`
+ * @param {Nilable<Fn<[T[number]], K>>} [identity] - Identity key function
+ * @param {Nilable<number>} [position] - Position to begin search
+ * @return {boolean} `true` if `value` includes `target`
  */
-function includes<
+const includes = <
   T extends string | readonly unknown[],
-  K extends PropertyKey = NumberString
+  K extends PropertyKey = PropertyKey
 >(
   value: T,
   target: unknown,
-  identity?: IfString<T, NIL, Nilable<Fn<[T[0]], K>>>,
-  position: number | undefined = 0
-): boolean {
+  identity?: IfString<T, NIL, Nilable<Fn<[T[number]], K>>>,
+  position?: Nilable<number>
+): boolean => {
+  position ??= 0
+
   return isString(value)
-    ? value.includes(target as string, position)
+    ? value.includes(cast(target), position)
     : value.slice(position).some(item => equal(target, item, identity))
 }
 
