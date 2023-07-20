@@ -27,6 +27,12 @@ const config = {
       rules: {
         '@typescript-eslint/ban-types': 0
       }
+    },
+    {
+      files: ['src/utils/noop.ts'],
+      rules: {
+        'unicorn/no-useless-undefined': 0
+      }
     }
   ],
   root: true
