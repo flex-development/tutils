@@ -6,6 +6,7 @@
 import type Vehicle from '#fixtures/types/vehicle'
 import VEHICLE from '#fixtures/vehicle'
 import type { PropertyKey } from '#src/types'
+import clone from '../clone'
 import define from '../define'
 import descriptor from '../descriptor'
 import testSubject from '../enumerable'
@@ -14,7 +15,7 @@ describe('unit:utils/enumerable', () => {
   let value: Vehicle
 
   beforeAll(() => {
-    value = define({ ...VEHICLE }, 'vrm', {
+    value = define(clone(VEHICLE), 'vrm', {
       ...descriptor(VEHICLE, 'vin'),
       enumerable: false,
       value: faker.vehicle.vrm()
