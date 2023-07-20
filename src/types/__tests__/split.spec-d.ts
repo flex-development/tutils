@@ -181,8 +181,8 @@ describe('unit-d:types/Split', () => {
       expectTypeOf<TestSubject<T, S>>().toEqualTypeOf<
         | Lowercase<string>[]
         | ['a.b.c']
-        | ['a', '.', 'b', '.', 'c']
         | ['a', 'b', 'c']
+        | ['a', Dot, 'b', Dot, 'c']
         | ['abc']
       >()
     })

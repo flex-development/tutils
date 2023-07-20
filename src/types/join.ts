@@ -8,6 +8,7 @@ import type EmptyString from './empty-string'
 import type Fallback from './fallback'
 import type Joinable from './joinable'
 import type NIL from './nil'
+import type Nilable from './nilable'
 import type Stringify from './stringify'
 
 /**
@@ -24,9 +25,9 @@ import type Stringify from './stringify'
  * @template S - Array item separator
  */
 type Join<
-  T extends readonly Joinable[],
-  S extends string = ','
-> = T extends Readonly<EmptyArray>
+  T extends Nilable<readonly Joinable[]>,
+  S extends Nilable<string> = ','
+> = T extends Nilable<Readonly<EmptyArray>>
   ? EmptyString
   : T extends readonly [Joinable?]
   ? Stringify<Fallback<T[0], EmptyString, NIL>>
@@ -34,12 +35,12 @@ type Join<
       infer H extends Joinable,
       ...infer R extends readonly Joinable[]
     ]
-  ? `${Fallback<H, EmptyString, NIL>}${S}${Join<R, S>}`
+  ? `${Fallback<H, EmptyString, NIL>}${Fallback<S, ',', NIL>}${Join<R, S>}`
   : T extends readonly [
       ...infer R extends readonly Joinable[],
       infer L extends Joinable
     ]
-  ? `${Join<R, S>}${S}${Fallback<L, EmptyString, NIL>}`
+  ? `${Join<R, S>}${Fallback<S, ',', NIL>}${Fallback<L, EmptyString, NIL>}`
   : string
 
 export type { Join as default }

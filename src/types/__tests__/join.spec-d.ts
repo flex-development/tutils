@@ -22,6 +22,13 @@ describe('unit-d:types/Join', () => {
     expectTypeOf<TestSubject<never>>().toBeNever()
   })
 
+  describe('T extends NIL', () => {
+    it('should equal EmptyString', () => {
+      expectTypeOf<TestSubject<null>>().toEqualTypeOf<EmptyString>()
+      expectTypeOf<TestSubject<undefined>>().toEqualTypeOf<EmptyString>()
+    })
+  })
+
   describe('T extends readonly Joinable[]', () => {
     type Vehicles = [Vehicle, Vehicle, Vehicle]
 

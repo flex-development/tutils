@@ -3,28 +3,34 @@
  * @module tutils/utils/split
  */
 
-import type { Split } from '#src/types'
+import type { Nilable, Optional, Split } from '#src/types'
+import cast from './cast'
+import isNIL from './is-nil'
 
 /**
- * Converts `string` into a substring array using `delimiter`.
+ * Converts a string into a substring array.
  *
- * If `delimiter` is omitted, the substring array will only contain `string`.
+ * If a separator string or pattern is not provided, the substring array will
+ * only contain the given string.
+ *
+ * @see {@linkcode Split}
+ *
+ * @todo examples
  *
  * @template T - String to split
- * @template Delimiter - String delimiter
+ * @template S - String separator
  *
- * @param {T} string - String to split
- * @param {Delimiter} [delimiter] - String or regular expression identifying the
- * character or characters to use when separating `string`
- * @param {number | undefined} [limit] - Value used to limit array size
- * @return {Split<T, Delimiter>} Substring array
+ * @param {T} str - String to split
+ * @param {S} [separator] - String or regular expression used to separate `str`
+ * @param {Nilable<number>} [limit] - Max substring array length
+ * @return {Split<T, S>} Substring array
  */
-function split<T extends string, Delimiter extends RegExp | string | undefined>(
-  string: T,
-  delimiter?: Delimiter,
-  limit?: number | undefined
-): Split<T, Delimiter> {
-  return string.split<T, Delimiter>(delimiter, limit)
+const split = <T extends Nilable<string>, S extends Optional<RegExp | string>>(
+  str: T,
+  separator?: S,
+  limit?: Nilable<number>
+): Split<T, S> => {
+  return cast(isNIL(str) ? [] : str.split(separator, limit ?? undefined))
 }
 
 export default split

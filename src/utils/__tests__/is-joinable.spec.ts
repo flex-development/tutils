@@ -4,12 +4,13 @@
  */
 
 import VEHICLE from '#fixtures/vehicle'
+import DOT from '../dot'
 import testSubject from '../is-joinable'
 
 describe('unit:utils/isJoinable', () => {
   it('should return false if value is not joinable', () => {
     // Arrange
-    const cases: Parameters<typeof testSubject>[] = [[VEHICLE], [Symbol('.')]]
+    const cases: Parameters<typeof testSubject>[] = [[VEHICLE], [Symbol(DOT)]]
 
     // Act + Expect
     cases.forEach(([value]) => expect(testSubject(value)).to.be.false)

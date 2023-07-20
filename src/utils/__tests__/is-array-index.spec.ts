@@ -3,11 +3,12 @@
  * @module tutils/utils/tests/unit/isArrayIndex
  */
 
+import DOT from '../dot'
 import testSubject from '../is-array-index'
 
 describe('unit:utils/isArrayIndex', () => {
   it('should return false if value is not an array index', () => {
-    expect(testSubject('.')).to.be.false
+    expect(testSubject(DOT)).to.be.false
   })
 
   it('should return true if value is an array index', () => {

@@ -8,6 +8,7 @@ codecov
 commitlintrc
 dedupe
 dequal
+desegment
 dessant
 dohm
 fbca
