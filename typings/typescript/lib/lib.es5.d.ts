@@ -1,11 +1,14 @@
 import type {
   CompareResult,
+  Entries,
   OneOrMany,
+  PropertyKey,
   Split,
   Timestamp,
   Trim,
   TrimEnd,
-  TrimStart
+  TrimStart,
+  Values
 } from '@flex-development/tutils'
 
 declare global {
@@ -34,6 +37,41 @@ declare global {
      * @return {Timestamp<'iso'>} ISO 8601 timestamp
      */
     toISOString(): Timestamp<'iso'>
+  }
+
+  interface ObjectConstructor {
+    /**
+     * Returns an array containing an object's own enumerable string-keyed
+     * property key-value pairs.
+     *
+     * @template T - Object containing properties and methods
+     *
+     * @param {T} o - Object containing properties and methods
+     * @return {Entries<T>} Enumerable string-keyed property key-value pairs
+     */
+    entries<T extends object>(o: T): Entries<T>
+
+    /**
+     * Returns an array containing an object's own enumerable string-keyed
+     * property names.
+     *
+     * @template K - Key type
+     *
+     * @param {object} o - Object containing properties and methods
+     * @return {Extract<K, string>[]} Enumerable string-keyed property names
+     */
+    keys<K extends PropertyKey = string>(o: object): Extract<K, string>[]
+
+    /**
+     * Returns an array containing an object's own enumerable string-keyed
+     * property values.
+     *
+     * @template T - Object containing properties and methods
+     *
+     * @param {T} o - Object containing properties and methods
+     * @return {Values<T>} Enumerable string-keyed property values
+     */
+    values<T extends object>(o: T): Values<T>
   }
 
   interface String {

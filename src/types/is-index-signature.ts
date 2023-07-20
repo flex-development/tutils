@@ -6,8 +6,7 @@
 import type IfAnyOrNever from './if-any-or-never'
 import type IfEqual from './if-equal'
 import type IfNever from './if-never'
-import type Opaque from './opaque'
-import type Primitive from './primitive'
+import type Objectify from './objectify'
 import type PropertyKey from './property-key'
 
 /**
@@ -29,11 +28,7 @@ type IsIndexSignature<T, K extends PropertyKey> = IfNever<
     T extends unknown
       ? K extends PropertyKey
         ? {
-            [H in keyof (T extends Opaque<unknown>
-              ? T
-              : T extends NonNullable<Primitive>
-              ? Opaque<T>
-              : T) as H extends keyof Object
+            [H in keyof Objectify<T> as H extends keyof Object
               ? never
               : {} extends Record<H, unknown>
               ? K extends H

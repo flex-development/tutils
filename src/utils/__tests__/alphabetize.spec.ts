@@ -10,37 +10,29 @@ import testSubject from '../alphabetize'
 describe('unit:utils/alphabetize', () => {
   type T = { letter: string }
 
-  it('should return alphabetized copy of array', () => {
+  it('should return alphabetized copy of arr in ascending order', () => {
     // Arrange
-    const array: T[] = [{ letter: 'c' }, { letter: 'b' }, { letter: 'a' }]
+    const arr: T[] = [{ letter: 'c' }, { letter: 'b' }, { letter: 'a' }]
     const mapper: Fn<[T], string> = ({ letter }: T): string => letter
 
     // Act
-    const result = testSubject(array, mapper)
+    const result = testSubject(arr, mapper)
 
     // Act + Expect
-    expect(array).to.deep.equal(array).and.not.deep.equal(result)
-    expect(result).to.deep.equal([
-      { letter: 'a' },
-      { letter: 'b' },
-      { letter: 'c' }
-    ])
+    expect(result).to.eql([{ letter: 'a' }, { letter: 'b' }, { letter: 'c' }])
+    expect(result).to.not.equal(arr)
   })
 
-  it('should return alphabetized copy of array in descending order', () => {
+  it('should return alphabetized copy of arr in descending order', () => {
     // Arrange
-    const array: T[] = [{ letter: 'a' }, { letter: 'b' }, { letter: 'c' }]
+    const arr: T[] = [{ letter: 'a' }, { letter: 'b' }, { letter: 'c' }]
     const mapper: Fn<[T], string> = ({ letter }: T): string => letter
 
     // Act
-    const result = testSubject(array, mapper, { order: SortOrder.DESC })
+    const result = testSubject(arr, mapper, { order: SortOrder.DESC })
 
     // Act + Expect
-    expect(array).to.deep.equal(array).and.not.deep.equal(result)
-    expect(result).to.deep.equal([
-      { letter: 'c' },
-      { letter: 'b' },
-      { letter: 'a' }
-    ])
+    expect(result).to.eql([{ letter: 'c' }, { letter: 'b' }, { letter: 'a' }])
+    expect(result).to.not.equal(arr)
   })
 })

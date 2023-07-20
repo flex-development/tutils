@@ -1,6 +1,6 @@
 /**
  * @file Utilities - AlphabetizeOptions
- * @module tutils/utils/AlphabetizeOptions
+ * @module tutils/utils/alphabetize/options
  */
 
 import type { SortOrder } from '#src/enums'
@@ -11,7 +11,7 @@ import type { OneOrMany, Optional } from '#src/types'
  *
  * @see https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Intl/Collator/Collator
  */
-type AlphabetizeOptions = {
+interface AlphabetizeOptions {
   /**
    * Indicate if uppercase or lowercase strings should be sorted first.
    *

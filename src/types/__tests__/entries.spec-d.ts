@@ -18,16 +18,16 @@ describe('unit-d:types/Entries', () => {
     expectTypeOf<TestSubject<never>>().toEqualTypeOf<EmptyArray>()
   })
 
-  it('should equal [string, T[]][] if T is any', () => {
+  it('should equal [string, T][] if T is any', () => {
     // Arrange
     type T = any
 
     // Expect
-    expectTypeOf<TestSubject<T>>().toEqualTypeOf<[string, T[]][]>()
+    expectTypeOf<TestSubject<T>>().toEqualTypeOf<[string, T][]>()
   })
 
-  it('should equal [string, any[]][] if object extends T', () => {
-    expectTypeOf<TestSubject<object>>().toEqualTypeOf<[string, any[]][]>()
+  it('should equal [string, any][] if object extends T', () => {
+    expectTypeOf<TestSubject<object>>().toEqualTypeOf<[string, any][]>()
   })
 
   describe('T extends ObjectCurly', () => {

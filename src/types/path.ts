@@ -3,27 +3,21 @@
  * @module tutils/types/Path
  */
 
-import type At from './at'
 import type BuiltIn from './built-in'
 import type Dot from './dot'
 import type Fn from './fn'
-import type Get from './get'
 import type IfAny from './if-any'
-import type IfNegative from './if-negative'
-import type IfNumber from './if-number'
+import type IfIndexSignature from './if-index-signature'
+import type IfNever from './if-never'
 import type IfSymbol from './if-symbol'
-import type Indices from './indices'
+import type Intersection from './intersection'
 import type Join from './join'
 import type Keyof from './keyof'
 import type Length from './length'
 import type Nilable from './nilable'
 import type NumberString from './number-string'
-import type Opaque from './opaque'
-import type Primitive from './primitive'
-import type PropertyKey from './property-key'
+import type Remap from './remap'
 import type Stringify from './stringify'
-import type Subtract from './subtract'
-import type UnwrapNumeric from './unwrap-numeric'
 
 /**
  * Constructs a union of nested and top-level property paths.
@@ -35,6 +29,7 @@ import type UnwrapNumeric from './unwrap-numeric'
  * **Note**: TypeScript does not track enumerability. Non-enumerable properties
  * are removed for {@linkcode BuiltIn} types only.
  *
+ * @todo document enumerability tracking constraints
  * @todo examples
  *
  * @see https://github.com/microsoft/TypeScript/issues/9726
@@ -47,76 +42,44 @@ type Path<T, E extends Nilable<boolean> = false> = Extract<
     T,
     keyof T,
     T extends unknown
-      ? {
-          [H in keyof (T extends string
-            ? number extends Length<T>
-              ? Opaque<T>
-              : T & {
-                  [N in Stringify<Indices<T>> as IfNegative<N, never, N>]: At<
-                    T,
-                    N
-                  >
-                }
-            : T extends Primitive
-            ? Opaque<T>
-            : T) as IfSymbol<
-            H,
-            never,
-            E extends true
-              ? T extends string | readonly unknown[]
-                ? IfNumber<
-                    H,
-                    H,
-                    H extends Keyof<unknown[] | string> ? never : H
-                  >
-                : T extends Readonly<Exclude<BuiltIn, Error>>
-                ? H extends Keyof<Exclude<BuiltIn, Error>>
-                  ? never
+      ? Remap<T> extends infer U
+        ? {
+            [H in keyof U as IfSymbol<
+              H,
+              never,
+              IfIndexSignature<
+                T,
+                H,
+                number extends H
+                  ? T extends string | readonly unknown[]
+                    ? number extends Length<T>
+                      ? H
+                      : never
+                    : H
+                  : H,
+                E extends true
+                  ? T extends Readonly<BuiltIn>
+                    ? IfNever<Intersection<H, Keyof<BuiltIn>>, H, never>
+                    : H
                   : H
-                : H
-              : H
-          > extends infer H extends PropertyKey
-            ? T extends string | readonly unknown[]
-              ? number extends Length<T>
-                ? H
-                : number extends H
-                ? never
-                : H
-              : H
-            : never]: (
-            T extends string | readonly unknown[]
-              ? number extends Length<T>
-                ? H
-                : H extends Stringify<Indices<T>>
-                ? UnwrapNumeric<H> extends infer N extends number
-                  ? UnwrapNumeric<
-                      Exclude<`-${Subtract<Length<Required<T>>, N>}`, '-0'>
-                    > extends infer M extends number
-                    ? M | N
-                    : never
-                  : never
-                : H
-              : H
-          ) extends infer H extends PropertyKey
-            ?
-                | H
-                | Stringify<H>
-                | (Get<T, H> extends infer V
-                    ? [H, NonNullable<V>] extends [number, string]
-                      ? T extends readonly unknown[]
-                        ? Path<V, E> extends infer P extends NumberString
-                          ? Join<[Stringify<H>, P], Dot>
-                          : never
-                        : never
+              >
+            >]:
+              | H
+              | Stringify<H>
+              | (U[H] extends infer V
+                  ? V extends unknown
+                    ? [H, V] extends [number, string]
+                      ? T extends string
+                        ? never
+                        : Join<[Stringify<H>, Path<V, E>], Dot>
                       : Readonly<Fn> extends V
                       ? never
-                      : Path<V, E> extends infer P extends NumberString
-                      ? Join<[Stringify<H>, P], Dot>
-                      : never
-                    : never)
-            : never
-        } extends infer X
-        ? X[keyof X]
+                      : Join<[Stringify<H>, Path<V, E>], Dot>
+                    : never
+                  : never)
+          } extends infer X
+          ? X[keyof X]
+          : never
         : never
       : never
   >,

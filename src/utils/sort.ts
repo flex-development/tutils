@@ -3,19 +3,25 @@
  * @module tutils/utils/sort
  */
 
-import type { Fn } from '#src/types'
+import type { Fn, Writable } from '#src/types'
+import cast from './cast'
 
 /**
- * Sorts `array` without modifying it.
+ * Sorts an array without modifying it.
  *
- * @template T - Array item type
+ * @see https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
  *
- * @param {ReadonlyArray<T>} array - Array to sort
- * @param {Fn<[T, T], number>} compare - Comparison function
- * @return {T[]} Sorted copy of `array`
+ * @todo examples
+ *
+ * @template T - Array to sort
+ *
+ * @param {T} arr - Array to sort
+ * @param {Fn<[T[number], T[number]], number>} compare - Comparison function
+ * @return {Writable<T>} Sorted copy of target array
  */
-function sort<T>(array: readonly T[], compare: Fn<[T, T], number>): T[] {
-  return [...array].sort(compare)
-}
+const sort = <T extends readonly unknown[]>(
+  arr: T,
+  compare: Fn<[T[number], T[number]], number>
+): Writable<T> => cast([...arr].sort(compare))
 
 export default sort

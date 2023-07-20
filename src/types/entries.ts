@@ -43,14 +43,14 @@ import type Stringify from './stringify'
  */
 type Entries<T extends Nilable<object>> = IfAny<
   T,
-  [string, T[]][],
+  [string, T][],
   IfNever<
     T,
     EmptyArray,
     T extends readonly unknown[]
       ? { [K in keyof T]: [K extends number ? Stringify<K> : K, T[K]] }
       : object extends T
-      ? IfEqual<T, object, [string, any[]][], EmptyArray>
+      ? IfEqual<T, object, [string, any][], EmptyArray>
       : T extends object
       ? Head<Stringify<Path<T, true>>, Dot> extends infer H extends string
         ? IfNever<H, EmptyArray, { [K in H]: [K, Get<T, K>] }[H][]>

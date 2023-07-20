@@ -4,29 +4,31 @@
  */
 
 import { SortOrder, type CompareResult } from '#src/enums'
-import type { Fn, Nilable } from '#src/types'
+import type { Fn, Nilable, Writable } from '#src/types'
 import type AlphabetizeOptions from './alphabetize.options'
 import sort from './sort'
 
 /**
- * Sorts `array` alphabetically without modifying it.
+ * Sorts an array alphabetically without modifying it.
  *
- * A `mapper` is used to convert array items to strings.
+ * A `mapper` can be used to convert array items to strings.
  *
  * @see {@linkcode AlphabetizeOptions}
  *
- * @template T - Array item type
+ * @todo examples
  *
- * @param {ReadonlyArray<T>} array - Array to sort
- * @param {Fn<[T], string>} mapper - Mapper function
+ * @template T - Array to sort
+ *
+ * @param {T} arr - Array to sort
+ * @param {Fn<[T[number]], string>} mapper - Array item interpolator
  * @param {Nilable<AlphabetizeOptions>} [options={}] - Comparsion options
- * @return {T[]} `array` sorted alphabetically
+ * @return {Writable<T>} Alphabetically sorted copy of target array
  */
-function alphabetize<T>(
-  array: readonly T[],
-  mapper: Fn<[T], string>,
+const alphabetize = <T extends readonly unknown[]>(
+  arr: T,
+  mapper: Fn<[T[number]], string>,
   options: Nilable<AlphabetizeOptions> = null
-): T[] {
+): Writable<T> => {
   const {
     caseFirst = 'upper',
     locales,
@@ -35,7 +37,7 @@ function alphabetize<T>(
     ...opts
   } = (options ??= {})
 
-  return sort(array, (a: T, b: T): CompareResult => {
+  return sort(arr, (a: T[number], b: T[number]): CompareResult => {
     /**
      * Target string.
      *

@@ -1168,7 +1168,10 @@ const config = {
       preferredTypes: {
         '*': false,
         '.<>': false,
-        'Array<>': { replacement: '[]' }
+        'Array<>': { replacement: '[]' },
+        Object: { replacement: 'object' },
+        'Object<>': { replacement: 'Record<>' },
+        object: 'object'
       },
       structuredTags: {
         const: {

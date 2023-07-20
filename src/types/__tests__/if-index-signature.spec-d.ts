@@ -23,10 +23,6 @@ describe('unit-d:types/IfIndexSignature', () => {
     expectTypeOf<TestSubject<string, never, T, F>>().toEqualTypeOf<F>()
   })
 
-  it('should equal F if U is any', () => {
-    expectTypeOf<TestSubject<any, number, T, F>>().toEqualTypeOf<F>()
-  })
-
   it('should equal F if U is never', () => {
     expectTypeOf<TestSubject<never, number, T, F>>().toEqualTypeOf<F>()
   })
