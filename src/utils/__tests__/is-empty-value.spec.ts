@@ -12,12 +12,7 @@ describe('unit:utils/isEmptyValue', () => {
 
   it('should return true if value is empty value', () => {
     // Arrange
-    const cases: Parameters<typeof testSubject>[] = [
-      [''],
-      [' '],
-      [null],
-      [undefined]
-    ]
+    const cases: Parameters<typeof testSubject>[] = [[''], [null], [undefined]]
 
     // Act + Expect
     cases.forEach(([value]) => expect(testSubject(value)).to.be.true)

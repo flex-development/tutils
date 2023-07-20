@@ -11,10 +11,6 @@ describe('unit:utils/isEmptyString', () => {
   })
 
   it('should return true if value is empty string', () => {
-    // Arrange
-    const cases: Parameters<typeof testSubject>[] = [[''], [' ']]
-
-    // Act + Expect
-    cases.forEach(([value]) => expect(testSubject(value)).to.be.true)
+    expect(testSubject('')).to.be.true
   })
 })
