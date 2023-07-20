@@ -6,35 +6,40 @@
 import type { Predicate } from '#src/types'
 
 /**
- * Splits `array` into two groups.
+ * Splits an array into two groups.
  *
  * The first group will contain items that meet `condition`. The second group
  * will contain items that do not meet `condition`.
  *
- * @template T - Array item type
+ * @todo examples
  *
- * @param {ReadonlyArray<T>} array - Array to split
+ * @template T - Array to split
+ *
+ * @param {T} arr - Array to split
  * @param {Predicate<T>} condition - Condition function
- * @return {[T[], T[]]} Condition groups
+ * @return {[T[number][], T[number][]]} Condition groups
  */
-function fork<T>(array: readonly T[], condition: Predicate<T>): [T[], T[]] {
+const fork = <T extends readonly unknown[]>(
+  arr: T,
+  condition: Predicate<T>
+): [T[number][], T[number][]] => {
   /**
-   * Items in {@linkcode array} that do not meet {@linkcode condition}.
+   * Items in {@linkcode arr} that do not meet {@linkcode condition}.
    *
-   * @const {T[]} fail
+   * @const {T[number][]} fail
    */
-  const fail: T[] = []
+  const fail: T[number][] = []
 
   /**
-   * Items in {@linkcode array} that meet {@linkcode condition}.
+   * Items in {@linkcode arr} that meet {@linkcode condition}.
    *
-   * @const {T[]} pass
+   * @const {T[number][]} pass
    */
-  const pass: T[] = []
+  const pass: T[number][] = []
 
   // split array by condition
-  for (const [index, item] of array.entries()) {
-    condition(item, index, array) ? pass.push(item) : fail.push(item)
+  for (const [index, item] of arr.entries()) {
+    ;(condition(item, index, arr) ? pass : fail).push(item)
   }
 
   return [pass, fail]

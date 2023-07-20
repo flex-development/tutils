@@ -3,18 +3,17 @@
  * @module tutils/types/tests/unit-d/Predicate
  */
 
+import type Vehicle from '#fixtures/types/vehicle'
+import type Mapper from '../mapper'
+import type Nullable from '../nullable'
 import type TestSubject from '../predicate'
 
 describe('unit-d:types/Predicate', () => {
-  type T = number
+  it('should Mapper<T, boolean>', () => {
+    // Arrange
+    type T = readonly [Vehicle, Nullable<Vehicle>?]
 
-  it('should be callable with [T, number, readonly T[]]', () => {
-    expectTypeOf<TestSubject<T>>().parameters.toEqualTypeOf<
-      [T, number, readonly T[]]
-    >()
-  })
-
-  it('should return boolean', () => {
-    expectTypeOf<TestSubject<T>>().returns.toBeBoolean()
+    // Expect
+    expectTypeOf<TestSubject<T>>().toEqualTypeOf<Mapper<T, boolean>>()
   })
 })

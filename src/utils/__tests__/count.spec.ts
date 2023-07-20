@@ -3,25 +3,20 @@
  * @module tutils/utils/tests/unit/count
  */
 
-import type { Fn } from '#src/types'
 import testSubject from '../count'
 
 describe('unit:utils/count', () => {
-  let array: number[]
+  let arr: number[]
 
   beforeAll(() => {
-    array = [0, 1, 2, 3, 4]
+    arr = [0, 1, 2, 3, 4]
   })
 
-  it('should return array length if condition is omitted', () => {
-    expect(testSubject(array)).to.equal(array.length)
+  it('should return arr.length if condition is omitted', () => {
+    expect(testSubject(arr)).to.equal(arr.length)
   })
 
-  it('should return number of items in array that meet condition', () => {
-    // Arrange
-    const condition: Fn<[number, number], boolean> = (n: number) => n >= 3
-
-    // Act + Expect
-    expect(testSubject(array, condition)).to.equal(2)
+  it('should return number of items in arr that meet condition', () => {
+    expect(testSubject(arr, (n: number) => n >= 3)).to.equal(2)
   })
 })

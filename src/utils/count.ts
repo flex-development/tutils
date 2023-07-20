@@ -3,25 +3,28 @@
  * @module tutils/utils/count
  */
 
-import type { Fn } from '#src/types'
+import type { Predicate } from '#src/types'
+import constant from './constant'
 
 /**
- * Returns the number of items in `array` that meet `condition`.
+ * Returns the number of items in an array that meet a given `condition`.
  *
- * If `condition` is omitted, the length of `array` will be returned.
+ * The length of the array will be returned if a `condition` is not provided.
  *
- * @template T - Array item type
+ * @todo examples
  *
- * @param {ReadonlyArray<T>} array - Array to query
- * @param {Fn<[T, number], boolean>} [condition=()=>true] - Condition function
- * @return {number} Number of items in `array` that meet `condition`
+ * @template T - Array to query
+ *
+ * @param {T} arr - Array to query
+ * @param {Predicate<T>} [condition=constant(true)] - Condition function
+ * @return {number} Number of items in `arr` that meet `condition`
  */
-function count<T>(
-  array: readonly T[],
-  condition: Fn<[T, number], boolean> = () => true
-): number {
-  return array.reduce((acc: number, curr: T, index: number): number => {
-    return condition(curr, index) ? acc + 1 : acc
+const count = <T extends readonly unknown[]>(
+  arr: T,
+  condition: Predicate<T> = constant(true)
+): number => {
+  return arr.reduce<number>((acc, curr, index) => {
+    return condition(curr, index, arr) ? ++acc : acc
   }, 0)
 }
 

@@ -3,19 +3,19 @@
  * @module tutils/types/Predicate
  */
 
-import type Fn from './fn'
+import type Mapper from './mapper'
 
 /**
- * Function that is called once per each item in `array` and returns a boolean
- * indicating if `item` meets a certain condition.
+ * Function called once per each item in an array and returns a `boolean` value
+ * that indicates if an item meets certain conditions.
  *
- * @template T - Array item type
+ * @template T - Array being evaluated
  *
- * @param {T} item - Current array item
+ * @param {T[number]} item - Current array item
  * @param {number} index - Index of `item` in `array`
- * @param {ReadonlyArray<T>} array - Array being queried
- * @return {boolean} `true` if condition is met, `false` otherwise
+ * @param {T} array - Array being evaluated
+ * @return {boolean} Boolean indicating if `item` meets given conditions
  */
-type Predicate<T = unknown> = Fn<[T, number, readonly T[]], boolean>
+type Predicate<T extends readonly unknown[]> = Mapper<T, boolean>
 
 export type { Predicate as default }

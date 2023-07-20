@@ -3,33 +3,39 @@
  * @module tutils/utils/select
  */
 
-import type { Fn, Nilable } from '#src/types'
+import type { Mapper, Nilable, Predicate } from '#src/types'
+import cast from './cast'
+import constant from './constant'
 
 /**
- * Performs `filter` and `map` operations on `array` in one iteration.
+ * Performs `filter` and `map` operations on an array in one iteration.
  *
- * Does nothing if `filter` and `map` are omitted.
+ * If `filter` and `map` are omitted, all array items will be selected.
  *
- * @template T - Array item type
- * @template V - Mapped and filtered array item type
+ * @see {@linkcode Mapper}
+ * @see {@linkcode Predicate}
  *
- * @param {ReadonlyArray<T>} array - Array to filter and map
- * @param {Nilable<Fn<[T, number], boolean>>} [filter] - Filter function
- * @param {Nilable<Fn<[T, number], V>>} [map] - Map function
- * @return {V[]} Filtered and mapped `array`
+ * @todo examples
+ *
+ * @template T - Array to select from
+ * @template U - Filtered and mapped array item type
+ *
+ * @param {Nilable<T>} arr - Array to select from
+ * @param {Nilable<Predicate<T>>} [filter] - Filter function
+ * @param {Nilable<Mapper<T, U>>} [map] - Map function
+ * @return {U[]} Filtered and mapped array
  */
-function select<T, V>(
-  array: readonly T[],
-  filter?: Nilable<Fn<[T, number], boolean>>,
-  map?: Nilable<Fn<[T, number], V>>
-): V[] {
-  return [...array]
-    .reverse()
-    .reduce<V[]>((acc: V[], curr: T, index: number): V[] => {
-      return (filter ??= () => true)(curr, index)
-        ? [(map ??= item => item as unknown as V)(curr, index), ...acc]
-        : acc
-    }, [])
+const select = <T extends readonly unknown[], U = T[number]>(
+  arr: Nilable<T>,
+  filter?: Nilable<Predicate<T>>,
+  map?: Nilable<Mapper<T, U>>
+): U[] => {
+  arr ??= cast<NonNullable<typeof arr>>([])
+  return [...arr].reduceRight<U[]>((acc, curr, i) => {
+    return (filter ??= constant(true))(curr, i, cast(arr))
+      ? [(map ?? (item => cast(item)))(curr, i, cast(arr)), ...acc]
+      : acc
+  }, [])
 }
 
 export default select
