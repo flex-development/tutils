@@ -6,13 +6,11 @@
 /**
  * Casts `value`.
  *
- * @template R - Return value type
+ * @template T - Return value type
  *
  * @param {unknown} value - Value to cast
- * @return {R} `value`
+ * @return {T} `value`
  */
-function cast<R>(value: unknown): R {
-  return value as R
-}
+const cast = <T>(value: unknown): T => value as T
 
 export default cast

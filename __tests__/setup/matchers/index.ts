@@ -4,4 +4,4 @@
  * @see https://vitest.dev/guide/extending-matchers.html
  */
 
-export {}
+import './descriptor'
