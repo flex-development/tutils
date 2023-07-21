@@ -24,6 +24,7 @@ keyid
 larsgw
 lcov
 lintstagedrc
+listify
 mkbuild
 mlly
 nocheck

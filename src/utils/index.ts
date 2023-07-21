@@ -86,8 +86,10 @@ export { default as isWeakSet } from './is-weak-set'
 export { default as join } from './join'
 export { default as keys } from './keys'
 export type { default as KeysOptions } from './keys.options'
+export { default as listify } from './listify'
 export { default as lowercase } from './lowercase'
 export { default as noop } from './noop'
+export { default as objectify } from './objectify'
 export { default as overwrite } from './overwrite'
 export {
   default as overwriteWith,
