@@ -9,6 +9,7 @@ import type IfNever from './if-never'
 import type IfTuple from './if-tuple'
 import type Nilable from './nilable'
 import type Subtract from './subtract'
+import type Writable from './writable'
 
 /**
  * Construct a tuple by spreading each array in `M`.
@@ -20,7 +21,7 @@ import type Subtract from './subtract'
  * @template Acc - Tuple accumulator
  */
 type BuildTuple<
-  M extends readonly unknown[],
+  M extends unknown[],
   I extends number = M['length'],
   Acc extends readonly unknown[] = EmptyArray
 > = I extends 0
@@ -62,8 +63,8 @@ type Flat<
       : IfNever<
           D,
           T,
-          D extends Nilable<number>
-            ? {
+          D extends unknown
+            ? Writable<{
                 [K in keyof T]: T[K] extends infer V
                   ? V extends readonly unknown[]
                     ? D extends 0
@@ -76,7 +77,7 @@ type Flat<
                       : never
                     : V
                   : never
-              } extends infer U extends readonly unknown[]
+              }> extends infer U extends unknown[]
               ? D extends 0
                 ? U
                 : IfTuple<U, BuildTuple<U>, U>

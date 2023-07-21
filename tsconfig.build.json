@@ -9,7 +9,8 @@
   "extends": "./tsconfig.json",
   "files": [
     "./typings/@types/node/http2.d.ts",
-    "./typings/typescript/lib/lib.es5.d.ts"
+    "./typings/typescript/lib/lib.es5.d.ts",
+    "./typings/typescript/lib/lib.es2019.array.d.ts"
   ],
   "include": ["./dist/*", "./src/*"]
 }

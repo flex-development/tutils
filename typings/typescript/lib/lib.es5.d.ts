@@ -3,6 +3,7 @@ import type {
   Entries,
   OneOrMany,
   PropertyKey,
+  Reverse,
   Split,
   Timestamp,
   Trim,
@@ -12,6 +13,18 @@ import type {
 } from '@flex-development/tutils'
 
 declare global {
+  interface Array<T> {
+    /**
+     * Reverses an array [in place][1] and returns a reference to the same
+     * array.
+     *
+     * [1]: https://en.wikipedia.org/wiki/In-place_algorithm
+     *
+     * @return {Reverse<T[]>} Reversed array
+     */
+    reverse(): Reverse<T[]>
+  }
+
   interface DateConstructor {
     /**
      * Returns the number of milliseconds elapsed since midnight, January 1,
