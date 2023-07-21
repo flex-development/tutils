@@ -3,6 +3,7 @@ ardatan
 attw
 bdougie
 booleanish
+boop
 cefc
 codecov
 commitlintrc
