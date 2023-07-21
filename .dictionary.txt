@@ -38,6 +38,7 @@ stringafiable
 tryit
 tscu
 uncapitalize
+unescapes
 unstub
 vates
 vitest
