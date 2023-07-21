@@ -29,6 +29,18 @@ const config = {
       }
     },
     {
+      files: ['src/utils/__tests__/ksort.spec.ts'],
+      rules: {
+        'sort-keys': 0
+      }
+    },
+    {
+      files: ['src/utils/ksort.ts'],
+      rules: {
+        '@typescript-eslint/no-use-before-define': 0
+      }
+    },
+    {
       files: ['src/utils/noop.ts'],
       rules: {
         'unicorn/no-useless-undefined': 0

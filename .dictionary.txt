@@ -21,6 +21,7 @@ iife
 infile
 jsonifiable
 keyid
+ksort
 larsgw
 lcov
 lintstagedrc

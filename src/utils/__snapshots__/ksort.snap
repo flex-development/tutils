@@ -1,0 +1,44 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`unit:utils/ksort > arrays > deep > should return obj with item keys sorted deeply 1`] = `
+[
+  {
+    "make": "lexus",
+    "model": "lc",
+    "vin": "0WBW1G4D29TC62167",
+    "year": 2023,
+  },
+  [Circular],
+]
+`;
+
+exports[`unit:utils/ksort > plain objects > deep > should return obj with nested and top-level keys sorted 1`] = `
+{
+  "circular": [Circular],
+  "driver": {
+    "first_name": "tres",
+    "last_name": "koelpin",
+    "nanoid": "mhR2OWSEhQFXkwU1NJY23",
+  },
+  "make": "lexus",
+  "model": "lc",
+  "riders": [
+    {
+      "first_name": "adrian",
+      "last_name": "rodriguez",
+      "uuid": "19fd6413-7fc9-4e7f-a5b5-9a3689d25134",
+    },
+  ],
+  "vin": "0WBW1G4D29TC62167",
+  "year": 2023,
+}
+`;
+
+exports[`unit:utils/ksort > plain objects > should return obj with top-level keys sorted 1`] = `
+{
+  "make": "lexus",
+  "model": "lc",
+  "vin": "0WBW1G4D29TC62167",
+  "year": 2023,
+}
+`;

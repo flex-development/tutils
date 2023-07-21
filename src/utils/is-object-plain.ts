@@ -8,7 +8,7 @@ import equal from './equal'
 import isNull from './is-null'
 
 /**
- * Checks if `value` is a plain object (i.e. [POJO][1]).
+ * Checks if `value` is a plain object ([POJO][1]).
  *
  * A plain object is an object created by the [`Object`][2] constructor or an
  * object with a `[[Prototype]]` of `null`.
@@ -18,12 +18,14 @@ import isNull from './is-null'
  *
  * @see {@linkcode ObjectPlain}
  *
+ * @todo examples
+ *
  * @param {unknown} value - Value to check
  * @return {value is ObjectPlain} `true` if `value` is plain object
  */
 const isObjectPlain = (value: unknown): value is ObjectPlain => {
   /**
-   * Plain object check for {@linkcode value}.
+   * Plain object check.
    *
    * @var {boolean} plain
    */

@@ -9,13 +9,15 @@ import isObject from './is-object'
 /**
  * Checks if `value` is an array.
  *
+ * @todo examples
+ *
  * @template T - Array item type
  *
  * @param {unknown} value - Value to check
  * @return {value is ReadonlyArray<T> | T[]} `true` if `value` is an array
  */
-function isArray<T>(value: unknown): value is T[] | readonly T[] {
-  return isObject(value) && equal(Reflect.get(value, 'constructor'), Array)
+const isArray = <T>(value: unknown): value is T[] | readonly T[] => {
+  return isObject(value) && equal(value.constructor, Array)
 }
 
 export default isArray

@@ -3,11 +3,16 @@
  * @module tutils/types/ObjectPlain
  */
 
+import type Primitive from './primitive'
+
 /**
- * Type representing a plain old JavaScript object (POJO).
+ * A plain old JavaScript object (POJO).
  *
  * @see https://masteringjs.io/tutorials/fundamentals/pojo
  */
-type ObjectPlain = { [K in string | symbol]?: unknown }
+type ObjectPlain = {
+  [x: string | symbol]: Primitive | object
+  readonly arguments?: never
+}
 
 export type { ObjectPlain as default }
