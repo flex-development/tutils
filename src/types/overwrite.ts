@@ -4,55 +4,46 @@
  */
 
 import type EmptyObject from './empty-object'
-import type HasKeys from './has-keys'
+import type HasKey from './has-key'
 import type IsAnyOrNever from './is-any-or-never'
 import type IsEqual from './is-equal'
 import type ObjectCurly from './object-curly'
-import type OmitIndexSignature from './omit-index-signature'
+import type Objectify from './objectify'
 import type OneOrMany from './one-or-many'
 
 /**
- * Assigns mutual properties of `H` to `T`.
+ * Assigns mutual properties of `T` and `U` to `T`.
  *
  * @internal
  *
  * @template T - Target object
- * @template H - Source object
+ * @template U - Source object
  */
-type Overwriter<T extends ObjectCurly, H> = IsAnyOrNever<H> extends true
+type Overwriter<T extends ObjectCurly, U> = IsEqual<T, U> extends true
   ? T
-  : HasKeys<H> extends true
-  ? IsEqual<T, H> extends true
-    ? T
-    : H extends unknown
-    ? {
-        [K in keyof ({
-          [K in keyof H as K extends keyof T ? K : never]: K
-        } & {
-          [K in keyof T as K extends keyof OmitIndexSignature<H> ? never : K]: K
-        })]: K extends keyof OmitIndexSignature<H>
-          ? K extends keyof H
-            ? H[K]
-            : never
-          : K extends keyof OmitIndexSignature<T>
-          ? T[K]
-          : K extends keyof H
-          ? H[K]
-          : K extends keyof T
-          ? T[K]
-          : never
-      }
-    : T
+  : U extends ObjectCurly
+  ? {
+      [K in keyof ({
+        [K in keyof T as HasKey<U, K> extends true ? never : K]: K
+      } & {
+        [K in keyof U as HasKey<T, K> extends true ? K : never]: K
+      })]: HasKey<U, K> extends true
+        ? U[K & keyof U]
+        : HasKey<T, K> extends true
+        ? T[K & keyof T]
+        : never
+    } extends infer X extends ObjectCurly
+    ? X
+    : never
   : T
 
 /**
  * Assigns properties from one or more source objects to target object `T` for
- * all mutual properties in `T`.
+ * all mutual properties in `T`. A mutual property is a property that exists on
+ * both `T` and a source object.
  *
- * A mutual property is a property that is contained in both target object `T`
- * and a source object.
- *
- * Source objects are applied from left to right.
+ * Source objects are applied from left to right. Subsequent sources overwrite
+ * property assignments of previous sources.
  *
  * @todo examples
  *
@@ -62,15 +53,15 @@ type Overwriter<T extends ObjectCurly, H> = IsAnyOrNever<H> extends true
 type Overwrite<
   T extends ObjectCurly,
   U extends OneOrMany<ObjectCurly> = EmptyObject
-> = T extends ObjectCurly
-  ? IsAnyOrNever<U> extends true
-    ? T
-    : U extends ObjectCurly
-    ? Overwriter<T, U>
+> = IsAnyOrNever<U> extends true
+  ? Overwriter<T, Objectify<U>>
+  : T extends unknown
+  ? U extends ObjectCurly
+    ? Overwriter<T, Objectify<U>>
     : U extends readonly ObjectCurly[]
     ? U extends readonly [infer H, ...infer R extends ObjectCurly[]]
-      ? Overwrite<Overwriter<T, H>, R>
-      : Overwriter<T, U[0]>
+      ? Overwrite<Overwriter<T, Objectify<H>>, R>
+      : Overwriter<T, Objectify<U[0]>>
     : never
   : never
 

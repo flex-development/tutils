@@ -3,8 +3,6 @@
  * @module tutils/types/tests/unit-d/Overwrite
  */
 
-import type Author from '#fixtures/interfaces/author'
-import type Book from '#fixtures/interfaces/book'
 import type Person from '#fixtures/interfaces/person'
 import type Vehicle from '#fixtures/types/vehicle'
 import type Assign from '../assign'
@@ -12,39 +10,46 @@ import type EmptyArray from '../empty-array'
 import type EmptyObject from '../empty-object'
 import type Omit from '../omit'
 import type OneOrMany from '../one-or-many'
-import type { tag } from '../opaque'
 import type TestSubject from '../overwrite'
 import type Partial from '../partial'
 
 describe('unit-d:types/Overwrite', () => {
   it('should equal T if U is any', () => {
-    expectTypeOf<TestSubject<Vehicle, any>>().toEqualTypeOf<Vehicle>()
+    // Arrange
+    type T = Vehicle
+
+    // Expect
+    expectTypeOf<TestSubject<T, any>>().toEqualTypeOf<T>()
   })
 
   it('should equal T if U is never', () => {
-    expectTypeOf<TestSubject<Person, never>>().toEqualTypeOf<Person>()
+    // Arrange
+    type T = Vehicle
+
+    // Expect
+    expectTypeOf<TestSubject<T, never>>().toEqualTypeOf<T>()
   })
 
   describe('U extends ObjectCurly', () => {
-    type T = Author & { id?: string }
+    type T = Partial<Vehicle>
 
     it('should assign mutual properties of U to T', () => {
       // Arrange
-      type U = { foo: string; readonly id: string }
-      type Expect = Assign<T, Pick<U, 'id'>>
+      type U = { readonly vin: string; vrm: string }
+      type Expect = Assign<T, Omit<U, 'vrm'>>
 
       // Expect
       expectTypeOf<TestSubject<T, U>>().toEqualTypeOf<Expect>()
     })
 
-    it('should equal T if Keyof<U> is never', () => {
+    it('should equal T if EmptyObject extends U', () => {
       expectTypeOf<TestSubject<T>>().toEqualTypeOf<T>()
       expectTypeOf<TestSubject<T, {}>>().toEqualTypeOf<T>()
     })
   })
 
   describe('U extends readonly ObjectCurly[]', () => {
-    type T = Book & { [tag]?: 'book'; id?: string }
+    type T = Partial<Vehicle>
 
     it('should equal T if U extends readonly EmptyObject[]', () => {
       // Arrange
@@ -64,27 +69,21 @@ describe('unit-d:types/Overwrite', () => {
       it('should assign mutual properties of U[i] to T', () => {
         // Arrange
         type U = [
-          { readonly foo: string },
-          { readonly [tag]?: 'book' },
-          { readonly id?: string },
-          { readonly publisher?: string },
+          { readonly make?: Vehicle['make'] },
+          { readonly model?: Vehicle['model'] },
+          { readonly vin?: Vehicle['vin'] },
+          { readonly vrm: string },
+          { readonly year?: Vehicle['year'] },
           any,
           never,
-          { readonly foo: string },
-          { readonly [tag]: 'book' },
-          { readonly id: string },
-          { readonly publisher: string },
-          { readonly readers: number }
+          { readonly make: Vehicle['make'] },
+          { readonly model: Vehicle['model'] },
+          { readonly vin: Vehicle['vin'] },
+          { readonly year: Vehicle['year'] }
         ]
 
         // Expect
-        expectTypeOf<TestSubject<T, U>>().toEqualTypeOf<
-          Omit<T, typeof tag | 'publisher' | 'readers'> &
-            U[7] &
-            U[8] &
-            U[9] &
-            U[10]
-        >()
+        expectTypeOf<TestSubject<T, U>>().toEqualTypeOf<Readonly<Vehicle>>()
       })
 
       it('should equal T if U extends Readonly<EmptyArray>', () => {
@@ -96,8 +95,8 @@ describe('unit-d:types/Overwrite', () => {
     describe('number extends Length<U>', () => {
       it('should assign mutual properties of U[0] to T', () => {
         // Arrange
-        type U = { foo: string; readonly id: string }[]
-        type Expect = Assign<T, Pick<U[0], 'id'>>
+        type U = { readonly vin: string; vrm: string }[]
+        type Expect = Assign<T, Omit<U[0], 'vrm'>>
 
         // Expect
         expectTypeOf<TestSubject<T, U>>().toEqualTypeOf<Expect>()

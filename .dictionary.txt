@@ -6,6 +6,7 @@ booleanish
 cefc
 codecov
 commitlintrc
+customizer
 dedupe
 dequal
 desegment

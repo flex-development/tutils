@@ -88,6 +88,11 @@ export { default as keys } from './keys'
 export type { default as KeysOptions } from './keys.options'
 export { default as lowercase } from './lowercase'
 export { default as noop } from './noop'
+export { default as overwrite } from './overwrite'
+export {
+  default as overwriteWith,
+  type OverwriteCustomizer
+} from './overwrite-with'
 export { default as properties, type Properties } from './properties'
 export type { default as PropertiesOptions } from './properties.options'
 export { default as pull } from './pull'
