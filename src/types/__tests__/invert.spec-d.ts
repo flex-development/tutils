@@ -5,19 +5,24 @@
 
 import type EmptyObject from '../empty-object'
 import type TestSubject from '../invert'
-import type PropertyKey from '../property-key'
+import type Nullable from '../nullable'
+import type Objectify from '../objectify'
 
 describe('unit-d:types/Invert', () => {
-  it('should equal Record<PropertyKey, PropertyKey> if T is any', () => {
+  it('should equal Objectify<T> if T is any', () => {
     // Arrange
-    type Expect = Record<PropertyKey, PropertyKey>
+    type T = any
 
     // Expect
-    expectTypeOf<TestSubject<any>>().toEqualTypeOf<Expect>()
+    expectTypeOf<TestSubject<T>>().toEqualTypeOf<Objectify<T>>()
   })
 
-  it('should equal Record<never, never> if T is never', () => {
-    expectTypeOf<TestSubject<never>>().toEqualTypeOf<Record<never, never>>()
+  it('should equal Objectify<T> if T is never', () => {
+    // Arrange
+    type T = never
+
+    // Expect
+    expectTypeOf<TestSubject<T>>().toEqualTypeOf<Objectify<T>>()
   })
 
   describe('T extends { [K in PropertyKey]?: Primitive }', () => {
@@ -53,11 +58,24 @@ describe('unit-d:types/Invert', () => {
   })
 
   describe('T extends NIL', () => {
-    type Expect = Record<never, never>
+    it('should equal Objectify<T>', () => {
+      // Arrange
+      type T1 = null
+      type T2 = undefined
 
-    it('should equal Record<never, never>', () => {
-      expectTypeOf<TestSubject<null>>().toEqualTypeOf<Expect>()
-      expectTypeOf<TestSubject<undefined>>().toEqualTypeOf<Expect>()
+      // Expect
+      expectTypeOf<TestSubject<T1>>().toEqualTypeOf<Objectify<T1>>()
+      expectTypeOf<TestSubject<T2>>().toEqualTypeOf<Objectify<T2>>()
+    })
+  })
+
+  describe('unions', () => {
+    it('should distribute over unions', () => {
+      // Arrange
+      type T = Nullable<{ readonly 0: 'a' }>
+
+      // Expect
+      expectTypeOf<TestSubject<T>>().toEqualTypeOf<{ readonly a: 0 } | {}>()
     })
   })
 })

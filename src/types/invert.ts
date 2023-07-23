@@ -3,10 +3,9 @@
  * @module tutils/types/Invert
  */
 
-import type EmptyObject from './empty-object'
-import type IfAny from './if-any'
-import type IfNever from './if-never'
+import type IsAnyOrNever from './is-any-or-never'
 import type Nilable from './nilable'
+import type Objectify from './objectify'
 import type Primitive from './primitive'
 import type PropertyKey from './property-key'
 import type Stringify from './stringify'
@@ -20,24 +19,21 @@ import type Stringify from './stringify'
  *
  * @template T - Type to evaluate
  */
-type Invert<T extends Nilable<{ [K in PropertyKey]?: Primitive }>> = IfAny<
-  T,
-  Record<PropertyKey, PropertyKey>,
-  IfNever<
-    T,
-    Record<never, never>,
-    T extends object
-      ? EmptyObject extends T
-        ? Record<never, never>
-        : {
-            [K in keyof T as T[K] extends infer V
+type Invert<T extends Nilable<{ [K in PropertyKey]?: Primitive }>> =
+  IsAnyOrNever<T> extends true
+    ? Objectify<T>
+    : T extends unknown
+    ? Objectify<T> extends infer U
+      ? T extends object
+        ? {
+            [K in keyof U as U[K] extends infer V
               ? V extends PropertyKey
                 ? V
                 : Stringify<V>
               : never]: K
           }
-      : Record<never, never>
-  >
->
+        : U
+      : never
+    : never
 
 export type { Invert as default }
