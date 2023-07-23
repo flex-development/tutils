@@ -6,17 +6,17 @@
 import type { Trim } from '#src/types'
 
 /**
- * Removes leading and trailing whitespace characters from `string`.
+ * Removes leading and trailing whitespace characters from a string.
  *
  * @see {@linkcode Trim}
  *
+ * @todo examples
+ *
  * @template T - String to trim
  *
- * @param {T} string - String to trim
- * @return {Trim<T>} `string` with leading and trailing whitespaces removed
+ * @param {T} str - String to trim
+ * @return {Trim<T>} `str` with leading and trailing whitespaces removed
  */
-function trim<T extends string>(string: T): Trim<T> {
-  return string.trim<T>()
-}
+const trim = <T extends string>(str: T): Trim<T> => str.trim<T>()
 
 export default trim

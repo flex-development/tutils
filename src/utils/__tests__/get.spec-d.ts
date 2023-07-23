@@ -8,15 +8,14 @@ import type { EmptyString, Get } from '#src/types'
 import type testSubject from '../get'
 
 describe('unit-d:utils/get', () => {
-  it('should return Get<T, P, F>', () => {
+  it('should return Get<T, K, F>', () => {
     // Arrange
     type T = Person
-    type P = 'friends.0.name.middle'
+    type K = 'friends.0.name.middle'
     type F = EmptyString
+    type Expect = Get<T, K, F>
 
     // Expect
-    expectTypeOf<typeof testSubject<T, P, F>>().returns.toEqualTypeOf<
-      Get<T, P, F>
-    >()
+    expectTypeOf<typeof testSubject<T, K, F>>().returns.toEqualTypeOf<Expect>()
   })
 })

@@ -6,91 +6,60 @@
 import type EmptyArray from './empty-array'
 import type EmptyString from './empty-string'
 import type Fallback from './fallback'
-import type IfAny from './if-any'
-import type IfAnyOrNever from './if-any-or-never'
-import type IfNever from './if-never'
+import type IfNumber from './if-number'
+import type IfNumeric from './if-numeric'
+import type Indices from './indices'
 import type Integer from './integer'
 import type Intersection from './intersection'
+import type IsAny from './is-any'
+import type IsAnyOrNever from './is-any-or-never'
+import type IsEqual from './is-equal'
 import type IsNever from './is-never'
-import type Join from './join'
-import type Length from './length'
 import type Nilable from './nilable'
 import type NumberLike from './number-like'
-import type Numeric from './numeric'
-import type NegativeNumeric from './numeric-negative'
+import type OmitIndexSignature from './omit-index-signature'
 import type Optional from './optional'
-import type NaturalRange from './range-natural'
 import type Reverse from './reverse'
 import type Split from './split'
 import type Stringify from './stringify'
+import type UnwrapNumeric from './unwrap-numeric'
 
 /**
- * Indexes array `T` at `K`.
- *
- * Supports negative indices.
- *
- * @see https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array/at
+ * Returns a boolean indicating if `K` can index `T` (i.e. `T[K]`) without the
+ * use of an index signature.
  *
  * @internal
  *
  * @template T - Type to evaluate
- * @template K - Index
- * @template F - Fallback value type
+ * @template K - Keys to evaluate
  */
-type Index<
-  T extends readonly unknown[],
-  K extends NumberLike,
-  F
-> = T extends Readonly<EmptyArray>
-  ? F
-  : IfAny<
-      K,
-      Fallback<number extends Length<T> ? Optional<T[number]> : T[number], F>,
-      IfNever<
+type IsKey<
+  T extends string | readonly unknown[],
+  K extends NumberLike
+> = IsAny<K> extends true
+  ? false
+  : T extends unknown
+  ? K extends unknown
+    ? IsEqual<
         K,
-        F,
-        K extends NumberLike
-          ? Stringify<K> extends infer X extends Exclude<NumberLike, number>
-            ? Length<T> extends infer L extends number
-              ? IfNever<
-                  L,
-                  F,
-                  IsNever<
-                    Intersection<
-                      NegativeNumeric | Numeric | Stringify<Integer>,
-                      X
-                    >
-                  > extends false
-                    ? Fallback<number extends L ? Optional<T[L]> : T[number], F>
-                    : number extends L
-                    ? Fallback<Optional<T[L]>, F>
-                    : NaturalRange<L> extends infer R extends number
-                    ? Exclude<
-                        Join<['-', L | R], EmptyString> | Stringify<R>,
-                        '-0'
-                      > extends infer I
-                      ? X extends I
-                        ? 1 extends Length<Required<T>>
-                          ? Fallback<T[0], F>
-                          : X extends `-${infer N extends number}`
-                          ? Reverse<T> extends infer B extends readonly T[number][]
-                            ? Fallback<[any, ...B][N], F>
-                            : never
-                          : X extends `${infer N extends number}`
-                          ? Fallback<T[N], F>
-                          : never
-                        : F
-                      : never
-                    : never
-                >
-              : never
-            : F
-          : F
+        keyof {
+          [H in keyof OmitIndexSignature<T> as Intersection<
+            H extends Intersection<H, Stringify<Indices<T>>>
+              ? never
+              : IfNumber<
+                  H,
+                  H | Stringify<H>,
+                  IfNumeric<H, H | UnwrapNumeric<H>, H>
+                >,
+            K
+          >]: H
+        }
       >
-    >
+    : false
+  : never
 
 /**
- * Converts a string to an array.
+ * Construct an array from a string.
  *
  * @see {@linkcode Split}
  *
@@ -147,22 +116,40 @@ type At<
   T extends Nilable<string | readonly unknown[]>,
   K extends NumberLike,
   F = undefined
-> = IfAnyOrNever<
-  T,
-  F,
-  IfNever<
-    K,
-    F,
-    T extends string | readonly unknown[]
-      ? K extends NumberLike
-        ? T extends string
-          ? Index<Splitter<T>, K, F>
-          : T extends readonly unknown[]
-          ? Index<T, K, F>
-          : never
+> = IsAnyOrNever<T> extends true
+  ? F
+  : IsNever<K> extends true
+  ? F
+  : T extends string | readonly unknown[]
+  ? K extends unknown
+    ? IsKey<T, K> extends true
+      ? Fallback<T[K extends keyof T ? K : UnwrapNumeric<K> & keyof T], F>
+      : (
+          T extends string ? Splitter<T> : T
+        ) extends infer U extends readonly unknown[]
+      ? U extends Readonly<EmptyArray>
+        ? F
+        : Indices<U> extends infer I extends number
+        ? IsAny<K> extends true
+          ? Fallback<number extends I ? Optional<U[I]> : U[I], F>
+          : K extends Intersection<K, Integer | NumberLike | Stringify<Integer>>
+          ? Fallback<number extends I ? Optional<U[I]> : U[I], F>
+          : K extends I | Stringify<I>
+          ? Stringify<K> extends infer X extends Exclude<NumberLike, number>
+            ? X extends `-${infer N extends number}`
+              ? number extends I
+                ? Fallback<Optional<U[N]>, F>
+                : [I] extends [-1 | 0]
+                ? Fallback<U[0], F>
+                : Fallback<[any, ...Reverse<U>][N], F>
+              : X extends `${infer N extends number}`
+              ? Fallback<number extends I ? Optional<U[N]> : U[N], F>
+              : never
+            : never
+          : F
         : never
-      : F
-  >
->
+      : never
+    : never
+  : F
 
 export type { At as default }

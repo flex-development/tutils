@@ -9,8 +9,10 @@
  * [1]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Symbol
  * [2]: https://developer.mozilla.org/docs/Glossary/Primitive
  *
+ * @todo examples
+ *
  * @param {unknown} value - Value to check
- * @return {value is symbol} `true` if `value` is `symbol`
+ * @return {value is symbol} `true` if `value` is a `symbol`
  */
 const isSymbol = (value: unknown): value is symbol => typeof value === 'symbol'
 

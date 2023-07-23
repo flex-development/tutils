@@ -3,7 +3,7 @@
  * @module tutils/utils/equal
  */
 
-import type { Fn, Nilable, NumberString, PropertyKey } from '#src/types'
+import type { Fn, Nilable, PropertyKey } from '#src/types'
 import { dequal } from 'dequal'
 import isFunction from './is-function'
 
@@ -15,20 +15,22 @@ import isFunction from './is-function'
  *
  * @see https://github.com/lukeed/dequal
  *
+ * @todo examples
+ *
  * @template A - First comparison value type
  * @template B - Second comparison value type
  * @template K - Identity key type
  *
- * @param {unknown} a - First comparison value
- * @param {unknown} b - Second comparison value
+ * @param {A} a - First comparison value
+ * @param {B} b - Second comparison value
  * @param {Nilable<Fn<[A | B], K>>} [identity] - Identity key function
  * @return {boolean} `true` if `a` and `b` are deeply equal
  */
-function equal<A, B, K extends PropertyKey = NumberString>(
+const equal = <A, B, K extends PropertyKey = PropertyKey>(
   a: A,
   b: B,
   identity?: Nilable<Fn<[A | B], K>>
-): boolean {
+): boolean => {
   return isFunction(identity) ? dequal(identity(a), identity(b)) : dequal(a, b)
 }
 

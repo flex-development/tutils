@@ -45,6 +45,16 @@ describe('unit-d:types/At', () => {
         expectTypeOf<TestSubject<['a'], never, F>>().toEqualTypeOf<F>()
       })
 
+      it('should equal Fallback<T[K], F> if IsKey<T, K> extends true', () => {
+        // Arrange
+        type T = { '0': 'a'; 1: 'b' } & [Vehicle]
+        type K = '0' | '1' | 0 | 1
+        type Expect = Fallback<T[K], F>
+
+        // Expect
+        expectTypeOf<TestSubject<T, K, F>>().toEqualTypeOf<Expect>()
+      })
+
       it('should equal Fallback<T[number], F> if K is any', () => {
         // Arrange
         type T = ['a', 'b', 'c'?]
@@ -143,7 +153,7 @@ describe('unit-d:types/At', () => {
       })
     })
 
-    describe('number extends Length<T>', () => {
+    describe('number extends Indices<T>', () => {
       type T = Vehicle[]
 
       it('should equal F if K is never', () => {
@@ -160,11 +170,21 @@ describe('unit-d:types/At', () => {
         expectTypeOf<TestSubject<T, Integer, F>>().toEqualTypeOf<Expect>()
         expectTypeOf<TestSubject<T, any, F>>().toEqualTypeOf<Expect>()
       })
+
+      it('should equal Fallback<T[K], F> if IsKey<T, K> extends true', () => {
+        // Arrange
+        type T = Vehicle[] & { '0': 'a'; 1: 'b' }
+        type K = '0' | '1' | 0 | 1
+        type Expect = Fallback<T[K], F>
+
+        // Expect
+        expectTypeOf<TestSubject<T, K, F>>().toEqualTypeOf<Expect>()
+      })
     })
   })
 
   describe('T extends string', () => {
-    describe('IsLiteral<Length<T>> extends true', () => {
+    describe('IsLiteral<T> extends true', () => {
       type Splitter<T extends string> = Split<T, EmptyString>
 
       it('should equal Splitter<T>[number] if K is any', () => {
@@ -269,7 +289,7 @@ describe('unit-d:types/At', () => {
       })
     })
 
-    describe('number extends Length<T>', () => {
+    describe('number extends Indices<T>', () => {
       type T = string
 
       it('should equal F if K is never', () => {
@@ -285,6 +305,16 @@ describe('unit-d:types/At', () => {
         expectTypeOf<TestSubject<T, '1' | 1, F>>().toEqualTypeOf<Expect>()
         expectTypeOf<TestSubject<T, Integer, F>>().toEqualTypeOf<Expect>()
         expectTypeOf<TestSubject<T, any, F>>().toEqualTypeOf<Expect>()
+      })
+
+      it('should equal Fallback<T[K], F> if IsKey<T, K> extends true', () => {
+        // Arrange
+        type T = string & { '0': 'a'; 1: 'b' }
+        type K = '0' | '1' | 0 | 1
+        type Expect = Fallback<T[K], F>
+
+        // Expect
+        expectTypeOf<TestSubject<T, K, F>>().toEqualTypeOf<Expect>()
       })
     })
   })

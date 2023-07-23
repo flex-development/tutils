@@ -3,34 +3,43 @@
  * @module tutils/types/tests/unit-d/Get
  */
 
-import type Author from '#fixtures/interfaces/author'
-import type Book from '#fixtures/interfaces/book'
 import type Vehicle from '#fixtures/types/vehicle'
 import type At from '../at'
-import type EmptyArray from '../empty-array'
 import type EmptyObject from '../empty-object'
-import type EmptyString from '../empty-string'
+import type { tag as empty } from '../empty-object'
 import type Fallback from '../fallback'
-import type Fn from '../fn'
 import type TestSubject from '../get'
-import type NIL from '../nil'
-import type Nullable from '../nullable'
-import type { tag } from '../opaque'
-import type Primitive from '../primitive'
+import type Indices from '../indices'
+import type Integer from '../integer'
+import type Numeric from '../numeric'
+import type Objectify from '../objectify'
+import type OmitIndexSignature from '../omit-index-signature'
+import type { tag as opaque } from '../opaque'
+import type Partial from '../partial'
+import type Stringify from '../stringify'
 
 describe('unit-d:types/Get', () => {
   type F = null
 
   it('should equal F if K is never', () => {
-    expectTypeOf<TestSubject<Author, never, F>>().toEqualTypeOf<F>()
+    expectTypeOf<TestSubject<Vehicle, never, F>>().toEqualTypeOf<F>()
   })
 
-  it('should equal Fallback<T[keyof T], F> K is any', () => {
+  it('should equal F if keyof Objectify<T> is never', () => {
     // Arrange
-    type T = Book
-    type Expect = Fallback<T[keyof T], F>
+    type K = keyof Vehicle | typeof empty
 
-    expectTypeOf<TestSubject<T, any, F>>().toEqualTypeOf<Expect>()
+    // Expect
+    expectTypeOf<TestSubject<{}, K, F>>().toEqualTypeOf<F>()
+    expectTypeOf<TestSubject<EmptyObject, K, F>>().toEqualTypeOf<F>()
+  })
+
+  it('should equal F if T is never', () => {
+    // Arrange
+    type T = never
+
+    // Expect
+    expectTypeOf<TestSubject<T, keyof Vehicle, F>>().toEqualTypeOf<F>()
   })
 
   it('should equal T if T is any', () => {
@@ -38,422 +47,199 @@ describe('unit-d:types/Get', () => {
     type T = any
 
     // Expect
-    expectTypeOf<TestSubject<T, keyof T, F>>().toBeAny()
+    expectTypeOf<TestSubject<T, keyof Vehicle, F>>().toEqualTypeOf<T>()
   })
 
-  describe('T extends ObjectCurly', () => {
-    it('should equal F if K is not path of T', () => {
-      expectTypeOf<TestSubject<Vehicle, 'foo', F>>().toEqualTypeOf<F>()
-    })
+  describe('IsAny<K> extends true', () => {
+    type K = any
 
-    it('should equal F if Keyof<T> is never', () => {
-      expectTypeOf<TestSubject<EmptyObject, 'data', F>>().toEqualTypeOf<F>()
-    })
-
-    describe('K extends `${infer H}.${infer R}`', () => {
-      it('should equal F if H does not extend Keyof<T>', () => {
-        expectTypeOf<TestSubject<Book, 'data.msg', F>>().toEqualTypeOf<F>()
-      })
-
-      describe('H extends Keyof<T>', () => {
-        it('should equal Fallback<Get<T[H], R, F>, F>', () => {
-          // Arrange
-          type T = { res: { data: { 0: 1; book: Book; id: 'book' } } }
-          type K1 = 'res.data.0'
-          type K2 = 'res.data.book.publisher'
-          type K3 = 'res.data.book.title'
-          type K4 = 'res.data.book.title.charAt'
-          type E1 = Fallback<T['res']['data'][0], F>
-          type E2 = Fallback<T['res']['data']['book']['publisher'], F>
-          type E3 = Fallback<T['res']['data']['book']['title'], F>
-          type E4 = Fallback<T['res']['data']['book']['title']['charAt'], F>
-
-          // Expect
-          expectTypeOf<TestSubject<T, K1, F>>().toEqualTypeOf<E1>()
-          expectTypeOf<TestSubject<T, K2, F>>().toEqualTypeOf<E2>()
-          expectTypeOf<TestSubject<T, K3, F>>().toEqualTypeOf<E3>()
-          expectTypeOf<TestSubject<T, K4, F>>().toEqualTypeOf<E4>()
-        })
-      })
-    })
-
-    describe('K extends Keyof<T>', () => {
-      it('should equal Fallback<T[K], F>', () => {
-        // Arrange
-        type T1 = Author
-        type T2 = { [x: string]: string | undefined }
-        type K1 = 'email'
-        type K2 = '1' | 0
-        type E1 = Fallback<T1[K1], F>
-        type E2 = Fallback<T2[K2], F>
-
-        // Expect
-        expectTypeOf<TestSubject<T1, K1, F>>().toEqualTypeOf<E1>()
-        expectTypeOf<TestSubject<T2, K2, F>>().toEqualTypeOf<E2>()
-      })
-    })
-  })
-
-  describe('T extends Primitive', () => {
-    it('should equal F if Keyof<T> is never', () => {
+    it('should equal Fallback<Objectify<T>[keyof T], F>', () => {
       // Arrange
-      type K = 'toString'
+      type T = Partial<Vehicle>
+      type Expect = Fallback<Objectify<T>[keyof T], F>
 
       // Expect
-      expectTypeOf<TestSubject<NIL, K, F>>().toEqualTypeOf<F>()
-      expectTypeOf<TestSubject<null, K, F>>().toEqualTypeOf<F>()
-      expectTypeOf<TestSubject<undefined, K, F>>().toEqualTypeOf<F>()
-    })
-
-    describe('T extends bigint', () => {
-      it('should equal F if K is not path of T', () => {
-        expectTypeOf<TestSubject<bigint, 'data', F>>().toEqualTypeOf<F>()
-      })
-
-      describe('K extends `${infer H}.${infer R}`', () => {
-        it('should equal F if H does not extend Keyof<T>', () => {
-          expectTypeOf<TestSubject<bigint, 'data.msg', F>>().toEqualTypeOf<F>()
-        })
-
-        describe('H extends Keyof<T>', () => {
-          it('should equal Fallback<Get<T[H], R, F>, F>', () => {
-            // Arrange
-            type T = bigint & { res: { 0: { message?: string } } }
-            type K = 'res.0.message'
-            type Expect = Fallback<T['res'][0]['message'], F>
-
-            // Expect
-            expectTypeOf<TestSubject<T, K, F>>().toEqualTypeOf<Expect>()
-          })
-        })
-      })
-
-      describe('K extends Keyof<T>', () => {
-        it('should equal Fallback<T[K], F>', () => {
-          // Arrange
-          type T = bigint
-          type K1 = 'toString'
-          type K2 = typeof Symbol.toStringTag
-          type Expect<K extends keyof T> = Fallback<T[K], F>
-
-          // Expect
-          expectTypeOf<TestSubject<T, K1, F>>().toEqualTypeOf<Expect<K1>>()
-          expectTypeOf<TestSubject<T, K2, F>>().toEqualTypeOf<Expect<K2>>()
-        })
-      })
-    })
-
-    describe('T extends boolean', () => {
-      it('should equal F if K is not path of T', () => {
-        expectTypeOf<TestSubject<boolean, 'data', F>>().toEqualTypeOf<F>()
-      })
-
-      describe('K extends `${infer H}.${infer R}`', () => {
-        it('should equal F if H does not extend Keyof<T>', () => {
-          expectTypeOf<TestSubject<boolean, 'data.msg', F>>().toEqualTypeOf<F>()
-        })
-
-        describe('H extends Keyof<T>', () => {
-          it('should equal Fallback<Get<T[H], R, F>, F>', () => {
-            // Arrange
-            type T = boolean & { res: { 0: { message?: string } } }
-            type K = 'res.0.message'
-            type Expect = Fallback<T['res'][0]['message'], F>
-
-            // Expect
-            expectTypeOf<TestSubject<T, K, F>>().toEqualTypeOf<Expect>()
-          })
-        })
-      })
-
-      describe('K extends Keyof<T>', () => {
-        it('should equal Fallback<T[K], F>', () => {
-          // Arrange
-          type T = boolean
-          type K = 'valueOf'
-          type Expect = Fallback<T[K], F>
-
-          // Expect
-          expectTypeOf<TestSubject<T, K, F>>().toEqualTypeOf<Expect>()
-        })
-      })
-    })
-
-    describe('T extends number', () => {
-      it('should equal F if K is not path of T', () => {
-        expectTypeOf<TestSubject<number, 'data', F>>().toEqualTypeOf<F>()
-      })
-
-      describe('K extends `${infer H}.${infer R}`', () => {
-        it('should equal F if H does not extend Keyof<T>', () => {
-          expectTypeOf<TestSubject<number, 'data.msg', F>>().toEqualTypeOf<F>()
-        })
-
-        describe('H extends Keyof<T>', () => {
-          it('should equal Fallback<Get<T[H], R, F>, F>', () => {
-            // Arrange
-            type T = number & { res: { 0: { message?: string } } }
-            type K = 'res.0.message'
-            type Expect = Fallback<T['res'][0]['message'], F>
-
-            // Expect
-            expectTypeOf<TestSubject<T, K, F>>().toEqualTypeOf<Expect>()
-          })
-        })
-      })
-
-      describe('K extends Keyof<T>', () => {
-        it('should equal Fallback<T[K], F>', () => {
-          // Arrange
-          type T = number
-          type K = 'toPrecision'
-          type Expect = Fallback<T[K], F>
-
-          // Expect
-          expectTypeOf<TestSubject<T, K, F>>().toEqualTypeOf<Expect>()
-        })
-      })
+      expectTypeOf<TestSubject<T, K, F>>().toEqualTypeOf<Expect>()
     })
 
     describe('T extends string', () => {
-      it('should equal F if K is not path of T', () => {
-        expectTypeOf<TestSubject<'book', 'data', F>>().toEqualTypeOf<F>()
-        expectTypeOf<TestSubject<string, 'data', F>>().toEqualTypeOf<F>()
-      })
-
-      describe('K extends `${infer H}.${infer R}`', () => {
-        it('should equal F if H does not extend Keyof<T>', () => {
-          // Arrange
-          type T = 'vehicle'
-          type K = '-8.0'
-
-          // Expect
-          expectTypeOf<TestSubject<T, K, F>>().toEqualTypeOf<F>()
-        })
-
-        describe('H extends Numeric', () => {
-          it('should equal Fallback<Get<At<T, H>, R, F>, F>', () => {
-            // Arrange
-            type T = 'book'
-            type K1 = '-1.charCodeAt'
-            type K2 = '0.-1'
-            type E1 = Fallback<At<T, -1>['charCodeAt'], F>
-            type E2 = Fallback<At<At<T, 0>, -1>, F>
-
-            // Expect
-            expectTypeOf<TestSubject<T, K1, F>>().toEqualTypeOf<E1>()
-            expectTypeOf<TestSubject<T, K2, F>>().toEqualTypeOf<E2>()
-          })
-        })
-
-        describe('H extends keyof T', () => {
-          it('should equal Fallback<Get<T[H], R, F>, F>', () => {
-            // Arrange
-            type T = string & { res: { 0: { message?: string } } }
-            type K = 'res.0.message'
-            type Expect = Fallback<T['res'][0]['message'], F>
-
-            // Expect
-            expectTypeOf<TestSubject<T, K, F>>().toEqualTypeOf<Expect>()
-          })
-        })
-      })
-
-      describe('K extends Keyof<T>', () => {
-        describe('K extends NumberLike', () => {
-          it('should equal At<T, K, F>', () => {
-            // Arrange
-            type T1 = string
-            type T2 = 'flex'
-            type T3 = EmptyString
-            type K = '-1' | 0
-
-            // Expect
-            expectTypeOf<TestSubject<T1, K, F>>().toEqualTypeOf<At<T1, K, F>>()
-            expectTypeOf<TestSubject<T2, K, F>>().toEqualTypeOf<At<T2, K, F>>()
-            expectTypeOf<TestSubject<T3, K, F>>().toEqualTypeOf<At<T3, K, F>>()
-          })
-        })
-
-        describe('K extends keyof T', () => {
-          it('should equal Fallback<T[K], F>', () => {
-            // Arrange
-            type T = string
-            type K1 = 'charAt'
-            type K2 = typeof Symbol.iterator
-            type Expect<K extends keyof T> = Fallback<T[K], F>
-
-            // Expect
-            expectTypeOf<TestSubject<T, K1, F>>().toEqualTypeOf<Expect<K1>>()
-            expectTypeOf<TestSubject<T, K2, F>>().toEqualTypeOf<Expect<K2>>()
-          })
-        })
-      })
-    })
-
-    describe('T extends symbol', () => {
-      it('should equal F if K is not path of T', () => {
-        expectTypeOf<TestSubject<symbol, 'data', F>>().toEqualTypeOf<F>()
-      })
-
-      describe('K extends `${infer H}.${infer R}`', () => {
-        it('should equal F if H does not extend Keyof<T>', () => {
-          expectTypeOf<TestSubject<symbol, 'data.msg', F>>().toEqualTypeOf<F>()
-        })
-
-        describe('H extends Keyof<T>', () => {
-          it('should equal Fallback<Get<T[H], R, F>, F>', () => {
-            // Arrange
-            type T = symbol & { res: { 0: { message?: string } } }
-            type K = 'res.0.message'
-            type Expect = Fallback<T['res'][0]['message'], F>
-
-            // Expect
-            expectTypeOf<TestSubject<T, K, F>>().toEqualTypeOf<Expect>()
-          })
-        })
-      })
-
-      describe('K extends Keyof<T>', () => {
-        it('should equal Fallback<T[K], F>', () => {
-          // Arrange
-          type T = symbol
-          type K1 = 'toString'
-          type K2 = typeof Symbol.toPrimitive
-          type Expect<K extends keyof T> = Fallback<T[K], F>
-
-          // Expect
-          expectTypeOf<TestSubject<T, K1, F>>().toEqualTypeOf<Expect<K1>>()
-          expectTypeOf<TestSubject<T, K2, F>>().toEqualTypeOf<Expect<K2>>()
-        })
-      })
-    })
-  })
-
-  describe('T extends Readonly<Fn>', () => {
-    it('should equal F if K is not path of T', () => {
-      expectTypeOf<TestSubject<Readonly<Fn>, 'data', F>>().toEqualTypeOf<F>()
-    })
-
-    describe('K extends `${infer H}.${infer R}`', () => {
-      it('should equal F if H does not extend Keyof<T>', () => {
-        expectTypeOf<TestSubject<Fn, 'data.msg', F>>().toEqualTypeOf<F>()
-      })
-
-      describe('H extends Keyof<T>', () => {
-        it('should equal Fallback<Get<T[H], R, F>, F>', () => {
-          // Arrange
-          type T = Readonly<Fn> & { res: { 0: { message?: string } } }
-          type K = 'res.0.message'
-          type Expect = Fallback<T['res'][0]['message'], F>
-
-          // Expect
-          expectTypeOf<TestSubject<T, K, F>>().toEqualTypeOf<Expect>()
-        })
-      })
-    })
-
-    describe('K extends Keyof<T>', () => {
-      it('should equal Fallback<T[K], F>', () => {
+      it('should equal At<T, K, F> | Fallback<infer V, F>', () => {
         // Arrange
-        type T = Readonly<Fn>
-        type K1 = 'bind'
-        type K2 = typeof Symbol.hasInstance
-        type Expect<K extends keyof T> = Fallback<T[K], F>
+        type T = 'vehicle'
+        type Expect = At<T, K, F> | Fallback<T[keyof OmitIndexSignature<T>], F>
 
         // Expect
-        expectTypeOf<TestSubject<T, K1, F>>().toEqualTypeOf<Expect<K1>>()
-        expectTypeOf<TestSubject<T, K2, F>>().toEqualTypeOf<Expect<K2>>()
+        expectTypeOf<TestSubject<T, K, F>>().toEqualTypeOf<Expect>()
+      })
+    })
+
+    describe('T extends readonly unknown[]', () => {
+      it('should equal At<T, K, F> | Fallback<infer V, F>', () => {
+        // Arrange
+        type T = readonly [Vehicle?, Vehicle['vin']?]
+        type Expect = At<T, K, F> | Fallback<T[keyof OmitIndexSignature<T>], F>
+
+        // Expect
+        expectTypeOf<TestSubject<T, K, F>>().toEqualTypeOf<Expect>()
       })
     })
   })
 
-  describe('T extends readonly unknown[]', () => {
-    it('should equal F if K is not path of T', () => {
-      expectTypeOf<TestSubject<Vehicle[], 'data', F>>().toEqualTypeOf<F>()
+  describe('IsNumber<K> extends true', () => {
+    it('should equal F if K cannot index T', () => {
+      expectTypeOf<TestSubject<Vehicle, Integer, F>>().toEqualTypeOf<F>()
     })
 
-    describe('K extends `${infer H}.${infer R}`', () => {
-      it('should equal F if H does not extend Keyof<T>', () => {
-        expectTypeOf<TestSubject<[Vehicle], '-3.vin', F>>().toEqualTypeOf<F>()
-      })
+    it('should equal Fallback<T[K], F> if HasKey<T, K> extends true', () => {
+      // Arrange
+      type T = { '-1'?: Vehicle }
+      type K = -1
 
-      describe('H extends Numeric', () => {
-        it('should equal Fallback<Get<At<T, H>, R, F>, F>', () => {
-          // Arrange
-          type T = [Author, Author?]
-          type K1 = '0.display_name'
-          type K2 = '0.email'
-          type K3 = '-1.display_name'
-          type K4 = '-1.email'
-          type E1 = Fallback<T[0]['display_name'], F>
-          type E2 = Fallback<T[0]['email'], F>
-          type E3 = Fallback<NonNullable<T[1]>['display_name'], F>
-          type E4 = Fallback<NonNullable<T[1]>['email'], F>
+      // Expect
+      expectTypeOf<TestSubject<T, K, F>>().toEqualTypeOf<Fallback<T[K], F>>()
+    })
 
-          // Expect
-          expectTypeOf<TestSubject<T, K1, F>>().toEqualTypeOf<E1>()
-          expectTypeOf<TestSubject<T, K2, F>>().toEqualTypeOf<E2>()
-          expectTypeOf<TestSubject<T, K3, F>>().toEqualTypeOf<E3>()
-          expectTypeOf<TestSubject<T, K4, F>>().toEqualTypeOf<E4>()
-        })
-      })
+    it('should equal Fallback<T[K], F> if K intersects keyof T', () => {
+      // Arrange
+      type T = { 0?: Vehicle }
+      type K = 0
 
-      describe('H extends Keyof<T>', () => {
-        it('should equal Fallback<Get<T[H], R, F>, F>', () => {
-          // Arrange
-          type T = Vehicle[] & { res: { 0: { message?: string } } }
-          type K = 'res.0.message'
-          type Expect = Fallback<T['res'][0]['message'], F>
+      // Expect
+      expectTypeOf<TestSubject<T, K, F>>().toEqualTypeOf<Fallback<T[K], F>>()
+    })
 
-          // Expect
-          expectTypeOf<TestSubject<T, K, F>>().toEqualTypeOf<Expect>()
-        })
+    describe('T extends string', () => {
+      it('should equal At<T, K, F>', () => {
+        // Arrange
+        type T = 'vehicle'
+        type K = Indices<T>
+
+        // Expect
+        expectTypeOf<TestSubject<T, K, F>>().toEqualTypeOf<At<T, K, F>>()
       })
     })
 
-    describe('K extends Keyof<T>', () => {
-      describe('K extends NumberLike', () => {
-        it('should equal At<T, K, F>', () => {
-          // Arrange
-          type T1 = Author[]
-          type T2 = [Author, Author?]
-          type T3 = EmptyArray
-          type T4 = Readonly<EmptyArray>
-          type K = -1 | '1'
+    describe('T extends readonly unknown[]', () => {
+      it('should equal At<T, K, F>', () => {
+        // Arrange
+        type T = readonly [Vehicle['vin']?, Vehicle?]
+        type K = Indices<T>
 
-          // Expect
-          expectTypeOf<TestSubject<T1, K, F>>().toEqualTypeOf<At<T1, K, F>>()
-          expectTypeOf<TestSubject<T2, K, F>>().toEqualTypeOf<At<T2, K, F>>()
-          expectTypeOf<TestSubject<T3, K, F>>().toEqualTypeOf<At<T3, K, F>>()
-          expectTypeOf<TestSubject<T4, K, F>>().toEqualTypeOf<At<T4, K, F>>()
-        })
+        // Expect
+        expectTypeOf<TestSubject<T, K, F>>().toEqualTypeOf<At<T, K, F>>()
       })
+    })
+  })
 
-      describe('K extends keyof T', () => {
-        it('should equal Fallback<T[K], F>', () => {
-          // Arrange
-          type T = Author[]
-          type K1 = 'push'
-          type K2 = typeof Symbol.iterator
-          type Expect<K extends keyof T> = Fallback<T[K], F>
+  describe('IsNumeric<K> extends true', () => {
+    it('should equal F if K cannot index T', () => {
+      expectTypeOf<TestSubject<Vehicle, Numeric, F>>().toEqualTypeOf<F>()
+    })
 
-          // Expect
-          expectTypeOf<TestSubject<T, K1, F>>().toEqualTypeOf<Expect<K1>>()
-          expectTypeOf<TestSubject<T, K2, F>>().toEqualTypeOf<Expect<K2>>()
-        })
+    it('should equal Fallback<T[K], F> if HasKey<T, K> extends true', () => {
+      // Arrange
+      type T = { 1?: Vehicle }
+      type K = '1'
+
+      // Expect
+      expectTypeOf<TestSubject<T, K, F>>().toEqualTypeOf<Fallback<T[K], F>>()
+    })
+
+    it('should equal Fallback<T[K], F> if K intersects keyof T', () => {
+      // Arrange
+      type T = { '0'?: Vehicle }
+      type K = '0'
+
+      // Expect
+      expectTypeOf<TestSubject<T, K, F>>().toEqualTypeOf<Fallback<T[K], F>>()
+    })
+
+    describe('T extends string', () => {
+      it('should equal At<T, K, F>', () => {
+        // Arrange
+        type T = 'vehicle'
+        type K = Stringify<Indices<T>>
+
+        // Expect
+        expectTypeOf<TestSubject<T, K, F>>().toEqualTypeOf<At<T, K, F>>()
       })
+    })
+
+    describe('T extends readonly unknown[]', () => {
+      it('should equal At<T, K, F>', () => {
+        // Arrange
+        type T = readonly [Vehicle?, Vehicle['vin']?]
+        type K = Stringify<Indices<T>>
+
+        // Expect
+        expectTypeOf<TestSubject<T, K, F>>().toEqualTypeOf<At<T, K, F>>()
+      })
+    })
+  })
+
+  describe('K extends `${infer H}.${infer R}`', () => {
+    type T = { res: { data: { 0: Partial<Vehicle> } }; 'res.total'?: number }
+
+    it('should equal F if H cannot index T', () => {
+      expectTypeOf<TestSubject<T, 'data.0.vin', F>>().toEqualTypeOf<F>()
+    })
+
+    it('should equal Fallback<T[K], F> if K intersects keyof T', () => {
+      // Arrange
+      type K = 'res.total'
+
+      // Expect
+      expectTypeOf<TestSubject<T, K, F>>().toEqualTypeOf<Fallback<T[K], F>>()
+    })
+
+    it('should equal Fallback<infer V, F> if H indexes T', () => {
+      // Arrange
+      type K = 'res.data.0.vin'
+      type Expect = Fallback<T['res']['data'][0]['vin'], F>
+
+      // Expect
+      expectTypeOf<TestSubject<T, K, F>>().toEqualTypeOf<Expect>()
+    })
+  })
+
+  describe('K extends string | symbol', () => {
+    it('should equal F if K cannot index T', () => {
+      // Arrange
+      type K = typeof opaque | 'vrm'
+
+      // Expect
+      expectTypeOf<TestSubject<Vehicle, K, F>>().toEqualTypeOf<F>()
+    })
+
+    it('should equal Fallback<T[K], F> if K extends keyof T', () => {
+      // Arrange
+      type T = { [x: string]: F | string; [x: symbol]: F | symbol }
+      type K1 = typeof opaque
+      type K2 = 'vrm'
+
+      // Expect
+      expectTypeOf<TestSubject<T, K1, F>>().toEqualTypeOf<Fallback<T[K1], F>>()
+      expectTypeOf<TestSubject<T, K2, F>>().toEqualTypeOf<Fallback<T[K2], F>>()
+    })
+
+    it('should equal Fallback<T[K], F> if K intersects keyof T', () => {
+      // Arrange
+      type T = Partial<Vehicle> & { [opaque]: 'vehicle' }
+      type K1 = typeof opaque
+      type K2 = 'vin'
+
+      // Expect
+      expectTypeOf<TestSubject<T, K1, F>>().toEqualTypeOf<Fallback<T[K1], F>>()
+      expectTypeOf<TestSubject<T, K2, F>>().toEqualTypeOf<Fallback<T[K2], F>>()
     })
   })
 
   describe('unions', () => {
     it('should distribute over unions', () => {
       // Arrange
-      type T = Primitive | (Vehicle & { readonly [tag]: 'vehicle' })
-      type K = typeof tag | 'toString'
-      type Expect = Nullable<
-        Exclude<NonNullable<Primitive>, boolean>['toString'] | 'vehicle'
-      >
+      type T = { data: [Vehicle['vin']?, Vehicle?]; total: number }
+      type K = 'data.1.vin' | 'total'
+      type Expect = F | Required<T['data']>[1]['vin'] | T['total']
 
       // Expect
       expectTypeOf<TestSubject<T, K, F>>().toEqualTypeOf<Expect>()

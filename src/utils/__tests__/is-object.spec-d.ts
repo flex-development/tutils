@@ -3,13 +3,15 @@
  * @module tutils/utils/tests/unit-d/isObject
  */
 
-import type { PropertyKey } from '#src/types'
+import type { ObjectCurly } from '#src/types'
 import type testSubject from '../is-object'
 
 describe('unit-d:utils/isObject', () => {
-  it('should guard Record<PropertyKey, any>', () => {
-    expectTypeOf<typeof testSubject>().guards.toEqualTypeOf<
-      Record<PropertyKey, any>
-    >()
+  it('should guard ObjectCurly | unknown[]', () => {
+    // Arrange
+    type Expect = ObjectCurly | unknown[]
+
+    // Expect
+    expectTypeOf<typeof testSubject>().guards.toEqualTypeOf<Expect>()
   })
 })

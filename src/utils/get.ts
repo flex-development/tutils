@@ -3,72 +3,69 @@
  * @module tutils/utils/get
  */
 
-import type { Get, NumberString } from '#src/types'
+import type { Get, ObjectCurly, PropertyKey } from '#src/types'
 import at from './at'
 import cast from './cast'
+import hasOwn from './has-own'
 import isArray from './is-array'
-import isEmptyString from './is-empty-string'
 import isNIL from './is-nil'
 import isNumeric from './is-numeric'
+import isObject from './is-object'
 import isString from './is-string'
+import isSymbol from './is-symbol'
 import isUndefined from './is-undefined'
+import select from './select'
+import split from './split'
 import trim from './trim'
 
 /**
- * Dynamically indexes `data` at `path`.
+ * Dynamically indexes a `target` value at `path`.
  *
- * If the indexed value is `undefined`, `fallback` will be returned instead.
+ * If the indexed value resolves to `undefined`, `fallback` will be returned
+ * instead.
  *
  * Supports dot-notation for nested paths and array indexing.
  *
+ * @todo examples
+ *
  * @template T - Value to index
- * @template P - Index path
+ * @template K - Property to select
  * @template F - Fallback value type
  *
- * @param {T} data - Value to index
- * @param {P} path - Index path
+ * @param {T} target - Value to index
+ * @param {K} path - Property to select
  * @param {F} [fallback] - Fallback value
- * @return {Get<T, P, F>} Dynamically indexed value or `fallback`
+ * @return {Get<T, K, F>} Dynamically indexed value or `fallback`
  */
-function get<T, P extends NumberString, F = undefined>(
-  data: T,
-  path: P,
+const get = <T, K extends PropertyKey, F = undefined>(
+  target: T,
+  path: K,
   fallback?: F
-): Get<T, P, F> {
-  /**
-   * Path segments.
-   *
-   * @const {string[]} segments
-   */
-  const segments: string[] = `${path}`.split(/[.[\]]/g).map(trim)
-
+): Get<T, K, F> => {
   /**
    * Dynamically indexed value.
    *
-   * @var {unknown} value
+   * @var {unknown} ret
    */
-  let value: unknown = data
+  let ret: unknown = isSymbol(path) ? undefined : target
 
-  // dynamically index data
-  for (const key of segments) {
-    // exit early if indexed value is null or undefined
-    if (isNIL(value)) break
+  // get dynamically indexed value
+  if ((isObject(target) && hasOwn(target, path)) || isSymbol(path)) {
+    ret = target[cast<keyof T>(path)]
+  } else {
+    for (const key of select(split(path.toString(), /[.[\]]/g), null, trim)) {
+      // exit early if indexed value is null or undefined
+      if (isNIL(ret)) break
 
-    // do nothing if key is an empty string
-    if (isEmptyString(key)) continue
-
-    // reset indexed value
-    switch (true) {
-      case (isArray(value) || isString(value)) && isNumeric(key):
-        value = at(cast<string | readonly unknown[]>(value), +key)
-        break
-      default:
-        value = cast<Record<string, any>>(value)[key]
-        break
+      // reset indexed value
+      ret =
+        isNumeric(key) && (isArray(ret) || isString(ret))
+          ? at(cast<string | readonly unknown[]>(ret), +key)
+          : cast<ObjectCurly>(ret)[key]
     }
   }
 
-  return (isUndefined(value) ? fallback : value) as Get<T, P, F>
+  return cast(isUndefined(ret) ? fallback : ret)
 }
 
 export default get

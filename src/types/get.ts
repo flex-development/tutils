@@ -6,13 +6,16 @@
 import type At from './at'
 import type Dot from './dot'
 import type Fallback from './fallback'
-import type IfAny from './if-any'
-import type IfKeys from './if-keys'
-import type IfNever from './if-never'
+import type Intersection from './intersection'
+import type IsAny from './is-any'
+import type IsNever from './is-never'
 import type Join from './join'
-import type Keyof from './keyof'
 import type NumberLike from './number-like'
+import type Objectify from './objectify'
+import type OmitIndexSignature from './omit-index-signature'
 import type PropertyKey from './property-key'
+import type Stringify from './stringify'
+import type UnwrapNumeric from './unwrap-numeric'
 
 /**
  * Retrieves a property value from `T`.
@@ -25,71 +28,30 @@ import type PropertyKey from './property-key'
  * @template K - Property to select
  * @template F - Fallback value type
  */
-type Get<T, K extends PropertyKey, F = undefined> = IfAny<
-  T,
-  T,
-  IfNever<
-    K,
-    F,
-    T extends unknown
-      ? IfKeys<
-          T,
-          Keyof<T> extends infer Q extends keyof T
-            ? IfAny<K, Q, K> extends infer K extends PropertyKey
-              ? K extends Join<
-                  [infer H extends string, infer R extends string],
-                  Dot
-                >
-                ? H extends NumberLike | Q
-                  ? Fallback<
-                      Get<
-                        T extends string | readonly unknown[]
-                          ? H extends NumberLike
-                            ? At<T, H>
-                            : H extends keyof T
-                            ? T[H]
-                            : never
-                          : T[H extends `${infer N extends Extract<
-                              keyof T,
-                              number
-                            >}`
-                              ? N
-                              : H & keyof T],
-                        R,
-                        F
-                      >,
-                      F
-                    >
-                  : F
-                : K extends NumberLike | Q
-                ? T extends string | readonly unknown[]
-                  ? IfNever<
-                      K,
-                      F,
-                      K extends NumberLike
-                        ? At<T, K, F>
-                        : Fallback<T[K & keyof T], F>
-                    >
-                  : IfNever<
-                      K,
-                      F,
-                      Fallback<
-                        T[K extends `${infer N extends Extract<
-                          keyof T,
-                          number
-                        >}`
-                          ? N
-                          : K & keyof T],
-                        F
-                      >
-                    >
-                : F
-              : never
-            : never,
-          F
-        >
-      : F
-  >
->
+type Get<T, K extends PropertyKey, F = undefined> = IsNever<T> extends true
+  ? F
+  : IsNever<K> extends true
+  ? F
+  : T extends unknown
+  ? K extends unknown
+    ? Objectify<T> extends infer U extends Objectify<any>
+      ? IsAny<K> extends true
+        ? T extends string | readonly unknown[]
+          ? At<T, any, F> | Fallback<U[keyof OmitIndexSignature<U>], F>
+          : Fallback<U[keyof U], F>
+        : K extends Join<[infer H extends string, infer R extends string], Dot>
+        ? K extends Intersection<K, keyof U>
+          ? Fallback<U[K], F>
+          : Get<Get<T, H, F>, R, F>
+        : K extends Stringify<keyof U> | UnwrapNumeric<keyof U> | keyof U
+        ? K extends NumberLike
+          ? T extends string | readonly unknown[]
+            ? At<T, K, F>
+            : Fallback<U[K], F>
+          : Fallback<U[K], F>
+        : F
+      : never
+    : never
+  : never
 
 export type { Get as default }

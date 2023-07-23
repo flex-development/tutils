@@ -3,36 +3,45 @@
  * @module tutils/utils/at
  */
 
-import type { At, Numeric } from '#src/types'
+import type { At, NumberLike, Optional } from '#src/types'
+import cast from './cast'
 import isUndefined from './is-undefined'
 
 /**
- * Returns the array item or character in `value` at `index`.
+ * Returns the item or character in `target` value at `index`.
  *
- * Negative indices will count from the end of `value`.
+ * Negative indices will count from the end of `target`.
  *
- * @template T - Value to index
- * @template K - Index type
+ * @see {@linkcode At}
+ *
+ * @todo examples
+ *
+ * @template T - Array or string to index
+ * @template K - Zero-based index
  * @template F - Fallback value type
  *
- * @param {T} value - Value to index
- * @param {K} index - Position of array item or character to retrieve
+ * @param {T} target - Array or string to index
+ * @param {K} index - Zero-based position of item or character to retrieve
  * @param {F} [fallback] - Fallback value
  * @return {At<T, K, F>} Indexed value or `fallback`
  */
-function at<
+const at = <
   T extends string | readonly unknown[],
-  K extends Numeric | number,
+  K extends NumberLike,
   F = undefined
->(value: T, index: K, fallback?: F): At<T, K, F> {
+>(
+  target: T,
+  index: K,
+  fallback?: F
+): At<T, K, F> => {
   /**
-   * Item or character in {@linkcode value} at {@linkcode index}.
+   * Item or character in {@linkcode target} at {@linkcode index}.
    *
-   * @const {F | T[0]} ret
+   * @const {Optional<T[number]>} ret
    */
-  const ret: F | T[0] = value.at(index as number)
+  const ret: Optional<T[number]> = target.at(+index.toString())
 
-  return (isUndefined(ret) ? fallback : ret) as At<T, K, F>
+  return cast(isUndefined(ret) ? fallback : ret)
 }
 
 export default at

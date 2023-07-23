@@ -6,6 +6,8 @@
 /**
  * Checks if `value` is a string.
  *
+ * @todo examples
+ *
  * @param {unknown} value - Value to check
  * @return {value is string} `true` if `value` is a string
  */
