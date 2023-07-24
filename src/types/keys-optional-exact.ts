@@ -4,8 +4,7 @@
  */
 
 import type Get from './get'
-import type IfAny from './if-any'
-import type IfEqual from './if-equal'
+import type IsEqual from './is-equal'
 import type OptionalKeys from './keys-optional'
 import type PropertyKey from './property-key'
 
@@ -41,21 +40,17 @@ import type PropertyKey from './property-key'
  *
  * @template T - Type to evaluate
  */
-type ExactOptionalKeys<T> = IfAny<
-  T,
-  never,
+type ExactOptionalKeys<T> = Extract<
   T extends unknown
-    ? Extract<
-        OptionalKeys<T> extends infer K extends keyof T
-          ? {
-              [H in K]: IfEqual<Get<T, H>, Get<Required<T>, H>, never, H>
-            } extends infer X
-            ? X[keyof X]
-            : never
-          : never,
-        PropertyKey
-      >
-    : never
+    ? OptionalKeys<T> extends infer K extends keyof T
+      ? K extends unknown
+        ? IsEqual<Get<T, K>, Get<Required<T>, K>> extends true
+          ? never
+          : K
+        : never
+      : never
+    : never,
+  PropertyKey
 >
 
 export type { ExactOptionalKeys as default }

@@ -4,7 +4,7 @@
  */
 
 import type { PropertyDescriptor } from '#src/interfaces'
-import type { Nilable, ObjectCurly } from '#src/types'
+import type { Nilable, ObjectCurly, Objectify } from '#src/types'
 import alphabetize from './alphabetize'
 import cast from './cast'
 import define from './define'
@@ -30,7 +30,7 @@ import properties from './properties'
  * @param {Nilable<KsortOptions>} [options] - Key sorting options
  * @return {T} Target object with sorted keys
  */
-const ksort = <T extends ObjectCurly | unknown[]>(
+const ksort = <T extends Objectify<any>>(
   obj: T,
   options?: Nilable<KsortOptions>
 ): T => {
@@ -135,7 +135,9 @@ const ksort = <T extends ObjectCurly | unknown[]>(
     return ret
   }
 
-  return cast(isArray(obj) ? (options?.deep ? arrsort(obj) : obj) : sort(obj))
+  return cast(
+    isArray(obj) ? (options?.deep ? arrsort(cast(obj)) : obj) : sort(obj)
+  )
 }
 
 export default ksort

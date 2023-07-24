@@ -16,8 +16,12 @@ import type Optional from '../optional'
 import type Timestamp from '../timestamp'
 
 describe('unit-d:types/RequiredKeys', () => {
-  it('should equal never if T is any', () => {
-    expectTypeOf<TestSubject<any>>().toBeNever()
+  it('should equal keyof T if T is any', () => {
+    // Arrange
+    type T = any
+
+    // Expect
+    expectTypeOf<TestSubject<T>>().toEqualTypeOf<keyof T>()
   })
 
   it('should equal never if T is never', () => {

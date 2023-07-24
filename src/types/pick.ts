@@ -3,15 +3,12 @@
  * @module tutils/types/Pick
  */
 
-import type IfAny from './if-any'
-import type IfNever from './if-never'
-import type IfNumber from './if-number'
-import type IfNumeric from './if-numeric'
-import type Intersection from './intersection'
 import type IsAny from './is-any'
 import type IsNever from './is-never'
+import type IsNumber from './is-number'
+import type IsNumeric from './is-numeric'
 import type Numeric from './numeric'
-import type NegativeNumeric from './numeric-negative'
+import type OmitIndexSignature from './omit-index-signature'
 import type PropertyKey from './property-key'
 import type Remap from './remap'
 import type Stringify from './stringify'
@@ -20,9 +17,10 @@ import type UnwrapNumeric from './unwrap-numeric'
 /**
  * From `T`, pick a set of properties whose keys are in the union `K`.
  *
- * Type constituents in `K` must intersect `keyof Remap<T>`. When permitted by
- * indexing, property keys that are numbers and numerics (e.g. `0`, `'1'`) are
- * also allowed exact*ish* matches.
+ * Type constituents in `K` must intersect `keyof Remap<T>` or extend an index
+ * signature property. When permitted by indexing, keys that are numbers and
+ * numerics (e.g. `0`, `'1'`) are also allowed exact*ish* matches. This means
+ * numbers can be used to select numeric properties, and vice-versa.
  *
  * @see {@linkcode Remap}
  *
@@ -31,38 +29,31 @@ import type UnwrapNumeric from './unwrap-numeric'
  * @template T - Type to evaluate
  * @template K - Keys to select
  */
-type Pick<T, K extends PropertyKey> = IsAny<T> extends true
-  ? { [H in K]: T }
-  : IsNever<T> extends true
+type Pick<T, K extends PropertyKey> = IsNever<T> extends true
   ? Remap<T>
   : T extends unknown
   ? Remap<T> extends infer U
-    ? {
-        [H in keyof U as IfAny<
-          K,
-          H,
-          IfNever<
-            Intersection<
-              IfNumber<
-                H,
-                H | Stringify<H>,
-                IfNumeric<
-                  H,
-                  NegativeNumeric extends H
-                    ? H
-                    : Numeric extends H
-                    ? H
-                    : H | UnwrapNumeric<H>,
-                  H
-                >
-              >,
-              K
-            >,
-            never,
-            H
-          >
-        >]: U[H]
-      }
+    ? IsAny<K> extends true
+      ? U
+      : (
+          K extends keyof U
+            ? K
+            : IsNumber<K> extends true
+            ? Stringify<K> extends infer N extends Numeric
+              ? N extends keyof OmitIndexSignature<U>
+                ? N
+                : never
+              : never
+            : IsNumeric<K> extends true
+            ? UnwrapNumeric<K> extends infer N extends number
+              ? N extends keyof U
+                ? N
+                : never
+              : never
+            : never
+        ) extends infer Q extends keyof U
+      ? { [H in Q]: U[H] }
+      : never
     : never
   : never
 

@@ -97,11 +97,13 @@ export { default as listify } from './listify'
 export { default as lowercase } from './lowercase'
 export { default as noop } from './noop'
 export { default as objectify } from './objectify'
+export { default as omit } from './omit'
 export { default as overwrite } from './overwrite'
 export {
   default as overwriteWith,
   type OverwriteCustomizer
 } from './overwrite-with'
+export { default as pick } from './pick'
 export { default as properties, type Properties } from './properties'
 export type { default as PropertiesOptions } from './properties.options'
 export { default as pull } from './pull'

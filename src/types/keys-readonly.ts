@@ -3,19 +3,15 @@
  * @module tutils/types/ReadonlyKeys
  */
 
-import type IfAny from './if-any'
 import type IfEqual from './if-equal'
-import type IfTuple from './if-tuple'
 import type Indices from './indices'
-import type Length from './length'
-import type Opaque from './opaque'
-import type { tag as OpaqueTag } from './opaque'
-import type Primitive from './primitive'
+import type IsAny from './is-any'
+import type Objectify from './objectify'
 import type PropertyKey from './property-key'
 import type Stringify from './stringify'
 
 /**
- * Constructs a union of readonly keys.
+ * Construct a union of `T`'s readonly property keys.
  *
  * @see https://github.com/microsoft/TypeScript/issues/14295
  *
@@ -28,6 +24,9 @@ import type Stringify from './stringify'
  * @example
  *  type X = ReadonlyKeys<readonly ['a', 'b'?]>
  *  // typeof Symbol.unscopables | -1 | -2 | 'length' | 0 | 1
+ * @example
+ *  type X = ReadonlyKeys<readonly string[]>
+ *  // number | typeof Symbol.unscopables | 'length'
  * @example
  *  type X = ReadonlyKeys<'data'>
  *  // 'length'
@@ -43,40 +42,47 @@ import type Stringify from './stringify'
  *
  * @template T - Type to evaluate
  */
-type ReadonlyKeys<T> = IfAny<
-  T,
-  never,
-  Extract<
-    T extends unknown
-      ?
-          | ({
-              [H in keyof (T extends Opaque<unknown>
-                ? T
-                : T extends Primitive
-                ? Omit<Opaque<T>, typeof OpaqueTag>
-                : T) as T extends readonly unknown[]
-                ? IfTuple<T, H extends Stringify<Indices<T>> ? never : H, H>
-                : H]: { [K in H]: T[K & keyof T] } extends infer V
-                ? IfEqual<
+type ReadonlyKeys<T> = IsAny<T> extends true
+  ? never
+  : Extract<
+      T extends unknown
+        ? {
+            [H in keyof Objectify<T> as {
+              [K in H]: T[K & keyof T]
+            } extends infer V
+              ? IfEqual<
+                  V,
+                  { readonly [Q in H]: T[Q & keyof T] },
+                  H,
+                  IfEqual<
                     V,
-                    { readonly [Q in H]: T[Q & keyof T] },
+                    { readonly [Q in H]?: T[Q & keyof T] },
                     H,
-                    IfEqual<V, { readonly [Q in H]?: T[Q & keyof T] }, H, never>
+                    T extends readonly unknown[]
+                      ? number extends H
+                        ? T extends { push: unknown[]['push'] }
+                          ? never
+                          : number extends Indices<T>
+                          ? H
+                          : never
+                        : never
+                      : never
                   >
+                >
+              : never]: T extends unknown[]
+              ? H
+              : T extends readonly unknown[]
+              ? Indices<T> extends infer I extends number
+                ? H extends Stringify<I>
+                  ? I
+                  : H
                 : never
-            } extends infer X
-              ? X[keyof X]
-              : never)
-          | (T extends readonly unknown[]
-              ? number extends Length<T>
-                ? never
-                : T extends { push: unknown[]['push'] }
-                ? never
-                : Indices<T>
-              : never)
-      : never,
-    PropertyKey
-  >
->
+              : H
+          } extends infer X
+          ? X[keyof X]
+          : never
+        : never,
+      PropertyKey
+    >
 
 export type { ReadonlyKeys as default }

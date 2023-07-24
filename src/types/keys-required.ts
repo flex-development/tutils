@@ -3,11 +3,9 @@
  * @module tutils/types/RequiredKeys
  */
 
-import type IfAny from './if-any'
 import type IfEqual from './if-equal'
 import type Indices from './indices'
 import type Intersection from './intersection'
-import type Invert from './invert'
 import type Length from './length'
 import type Objectify from './objectify'
 import type PropertyKey from './property-key'
@@ -40,7 +38,7 @@ import type UnwrapNumeric from './unwrap-numeric'
  *  // keyof string
  * @example
  *  type X = RequiredKeys<any>
- *  // never
+ *  // number | string | symbol
  * @example
  *  type X = RequiredKeys<never>
  *  // never
@@ -50,49 +48,40 @@ import type UnwrapNumeric from './unwrap-numeric'
  *
  * @template T - Type to evaluate
  */
-type RequiredKeys<T> = IfAny<
-  T,
-  never,
-  Extract<
-    T extends unknown
-      ? Objectify<T> extends infer U
-        ? Invert<{
-            [H in keyof U as IfEqual<
-              { [K in H]: U[K] },
-              {
-                [K in keyof Required<U> as Intersection<K, H>]: Required<U>[K]
-              },
-              T extends string | readonly unknown[]
-                ? Indices<T> extends infer I extends number
-                  ? number extends I
-                    ? H
-                    : H extends Stringify<I>
-                    ? UnwrapNumeric<H> extends infer N extends number
-                      ?
-                          | N
-                          | UnwrapNumeric<
-                              Exclude<
-                                `-${Subtract<Length<Required<T>>, N>}`,
-                                '-0'
-                              >
-                            >
-                      : never
-                    : number extends H
-                    ? T extends string
-                      ? I
-                      : never
-                    : H
-                  : H
-                : H,
-              never
-            >]: PropertyKey
-          }> extends infer X
-          ? X[keyof X]
-          : never
+type RequiredKeys<T> = Extract<
+  T extends unknown
+    ? Objectify<T> extends infer U
+      ? {
+          [H in keyof U as IfEqual<
+            { [K in H]: U[K] },
+            { [K in keyof Required<U> as Intersection<H, K>]: Required<U>[K] },
+            H,
+            never
+          >]: T extends string | readonly unknown[]
+            ? Indices<T> extends infer I extends number
+              ? number extends I
+                ? H
+                : H extends Stringify<I>
+                ? UnwrapNumeric<H> extends infer N extends number
+                  ?
+                      | N
+                      | UnwrapNumeric<
+                          Exclude<`-${Subtract<Length<Required<T>>, N>}`, '-0'>
+                        >
+                  : never
+                : number extends H
+                ? T extends string
+                  ? I
+                  : never
+                : H
+              : H
+            : H
+        } extends infer X
+        ? X[keyof X]
         : never
-      : never,
-    PropertyKey
-  >
+      : never
+    : never,
+  PropertyKey
 >
 
 export type { RequiredKeys as default }

@@ -23,10 +23,6 @@ describe('unit-d:types/IfRequiredKey', () => {
     expectTypeOf<TestSubject<Author, never, T, F>>().toEqualTypeOf<F>()
   })
 
-  it('should equal F if U is any', () => {
-    expectTypeOf<TestSubject<any, 'email', T, F>>().toEqualTypeOf<F>()
-  })
-
   it('should equal F if U is never', () => {
     expectTypeOf<TestSubject<never, 'first_name', T, F>>().toEqualTypeOf<F>()
   })

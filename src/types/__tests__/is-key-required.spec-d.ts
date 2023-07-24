@@ -24,16 +24,32 @@ describe('unit-d:types/IsRequiredKey', () => {
     expectTypeOf<TestSubject<Author, never>>().toEqualTypeOf<false>()
   })
 
-  it('should equal false if T is any', () => {
-    expectTypeOf<TestSubject<any, 'last_name'>>().toEqualTypeOf<false>()
-  })
-
   it('should equal false if T is never', () => {
     expectTypeOf<TestSubject<never, 'last_name'>>().toEqualTypeOf<false>()
   })
 
   it('should equal false if T is unknown', () => {
     expectTypeOf<TestSubject<unknown, 'last_name'>>().toEqualTypeOf<false>()
+  })
+
+  describe('IsAny<T> extends true', () => {
+    type T = any
+
+    it('should equal false if K does not intersect keyof T', () => {
+      expectTypeOf<TestSubject<T, 'last_name'>>().toEqualTypeOf<false>()
+    })
+
+    it('should equal true if number extends K', () => {
+      expectTypeOf<TestSubject<T, number>>().toEqualTypeOf<true>()
+    })
+
+    it('should equal true if string extends K', () => {
+      expectTypeOf<TestSubject<T, string>>().toEqualTypeOf<true>()
+    })
+
+    it('should equal true if symbol extends K', () => {
+      expectTypeOf<TestSubject<T, symbol>>().toEqualTypeOf<true>()
+    })
   })
 
   describe('T extends ObjectCurly', () => {

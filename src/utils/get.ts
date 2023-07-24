@@ -10,7 +10,6 @@ import hasOwn from './has-own'
 import isArray from './is-array'
 import isNIL from './is-nil'
 import isNumeric from './is-numeric'
-import isObject from './is-object'
 import isString from './is-string'
 import isSymbol from './is-symbol'
 import isUndefined from './is-undefined'
@@ -50,7 +49,7 @@ const get = <T, K extends PropertyKey, F = undefined>(
   let ret: unknown = isSymbol(path) ? undefined : target
 
   // get dynamically indexed value
-  if ((isObject(target) && hasOwn(target, path)) || isSymbol(path)) {
+  if (hasOwn(target, path) || isSymbol(path)) {
     ret = target[cast<keyof T>(path)]
   } else {
     for (const key of select(split(path.toString(), /[.[\]]/g), null, trim)) {

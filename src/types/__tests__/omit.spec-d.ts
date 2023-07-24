@@ -6,6 +6,7 @@
 import type Person from '#fixtures/interfaces/person'
 import type Vehicle from '#fixtures/types/vehicle'
 import type Fn from '../fn'
+import type Indices from '../indices'
 import type Nilable from '../nilable'
 import type Nullable from '../nullable'
 import type Numeric from '../numeric'
@@ -13,7 +14,7 @@ import type Objectify from '../objectify'
 import type TestSubject from '../omit'
 import type OmitNative from '../omit-native'
 import type { tag as opaque } from '../opaque'
-import type PropertyKey from '../property-key'
+import type Stringify from '../stringify'
 
 describe('unit-d:types/Omit', () => {
   it('should equal Objectify<T> if T is never', () => {
@@ -24,313 +25,116 @@ describe('unit-d:types/Omit', () => {
     expectTypeOf<TestSubject<T, keyof Vehicle>>().toEqualTypeOf<Objectify<T>>()
   })
 
-  it('should equal Objectify<T> if T is unknown', () => {
-    // Arrange
-    type T = unknown
-
-    // Expect
-    expectTypeOf<TestSubject<T, keyof Vehicle>>().toEqualTypeOf<Objectify<T>>()
-  })
-
-  describe('IsAny<T> extends true', () => {
-    type T = any
-
+  describe('Objectify<T> extends infer U', () => {
     it('should equal {} if K is any', () => {
-      expectTypeOf<TestSubject<T, any>>().toEqualTypeOf<{}>()
+      expectTypeOf<TestSubject<Vehicle, any>>().toEqualTypeOf<{}>()
     })
 
-    it('should equal Objectify<T> if K is never', () => {
+    it('should equal U if K is never', () => {
+      // Arrange
+      type T = Vehicle['vin']
+
+      // Expect
       expectTypeOf<TestSubject<T, never>>().toEqualTypeOf<Objectify<T>>()
     })
 
-    describe('HasKey<T, K> extends false', () => {
-      it('should equal Objectify<T>', () => {
+    describe('K extends Stringify<infer N extends UnwrapNumeric<K>>', () => {
+      it('should equal OmitNative<U, K> if K intersects keyof U', () => {
         // Arrange
-        type K = keyof Vehicle
+        type T = readonly [Vehicle, Nilable<Vehicle>, Nullable<Vehicle>?]
+        type K = Stringify<Indices<T>>
+        type Expect = OmitNative<Objectify<T>, K>
 
         // Expect
-        expectTypeOf<TestSubject<T, K>>().toEqualTypeOf<Objectify<T>>()
+        expectTypeOf<TestSubject<T, K>>().toEqualTypeOf<Expect>()
+      })
+
+      it('should equal OmitNative<U, N> if N intersects keyof U', () => {
+        // Arrange
+        type T = { [x: number]: Vehicle; 0?: Vehicle }
+        type K1 = Numeric
+        type K2 = '0'
+        type E1 = { 0?: Vehicle }
+        type E2 = { [x: number]: Vehicle }
+
+        // Expect
+        expectTypeOf<TestSubject<T, K1>>().toEqualTypeOf<E1>()
+        expectTypeOf<TestSubject<T, K2>>().toEqualTypeOf<E2>()
+      })
+
+      it('should equal U if HasKey<U, K> extends false', () => {
+        // Arrange
+        type T = readonly [Vehicle]
+
+        // Expect
+        expectTypeOf<TestSubject<T, '-1'>>().toEqualTypeOf<Objectify<T>>()
       })
     })
 
-    describe('HasKey<T, K> extends true', () => {
-      it('should equal OmitNative<T, K>', () => {
+    describe('K extends UnwrapNumeric<infer N extends Stringify<K>>', () => {
+      it('should equal OmitNative<U, K> if K intersects keyof U', () => {
         // Arrange
-        type K = symbol
+        type T = { [x: Numeric]: Vehicle; [x: number]: Vehicle; 0?: Vehicle }
+        type K1 = number
+        type K2 = 0
+        type E1 = { [x: Numeric]: Vehicle; 0?: Vehicle }
+        type E2 = { [x: Numeric]: Vehicle; [x: number]: Vehicle }
 
         // Expect
-        expectTypeOf<TestSubject<T, K>>().toEqualTypeOf<OmitNative<T, K>>()
+        expectTypeOf<TestSubject<T, K1>>().toEqualTypeOf<E1>()
+        expectTypeOf<TestSubject<T, K2>>().toEqualTypeOf<E2>()
       })
-    })
-  })
 
-  describe('T extends ObjectCurly', () => {
-    type T = Vehicle
-
-    it('should equal {} if K is any', () => {
-      expectTypeOf<TestSubject<T, any>>().toEqualTypeOf<{}>()
-    })
-
-    it('should equal Objectify<T> if K is never', () => {
-      expectTypeOf<TestSubject<T, never>>().toEqualTypeOf<Objectify<T>>()
-    })
-
-    describe('HasKey<T, K> extends false', () => {
-      it('should equal Objectify<T>', () => {
+      it('should equal OmitNative<U, N> if N intersects keyof U', () => {
         // Arrange
-        type K = PropertyKey
+        type T = readonly [Vehicle, Nilable<Vehicle>, Nullable<Vehicle>?]
+        type K = Indices<T>
+        type Expect = OmitNative<Objectify<T>, Stringify<K>>
 
         // Expect
-        expectTypeOf<TestSubject<T, K>>().toEqualTypeOf<Objectify<T>>()
+        expectTypeOf<TestSubject<T, K>>().toEqualTypeOf<Expect>()
+      })
+
+      it('should equal U if HasKey<U, K> extends false', () => {
+        // Arrange
+        type T = readonly [Vehicle]
+
+        // Expect
+        expectTypeOf<TestSubject<T, -1>>().toEqualTypeOf<Objectify<T>>()
       })
     })
 
-    describe('HasKey<T, K> extends true', () => {
-      it('should equal OmitNative<T, K>', () => {
+    describe('K extends string', () => {
+      type T = Vehicle
+      type U = Objectify<T>
+
+      it('should equal OmitNative<U, K> if K intersects keyof U', () => {
         // Arrange
         type K = 'make' | 'model' | 'year'
 
         // Expect
-        expectTypeOf<TestSubject<T, K>>().toEqualTypeOf<OmitNative<T, K>>()
+        expectTypeOf<TestSubject<T, K>>().toEqualTypeOf<OmitNative<U, K>>()
+      })
+
+      it('should equal U if HasKey<U, K> extends false', () => {
+        expectTypeOf<TestSubject<T, string>>().toEqualTypeOf<U>()
       })
     })
-  })
 
-  describe('T extends Primitive', () => {
-    describe('T extends NIL', () => {
-      it('should equal Objectify<T>', () => {
+    describe('K extends symbol', () => {
+      type T = Readonly<Fn>
+      type U = Objectify<T>
+
+      it('should equal OmitNative<U, K> if K intersects keyof U', () => {
         // Arrange
-        type T1 = null
-        type T2 = undefined
-        type K = keyof Vehicle
+        type K = typeof Symbol.hasInstance
 
         // Expect
-        expectTypeOf<TestSubject<T1, K>>().toEqualTypeOf<Objectify<T1>>()
-        expectTypeOf<TestSubject<T2, K>>().toEqualTypeOf<Objectify<T2>>()
-      })
-    })
-
-    describe('T extends bigint', () => {
-      type T = 0n
-
-      it('should equal {} if K is any', () => {
-        expectTypeOf<TestSubject<T, any>>().toEqualTypeOf<{}>()
+        expectTypeOf<TestSubject<T, K>>().toEqualTypeOf<OmitNative<U, K>>()
       })
 
-      it('should equal Objectify<T> if K is never', () => {
-        expectTypeOf<TestSubject<T, never>>().toEqualTypeOf<Objectify<T>>()
-      })
-
-      describe('HasKey<T, K> extends false', () => {
-        it('should equal Objectify<T>', () => {
-          // Arrange
-          type K = PropertyKey
-
-          // Expect
-          expectTypeOf<TestSubject<T, K>>().toEqualTypeOf<Objectify<T>>()
-        })
-      })
-
-      describe('HasKey<T, K> extends true', () => {
-        it('should equal OmitNative<T, K>', () => {
-          // Arrange
-          type K = typeof Symbol.toStringTag | 'toLocaleString'
-
-          // Expect
-          expectTypeOf<TestSubject<T, K>>().toEqualTypeOf<OmitNative<T, K>>()
-        })
-      })
-    })
-
-    describe('T extends boolean', () => {
-      type T = false
-
-      it('should equal {} if K is any', () => {
-        expectTypeOf<TestSubject<T, any>>().toEqualTypeOf<{}>()
-      })
-
-      it('should equal Objectify<T> if K is never', () => {
-        expectTypeOf<TestSubject<T, never>>().toEqualTypeOf<Objectify<T>>()
-      })
-
-      describe('HasKey<T, K> extends false', () => {
-        it('should equal Objectify<T>', () => {
-          // Arrange
-          type K = PropertyKey
-
-          // Expect
-          expectTypeOf<TestSubject<T, K>>().toEqualTypeOf<Objectify<T>>()
-        })
-      })
-
-      describe('HasKey<T, K> extends true', () => {
-        it('should equal OmitNative<T, K>', () => {
-          // Arrange
-          type K = 'valueOf'
-
-          // Expect
-          expectTypeOf<TestSubject<T, K>>().toEqualTypeOf<OmitNative<T, K>>()
-        })
-      })
-    })
-
-    describe('T extends number', () => {
-      type T = 0
-
-      it('should equal {} if K is any', () => {
-        expectTypeOf<TestSubject<T, any>>().toEqualTypeOf<{}>()
-      })
-
-      it('should equal Objectify<T> if K is never', () => {
-        expectTypeOf<TestSubject<T, never>>().toEqualTypeOf<Objectify<T>>()
-      })
-
-      describe('HasKey<T, K> extends false', () => {
-        it('should equal Objectify<T>', () => {
-          // Arrange
-          type K = PropertyKey
-
-          // Expect
-          expectTypeOf<TestSubject<T, K>>().toEqualTypeOf<Objectify<T>>()
-        })
-      })
-
-      describe('HasKey<T, K> extends true', () => {
-        it('should equal OmitNative<T, K>', () => {
-          // Arrange
-          type K = 'toLocaleString' | 'valueOf'
-
-          // Expect
-          expectTypeOf<TestSubject<T, K>>().toEqualTypeOf<OmitNative<T, K>>()
-        })
-      })
-    })
-
-    describe('T extends string', () => {
-      type T = 'vehicle'
-
-      it('should equal {} if K is any', () => {
-        expectTypeOf<TestSubject<T, any>>().toEqualTypeOf<{}>()
-      })
-
-      it('should equal Objectify<T> if K is never', () => {
-        expectTypeOf<TestSubject<T, never>>().toEqualTypeOf<Objectify<T>>()
-      })
-
-      describe('HasKey<T, K> extends false', () => {
-        it('should equal Objectify<T>', () => {
-          // Arrange
-          type K = string | symbol
-
-          // Expect
-          expectTypeOf<TestSubject<T, K>>().toEqualTypeOf<Objectify<T>>()
-        })
-      })
-
-      describe('HasKey<T, K> extends true', () => {
-        it('should equal OmitNative<Objectify<T>, K>', () => {
-          // Arrange
-          type K = Exclude<keyof T, number | 'at' | 'length'>
-
-          // Expect
-          expectTypeOf<TestSubject<T, K>>().toEqualTypeOf<OmitNative<T, K>>()
-        })
-      })
-    })
-
-    describe('T extends symbol', () => {
-      type T = typeof opaque
-
-      it('should equal {} if K is any', () => {
-        expectTypeOf<TestSubject<T, any>>().toEqualTypeOf<{}>()
-      })
-
-      it('should equal Objectify<T> if K is never', () => {
-        expectTypeOf<TestSubject<T, never>>().toEqualTypeOf<Objectify<T>>()
-      })
-
-      describe('HasKey<T, K> extends false', () => {
-        it('should equal Objectify<T>', () => {
-          // Arrange
-          type K = PropertyKey
-
-          // Expect
-          expectTypeOf<TestSubject<T, K>>().toEqualTypeOf<Objectify<T>>()
-        })
-      })
-
-      describe('HasKey<T, K> extends true', () => {
-        it('should equal OmitNative<T, K>', () => {
-          // Arrange
-          type K = typeof Symbol.toStringTag | 'toString' | 'valueOf'
-
-          // Expect
-          expectTypeOf<TestSubject<T, K>>().toEqualTypeOf<OmitNative<T, K>>()
-        })
-      })
-    })
-  })
-
-  describe('T extends Readonly<Fn>', () => {
-    type T = Readonly<Fn>
-
-    it('should equal {} if K is any', () => {
-      expectTypeOf<TestSubject<T, any>>().toEqualTypeOf<{}>()
-    })
-
-    it('should equal Objectify<T> if K is never', () => {
-      expectTypeOf<TestSubject<T, never>>().toEqualTypeOf<Objectify<T>>()
-    })
-
-    describe('HasKey<T, K> extends false', () => {
-      it('should equal Objectify<T>', () => {
-        // Arrange
-        type K = PropertyKey
-
-        // Expect
-        expectTypeOf<TestSubject<T, K>>().toEqualTypeOf<Objectify<T>>()
-      })
-    })
-
-    describe('HasKey<T, K> extends true', () => {
-      it('should equal OmitNative<T, K>', () => {
-        // Arrange
-        type K = typeof Symbol.hasInstance | 'arguments' | 'prototype'
-
-        // Expect
-        expectTypeOf<TestSubject<T, K>>().toEqualTypeOf<OmitNative<T, K>>()
-      })
-    })
-  })
-
-  describe('T extends readonly unknown[]', () => {
-    type T = readonly [Vehicle, Vehicle, Nilable<Vehicle>, Nullable<Vehicle>?]
-
-    it('should equal {} if K is any', () => {
-      expectTypeOf<TestSubject<T, any>>().toEqualTypeOf<{}>()
-    })
-
-    it('should equal Objectify<T> if K is never', () => {
-      expectTypeOf<TestSubject<T, never>>().toEqualTypeOf<Objectify<T>>()
-    })
-
-    describe('HasKey<T, K> extends false', () => {
-      it('should equal Objectify<T>', () => {
-        // Arrange
-        type K = string | symbol
-
-        // Expect
-        expectTypeOf<TestSubject<T, K>>().toEqualTypeOf<Objectify<T>>()
-      })
-    })
-
-    describe('HasKey<T, K> extends true', () => {
-      it('should equal OmitNative<Objectify<T>, K>', () => {
-        // Arrange
-        type K = Exclude<keyof T, Numeric | 'length'>
-
-        // Expect
-        expectTypeOf<TestSubject<T, K>>().toEqualTypeOf<OmitNative<T, K>>()
+      it('should equal U if HasKey<U, K> extends false', () => {
+        expectTypeOf<TestSubject<T, typeof opaque>>().toEqualTypeOf<U>()
       })
     })
   })

@@ -507,7 +507,11 @@ describe('unit-d:types/IsReadonlyKey', () => {
         it('should equal true if K is readonly key', () => {
           // Arrange
           type T = readonly [Vehicle, Vehicle?]
-          type K = Stringify<Indices<T>> | typeof Symbol.unscopables | 'length'
+          type K =
+            | Stringify<Indices<T>>
+            | number
+            | typeof Symbol.unscopables
+            | 'length'
 
           // Expect
           expectTypeOf<TestSubject<T, K>>().toEqualTypeOf<true>()
@@ -537,10 +541,9 @@ describe('unit-d:types/IsReadonlyKey', () => {
       })
 
       describe('K extends keyof T', () => {
-        type T = Vehicle[]
-
         it('should equal false if K is not readonly key', () => {
           // Arrange
+          type T = Vehicle[]
           type K = Exclude<keyof T, typeof Symbol.unscopables>
 
           // Expect
@@ -549,7 +552,8 @@ describe('unit-d:types/IsReadonlyKey', () => {
 
         it('should equal true if K is readonly key', () => {
           // Arrange
-          type K = Extract<keyof T, typeof Symbol.unscopables>
+          type T = readonly Vehicle[]
+          type K = number | typeof Symbol.unscopables | 'length'
 
           // Expect
           expectTypeOf<TestSubject<T, K>>().toEqualTypeOf<true>()

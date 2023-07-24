@@ -130,10 +130,10 @@ describe('unit-d:types/ReadonlyKeys', () => {
     describe('number extends Length<T>', () => {
       it('should construct union of readonly keys', () => {
         // Arrange
-        type Expect = typeof Symbol.unscopables | 'length'
+        type Expect = number | typeof Symbol.unscopables | 'length'
 
         // Expect
-        expectTypeOf<TestSubject<readonly string[]>>().toEqualTypeOf<Expect>()
+        expectTypeOf<TestSubject<readonly Vehicle[]>>().toEqualTypeOf<Expect>()
       })
     })
   })

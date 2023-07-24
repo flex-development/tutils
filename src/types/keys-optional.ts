@@ -3,7 +3,6 @@
  * @module tutils/types/OptionalKeys
  */
 
-import type IfAny from './if-any'
 import type IfRequiredKey from './if-key-required'
 import type Indices from './indices'
 import type Length from './length'
@@ -49,38 +48,34 @@ import type UnwrapNumeric from './unwrap-numeric'
  *
  * @template T - Type to evaluate
  */
-type OptionalKeys<T> = IfAny<
-  T,
-  never,
-  Extract<
-    T extends unknown
-      ? {
-          [H in keyof Objectify<T> as IfRequiredKey<
-            T,
-            H,
-            never,
-            H
-          >]: T extends readonly unknown[]
-            ? Indices<T> extends infer I extends number
-              ? number extends I
-                ? H
-                : H extends Stringify<I>
-                ? UnwrapNumeric<H> extends infer N extends number
-                  ?
-                      | N
-                      | UnwrapNumeric<
-                          Exclude<`-${Subtract<Length<Required<T>>, N>}`, '-0'>
-                        >
-                  : never
-                : H
-              : never
-            : H
-        } extends infer X
-        ? X[keyof X]
-        : never
-      : never,
-    PropertyKey
-  >
+type OptionalKeys<T> = Extract<
+  T extends unknown
+    ? {
+        [H in keyof Objectify<T> as IfRequiredKey<
+          T,
+          H,
+          never,
+          H
+        >]: T extends readonly unknown[]
+          ? Indices<T> extends infer I extends number
+            ? number extends I
+              ? H
+              : H extends Stringify<I>
+              ? UnwrapNumeric<H> extends infer N extends number
+                ?
+                    | N
+                    | UnwrapNumeric<
+                        Exclude<`-${Subtract<Length<Required<T>>, N>}`, '-0'>
+                      >
+                : never
+              : H
+            : never
+          : H
+      } extends infer X
+      ? X[keyof X]
+      : never
+    : never,
+  PropertyKey
 >
 
 export type { OptionalKeys as default }

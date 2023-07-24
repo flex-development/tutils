@@ -11,7 +11,6 @@ import type Indices from '../indices'
 import type Nilable from '../nilable'
 import type Nullable from '../nullable'
 import type Numeric from '../numeric'
-import type NegativeNumeric from '../numeric-negative'
 import type { tag as opaque } from '../opaque'
 import type Partial from '../partial'
 import type TestSubject from '../pick'
@@ -39,7 +38,7 @@ describe('unit-d:types/Pick', () => {
   })
 
   describe('Remap<T> extends infer U', () => {
-    it('should equal {} if HasKey<U, K> extends false', () => {
+    it('should equal {} if K cannot index U', () => {
       expectTypeOf<TestSubject<EmptyObject, typeof empty>>().toEqualTypeOf<{}>()
       expectTypeOf<TestSubject<null, 'make'>>().toEqualTypeOf<{}>()
       expectTypeOf<TestSubject<undefined, 'model'>>().toEqualTypeOf<{}>()
@@ -63,20 +62,38 @@ describe('unit-d:types/Pick', () => {
     })
 
     describe('K extends Stringify<infer N extends UnwrapNumeric<K>>', () => {
-      it('should equal {} if HasKey<U, K> extends false', () => {
-        expectTypeOf<TestSubject<[Vehicle], '-3' | '3'>>().toEqualTypeOf<{}>()
+      it('should equal {} if K cannot index U', () => {
+        expectTypeOf<TestSubject<Vehicle, '3'>>().toEqualTypeOf<{}>()
+      })
+
+      it('should equal PickNative<U, K> if K extends keyof U', () => {
+        // Arrange
+        type T = { readonly [x: Numeric]: Vehicle }
+        type K = '0'
+        type Expect = PickNative<Remap<T>, K>
+
+        // Expect
+        expectTypeOf<TestSubject<T, K>>().toEqualTypeOf<Expect>()
       })
 
       it('should equal PickNative<U, K> if K intersects keyof U', () => {
         // Arrange
-        type T = { readonly [x: Numeric]: Vehicle; readonly '0': Vehicle }
-        type K1 = Numeric
-        type K2 = '0'
-        type Expect<K extends keyof T> = PickNative<Remap<T>, K>
+        type T = { readonly '0': Vehicle }
+        type K = '0'
+        type Expect = PickNative<Remap<T>, K>
 
         // Expect
-        expectTypeOf<TestSubject<T, K1>>().toEqualTypeOf<Expect<K1>>()
-        expectTypeOf<TestSubject<T, K2>>().toEqualTypeOf<Expect<K2>>()
+        expectTypeOf<TestSubject<T, K>>().toEqualTypeOf<Expect>()
+      })
+
+      it('should equal PickNative<U, N> if N extends keyof U', () => {
+        // Arrange
+        type T = { [x: number]: Vehicle }
+        type K = '0'
+        type Expect = PickNative<Remap<T>, UnwrapNumeric<K>>
+
+        // Expect
+        expectTypeOf<TestSubject<T, K>>().toEqualTypeOf<Expect>()
       })
 
       it('should equal PickNative<U, N> if N intersects keyof U', () => {
@@ -91,13 +108,23 @@ describe('unit-d:types/Pick', () => {
     })
 
     describe('K extends UnwrapNumeric<infer N extends Stringify<K>>', () => {
-      it('should equal {} if HasKey<U, K> extends false', () => {
+      it('should equal {} if K cannot index U', () => {
         // Arrange
-        type T = { [x: NegativeNumeric]: string; [x: Numeric]: string }
+        type T = { [x: Numeric]: string }
 
         // Expect
         expectTypeOf<TestSubject<T, 2>>().toEqualTypeOf<{}>()
         expectTypeOf<TestSubject<T, number>>().toEqualTypeOf<{}>()
+      })
+
+      it('should equal PickNative<U, K> if K extends keyof U', () => {
+        // Arrange
+        type T = { [x: number]: string }
+        type K = 2
+        type Expect = PickNative<Remap<T>, K>
+
+        // Expect
+        expectTypeOf<TestSubject<T, K>>().toEqualTypeOf<Expect>()
       })
 
       it('should equal PickNative<U, K> if K intersects keyof U', () => {
@@ -124,8 +151,18 @@ describe('unit-d:types/Pick', () => {
     })
 
     describe('K extends string', () => {
-      it('should equal {} if HasKey<U, K> extends false', () => {
+      it('should equal {} if K cannot index U', () => {
         expectTypeOf<TestSubject<Vehicle, 'vrm'>>().toEqualTypeOf<{}>()
+      })
+
+      it('should equal PickNative<U, K> if K extends keyof U', () => {
+        // Arrange
+        type T = { [x: string]: string }
+        type K = 'vrm'
+        type Expect = PickNative<Remap<T>, K>
+
+        // Expect
+        expectTypeOf<TestSubject<T, K>>().toEqualTypeOf<Expect>()
       })
 
       it('should equal PickNative<U, K> if K intersects keyof U', () => {
@@ -140,14 +177,23 @@ describe('unit-d:types/Pick', () => {
     })
 
     describe('K extends symbol', () => {
-      type T = Readonly<Fn>
+      it('should equal {} if K cannot index U', () => {
+        expectTypeOf<TestSubject<Fn, typeof opaque>>().toEqualTypeOf<{}>()
+      })
 
-      it('should equal {} if HasKey<U, K> extends false', () => {
-        expectTypeOf<TestSubject<T, typeof opaque>>().toEqualTypeOf<{}>()
+      it('should equal PickNative<U, K> if K extends keyof U', () => {
+        // Arrange
+        type T = { [x: symbol]: string }
+        type K = typeof opaque
+        type Expect = PickNative<Remap<T>, K>
+
+        // Expect
+        expectTypeOf<TestSubject<T, K>>().toEqualTypeOf<Expect>()
       })
 
       it('should equal PickNative<U, K> if K intersects keyof U', () => {
         // Arrange
+        type T = Readonly<Fn>
         type K = typeof Symbol.hasInstance
 
         // Expect
