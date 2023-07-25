@@ -11,7 +11,7 @@ import type TestSubject from '../keys-required'
 import type NIL from '../nil'
 import type NumberLike from '../number-like'
 import type Omit from '../omit'
-import type { tag } from '../opaque'
+import type { tag as opaque } from '../opaque'
 import type Optional from '../optional'
 import type Timestamp from '../timestamp'
 
@@ -85,7 +85,7 @@ describe('unit-d:types/RequiredKeys', () => {
         type T3 = Timestamp<'unix'>
         type E1 = keyof number
         type E2 = keyof Omit<T2, 'b' | 'c'>
-        type E3 = E1 | typeof tag
+        type E3 = E1 | typeof opaque
 
         // Expect
         expectTypeOf<TestSubject<T1>>().toEqualTypeOf<E1>()

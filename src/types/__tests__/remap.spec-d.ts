@@ -9,7 +9,7 @@ import type Fn from '../fn'
 import type IfNumeric from '../if-numeric'
 import type Nullable from '../nullable'
 import type Objectify from '../objectify'
-import type { tag } from '../opaque'
+import type { tag as opaque } from '../opaque'
 import type Partial from '../partial'
 import type TestSubject from '../remap'
 
@@ -126,7 +126,7 @@ describe('unit-d:types/Remap', () => {
     describe('T extends symbol', () => {
       it('should equal Objectify<T>', () => {
         // Arrange
-        type T = typeof tag
+        type T = typeof opaque
 
         // Expect
         expectTypeOf<TestSubject<T>>().toEqualTypeOf<Objectify<T>>()

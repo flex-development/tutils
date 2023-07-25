@@ -26,7 +26,7 @@ describe('unit:utils/tryit', () => {
       fn.mockRejectedValueOnce(error)
 
       // Act + Expect
-      expect(await testSubject(fn)()).to.deep.equal([error, null])
+      expect(await testSubject(fn)()).to.eql([error, null])
     })
 
     it('should return [null, result]', async () => {
@@ -34,7 +34,7 @@ describe('unit:utils/tryit', () => {
       fn.mockResolvedValueOnce(INTEGER)
 
       // Act + Expect
-      expect(await testSubject(fn)()).to.deep.equal([null, INTEGER])
+      expect(await testSubject(fn)()).to.eql([null, INTEGER])
     })
   })
 })

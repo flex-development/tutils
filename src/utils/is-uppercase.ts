@@ -10,13 +10,17 @@ import uppercase from './uppercase'
 /**
  * Checks if `value` is an uppercase string.
  *
- * @template T - Uppercase string
+ * @todo examples
+ *
+ * @template T - String value
  *
  * @param {unknown} value - Value to check
  * @return {value is Uppercase<T>} `true` if `value` is uppercase string
  */
-function isUppercase<T extends string>(value: unknown): value is Uppercase<T> {
-  return isString(value) && equal(value, uppercase(value))
+const isUppercase = <T extends string>(
+  value: unknown
+): value is Uppercase<T> => {
+  return isString(value) && equal(uppercase(value), value)
 }
 
 export default isUppercase

@@ -8,12 +8,15 @@ import isNumber from './is-number'
 import isString from './is-string'
 
 /**
- * Checks if `value` is a numeric.
+ * Checks if `value` is a {@linkcode Numeric}.
  *
- * A numeric is a string that contains only numbers.
+ * A numeric is a string containing only numbers (not including the leading `-`
+ * if negative).
+ *
+ * @todo examples
  *
  * @param {unknown} value - Value to check
- * @return {value is Numeric} `true` if `value` is a {@linkcode Numeric}
+ * @return {value is Numeric} `true` if `value` is a numeric
  */
 const isNumeric = (value: unknown): value is Numeric => {
   return isString(value) && isNumber(+value)

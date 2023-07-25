@@ -4,10 +4,11 @@
  */
 
 import type { Nilable, NumberString, Timestamp } from '#src/types'
+import isNaN from './is-nan'
 import isNIL from './is-nil'
 
 /**
- * Converts the given `date` to a [unix timestamp][1].
+ * Converts a `date` to a [unix timestamp][1].
  *
  * If `date` is omitted, the current date will be converted a timestamp instead.
  *
@@ -15,13 +16,15 @@ import isNIL from './is-nil'
  *
  * @see {@linkcode Timestamp}
  *
- * @param {Nilable<Date | NumberString>} date - Date to convert
+ * @todo examples
+ *
+ * @param {Nilable<Date | NumberString>} [date] - Date to convert
  * @return {Timestamp<'unix'>} Unix timestamp
  * @throws {RangeError} If timestamp is invalid
  */
 const timeunix = (date?: Nilable<Date | NumberString>): Timestamp<'unix'> => {
   /**
-   * {@linkcode date} as {@linkcode Timestamp}.
+   * {@linkcode date} as unix timestamp.
    *
    * @const {Timestamp<'unix'>} timestamp
    */
@@ -30,7 +33,7 @@ const timeunix = (date?: Nilable<Date | NumberString>): Timestamp<'unix'> => {
     : new Date(date).getTime()
 
   // throw if timestamp is invalid
-  if (Number.isNaN(timestamp)) {
+  if (isNaN(timestamp)) {
     throw new RangeError('Invalid date', { cause: { date } })
   }
 

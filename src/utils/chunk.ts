@@ -8,33 +8,39 @@ import type { Nilable } from '#src/types'
 /**
  * Returns a two-dimensional array containing arrays of length `size`.
  *
- * If `array` can't be split evenly, the final chunk will contain the remaining
- * items.
+ * The final chunk will contain all remaining items if the given array can't be
+ * split evenly.
  *
- * @template T - Array item type
+ * @todo examples
  *
- * @param {ReadonlyArray<T>} array - Array to split
+ * @template T - Array to split
+ *
+ * @param {T} arr - Array to split
  * @param {Nilable<number>} [size=2] - Chunk size
- * @return {T[][]} Chunks array
+ * @return {T[number][][]} Chunks array
  */
-function chunk<T>(array: readonly T[], size?: Nilable<number>): T[][] {
+const chunk = <T extends readonly unknown[]>(
+  arr: T,
+  size?: Nilable<number>
+): T[number][][] => {
   /**
    * Chunks array.
    *
-   * @const {T[][]} chunks
+   * @const {T[number][][]} chunks
    */
-  const chunks: T[][] = []
+  const chunks: T[number][][] = []
 
-  for (let i = 0; i < Math.ceil(array.length / (size ??= 2)); i++) {
+  // chunk array
+  for (let i = 0; i < Math.ceil(arr.length / (size ??= 2)); i++) {
     /**
      * Index to begin chunk.
      *
-     * @const {number} chunk_index
+     * @const {number} idx
      */
-    const chunk_index: number = i * size
+    const idx: number = i * size
 
     // add chunk
-    chunks.push(array.slice(chunk_index, chunk_index + size))
+    chunks.push(arr.slice(idx, idx + size))
   }
 
   return chunks

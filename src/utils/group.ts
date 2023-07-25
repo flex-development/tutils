@@ -3,39 +3,47 @@
  * @module tutils/utils/group
  */
 
-import type { Fn, NumberString, PropertyKey } from '#src/types'
+import type { Mapper, PropertyKey } from '#src/types'
 
 /**
- * Groups each item in `array`.
+ * Groups each item in an array.
  *
  * The return value is a plain object with a key for each group, where each key
- * value is an array containing group items. An `identity` function is used to
- * convert array items to group keys.
+ * value is an array containing group items.
  *
- * @template T - Array item type
+ * A `mapper` function is used to convert array items to group keys.
+ *
+ * @see {@linkcode Mapper}
+ *
+ * @todo examples
+ *
+ * @template T - Array to group
  * @template K - Identity key type
  *
- * @param {ReadonlyArray<T>} array - Array to evaluate
- * @param {Fn<[T], K>} identity - Identity key function
- * @return {Partial<Record<K, T[]>>} Groups object
+ * @param {T} arr - Array to group
+ * @param {Mapper<T, K>} mapper - Array item interpolator
+ * @return {Partial<Record<K, T[number][]>>} Groups object
  */
-function group<T, K extends PropertyKey = NumberString>(
-  array: readonly T[],
-  identity: Fn<[T], K>
-): Partial<Record<K, T[]>> {
-  return array.reduce<Partial<Record<K, T[]>>>((acc, curr) => {
+const group = <
+  T extends readonly unknown[],
+  K extends PropertyKey = PropertyKey
+>(
+  arr: T,
+  mapper: Mapper<T, K>
+): { [H in K]?: T[number][] } => {
+  return arr.reduce<{ [H in K]?: T[number][] }>((acc, item, i) => {
     /**
      * Group key.
      *
      * @const {K} key
      */
-    const key: K = identity(curr)
+    const key: K = mapper(item, i, arr)
 
     // initialize group
     !acc[key] && (acc[key] = [])
 
     // add group item
-    acc[key]!.push(curr)
+    acc[key]!.push(item)
 
     return acc
   }, {})

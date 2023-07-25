@@ -3,25 +3,24 @@
  * @module tutils/utils/lowercase
  */
 
-import type { OneOrMany } from '#src/types'
+import type { Nilable, OneOrMany } from '#src/types'
 
 /**
- * Converts all alphabetic characters in `string` to lowercase.
+ * Converts all alphabetic characters in a string to lowercase.
  *
  * @see https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String/toLocaleLowerCase
- * @see https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String/toLowerCase
+ *
+ * @todo examples
  *
  * @template T - String to convert
  *
- * @param {T} string - String to convert
- * @param {OneOrMany<string> | undefined} [locales] - Locales to consider
- * @return {Lowercase<T>} Lowercase `string`
+ * @param {T} str - String to convert
+ * @param {Nilable<OneOrMany<string>>} [locales] - Locales to consider
+ * @return {Lowercase<T>} Lowercase string
  */
-function lowercase<T extends string>(
-  string: T,
-  locales?: OneOrMany<string> | undefined
-): Lowercase<T> {
-  return string.toLocaleLowerCase<T>(locales)
-}
+const lowercase = <T extends string>(
+  str: T,
+  locales?: Nilable<OneOrMany<string>>
+): Lowercase<T> => str.toLocaleLowerCase<T>(locales ?? undefined)
 
 export default lowercase

@@ -17,7 +17,7 @@ import isObject from './is-object'
  * @return {value is Float32Array} `true` if `value` is a `Float32Array`
  */
 const isFloat32Array = (value: unknown): value is Float32Array => {
-  return isObject(value) && equal(value.constructor, Float32Array)
+  return isObject(value) && equal(Float32Array, value.constructor)
 }
 
 export default isFloat32Array

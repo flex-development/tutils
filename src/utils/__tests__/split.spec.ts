@@ -25,7 +25,7 @@ describe('unit:utils/split', () => {
 
     // Act + Expect
     cases.forEach(([string, delimiter, limit, expected]) => {
-      expect(testSubject(string, delimiter, limit)).to.deep.equal(expected)
+      expect(testSubject(string, delimiter, limit)).to.eql(expected)
     })
   })
 })

@@ -11,7 +11,7 @@ import type NumberString from '../number-string'
 import type Numeric from '../numeric'
 import type Objectify from '../objectify'
 import type Omit from '../omit'
-import type { tag } from '../opaque'
+import type { tag as opaque } from '../opaque'
 
 describe('unit-d:types/Assign', () => {
   type T = Vehicle
@@ -33,7 +33,7 @@ describe('unit-d:types/Assign', () => {
       // Arrange
       type U = {
         [x: string]: NumberString
-        readonly [tag]: 'vehicle'
+        readonly [opaque]: 'vehicle'
         vrm?: string
         year: `${Numeric}${Numeric}${Numeric}${Numeric}`
       }
@@ -81,7 +81,7 @@ describe('unit-d:types/Assign', () => {
       it('should assign properties of U[i] to T', () => {
         // Arrange
         type U = [
-          { readonly [tag]: 'vehicle' },
+          { readonly [opaque]: 'vehicle' },
           { vrm?: string },
           { year: `${Numeric}${Numeric}${Numeric}${Numeric}` },
           any,

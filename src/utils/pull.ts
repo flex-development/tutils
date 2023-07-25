@@ -3,27 +3,31 @@
  * @module tutils/utils/pull
  */
 
-import type { Fn, Nilable, NumberString, PropertyKey } from '#src/types'
+import type { Fn, Nilable, PropertyKey } from '#src/types'
 import includes from './includes'
 import select from './select'
 
 /**
- * Removes all items in `drop` from `array` without modifying `array`.
+ * Removes all specified items from an array without modifying it.
+ *
+ * @see {@linkcode includes}
+ * @see {@linkcode select}
+ *
+ * @todo examples
  *
  * @template T - Array item type
  * @template K - Identity key type
+ * @template U - Filtered array item type
  *
- * @param {ReadonlyArray<T>} array - Array to evaluate
+ * @param {ReadonlyArray<T>} arr - Array to filter
  * @param {ReadonlyArray<T>} drop - Items to remove
  * @param {Nilable<Fn<[T], K>>} [identity] - Identity key function
- * @return {T[]} New array without items in `drop`
+ * @return {U[]} New array without items in `drop`
  */
-function pull<T, K extends PropertyKey = NumberString>(
-  array: readonly T[],
+const pull = <T, K extends PropertyKey = PropertyKey, U = T>(
+  arr: readonly T[],
   drop: readonly T[],
   identity?: Nilable<Fn<[T], K>>
-): T[] {
-  return select(array, (item: T): boolean => !includes(drop, item, identity))
-}
+): U[] => select(arr, item => !includes(drop, item, identity))
 
 export default pull

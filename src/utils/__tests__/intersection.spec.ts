@@ -5,6 +5,7 @@
 
 import FLOAT from '#fixtures/float'
 import INTEGER from '#fixtures/integer'
+import cast from '../cast'
 import testSubject from '../intersection'
 
 describe('unit:utils/intersection', () => {
@@ -23,14 +24,14 @@ describe('unit:utils/intersection', () => {
       [
         [today],
         [faker.date.future(), today],
-        item => (item as Date).toISOString(),
+        item => cast<Date>(item).toISOString(),
         [today]
       ]
     ]
 
     // Act + Expect
     cases.forEach(([array1, array2, identity, expected]) => {
-      expect(testSubject(array1, array2, identity)).to.deep.equal(expected)
+      expect(testSubject(array1, array2, identity)).to.eql(expected)
     })
   })
 })

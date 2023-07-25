@@ -9,11 +9,13 @@ import type {
   Timestamp,
   TimestampFormat
 } from '#src/types'
+import cast from './cast'
+import ifelse from './ifelse'
 import timeiso from './timeiso'
 import timeunix from './timeunix'
 
 /**
- * Converts the given `date` to an [ISO 8601][1] or [unix][2] timestamp.
+ * Converts a `date` to an [ISO 8601][1] or [unix][2] timestamp.
  *
  * If `date` is omitted, the current date will be converted a timestamp instead.
  *
@@ -22,19 +24,17 @@ import timeunix from './timeunix'
  *
  * @see {@linkcode Timestamp}
  *
+ * @todo examples
+ *
  * @template F - Timestamp format
  *
- * @param {Nilable<Date | NumberString>} date - Date to convert
+ * @param {Nilable<Date | NumberString>} [date] - Date to convert
  * @param {Nilable<F>} [format='unix'] - Timestamp format
  * @return {Timestamp<F>} ISO 8601 or unix timestamp
  */
-function timestamp<F extends TimestampFormat = 'unix'>(
+const timestamp = <F extends TimestampFormat = 'unix'>(
   date?: Nilable<Date | NumberString>,
   format?: Nilable<F>
-): Timestamp<F> {
-  return (format === 'iso' ? timeiso : timeunix)(
-    date
-  ) as unknown as Timestamp<F>
-}
+): Timestamp<F> => cast(ifelse(format === 'iso', timeiso, timeunix)(date))
 
 export default timestamp

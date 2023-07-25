@@ -16,7 +16,7 @@ describe('unit:utils/capitalize', () => {
 
     // Act + Expect
     cases.forEach(([string, expected]) => {
-      expect(testSubject(string)).to.deep.equal(expected)
+      expect(testSubject(string)).to.eql(expected)
     })
   })
 })

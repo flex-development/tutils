@@ -15,20 +15,20 @@ import intersection from './intersection'
  * An `identity` function can be used to convert array items to unique keys. If
  * provided, two items with the same identity key will be considered equal.
  *
+ * @todo examples
+ *
  * @template T - Array item type
  * @template K - Identity key type
  *
- * @param {ReadonlyArray<T>} array1 - First array to check
- * @param {ReadonlyArray<T>} array2 - Second array to check
+ * @param {ReadonlyArray<T>} arr1 - First array to check
+ * @param {ReadonlyArray<T>} arr2 - Second array to check
  * @param {Nilable<Fn<[T], K>>} [identity] - Identity key function
- * @return {boolean} `true` if `array1` and `array2` intersect
+ * @return {boolean} `true` if `arr1` and `arr2` intersect
  */
-function intersects<T, K extends PropertyKey = NumberString>(
-  array1: readonly T[],
-  array2: readonly T[],
+const intersects = <T, K extends PropertyKey = NumberString>(
+  arr1: readonly T[],
+  arr2: readonly T[],
   identity?: Nilable<Fn<[T], K>>
-): boolean {
-  return !!intersection(array1, array2, identity).length
-}
+): boolean => !!intersection(arr1, arr2, identity).length
 
 export default intersects

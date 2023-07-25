@@ -17,7 +17,7 @@ import isObject from './is-object'
  * @return {value is Int32Array} `true` if `value` is a `Int32Array`
  */
 const isInt32Array = (value: unknown): value is Int32Array => {
-  return isObject(value) && equal(value.constructor, Int32Array)
+  return isObject(value) && equal(Int32Array, value.constructor)
 }
 
 export default isInt32Array

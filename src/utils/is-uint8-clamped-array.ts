@@ -17,7 +17,7 @@ import isObject from './is-object'
  * @return {value is Uint8ClampedArray} `true` if `value` is `Uint8ClampedArray`
  */
 const isUint8ClampedArray = (value: unknown): value is Uint8ClampedArray => {
-  return isObject(value) && equal(value.constructor, Uint8ClampedArray)
+  return isObject(value) && equal(Uint8ClampedArray, value.constructor)
 }
 
 export default isUint8ClampedArray

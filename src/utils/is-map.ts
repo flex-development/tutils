@@ -22,6 +22,6 @@ import isObject from './is-object'
  */
 const isMap = <K = PropertyKey, V = unknown>(
   value: unknown
-): value is Map<K, V> => isObject(value) && equal(value.constructor, Map)
+): value is Map<K, V> => isObject(value) && equal(Map, value.constructor)
 
 export default isMap

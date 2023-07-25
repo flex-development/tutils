@@ -26,6 +26,6 @@ describe('unit:utils/segment', () => {
     const path: `${string}${Dot}${string}` = 'vehicles.0.vin'
 
     // Expect
-    expect(testSubject(path)).to.deep.equal(split(path, DOT))
+    expect(testSubject(path)).to.eql(split(path, DOT))
   })
 })

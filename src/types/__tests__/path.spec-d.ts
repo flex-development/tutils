@@ -18,7 +18,7 @@ import type Nilable from '../nilable'
 import type NumberLike from '../number-like'
 import type NumberString from '../number-string'
 import type Omit from '../omit'
-import type { tag } from '../opaque'
+import type { tag as opaque } from '../opaque'
 import type TestSubject from '../path'
 import type Stringify from '../stringify'
 
@@ -116,12 +116,11 @@ describe('unit-d:types/Path', () => {
       describe('E extends true', () => {
         it('should construct union of enumerable property paths', () => {
           // Arrange
-          type T = bigint & { [tag]: 'bigint'; readonly id: 'bigint' }
+          type T = bigint & { [opaque]: 'bigint'; readonly id: 'bigint' }
+          type Expect = 'id' | `id.${Indices<T['id']>}`
 
           // Expect
-          expectTypeOf<TestSubject<T, true>>().toEqualTypeOf<
-            'id' | `id.${Indices<T['id']>}`
-          >()
+          expectTypeOf<TestSubject<T, true>>().toEqualTypeOf<Expect>()
         })
       })
     })
@@ -138,7 +137,7 @@ describe('unit-d:types/Path', () => {
       describe('E extends true', () => {
         it('should construct union of enumerable property paths', () => {
           // Arrange
-          type T = boolean & { [tag]: 'boolean'; readonly id: 'boolean' }
+          type T = boolean & { [opaque]: 'boolean'; readonly id: 'boolean' }
           type Expect = 'id' | `id.${Indices<T['id']>}`
 
           // Expect
@@ -159,7 +158,7 @@ describe('unit-d:types/Path', () => {
       describe('E extends true', () => {
         it('should construct union of enumerable property paths', () => {
           // Arrange
-          type T = number & { [tag]: 'number'; readonly id: 'number' }
+          type T = number & { [opaque]: 'number'; readonly id: 'number' }
           type Expect = 'id' | `id.${Indices<T['id']>}`
 
           // Expect
@@ -215,7 +214,7 @@ describe('unit-d:types/Path', () => {
 
           it('should construct union of enumerable property paths', () => {
             // Arrange
-            type T = string & { [tag]: 'string'; readonly id: 'string' }
+            type T = string & { [opaque]: 'string'; readonly id: 'string' }
             type Expect = IndicesAll<T> | 'id' | `id.${Indices<T['id']>}`
 
             // Expect
@@ -239,7 +238,7 @@ describe('unit-d:types/Path', () => {
       describe('E extends true', () => {
         it('should construct union of enumerable property paths', () => {
           // Arrange
-          type T = symbol & { [tag]: 'symbol'; readonly id: 'symbol' }
+          type T = symbol & { [opaque]: 'symbol'; readonly id: 'symbol' }
           type Expect = 'id' | `id.${Indices<T['id']>}`
 
           // Expect
@@ -270,7 +269,7 @@ describe('unit-d:types/Path', () => {
     describe('E extends true', () => {
       it('should construct union of enumerable property paths', () => {
         // Arrange
-        type T = Readonly<Fn> & { [tag]: 'fn'; readonly id: 'fn' }
+        type T = Readonly<Fn> & { [opaque]: 'fn'; readonly id: 'fn' }
         type Expect = 'id' | `id.${Indices<T['id']>}`
 
         // Expect
@@ -356,7 +355,7 @@ describe('unit-d:types/Path', () => {
       describe('E extends true', () => {
         it('should construct union of enumerable property paths', () => {
           // Arrange
-          type T = Author[] & { [tag]: 'Author[]'; readonly id: 'Author[]' }
+          type T = Author[] & { [opaque]: 'Author[]'; readonly id: 'Author[]' }
 
           // Expect
           expectTypeOf<TestSubject<T, true>>().toEqualTypeOf<

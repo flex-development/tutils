@@ -52,9 +52,7 @@ describe('unit:utils/crush', () => {
 
     // Act + Expect
     cases.forEach(([obj, expected]) => {
-      expect(testSubject(obj))
-        .to.deep.equal(expected)
-        .and.satisfy(isObjectPlain)
+      expect(testSubject(obj)).to.eql(expected).and.satisfy(isObjectPlain)
     })
   })
 })

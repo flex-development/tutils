@@ -12,6 +12,6 @@ describe('unit:utils/pull', () => {
     const drop: number[] = [3, 4, 5]
 
     // Expect
-    expect(testSubject(array, drop, null)).to.deep.equal([0, 1, 2])
+    expect(testSubject(array, drop, null)).to.eql([0, 1, 2])
   })
 })

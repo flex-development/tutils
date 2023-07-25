@@ -3,6 +3,7 @@
  * @module tutils/utils/tests/unit/timeunix
  */
 
+import cast from '../cast'
 import testSubject from '../timeunix'
 
 describe('unit:utils/timeunix', () => {
@@ -29,7 +30,7 @@ describe('unit:utils/timeunix', () => {
     try {
       testSubject(date)
     } catch (e: unknown) {
-      error = e as typeof error
+      error = cast(e)
     }
 
     // Expect

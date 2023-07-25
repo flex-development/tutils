@@ -13,7 +13,7 @@ import type TestSubject from '../merge'
 import type Nullable from '../nullable'
 import type Objectify from '../objectify'
 import type Omit from '../omit'
-import type { tag } from '../opaque'
+import type { tag as opaque } from '../opaque'
 import type Partial from '../partial'
 
 describe('unit-d:types/Merge', () => {
@@ -108,8 +108,8 @@ describe('unit-d:types/Merge', () => {
       it('should merge T and H', () => {
         // Arrange
         type T = Vehicle
-        type U1 = (Readonly<T> & { readonly [tag]: 'vehicle' })[]
-        type U2 = (Readonly<T> | { readonly [tag]: 'vehicle' })[]
+        type U1 = (Readonly<T> & { readonly [opaque]: 'vehicle' })[]
+        type U2 = (Readonly<T> | { readonly [opaque]: 'vehicle' })[]
 
         // Expect
         expectTypeOf<TestSubject<T, U1>>().toEqualTypeOf<Assign<T, U1[0]>>()
@@ -351,15 +351,15 @@ describe('unit-d:types/Merge', () => {
       // Arrange
       type T = Person | Vehicle
       type U =
-        | ({ readonly [tag]: string } | { readonly id: string })[]
+        | ({ readonly [opaque]: string } | { readonly id: string })[]
         | EmptyObject
-        | [{ readonly [tag]: string }, { readonly id: string }]
+        | [{ readonly [opaque]: string }, { readonly id: string }]
 
       // Expect
       expectTypeOf<TestSubject<T, U>>().toEqualTypeOf<
         | T
-        | (T & ({ readonly [tag]: string } & { readonly id: string }))
-        | (T & ({ readonly [tag]: string } | { readonly id: string }))
+        | (T & ({ readonly [opaque]: string } & { readonly id: string }))
+        | (T & ({ readonly [opaque]: string } | { readonly id: string }))
       >()
     })
   })

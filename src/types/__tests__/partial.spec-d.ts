@@ -12,7 +12,7 @@ import type NIL from '../nil'
 import type Nilable from '../nilable'
 import type Nullable from '../nullable'
 import type Omit from '../omit'
-import type { tag } from '../opaque'
+import type { tag as opaque } from '../opaque'
 import type Optional from '../optional'
 import type TestSubject from '../partial'
 import type PartialNative from '../partial-native'
@@ -299,7 +299,7 @@ describe('unit-d:types/Partial', () => {
   describe('unions', () => {
     it('should distribute over unions', () => {
       // Arrange
-      type T = Nilable<Vehicle | Vehicle['vin'] | typeof tag>
+      type T = Nilable<Vehicle | Vehicle['vin'] | typeof opaque>
 
       // Expect
       expectTypeOf<TestSubject<T>>().toEqualTypeOf<PartialNative<T>>()

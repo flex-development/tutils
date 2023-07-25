@@ -17,7 +17,7 @@ import isObject from './is-object'
  * @return {value is ReadonlyArray<T> | T[]} `true` if `value` is an array
  */
 const isArray = <T>(value: unknown): value is T[] | readonly T[] => {
-  return isObject(value) && equal(value.constructor, Array)
+  return isObject(value) && equal(Array, value.constructor)
 }
 
 export default isArray

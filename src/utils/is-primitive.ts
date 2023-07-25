@@ -14,6 +14,10 @@ import isUndefined from './is-undefined'
  *
  * [1]: https://developer.mozilla.org/docs/Glossary/Primitive
  *
+ * @see {@linkcode Primitive}
+ *
+ * @todo examples
+ *
  * @param {unknown} value - Value to check
  * @return {value is Primitive} `true` if `value` is a primitive
  */

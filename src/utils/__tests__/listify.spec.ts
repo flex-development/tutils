@@ -12,7 +12,7 @@ describe('unit:utils/listify', () => {
     const obj: typeof VEHICLES_DICTIONARY = VEHICLES_DICTIONARY
 
     // Act + Expect
-    expect(testSubject(obj, ([, vehicle]) => vehicle.vin)).to.deep.equal([
+    expect(testSubject(obj, ([, vehicle]) => vehicle.vin)).to.eql([
       obj[0].vin,
       obj[1].vin
     ])

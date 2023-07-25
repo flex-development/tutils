@@ -4,7 +4,7 @@
  */
 
 import type NumberString from '../number-string'
-import type { tag } from '../opaque'
+import type { tag as opaque } from '../opaque'
 import type TestSubject from '../timestamp'
 import type TimestampFormat from '../timestamp-format'
 import type TimestampToken from '../timestamp-token'
@@ -20,7 +20,7 @@ describe('unit-d:types/Timestamp', () => {
 
   it('should match [readonly [tag]: TimestampToken]', () => {
     // Arrange
-    type Expect = { readonly [tag]: TimestampToken }
+    type Expect = { readonly [opaque]: TimestampToken }
 
     // Expect
     expectTypeOf<TestSubject<TimestampFormat>>().toMatchTypeOf<Expect>()

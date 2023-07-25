@@ -17,7 +17,7 @@ import isObject from './is-object'
  * @return {value is Uint32Array} `true` if `value` is `Uint32Array`
  */
 const isUint32Array = (value: unknown): value is Uint32Array => {
-  return isObject(value) && equal(value.constructor, Uint32Array)
+  return isObject(value) && equal(Uint32Array, value.constructor)
 }
 
 export default isUint32Array

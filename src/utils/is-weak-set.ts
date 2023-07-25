@@ -19,7 +19,7 @@ import isObject from './is-object'
  * @return {value is WeakSet<T>} `true` if `value` is `WeakSet` instance
  */
 const isWeakSet = <T extends object>(value: unknown): value is WeakSet<T> => {
-  return isObject(value) && equal(value.constructor, WeakSet)
+  return isObject(value) && equal(WeakSet, value.constructor)
 }
 
 export default isWeakSet

@@ -10,7 +10,7 @@ import type Indices from '../indices'
 import type TestSubject from '../keyof'
 import type Nilable from '../nilable'
 import type NumberLike from '../number-like'
-import type { tag } from '../opaque'
+import type { tag as opaque } from '../opaque'
 
 describe('unit-d:types/Keyof', () => {
   it('should equal keyof T if T is any', () => {
@@ -47,11 +47,11 @@ describe('unit-d:types/Keyof', () => {
 
     it('should extract F from keyof T', () => {
       // Arrange
-      type T = Vehicle & { readonly [tag]: 'vehicle' }
+      type T = Vehicle & { readonly [opaque]: 'vehicle' }
       type F = symbol
 
       // Expect
-      expectTypeOf<TestSubject<T, F>>().toEqualTypeOf<typeof tag>()
+      expectTypeOf<TestSubject<T, F>>().toEqualTypeOf<typeof opaque>()
     })
   })
 
@@ -72,9 +72,9 @@ describe('unit-d:types/Keyof', () => {
 
       it('should extract F from keyof T', () => {
         // Arrange
-        type T = bigint & { readonly [tag]: 'bigint' }
+        type T = bigint & { readonly [opaque]: 'bigint' }
         type F = symbol
-        type Expect = typeof Symbol.toStringTag | typeof tag
+        type Expect = typeof opaque | typeof Symbol.toStringTag
 
         // Expect
         expectTypeOf<TestSubject<T, F>>().toEqualTypeOf<Expect>()
@@ -92,11 +92,11 @@ describe('unit-d:types/Keyof', () => {
 
       it('should extract F from keyof T', () => {
         // Arrange
-        type T = boolean & { readonly [tag]: 'boolean' }
+        type T = boolean & { readonly [opaque]: 'boolean' }
         type F = symbol
 
         // Expect
-        expectTypeOf<TestSubject<T, F>>().toEqualTypeOf<typeof tag>()
+        expectTypeOf<TestSubject<T, F>>().toEqualTypeOf<typeof opaque>()
       })
     })
 
@@ -111,11 +111,11 @@ describe('unit-d:types/Keyof', () => {
 
       it('should extract F from keyof T', () => {
         // Arrange
-        type T = number & { readonly [tag]: 'number' }
+        type T = number & { readonly [opaque]: 'number' }
         type F = symbol
 
         // Expect
-        expectTypeOf<TestSubject<T, F>>().toEqualTypeOf<typeof tag>()
+        expectTypeOf<TestSubject<T, F>>().toEqualTypeOf<typeof opaque>()
       })
     })
 

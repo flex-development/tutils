@@ -7,11 +7,11 @@ import testSubject from '../flat'
 
 describe('unit:utils/flat', () => {
   it('should return empty array if arr is null', () => {
-    expect(testSubject(null)).to.deep.equal([])
+    expect(testSubject(null)).to.eql([])
   })
 
   it('should return empty array if arr is undefined', () => {
-    expect(testSubject(undefined)).to.deep.equal([])
+    expect(testSubject(undefined)).to.eql([])
   })
 
   it('should return flattened array', () => {
@@ -22,7 +22,6 @@ describe('unit:utils/flat', () => {
     const result = testSubject(arr, 3)
 
     // Expect
-    expect(result).to.deep.equal([1, 2, 3, 4, 5])
-    expect(result).to.not.equal(arr)
+    expect(result).to.eql([1, 2, 3, 4, 5]).but.not.equal(arr)
   })
 })

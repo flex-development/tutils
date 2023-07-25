@@ -27,7 +27,7 @@ describe('unit:utils/range', () => {
 
       // Act + Expect
       cases.forEach(([min, max, step, map, expected]) => {
-        expect(toList(testSubject(min, max, step, map))).to.deep.equal(expected)
+        expect(toList(testSubject(min, max, step, map))).to.eql(expected)
       })
     })
   })

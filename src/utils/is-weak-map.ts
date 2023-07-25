@@ -22,7 +22,7 @@ import isObject from './is-object'
 const isWeakMap = <K extends object, V>(
   value: unknown
 ): value is WeakMap<K, V> => {
-  return isObject(value) && equal(value.constructor, WeakMap)
+  return isObject(value) && equal(WeakMap, value.constructor)
 }
 
 export default isWeakMap

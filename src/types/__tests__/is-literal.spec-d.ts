@@ -5,12 +5,10 @@
 
 import type Booleanish from '../booleanish'
 import type TestSubject from '../is-literal'
-import type { tag } from '../opaque'
+import type Objectify from '../objectify'
 import type Primitive from '../primitive'
 
 describe('unit-d:types/IsLiteral', () => {
-  type ToObject<P extends Primitive> = P & { readonly [tag]: 'primitive' }
-
   it('should equal false if T is any', () => {
     expectTypeOf<TestSubject<any>>().toEqualTypeOf<false>()
   })
@@ -27,10 +25,10 @@ describe('unit-d:types/IsLiteral', () => {
     type P = bigint
 
     it('should equal false if T does not extend literal bigint', () => {
-      expectTypeOf<TestSubject<ToObject<0n>>>().toEqualTypeOf<false>()
-      expectTypeOf<TestSubject<ToObject<1n>, P>>().toEqualTypeOf<false>()
-      expectTypeOf<TestSubject<ToObject<bigint>>>().toEqualTypeOf<false>()
-      expectTypeOf<TestSubject<ToObject<bigint>, P>>().toEqualTypeOf<false>()
+      expectTypeOf<TestSubject<Objectify<0n>>>().toEqualTypeOf<false>()
+      expectTypeOf<TestSubject<Objectify<1n>, P>>().toEqualTypeOf<false>()
+      expectTypeOf<TestSubject<Objectify<bigint>>>().toEqualTypeOf<false>()
+      expectTypeOf<TestSubject<Objectify<bigint>, P>>().toEqualTypeOf<false>()
       expectTypeOf<TestSubject<bigint>>().toEqualTypeOf<false>()
       expectTypeOf<TestSubject<bigint, P>>().toEqualTypeOf<false>()
     })
@@ -45,10 +43,10 @@ describe('unit-d:types/IsLiteral', () => {
     type P = boolean
 
     it('should equal false if T does not extend literal boolean', () => {
-      expectTypeOf<TestSubject<ToObject<boolean>>>().toEqualTypeOf<false>()
-      expectTypeOf<TestSubject<ToObject<boolean>, P>>().toEqualTypeOf<false>()
-      expectTypeOf<TestSubject<ToObject<false>>>().toEqualTypeOf<false>()
-      expectTypeOf<TestSubject<ToObject<true>, P>>().toEqualTypeOf<false>()
+      expectTypeOf<TestSubject<Objectify<boolean>>>().toEqualTypeOf<false>()
+      expectTypeOf<TestSubject<Objectify<boolean>, P>>().toEqualTypeOf<false>()
+      expectTypeOf<TestSubject<Objectify<false>>>().toEqualTypeOf<false>()
+      expectTypeOf<TestSubject<Objectify<true>, P>>().toEqualTypeOf<false>()
       expectTypeOf<TestSubject<boolean>>().toEqualTypeOf<false>()
       expectTypeOf<TestSubject<boolean, P>>().toEqualTypeOf<false>()
     })
@@ -78,10 +76,10 @@ describe('unit-d:types/IsLiteral', () => {
     type P = number
 
     it('should equal false if T does not extend literal number', () => {
-      expectTypeOf<TestSubject<ToObject<0>>>().toEqualTypeOf<false>()
-      expectTypeOf<TestSubject<ToObject<1>, P>>().toEqualTypeOf<false>()
-      expectTypeOf<TestSubject<ToObject<number>>>().toEqualTypeOf<false>()
-      expectTypeOf<TestSubject<ToObject<number>, P>>().toEqualTypeOf<false>()
+      expectTypeOf<TestSubject<Objectify<0>>>().toEqualTypeOf<false>()
+      expectTypeOf<TestSubject<Objectify<1>, P>>().toEqualTypeOf<false>()
+      expectTypeOf<TestSubject<Objectify<number>>>().toEqualTypeOf<false>()
+      expectTypeOf<TestSubject<Objectify<number>, P>>().toEqualTypeOf<false>()
       expectTypeOf<TestSubject<number>>().toEqualTypeOf<false>()
       expectTypeOf<TestSubject<number, P>>().toEqualTypeOf<false>()
     })
@@ -96,10 +94,10 @@ describe('unit-d:types/IsLiteral', () => {
     type P = string
 
     it('should equal false if T does not extend literal string', () => {
-      expectTypeOf<TestSubject<ToObject<'a'>>>().toEqualTypeOf<false>()
-      expectTypeOf<TestSubject<ToObject<'x'>, P>>().toEqualTypeOf<false>()
-      expectTypeOf<TestSubject<ToObject<string>>>().toEqualTypeOf<false>()
-      expectTypeOf<TestSubject<ToObject<string>, P>>().toEqualTypeOf<false>()
+      expectTypeOf<TestSubject<Objectify<'a'>>>().toEqualTypeOf<false>()
+      expectTypeOf<TestSubject<Objectify<'x'>, P>>().toEqualTypeOf<false>()
+      expectTypeOf<TestSubject<Objectify<string>>>().toEqualTypeOf<false>()
+      expectTypeOf<TestSubject<Objectify<string>, P>>().toEqualTypeOf<false>()
       expectTypeOf<TestSubject<string>>().toEqualTypeOf<false>()
       expectTypeOf<TestSubject<string, P>>().toEqualTypeOf<false>()
     })
@@ -114,8 +112,8 @@ describe('unit-d:types/IsLiteral', () => {
     type P = symbol
 
     it('should equal false given any T', () => {
-      expectTypeOf<TestSubject<ToObject<symbol>>>().toEqualTypeOf<false>()
-      expectTypeOf<TestSubject<ToObject<symbol>, P>>().toEqualTypeOf<false>()
+      expectTypeOf<TestSubject<Objectify<symbol>>>().toEqualTypeOf<false>()
+      expectTypeOf<TestSubject<Objectify<symbol>, P>>().toEqualTypeOf<false>()
       expectTypeOf<TestSubject<symbol>>().toEqualTypeOf<false>()
       expectTypeOf<TestSubject<symbol, P>>().toEqualTypeOf<false>()
     })

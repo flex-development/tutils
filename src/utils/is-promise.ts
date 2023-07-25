@@ -19,7 +19,7 @@ import isObject from './is-object'
  * @return {value is Promise<T>} `true` if `value` is a promise
  */
 const isPromise = <T>(value: unknown): value is Promise<T> => {
-  return isObject(value) && equal(value.constructor, Promise)
+  return isObject(value) && equal(Promise, value.constructor)
 }
 
 export default isPromise

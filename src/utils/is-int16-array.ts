@@ -17,7 +17,7 @@ import isObject from './is-object'
  * @return {value is Int16Array} `true` if `value` is a `Int16Array`
  */
 const isInt16Array = (value: unknown): value is Int16Array => {
-  return isObject(value) && equal(value.constructor, Int16Array)
+  return isObject(value) && equal(Int16Array, value.constructor)
 }
 
 export default isInt16Array

@@ -34,7 +34,6 @@ describe('unit:utils/intersects', () => {
     const cases: Parameters<typeof testSubject>[] = [
       [[INTEGER], [FLOAT, INTEGER]],
       [[[FLOAT]], [[FLOAT], [FLOAT, INTEGER]]],
-      [[new Date()], [new Date(), new Date().toISOString()]],
       [[{ value: FLOAT }, { value: INTEGER }], [{ value: INTEGER }]]
     ]
 

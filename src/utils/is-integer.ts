@@ -12,10 +12,12 @@ import isNumber from './is-number'
  *
  * @see {@linkcode Integer}
  *
+ * @todo examples
+ *
  * @param {unknown} value - Value to check
  * @return {value is Integer} `true` if `value` is an integer
  */
-function isInteger(value: unknown): value is Integer {
+const isInteger = (value: unknown): value is Integer => {
   return isNumber(value) && equal(value % 1, 0)
 }
 

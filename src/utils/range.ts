@@ -4,6 +4,7 @@
  */
 
 import type { Fn, Nilable } from '#src/types'
+import cast from './cast'
 import isFunction from './is-function'
 import isNIL from './is-nil'
 
@@ -11,6 +12,8 @@ import isNIL from './is-nil'
  * Returns a generator that `yield`s values from `min` to `max` by `step` size.
  *
  * Range indices can be interpolated using a `map` operation.
+ *
+ * @todo examples
  *
  * @template T - Generated value type
  *
@@ -30,11 +33,11 @@ function* range<T = number>(
   step: Nilable<number> = null,
   map?: Nilable<Fn<[number], T>> | T
 ): Generator<T, void, void> {
-  map ??= (index: number) => index as T
+  map ??= (index: number) => cast(index)
   step = step ??= 1
 
   for (let i = !isNIL(max) ? min : 0; i <= (max ??= min); i += step) {
-    yield (isFunction<[number], T>(map) ? map : () => map)(i) as T
+    yield cast((isFunction<[number], T>(map) ? map : () => map)(i))
     if (i + step > max) break
   }
 }

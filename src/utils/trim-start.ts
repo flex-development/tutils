@@ -6,17 +6,19 @@
 import type { TrimStart } from '#src/types'
 
 /**
- * Removes leading whitespace characters from `string`.
+ * Removes leading whitespace characters from a string.
  *
  * @see {@linkcode TrimStart}
  *
+ * @todo examples
+ *
  * @template T - String to trim
  *
- * @param {T} string - String to trim
- * @return {TrimStart<T>} `string` with leading whitespaces removed
+ * @param {T} str - String to trim
+ * @return {TrimStart<T>} `str` with leading whitespaces removed
  */
-function trimStart<T extends string>(string: T): TrimStart<T> {
-  return string.trimStart<T>()
+const trimStart = <T extends string>(str: T): TrimStart<T> => {
+  return str.trimStart<T>()
 }
 
 export default trimStart

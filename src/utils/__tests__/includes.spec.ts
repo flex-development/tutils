@@ -3,6 +3,7 @@
  * @module tutils/utils/tests/unit/includes
  */
 
+import cast from '../cast'
 import testSubject from '../includes'
 
 describe('unit:utils/includes', () => {
@@ -31,7 +32,7 @@ describe('unit:utils/includes', () => {
         [faker.number.int(), { x: 0, y: 0 }],
         { x: 0, y: 0 },
         item => {
-          const { x, y = Number.NaN } = item as { x: number; y?: number }
+          const { x, y = Number.NaN } = cast<{ x: number; y?: number }>(item)
           return `[${x},${y}]`
         },
         1

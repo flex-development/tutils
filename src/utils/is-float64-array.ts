@@ -17,7 +17,7 @@ import isObject from './is-object'
  * @return {value is Float64Array} `true` if `value` is a `Float64Array`
  */
 const isFloat64Array = (value: unknown): value is Float64Array => {
-  return isObject(value) && equal(value.constructor, Float64Array)
+  return isObject(value) && equal(Float64Array, value.constructor)
 }
 
 export default isFloat64Array

@@ -17,7 +17,7 @@ import isObject from './is-object'
  * @return {value is BigInt64Array} `true` if `value` is an `BigInt64Array`
  */
 const isBigInt64Array = (value: unknown): value is BigInt64Array => {
-  return isObject(value) && equal(value.constructor, BigInt64Array)
+  return isObject(value) && equal(BigInt64Array, value.constructor)
 }
 
 export default isBigInt64Array

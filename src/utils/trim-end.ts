@@ -6,17 +6,17 @@
 import type { TrimEnd } from '#src/types'
 
 /**
- * Removes trailing whitespace characters from `string`.
+ * Removes trailing whitespace characters from a string.
  *
  * @see {@linkcode TrimEnd}
  *
+ * @todo examples
+ *
  * @template T - String to trim
  *
- * @param {T} string - String to trim
- * @return {TrimEnd<T>} `string` with trailing whitespaces removed
+ * @param {T} str - String to trim
+ * @return {TrimEnd<T>} `str` with trailing whitespaces removed
  */
-function trimEnd<T extends string>(string: T): TrimEnd<T> {
-  return string.trimEnd<T>()
-}
+const trimEnd = <T extends string>(str: T): TrimEnd<T> => str.trimEnd<T>()
 
 export default trimEnd

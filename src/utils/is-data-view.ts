@@ -17,7 +17,7 @@ import isObject from './is-object'
  * @return {value is DataView} `true` if `value` is a `DataView`
  */
 const isDataView = (value: unknown): value is DataView => {
-  return isObject(value) && equal(value.constructor, DataView)
+  return isObject(value) && equal(DataView, value.constructor)
 }
 
 export default isDataView

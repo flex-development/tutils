@@ -20,7 +20,7 @@ describe('unit:utils/construct', () => {
   })
 
   it('should return reconstructed object', () => {
-    expect(testSubject(obj)).to.deep.equal({
+    expect(testSubject(obj)).to.eql({
       driver: { nanoid: obj['driver.nanoid'] },
       make: obj.make,
       model: obj.model,

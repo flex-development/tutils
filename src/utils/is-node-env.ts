@@ -3,17 +3,22 @@
  * @module tutils/utils/isNodeEnv
  */
 
-import NodeEnv from '#src/enums/node-env'
+import { NodeEnv } from '#src/enums'
 import includes from './includes'
+import values from './values'
 
 /**
- * Checks if `value` is a valid node environment.
+ * Checks if `value` is a node environment.
+ *
+ * @see {@linkcode NodeEnv}
+ *
+ * @todo examples
  *
  * @param {unknown} [value=process.env.NODE_ENV] - Value to check
- * @return {value is NodeEnv} `true` if `value` is {@linkcode NodeEnv}
+ * @return {value is NodeEnv} `true` if `value` is a node environment
  */
 const isNodeEnv = (value: unknown = process.env.NODE_ENV): value is NodeEnv => {
-  return includes(Object.values(NodeEnv), value)
+  return includes(values(NodeEnv), value)
 }
 
 export default isNodeEnv

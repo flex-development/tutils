@@ -4,7 +4,7 @@
  */
 
 import type TestSubject from '../integer'
-import type { tag } from '../opaque'
+import type { tag as opaque } from '../opaque'
 
 describe('unit-d:types/Integer', () => {
   it('should extend number', () => {
@@ -12,6 +12,8 @@ describe('unit-d:types/Integer', () => {
   })
 
   it('should match [readonly [tag]: "integer"]', () => {
-    expectTypeOf<TestSubject>().toMatchTypeOf<{ readonly [tag]: 'integer' }>()
+    expectTypeOf<TestSubject>().toMatchTypeOf<{
+      readonly [opaque]: 'integer'
+    }>()
   })
 })

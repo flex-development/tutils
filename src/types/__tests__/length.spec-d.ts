@@ -27,7 +27,7 @@ describe('unit-d:types/Length', () => {
     })
 
     describe('T extends string', () => {
-      type Expected<T extends string> = Split<T, EmptyString>['length']
+      type Expect<T extends string> = Split<T, EmptyString>['length']
 
       it('should equal Split<T, EmptyString>["length"]', () => {
         // Arrange
@@ -36,9 +36,9 @@ describe('unit-d:types/Length', () => {
         type T3 = EmptyString
 
         // Expect
-        expectTypeOf<TestSubject<T1>>().toEqualTypeOf<Expected<T1>>()
-        expectTypeOf<TestSubject<T2>>().toEqualTypeOf<Expected<T2>>()
-        expectTypeOf<TestSubject<T3>>().toEqualTypeOf<Expected<T3>>()
+        expectTypeOf<TestSubject<T1>>().toEqualTypeOf<Expect<T1>>()
+        expectTypeOf<TestSubject<T2>>().toEqualTypeOf<Expect<T2>>()
+        expectTypeOf<TestSubject<T3>>().toEqualTypeOf<Expect<T3>>()
       })
     })
   })

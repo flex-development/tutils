@@ -4,9 +4,12 @@
  */
 
 import type { Fn, Tryit } from '#src/types'
+import cast from './cast'
 
 /**
- * Converts `fn` to an error-first callback.
+ * Converts a function to an asynchronous error-first callback.
+ *
+ * @todo examples
  *
  * @template T - Function to convert
  * @template E - Error type
@@ -14,14 +17,14 @@ import type { Fn, Tryit } from '#src/types'
  * @param {T} fn - Function to convert
  * @return {Tryit<T, E>} Error first callback
  */
-function tryit<T extends Fn, E extends Error = Error>(fn: T): Tryit<T, E> {
+const tryit = <T extends Fn, E extends Error = Error>(fn: T): Tryit<T, E> => {
   return async (
     ...args: Parameters<T>
   ): Promise<[E, null] | [null, Awaited<ReturnType<T>>]> => {
     try {
-      return [null, (await fn(...args)) as Awaited<ReturnType<T>>]
+      return [null, await fn(...args)]
     } catch (e: unknown) {
-      return [e as E, null]
+      return [cast<E>(e), null]
     }
   }
 }

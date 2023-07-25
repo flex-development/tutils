@@ -16,11 +16,13 @@ import isObjectPlain from './is-object-plain'
  *
  * @see {@linkcode ObjectCurly}
  *
+ * @todo examples
+ *
  * @param {unknown} value - Value to check
  * @return {value is ObjectCurly} `true` if `value` is curly-braced object
  */
 const isObjectCurly = (value: unknown): value is ObjectCurly => {
-  return isObjectPlain(value) || (isObject(value) && !isArray(value))
+  return isObjectPlain(value) || (!isArray(value) && isObject(value))
 }
 
 export default isObjectCurly

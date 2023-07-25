@@ -11,7 +11,7 @@ import type Indices from '../indices'
 import type TestSubject from '../is-key-readonly'
 import type Nilable from '../nilable'
 import type Numeric from '../numeric'
-import type { tag } from '../opaque'
+import type { tag as opaque } from '../opaque'
 import type Optional from '../optional'
 import type Stringify from '../stringify'
 
@@ -70,7 +70,7 @@ describe('unit-d:types/IsReadonlyKey', () => {
     describe('K extends keyof T', () => {
       it('should equal false if K is not readonly key', () => {
         // Arrange
-        type T = Author & { [tag]: 'author' }
+        type T = Author & { [opaque]: 'author' }
 
         // Expect
         expectTypeOf<TestSubject<T, keyof T>>().toEqualTypeOf<false>()
@@ -78,7 +78,7 @@ describe('unit-d:types/IsReadonlyKey', () => {
 
       it('should equal true if K is readonly key', () => {
         // Arrange
-        type T = Readonly<Author & { [tag]: 'author' }>
+        type T = Readonly<Author & { [opaque]: 'author' }>
 
         // Expect
         expectTypeOf<TestSubject<T, keyof T>>().toEqualTypeOf<true>()

@@ -3,31 +3,35 @@
  * @module tutils/utils/unique
  */
 
-import type { Fn, NumberString, PropertyKey } from '#src/types'
+import type { Fn, Nilable, PropertyKey } from '#src/types'
+import cast from './cast'
 import includes from './includes'
 
 /**
- * Removes all duplicates from `array`.
+ * Removes all duplicates from an array.
  *
  * An `identity` function can be used to convert array items to unique keys. If
  * provided, two items with the same identity key will be considered equal.
  *
+ * @todo examples
+ *
  * @template T - Array item type
  * @template K - Identity key type
+ * @template U - Filtered array type
  *
- * @param {ReadonlyArray<T>} array - Array to evaluate
- * @param {Fn<[T], K>} [identity] - Function used to identify array items
- * @return {T[]} `array` with duplicates removed
+ * @param {ReadonlyArray<T>} arr - Array to evaluate
+ * @param {Nilable<Fn<[T], K>>} [identity] - Identity key function
+ * @return {U[]} Copy of `arr` with duplicates removed
  */
-function unique<T, K extends PropertyKey = NumberString>(
-  array: readonly T[],
-  identity?: Fn<[T], K>
-): T[] {
-  return array.length <= 1
-    ? [...array]
-    : array.reduce<T[]>((acc: T[], curr: T): T[] => {
-        return includes(acc, curr, identity) ? acc : [...acc, curr]
-      }, [])
+const unique = <T, K extends PropertyKey = PropertyKey, U = T>(
+  arr: readonly T[],
+  identity?: Nilable<Fn<[T], K>>
+): U[] => {
+  return cast(
+    arr.reduce<T[]>((acc, item) => {
+      return includes(acc, item, identity) ? acc : [...acc, item]
+    }, [])
+  )
 }
 
 export default unique

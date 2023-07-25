@@ -9,7 +9,7 @@ import type Fn from '../fn'
 import type Indices from '../indices'
 import type TestSubject from '../keys-readonly'
 import type NIL from '../nil'
-import type { tag } from '../opaque'
+import type { tag as opaque } from '../opaque'
 
 describe('unit-d:types/ReadonlyKeys', () => {
   it('should equal never if T is any', () => {
@@ -28,12 +28,12 @@ describe('unit-d:types/ReadonlyKeys', () => {
     it('should construct union of readonly keys', () => {
       // Arrange
       type T1 = Vehicle
-      type T2 = T1 & { readonly [tag]: 'vehicle'; readonly id?: string }
+      type T2 = T1 & { readonly [opaque]: 'vehicle'; readonly id?: string }
       type T3 = Readonly<T2>
 
       // Expect
       expectTypeOf<TestSubject<T1>>().toBeNever()
-      expectTypeOf<TestSubject<T2>>().toEqualTypeOf<typeof tag | 'id'>()
+      expectTypeOf<TestSubject<T2>>().toEqualTypeOf<typeof opaque | 'id'>()
       expectTypeOf<TestSubject<T3>>().toEqualTypeOf<keyof T3>()
     })
 
@@ -52,8 +52,8 @@ describe('unit-d:types/ReadonlyKeys', () => {
     describe('T extends bigint', () => {
       it('should construct union of readonly keys', () => {
         // Arrange
-        type T = bigint & { readonly [tag]: 'bigint'; readonly id?: string }
-        type Expect = typeof Symbol.toStringTag | typeof tag | 'id'
+        type T = bigint & { readonly [opaque]: 'bigint'; readonly id?: string }
+        type Expect = typeof opaque | typeof Symbol.toStringTag | 'id'
 
         // Expect
         expectTypeOf<TestSubject<T>>().toEqualTypeOf<Expect>()
@@ -63,28 +63,31 @@ describe('unit-d:types/ReadonlyKeys', () => {
     describe('T extends boolean', () => {
       it('should construct union of readonly keys', () => {
         // Arrange
-        type T = boolean & { readonly [tag]: 'boolean'; readonly id?: string }
+        type T = boolean & {
+          readonly [opaque]: 'boolean'
+          readonly id?: string
+        }
 
         // Expect
-        expectTypeOf<TestSubject<T>>().toEqualTypeOf<typeof tag | 'id'>()
+        expectTypeOf<TestSubject<T>>().toEqualTypeOf<typeof opaque | 'id'>()
       })
     })
 
     describe('T extends number', () => {
       it('should construct union of readonly keys', () => {
         // Arrange
-        type T = number & { readonly [tag]: 'number'; readonly id?: string }
+        type T = number & { readonly [opaque]: 'number'; readonly id?: string }
 
         // Expect
-        expectTypeOf<TestSubject<T>>().toEqualTypeOf<typeof tag | 'id'>()
+        expectTypeOf<TestSubject<T>>().toEqualTypeOf<typeof opaque | 'id'>()
       })
     })
 
     describe('T extends string', () => {
       it('should construct union of readonly keys', () => {
         // Arrange
-        type T = string & { readonly [tag]: 'string'; readonly id?: string }
-        type Expect = typeof tag | 'id' | 'length'
+        type T = string & { readonly [opaque]: 'string'; readonly id?: string }
+        type Expect = typeof opaque | 'id' | 'length'
 
         // Expect
         expectTypeOf<TestSubject<T>>().toEqualTypeOf<Expect>()
@@ -141,10 +144,11 @@ describe('unit-d:types/ReadonlyKeys', () => {
   describe('unions', () => {
     it('should distribute over unions', () => {
       // Arrange
-      type T = Readonly<Vehicle> | { readonly [tag]: 'vehicle' }
+      type T = Readonly<Vehicle> | { readonly [opaque]: 'vehicle' }
+      type Expect = keyof Vehicle | typeof opaque
 
       // Expect
-      expectTypeOf<TestSubject<T>>().toEqualTypeOf<keyof Vehicle | typeof tag>()
+      expectTypeOf<TestSubject<T>>().toEqualTypeOf<Expect>()
     })
   })
 })

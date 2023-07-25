@@ -29,7 +29,7 @@ describe('unit:utils/chunk', () => {
 
     // Act + Expect
     cases.forEach(([array, size, expected]) => {
-      expect(testSubject(array, size)).to.deep.equal(expected)
+      expect(testSubject(array, size)).to.eql(expected)
     })
   })
 })

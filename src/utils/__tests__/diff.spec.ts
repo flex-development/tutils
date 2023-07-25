@@ -16,7 +16,7 @@ describe('unit:utils/diff', () => {
 
     // Act + Expect
     cases.forEach(([array1, array2, identity, expected]) => {
-      expect(testSubject(array1, array2, identity)).to.deep.equal(expected)
+      expect(testSubject(array1, array2, identity)).to.eql(expected)
     })
   })
 })

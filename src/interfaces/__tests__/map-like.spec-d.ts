@@ -6,7 +6,13 @@
 import type TestSubject from '../map-like'
 
 describe('unit-d:interfaces/MapLike', () => {
-  it('should be a generic', () => {
-    expectTypeOf<TestSubject<string>[string]>().toBeString()
+  type T = string
+
+  it('should match [[index: number]: T]', () => {
+    expectTypeOf<TestSubject<T>[number]>().toEqualTypeOf<T>()
+  })
+
+  it('should match [[index: string]: T]', () => {
+    expectTypeOf<TestSubject<T>[string]>().toEqualTypeOf<T>()
   })
 })

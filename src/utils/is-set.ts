@@ -19,7 +19,7 @@ import isObject from './is-object'
  * @return {value is Set<T>} `true` if `value` is a `Set`
  */
 const isSet = <T>(value: unknown): value is Set<T> => {
-  return isObject(value) && equal(value.constructor, Set)
+  return isObject(value) && equal(Set, value.constructor)
 }
 
 export default isSet

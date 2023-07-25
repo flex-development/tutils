@@ -17,7 +17,7 @@ import isObject from './is-object'
  * @return {value is ArrayBuffer} `true` if `value` is an `ArrayBuffer`
  */
 const isArrayBuffer = (value: unknown): value is ArrayBuffer => {
-  return isObject(value) && equal(value.constructor, ArrayBuffer)
+  return isObject(value) && equal(ArrayBuffer, value.constructor)
 }
 
 export default isArrayBuffer

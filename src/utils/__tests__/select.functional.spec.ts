@@ -16,12 +16,10 @@ describe('functional:utils/select', () => {
   })
 
   it('should filter array', () => {
-    expect(testSubject(array, filter)).to.deep.equal([3, 4, 5])
+    expect(testSubject(array, filter)).to.eql([3, 4, 5])
   })
 
   it('should map filtered array', () => {
-    expect(testSubject(array, filter, (n: number) => n * n)).to.deep.equal([
-      9, 16, 25
-    ])
+    expect(testSubject(array, filter, (n: number) => n * n)).to.eql([9, 16, 25])
   })
 })
