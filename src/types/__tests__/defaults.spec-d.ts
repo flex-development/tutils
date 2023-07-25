@@ -1,23 +1,24 @@
 /**
- * @file Type Tests - Assign
- * @module tutils/types/tests/unit-d/Assign
+ * @file Type Tests - Defaults
+ * @module tutils/types/tests/unit-d/Defaults
  */
 
+import type Person from '#fixtures/interfaces/person'
 import type Vehicle from '#fixtures/types/vehicle'
-import type TestSubject from '../assign'
+import type TestSubject from '../defaults'
 import type EmptyArray from '../empty-array'
 import type EmptyObject from '../empty-object'
-import type NumberString from '../number-string'
 import type Numeric from '../numeric'
 import type Objectify from '../objectify'
 import type Omit from '../omit'
 import type { tag as opaque } from '../opaque'
+import type Optional from '../optional'
+import type Partial from '../partial'
 
-describe('unit-d:types/Assign', () => {
-  type T = Vehicle
-
+describe('unit-d:types/Defaults', () => {
   it('should equal Objectify<U> & T if U is any', () => {
     // Arrange
+    type T = Partial<Person>
     type U = any
 
     // Expect
@@ -25,21 +26,29 @@ describe('unit-d:types/Assign', () => {
   })
 
   it('should equal T if U is never', () => {
+    // Arrange
+    type T = Partial<Vehicle>
+
+    // Expect
     expectTypeOf<TestSubject<T, never>>().toEqualTypeOf<T>()
   })
 
   describe('U extends ObjectCurly', () => {
-    it('should assign properties of U to T', () => {
+    type T = {
+      make?: string
+      model?: string
+      vin: Optional<string>
+      year: Optional<number>
+    }
+
+    it('should assign defaults from U to T', () => {
       // Arrange
-      type U = {
-        [x: string]: NumberString
-        readonly [opaque]: 'vehicle'
-        vrm?: string
-        year: `${Numeric}${Numeric}${Numeric}${Numeric}`
-      }
+      type Year = `${Numeric}${Numeric}${Numeric}${Numeric}`
+      type U = Readonly<Omit<Vehicle, 'year'> & { year: Year }>
+      type Expect = Omit<U, 'year'> & Readonly<{ year: Year | number }>
 
       // Expect
-      expectTypeOf<TestSubject<T, U>>().toEqualTypeOf<Omit<T, 'year'> & U>()
+      expectTypeOf<TestSubject<T, U>>().toEqualTypeOf<Expect>()
     })
 
     it('should equal T if EmptyObject extends U', () => {
@@ -59,12 +68,15 @@ describe('unit-d:types/Assign', () => {
 
   describe('U extends readonly ObjectCurly[]', () => {
     describe('IsTuple<U> extends true', () => {
-      it('should assign properties of U[i] to T', () => {
+      type T = Partial<Vehicle>
+
+      it('should assign defaults from U[i] to T', () => {
         // Arrange
         type U = [
           { readonly [opaque]: 'vehicle' },
-          { vrm?: string },
-          { year: `${Numeric}${Numeric}${Numeric}${Numeric}` },
+          { readonly vrm: string },
+          { readonly year: Numeric },
+          Readonly<Vehicle>,
           any,
           never,
           { readonly a: string },
@@ -102,18 +114,15 @@ describe('unit-d:types/Assign', () => {
           { readonly 6: number },
           { readonly 7: number },
           { readonly 8: number },
-          { readonly 9: number }
+          Partial<Vehicle>
         ]
 
         // Expect
         expectTypeOf<TestSubject<T, U>>().toEqualTypeOf<
-          Omit<T, 'year'> &
+          Objectify<any> &
+            Readonly<Omit<Required<T>, 'year'> & { year: Numeric | number }> &
             U[0] &
-            U[1] &
-            U[2] & {
-              [x: number]: any
-              [x: string]: any
-              [x: symbol]: any
+            U[1] & {
               readonly 0: number
               readonly 1: number
               readonly 2: number
@@ -123,7 +132,6 @@ describe('unit-d:types/Assign', () => {
               readonly 6: number
               readonly 7: number
               readonly 8: number
-              readonly 9: number
               readonly a: string
               readonly b: string
               readonly c: string
@@ -171,10 +179,12 @@ describe('unit-d:types/Assign', () => {
     })
 
     describe('number extends Length<U>', () => {
-      it('should assign properties of U[0] to T', () => {
+      type T = readonly [Optional<Vehicle>]
+
+      it('should assign defaults from U[0] to T', () => {
         // Arrange
-        type U = { vrm?: string; year: `${Numeric}${Numeric}` }[]
-        type Expect = Omit<T, 'year'> & U[0]
+        type U = readonly { 0: Vehicle['vin']; readonly id: string }[]
+        type Expect = readonly [Vehicle | string] & { readonly id: string }
 
         // Expect
         expectTypeOf<TestSubject<T, U>>().toEqualTypeOf<Expect>()
@@ -205,16 +215,12 @@ describe('unit-d:types/Assign', () => {
   describe('unions', () => {
     it('should distribute over unions', () => {
       // Arrange
-      type T = EmptyObject | Vehicle
-      type U = { readonly vin: string } | { readonly vrm: string }
+      type T = EmptyObject | Readonly<EmptyArray>
+      type U = { 0: Vehicle } | { 0: Vehicle['vin'] }
+      type Expect = Readonly<[Vehicle['vin']] | [Vehicle]> | U
 
       // Expect
-      expectTypeOf<TestSubject<T, U>>().toEqualTypeOf<
-        | { readonly vin: string }
-        | { readonly vrm: string }
-        | (Omit<Vehicle, 'vin'> & { readonly vin: string })
-        | (Vehicle & { readonly vrm: string })
-      >()
+      expectTypeOf<TestSubject<T, U>>().toEqualTypeOf<Expect>()
     })
   })
 })
