@@ -1559,7 +1559,7 @@ __metadata:
     pkg-size: "npm:2.4.0"
     prettier: "npm:2.8.8"
     prettier-plugin-sh: "npm:0.12.8"
-    pretty-format: "npm:29.6.0"
+    pretty-format: "npm:29.6.1"
     sade: "npm:1.8.1"
     semver: "npm:7.5.3"
     tempfile: "npm:5.0.0"
@@ -7834,18 +7834,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pretty-format@npm:29.6.0":
-  version: 29.6.0
-  resolution: "pretty-format@npm:29.6.0"
-  dependencies:
-    "@jest/schemas": "npm:^29.6.0"
-    ansi-styles: "npm:^5.0.0"
-    react-is: "npm:^18.0.0"
-  checksum: 5a6dce0c06f025e7414de14db7d8c57d936b03b0517b7743287dee7b8c47ebd95b70ff644dd21bc6d3d879f1f0810e06af14b61ccbeaa6e3e8d851eb6e78b284
-  languageName: node
-  linkType: hard
-
-"pretty-format@npm:^29.5.0":
+"pretty-format@npm:29.6.1, pretty-format@npm:^29.5.0":
   version: 29.6.1
   resolution: "pretty-format@npm:29.6.1"
   dependencies:
