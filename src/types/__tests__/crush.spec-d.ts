@@ -8,25 +8,25 @@ import type TestSubject from '../crush'
 import type EmptyObject from '../empty-object'
 import type Fn from '../fn'
 import type Get from '../get'
-import type Invert from '../invert'
 import type Nilable from '../nilable'
 import type Nullable from '../nullable'
+import type Objectify from '../objectify'
 
 describe('unit-d:types/Crush', () => {
-  it('should equal Invert<T> if T is any', () => {
+  it('should equal Objectify<T> if T is any', () => {
     // Arrange
     type T = any
 
     // Expect
-    expectTypeOf<TestSubject<T>>().toEqualTypeOf<Invert<T>>()
+    expectTypeOf<TestSubject<T>>().toEqualTypeOf<Objectify<T>>()
   })
 
-  it('should equal Invert<T> if T is never', () => {
+  it('should equal Objectify<T> if T is never', () => {
     // Arrange
     type T = never
 
     // Expect
-    expectTypeOf<TestSubject<T>>().toEqualTypeOf<Invert<T>>()
+    expectTypeOf<TestSubject<T>>().toEqualTypeOf<Objectify<T>>()
   })
 
   describe('T extends NIL', () => {
