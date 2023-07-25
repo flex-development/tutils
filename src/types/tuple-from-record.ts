@@ -23,9 +23,13 @@ type TupleFromRecord<
 > = M extends unknown
   ? EmptyObject extends M
     ? Acc
-    : Acc['length'] extends infer I extends number
+    : Required<Acc>['length'] extends infer I extends number
     ? I extends keyof M
-      ? TupleFromRecord<OmitNative<M, I>, F, [...Acc, M[I]]>
+      ? TupleFromRecord<
+          OmitNative<M, I>,
+          F,
+          M extends { [K in I]: M[I] } ? [...Acc, M[I]] : [...Acc, M[I]?]
+        >
       : TupleFromRecord<M, F, [...Acc, F]>
     : never
   : never

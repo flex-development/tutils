@@ -4,49 +4,38 @@
  */
 
 import type EmptyObject from './empty-object'
-import type HasKeys from './has-keys'
-import type IsAny from './is-any'
+import type HasKey from './has-key'
+import type IsAnyOrNever from './is-any-or-never'
 import type IsEqual from './is-equal'
-import type IsNever from './is-never'
-import type Nilable from './nilable'
 import type ObjectCurly from './object-curly'
-import type OmitIndexSignature from './omit-index-signature'
+import type Objectify from './objectify'
 import type OneOrMany from './one-or-many'
-import type PropertyKey from './property-key'
-import type Simplify from './simplify'
+import type ReconstructArray from './reconstruct-array'
 
 /**
- * Assigns properties of `H` to `T`.
+ * Assigns properties of `U` to `T`.
  *
  * @internal
  *
  * @template T - Target object
- * @template H - Source object
+ * @template U - Source object
  */
-type Assigner<T extends ObjectCurly, H> = IsAny<H> extends true
-  ? Simplify<Record<PropertyKey, any> & T>
-  : IsNever<H> extends true
+type Assigner<T extends Objectify<any>, U> = IsEqual<T, U> extends true
   ? T
-  : HasKeys<H> extends true
-  ? IsEqual<T, H> extends true
-    ? T
-    : H extends unknown
-    ? {
-        [K in keyof (H & {
-          [K in keyof T as K extends keyof OmitIndexSignature<H> ? never : K]: K
-        })]: K extends keyof OmitIndexSignature<H>
-          ? K extends keyof H
-            ? H[K]
-            : never
-          : K extends keyof OmitIndexSignature<T>
-          ? T[K]
-          : K extends keyof H
-          ? H[K]
-          : K extends keyof T
-          ? T[K]
-          : never
-      }
-    : T
+  : U extends ObjectCurly
+  ? {
+      [K in keyof (U & {
+        [K in keyof Objectify<T> as HasKey<U, K> extends true ? never : K]: K
+      })]: HasKey<U, K> extends true
+        ? U[K]
+        : HasKey<T, K> extends true
+        ? T[K]
+        : never
+    } extends infer X extends Objectify<any>
+    ? X extends readonly unknown[]
+      ? ReconstructArray<X>
+      : X
+    : never
   : T
 
 /**
@@ -61,19 +50,17 @@ type Assigner<T extends ObjectCurly, H> = IsAny<H> extends true
  * @template U - Source object or source object array
  */
 type Assign<
-  T extends Nilable<ObjectCurly>,
+  T extends object,
   U extends OneOrMany<ObjectCurly> = EmptyObject
-> = T extends ObjectCurly
-  ? IsAny<U> extends true
-    ? Simplify<Record<PropertyKey, any> & T>
-    : IsNever<U> extends true
-    ? T
-    : U extends ObjectCurly
-    ? Assigner<T, U>
+> = IsAnyOrNever<U> extends true
+  ? Assigner<T, Objectify<U>>
+  : T extends unknown
+  ? U extends ObjectCurly
+    ? Assigner<T, Objectify<U>>
     : U extends readonly ObjectCurly[]
     ? U extends readonly [infer H, ...infer R extends ObjectCurly[]]
-      ? Assign<Assigner<T, H>, R>
-      : Assigner<T, U[0]>
+      ? Assign<Assigner<T, Objectify<H>>, R>
+      : Assigner<T, Objectify<U[0]>>
     : never
   : never
 

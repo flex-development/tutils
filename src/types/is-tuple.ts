@@ -4,7 +4,6 @@
  */
 
 import type IfAnyOrNever from './if-any-or-never'
-import type IsLiteral from './is-literal'
 import type Length from './length'
 
 /**
@@ -42,7 +41,11 @@ import type Length from './length'
 type IsTuple<T> = IfAnyOrNever<
   T,
   false,
-  T extends readonly unknown[] ? IsLiteral<Length<T>, number> : false
+  T extends readonly unknown[]
+    ? number extends Length<T>
+      ? false
+      : true
+    : false
 >
 
 export type { IsTuple as default }

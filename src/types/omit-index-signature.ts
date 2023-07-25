@@ -7,7 +7,7 @@ import type IfIndexSignature from './if-index-signature'
 import type Objectify from './objectify'
 
 /**
- * Removes index signatures from `T`, leaving only explicity defined keys.
+ * Removes index signatures from `T`, leaving only explicitly defined keys.
  *
  * @example
  *  type X = OmitIndexSignature<{
