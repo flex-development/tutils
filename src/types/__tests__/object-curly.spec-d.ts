@@ -8,12 +8,13 @@ import type Fn from '../fn'
 import type TestSubject from '../object-curly'
 import type ObjectPlain from '../object-plain'
 import type Primitive from '../primitive'
+import type PropertyKey from '../property-key'
 
 describe('unit-d:types/ObjectCurly', () => {
   it('should match class instance objects', () => {
-    expectTypeOf(new Date()).toMatchTypeOf<TestSubject>()
-    expectTypeOf(new Map()).toMatchTypeOf<TestSubject>()
-    expectTypeOf(new Set()).toMatchTypeOf<TestSubject>()
+    expectTypeOf<Date>().toMatchTypeOf<TestSubject>()
+    expectTypeOf<Map<PropertyKey, Primitive>>().toMatchTypeOf<TestSubject>()
+    expectTypeOf<Set<any>>().toMatchTypeOf<TestSubject>()
   })
 
   it('should match pojos', () => {
@@ -33,6 +34,5 @@ describe('unit-d:types/ObjectCurly', () => {
 
   it('should not match primitives', () => {
     expectTypeOf<Primitive>().not.toMatchTypeOf<TestSubject>()
-    expectTypeOf<Readonly<Primitive>>().not.toMatchTypeOf<TestSubject>()
   })
 })

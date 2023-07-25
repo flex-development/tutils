@@ -7,6 +7,7 @@ import type Class from '../class'
 import type Fn from '../fn'
 import type TestSubject from '../object-plain'
 import type Primitive from '../primitive'
+import type PropertyKey from '../property-key'
 
 describe('unit-d:types/ObjectPlain', () => {
   class Person {}
@@ -31,13 +32,17 @@ describe('unit-d:types/ObjectPlain', () => {
 
   it('should not match class objects', () => {
     expectTypeOf<Class<any>>().not.toMatchTypeOf<TestSubject>()
-  })
-
-  it('should not match class instance objects', () => {
     expectTypeOf<typeof Date>().not.toMatchTypeOf<TestSubject>()
     expectTypeOf<typeof Person>().not.toMatchTypeOf<TestSubject>()
     expectTypeOf<typeof Map>().not.toMatchTypeOf<TestSubject>()
     expectTypeOf<typeof Set>().not.toMatchTypeOf<TestSubject>()
+  })
+
+  it('should not match class instance objects', () => {
+    expectTypeOf<Date>().not.toMatchTypeOf<TestSubject>()
+    expectTypeOf<Person>().not.toMatchTypeOf<TestSubject>()
+    expectTypeOf<Map<PropertyKey, Primitive>>().not.toMatchTypeOf<TestSubject>()
+    expectTypeOf<Set<any>>().not.toMatchTypeOf<TestSubject>()
   })
 
   it('should not match functions', () => {

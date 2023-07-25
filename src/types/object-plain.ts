@@ -12,7 +12,7 @@ import type Primitive from './primitive'
  */
 type ObjectPlain = {
   [x: string | symbol]: Primitive | object
-  readonly arguments?: never
+  readonly [Symbol.hasInstance]?: never
 }
 
 export type { ObjectPlain as default }

@@ -11,13 +11,13 @@ import type PropertyKey from './property-key'
  * Curly-braced objects are `object` types that are **not** arrays or functions
  * (e.g. instance objects, pojos).
  *
- * **Note**: The properties {@linkcode Symbol.unscopables} and `arguments` are
- * used to identify arrays and functions.
+ * **Note**: {@linkcode Symbol.hasInstance} and {@linkcode Symbol.unscopables}
+ * are used to identify arrays and functions.
  */
 type ObjectCurly = {
   [x: PropertyKey]: any
+  readonly [Symbol.hasInstance]?: never
   readonly [Symbol.unscopables]?: never
-  readonly arguments?: never
 }
 
 export type { ObjectCurly as default }
