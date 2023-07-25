@@ -1500,7 +1500,7 @@ __metadata:
     "@flex-development/pathe": "npm:1.0.3"
     "@flex-development/toggle-pkg-type": "npm:2.0.0"
     "@flex-development/tsconfig-utils": "npm:1.1.2"
-    "@graphql-eslint/eslint-plugin": "npm:3.19.3"
+    "@graphql-eslint/eslint-plugin": "npm:3.20.1"
     "@types/chai": "npm:4.3.5"
     "@types/chai-quantifiers": "npm:1.0.1"
     "@types/chai-string": "npm:1.4.2"
@@ -1587,9 +1587,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graphql-eslint/eslint-plugin@npm:3.19.3":
-  version: 3.19.3
-  resolution: "@graphql-eslint/eslint-plugin@npm:3.19.3"
+"@graphql-eslint/eslint-plugin@npm:3.20.1":
+  version: 3.20.1
+  resolution: "@graphql-eslint/eslint-plugin@npm:3.20.1"
   dependencies:
     "@babel/code-frame": "npm:^7.18.6"
     "@graphql-tools/code-file-loader": "npm:^7.3.6"
@@ -1604,7 +1604,7 @@ __metadata:
     tslib: "npm:^2.4.1"
   peerDependencies:
     graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
-  checksum: 0c35104c02cab5908616fe1ae7b0fa269d4024f03b58ca26ac0905153f7df11683d36063a5abf09fdd4e80721f7706c243ffc08a7e14110b6a74295688455617
+  checksum: 31d16df44a286412136d2d2d0e282f264b6b2a4a57d75e937f890130604f7c8a8115a1a3dd381fa3b1ca1f23c0b0a4f709168ee687fe0b017dc3ae744d60008a
   languageName: node
   linkType: hard
 
