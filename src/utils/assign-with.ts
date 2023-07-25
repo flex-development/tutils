@@ -21,8 +21,10 @@ import properties from './properties'
 type AssignCustomizer = Fn<[unknown, unknown, string | symbol], unknown>
 
 /**
- * Assigns own properties of one or more `source` objects to a cloned `base`
- * object. A `customizer` is used to produce assigned values.
+ * Assigns own properties of one or more `source` objects to a target object.
+ *
+ * A `customizer` is used to produce assigned values. The initial `base` object
+ * **will not** be modified.
  *
  * Source objects are applied from left to right. Subsequent sources overwrite
  * property assignments of previous sources.

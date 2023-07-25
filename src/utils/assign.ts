@@ -7,8 +7,8 @@ import type { Assign, ObjectCurly, Objectify } from '#src/types'
 import assignWith from './assign-with'
 
 /**
- * Assigns own properties of one or more `source` objects to a cloned `base`
- * object.
+ * Assigns own properties of one or more `source` objects to a target object.
+ * The initial `base` object **will not** be modified.
  *
  * Source objects are applied from left to right. Subsequent sources overwrite
  * property assignments of previous sources.

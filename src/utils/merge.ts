@@ -8,7 +8,7 @@ import mergeWith from './merge-with'
 
 /**
  * Recursively merges own properties of one or more `source` objects into a
- * cloned `base` object.
+ * target object. The initial `base` object **will not** be modified.
  *
  * Plain object properties are merged recursively. Other objects and value types
  * are overridden by assignment.
