@@ -163,7 +163,7 @@
     "prettier-plugin-sh": "0.12.8",
     "pretty-format": "29.6.1",
     "sade": "1.8.1",
-    "semver": "7.5.3",
+    "semver": "7.5.4",
     "tempfile": "5.0.0",
     "trash-cli": "5.0.0",
     "ts-dedent": "2.2.0",
