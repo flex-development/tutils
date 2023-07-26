@@ -12,12 +12,11 @@ describe('unit-d:types/OneOrMany', () => {
     expectTypeOf<TestSubject<T>>().extract<T>().not.toBeNever()
   })
 
-  it('should extract readonly T[]', () => {
-    expectTypeOf<TestSubject<T>>().extract<readonly T[]>().not.toBeNever()
+  it('should extract T[]', () => {
+    expectTypeOf<TestSubject<T>>().extract<T[]>().not.toBeNever()
   })
 
-  it('should match T[]', () => {
-    expectTypeOf<T[]>().toMatchTypeOf<TestSubject<T>>()
-    expectTypeOf<TestSubject<T>>().extract<T[]>().toBeNever()
+  it('should extract readonly T[]', () => {
+    expectTypeOf<TestSubject<T>>().extract<readonly T[]>().not.toBeNever()
   })
 })

@@ -19,7 +19,7 @@ import type OneOrMany from './one-or-many'
  * @template T - Target object
  * @template U - Source object
  */
-type Overwriter<T extends ObjectCurly, U> = IsEqual<T, U> extends true
+type Overwriter<T extends Objectify<any>, U> = IsEqual<T, U> extends true
   ? T
   : U extends ObjectCurly
   ? {
@@ -28,11 +28,11 @@ type Overwriter<T extends ObjectCurly, U> = IsEqual<T, U> extends true
       } & {
         [K in keyof U as HasKey<T, K> extends true ? K : never]: K
       })]: HasKey<U, K> extends true
-        ? U[K & keyof U]
+        ? U[K]
         : HasKey<T, K> extends true
-        ? T[K & keyof T]
+        ? T[K]
         : never
-    } extends infer X extends ObjectCurly
+    } extends infer X extends Objectify<any>
     ? X
     : never
   : T
@@ -52,7 +52,7 @@ type Overwriter<T extends ObjectCurly, U> = IsEqual<T, U> extends true
  */
 type Overwrite<
   T extends ObjectCurly,
-  U extends OneOrMany<ObjectCurly> = EmptyObject
+  U extends Readonly<OneOrMany<ObjectCurly>> = EmptyObject
 > = IsAnyOrNever<U> extends true
   ? Overwriter<T, Objectify<U>>
   : T extends unknown

@@ -4,14 +4,14 @@
  */
 
 /**
- * Constructs a union of `T` and an array of `T` values.
+ * Constructs a union of `T` and a writable array of `T` values.
  *
  * @example
  *  type X = OneOrMany<string>
- *  // string | readonly string[]
+ *  // string | string[]
  *
  * @template T - Type to evaluate
  */
-type OneOrMany<T> = T | readonly T[]
+type OneOrMany<T> = T | T[]
 
 export type { OneOrMany as default }

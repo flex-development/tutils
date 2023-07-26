@@ -77,7 +77,7 @@ type Merger<
  */
 type Merge<
   T extends object,
-  U extends OneOrMany<ObjectCurly> = EmptyObject,
+  U extends Readonly<OneOrMany<ObjectCurly>> = EmptyObject,
   M extends EmptyObject & { concat?: Nilable<boolean> } = EmptyObject
 > = IsAnyOrNever<U> extends true
   ? Merger<T, Objectify<U>>

@@ -51,7 +51,7 @@ type Assigner<T extends Objectify<any>, U> = IsEqual<T, U> extends true
  */
 type Assign<
   T extends object,
-  U extends OneOrMany<ObjectCurly> = EmptyObject
+  U extends Readonly<OneOrMany<ObjectCurly>> = EmptyObject
 > = IsAnyOrNever<U> extends true
   ? Assigner<T, Objectify<U>>
   : T extends unknown
