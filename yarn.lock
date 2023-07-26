@@ -248,13 +248,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commitlint/cli@npm:17.6.6":
-  version: 17.6.6
-  resolution: "@commitlint/cli@npm:17.6.6"
+"@commitlint/cli@npm:17.6.7":
+  version: 17.6.7
+  resolution: "@commitlint/cli@npm:17.6.7"
   dependencies:
     "@commitlint/format": "npm:^17.4.4"
-    "@commitlint/lint": "npm:^17.6.6"
-    "@commitlint/load": "npm:^17.5.0"
+    "@commitlint/lint": "npm:^17.6.7"
+    "@commitlint/load": "npm:^17.6.7"
     "@commitlint/read": "npm:^17.5.1"
     "@commitlint/types": "npm:^17.4.4"
     execa: "npm:^5.0.0"
@@ -264,23 +264,23 @@ __metadata:
     yargs: "npm:^17.0.0"
   bin:
     commitlint: cli.js
-  checksum: 03c61899c8a98d768dc376823660e39c64edeef90844b29778ca3be4cc021d7c3eac9d0e2f15e389311ae529f18ea711bc7d7d58e1715d039cc95e007f7b70f1
+  checksum: a63b32b7fced0bce65d2249714211a5617b9de1b960e2aea154ccbd698cb386d38d388e1a6aa6c2a0a546e47a2fa648822bd8eb6cfe113eaf3272f9bfe443871
   languageName: node
   linkType: hard
 
-"@commitlint/config-validator@npm:^17.4.4":
-  version: 17.4.4
-  resolution: "@commitlint/config-validator@npm:17.4.4"
+"@commitlint/config-validator@npm:^17.6.7":
+  version: 17.6.7
+  resolution: "@commitlint/config-validator@npm:17.6.7"
   dependencies:
     "@commitlint/types": "npm:^17.4.4"
     ajv: "npm:^8.11.0"
-  checksum: d3e6abc04d9fa365ed06ce1d42af0d98f22a6201309896a2d67b6a15d4e0a0c6612d148666a1704557f5054ffb1a2cbc03e4f3cf3aec76d5b60c91e49d89fe69
+  checksum: c4fcc47bd1b70098e7d545450d8c2fca1aa403d710eeb8b149cab9bb764864edb247e0c21bf165c5ec203ad1b4c646a155bc6902e48583c1a2b0bbfcf4fcf7be
   languageName: node
   linkType: hard
 
-"@commitlint/ensure@npm:^17.4.4":
-  version: 17.4.4
-  resolution: "@commitlint/ensure@npm:17.4.4"
+"@commitlint/ensure@npm:^17.6.7":
+  version: 17.6.7
+  resolution: "@commitlint/ensure@npm:17.6.7"
   dependencies:
     "@commitlint/types": "npm:^17.4.4"
     lodash.camelcase: "npm:^4.3.0"
@@ -288,7 +288,7 @@ __metadata:
     lodash.snakecase: "npm:^4.1.1"
     lodash.startcase: "npm:^4.4.0"
     lodash.upperfirst: "npm:^4.3.1"
-  checksum: 2686ae77953aa54c23f8f4836e9eef8b7201d2bce15951d6b60231dd29d052ea4accf5bddc635a57b094bd002ae01e95c447f50973a7877ccd85ea1f6d638b5c
+  checksum: 0a702753423fc14fccba8530b4b9f21414d361a6338e7f5470ec8ab75044cac5cb105b7fa886919d006ae29e908e926d155b98fba96dcc4a2e9cb257e4a16c9c
   languageName: node
   linkType: hard
 
@@ -309,35 +309,35 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commitlint/is-ignored@npm:^17.6.6":
-  version: 17.6.6
-  resolution: "@commitlint/is-ignored@npm:17.6.6"
+"@commitlint/is-ignored@npm:^17.6.7":
+  version: 17.6.7
+  resolution: "@commitlint/is-ignored@npm:17.6.7"
   dependencies:
     "@commitlint/types": "npm:^17.4.4"
     semver: "npm:7.5.2"
-  checksum: 529f45bcb81a090c399e160db2739a87a6eafaea617a621a2bb3c5c6dd70f039dd8e99470838819ca76d6268294c3f6b8494e7a0a705507c7579601bc08bbeea
+  checksum: cba0c139017bcd68b194e4467f9fe29fd9d81834355532ccead3bb49570bd602059c440af4b9f09537f6ae090a469dd9fe99c2d254567545feb77f9f5cf6774a
   languageName: node
   linkType: hard
 
-"@commitlint/lint@npm:^17.6.6":
-  version: 17.6.6
-  resolution: "@commitlint/lint@npm:17.6.6"
+"@commitlint/lint@npm:^17.6.7":
+  version: 17.6.7
+  resolution: "@commitlint/lint@npm:17.6.7"
   dependencies:
-    "@commitlint/is-ignored": "npm:^17.6.6"
-    "@commitlint/parse": "npm:^17.6.5"
-    "@commitlint/rules": "npm:^17.6.5"
+    "@commitlint/is-ignored": "npm:^17.6.7"
+    "@commitlint/parse": "npm:^17.6.7"
+    "@commitlint/rules": "npm:^17.6.7"
     "@commitlint/types": "npm:^17.4.4"
-  checksum: c5cf6a77884007f750374e2e13089b8fe5839b40c85490a5bd19d5a7a7a789c63437acdd40a4b8e9f626f37a1cccebd9b854077c24826793ca26fef66c36e18a
+  checksum: 6ccfcda671e4098b5823cf0c0e3277e50042440f0be4f3d7512a5f91f3136b5016dc3914bbd1942bf8ccf3eb1e67e858d306eab61cea36b411754574d52741f1
   languageName: node
   linkType: hard
 
-"@commitlint/load@npm:^17.5.0":
-  version: 17.5.0
-  resolution: "@commitlint/load@npm:17.5.0"
+"@commitlint/load@npm:^17.6.7":
+  version: 17.6.7
+  resolution: "@commitlint/load@npm:17.6.7"
   dependencies:
-    "@commitlint/config-validator": "npm:^17.4.4"
+    "@commitlint/config-validator": "npm:^17.6.7"
     "@commitlint/execute-rule": "npm:^17.4.0"
-    "@commitlint/resolve-extends": "npm:^17.4.4"
+    "@commitlint/resolve-extends": "npm:^17.6.7"
     "@commitlint/types": "npm:^17.4.4"
     "@types/node": "npm:*"
     chalk: "npm:^4.1.0"
@@ -349,7 +349,7 @@ __metadata:
     resolve-from: "npm:^5.0.0"
     ts-node: "npm:^10.8.1"
     typescript: "npm:^4.6.4 || ^5.0.0"
-  checksum: 05028f84740bb5d06cd5f377319ada6767d727c1c4f0d374b46a42097c98bfef5ead3fffd406a3b437bcf943cc7725e504651c38fa64f1381f62322b44875957
+  checksum: c6643261585caa12f3e5cc647f175d95a092b860d37fcea88fc48137f55e959c71a612305c765db012e32d678bdc115676f4be3aa1b69fb25db0672bed2a26b4
   languageName: node
   linkType: hard
 
@@ -360,14 +360,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commitlint/parse@npm:^17.6.5":
-  version: 17.6.5
-  resolution: "@commitlint/parse@npm:17.6.5"
+"@commitlint/parse@npm:^17.6.7":
+  version: 17.6.7
+  resolution: "@commitlint/parse@npm:17.6.7"
   dependencies:
     "@commitlint/types": "npm:^17.4.4"
     conventional-changelog-angular: "npm:^5.0.11"
     conventional-commits-parser: "npm:^3.2.2"
-  checksum: 017eb4ddd1398d4e65d26c9164beb0c6db1d1ab70ca0b411eb01ab8073c7e5b0dc4bbc5fb467b04ae6054505e793f70c1e8660a3c56a4700f47b3a1def19c5a8
+  checksum: 2782154e6f5b0b1ea432e2bfaf5e55a036ecfbd7ac350dc34894fe2dbf8495489b0f47d82e2d396cd66223275ae017297defb3cbfd12304cfa6cca991c3993bd
   languageName: node
   linkType: hard
 
@@ -384,30 +384,30 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commitlint/resolve-extends@npm:^17.4.4":
-  version: 17.4.4
-  resolution: "@commitlint/resolve-extends@npm:17.4.4"
+"@commitlint/resolve-extends@npm:^17.6.7":
+  version: 17.6.7
+  resolution: "@commitlint/resolve-extends@npm:17.6.7"
   dependencies:
-    "@commitlint/config-validator": "npm:^17.4.4"
+    "@commitlint/config-validator": "npm:^17.6.7"
     "@commitlint/types": "npm:^17.4.4"
     import-fresh: "npm:^3.0.0"
     lodash.mergewith: "npm:^4.6.2"
     resolve-from: "npm:^5.0.0"
     resolve-global: "npm:^1.0.0"
-  checksum: 1eaf4d4ce2b6b9ac22a7f4fa80fc5136e3e242c7c767ffe602303ee73b649323afdeb0570c386a181897c315d8cfdddf043beffbf56a9fe6a067cbd6805d860c
+  checksum: a861579848b01fa39e5308485456fb952a345895f9bc7fc73010a89f483b7f14326edc27370929e53912e18ed95035f18065b1f04e67b9408cd81fd09c06c1fb
   languageName: node
   linkType: hard
 
-"@commitlint/rules@npm:^17.6.5":
-  version: 17.6.5
-  resolution: "@commitlint/rules@npm:17.6.5"
+"@commitlint/rules@npm:^17.6.7":
+  version: 17.6.7
+  resolution: "@commitlint/rules@npm:17.6.7"
   dependencies:
-    "@commitlint/ensure": "npm:^17.4.4"
+    "@commitlint/ensure": "npm:^17.6.7"
     "@commitlint/message": "npm:^17.4.2"
     "@commitlint/to-lines": "npm:^17.4.0"
     "@commitlint/types": "npm:^17.4.4"
     execa: "npm:^5.0.0"
-  checksum: 29ee0da954157ef7a93ca117f06f202ac6e46d89fbc7bf6303342a66cbcd4c25d7a85368e967fd5677b04432edfe2e262fb3967e99aeda8ab8dbbc316e62eca6
+  checksum: b9300cbc56172124386e33c5450362a87594e15356a11f90b5aed4048a0cef6ba2a5df824ca959b8bef6631b86d23ce77b2a51abcc3c57e9f0e5cd13d4c6d88e
   languageName: node
   linkType: hard
 
@@ -1490,7 +1490,7 @@ __metadata:
   resolution: "@flex-development/tutils@workspace:."
   dependencies:
     "@arethetypeswrong/cli": "npm:0.4.2"
-    "@commitlint/cli": "npm:17.6.6"
+    "@commitlint/cli": "npm:17.6.7"
     "@faker-js/faker": "npm:8.0.2"
     "@flex-development/commitlint-config": "npm:1.0.1"
     "@flex-development/decorator-regex": "npm:1.0.0"
