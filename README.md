@@ -22,12 +22,11 @@
 
 ## What is this?
 
-This package contains a set of [TypeScript][1]-friendly utilities. It includes enums, interfaces, type definitions, and
-type guards.
+This package contains a set of [TypeScript][1]-friendly utilities.
 
 ## When should I use this?
 
-**TODO**: when should i use this?
+**TODO**: use cases
 
 ## Install
 
@@ -50,29 +49,7 @@ yarn add @flex-development/tutils@flex-development/tutils
 
 ## Use
 
-```typescript
-import type { Nullable, Path } from '@flex-development/tutils'
-
-/**
- * Object representing a `User` entity **(from the database)**.
- *
- * **Does not include any [virtual fields][1]**.
- *
- * [1]: https://sequelize.org/v7/manual/getters-setters-virtuals#virtual-fields
- */
-interface IUser {
-  created_at: number
-  email: Lowercase<string>
-  id: number
-  name: { first: Nullable<string>; last: Nullable<string> }
-  updated_at: Nullable<number>
-}
-
-/** {@linkcode IUser} attributes. */
-type UserAttribute = Path<IUser> // 'created_at' | 'email' | 'id' | 'name' | 'name.first' | 'name.last' | 'updated_at'
-
-export type { IUser as default, UserAttribute }
-```
+**TODO**: usage example
 
 ## Related
 
