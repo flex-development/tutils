@@ -53,6 +53,7 @@ const config = {
       },
       plugins: [
         '@typescript-eslint',
+        'import',
         'jsdoc',
         'node',
         'prettier',
@@ -171,7 +172,6 @@ const config = {
           }
         ],
         '@typescript-eslint/no-dupe-class-members': 2,
-        '@typescript-eslint/no-duplicate-imports': 2,
         '@typescript-eslint/no-dynamic-delete': 2,
         '@typescript-eslint/no-empty-function': [
           2,
@@ -352,7 +352,11 @@ const config = {
           2,
           {
             allowAny: false,
-            checkCompoundAssignments: false
+            allowBoolean: false,
+            allowNullish: false,
+            allowNumberAndString: true,
+            allowRegExp: false,
+            skipCompoundAssignments: true
           }
         ],
         '@typescript-eslint/restrict-template-expressions': [
@@ -366,7 +370,7 @@ const config = {
           }
         ],
         '@typescript-eslint/return-await': [2, 'in-try-catch'],
-        '@typescript-eslint/sort-type-union-intersection-members': 2,
+        '@typescript-eslint/sort-type-constituents': 2,
         '@typescript-eslint/strict-boolean-expressions': [
           2,
           {
@@ -394,6 +398,13 @@ const config = {
         '@typescript-eslint/unified-signatures': 2,
         'default-param-last': 0,
         eqeqeq: 1,
+        'import/no-duplicates': [
+          2,
+          {
+            considerQueryString: true,
+            'prefer-inline': true
+          }
+        ],
         'init-declarations': 0,
         'jsdoc/check-access': 1,
         'jsdoc/check-alignment': 1,
@@ -573,6 +584,7 @@ const config = {
         'no-empty-function': 0,
         'no-ex-assign': 0,
         'no-extra-parens': 0,
+        'no-extra-semi': 0,
         'no-implied-eval': 0,
         'no-invalid-this': 0,
         'no-loop-func': 0,
@@ -775,15 +787,8 @@ const config = {
             allowArgumentsExplicitlyTypedAsAny: true,
             allowDirectConstAssertionInArrowFunctions: true,
             allowHigherOrderFunctions: false,
-            allowTypedFunctionExpressions: true,
-            allowedNames: [],
-            shouldTrackReferences: true
-          }
-        ],
-        '@typescript-eslint/no-implicit-any-catch': [
-          2,
-          {
-            allowExplicitAny: false
+            allowTypedFunctionExpressions: false,
+            allowedNames: []
           }
         ],
         'no-undef': 0
@@ -1159,6 +1164,13 @@ const config = {
     'prettier/prettier': [2, {}, { usePrettierrc: true }]
   },
   settings: {
+    'import/parsers': {
+      '@typescript-eslint/parser': ['.cts', '.mts', '.ts', '.tsx']
+    },
+    'import/resolver': {
+      node: true,
+      typescript: true
+    },
     jsdoc: {
       augmentsExtendsReplacesDocs: true,
       ignoreInternal: false,
