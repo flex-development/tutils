@@ -349,8 +349,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       TARFILE: |
-        ${{ startsWith(github.ref_name, 'release/') && format('@{0}-{1}-{2}.tgz', github.repository_owner, github.event.repository.name, needs.preflight.outputs.version)
-        || format('@{0}-{1}-{2}+{3}.tgz', github.repository_owner, github.event.repository.name, needs.preflight.outputs.version, github.event.pull_request.head.sha || github.sha) }}
+        ${{ startsWith(github.head_ref || github.ref_name, 'release/') && format('@{0}-{1}-{2}.tgz', github.repository_owner, github.event.repository.name, needs.preflight.outputs.version) || format('@{0}-{1}-{2}+{3}.tgz', github.repository_owner, github.event.repository.name, needs.preflight.outputs.version, github.event.pull_request.head.sha || github.sha) }}
     steps:
       - id: checkout
         name: Checkout ${{ env.REF_NAME }}
