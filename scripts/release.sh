@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Local Release Workflow
-
+#
 # 1. run typecheck
 # 2. run tests
 # 3. pack project

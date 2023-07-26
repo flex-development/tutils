@@ -1,3 +1,23 @@
+## [tutils@6.0.0-alpha.12](https://github.com/flex-development/tutils/compare/tutils@6.0.0-alpha.11...tutils@6.0.0-alpha.12) (2023-07-26)
+
+
+### :package: Build
+
+* **deps-dev:** Bump @commitlint/cli from 17.6.6 to 17.6.7 ([#323](https://github.com/flex-development/tutils/issues/323)) ([b964cc0](https://github.com/flex-development/tutils/commit/b964cc0ced16ed3b79b1c37e2ad070f2cc38a3d4))
+* **deps-dev:** Bump eslint from 8.44.0 to 8.45.0 ([#324](https://github.com/flex-development/tutils/issues/324)) ([0eca32a](https://github.com/flex-development/tutils/commit/0eca32a2fb66689adc20f5a060caf576a5bfe707))
+* **deps-dev:** Bump semver from 7.5.3 to 7.5.4 ([#327](https://github.com/flex-development/tutils/issues/327)) ([093996a](https://github.com/flex-development/tutils/commit/093996acca9bb74b276df0302f1a6ad575bba51c))
+
+
+### :robot: Continuous Integration
+
+* **workflows:** [`approve-pr`] remove `dependabot-metadata` condition ([3f3c809](https://github.com/flex-development/tutils/commit/3f3c80927857b1a7e59ab366250e49b7a546ffbf))
+* **workflows:** [`ci`] fix `jobs.build.env.TARFILE` logic ([f595ebf](https://github.com/flex-development/tutils/commit/f595ebfaa6589dbec8d01e9cc2aff9c2e4ff434d))
+
+
+### :bug: Fixes
+
+* **types:** [`OneOrMany`] unionize writable array ([06ba1a6](https://github.com/flex-development/tutils/commit/06ba1a658a6e9d6d29ce4522a7ab5910be6af47e))
+
 ## [tutils@6.0.0-alpha.11](https://github.com/flex-development/tutils/compare/tutils@6.0.0-alpha.10...tutils@6.0.0-alpha.11) (2023-07-25)
 
 
