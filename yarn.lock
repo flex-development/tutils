@@ -1522,7 +1522,7 @@ __metadata:
     "@vates/toggle-scripts": "npm:1.0.0"
     "@vitest/coverage-v8": "npm:0.33.0"
     add-stream: "npm:1.0.0"
-    chai: "npm:5.0.0-alpha.0"
+    chai: "npm:5.0.0-alpha.1"
     chai-each: "npm:0.0.1"
     chai-quantifiers: "npm:1.0.17"
     chai-string: "npm:1.5.0"
@@ -3544,17 +3544,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chai@npm:5.0.0-alpha.0":
-  version: 5.0.0-alpha.0
-  resolution: "chai@npm:5.0.0-alpha.0"
+"chai@npm:5.0.0-alpha.1":
+  version: 5.0.0-alpha.1
+  resolution: "chai@npm:5.0.0-alpha.1"
   dependencies:
     assertion-error: "npm:^1.1.0"
-    check-error: "npm:^1.0.2"
+    check-error: "npm:^2.0.0"
     deep-eql: "npm:^4.1.2"
     loupe: "npm:^2.3.1"
-    pathval: "npm:^1.1.1"
+    pathval: "npm:^2.0.0"
     type-detect: "npm:^4.0.5"
-  checksum: 96b37e4c04a2319d420b2f552bf25178e1ff02b178cb4cc6c72156469e22e43aef12eb70cf6f6c0fd6c8520cf9f28df6dcdca4c1222d6d2facf113a32b374f44
+  checksum: 526bb6c8060ff2bda16977bf950c45d552a38155ab36cc47313bbe8f652b82645fb76b9e5aadd2b7d6015df32b2ff6eb4d0f08a1b41b0b6a1464ce795e5adb5a
   languageName: node
   linkType: hard
 
@@ -3642,6 +3642,13 @@ __metadata:
   version: 1.0.2
   resolution: "check-error@npm:1.0.2"
   checksum: 5ef1bce78b7105bd5b3f2e7d80a2c2d405a52c3f53d8c48da34d4b8d05f2a63cda26a66e058c4bcc4111be79246ba9ba93074bc4d8e2a65fe3566f8a3f2f7851
+  languageName: node
+  linkType: hard
+
+"check-error@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "check-error@npm:2.0.0"
+  checksum: 5a0398d02f57272ea19df4fa0e3d35073f5f3629c369f2d178860597199eb64df98ff90fed81e6120abc7d06c12ca48fca10280d637536783849f5eb5fbf3b90
   languageName: node
   linkType: hard
 
@@ -8267,6 +8274,13 @@ __metadata:
   version: 1.1.1
   resolution: "pathval@npm:1.1.1"
   checksum: 13fed3f7d8efa938ed9a5e3e5c6d35c6081e4d05b2fd97274702966477ff28af7599e44418bfeebf032acd407379a77b4db180cc78294e5b8dcd971567a0efe8
+  languageName: node
+  linkType: hard
+
+"pathval@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "pathval@npm:2.0.0"
+  checksum: 389d31fded136a5096790e6811b66dffccdf12c863bc0d16d22d2e5458b7411053ceed0846b392023c3de7030c4fb169b9bc30ef06430248fcd43c6e24a86768
   languageName: node
   linkType: hard
 
