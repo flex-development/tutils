@@ -8375,17 +8375,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss@npm:^8.4.25":
-  version: 8.4.26
-  resolution: "postcss@npm:8.4.26"
-  dependencies:
-    nanoid: "npm:^3.3.6"
-    picocolors: "npm:^1.0.0"
-    source-map-js: "npm:^1.0.2"
-  checksum: 3d38fd6006797acd38bcbf956f9727719b11ad3845f4cbcd62f829c2f958f031583eb99fcf041893d150193ef0e58102285411826f48b3a80e0fed1b1618dac5
-  languageName: node
-  linkType: hard
-
 "postcss@npm:^8.4.26":
   version: 8.4.27
   resolution: "postcss@npm:8.4.27"
@@ -10146,7 +10135,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite@npm:4.4.7":
+"vite@npm:4.4.7, vite@npm:^3.0.0 || ^4.0.0":
   version: 4.4.7
   resolution: "vite@npm:4.4.7"
   dependencies:
@@ -10183,46 +10172,6 @@ __metadata:
   bin:
     vite: bin/vite.js
   checksum: c64c86e6b9c17fc713cfe918d1376f21236d9aed8a34a818687d24655a3dca256499d10967a2416fc83be5ace8695dc68187ec98d8a32d01e5cb578b29648c3d
-  languageName: node
-  linkType: hard
-
-"vite@npm:^3.0.0 || ^4.0.0":
-  version: 4.4.4
-  resolution: "vite@npm:4.4.4"
-  dependencies:
-    esbuild: "npm:^0.18.10"
-    fsevents: "npm:~2.3.2"
-    postcss: "npm:^8.4.25"
-    rollup: "npm:^3.25.2"
-  peerDependencies:
-    "@types/node": ">= 14"
-    less: "*"
-    lightningcss: ^1.21.0
-    sass: "*"
-    stylus: "*"
-    sugarss: "*"
-    terser: ^5.4.0
-  dependenciesMeta:
-    fsevents:
-      optional: true
-  peerDependenciesMeta:
-    "@types/node":
-      optional: true
-    less:
-      optional: true
-    lightningcss:
-      optional: true
-    sass:
-      optional: true
-    stylus:
-      optional: true
-    sugarss:
-      optional: true
-    terser:
-      optional: true
-  bin:
-    vite: bin/vite.js
-  checksum: 8f7a5d1013bec7bd608cee276fe922b48c8d72114a540a7fff680b61b11c26641c11c5baec4d297001e98e4f06e29458f7bfc336432cc7c39005086ac783b5bf
   languageName: node
   linkType: hard
 
