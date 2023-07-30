@@ -1,7 +1,7 @@
 {
   "name": "@flex-development/tutils",
   "description": "TypeScript-friendly utilities",
-  "version": "6.0.0-alpha.12",
+  "version": "6.0.0-alpha.13",
   "keywords": [
     "deep",
     "definitions",
