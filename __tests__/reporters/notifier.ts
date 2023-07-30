@@ -3,7 +3,7 @@
  * @module tests/reporters/Notifier
  */
 
-import { isArray, type OneOrMany } from '#src'
+import { cast, isArray, type OneOrMany } from '#src'
 import notifier from 'node-notifier'
 import type NotificationCenter from 'node-notifier/notifiers/notificationcenter'
 import { performance } from 'node:perf_hooks'
@@ -162,7 +162,7 @@ class Notifier implements Reporter {
   }
 
   /**
-   * Returns an array of {@link Test} objects.
+   * Returns an array of {@linkcode Test} objects.
    *
    * @protected
    *
@@ -172,7 +172,7 @@ class Notifier implements Reporter {
   protected tests(tasks: OneOrMany<Task> = []): Test[] {
     return (isArray<Task>(tasks) ? tasks : [tasks]).flatMap(task => {
       return task.type === 'custom'
-        ? [task as unknown as Test]
+        ? [cast(task)]
         : task.type === 'test'
         ? [task]
         : 'tasks' in task

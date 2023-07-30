@@ -7,6 +7,7 @@ import type { Class, Optional } from '#src/types'
 import cast from './cast'
 import define from './define'
 import descriptor from './descriptor'
+import ifelse from './ifelse'
 import isArray from './is-array'
 import isArrayBuffer from './is-array-buffer'
 import isBuffer from './is-buffer'
@@ -97,9 +98,9 @@ const clone = <T>(value: T): T => {
     }
 
     // clone unknown value
-    if (!cast<Optional<T>>(result)) result = new Clone()
+    if (!cast<Optional<T>>(result) && isFunction(Clone)) result = new Clone()
 
-    return result
+    return ifelse(result, result, cast({}))
   }
 
   /**
