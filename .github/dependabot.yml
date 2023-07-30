@@ -33,6 +33,11 @@ updates:
     groups:
       conventional-changelog:
         patterns:
+          - '@types/conventional-changelog'
+          - '@types/conventional-changelog-core'
+          - '@types/conventional-changelog-writer'
+          - '@types/conventional-recommended-bump'
+          - '@types/git-raw-commits'
           - conventional-changelog
           - conventional-changelog-conventionalcommits
           - conventional-changelog-core
