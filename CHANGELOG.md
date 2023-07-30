@@ -1,3 +1,32 @@
+## [tutils@6.0.0-alpha.13](https://github.com/flex-development/tutils/compare/tutils@6.0.0-alpha.12...tutils@6.0.0-alpha.13) (2023-07-30)
+
+
+### :package: Build
+
+* **deps-dev:** Bump @arethetypeswrong/cli from 0.4.2 to 0.7.0 ([#329](https://github.com/flex-development/tutils/issues/329)) ([93c6de5](https://github.com/flex-development/tutils/commit/93c6de5f1a8b92cb767191a5dd2a68491a76432d))
+* **deps-dev:** Bump @flex-development/esm-types from 1.0.0 to 2.0.0 ([#331](https://github.com/flex-development/tutils/issues/331)) ([4a06af9](https://github.com/flex-development/tutils/commit/4a06af94b172c66b1ce904f15954bdae534f92e4))
+* **deps-dev:** Bump chai from 5.0.0-alpha.0 to 5.0.0-alpha.1 ([#330](https://github.com/flex-development/tutils/issues/330)) ([1d77da6](https://github.com/flex-development/tutils/commit/1d77da6ffadc55320d8bf28bee8fd4c946ac4241))
+* **deps-dev:** Bump esbuild from 0.18.11 to 0.18.17 ([#336](https://github.com/flex-development/tutils/issues/336)) ([e52febb](https://github.com/flex-development/tutils/commit/e52febb702abe82b513c34811a3726725688033c))
+* **deps-dev:** Bump eslint-config-prettier from 8.8.0 to 8.9.0 ([#332](https://github.com/flex-development/tutils/issues/332)) ([0b419d3](https://github.com/flex-development/tutils/commit/0b419d3483b6ecc2e2701cc1f588190c2af9ad8b))
+* **deps-dev:** Bump eslint-plugin-markdown from 3.0.0 to 3.0.1 ([#335](https://github.com/flex-development/tutils/issues/335)) ([fac58c7](https://github.com/flex-development/tutils/commit/fac58c7483ccdcf8e6d4289a8c8762419dfb8c61))
+* **deps-dev:** Bump vite from 4.4.4 to 4.4.7 ([#333](https://github.com/flex-development/tutils/issues/333)) ([9526543](https://github.com/flex-development/tutils/commit/9526543de05b5e77b5b0f427956fd9ea7340bdd4))
+
+
+### :robot: Continuous Integration
+
+* [[@dependabot](https://github.com/dependabot)] update conventional-changelog group ([ed6264e](https://github.com/flex-development/tutils/commit/ed6264e3e82cc32f2b8a44ff096079c11c5f216c))
+
+
+### :bug: Fixes
+
+* **utils:** [`clone`] Clone is not a constructor ([f337c9b](https://github.com/flex-development/tutils/commit/f337c9b04fb65c64a9e77f5983b7480a9363d41c))
+* **utils:** [`isBuffer`] cannot destructure property 'isBuffer' ([66c9298](https://github.com/flex-development/tutils/commit/66c929807a0b6d3cddf1f4779096ac6b3ed97530))
+
+
+### :house_with_garden: Housekeeping
+
+* [prettier] load plugins via config file ([90befbd](https://github.com/flex-development/tutils/commit/90befbd07404e9eba0184fe7e1c714586d92038b))
+
 ## [tutils@6.0.0-alpha.12](https://github.com/flex-development/tutils/compare/tutils@6.0.0-alpha.11...tutils@6.0.0-alpha.12) (2023-07-26)
 
 
