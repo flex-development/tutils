@@ -40,7 +40,7 @@ import type Split from './split'
  *
  * @template T - Type to evaluate
  */
-type Length<T extends { readonly length: number }> =
+type Length<T extends { length: number }> =
   T['length'] extends infer L extends number
     ? IfAny<L, number, T extends string ? Split<T, EmptyString>['length'] : L>
     : never

@@ -42,22 +42,22 @@ import type UnwrapNumeric from './unwrap-numeric'
  *
  * @template T - Type to evaluate
  */
-type Indices<T extends string | readonly unknown[]> = (
-  T extends EmptyString | Readonly<EmptyArray>
-    ? never
-    : Length<T> extends infer L extends number
-    ? number extends L
-      ? L
-      : NaturalRange<L> extends infer R extends number
-      ? Length<Required<T>> extends infer L extends number
-        ? {
-            [K in R]: K | UnwrapNumeric<Exclude<`-${Subtract<L, K>}`, '-0'>>
-          }[R]
-        : never
+type Indices<T extends { length: number }> = T extends
+  | EmptyString
+  | Readonly<EmptyArray>
+  ? never
+  : Length<T> extends infer L extends number
+  ? number extends L
+    ? L
+    : NaturalRange<L> extends infer R extends number
+    ? {
+        [K in R]:
+          | K
+          | UnwrapNumeric<Exclude<`-${Subtract<Length<Required<T>>, K>}`, '-0'>>
+      }[R] extends infer I extends number
+      ? I
       : never
     : never
-) extends infer I extends number
-  ? I
   : never
 
 export type { Indices as default }

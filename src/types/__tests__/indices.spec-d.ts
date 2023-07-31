@@ -25,12 +25,12 @@ describe('unit-d:types/Indices', () => {
         : never
       : never
 
-  it('should equal number if T is any', () => {
-    expectTypeOf<TestSubject<any>>().toBeNumber()
-  })
-
   it('should equal never if T is never', () => {
     expectTypeOf<TestSubject<never>>().toBeNever()
+  })
+
+  it('should equal number if T is any', () => {
+    expectTypeOf<TestSubject<any>>().toBeNumber()
   })
 
   describe('T extends string', () => {
@@ -64,7 +64,7 @@ describe('unit-d:types/Indices', () => {
     describe('T extends readonly [T[0], ...T[number][]]', () => {
       it('should construct union of negative and positive indices', () => {
         // Arrange
-        type T = ['a', 'b'?]
+        type T = readonly ['a', 'b'?]
 
         // Expect
         expectTypeOf<TestSubject<T>>().toEqualTypeOf<IndicesRange<T>>()
@@ -73,7 +73,7 @@ describe('unit-d:types/Indices', () => {
 
     describe('number extends Length<T>', () => {
       it('should equal number', () => {
-        expectTypeOf<TestSubject<string[]>>().toEqualTypeOf<number>()
+        expectTypeOf<TestSubject<readonly string[]>>().toEqualTypeOf<number>()
       })
     })
   })
