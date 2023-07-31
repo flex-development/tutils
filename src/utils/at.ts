@@ -3,7 +3,7 @@
  * @module tutils/utils/at
  */
 
-import type { At, NumberLike, Optional } from '#src/types'
+import type { At, Nilable, NumberLike, Optional } from '#src/types'
 import cast from './cast'
 import isUndefined from './is-undefined'
 
@@ -26,7 +26,7 @@ import isUndefined from './is-undefined'
  * @return {At<T, K, F>} Indexed value or `fallback`
  */
 const at = <
-  T extends string | readonly unknown[],
+  T extends Nilable<string | readonly unknown[]>,
   K extends NumberLike,
   F = undefined
 >(
@@ -37,9 +37,9 @@ const at = <
   /**
    * Item or character in {@linkcode target} at {@linkcode index}.
    *
-   * @const {Optional<T[number]>} ret
+   * @const {Optional<NonNullable<T>[number]>} ret
    */
-  const ret: Optional<T[number]> = target.at(+index.toString())
+  const ret: Optional<NonNullable<T>[number]> = (target ?? []).at(+index)
 
   return cast(isUndefined(ret) ? fallback : ret)
 }
