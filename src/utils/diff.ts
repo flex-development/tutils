@@ -30,7 +30,7 @@ const diff = <T, K extends PropertyKey = PropertyKey>(
 ): T[] => {
   return intersects(arr1, arr2, identity)
     ? arr1.reduce<T[]>((acc, item) => {
-        return includes(arr2, item, identity) ? acc : [...acc, item]
+        return includes(arr2, item, null, identity) ? acc : [...acc, item]
       }, [])
     : [...arr1]
 }

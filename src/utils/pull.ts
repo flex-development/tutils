@@ -28,6 +28,6 @@ const pull = <T, K extends PropertyKey = PropertyKey, U = T>(
   arr: readonly T[],
   drop: readonly T[],
   identity?: Nilable<Fn<[T], K>>
-): U[] => select(arr, item => !includes(drop, item, identity))
+): U[] => select(arr, item => !includes(drop, item, null, identity))
 
 export default pull

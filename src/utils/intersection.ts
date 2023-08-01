@@ -27,6 +27,6 @@ const intersection = <T, K extends PropertyKey = PropertyKey>(
   arr1: readonly T[],
   arr2: readonly T[],
   identity?: Nilable<Fn<[T], K>>
-): T[] => select(arr1, item => includes(arr2, item, identity))
+): T[] => select(arr1, item => includes(arr2, item, null, identity))
 
 export default intersection

@@ -29,7 +29,7 @@ const unique = <T, K extends PropertyKey = PropertyKey, U = T>(
 ): U[] => {
   return cast(
     arr.reduce<T[]>((acc, item) => {
-      return includes(acc, item, identity) ? acc : [...acc, item]
+      return includes(acc, item, null, identity) ? acc : [...acc, item]
     }, [])
   )
 }

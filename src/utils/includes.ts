@@ -3,7 +3,7 @@
  * @module tutils/utils/includes
  */
 
-import type { Fn, IfString, NIL, Nilable, PropertyKey } from '#src/types'
+import type { Fn, Nilable, PropertyKey } from '#src/types'
 import cast from './cast'
 import equal from './equal'
 import isString from './is-string'
@@ -36,8 +36,8 @@ const includes = <
 >(
   value: T,
   target: unknown,
-  identity?: IfString<T, NIL, Nilable<Fn<[T[number]], K>>>,
-  position?: Nilable<number>
+  position?: Nilable<number>,
+  identity?: Nilable<Fn<[T[number]], K>>
 ): boolean => {
   position ??= 0
 
