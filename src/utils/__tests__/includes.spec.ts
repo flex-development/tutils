@@ -7,9 +7,10 @@ import cast from '../cast'
 import testSubject from '../includes'
 
 describe('unit:utils/includes', () => {
-  it('should return false if value does not include target', () => {
+  it('should return false if target does not include value', () => {
     // Arrange
     const cases: Parameters<typeof testSubject>[] = [
+      [null, '0'],
       ['abc', 'z'],
       ['abc', 'a', 1, null],
       [['a', 'b', 'c'], 'z'],
@@ -17,12 +18,12 @@ describe('unit:utils/includes', () => {
     ]
 
     // Act + Expect
-    cases.forEach(([value, target, position, identity]) => {
-      expect(testSubject(value, target, position, identity)).to.be.false
+    cases.forEach(([target, value, position, identity]) => {
+      expect(testSubject(target, value, position, identity)).to.be.false
     })
   })
 
-  it('should return true if value includes target', () => {
+  it('should return true if target includes value', () => {
     // Arrange
     const cases: Parameters<typeof testSubject>[] = [
       ['foobar', 'foo'],
@@ -40,8 +41,8 @@ describe('unit:utils/includes', () => {
     ]
 
     // Act + Expect
-    cases.forEach(([value, target, position, identity]) => {
-      expect(testSubject(value, target, position, identity)).to.be.true
+    cases.forEach(([target, value, position, identity]) => {
+      expect(testSubject(target, value, position, identity)).to.be.true
     })
   })
 })
