@@ -5,8 +5,7 @@
 
 import type Vehicle from '#fixtures/types/vehicle'
 import isArray from '../is-array'
-import type { MergeCustomizer } from '../merge-with'
-import testSubject from '../merge-with'
+import testSubject, { type MergeCustomizer } from '../merge-with'
 
 describe('unit:utils/mergeWith', () => {
   let base: { riders: string[]; vehicle: { vin: Vehicle['vin'] } }

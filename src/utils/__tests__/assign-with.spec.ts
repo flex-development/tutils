@@ -4,8 +4,7 @@
  */
 
 import VEHICLE from '#fixtures/vehicle'
-import type { AssignCustomizer } from '../assign-with'
-import testSubject from '../assign-with'
+import testSubject, { type AssignCustomizer } from '../assign-with'
 import isUndefined from '../is-undefined'
 
 describe('unit:utils/assignWith', () => {

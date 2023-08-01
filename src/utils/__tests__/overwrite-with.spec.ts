@@ -5,8 +5,7 @@
 
 import type Vehicle from '#fixtures/types/vehicle'
 import isUndefined from '../is-undefined'
-import type { OverwriteCustomizer } from '../overwrite-with'
-import testSubject from '../overwrite-with'
+import testSubject, { type OverwriteCustomizer } from '../overwrite-with'
 
 describe('unit:utils/overwriteWith', () => {
   let customizer: OverwriteCustomizer
