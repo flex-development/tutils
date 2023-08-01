@@ -3,20 +3,16 @@
  * @module tutils/types/Values
  */
 
-import type Dot from './dot'
 import type EmptyArray from './empty-array'
 import type Get from './get'
-import type Head from './head'
-import type IfAny from './if-any'
-import type IfEqual from './if-equal'
-import type IfNever from './if-never'
-import type Nilable from './nilable'
-import type Path from './path'
-import type Stringify from './stringify'
+import type IfSymbol from './if-symbol'
+import type IsAny from './is-any'
+import type IsEqual from './is-equal'
+import type IsNever from './is-never'
+import type Spread from './spread'
 
 /**
- * Construct an array type where items are `T`'s own enumerable string-keyed
- * property values.
+ * Construct an array type representing `T`'s own string-keyed property values.
  *
  * @see https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object/values
  *
@@ -26,6 +22,12 @@ import type Stringify from './stringify'
  * @example
  *  type X = Values<readonly [number, string]>
  *  // readonly [number, string]
+ * @example
+ *  type X = Values<'abc'>
+ *  // ('a' | 'b' | 'c')[]
+ * @example
+ *  type X = Values<string>
+ *  // (string | undefined)[]
  * @example
  *  type X = Values<Map<number, string>>
  *  // []
@@ -38,25 +40,22 @@ import type Stringify from './stringify'
  * @example
  *  type X = Values<never>
  *  // []
+ * @example
+ *  type X = Values<unknown>
+ *  // []
  *
  * @template T - Type to evaluate
  */
-type Values<T extends Nilable<object>> = IfAny<
-  T,
-  T[],
-  IfNever<
-    T,
-    EmptyArray,
-    T extends readonly unknown[]
-      ? T
-      : object extends T
-      ? IfEqual<T, object, any[], EmptyArray>
-      : T extends object
-      ? Head<Stringify<Path<T, true>>, Dot> extends infer H extends string
-        ? IfNever<H, EmptyArray, { [K in H]: Get<T, K> }[H][]>
-        : never
-      : EmptyArray
-  >
->
+type Values<T> = IsAny<T> extends true
+  ? T[]
+  : IsNever<T> extends true
+  ? EmptyArray
+  : T extends readonly unknown[]
+  ? T
+  : Spread<IsEqual<T, object> extends true ? any : T> extends infer U
+  ? IsNever<keyof U> extends true
+    ? EmptyArray
+    : Get<{ [K in keyof U as IfSymbol<K, never, K>]: U[K] }, any>[]
+  : never
 
 export type { Values as default }
