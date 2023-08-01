@@ -1,3 +1,39 @@
+## [tutils@6.0.0-alpha.14](https://github.com/flex-development/tutils/compare/tutils@6.0.0-alpha.13...tutils@6.0.0-alpha.14) (2023-07-31)
+
+
+### ⚠ BREAKING CHANGES
+
+* **utils:** [`includes`] order `position` arg before `identity`
+* **utils:** [`omit`] return plain object
+
+### :package: Build
+
+* **deps-dev:** Bump @flex-development/pathe from 1.0.3 to 2.0.0 ([#340](https://github.com/flex-development/tutils/issues/340)) ([6b2a41a](https://github.com/flex-development/tutils/commit/6b2a41ab7eb6b01aae975a3aa8eed5b89eebf8ca))
+* **deps-dev:** Bump @flex-development/toggle-pkg-type from 2.0.0 to 2.0.1 ([#339](https://github.com/flex-development/tutils/issues/339)) ([708b8ad](https://github.com/flex-development/tutils/commit/708b8ad0903d62666437545f3d1d8d55ad0c3a17))
+* **deps-dev:** Bump eslint from 8.45.0 to 8.46.0 ([#338](https://github.com/flex-development/tutils/issues/338)) ([1641eaa](https://github.com/flex-development/tutils/commit/1641eaa0b6e094a22250e2bbd570b843205e0872))
+* **deps-dev:** Bump eslint-plugin-unicorn from 47.0.0 to 48.0.1 ([#325](https://github.com/flex-development/tutils/issues/325)) ([538739e](https://github.com/flex-development/tutils/commit/538739ef7c7d235bb15f7775cc34b27ee2f52240))
+* **deps-dev:** Bump pretty-format from 29.6.1 to 29.6.2 ([#343](https://github.com/flex-development/tutils/issues/343)) ([b9bbcb3](https://github.com/flex-development/tutils/commit/b9bbcb39510afcff10e1b3c5d720717c59dd9382))
+* **deps-dev:** Bump the typescript-eslint group with 2 updates ([#341](https://github.com/flex-development/tutils/issues/341)) ([9305280](https://github.com/flex-development/tutils/commit/9305280ee8ecd06df453807a1d421e88a0b69fc5))
+
+
+### :sparkles: Features
+
+* **types:** [`Values`] allow `T` to extend `unknown` ([da89078](https://github.com/flex-development/tutils/commit/da890783a2efb18abf77c03871a66995204313e1))
+* **types:** `Spread` ([a6db57f](https://github.com/flex-development/tutils/commit/a6db57f352afba20988114a253c425d00c57298f))
+* **utils:** [`at`] allow nilable targets ([ea14c9d](https://github.com/flex-development/tutils/commit/ea14c9ddac669ada46f3e74aafbca53717d7d77f))
+* **utils:** [`includes`] allow nilable targets ([373c45b](https://github.com/flex-development/tutils/commit/373c45b0225b37a4779bdb5b71d5e3246111b259))
+
+
+### :house_with_garden: Housekeeping
+
+* eslint-plugin-import@2.28.0 prep ([078b239](https://github.com/flex-development/tutils/commit/078b2390983696d6f2982e230dab5e60b98f324b))
+
+
+### :mechanical_arm: Refactors
+
+* **utils:** [`includes`] order `position` arg before `identity` ([261b60d](https://github.com/flex-development/tutils/commit/261b60d0daebcb7dd476ac91cd171794fc4ac367))
+* **utils:** [`omit`] return plain object ([df11f1f](https://github.com/flex-development/tutils/commit/df11f1f70ce8276251b9e47dcec124c33760b12a))
+
 ## [tutils@6.0.0-alpha.13](https://github.com/flex-development/tutils/compare/tutils@6.0.0-alpha.12...tutils@6.0.0-alpha.13) (2023-07-30)
 
 
