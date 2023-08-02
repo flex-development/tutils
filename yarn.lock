@@ -1423,7 +1423,7 @@ __metadata:
     "@typescript-eslint/eslint-plugin": "npm:6.2.1"
     "@typescript-eslint/parser": "npm:6.2.1"
     "@vates/toggle-scripts": "npm:1.0.0"
-    "@vitest/coverage-v8": "npm:0.33.0"
+    "@vitest/coverage-v8": "npm:0.34.1"
     add-stream: "npm:1.0.0"
     chai: "npm:5.0.0-alpha.1"
     chai-each: "npm:0.0.1"
@@ -2701,14 +2701,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vitest/coverage-v8@npm:0.33.0":
-  version: 0.33.0
-  resolution: "@vitest/coverage-v8@npm:0.33.0"
+"@vitest/coverage-v8@npm:0.34.1":
+  version: 0.34.1
+  resolution: "@vitest/coverage-v8@npm:0.34.1"
   dependencies:
     "@ampproject/remapping": "npm:^2.2.1"
     "@bcoe/v8-coverage": "npm:^0.2.3"
     istanbul-lib-coverage: "npm:^3.2.0"
-    istanbul-lib-report: "npm:^3.0.0"
+    istanbul-lib-report: "npm:^3.0.1"
     istanbul-lib-source-maps: "npm:^4.0.1"
     istanbul-reports: "npm:^3.1.5"
     magic-string: "npm:^0.30.1"
@@ -2718,7 +2718,7 @@ __metadata:
     v8-to-istanbul: "npm:^9.1.0"
   peerDependencies:
     vitest: ">=0.32.0 <1"
-  checksum: 14e710727361a38ad27b0ff51d555197bf959e94544fa27ec12d3259754b30329a047f3341204ec4393bf3964dd73a675dacc65b465d72bcda6953952aa02fb3
+  checksum: 30386689a81887f644db8f56906a24cf6243e588bd527042dfb1a710f7d894a7a191d2d61fd9693c698e2a9ab7d4a5b27d736492fa03a1d73df1f33ad322d364
   languageName: node
   linkType: hard
 
@@ -6614,14 +6614,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"istanbul-lib-report@npm:^3.0.0":
-  version: 3.0.0
-  resolution: "istanbul-lib-report@npm:3.0.0"
+"istanbul-lib-report@npm:^3.0.0, istanbul-lib-report@npm:^3.0.1":
+  version: 3.0.1
+  resolution: "istanbul-lib-report@npm:3.0.1"
   dependencies:
     istanbul-lib-coverage: "npm:^3.0.0"
-    make-dir: "npm:^3.0.0"
+    make-dir: "npm:^4.0.0"
     supports-color: "npm:^7.1.0"
-  checksum: 9b728ea9453bbefa7d872f1522d389b5cb107990e403849e9caabee7851d3c072abab655a18810879660ed986922ad7551e886bc1aa6f909248d0f3b951813ab
+  checksum: 56f5a00699f24b36ac9dcdf8ff597a716db1254e689599eb0353dc15e064ef32dd90002a8203ac004deddf6c5cdc93b2af5d7bd8e8682acacba36ddc41260907
   languageName: node
   linkType: hard
 
@@ -7095,12 +7095,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"make-dir@npm:^3.0.0":
-  version: 3.1.0
-  resolution: "make-dir@npm:3.1.0"
+"make-dir@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "make-dir@npm:4.0.0"
   dependencies:
-    semver: "npm:^6.0.0"
-  checksum: 17ad8c0b1b243f2b05ad0f313f4279ad067af7a9fcb51abcb1bd0a199d2e370f0edac84015611a6161371d8a58f2bbde8538656355b66311c24e2071c496e3ae
+    semver: "npm:^7.5.3"
+  checksum: 569e1d8fce1ac0e0e4de64b072147be2e80dd717545fdb2bd6d8152902ea3631fa71c071bafbeaf40f34fa4f5319bd810f37072bd9819645cff10ff94e862a03
   languageName: node
   linkType: hard
 
@@ -8776,7 +8776,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"semver@npm:7.5.4, semver@npm:^7.0.0, semver@npm:^7.3.2, semver@npm:^7.3.4, semver@npm:^7.3.5, semver@npm:^7.5.0, semver@npm:^7.5.4":
+"semver@npm:7.5.4, semver@npm:^7.0.0, semver@npm:^7.3.2, semver@npm:^7.3.4, semver@npm:^7.3.5, semver@npm:^7.5.0, semver@npm:^7.5.3, semver@npm:^7.5.4":
   version: 7.5.4
   resolution: "semver@npm:7.5.4"
   dependencies:
@@ -8787,7 +8787,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"semver@npm:^6.0.0, semver@npm:^6.1.0, semver@npm:^6.3.0":
+"semver@npm:^6.1.0, semver@npm:^6.3.0":
   version: 6.3.0
   resolution: "semver@npm:6.3.0"
   bin:
