@@ -16,6 +16,7 @@ import type { tag as opaque } from '../opaque'
 import type Partial from '../partial'
 import type Spread from '../spread'
 import type TestSubject from '../values'
+import type Writable from '../writable'
 
 describe('unit-d:types/Values', () => {
   it('should equal EmptyArray if T is never', () => {
@@ -26,16 +27,14 @@ describe('unit-d:types/Values', () => {
     expectTypeOf<TestSubject<unknown>>().toEqualTypeOf<EmptyArray>()
   })
 
-  it('should equal T[] if T is any', () => {
-    // Arrange
-    type T = any
+  describe('IsAny<T> extends true', () => {
+    it('should equal T[]', () => {
+      // Arrange
+      type T = any
 
-    // Expect
-    expectTypeOf<TestSubject<T>>().toEqualTypeOf<T[]>()
-  })
-
-  it('should equal any[] if IsEqual<T, object> extends true', () => {
-    expectTypeOf<TestSubject<object>>().toEqualTypeOf<any[]>()
+      // Expect
+      expectTypeOf<TestSubject<T>>().toEqualTypeOf<T[]>()
+    })
   })
 
   describe('T extends ObjectCurly', () => {
@@ -52,6 +51,12 @@ describe('unit-d:types/Values', () => {
       it('should equal EmptyArray', () => {
         expectTypeOf<TestSubject<{}>>().toEqualTypeOf<EmptyArray>()
         expectTypeOf<TestSubject<EmptyObject>>().toEqualTypeOf<EmptyArray>()
+      })
+    })
+
+    describe('IsEqual<T, object> extends true', () => {
+      it('should equal any[]', () => {
+        expectTypeOf<TestSubject<object>>().toEqualTypeOf<any[]>()
       })
     })
   })
@@ -181,22 +186,73 @@ describe('unit-d:types/Values', () => {
 
   describe('T extends readonly unknown[]', () => {
     describe('IsTuple<T> extends true', () => {
-      it('should equal T', () => {
-        // Arrange
-        type T = readonly [Vehicle, Nullable<Vehicle>, Vehicle?]
+      describe('IsNumeric<keyof Spread<T>> extends true', () => {
+        it('should equal Writable<T>', () => {
+          // Arrange
+          type T = readonly [Vehicle, Nullable<Vehicle>, Vehicle?]
 
-        // Expect
-        expectTypeOf<TestSubject<T>>().toEqualTypeOf<T>()
+          // Expect
+          expectTypeOf<TestSubject<T>>().toEqualTypeOf<Writable<T>>()
+        })
+      })
+
+      describe('T extends readonly never[]', () => {
+        it('should equal EmptyArray', () => {
+          // Arrange
+          type T1 = EmptyArray
+          type T2 = Readonly<T1>
+
+          // Expect
+          expectTypeOf<TestSubject<T1>>().toEqualTypeOf<EmptyArray>()
+          expectTypeOf<TestSubject<T2>>().toEqualTypeOf<EmptyArray>()
+        })
+      })
+
+      describe('boolean extends IsNumeric<keyof Spread<T>>', () => {
+        it('should equal [...Writable<T>, ...(infer X)]', () => {
+          // Arrange
+          type T = Opaque<{ id: string } & [Vehicle, Vehicle?]>
+          type Expect = [Vehicle, Vehicle?, ...string[]]
+
+          // Expect
+          expectTypeOf<TestSubject<T>>().toEqualTypeOf<Expect>()
+        })
       })
     })
 
     describe('number extends Length<T>', () => {
-      it('should equal T', () => {
-        // Arrange
-        type T = readonly Nullable<Vehicle>[]
+      describe('IsNumeric<keyof Spread<T>> extends true', () => {
+        it('should equal Get<OmitNative<Spread<T>, symbol>, any>[]', () => {
+          // Arrange
+          type T = Opaque<readonly Vehicle[]>
+          type Expect = Get<OmitNative<Spread<T>, symbol>, any>[]
 
-        // Expect
-        expectTypeOf<TestSubject<T>>().toEqualTypeOf<T>()
+          // Expect
+          expectTypeOf<TestSubject<T>>().toEqualTypeOf<Expect>()
+        })
+      })
+
+      describe('T extends readonly never[]', () => {
+        it('should equal EmptyArray', () => {
+          // Arrange
+          type T1 = never[]
+          type T2 = Readonly<T1>
+
+          // Expect
+          expectTypeOf<TestSubject<T1>>().toEqualTypeOf<EmptyArray>()
+          expectTypeOf<TestSubject<T2>>().toEqualTypeOf<EmptyArray>()
+        })
+      })
+
+      describe('boolean extends IsNumeric<keyof Spread<T>>', () => {
+        it('should equal Get<OmitNative<Spread<T>, symbol>, any>[]', () => {
+          // Arrange
+          type T = Opaque<Vehicle[] & { id: string }>
+          type Expect = Get<OmitNative<Spread<T>, symbol>, any>[]
+
+          // Expect
+          expectTypeOf<TestSubject<T>>().toEqualTypeOf<Expect>()
+        })
       })
     })
   })

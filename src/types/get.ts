@@ -36,9 +36,11 @@ type Get<T, K extends PropertyKey, F = undefined> = IsNever<T> extends true
   ? K extends unknown
     ? Objectify<T> extends infer U extends Objectify<any>
       ? IsAny<K> extends true
-        ? T extends string | readonly unknown[]
-          ? At<T, any, F> | Fallback<U[keyof OmitIndexSignature<U>], F>
-          : Fallback<U[keyof U], F>
+        ?
+            | Fallback<U[keyof OmitIndexSignature<U>], F>
+            | (T extends string | readonly unknown[]
+                ? At<T, any, F>
+                : Fallback<U[keyof U], F>)
         : K extends Join<[infer H extends string, infer R extends string], Dot>
         ? K extends Intersection<K, keyof U>
           ? Fallback<U[K], F>

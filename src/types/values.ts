@@ -5,15 +5,20 @@
 
 import type EmptyArray from './empty-array'
 import type Get from './get'
+import type IfNumeric from './if-numeric'
 import type IfSymbol from './if-symbol'
 import type IsAny from './is-any'
-import type IsEqual from './is-equal'
 import type IsNever from './is-never'
+import type IsTuple from './is-tuple'
 import type Spread from './spread'
+import type TupleFromRecord from './tuple-from-record'
+import type UnwrapNumeric from './unwrap-numeric'
 
 /**
- * Construct an array type representing `T`'s own string-keyed property values.
+ * Construct an array containing `T`'s own enumerable string-keyed property
+ * values.
  *
+ * @see {@linkcode Spread}
  * @see https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object/values
  *
  * @example
@@ -50,12 +55,26 @@ type Values<T> = IsAny<T> extends true
   ? T[]
   : IsNever<T> extends true
   ? EmptyArray
-  : T extends readonly unknown[]
-  ? T
-  : Spread<IsEqual<T, object> extends true ? any : T> extends infer U
-  ? IsNever<keyof U> extends true
-    ? EmptyArray
-    : Get<{ [K in keyof U as IfSymbol<K, never, K>]: U[K] }, any>[]
+  : T extends unknown
+  ? Spread<T> extends infer U
+    ? IsNever<keyof U> extends true
+      ? EmptyArray
+      : T extends readonly never[]
+      ? EmptyArray
+      : IsTuple<T> extends true
+      ? TupleFromRecord<{
+          [K in keyof U as UnwrapNumeric<K>]: U[K]
+        }> extends infer T extends unknown[]
+        ? {
+            [K in keyof U as IfNumeric<K, never, IfSymbol<K, never, K>>]: U[K]
+          } extends infer X
+          ? IsNever<keyof X> extends true
+            ? T
+            : [...T, ...Get<X, any>[]]
+          : never
+        : never
+      : Get<{ [K in keyof U as IfSymbol<K, never, K>]: U[K] }, any>[]
+    : never
   : never
 
 export type { Values as default }

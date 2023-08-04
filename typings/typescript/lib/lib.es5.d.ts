@@ -84,7 +84,7 @@ declare global {
      * @param {T} o - Object containing properties and methods
      * @return {Values<T>} Enumerable string-keyed property values
      */
-    values<T extends object>(o: T): Values<T>
+    values<T extends {}>(o: T): Values<T>
   }
 
   interface String {
