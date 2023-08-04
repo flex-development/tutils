@@ -62,7 +62,7 @@ declare global {
      * @param {T} o - Object containing properties and methods
      * @return {Entries<T>} Enumerable string-keyed property key-value pairs
      */
-    entries<T extends object>(o: T): Entries<T>
+    entries<T extends {}>(o: T): Entries<T>
 
     /**
      * Returns an array containing an object's own enumerable string-keyed
