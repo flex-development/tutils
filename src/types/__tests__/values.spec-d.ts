@@ -7,6 +7,7 @@ import type Person from '#fixtures/interfaces/person'
 import type Vehicle from '#fixtures/types/vehicle'
 import type EmptyArray from '../empty-array'
 import type EmptyObject from '../empty-object'
+import type EmptyString from '../empty-string'
 import type Fn from '../fn'
 import type Get from '../get'
 import type Nullable from '../nullable'
@@ -14,6 +15,7 @@ import type OmitNative from '../omit-native'
 import type Opaque from '../opaque'
 import type { tag as opaque } from '../opaque'
 import type Partial from '../partial'
+import type Split from '../split'
 import type Spread from '../spread'
 import type TestSubject from '../values'
 import type Writable from '../writable'
@@ -125,13 +127,12 @@ describe('unit-d:types/Values', () => {
 
     describe('T extends string', () => {
       describe('IsLiteral<T> extends true', () => {
-        it('should equal Get<OmitNative<Spread<T>, symbol>, any>[]', () => {
+        it('should equal Split<T, EmptyString>', () => {
           // Arrange
           type T = 'vin'
-          type Expect = Get<OmitNative<Spread<T>, symbol>, any>[]
 
           // Expect
-          expectTypeOf<TestSubject<T>>().toEqualTypeOf<Expect>()
+          expectTypeOf<TestSubject<T>>().toEqualTypeOf<Split<T, EmptyString>>()
         })
       })
 

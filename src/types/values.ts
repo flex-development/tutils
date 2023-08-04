@@ -8,6 +8,7 @@ import type Get from './get'
 import type IfNumeric from './if-numeric'
 import type IfSymbol from './if-symbol'
 import type IsAny from './is-any'
+import type IsLiteral from './is-literal'
 import type IsNever from './is-never'
 import type IsTuple from './is-tuple'
 import type Spread from './spread'
@@ -61,6 +62,8 @@ type Values<T> = IsAny<T> extends true
       ? EmptyArray
       : T extends readonly never[]
       ? EmptyArray
+      : IsLiteral<T, string> extends true
+      ? TupleFromRecord<{ [K in keyof U as UnwrapNumeric<K>]: U[K] }>
       : IsTuple<T> extends true
       ? TupleFromRecord<{
           [K in keyof U as UnwrapNumeric<K>]: U[K]
