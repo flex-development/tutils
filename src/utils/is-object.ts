@@ -3,19 +3,27 @@
  * @module tutils/utils/isObject
  */
 
-import type { ObjectCurly } from '#src/types'
+import type { Objectify } from '#src/types'
+import isFunction from './is-function'
 import isNull from './is-null'
 
 /**
- * Checks if `value` is an object (e.g. arrays, instance objects, pojos).
+ * Checks if `value` is an object.
+ *
+ * Object types include:
+ *
+ * - arrays
+ * - functions
+ * - instance objects
+ * - plain objects (pojos)
  *
  * @todo examples
  *
  * @param {unknown} value - Value to check
- * @return {value is ObjectCurly | unknown[]} `true` if `value` is an object
+ * @return {value is Objectify<any>} `true` if `value` is an object
  */
-const isObject = (value: unknown): value is ObjectCurly | unknown[] => {
-  return typeof value === 'object' && !isNull(value)
+const isObject = (value: unknown): value is Objectify<any> => {
+  return isFunction(value) || (typeof value === 'object' && !isNull(value))
 }
 
 export default isObject

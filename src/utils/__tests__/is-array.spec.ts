@@ -7,7 +7,7 @@ import testSubject from '../is-array'
 
 describe('unit:utils/isArray', () => {
   it('should return false if value is not an array', () => {
-    expect(testSubject(faker.datatype.boolean())).to.be.false
+    expect(testSubject(vi.fn())).to.be.false
   })
 
   it('should return true if value is an array', () => {

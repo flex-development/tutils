@@ -5,6 +5,7 @@
 
 import type { ObjectCurly } from '#src/types'
 import isArray from './is-array'
+import isFunction from './is-function'
 import isObject from './is-object'
 import isObjectPlain from './is-object-plain'
 
@@ -22,7 +23,10 @@ import isObjectPlain from './is-object-plain'
  * @return {value is ObjectCurly} `true` if `value` is curly-braced object
  */
 const isObjectCurly = (value: unknown): value is ObjectCurly => {
-  return isObjectPlain(value) || (!isArray(value) && isObject(value))
+  return (
+    isObjectPlain(value) ||
+    (!isArray(value) && !isFunction(value) && isObject(value))
+  )
 }
 
 export default isObjectCurly
