@@ -1,5 +1,5 @@
 diff --git a/dist/index.d.ts b/dist/index.d.ts
-index v0.33.0..v0.33.0
+index v0.34.1..v0.34.1
 --- a/dist/index.d.ts
 +++ b/dist/index.d.ts
 @@ -115,6 +115,6 @@
@@ -11,10 +11,10 @@ index v0.33.0..v0.33.0
      toBeConstructibleWith: Options['positive'] extends true ? (...args: ConstructorParams<Actual>) => true : never;
 -    toHaveProperty: <K extends string>(key: K, ...MISMATCH: MismatchArgs<Extends<K, keyof Actual>, Options['positive']>) => K extends keyof Actual ? ExpectTypeOf<Actual[K], Options> : true;
 +    toHaveProperty: <K extends PropertyKey>(key?: K, ...MISMATCH: MismatchArgs<Extends<K, keyof Actual>, Options['positive']>) => K extends keyof Actual ? ExpectTypeOf<Actual[K], Options> : true;
-diff --git a/dist/vendor-cli-api.bf4b62a8.js b/dist/vendor-cli-api.bf4b62a8.js
-index v0.33.0..v0.33.0
---- a/dist/vendor-cli-api.bf4b62a8.js
-+++ b/dist/vendor-cli-api.bf4b62a8.js
+diff --git a/dist/vendor-node.caa511fc.js b/dist/vendor-node.caa511fc.js
+index v0.34.1..v0.34.1
+--- a/dist/vendor-node.caa511fc.js
++++ b/dist/vendor-node.caa511fc.js
 @@ -11958,3 +11958,2 @@
 -    const suite = lastSuite;
 -    while (lastSuite !== file && lastSuite.end < index)
