@@ -7,6 +7,8 @@ import type { Crush, Nilable } from '#src/types'
 import cast from './cast'
 import DOT from './dot'
 import get from './get'
+import isObject from './is-object'
+import isString from './is-string'
 import keys from './keys'
 import objectify from './objectify'
 
@@ -29,7 +31,16 @@ const crush = <T extends Nilable<object>>(obj: T): Crush<T> => {
   return cast(
     objectify(
       keys(obj, { deep: true }).reduce<string[]>((acc, key, i, keys) => {
-        return keys.slice(i).some(k => k.startsWith(key + DOT))
+        /**
+         * Value of {@linkcode obj} at {@linkcode key}.
+         *
+         * @const {unknown} value
+         */
+        const value: unknown = get(obj, key)
+
+        return /\.\d+$/.test(key) && isString(value)
+          ? acc
+          : keys.slice(i).some(k => k.startsWith(key + DOT)) && isObject(value)
           ? acc
           : [...acc, key]
       }, []),

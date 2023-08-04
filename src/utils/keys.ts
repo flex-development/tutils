@@ -3,77 +3,69 @@
  * @module tutils/utils/keys
  */
 
-import type { Nilable, PropertyKey } from '#src/types'
+import type { Keys, Nilable } from '#src/types'
 import alphabetize from './alphabetize'
 import cast from './cast'
+import desegment from './desegment'
+import get from './get'
 import identity from './identity'
-import isArray from './is-array'
-import isObject from './is-object'
+import isString from './is-string'
 import type KeysOptions from './keys.options'
+import select from './select'
 
 /**
  * Returns an array containing an object's own enumerable string-keyed property
- * names. An empty array is returned if the object is `NIL`.
+ * names.
  *
  * Non-object arguments are [coerced to objects][1]. Of the primitive values,
  * only strings have own enumerable properties.
  *
  * [1]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object#object_coercion
  *
+ * @see {@linkcode Keys}
  * @see {@linkcode KeysOptions}
  * @see https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object/keys
  *
  * @todo examples
  * @todo support circular references
  *
- * @template K - Key type
+ * @template T - Target value type
+ * @template K - Key retrieval options
  *
- * @param {Nilable<object>} obj - Object containing properties and methods
- * @param {Nilable<KeysOptions>} [options] - Key retrieval options
+ * @param {T} target - Target value
+ * @param {K} [options] - Key retrieval options
  * @param {Nilable<boolean>} [options.deep] - Include nested keys
- * @return {Extract<K, string>[]} Enumerable string-keyed property names
+ * @return {Keys<T, K>[]} Enumerable string-keyed property names
  */
-const keys = <K extends PropertyKey = string>(
-  obj: Nilable<object>,
-  options?: Nilable<KeysOptions>
-): Extract<K, string>[] => {
-  return alphabetize(
-    Object.keys((obj ??= {})).reduce<Extract<K, string>[]>((acc, key) => {
-      // push key
-      acc = cast([...acc, key])
+const keys = <T, K extends Nilable<KeysOptions> = Nilable<KeysOptions>>(
+  target: T,
+  options?: K
+): Keys<T, K> => {
+  return cast(
+    alphabetize(
+      Object.keys(target ?? {}).reduce<Keys<T, K>>((acc, key) => {
+        /**
+         * Value of {@linkcode target} at {@linkcode key}.
+         *
+         * @const {any} value
+         */
+        const value: any = get(target, key)
 
-      /**
-       * Value of {@linkcode obj} at {@linkcode key}.
-       *
-       * @const {any} value
-       */
-      const value: any = obj![cast<keyof typeof obj>(key)]
+        // add property name
+        acc.push(key)
 
-      // exit early if deep key retrieval is disabled or value is not candidate
-      // for deep key retrieval
-      if (!options?.deep || !isObject(value)) return acc
+        // exit early if deep key retrieval should be skipped
+        if (!options?.deep || isString(target)) return acc
 
-      // get nested keys
-      return cast([
-        ...acc,
-        ...(isArray(value)
-          ? value.flatMap((item, index) => {
-              /**
-               * Key for {@linkcode item}.
-               *
-               * @const {string} i
-               */
-              const i: string = `${key}.${index}`
-
-              return isObject(item)
-                ? keys(item, { deep: true }).flatMap(k => [i, `${i}.${k}`])
-                : [i]
-            })
-          : keys(value, { deep: true }).map(k => `${key}.${k}`))
-      ])
-    }, cast([])),
-    identity,
-    options
+        // get nested keys
+        return cast([
+          ...acc,
+          ...select(keys(value, options), null, nk => desegment([key, nk]))
+        ])
+      }, cast([])),
+      identity,
+      options
+    )
   )
 }
 

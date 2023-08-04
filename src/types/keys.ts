@@ -19,6 +19,7 @@ import type Stringify from './stringify'
  * Construct an array type representing `T`'s own enumerable string-keyed
  * property names.
  *
+ * @see {@linkcode Spread}
  * @see https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object/keys
  *
  * @todo examples

@@ -1,8 +1,8 @@
 import type {
   CompareResult,
   Entries,
+  Keys,
   OneOrMany,
-  PropertyKey,
   Reverse,
   Split,
   Timestamp,
@@ -68,12 +68,12 @@ declare global {
      * Returns an array containing an object's own enumerable string-keyed
      * property names.
      *
-     * @template K - Key type
+     * @template T - Object containing properties and methods
      *
-     * @param {object} o - Object containing properties and methods
-     * @return {Extract<K, string>[]} Enumerable string-keyed property names
+     * @param {T} o - Object containing properties and methods
+     * @return {Keys<T>} Enumerable string-keyed property names
      */
-    keys<K extends PropertyKey = string>(o: object): Extract<K, string>[]
+    keys<T extends {}>(o: T): Keys<T>
 
     /**
      * Returns an array containing an object's own enumerable string-keyed
