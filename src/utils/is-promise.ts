@@ -3,7 +3,6 @@
  * @module tutils/utils/isPromise
  */
 
-import equal from './equal'
 import isObject from './is-object'
 
 /**
@@ -19,7 +18,7 @@ import isObject from './is-object'
  * @return {value is Promise<T>} `true` if `value` is a promise
  */
 const isPromise = <T>(value: unknown): value is Promise<T> => {
-  return isObject(value) && equal(Promise, value.constructor)
+  return isObject(value) && value.constructor === Promise
 }
 
 export default isPromise

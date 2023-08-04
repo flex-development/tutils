@@ -3,7 +3,6 @@
  * @module tutils/utils/isDate
  */
 
-import equal from './equal'
 import isObject from './is-object'
 
 /**
@@ -15,7 +14,7 @@ import isObject from './is-object'
  * @return {value is Date} `true` if `value` is a `Date`
  */
 const isDate = (value: unknown): value is Date => {
-  return isObject(value) && equal(Date, value.constructor)
+  return isObject(value) && value.constructor === Date
 }
 
 export default isDate

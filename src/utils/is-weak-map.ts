@@ -3,7 +3,6 @@
  * @module tutils/utils/isWeakMap
  */
 
-import equal from './equal'
 import isObject from './is-object'
 
 /**
@@ -22,7 +21,7 @@ import isObject from './is-object'
 const isWeakMap = <K extends object, V>(
   value: unknown
 ): value is WeakMap<K, V> => {
-  return isObject(value) && equal(WeakMap, value.constructor)
+  return isObject(value) && value.constructor === WeakMap
 }
 
 export default isWeakMap

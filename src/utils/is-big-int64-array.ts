@@ -3,7 +3,6 @@
  * @module tutils/utils/isBigInt64Array
  */
 
-import equal from './equal'
 import isObject from './is-object'
 
 /**
@@ -17,7 +16,7 @@ import isObject from './is-object'
  * @return {value is BigInt64Array} `true` if `value` is an `BigInt64Array`
  */
 const isBigInt64Array = (value: unknown): value is BigInt64Array => {
-  return isObject(value) && equal(BigInt64Array, value.constructor)
+  return isObject(value) && value.constructor === BigInt64Array
 }
 
 export default isBigInt64Array

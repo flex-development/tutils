@@ -3,7 +3,6 @@
  * @module tutils/utils/isLowercase
  */
 
-import equal from './equal'
 import isString from './is-string'
 import lowercase from './lowercase'
 
@@ -20,7 +19,7 @@ import lowercase from './lowercase'
 const isLowercase = <T extends string>(
   value: unknown
 ): value is Lowercase<T> => {
-  return isString(value) && equal(lowercase(value), value)
+  return isString(value) && value === lowercase(value)
 }
 
 export default isLowercase

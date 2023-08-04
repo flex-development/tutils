@@ -4,8 +4,8 @@
  */
 
 import type { ObjectPlain } from '#src/types'
-import equal from './equal'
 import isNull from './is-null'
+import isObject from './is-object'
 
 /**
  * Checks if `value` is a plain object ([POJO][1]).
@@ -33,9 +33,7 @@ const isObjectPlain = (value: unknown): value is ObjectPlain => {
 
   // determine if value is plain object
   switch (true) {
-    case Array.isArray(value):
-    case isNull(value):
-    case typeof value !== 'object':
+    case !isObject(value):
       break
     case isNull(Object.getPrototypeOf(value)):
       plain = true
@@ -54,7 +52,7 @@ const isObjectPlain = (value: unknown): value is ObjectPlain => {
       }
 
       // prototypes are equal => value is plain object
-      plain = equal(Object.getPrototypeOf(value), proto)
+      plain = proto === Object.getPrototypeOf(value)
 
       break
   }

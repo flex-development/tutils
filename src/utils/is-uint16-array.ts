@@ -3,7 +3,6 @@
  * @module tutils/utils/isUint16Array
  */
 
-import equal from './equal'
 import isObject from './is-object'
 
 /**
@@ -17,7 +16,7 @@ import isObject from './is-object'
  * @return {value is Uint16Array} `true` if `value` is `Uint16Array`
  */
 const isUint16Array = (value: unknown): value is Uint16Array => {
-  return isObject(value) && equal(Uint16Array, value.constructor)
+  return isObject(value) && value.constructor === Uint16Array
 }
 
 export default isUint16Array

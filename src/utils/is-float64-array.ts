@@ -3,7 +3,6 @@
  * @module tutils/utils/isFloat64Array
  */
 
-import equal from './equal'
 import isObject from './is-object'
 
 /**
@@ -17,7 +16,7 @@ import isObject from './is-object'
  * @return {value is Float64Array} `true` if `value` is a `Float64Array`
  */
 const isFloat64Array = (value: unknown): value is Float64Array => {
-  return isObject(value) && equal(Float64Array, value.constructor)
+  return isObject(value) && value.constructor === Float64Array
 }
 
 export default isFloat64Array

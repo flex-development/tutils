@@ -3,7 +3,6 @@
  * @module tutils/utils/isRegExp
  */
 
-import equal from './equal'
 import isObject from './is-object'
 
 /**
@@ -17,7 +16,7 @@ import isObject from './is-object'
  * @return {value is RegExp} `true` if `value` is a regular expression
  */
 const isRegExp = (value: unknown): value is RegExp => {
-  return isObject(value) && equal(RegExp, value.constructor)
+  return isObject(value) && value.constructor === RegExp
 }
 
 export default isRegExp

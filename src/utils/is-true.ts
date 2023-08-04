@@ -3,8 +3,6 @@
  * @module tutils/utils/isTrue
  */
 
-import equal from './equal'
-
 /**
  * Checks if `value` is `true`.
  *
@@ -13,6 +11,6 @@ import equal from './equal'
  * @param {unknown} value - Value to check
  * @return {value is true} `true` if `value` is `true`
  */
-const isTrue = (value: unknown): value is true => equal(true, value)
+const isTrue = (value: unknown): value is true => value === true
 
 export default isTrue

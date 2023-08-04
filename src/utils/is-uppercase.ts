@@ -3,7 +3,6 @@
  * @module tutils/utils/isUppercase
  */
 
-import equal from './equal'
 import isString from './is-string'
 import uppercase from './uppercase'
 
@@ -20,7 +19,7 @@ import uppercase from './uppercase'
 const isUppercase = <T extends string>(
   value: unknown
 ): value is Uppercase<T> => {
-  return isString(value) && equal(uppercase(value), value)
+  return isString(value) && value === uppercase(value)
 }
 
 export default isUppercase

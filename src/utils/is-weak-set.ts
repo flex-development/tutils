@@ -3,7 +3,6 @@
  * @module tutils/utils/isWeakSet
  */
 
-import equal from './equal'
 import isObject from './is-object'
 
 /**
@@ -19,7 +18,7 @@ import isObject from './is-object'
  * @return {value is WeakSet<T>} `true` if `value` is `WeakSet` instance
  */
 const isWeakSet = <T extends object>(value: unknown): value is WeakSet<T> => {
-  return isObject(value) && equal(WeakSet, value.constructor)
+  return isObject(value) && value.constructor === WeakSet
 }
 
 export default isWeakSet

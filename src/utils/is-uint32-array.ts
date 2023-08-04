@@ -3,7 +3,6 @@
  * @module tutils/utils/isUint32Array
  */
 
-import equal from './equal'
 import isObject from './is-object'
 
 /**
@@ -17,7 +16,7 @@ import isObject from './is-object'
  * @return {value is Uint32Array} `true` if `value` is `Uint32Array`
  */
 const isUint32Array = (value: unknown): value is Uint32Array => {
-  return isObject(value) && equal(Uint32Array, value.constructor)
+  return isObject(value) && value.constructor === Uint32Array
 }
 
 export default isUint32Array

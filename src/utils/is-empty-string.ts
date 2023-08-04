@@ -4,7 +4,6 @@
  */
 
 import type { EmptyString } from '#src/types'
-import equal from './equal'
 
 /**
  * Checks if `value` is an empty string.
@@ -16,6 +15,6 @@ import equal from './equal'
  * @param {unknown} value - Value to check
  * @return {value is EmptyString} `true` if `value` is empty string
  */
-const isEmptyString = (value: unknown): value is EmptyString => equal('', value)
+const isEmptyString = (value: unknown): value is EmptyString => value === ''
 
 export default isEmptyString

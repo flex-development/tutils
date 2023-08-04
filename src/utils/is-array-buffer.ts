@@ -3,7 +3,6 @@
  * @module tutils/utils/isArrayBuffer
  */
 
-import equal from './equal'
 import isObject from './is-object'
 
 /**
@@ -17,7 +16,7 @@ import isObject from './is-object'
  * @return {value is ArrayBuffer} `true` if `value` is an `ArrayBuffer`
  */
 const isArrayBuffer = (value: unknown): value is ArrayBuffer => {
-  return isObject(value) && equal(ArrayBuffer, value.constructor)
+  return isObject(value) && value.constructor === ArrayBuffer
 }
 
 export default isArrayBuffer

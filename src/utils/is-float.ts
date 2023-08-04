@@ -4,7 +4,6 @@
  */
 
 import type { Float } from '#src/types'
-import equal from './equal'
 import isNumber from './is-number'
 
 /**
@@ -18,7 +17,7 @@ import isNumber from './is-number'
  * @return {value is Float} `true` if `value` is a float
  */
 const isFloat = (value: unknown): value is Float => {
-  return isNumber(value) && !equal(value % 1, 0)
+  return isNumber(value) && +value % 1 !== 0
 }
 
 export default isFloat

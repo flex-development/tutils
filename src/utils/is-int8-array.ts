@@ -3,7 +3,6 @@
  * @module tutils/utils/isInt8Array
  */
 
-import equal from './equal'
 import isObject from './is-object'
 
 /**
@@ -17,7 +16,7 @@ import isObject from './is-object'
  * @return {value is Int8Array} `true` if `value` is a `Int8Array`
  */
 const isInt8Array = (value: unknown): value is Int8Array => {
-  return isObject(value) && equal(Int8Array, value.constructor)
+  return isObject(value) && value.constructor === Int8Array
 }
 
 export default isInt8Array

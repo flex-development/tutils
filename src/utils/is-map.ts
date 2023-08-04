@@ -4,7 +4,6 @@
  */
 
 import type { PropertyKey } from '#src/types'
-import equal from './equal'
 import isObject from './is-object'
 
 /**
@@ -22,6 +21,6 @@ import isObject from './is-object'
  */
 const isMap = <K = PropertyKey, V = unknown>(
   value: unknown
-): value is Map<K, V> => isObject(value) && equal(Map, value.constructor)
+): value is Map<K, V> => isObject(value) && value.constructor === Map
 
 export default isMap

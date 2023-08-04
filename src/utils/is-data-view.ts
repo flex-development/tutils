@@ -3,7 +3,6 @@
  * @module tutils/utils/isDataView
  */
 
-import equal from './equal'
 import isObject from './is-object'
 
 /**
@@ -17,7 +16,7 @@ import isObject from './is-object'
  * @return {value is DataView} `true` if `value` is a `DataView`
  */
 const isDataView = (value: unknown): value is DataView => {
-  return isObject(value) && equal(DataView, value.constructor)
+  return isObject(value) && value.constructor === DataView
 }
 
 export default isDataView
