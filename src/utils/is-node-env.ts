@@ -14,10 +14,10 @@ import values from './values'
  *
  * @todo examples
  *
- * @param {unknown} [value=process.env.NODE_ENV] - Value to check
+ * @param {unknown} value - Value to check
  * @return {value is NodeEnv} `true` if `value` is a node environment
  */
-const isNodeEnv = (value: unknown = process.env.NODE_ENV): value is NodeEnv => {
+const isNodeEnv = (value: unknown): value is NodeEnv => {
   return includes(values(NodeEnv), value)
 }
 
