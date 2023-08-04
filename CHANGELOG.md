@@ -1,3 +1,48 @@
+## [tutils@6.0.0-alpha.15](https://github.com/flex-development/tutils/compare/tutils@6.0.0-alpha.14...tutils@6.0.0-alpha.15) (2023-08-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* **esm:** pure esm
+* **utils:** [`isNodeEnv`] remove default `value`
+* **utils:** [`keys`] allow primitive targets
+* **utils:** [`isObject`] return `true` if `value` is a function
+* **types:** [`Values`] array logic
+* **types:** [`Spread`] empty array + primitive logic
+
+### :package: Build
+
+* **deps-dev:** Bump @arethetypeswrong/cli from 0.7.0 to 0.7.1 ([#348](https://github.com/flex-development/tutils/issues/348)) ([0482471](https://github.com/flex-development/tutils/commit/0482471e975cbc442600df6671e7c73cfed177df))
+* **deps-dev:** Bump @flex-development/decorator-regex from 1.0.0 to 2.0.0 ([#347](https://github.com/flex-development/tutils/issues/347)) ([890c928](https://github.com/flex-development/tutils/commit/890c928768ece8f993cf94b705478ea2842ca30b))
+* **deps-dev:** Bump eslint-config-prettier from 8.9.0 to 8.10.0 ([#350](https://github.com/flex-development/tutils/issues/350)) ([0884a6f](https://github.com/flex-development/tutils/commit/0884a6f2d2b3bc0681799311b0e1e5b83425db56))
+* **deps-dev:** Bump the vitest group with 1 update ([#345](https://github.com/flex-development/tutils/issues/345)) ([5905730](https://github.com/flex-development/tutils/commit/5905730ba655873a7e6eb09744aa154d0aec6cc7))
+* **deps-dev:** Bump vite from 4.4.7 to 4.4.8 ([#346](https://github.com/flex-development/tutils/issues/346)) ([a8ef12f](https://github.com/flex-development/tutils/commit/a8ef12f9fa22be2d23592dfbd4d364336fc2422e))
+* **deps-dev:** bump vitest from 0.33.0 to 0.34.1 ([bf16272](https://github.com/flex-development/tutils/commit/bf162721f6c5fa783451c4383690b0d294349160))
+* **esm:** pure esm ([5a6e803](https://github.com/flex-development/tutils/commit/5a6e803e5afc2ebf7fcd862d409c9e35b0e060d5))
+
+
+### :sparkles: Features
+
+* **types:** [`Entries`] allow `T` to extend `unknown` ([8bf08b7](https://github.com/flex-development/tutils/commit/8bf08b7df4890fcfa4f71ee63be959f25a972154))
+* **types:** [`Values`] construct tuple if `T` is string literal ([f0511fc](https://github.com/flex-development/tutils/commit/f0511fc845540255fe7abd772d275d34cec0af87))
+* **types:** `IsUniqueSymbol`, `IfUniqueSymbol` ([9405a9e](https://github.com/flex-development/tutils/commit/9405a9ea22ac9cb8574c97cf7bd7efa9985a05f3))
+* **types:** `Keys` ([5c30e53](https://github.com/flex-development/tutils/commit/5c30e53069750667efc9a64077d63c4cb14a0f7f))
+* **utils:** [`select`] allow `T` to extend `NIL` ([35bebf7](https://github.com/flex-development/tutils/commit/35bebf76e9b5f5863dbfd65e6c35046f742fdb1d))
+* **utils:** [`keys`] allow primitive targets ([f01df67](https://github.com/flex-development/tutils/commit/f01df67105a4a352f84a747529b6d55def61f184))
+
+
+### :bug: Fixes
+
+* **types:** [`Spread`] empty array + primitive logic ([be98de1](https://github.com/flex-development/tutils/commit/be98de17026c1f59f6ea4537c89c6b816384e6e1))
+* **types:** [`Values`] array logic ([b85c3aa](https://github.com/flex-development/tutils/commit/b85c3aacf00ba3574191b6b9285e8ffc2b0d72e7))
+
+
+### :mechanical_arm: Refactors
+
+* **utils:** use strict equality checks when appropriate ([2dc7967](https://github.com/flex-development/tutils/commit/2dc7967e3804d5f96d9f6607be06a463376affd3))
+* **utils:** [`isNodeEnv`] remove default `value` ([686010e](https://github.com/flex-development/tutils/commit/686010e5a5b467cd6f375872f171b5a20aad29f5))
+* **utils:** [`isObject`] return `true` if `value` is a function ([577e6f6](https://github.com/flex-development/tutils/commit/577e6f669bd714a04d3f39cea50ccd76bed1df5f))
+
 ## [tutils@6.0.0-alpha.14](https://github.com/flex-development/tutils/compare/tutils@6.0.0-alpha.13...tutils@6.0.0-alpha.14) (2023-07-31)
 
 
