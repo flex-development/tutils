@@ -30,21 +30,16 @@
   "type": "module",
   "files": [
     "CHANGELOG.md",
-    "dist",
-    "src"
+    "dist"
   ],
   "exports": {
-    ".": {
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.cjs"
-    },
+    ".": "./dist/index.mjs",
     "./package.json": "./package.json"
   },
   "imports": {
     "#src": "./src/index.ts",
     "#src/*": "./src/*.ts"
   },
-  "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.mts",
   "scripts": {
