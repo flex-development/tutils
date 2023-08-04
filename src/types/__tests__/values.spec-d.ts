@@ -3,17 +3,18 @@
  * @module tutils/types/tests/unit-d/Values
  */
 
-import type Book from '#fixtures/interfaces/book'
 import type Person from '#fixtures/interfaces/person'
 import type Vehicle from '#fixtures/types/vehicle'
 import type EmptyArray from '../empty-array'
 import type EmptyObject from '../empty-object'
 import type Fn from '../fn'
+import type Get from '../get'
 import type Nullable from '../nullable'
+import type OmitNative from '../omit-native'
 import type Opaque from '../opaque'
 import type { tag as opaque } from '../opaque'
+import type Partial from '../partial'
 import type Spread from '../spread'
-import type Stringify from '../stringify'
 import type TestSubject from '../values'
 
 describe('unit-d:types/Values', () => {
@@ -38,10 +39,10 @@ describe('unit-d:types/Values', () => {
   })
 
   describe('T extends ObjectCurly', () => {
-    it('should equal Spread<T>[Stringify<keyof Spread<T>>][]', () => {
+    it('should equal Get<OmitNative<Spread<T>, symbol>, any>[]', () => {
       // Arrange
-      type T = Book
-      type Expect = Spread<T>[Stringify<keyof Spread<T>>][]
+      type T = Opaque<Partial<Vehicle>>
+      type Expect = Get<OmitNative<Spread<T>, symbol>, any>[]
 
       // Expect
       expectTypeOf<TestSubject<T>>().toEqualTypeOf<Expect>()
@@ -64,62 +65,65 @@ describe('unit-d:types/Values', () => {
     })
 
     describe('T extends bigint', () => {
-      it('should equal EmptyArray', () => {
+      it('should equal EmptyArray if IsLiteral<T> extends true', () => {
         expectTypeOf<TestSubject<0n>>().toEqualTypeOf<EmptyArray>()
       })
 
-      describe('T extends object', () => {
-        it('should equal Spread<T>[Stringify<keyof Spread<T>>][]', () => {
-          // Arrange
-          type T = Opaque<bigint, symbol> & { id?: string }
-          type Expect = Spread<T>[Stringify<keyof Spread<T>>][]
+      it('should equal EmptyArray if T extends object', () => {
+        // Arrange
+        type T = Opaque<bigint & { id: string }>
 
-          // Expect
-          expectTypeOf<TestSubject<T>>().toEqualTypeOf<Expect>()
-        })
+        // Expect
+        expectTypeOf<TestSubject<T>>().toEqualTypeOf<EmptyArray>()
+      })
+
+      it('should equal EmptyArray if bigint extends T', () => {
+        expectTypeOf<TestSubject<bigint>>().toEqualTypeOf<EmptyArray>()
       })
     })
 
     describe('T extends boolean', () => {
-      it('should equal EmptyArray', () => {
+      it('should equal EmptyArray if IsLiteral<T> extends true', () => {
         expectTypeOf<TestSubject<false>>().toEqualTypeOf<EmptyArray>()
       })
 
-      describe('T extends object', () => {
-        it('should equal Spread<T>[Stringify<keyof Spread<T>>][]', () => {
-          // Arrange
-          type T = Opaque<true, symbol> & { id?: string }
-          type Expect = Spread<T>[Stringify<keyof Spread<T>>][]
+      it('should equal EmptyArray if T extends object', () => {
+        // Arrange
+        type T = Opaque<true & { id: string }>
 
-          // Expect
-          expectTypeOf<TestSubject<T>>().toEqualTypeOf<Expect>()
-        })
+        // Expect
+        expectTypeOf<TestSubject<T>>().toEqualTypeOf<EmptyArray>()
+      })
+
+      it('should equal EmptyArray if boolean extends T', () => {
+        expectTypeOf<TestSubject<boolean>>().toEqualTypeOf<EmptyArray>()
       })
     })
 
     describe('T extends number', () => {
-      it('should equal EmptyArray', () => {
+      it('should equal EmptyArray if IsLiteral<T> extends true', () => {
         expectTypeOf<TestSubject<0>>().toEqualTypeOf<EmptyArray>()
       })
 
-      describe('T extends object', () => {
-        it('should equal Spread<T>[Stringify<keyof Spread<T>>][]', () => {
-          // Arrange
-          type T = Opaque<number, symbol> & { id?: string }
-          type Expect = Spread<T>[Stringify<keyof Spread<T>>][]
+      it('should equal EmptyArray if T extends object', () => {
+        // Arrange
+        type T = Opaque<number & { id: string }>
 
-          // Expect
-          expectTypeOf<TestSubject<T>>().toEqualTypeOf<Expect>()
-        })
+        // Expect
+        expectTypeOf<TestSubject<T>>().toEqualTypeOf<EmptyArray>()
+      })
+
+      it('should equal EmptyArray if number extends T', () => {
+        expectTypeOf<TestSubject<number>>().toEqualTypeOf<EmptyArray>()
       })
     })
 
     describe('T extends string', () => {
       describe('IsLiteral<T> extends true', () => {
-        it('should equal Spread<T>[Stringify<keyof Spread<T>>][]', () => {
+        it('should equal Get<OmitNative<Spread<T>, symbol>, any>[]', () => {
           // Arrange
           type T = 'vin'
-          type Expect = Spread<T>[Stringify<keyof Spread<T>>][]
+          type Expect = Get<OmitNative<Spread<T>, symbol>, any>[]
 
           // Expect
           expectTypeOf<TestSubject<T>>().toEqualTypeOf<Expect>()
@@ -127,10 +131,10 @@ describe('unit-d:types/Values', () => {
       })
 
       describe('number extends Length<T>', () => {
-        it('should equal Spread<T>[Stringify<keyof Spread<T>>][]', () => {
+        it('should equal Get<OmitNative<Spread<T>, symbol>, any>[]', () => {
           // Arrange
-          type T = Vehicle['vin']
-          type Expect = Spread<T>[Stringify<keyof Spread<T>>][]
+          type T = Opaque<Vehicle['vin'] & { id: number }>
+          type Expect = Get<OmitNative<Spread<T>, symbol>, any>[]
 
           // Expect
           expectTypeOf<TestSubject<T>>().toEqualTypeOf<Expect>()
@@ -139,28 +143,29 @@ describe('unit-d:types/Values', () => {
     })
 
     describe('T extends symbol', () => {
-      it('should equal EmptyArray', () => {
+      it('should equal EmptyArray if IsUniqueSymbol<T> extends true', () => {
         expectTypeOf<TestSubject<typeof opaque>>().toEqualTypeOf<EmptyArray>()
       })
 
-      describe('T extends object', () => {
-        it('should equal Spread<T>[Stringify<keyof Spread<T>>][]', () => {
-          // Arrange
-          type T = Opaque<symbol, symbol> & { id?: string }
-          type Expect = Spread<T>[Stringify<keyof Spread<T>>][]
+      it('should equal EmptyArray if T extends object', () => {
+        // Arrange
+        type T = Opaque<symbol & { id: string }>
 
-          // Expect
-          expectTypeOf<TestSubject<T>>().toEqualTypeOf<Expect>()
-        })
+        // Expect
+        expectTypeOf<TestSubject<T>>().toEqualTypeOf<EmptyArray>()
+      })
+
+      it('should equal EmptyArray if symbol extends T', () => {
+        expectTypeOf<TestSubject<symbol>>().toEqualTypeOf<EmptyArray>()
       })
     })
   })
 
   describe('T extends Readonly<Fn>', () => {
-    it('should equal Spread<T>[Stringify<keyof Spread<T>>][]', () => {
+    it('should equal Get<OmitNative<Spread<T>, symbol>, any>[]', () => {
       // Arrange
-      type T = Readonly<Fn & { id: string }>
-      type Expect = Spread<T>[Stringify<keyof Spread<T>>][]
+      type T = Opaque<Readonly<Fn & { id: string }>>
+      type Expect = Get<OmitNative<Spread<T>, symbol>, any>[]
 
       // Expect
       expectTypeOf<TestSubject<T>>().toEqualTypeOf<Expect>()

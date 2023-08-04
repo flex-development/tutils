@@ -37,12 +37,16 @@ import type Split from './split'
  * @example
  *  type X = Length<never>
  *  // never
+ * @example
+ *  type X = Length<unknown>
+ *  // never
  *
  * @template T - Type to evaluate
  */
-type Length<T extends { length: number }> =
-  T['length'] extends infer L extends number
+type Length<T> = T extends { length: number }
+  ? T['length'] extends infer L extends number
     ? IfAny<L, number, T extends string ? Split<T, EmptyString>['length'] : L>
     : never
+  : never
 
 export type { Length as default }

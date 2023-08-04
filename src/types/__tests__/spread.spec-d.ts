@@ -9,20 +9,14 @@ import type EmptyObject from '../empty-object'
 import type Fn from '../fn'
 import type Nilable from '../nilable'
 import type Nullable from '../nullable'
+import type Numeric from '../numeric'
 import type Objectify from '../objectify'
+import type { tag as opaque } from '../opaque'
 import type Optional from '../optional'
 import type TestSubject from '../spread'
 import type Writable from '../writable'
 
 describe('unit-d:types/Spread', () => {
-  it('should equal Objectify<T> if T is any', () => {
-    // Arrange
-    type T = any
-
-    // Expect
-    expectTypeOf<TestSubject<T>>().toEqualTypeOf<Objectify<T>>()
-  })
-
   it('should equal Objectify<T> if T is never', () => {
     // Arrange
     type T = never
@@ -39,11 +33,32 @@ describe('unit-d:types/Spread', () => {
     expectTypeOf<TestSubject<T>>().toEqualTypeOf<Objectify<T>>()
   })
 
+  describe('IsAny<T> extends true', () => {
+    it('should equal { [x: string | symbol]: T }', () => {
+      // Arrange
+      type T = any
+      type Expect = { [x: string | symbol]: T }
+
+      // Expect
+      expectTypeOf<TestSubject<T>>().toEqualTypeOf<Expect>()
+    })
+  })
+
   describe('T extends ObjectCurly', () => {
     describe('EmptyObject extends T', () => {
       it('should equal {}', () => {
         expectTypeOf<TestSubject<{}>>().toEqualTypeOf<{}>()
         expectTypeOf<TestSubject<EmptyObject>>().toEqualTypeOf<{}>()
+      })
+    })
+
+    describe('IsEqual<T, object> extends true', () => {
+      it('should equal { [x: string | symbol]: any }', () => {
+        // Arrange
+        type Expect = { [x: string | symbol]: any }
+
+        // Expect
+        expectTypeOf<TestSubject<object>>().toEqualTypeOf<Expect>()
       })
     })
 
@@ -82,32 +97,40 @@ describe('unit-d:types/Spread', () => {
     })
 
     describe('T extends bigint', () => {
-      it('should spread T into object', () => {
-        // Arrange
-        type T = bigint & { readonly id: string }
+      it('should equal {} if IsLiteral<T> extends true', () => {
+        expectTypeOf<TestSubject<0n>>().toEqualTypeOf<{}>()
+      })
 
-        // Expect
-        expectTypeOf<TestSubject<T>>().toEqualTypeOf<{ id: string }>()
+      it('should equal {} if T extends object', () => {
+        expectTypeOf<TestSubject<bigint & { id: string }>>().toEqualTypeOf<{}>()
+      })
+
+      it('should equal {} if bigint extends T', () => {
+        expectTypeOf<TestSubject<bigint>>().toEqualTypeOf<{}>()
       })
     })
 
     describe('T extends boolean', () => {
-      it('should spread T into object', () => {
-        // Arrange
-        type T = false & { readonly id: string }
+      it('should equal {} if IsLiteral<T> extends true', () => {
+        expectTypeOf<TestSubject<false>>().toEqualTypeOf<{}>()
+      })
 
-        // Expect
-        expectTypeOf<TestSubject<T>>().toEqualTypeOf<{ id: string }>()
+      it('should equal {} if T extends object', () => {
+        expectTypeOf<TestSubject<true & { id: string }>>().toEqualTypeOf<{}>()
       })
     })
 
     describe('T extends number', () => {
-      it('should spread T into object', () => {
-        // Arrange
-        type T = number & { readonly id: string }
+      it('should equal {} if IsLiteral<T> extends true', () => {
+        expectTypeOf<TestSubject<0>>().toEqualTypeOf<{}>()
+      })
 
-        // Expect
-        expectTypeOf<TestSubject<T>>().toEqualTypeOf<{ id: string }>()
+      it('should equal {} if T extends object', () => {
+        expectTypeOf<TestSubject<number & { id: string }>>().toEqualTypeOf<{}>()
+      })
+
+      it('should equal {} if number extends T', () => {
+        expectTypeOf<TestSubject<number>>().toEqualTypeOf<{}>()
       })
     })
 
@@ -119,7 +142,6 @@ describe('unit-d:types/Spread', () => {
 
           // Expect
           expectTypeOf<TestSubject<T>>().toEqualTypeOf<{
-            [x: number]: At<T, number>
             '0': At<T, 0>
             '1': At<T, 1>
             '2': At<T, 2>
@@ -131,7 +153,7 @@ describe('unit-d:types/Spread', () => {
         it('should spread T into object', () => {
           // Arrange
           type T = Vehicle['vin'] & { readonly id: string }
-          type Expect = { [x: number]: Optional<string>; id: string }
+          type Expect = { [x: Numeric]: Optional<string> }
 
           // Expect
           expectTypeOf<TestSubject<T>>().toEqualTypeOf<Expect>()
@@ -140,12 +162,16 @@ describe('unit-d:types/Spread', () => {
     })
 
     describe('T extends symbol', () => {
-      it('should spread T into object', () => {
-        // Arrange
-        type T = symbol & { readonly id: string }
+      it('should equal {} if IsUniqueSymbol<T> extends true', () => {
+        expectTypeOf<TestSubject<typeof opaque>>().toEqualTypeOf<{}>()
+      })
 
-        // Expect
-        expectTypeOf<TestSubject<T>>().toEqualTypeOf<{ id: string }>()
+      it('should equal {} if T extends object', () => {
+        expectTypeOf<TestSubject<symbol & { id: string }>>().toEqualTypeOf<{}>()
+      })
+
+      it('should equal {} if symbol extends T', () => {
+        expectTypeOf<TestSubject<symbol>>().toEqualTypeOf<{}>()
       })
     })
   })
@@ -168,7 +194,6 @@ describe('unit-d:types/Spread', () => {
 
         // Expect
         expectTypeOf<TestSubject<T>>().toEqualTypeOf<{
-          [x: number]: At<T, number>
           '0': At<T, 0>
           '1': At<T, 1>
           '2'?: At<T, 2, never>
@@ -180,7 +205,7 @@ describe('unit-d:types/Spread', () => {
       it('should spread T into object', () => {
         // Arrange
         type T = readonly Vehicle[] & { readonly id: string }
-        type Expect = { [x: number]: Optional<Vehicle>; id: string }
+        type Expect = { [x: Numeric]: Optional<Vehicle>; id: string }
 
         // Expect
         expectTypeOf<TestSubject<T>>().toEqualTypeOf<Expect>()
@@ -191,8 +216,8 @@ describe('unit-d:types/Spread', () => {
   describe('unions', () => {
     it('should distribute over unions', () => {
       // Arrange
-      type T = Nullable<['vin']>
-      type Expect = { [x: number]: 'vin'; '0': 'vin' } | {}
+      type T = Nullable<[Vehicle['vin']]>
+      type Expect = { '0': Vehicle['vin'] } | {}
 
       // Expect
       expectTypeOf<TestSubject<T>>().toEqualTypeOf<Expect>()

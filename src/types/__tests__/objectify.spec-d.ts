@@ -20,12 +20,14 @@ describe('unit-d:types/Objectify', () => {
     expectTypeOf<TestSubject<unknown>>().toEqualTypeOf<{}>()
   })
 
-  it('should equal { [K in PropertyKey]: T } if T is any', () => {
-    // Arrange
-    type T = any
+  describe('IsAny<T> extends true', () => {
+    it('should equal { [K in PropertyKey]: T }', () => {
+      // Arrange
+      type T = any
 
-    // Expect
-    expectTypeOf<TestSubject<T>>().toEqualTypeOf<{ [K in PropertyKey]: T }>()
+      // Expect
+      expectTypeOf<TestSubject<T>>().toEqualTypeOf<{ [K in PropertyKey]: T }>()
+    })
   })
 
   describe('T extends ObjectCurly', () => {
@@ -45,6 +47,16 @@ describe('unit-d:types/Objectify', () => {
       it('should equal {}', () => {
         expectTypeOf<TestSubject<{}>>().toEqualTypeOf<{}>()
         expectTypeOf<TestSubject<EmptyObject>>().toEqualTypeOf<{}>()
+      })
+    })
+
+    describe('IsEqual<T, object> extends true', () => {
+      it('should equal { [K in PropertyKey]: any }', () => {
+        // Arrange
+        type Expect = { [K in PropertyKey]: any }
+
+        // Expect
+        expectTypeOf<TestSubject<object>>().toEqualTypeOf<Expect>()
       })
     })
   })
