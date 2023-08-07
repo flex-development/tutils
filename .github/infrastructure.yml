@@ -191,8 +191,6 @@ repository:
   is_template: false
   private: false
   security_and_analysis:
-    advanced_security:
-      status: disabled
     secret_scanning:
       status: enabled
     secret_scanning_push_protection:

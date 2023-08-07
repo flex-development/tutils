@@ -1,3 +1,16 @@
+## [tutils@6.0.0-alpha.16](https://github.com/flex-development/tutils/compare/tutils@6.0.0-alpha.15...tutils@6.0.0-alpha.16) (2023-08-07)
+
+
+### :package: Build
+
+* **deps-dev:** Bump esbuild from 0.18.17 to 0.18.18 ([#354](https://github.com/flex-development/tutils/issues/354)) ([e5459f9](https://github.com/flex-development/tutils/commit/e5459f9a3b21e018166ec600a6359cee111dc8ee))
+* **deps-dev:** Bump eslint-config-prettier from 8.10.0 to 9.0.0 ([#352](https://github.com/flex-development/tutils/issues/352)) ([731826f](https://github.com/flex-development/tutils/commit/731826fa57b7b0f9ca71fd76d6c01a90efc8eb58))
+
+
+### :mechanical_arm: Refactors
+
+* **ts:** use type `any` for customizer function arguments ([d9bfe6c](https://github.com/flex-development/tutils/commit/d9bfe6ce785f16c546d8e454df651d8decff09d2))
+
 ## [tutils@6.0.0-alpha.15](https://github.com/flex-development/tutils/compare/tutils@6.0.0-alpha.14...tutils@6.0.0-alpha.15) (2023-08-04)
 
 
