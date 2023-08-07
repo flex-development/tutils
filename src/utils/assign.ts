@@ -38,7 +38,7 @@ const assign = <T extends Objectify<any>, U extends readonly ObjectCurly[]>(
   base: T,
   ...source: U
 ): Assign<T, U> => {
-  return assignWith<T, U>((_, incoming) => incoming, base, ...source)
+  return assignWith<T, U>((_, src: unknown) => src, base, ...source)
 }
 
 export default assign

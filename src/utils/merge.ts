@@ -37,7 +37,7 @@ const merge = <T extends Objectify<any>, U extends readonly ObjectCurly[]>(
   base: T,
   ...source: U
 ): Merge<T, U> => {
-  return mergeWith<T, U>((_, incoming) => incoming, base, ...source)
+  return mergeWith<T, U>((_, src: unknown) => src, base, ...source)
 }
 
 export default merge

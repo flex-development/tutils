@@ -14,12 +14,12 @@ import properties from './properties'
 /**
  * Function used to customize assigned values.
  *
- * @param {unknown} outgoing - Outgoing property value
- * @param {unknown} incoming - Incoming property value from source object
+ * @param {any} outgoing - Outgoing property value
+ * @param {any} incoming - Incoming property value from source object
  * @param {string | symbol} key - Current property key
- * @return {unknown} New property value
+ * @return {any} New property value
  */
-type MergeCustomizer = Fn<[unknown, unknown, string | symbol], unknown>
+type MergeCustomizer = Fn<[any, any, string | symbol]>
 
 /**
  * Recursively merges own properties of one or more `source` objects into a

@@ -14,12 +14,12 @@ import properties from './properties'
 /**
  * Function used to customize assigned values.
  *
- * @param {unknown} outgoing - Outgoing property value
- * @param {unknown} incoming - Incoming property value from source object
+ * @param {any} outgoing - Outgoing property value
+ * @param {any} incoming - Incoming property value from source object
  * @param {string | symbol} key - Current property key
- * @return {unknown} New property value
+ * @return {any} New property value
  */
-type OverwriteCustomizer = Fn<[unknown, unknown, string | symbol], unknown>
+type OverwriteCustomizer = Fn<[any, any, string | symbol]>
 
 /**
  * Assigns own properties from one or more `source` objects to a destination

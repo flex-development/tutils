@@ -33,7 +33,11 @@ const defaults = <T extends Objectify<any>, U extends readonly ObjectCurly[]>(
   ...source: U
 ): Defaults<T, U> => {
   return cast(
-    assignWith((curr, src) => (isUndefined(curr) ? src : curr), base, ...source)
+    assignWith(
+      (curr: unknown, src: unknown) => (isUndefined(curr) ? src : curr),
+      base,
+      ...source
+    )
   )
 }
 

@@ -31,7 +31,7 @@ const overwrite = <T extends ObjectCurly, U extends readonly ObjectCurly[]>(
   base: T,
   ...source: U
 ): Overwrite<T, U> => {
-  return overwriteWith<T, U>((_, incoming) => incoming, base, ...source)
+  return overwriteWith<T, U>((_, src: unknown) => src, base, ...source)
 }
 
 export default overwrite
