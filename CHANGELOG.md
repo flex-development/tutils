@@ -1,3 +1,24 @@
+## [tutils@6.0.0-alpha.17](https://github.com/flex-development/tutils/compare/tutils@6.0.0-alpha.16...tutils@6.0.0-alpha.17) (2023-08-08)
+
+
+### :package: Build
+
+* **deps-dev:** Bump @flex-development/mlly from 1.0.0-alpha.15 to 1.0.0-alpha.16 ([#359](https://github.com/flex-development/tutils/issues/359)) ([d7e83ea](https://github.com/flex-development/tutils/commit/d7e83ead6c61e9a385a7afc8255f822e2ff926ec))
+* **deps-dev:** Bump @flex-development/tsconfig-utils from 1.1.2 to 2.0.0 ([#360](https://github.com/flex-development/tutils/issues/360)) ([63a650b](https://github.com/flex-development/tutils/commit/63a650b5cf24e4b6eb9817d94de6bc30e79cdc04))
+* **deps-dev:** Bump esbuild from 0.18.18 to 0.18.19 ([#358](https://github.com/flex-development/tutils/issues/358)) ([3464586](https://github.com/flex-development/tutils/commit/3464586d87c4775a18c8ee9bfbe7453f034b67be))
+* **deps-dev:** Bump the typescript-eslint group with 2 updates ([#356](https://github.com/flex-development/tutils/issues/356)) ([65d81df](https://github.com/flex-development/tutils/commit/65d81df7095b027af495e26ba33d163e94ae0eaa))
+* **deps-dev:** Bump vite from 4.4.8 to 4.4.9 ([#357](https://github.com/flex-development/tutils/issues/357)) ([94e502a](https://github.com/flex-development/tutils/commit/94e502a9bd43d9d265f4c361f1a2e5ded4869d02))
+
+
+### :robot: Continuous Integration
+
+* **workflows:** [`dependabot-auto`] remove `approve-pr` condition ([59bc451](https://github.com/flex-development/tutils/commit/59bc451501d61eaa3f7340ae9c5d0de1485a7a25))
+
+
+### :bug: Fixes
+
+* **utils:** [`define`] invalid property descriptor ([6693824](https://github.com/flex-development/tutils/commit/6693824427211c0064298df4a2fb5e3c34c53830))
+
 ## [tutils@6.0.0-alpha.16](https://github.com/flex-development/tutils/compare/tutils@6.0.0-alpha.15...tutils@6.0.0-alpha.16) (2023-08-07)
 
 
