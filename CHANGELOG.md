@@ -1,3 +1,10 @@
+## [tutils@6.0.0-alpha.18](https://github.com/flex-development/tutils/compare/tutils@6.0.0-alpha.17...tutils@6.0.0-alpha.18) (2023-08-08)
+
+
+### :package: Build
+
+* ensure resolved source map url is absolute ([6301ffc](https://github.com/flex-development/tutils/commit/6301ffc615c54e7f0b63d6e059426687ee3ec469))
+
 ## [tutils@6.0.0-alpha.17](https://github.com/flex-development/tutils/compare/tutils@6.0.0-alpha.16...tutils@6.0.0-alpha.17) (2023-08-08)
 
 
