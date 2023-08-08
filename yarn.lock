@@ -1519,7 +1519,7 @@ __metadata:
     "@flex-development/decorator-regex": "npm:2.0.0"
     "@flex-development/esm-types": "npm:2.0.0"
     "@flex-development/mkbuild": "npm:1.0.0-alpha.20"
-    "@flex-development/mlly": "npm:1.0.0-alpha.15"
+    "@flex-development/mlly": "npm:1.0.0-alpha.16"
     "@flex-development/pathe": "npm:2.0.0"
     "@flex-development/toggle-pkg-type": "npm:2.0.1"
     "@flex-development/tsconfig-utils": "npm:2.0.0"
