@@ -30,17 +30,12 @@ const define = <T extends object, V = any, U = T>(
   property: PropertyKey,
   descriptor: PropertyDescriptor<V> = {}
 ): U => {
-  /**
-   * Default attributes.
-   *
-   * @const {PropertyDescriptor<V>} defaults
-   */
-  const defaults: PropertyDescriptor<V> = hasOwn(obj, property)
-    ? description(obj, property)
-    : { configurable: true, enumerable: true, writable: true }
-
   return Object.defineProperty(cast(obj), property, {
-    ...defaults,
+    ...(hasOwn(obj, property)
+      ? description(obj, property)
+      : hasOwn(descriptor, 'get') || hasOwn(descriptor, 'set')
+      ? { configurable: true, enumerable: true }
+      : { configurable: true, enumerable: true, writable: true }),
     ...descriptor
   })
 }

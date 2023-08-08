@@ -5,8 +5,12 @@
 
 import VEHICLE from '#fixtures/vehicle'
 import type { PropertyDescriptor } from '#src/interfaces'
+import type { Assign, EmptyArray, Fn } from '#src/types'
+import clone from '../clone'
+import constant from '../constant'
 import testSubject from '../define'
 import description from '../descriptor'
+import omit from '../omit'
 
 describe('unit:utils/define', () => {
   describe('add property', () => {
@@ -18,16 +22,48 @@ describe('unit:utils/define', () => {
       vrm = faker.vehicle.vrm()
     })
 
-    it('should return obj with new property', () => {
-      // Act
-      const result = testSubject(VEHICLE, property, { value: vrm })
+    describe('accessor descriptor', () => {
+      let vehicle: typeof VEHICLE
 
-      // Expect
-      expect(result).to.have.descriptor(property, {
-        configurable: true,
-        enumerable: true,
-        value: vrm,
-        writable: true
+      beforeAll(() => {
+        vehicle = clone(VEHICLE)
+      })
+
+      it('should return obj with new accessor descriptor', () => {
+        // Arrange
+        const get: Fn<EmptyArray, typeof vrm> = constant(vrm)
+
+        // Act
+        const result = testSubject(vehicle, property, { get })
+
+        // Expect
+        expect(result).to.have.descriptor(property, {
+          configurable: true,
+          enumerable: true,
+          get,
+          set: undefined
+        })
+      })
+    })
+
+    describe('data descriptor', () => {
+      let vehicle: typeof VEHICLE
+
+      beforeAll(() => {
+        vehicle = clone(VEHICLE)
+      })
+
+      it('should return obj with new data descriptor', () => {
+        // Act
+        const result = testSubject(vehicle, property, { value: vrm })
+
+        // Expect
+        expect(result).to.have.descriptor(property, {
+          configurable: true,
+          enumerable: true,
+          value: vrm,
+          writable: true
+        })
       })
     })
   })
@@ -41,20 +77,53 @@ describe('unit:utils/define', () => {
       vin = faker.vehicle.vin()
     })
 
-    it('should return obj with modified property', () => {
-      // Arrange
-      const descriptor: PropertyDescriptor<typeof vin> = {
-        enumerable: false,
-        value: vin
-      }
+    describe('accessor descriptor', () => {
+      let vehicle: Assign<typeof VEHICLE, { vin?: string }>
 
-      // Act
-      const result = testSubject(VEHICLE, property, descriptor)
+      beforeAll(() => {
+        vehicle = Object.defineProperty(omit(clone(VEHICLE), ['vin']), 'vin', {
+          configurable: true,
+          get: constant(VEHICLE.vin)
+        })
+      })
 
-      // Expect
-      expect(result).to.have.descriptor(property, {
-        ...description(VEHICLE, property),
-        ...descriptor
+      it('should return obj with modified accessor descriptor', () => {
+        // Arrange
+        const get: Fn<EmptyArray, typeof vin> = constant(vin)
+
+        // Act
+        const result = testSubject(vehicle, property, { get })
+
+        // Expect
+        expect(result).to.have.descriptor(property, {
+          ...description(vehicle, property),
+          get
+        })
+      })
+    })
+
+    describe('data descriptor', () => {
+      let vehicle: typeof VEHICLE
+
+      beforeAll(() => {
+        vehicle = clone(VEHICLE)
+      })
+
+      it('should return obj with modified data descriptor', () => {
+        // Arrange
+        const descriptor: PropertyDescriptor<typeof vin> = {
+          enumerable: false,
+          value: vin
+        }
+
+        // Act
+        const result = testSubject(vehicle, property, descriptor)
+
+        // Expect
+        expect(result).to.have.descriptor(property, {
+          ...description(vehicle, property),
+          ...descriptor
+        })
       })
     })
   })
