@@ -17,7 +17,7 @@ import type Fn from './fn'
  * @return {R} Mapped array item
  */
 type Mapper<T extends readonly unknown[], R = any> = Fn<
-  [T[number], number, T],
+  [item: T[number], index: number, array: T],
   R
 >
 
