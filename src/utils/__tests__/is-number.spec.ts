@@ -13,7 +13,6 @@ describe('unit:utils/isNumber', () => {
     const cases: Parameters<typeof testSubject>[] = [
       [[INTEGER]],
       [Symbol('is-number')],
-      [Number.NaN],
       [faker.string.numeric()]
     ]
 
@@ -23,7 +22,11 @@ describe('unit:utils/isNumber', () => {
 
   it('should return true if value is a number', () => {
     // Arrange
-    const cases: Parameters<typeof testSubject>[] = [[FLOAT], [INTEGER]]
+    const cases: Parameters<typeof testSubject>[] = [
+      [FLOAT],
+      [INTEGER],
+      [Number.NaN]
+    ]
 
     // Act + Expect
     cases.forEach(([value]) => expect(testSubject(value)).to.be.true)

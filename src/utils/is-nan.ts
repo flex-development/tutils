@@ -3,7 +3,7 @@
  * @module tutils/utils/isNaN
  */
 
-import equal from './equal'
+import isNumber from './is-number'
 
 /**
  * Checks if `value` is {@linkcode Number.NaN}.
@@ -13,6 +13,6 @@ import equal from './equal'
  * @param {unknown} value - Value to check
  * @return {boolean} `true` if `value` is `Number.NaN`
  */
-const isNaN = (value: unknown): boolean => equal(Number.NaN, value)
+const isNaN = (value: unknown): boolean => isNumber(value) && value !== +value
 
 export default isNaN
