@@ -1,3 +1,41 @@
+## [tutils@6.0.0-alpha.19](https://github.com/flex-development/tutils/compare/tutils@6.0.0-alpha.18...tutils@6.0.0-alpha.19) (2023-08-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* **utils:** [`isNumber`] check `typeof value`
+* **ts:** use `export type *`
+
+### :package: Build
+
+* **deps-dev:** Bump @commitlint/cli from 17.6.7 to 17.7.0 ([#365](https://github.com/flex-development/tutils/issues/365)) ([25c09a0](https://github.com/flex-development/tutils/commit/25c09a042df8448f7850e68d731c81fd38c066b4))
+* **deps-dev:** Bump @commitlint/cli from 17.7.0 to 17.7.1 ([#370](https://github.com/flex-development/tutils/issues/370)) ([48670f1](https://github.com/flex-development/tutils/commit/48670f1cd22dbb77986ab6e730d4df412e957b57))
+* **deps-dev:** Bump @flex-development/mkbuild from 1.0.0-alpha.20 to 1.0.0-alpha.21 ([#367](https://github.com/flex-development/tutils/issues/367)) ([07fa108](https://github.com/flex-development/tutils/commit/07fa1087ba47cb25624f8792eb7d097b33bc1dae))
+* **deps-dev:** Bump @flex-development/mlly from 1.0.0-alpha.16 to 1.0.0-alpha.17 ([#364](https://github.com/flex-development/tutils/issues/364)) ([fc07e61](https://github.com/flex-development/tutils/commit/fc07e613fb4637df7fccb637bd641fba90b4d241))
+* **deps-dev:** Bump @flex-development/tsconfig-utils from 2.0.0 to 2.0.1 ([#368](https://github.com/flex-development/tutils/issues/368)) ([4210acc](https://github.com/flex-development/tutils/commit/4210acc1f944b8d28d0a73b1787a49dfcaf4d8e6))
+* **deps-dev:** Bump cspell from 7.0.0-alpha.2 to 7.0.0 ([#369](https://github.com/flex-development/tutils/issues/369)) ([eccb164](https://github.com/flex-development/tutils/commit/eccb1642630a97f6c45718106b56d7b3ddff8e23))
+* **deps-dev:** Bump esbuild from 0.18.19 to 0.19.0 ([#363](https://github.com/flex-development/tutils/issues/363)) ([6bb8fe4](https://github.com/flex-development/tutils/commit/6bb8fe42113a0978fb9b98de75579938c789f23e))
+* **deps-dev:** Bump eslint-import-resolver-typescript from 3.5.5 to 3.6.0 ([#366](https://github.com/flex-development/tutils/issues/366)) ([9ed7ee7](https://github.com/flex-development/tutils/commit/9ed7ee731ff29486fc873ffa9f5597fd8a77d1c4))
+* **ts:** use `export type *` ([556b536](https://github.com/flex-development/tutils/commit/556b536a1f1a68aa71a4e72aa0a546638d451a10))
+
+
+### :pencil: Documentation
+
+* **types:** [`Mapper`] label tuple elements ([b6d5a38](https://github.com/flex-development/tutils/commit/b6d5a381cc79e435ff2873706cdec37c06c69bd4))
+* **types:** [`Tryit`] label tuple elements ([268bdec](https://github.com/flex-development/tutils/commit/268bdec05ca706a43d92d2c2f20e12bd090630af))
+
+
+### :sparkles: Features
+
+* **utils:** [`clone`] support circular references ([10fa0a9](https://github.com/flex-development/tutils/commit/10fa0a9cf2e13eded2afcff5c725cc7dd4309b95))
+* **utils:** [`equal`] support circular references ([81cb20e](https://github.com/flex-development/tutils/commit/81cb20e68dd06ccf6ff8df9bff156d214a7fd2e6))
+* **utils:** `isObjectLike` ([9bec8ac](https://github.com/flex-development/tutils/commit/9bec8ac4b9456597289277c24e5e5b37c50b6c7e))
+
+
+### :mechanical_arm: Refactors
+
+* **utils:** [`isNumber`] check `typeof value` ([ac17bfd](https://github.com/flex-development/tutils/commit/ac17bfd16633d491101600f3c5d774e204f6eae3))
+
 ## [tutils@6.0.0-alpha.18](https://github.com/flex-development/tutils/compare/tutils@6.0.0-alpha.17...tutils@6.0.0-alpha.18) (2023-08-08)
 
 
