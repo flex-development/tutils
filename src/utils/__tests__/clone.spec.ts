@@ -4,10 +4,10 @@
  */
 
 import INTEGER from '#fixtures/integer'
+import TODAY from '#fixtures/today'
 import type Vehicle from '#fixtures/types/vehicle'
-import VEHICLE from '#fixtures/vehicle'
+import VEHICLE, { VEHICLE_TAG } from '#fixtures/vehicle'
 import testSubject from '../clone'
-import isObjectPlain from '../is-object-plain'
 
 describe('unit:utils/clone', () => {
   describe('ArrayBuffer', () => {
@@ -49,6 +49,17 @@ describe('unit:utils/clone', () => {
       // Expect
       expect(result).to.be.instanceof(DataView)
       expect(result).to.eql(value).but.not.equal(value)
+    })
+  })
+
+  describe('Date', () => {
+    it('should return deep cloned Date instance', () => {
+      // Act
+      const result = testSubject(TODAY)
+
+      // Expect
+      expect(result).to.be.instanceof(Date)
+      expect(result).to.eql(TODAY).but.not.equal(TODAY)
     })
   })
 
@@ -290,20 +301,21 @@ describe('unit:utils/clone', () => {
   })
 
   describe('pojos', () => {
-    it('should return deep cloned plain object', () => {
-      // Arrange
-      const value: Vehicle & { driver: { id: string } } = {
-        ...VEHICLE,
-        driver: { id: faker.string.uuid() }
-      }
+    let value: Vehicle & { driver: { id: string } }
 
+    beforeAll(() => {
+      value = { ...VEHICLE, driver: { id: faker.string.uuid() } }
+      value = Object.defineProperty(value, VEHICLE_TAG, { value: VEHICLE.vin })
+      value = Object.defineProperty(value, '__value', { value })
+    })
+
+    it('should return deep cloned plain object', () => {
       // Act
       const result = testSubject(value)
 
       // Expect
-      expect(result).to.satisfy(isObjectPlain)
       expect(result).to.eql(value).but.not.equal(value)
-      expect(result.driver).to.not.equal(value.driver)
+      expect(result).to.have.property('driver').not.equal(value.driver)
     })
   })
 

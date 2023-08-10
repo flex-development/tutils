@@ -8,6 +8,7 @@ cefc
 codecov
 commitlintrc
 customizer
+dclone
 dedupe
 dequal
 desegment

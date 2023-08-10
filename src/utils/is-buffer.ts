@@ -3,8 +3,6 @@
  * @module tutils/utils/isBuffer
  */
 
-import isObject from './is-object'
-
 /**
  * Checks if `value` is a {@linkcode Buffer} instance.
  *
@@ -15,8 +13,6 @@ import isObject from './is-object'
  * @param {unknown} value - Value to check
  * @return {value is Buffer} `true` if `value` is a `Buffer`
  */
-const isBuffer = (value: unknown): value is Buffer => {
-  return isObject(value) && value.constructor === Buffer
-}
+const isBuffer = (value: unknown): value is Buffer => Buffer.isBuffer(value)
 
 export default isBuffer

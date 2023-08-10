@@ -3,7 +3,8 @@
  * @module tutils/utils/clone
  */
 
-import type { Class, Optional } from '#src/types'
+import type { PropertyDescriptor } from '#src/interfaces'
+import type { Class, Objectify } from '#src/types'
 import cast from './cast'
 import define from './define'
 import descriptor from './descriptor'
@@ -12,12 +13,14 @@ import isArray from './is-array'
 import isArrayBuffer from './is-array-buffer'
 import isBuffer from './is-buffer'
 import isDataView from './is-data-view'
+import isDate from './is-date'
 import isFunction from './is-function'
 import isMap from './is-map'
 import isPrimitive from './is-primitive'
 import isRegExp from './is-reg-exp'
 import isSet from './is-set'
 import isTypedArray from './is-typed-array'
+import isUndefined from './is-undefined'
 import properties from './properties'
 
 /**
@@ -30,103 +33,121 @@ import properties from './properties'
  * @todo document differences between structured clone algorithm
  * @todo examples
  *
- * @template T - Value type
+ * @template T - Cloned value type
  *
  * @param {T} value - Value to recursively clone
  * @return {T} Deep cloned `value`
  */
 const clone = <T>(value: T): T => {
-  // primitives do not need to be cloned
-  if (isPrimitive(value)) return value
-
-  // bind functions to empty objects to create clones
-  if (isFunction(value)) return cast(value.bind({}))
+  /**
+   * Cloned values cache.
+   *
+   * @const {WeakMap<Objectify<any>, Objectify<any>>} cache
+   */
+  const cache: WeakMap<Objectify<any>, Objectify<any>> = new WeakMap()
 
   /**
-   * Object to clone.
+   * Deep clones `value`.
    *
-   * @const {T & object} obj
+   * @template T - Value type
+   *
+   * @param {T} value - Value to deep clone
+   * @return {T} Deep cloned `value`
    */
-  const obj: T & object = cast(value)
+  const dclone = <T>(value: T): T => {
+    // primitives do not need to be cloned
+    if (isPrimitive(value)) return value
 
-  /**
-   * Initializes a cloned object.
-   *
-   * @template T - Object type
-   *
-   * @param {T} obj - Object to clone
-   * @return {T} Initialized clone
-   */
-  const init = <T extends object>(obj: T): T => {
+    // bind functions to empty objects to create clones
+    if (isFunction(value)) return cast(value.bind({}))
+
+    /**
+     * Object to clone.
+     *
+     * @const {Objectify<any> & T} obj
+     */
+    const obj: Objectify<any> & T = cast(value)
+
     /**
      * Cloned object constructor.
      *
      * @const {Class<T>} Clone
      */
-    const Clone: Class<T> = cast<Class<T>>(obj.constructor)
+    const Clone: Class<Objectify<any> & T> = cast(obj.constructor)
 
     /**
-     * Initialized clone.
+     * Cloned value.
      *
-     * @var {T} result
+     * @var {Objectify<any> & T} cloned
      */
-    let result!: T
+    let cloned!: Objectify<any> & T
 
-    // clone array value
-    if (isArray(obj)) result = new Clone(obj.length)
+    // init cloned array
+    if (isArray(obj)) cloned = new Clone(obj.length)
 
-    // clone array buffer
+    // init cloned array buffer
     if (isArrayBuffer(obj)) {
-      result = new Clone(obj.byteLength)
-      new Uint8Array(cast(result)).set(new Uint8Array(obj))
+      cloned = new Clone(obj.byteLength)
+      new Uint8Array(cast(cloned)).set(new Uint8Array(obj))
     }
 
-    // clone buffer
-    if (isBuffer(obj)) result = cast(Uint8Array.prototype.slice.call(obj))
+    // init cloned buffer
+    if (isBuffer(obj)) cloned = cast(Uint8Array.prototype.slice.call(obj))
 
-    // clone dataview
+    // init cloned data view
     if (isDataView(obj)) {
-      result = new Clone(init(obj.buffer), obj.byteOffset, obj.byteLength)
+      cloned = new Clone(dclone(obj.buffer), obj.byteOffset, obj.byteLength)
     }
 
-    // clone regexp
-    if (isRegExp(obj)) result = new Clone(obj.source, obj.flags)
+    // init cloned date
+    if (isDate(obj)) cloned = new Clone(obj.getTime())
 
-    // clone typed array
+    // init cloned regex
+    if (isRegExp(obj)) cloned = new Clone(obj.source, obj.flags)
+
+    // init cloned typed array
     if (isTypedArray(obj)) {
-      result = new Clone(init(obj.buffer), obj.byteOffset, obj.length)
+      cloned = new Clone(dclone(obj.buffer), obj.byteOffset, obj.length)
     }
 
-    // clone unknown value
-    if (!cast<Optional<T>>(result) && isFunction(Clone)) result = new Clone()
+    // init unknown clone
+    if (isUndefined(cloned) && isFunction(Clone)) cloned = new Clone()
 
-    return ifelse(result, result, cast({}))
+    // check for circular references and return corresponding clone
+    if (cache.has(obj)) return cast(cache.get(obj))
+
+    // cache object and clone
+    cache.set(obj, (cloned = ifelse(cloned, cloned, cast({}))))
+
+    // define own properties of initial object on cloned object
+    for (const key of properties(obj)) {
+      /**
+       * Property descriptor for {@linkcode key}.
+       *
+       * @const {PropertyDescriptor} $d
+       */
+      const $d: PropertyDescriptor = descriptor(obj, key)
+
+      // define property on cloned object
+      define(
+        cloned,
+        key,
+        ifelse($d.value, { ...$d, value: dclone($d.value) }, $d)
+      )
+    }
+
+    // repopulate map
+    if (isMap(obj) && isMap(cloned)) {
+      for (const [key, val] of obj.entries()) cloned.set(key, dclone(val))
+    }
+
+    // repopulate set
+    if (isSet(obj) && isSet(cloned)) for (const v of obj) cloned.add(dclone(v))
+
+    return cloned
   }
 
-  /**
-   * Cloned {@linkcode obj}.
-   *
-   * @const {T} result
-   */
-  const ret: T & object = init(obj)
-
-  // redefine own properties on cloned object
-  for (const key of properties(obj)) {
-    define(ret, key, {
-      ...descriptor(obj, key),
-      value: clone(descriptor(obj, key).value)
-    })
-  }
-
-  // repopulate map
-  if (isMap(obj) && isMap(ret)) {
-    for (const [key, val] of obj.entries()) ret.set(key, clone(val))
-  }
-
-  // repopulate set
-  if (isSet(obj) && isSet(ret)) for (const val of obj) ret.add(clone(val))
-
-  return ret
+  return dclone(value)
 }
 
 export default clone

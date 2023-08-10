@@ -3,8 +3,6 @@
  * @module tutils/utils/isArray
  */
 
-import isObject from './is-object'
-
 /**
  * Checks if `value` is an array.
  *
@@ -16,7 +14,7 @@ import isObject from './is-object'
  * @return {value is ReadonlyArray<T> | T[]} `true` if `value` is an array
  */
 const isArray = <T>(value: unknown): value is T[] | readonly T[] => {
-  return isObject(value) && value.constructor === Array
+  return Array.isArray(value)
 }
 
 export default isArray
