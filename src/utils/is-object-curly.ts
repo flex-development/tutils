@@ -5,17 +5,15 @@
 
 import type { ObjectCurly } from '#src/types'
 import isArray from './is-array'
-import isFunction from './is-function'
-import isObject from './is-object'
-import isObjectPlain from './is-object-plain'
+import isObjectLike from './is-object-like'
 
 /**
  * Checks if `value` is a curly-braced object.
  *
- * A curly-braced object is an object that is not an array or function (e.g.
- * instance objects, pojos).
+ * A curly-braced object is an object-like value that is not an array.
  *
  * @see {@linkcode ObjectCurly}
+ * @see {@linkcode isObjectLike}
  *
  * @todo examples
  *
@@ -23,10 +21,7 @@ import isObjectPlain from './is-object-plain'
  * @return {value is ObjectCurly} `true` if `value` is curly-braced object
  */
 const isObjectCurly = (value: unknown): value is ObjectCurly => {
-  return (
-    isObjectPlain(value) ||
-    (!isArray(value) && !isFunction(value) && isObject(value))
-  )
+  return !isArray(value) && isObjectLike(value)
 }
 
 export default isObjectCurly

@@ -3,29 +3,41 @@
  * @module tutils/utils/tests/unit/isObjectCurly
  */
 
+import INTEGER from '#fixtures/integer'
+import TODAY from '#fixtures/today'
+import VEHICLE from '#fixtures/vehicle'
 import testSubject from '../is-object-curly'
 
 describe('unit:utils/isObjectCurly', () => {
-  it('should return false if value is not curly-braced object', () => {
+  it('should return false if value is array', () => {
+    expect(testSubject([])).to.be.false
+  })
+
+  it('should return false if value is function', () => {
+    expect(testSubject(vi.fn())).to.be.false
+  })
+
+  it('should return false if value is a primitive', () => {
     // Arrange
     const cases: Parameters<typeof testSubject>[] = [
-      [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]],
+      [INTEGER],
+      [VEHICLE.vin],
+      [faker.datatype.boolean()],
+      [faker.number.bigInt()],
       [faker.string.hexadecimal({ length: 24 })],
-      [vi.fn()]
+      [null],
+      [undefined]
     ]
 
     // Act + Expect
     cases.forEach(([value]) => expect(testSubject(value)).to.be.false)
   })
 
-  it('should return true if value is curly-braced object', () => {
-    // Arrange
-    const cases: Parameters<typeof testSubject>[] = [
-      [faker.date.anytime()],
-      [{ email: faker.internet.email() }]
-    ]
+  it('should return true if value is instance object', () => {
+    expect(testSubject(TODAY)).to.be.true
+  })
 
-    // Act + Expect
-    cases.forEach(([value]) => expect(testSubject(value)).to.be.true)
+  it('should return true if value is plain object', () => {
+    expect(testSubject(VEHICLE)).to.be.true
   })
 })

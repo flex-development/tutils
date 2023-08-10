@@ -1,14 +1,18 @@
 /**
- * @file Unit Tests - isObject
- * @module tutils/utils/tests/unit/isObject
+ * @file Unit Tests - isObjectLike
+ * @module tutils/utils/tests/unit/isObjectLike
  */
 
 import INTEGER from '#fixtures/integer'
 import TODAY from '#fixtures/today'
 import VEHICLE from '#fixtures/vehicle'
-import testSubject from '../is-object'
+import testSubject from '../is-object-like'
 
-describe('unit:utils/isObject', () => {
+describe('unit:utils/isObjectLike', () => {
+  it('should return false if value is function', () => {
+    expect(testSubject(vi.fn())).to.be.false
+  })
+
   it('should return false if value is a primitive', () => {
     // Arrange
     const cases: Parameters<typeof testSubject>[] = [
@@ -27,10 +31,6 @@ describe('unit:utils/isObject', () => {
 
   it('should return true if value is array', () => {
     expect(testSubject([])).to.be.true
-  })
-
-  it('should return true if value is function', () => {
-    expect(testSubject(vi.fn())).to.be.true
   })
 
   it('should return true if value is instance object', () => {
