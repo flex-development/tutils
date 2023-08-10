@@ -2739,14 +2739,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*":
-  version: 18.11.18
-  resolution: "@types/node@npm:18.11.18"
-  checksum: bd39552701928d4a1613bc46adf8b65f8212064c2b5475a67161b6c4cef21ddb0a5c2ba062673213f8f5301ef6e171241a9e274a9b59c9fc1f5e2b69764740eb
-  languageName: node
-  linkType: hard
-
-"@types/node@npm:20.4.7":
+"@types/node@npm:*, @types/node@npm:20.4.7":
   version: 20.4.7
   resolution: "@types/node@npm:20.4.7"
   checksum: 2b71a26e80d96ce5c7c5d8cde2227adbacc9f50bfc9a60c45f96b2604ff6e60f7ba02cb7b24efd999e0a2ba25097680237b2d16a6f37082ed4136689e7976f12
@@ -3120,21 +3113,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"acorn@npm:^8.4.1":
+"acorn@npm:^8.4.1, acorn@npm:^8.5.0, acorn@npm:^8.8.2, acorn@npm:^8.9.0":
   version: 8.10.0
   resolution: "acorn@npm:8.10.0"
   bin:
     acorn: bin/acorn
   checksum: 5de0f8f7507bdd36c764431cb91c97d99ba15b6f04dbfe4375151aff3caf9566e3c98d340f128a56a5fa930164d7be12c93d8f0f0fe795b9b310888a781c789c
-  languageName: node
-  linkType: hard
-
-"acorn@npm:^8.5.0, acorn@npm:^8.8.2, acorn@npm:^8.9.0":
-  version: 8.9.0
-  resolution: "acorn@npm:8.9.0"
-  bin:
-    acorn: bin/acorn
-  checksum: 82583d7017e93fbbf49b7fd808c7a41ea8756838f8477a7647c3fbb26482e7be98828e44e1a248bab45621057b35cc77d454b26f109b1461e755516d4278d35f
   languageName: node
   linkType: hard
 
