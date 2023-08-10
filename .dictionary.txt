@@ -21,6 +21,7 @@ gpgsign
 hmarr
 iife
 infile
+isequal
 jsonifiable
 keyid
 ksort

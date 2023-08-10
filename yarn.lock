@@ -1594,6 +1594,7 @@ __metadata:
     "@types/fs-extra": "npm:11.0.1"
     "@types/git-raw-commits": "npm:2.0.1"
     "@types/is-ci": "npm:3.0.0"
+    "@types/lodash.isequal": "npm:4.5.6"
     "@types/node-notifier": "npm:8.0.2"
     "@types/prettier": "npm:2.7.3"
     "@types/semver": "npm:7.5.0"
@@ -1614,7 +1615,6 @@ __metadata:
     conventional-recommended-bump: "npm:7.0.1"
     cross-env: "npm:7.0.3"
     cspell: "npm:7.0.0-alpha.2"
-    dequal: "npm:2.0.3"
     esbuild: "npm:0.19.0"
     eslint: "npm:8.46.0"
     eslint-config-prettier: "npm:9.0.0"
@@ -1638,6 +1638,7 @@ __metadata:
     is-ci: "npm:3.0.1"
     jsonc-eslint-parser: "npm:2.3.0"
     lint-staged: "npm:13.2.3"
+    lodash.isequal: "npm:4.5.0"
     mri: "npm:1.2.0"
     node-notifier: "npm:10.0.1"
     pkg-size: "npm:2.4.0"
@@ -2637,6 +2638,22 @@ __metadata:
   dependencies:
     "@types/node": "npm:*"
   checksum: 512b06e09f3e5e0f8e45323b54e8d5eb43367a88408812d320e3003cfdd5bd5f49bb13212a1ea66c111f20202b2c05cc72a00214c41668ed74abbe6cb06c76ab
+  languageName: node
+  linkType: hard
+
+"@types/lodash.isequal@npm:4.5.6":
+  version: 4.5.6
+  resolution: "@types/lodash.isequal@npm:4.5.6"
+  dependencies:
+    "@types/lodash": "npm:*"
+  checksum: fd828fc4362ca9ddb5502dcee45f9f21594ad8f27d7d9f8bb57ec3ecad9a00bc353c139cc9dd47c64e4b550386d83a16820c3de1e7f939216b1b1ecd4db88b97
+  languageName: node
+  linkType: hard
+
+"@types/lodash@npm:*":
+  version: 4.14.197
+  resolution: "@types/lodash@npm:4.14.197"
+  checksum: 3e2b11acbb2ed88123127757bba04c193682c9cb4cfa644432cb7c4eccb7799fd2d651ca542391916fe3e87c01cee5f15e4b7772a1a92d16b95cf4bd70074e6c
   languageName: node
   linkType: hard
 
@@ -7048,6 +7065,13 @@ __metadata:
   version: 4.3.0
   resolution: "lodash.camelcase@npm:4.3.0"
   checksum: 773d36b52707814ad5b6880fe8ccefa1a490a69cb5d233b9600e00a310ef64b639f56760e383743ac06901f2c073ee4c317b19896397bf1cf94d1cbcf2706923
+  languageName: node
+  linkType: hard
+
+"lodash.isequal@npm:4.5.0":
+  version: 4.5.0
+  resolution: "lodash.isequal@npm:4.5.0"
+  checksum: d413585fd1dbcb6ebed6d9d98a7fe5e10cc6f653b6676a61a69185aa1f6ae5b4aac1367a632db0ee46197ee1ab6aa5b7428c1721f9b5459a3623e0cc930b9b77
   languageName: node
   linkType: hard
 

@@ -6,7 +6,7 @@
 import type { PropertyDescriptor } from '#src/interfaces'
 import type { Optional } from '#src/types'
 import type { MatcherState, SyncExpectationResult } from '@vitest/expect'
-import { dequal } from 'dequal'
+import isEqual from 'lodash.isequal'
 
 /**
  * Asserts `target` has its own property descriptor for the given `key`.
@@ -62,7 +62,7 @@ function descriptor<T = any>(
         actual ? `${this.isNot ? 'not ' : ''}deeply equal ${expected}` : ''
       ].join(' ')
     },
-    pass: dequal(actual, descriptor)
+    pass: isEqual(actual, descriptor)
   }
 }
 

@@ -3,9 +3,13 @@
   "description": "TypeScript-friendly utilities",
   "version": "6.0.0-alpha.18",
   "keywords": [
+    "clone",
     "deep",
+    "deep-clone",
+    "deep-equal",
     "definitions",
     "enums",
+    "equal",
     "get",
     "interfaces",
     "partial",
@@ -81,9 +85,6 @@
     "typecheck": "vitest typecheck --run",
     "typecheck:watch": "vitest typecheck"
   },
-  "dependencies": {
-    "dequal": "2.0.3"
-  },
   "devDependencies": {
     "@arethetypeswrong/cli": "0.7.1",
     "@commitlint/cli": "17.7.0",
@@ -109,6 +110,7 @@
     "@types/fs-extra": "11.0.1",
     "@types/git-raw-commits": "2.0.1",
     "@types/is-ci": "3.0.0",
+    "@types/lodash.isequal": "4.5.6",
     "@types/node-notifier": "8.0.2",
     "@types/prettier": "2.7.3",
     "@types/semver": "7.5.0",
@@ -152,6 +154,7 @@
     "is-ci": "3.0.1",
     "jsonc-eslint-parser": "2.3.0",
     "lint-staged": "13.2.3",
+    "lodash.isequal": "4.5.0",
     "mri": "1.2.0",
     "node-notifier": "10.0.1",
     "pkg-size": "2.4.0",

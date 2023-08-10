@@ -43,6 +43,10 @@ updates:
           - conventional-changelog-core
           - conventional-changelog-writer
           - conventional-recommended-bump
+      lodash:
+        patterns:
+          - '@types/lodash.*'
+          - lodash.*
       typescript-eslint:
         patterns:
           - '@typescript-eslint/*'

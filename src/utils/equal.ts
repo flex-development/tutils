@@ -3,35 +3,178 @@
  * @module tutils/utils/equal
  */
 
-import type { Fn, Nilable, PropertyKey } from '#src/types'
-import { dequal } from 'dequal'
-import isFunction from './is-function'
+import type {
+  Fn,
+  Nilable,
+  Objectify,
+  PropertyKey,
+  TypedArray
+} from '#src/types'
+import cast from './cast'
+import hasOwn from './has-own'
+import identity from './identity'
+import isArray from './is-array'
+import isArrayBuffer from './is-array-buffer'
+import isDataView from './is-data-view'
+import isDate from './is-date'
+import isMap from './is-map'
+import isObjectLike from './is-object-like'
+import isRegExp from './is-reg-exp'
+import isSet from './is-set'
+import isTypedArray from './is-typed-array'
+import iterate from './iterate'
 
 /**
- * Returns a boolean indicating if values `a` and `b` are deeply equal.
+ * Checks if two values are deeply equal.
  *
- * An `identity` function can be used to convert either value to a unique key.
- * If provided, items with the same identity key will be considered equal.
- *
- * @see https://github.com/lukeed/dequal
+ * A `customizer` can be used to map values before comparison. It **will not**
+ * be called with nested property values.
  *
  * @todo examples
  *
- * @template A - First comparison value type
- * @template B - Second comparison value type
- * @template K - Identity key type
+ * @template T - Target value type
+ * @template U - Comparison value type
+ * @template H - Customized value type
  *
- * @param {A} a - First comparison value
- * @param {B} b - Second comparison value
- * @param {Nilable<Fn<[A | B], K>>} [identity] - Identity key function
+ * @param {T} a - Target value
+ * @param {U} b - Comparison value
+ * @param {Nilable<Fn<[T | U], H>>} [customizer=identity] - Value customizer
  * @return {boolean} `true` if `a` and `b` are deeply equal
  */
-const equal = <A, B, K extends PropertyKey = PropertyKey>(
-  a: A,
-  b: B,
-  identity?: Nilable<Fn<[A | B], K>>
+const equal = <T, U, H = PropertyKey>(
+  a: T,
+  b: U,
+  customizer?: Nilable<Fn<[T | U], H>>
 ): boolean => {
-  return isFunction(identity) ? dequal(identity(a), identity(b)) : dequal(a, b)
+  /**
+   * Compared values cache.
+   *
+   * @const {WeakMap<Objectify<any>, Objectify<any>>} cache
+   */
+  const cache: WeakMap<Objectify<any>, Objectify<any>> = new WeakMap()
+
+  /**
+   * Returns an array containing own properties.
+   *
+   * @param {Objectify<any>} obj - Target object
+   * @return {(string | symbol)[]} Own properties array
+   */
+  const owned = (obj: Objectify<any>): (string | symbol)[] => {
+    return [
+      ...Object.getOwnPropertySymbols(obj),
+      ...Object.getOwnPropertyNames(obj)
+    ]
+  }
+
+  /**
+   * Returns a boolean indicating if `a` and `b` are deeply equal.
+   *
+   * @param {unknown} a - Target value
+   * @param {unknown} b - Comparison value
+   * @return {boolean} `true` if `a` and `b` are deeply equal
+   */
+  const dequal = (a: unknown, b: unknown): boolean => {
+    // exit early if a and b are strictly equal
+    if (a === b) return true
+
+    // exit early if a or b is not object like
+    if (!isObjectLike(a) || !isObjectLike(b)) return a !== a && b !== b
+
+    // exit early on constructor mismatch
+    if (a.constructor !== b.constructor) return false
+
+    // compare cyclic values
+    if (cache.get(a) && cache.get(b)) {
+      return cache.get(a) === b && cache.get(b) === a
+    }
+
+    // cache objects
+    cache.set(a, b)
+    cache.set(b, a)
+
+    // compare arrays
+    if (isArray(a) && isArray(b)) {
+      return a.length === b.length
+        ? iterate(a.length, true, (acc: boolean, i: number) => {
+            return acc && dequal(cast<unknown[]>(a)[i], cast<unknown[]>(b)[i])
+          })
+        : false
+    }
+
+    // compare array buffers
+    if (isArrayBuffer(a) && isArrayBuffer(b)) {
+      return dequal(new Uint8Array(a), new Uint8Array(b))
+    }
+
+    // compare data views
+    if (isDataView(a) && isDataView(b)) {
+      return a.byteLength === b.byteLength
+        ? iterate(a.byteLength, true, (acc: boolean, i: number) => {
+            return (
+              acc &&
+              cast<DataView>(a).getInt8(i) === cast<DataView>(b).getInt8(i)
+            )
+          })
+        : false
+    }
+
+    // compare dates
+    if (isDate(a) && isDate(b)) return a.getTime() === b.getTime()
+
+    // compare maps
+    if (isMap(a) && isMap(b)) {
+      return a.size === b.size
+        ? [...a.entries()].reduce((acc, [key, value]) => {
+            return acc && isMap(b) && b.has(key) && dequal(value, b.get(key))
+          }, true)
+        : false
+    }
+
+    // compare regular expressions
+    if (isRegExp(a) && isRegExp(b)) return a.toString() === b.toString()
+
+    // compare sets
+    if (isSet(a) && isSet(b)) {
+      return a.size === b.size
+        ? [...a].reduce<boolean>((acc, value) => {
+            return acc && [...cast<Set<unknown>>(b)].some(v => dequal(value, v))
+          }, true)
+        : false
+    }
+
+    // compare typed arrays
+    if (isTypedArray(a) && isTypedArray(b)) {
+      return a.length === b.length
+        ? iterate(a.length, true, (acc: boolean, i: number) => {
+            return acc && cast<TypedArray>(a)[i] === cast<TypedArray>(b)[i]
+          })
+        : false
+    }
+
+    /**
+     * Own properties of {@linkcode a}.
+     *
+     * @const {(string | symbol)[]} properties
+     */
+    const properties: (string | symbol)[] = owned(a)
+
+    // compare property values
+    switch (true) {
+      case properties.length !== owned(b).length:
+        return false
+      default:
+        for (const p of properties) {
+          if (p === 'stack' && a instanceof Error) continue
+          if (!hasOwn(b, p)) return false
+          if (!dequal(Reflect.get(a, p), Reflect.get(b, p))) return false
+        }
+    }
+
+    return true
+  }
+
+  customizer ??= cast<Fn<[T | U], H>>(identity)
+  return dequal(customizer(a), customizer(b))
 }
 
 export default equal
