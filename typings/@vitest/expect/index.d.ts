@@ -1,7 +1,10 @@
 import {} from '@vitest/expect'
 
 declare module '@vitest/expect' {
-  import type { PropertyDescriptor } from '@flex-development/tutils'
+  import type {
+    OwnPropertyKey,
+    PropertyDescriptor
+  } from '@flex-development/tutils'
 
   interface Assertion<T = any> {
     /**
@@ -11,12 +14,12 @@ declare module '@vitest/expect' {
      *
      * @template U - Property value type
      *
-     * @param {string | symbol} key - Property to check
+     * @param {OwnPropertyKey} key - Property to check
      * @param {PropertyDescriptor<U>} descriptor - Property descriptor object
      * @return {Assertion<T>} Assertion object
      */
     descriptor<U = any>(
-      key: string | symbol,
+      key: OwnPropertyKey,
       descriptor: PropertyDescriptor<U>
     ): Assertion<T>
   }

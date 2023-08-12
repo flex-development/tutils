@@ -3,7 +3,12 @@
  * @module tutils/utils/properties
  */
 
-import type { Nilable, PropertyKey, Stringify } from '#src/types'
+import type {
+  Nilable,
+  OwnPropertyKey,
+  PropertyKey,
+  Stringify
+} from '#src/types'
 import cast from './cast'
 import enumerable from './enumerable'
 import type PropertiesOptions from './properties.options'
@@ -14,7 +19,9 @@ import select from './select'
  *
  * @template K - Property key type
  */
-type Properties<K extends PropertyKey> = K extends symbol ? K : Stringify<K>
+type Properties<K extends PropertyKey> = K extends OwnPropertyKey
+  ? K
+  : Stringify<K>
 
 /**
  * Returns an array containing own properties of a given target value.

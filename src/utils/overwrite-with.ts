@@ -3,7 +3,7 @@
  * @module tutils/utils/overwriteWith
  */
 
-import type { Fn, ObjectCurly, Overwrite } from '#src/types'
+import type { Fn, ObjectCurly, Overwrite, OwnPropertyKey } from '#src/types'
 import cast from './cast'
 import clone from './clone'
 import define from './define'
@@ -16,10 +16,10 @@ import properties from './properties'
  *
  * @param {any} outgoing - Outgoing property value
  * @param {any} incoming - Incoming property value from source object
- * @param {string | symbol} key - Current property key
+ * @param {OwnPropertyKey} key - Current property key
  * @return {any} New property value
  */
-type OverwriteCustomizer = Fn<[any, any, string | symbol]>
+type OverwriteCustomizer = Fn<[any, any, OwnPropertyKey]>
 
 /**
  * Assigns own properties from one or more `source` objects to a destination

@@ -15,6 +15,7 @@ import type Keyof from './keyof'
 import type Length from './length'
 import type Objectify from './objectify'
 import type Primitive from './primitive'
+import type OwnPropertyKey from './property-key-own'
 import type Split from './split'
 import type Stringify from './stringify'
 import type Writable from './writable'
@@ -41,9 +42,9 @@ type Spread<T> = IsNever<T> extends true
   : T extends unknown
   ? Objectify<
       IsAny<T> extends true
-        ? Record<string | symbol, T>
+        ? Record<OwnPropertyKey, T>
         : IsEqual<T, object> extends true
-        ? Record<string | symbol, any>
+        ? Record<OwnPropertyKey, any>
         : T extends string
         ? Split<T, EmptyString>
         : T extends Primitive

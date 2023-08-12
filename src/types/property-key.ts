@@ -6,8 +6,8 @@
 import type NumberString from './number-string'
 
 /**
- * Property key types.
+ * A property key.
  */
-type PropertyKey = NumberString | symbol
+type PropertyKey = Extract<NumberString | symbol, any>
 
 export type { PropertyKey as default }

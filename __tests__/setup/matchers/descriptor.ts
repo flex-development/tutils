@@ -4,7 +4,7 @@
  */
 
 import type { PropertyDescriptor } from '#src/interfaces'
-import type { Optional } from '#src/types'
+import type { Optional, OwnPropertyKey } from '#src/types'
 import type { MatcherState, SyncExpectationResult } from '@vitest/expect'
 import isEqual from 'lodash.isequal'
 
@@ -18,14 +18,14 @@ import isEqual from 'lodash.isequal'
  * @this {MatcherState}
  *
  * @param {unknown} target - Value to look for `key` in
- * @param {string | symbol} key - Property to check
+ * @param {OwnPropertyKey} key - Property to check
  * @param {PropertyDescriptor<T>} descriptor - Expected property descriptor
  * @return {SyncExpectationResult} Expectation result
  */
 function descriptor<T = any>(
   this: MatcherState,
   target: unknown,
-  key: string | symbol,
+  key: OwnPropertyKey,
   descriptor: PropertyDescriptor<T>
 ): SyncExpectationResult {
   /**

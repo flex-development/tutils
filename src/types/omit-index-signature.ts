@@ -12,10 +12,10 @@ import type Objectify from './objectify'
  * @example
  *  type X = OmitIndexSignature<{
  *    [x: Numeric]: number
+ *    [x: OwnPropertyKey]: bigint
  *    [x: Stringify<bigint>]: bigint
- *    [x: number]: number
- *    [x: string | symbol]: any
  *    [x: `data.${string}`]: string
+ *    [x: number]: number
  *    hello: 'world'
  *    foo?: 'bar'
  *  }>

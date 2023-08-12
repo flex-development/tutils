@@ -1,4 +1,7 @@
-import type { PropertyDescriptor } from '@flex-development/tutils'
+import type {
+  OwnPropertyKey,
+  PropertyDescriptor
+} from '@flex-development/tutils'
 
 declare global {
   namespace Chai {
@@ -10,12 +13,12 @@ declare global {
        *
        * @template T - Property value type
        *
-       * @param {string | symbol} key - Property to check
+       * @param {OwnPropertyKey} key - Property to check
        * @param {PropertyDescriptor<T>} descriptor - Property descriptor object
        * @return {Assertion} Assertion object
        */
       descriptor<T = any>(
-        key: string | symbol,
+        key: OwnPropertyKey,
         descriptor: PropertyDescriptor<T>
       ): Assertion
     }

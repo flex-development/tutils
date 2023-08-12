@@ -13,6 +13,7 @@ import type Objectify from '../objectify'
 import type Omit from '../omit'
 import type TestSubject from '../omit-index-signature'
 import type PropertyKey from '../property-key'
+import type OwnPropertyKey from '../property-key-own'
 import type Stringify from '../stringify'
 import type Times from '../times'
 
@@ -44,9 +45,9 @@ describe('unit-d:types/OmitIndexSignature', () => {
       type T = {
         [x: Join<['data', string], Dot>]: string
         [x: Numeric]: number
+        [x: OwnPropertyKey]: any
         [x: Stringify<bigint>]: string
         [x: number]: number
-        [x: string | symbol]: any
         hello: 'world'
         foo?: 'bar'
       }
@@ -181,7 +182,7 @@ describe('unit-d:types/OmitIndexSignature', () => {
       describe('T extends object', () => {
         it('should remove index signatures from T', () => {
           // Arrange
-          type T = string & { [x: string | symbol]: any }
+          type T = string & { [x: OwnPropertyKey]: any }
           type Expect = Omit<Objectify<T>, PropertyKey>
 
           // Expect

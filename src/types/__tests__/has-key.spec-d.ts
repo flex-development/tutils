@@ -15,6 +15,7 @@ import type Numeric from '../numeric'
 import type NegativeNumeric from '../numeric-negative'
 import type { tag as opaque } from '../opaque'
 import type PropertyKey from '../property-key'
+import type OwnPropertyKey from '../property-key-own'
 import type Stringify from '../stringify'
 
 describe('unit-d:types/HasKey', () => {
@@ -175,7 +176,7 @@ describe('unit-d:types/HasKey', () => {
         type T = string
 
         it('should equal false if K cannot index T', () => {
-          expectTypeOf<TestSubject<T, string | symbol>>().toEqualTypeOf<false>()
+          expectTypeOf<TestSubject<T, OwnPropertyKey>>().toEqualTypeOf<false>()
         })
 
         it('should equal true if K is explicitly defined on T', () => {
@@ -246,7 +247,7 @@ describe('unit-d:types/HasKey', () => {
       type T = Vehicle[]
 
       it('should equal false if K cannot index T', () => {
-        expectTypeOf<TestSubject<T, string | symbol>>().toEqualTypeOf<false>()
+        expectTypeOf<TestSubject<T, OwnPropertyKey>>().toEqualTypeOf<false>()
       })
 
       it('should equal true if K is explicitly defined on T', () => {

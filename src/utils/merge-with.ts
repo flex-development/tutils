@@ -3,7 +3,13 @@
  * @module tutils/utils/mergeWith
  */
 
-import type { Fn, Merge, ObjectCurly, Objectify } from '#src/types'
+import type {
+  Fn,
+  Merge,
+  ObjectCurly,
+  Objectify,
+  OwnPropertyKey
+} from '#src/types'
 import cast from './cast'
 import clone from './clone'
 import define from './define'
@@ -16,10 +22,10 @@ import properties from './properties'
  *
  * @param {any} outgoing - Outgoing property value
  * @param {any} incoming - Incoming property value from source object
- * @param {string | symbol} key - Current property key
+ * @param {OwnPropertyKey} key - Current property key
  * @return {any} New property value
  */
-type MergeCustomizer = Fn<[any, any, string | symbol]>
+type MergeCustomizer = Fn<[any, any, OwnPropertyKey]>
 
 /**
  * Recursively merges own properties of one or more `source` objects into a

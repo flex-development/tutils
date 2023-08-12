@@ -202,7 +202,7 @@ describe('unit-d:types/Get', () => {
     })
   })
 
-  describe('K extends string | symbol', () => {
+  describe('K extends OwnPropertyKey', () => {
     it('should equal F if K cannot index T', () => {
       // Arrange
       type K = typeof opaque | 'vrm'

@@ -4,7 +4,12 @@
  */
 
 import type { PropertyDescriptor } from '#src/interfaces'
-import type { Nilable, ObjectCurly, Objectify } from '#src/types'
+import type {
+  Nilable,
+  ObjectCurly,
+  Objectify,
+  OwnPropertyKey
+} from '#src/types'
 import alphabetize from './alphabetize'
 import cast from './cast'
 import define from './define'
@@ -96,9 +101,9 @@ const ksort = <T extends Objectify<any>>(
     /**
      * Property names mapped to property descriptors.
      *
-     * @const {[string | symbol,  PropertyDescriptor][]}
+     * @const {[OwnPropertyKey,  PropertyDescriptor][]}
      */
-    const props: [string | symbol, PropertyDescriptor][] = [
+    const props: [OwnPropertyKey, PropertyDescriptor][] = [
       ...alphabetize(Object.getOwnPropertyNames(object), identity, options),
       ...Object.getOwnPropertySymbols(object)
     ].map(key => [key, descriptor(object, key)])

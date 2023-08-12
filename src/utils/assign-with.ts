@@ -3,7 +3,13 @@
  * @module tutils/utils/assignWith
  */
 
-import type { Assign, Fn, ObjectCurly, Objectify } from '#src/types'
+import type {
+  Assign,
+  Fn,
+  ObjectCurly,
+  Objectify,
+  OwnPropertyKey
+} from '#src/types'
 import cast from './cast'
 import clone from './clone'
 import define from './define'
@@ -15,10 +21,10 @@ import properties from './properties'
  *
  * @param {any} outgoing - Outgoing property value
  * @param {any} incoming - Incoming property value from source object
- * @param {string | symbol} key - Current property key
+ * @param {OwnPropertyKey} key - Current property key
  * @return {any} New property value
  */
-type AssignCustomizer = Fn<[any, any, string | symbol]>
+type AssignCustomizer = Fn<[any, any, OwnPropertyKey]>
 
 /**
  * Assigns own properties of one or more `source` objects to a target object.

@@ -4,6 +4,7 @@
  */
 
 import type Primitive from './primitive'
+import type OwnPropertyKey from './property-key-own'
 
 /**
  * A plain old JavaScript object (POJO).
@@ -11,7 +12,7 @@ import type Primitive from './primitive'
  * @see https://masteringjs.io/tutorials/fundamentals/pojo
  */
 type ObjectPlain = {
-  [x: string | symbol]: Primitive | object
+  [x: OwnPropertyKey]: Primitive | object
   readonly [Symbol.hasInstance]?: never
 }
 

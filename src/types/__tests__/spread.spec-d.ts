@@ -13,6 +13,7 @@ import type Numeric from '../numeric'
 import type Objectify from '../objectify'
 import type { tag as opaque } from '../opaque'
 import type Optional from '../optional'
+import type OwnPropertyKey from '../property-key-own'
 import type TestSubject from '../spread'
 import type Writable from '../writable'
 
@@ -34,10 +35,10 @@ describe('unit-d:types/Spread', () => {
   })
 
   describe('IsAny<T> extends true', () => {
-    it('should equal { [x: string | symbol]: T }', () => {
+    it('should equal { [x: OwnPropertyKey]: T }', () => {
       // Arrange
       type T = any
-      type Expect = { [x: string | symbol]: T }
+      type Expect = { [x: OwnPropertyKey]: T }
 
       // Expect
       expectTypeOf<TestSubject<T>>().toEqualTypeOf<Expect>()
@@ -53,9 +54,9 @@ describe('unit-d:types/Spread', () => {
     })
 
     describe('IsEqual<T, object> extends true', () => {
-      it('should equal { [x: string | symbol]: any }', () => {
+      it('should equal { [x: OwnPropertyKey]: any }', () => {
         // Arrange
-        type Expect = { [x: string | symbol]: any }
+        type Expect = { [x: OwnPropertyKey]: any }
 
         // Expect
         expectTypeOf<TestSubject<object>>().toEqualTypeOf<Expect>()

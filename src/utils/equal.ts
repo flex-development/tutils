@@ -7,6 +7,7 @@ import type {
   Fn,
   Nilable,
   Objectify,
+  OwnPropertyKey,
   PropertyKey,
   TypedArray
 } from '#src/types'
@@ -57,9 +58,9 @@ const equal = <T, U, H = PropertyKey>(
    * Returns an array containing own properties.
    *
    * @param {Objectify<any>} obj - Target object
-   * @return {(string | symbol)[]} Own properties array
+   * @return {OwnPropertyKey[]} Own properties array
    */
-  const owned = (obj: Objectify<any>): (string | symbol)[] => {
+  const owned = (obj: Objectify<any>): OwnPropertyKey[] => {
     return [
       ...Object.getOwnPropertySymbols(obj),
       ...Object.getOwnPropertyNames(obj)
@@ -154,9 +155,9 @@ const equal = <T, U, H = PropertyKey>(
     /**
      * Own properties of {@linkcode a}.
      *
-     * @const {(string | symbol)[]} properties
+     * @const {OwnPropertyKey[]} properties
      */
-    const properties: (string | symbol)[] = owned(a)
+    const properties: OwnPropertyKey[] = owned(a)
 
     // compare property values
     switch (true) {
