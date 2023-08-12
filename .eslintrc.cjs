@@ -29,6 +29,12 @@ const config = {
       }
     },
     {
+      files: ['src/types/decorator-class.ts', 'src/types/decorator-method.ts'],
+      rules: {
+        '@typescript-eslint/no-invalid-void-type': 0
+      }
+    },
+    {
       files: ['src/utils/__tests__/ksort.spec.ts'],
       rules: {
         'sort-keys': 0

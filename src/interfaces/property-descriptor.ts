@@ -52,10 +52,10 @@ interface PropertyDescriptor<T = any> {
    * being assigned to the property) and with `this` set to the object through
    * which the property is assigned.
    *
-   * @param {T} v - Value being assigned to property
+   * @param {T} value - Value being assigned to property
    * @return {void} Nothing when complete
    */
-  set?(v: T): void
+  set?(value: T): void
 
   /**
    * Value associated with the property.

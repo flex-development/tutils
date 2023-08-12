@@ -845,6 +845,7 @@ const config = {
         '@typescript-eslint/consistent-indexed-object-style': 0,
         '@typescript-eslint/no-base-to-string': 0,
         '@typescript-eslint/no-empty-function': 0,
+        '@typescript-eslint/no-invalid-void-type': 0,
         '@typescript-eslint/no-unused-expressions': 0,
         '@typescript-eslint/prefer-ts-expect-error': 0,
         '@typescript-eslint/require-await': 0,
