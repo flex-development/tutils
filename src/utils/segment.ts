@@ -6,8 +6,6 @@
 import type { Nilable, Segment } from '#src/types'
 import cast from './cast'
 import DOT from './dot'
-import isEmptyString from './is-empty-string'
-import isNIL from './is-nil'
 import split from './split'
 
 /**
@@ -24,8 +22,6 @@ import split from './split'
 const segment = <T extends Nilable<string>>(
   path: T,
   limit?: Nilable<number>
-): Segment<T> => {
-  return cast(isEmptyString(path) || isNIL(path) ? [] : split(path, DOT, limit))
-}
+): Segment<T> => cast(!path ? [] : split(path, DOT, limit))
 
 export default segment

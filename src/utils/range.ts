@@ -5,6 +5,7 @@
 
 import type { Fn, Nilable } from '#src/types'
 import cast from './cast'
+import constant from './constant'
 import isFunction from './is-function'
 import isNIL from './is-nil'
 
@@ -36,8 +37,8 @@ function* range<T = number>(
   map ??= (index: number) => cast(index)
   step = step ??= 1
 
-  for (let i = !isNIL(max) ? min : 0; i <= (max ??= min); i += step) {
-    yield cast((isFunction<[number], T>(map) ? map : () => map)(i))
+  for (let i = isNIL(max) ? 0 : min; i <= (max ??= min); i += step) {
+    yield cast((isFunction(map) ? map : constant(map))(i))
     if (i + step > max) break
   }
 }

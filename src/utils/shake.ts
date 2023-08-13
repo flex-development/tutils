@@ -37,7 +37,7 @@ const shake = <T extends ObjectCurly, F = undefined>(
   filter: Fn<[Values<T>[number]], boolean> = isUndefined
 ): Shake<T, F> => {
   return properties(obj).reduce<Shake<T, F>>((acc, key) => {
-    filter(obj[cast<keyof typeof obj>(key)]) && Reflect.deleteProperty(acc, key)
+    filter(obj[cast<keyof T>(key)]) && Reflect.deleteProperty(acc, key)
     return acc
   }, cast(obj))
 }

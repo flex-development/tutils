@@ -3,7 +3,7 @@
  * @module tutils/utils/isCapitalized
  */
 
-import isEmptyString from './is-empty-string'
+import at from './at'
 import isString from './is-string'
 import uppercase from './uppercase'
 
@@ -22,10 +22,7 @@ import uppercase from './uppercase'
 const isCapitalized = <T extends string>(
   value: unknown
 ): value is Capitalize<T> => {
-  return (
-    isEmptyString(value) ||
-    (isString(value) && value.startsWith(uppercase(value.charAt(0))))
-  )
+  return isString(value) && value.startsWith(uppercase(at(value, 0, '')))
 }
 
 export default isCapitalized

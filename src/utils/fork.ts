@@ -4,6 +4,7 @@
  */
 
 import type { Predicate } from '#src/types'
+import ifelse from './ifelse'
 
 /**
  * Splits an array into two groups.
@@ -39,7 +40,7 @@ const fork = <T extends readonly unknown[]>(
 
   // split array by condition
   for (const [index, item] of arr.entries()) {
-    ;(condition(item, index, arr) ? pass : fail).push(item)
+    ifelse(condition(item, index, arr), pass, fail).push(item)
   }
 
   return [pass, fail]
