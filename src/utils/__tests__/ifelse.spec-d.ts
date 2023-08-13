@@ -3,17 +3,19 @@
  * @module tutils/utils/tests/unit-d/ifelse
  */
 
-import type { Booleanish } from '#src/types'
+import type Vehicle from '#fixtures/types/vehicle'
+import type { Ifelse, Integer, NaN, Partial } from '#src/types'
 import type testSubject from '../ifelse'
 
 describe('unit-d:utils/ifelse', () => {
-  it('should return F | T', () => {
+  it('should return Ifelse<U, T, F>', () => {
     // Arrange
-    type U = Booleanish
-    type F = 0
-    type T = 1
+    type U = Partial<Vehicle>['vin' | 'year']
+    type F = NaN
+    type T = Integer
+    type Expect = Ifelse<U, T, F>
 
     // Expect
-    expectTypeOf<typeof testSubject<U, T, F>>().returns.toEqualTypeOf<F | T>()
+    expectTypeOf<typeof testSubject<U, T, F>>().returns.toEqualTypeOf<Expect>()
   })
 })
