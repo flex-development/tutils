@@ -3,7 +3,7 @@
  * @module tutils/utils/select
  */
 
-import type { Mapper, Nilable, Predicate, Values } from '#src/types'
+import type { ArrayPredicate, Mapper, Nilable, Values } from '#src/types'
 import cast from './cast'
 import constant from './constant'
 
@@ -12,8 +12,8 @@ import constant from './constant'
  *
  * If `filter` and `map` are omitted, all array items will be selected.
  *
+ * @see {@linkcode ArrayPredicate}
  * @see {@linkcode Mapper}
- * @see {@linkcode Predicate}
  *
  * @todo examples
  *
@@ -21,13 +21,13 @@ import constant from './constant'
  * @template U - Filtered and mapped array item type
  *
  * @param {T} arr - Array to select from
- * @param {Nilable<Predicate<NonNullable<T>>>} [filter] - Filter function
+ * @param {Nilable<ArrayPredicate<NonNullable<T>>>} [filter] - Filter function
  * @param {Nilable<Mapper<NonNullable<T>, U>>} [map] - Map function
  * @return {U[]} Filtered and mapped array
  */
 const select = <T extends Nilable<readonly unknown[]>, U = Values<T>[number]>(
   arr: T,
-  filter?: Nilable<Predicate<NonNullable<T>>>,
+  filter?: Nilable<ArrayPredicate<NonNullable<T>>>,
   map?: Nilable<Mapper<NonNullable<T>, U>>
 ): U[] => {
   return [...(arr ??= cast([])!)].reduceRight<U[]>((acc, curr, i) => {

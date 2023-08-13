@@ -3,12 +3,12 @@
  * @module tutils/utils/tests/functional/select
  */
 
-import type { Fn } from '#src/types'
+import type { Predicate } from '#src/types'
 import testSubject from '../select'
 
 describe('functional:utils/select', () => {
   let array: number[]
-  let filter: Fn<[number], boolean>
+  let filter: Predicate<[number]>
 
   beforeAll(() => {
     array = [0, 1, 2, 3, 4, 5]

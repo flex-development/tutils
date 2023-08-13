@@ -3,7 +3,7 @@
  * @module tutils/utils/count
  */
 
-import type { Predicate } from '#src/types'
+import type { ArrayPredicate } from '#src/types'
 import constant from './constant'
 
 /**
@@ -16,12 +16,12 @@ import constant from './constant'
  * @template T - Array to query
  *
  * @param {T} arr - Array to query
- * @param {Predicate<T>} [condition=constant(true)] - Condition function
+ * @param {ArrayPredicate<T>} [condition=constant(true)] - Condition function
  * @return {number} Number of items in `arr` that meet `condition`
  */
 const count = <T extends readonly unknown[]>(
   arr: T,
-  condition: Predicate<T> = constant(true)
+  condition: ArrayPredicate<T> = constant(true)
 ): number => {
   return arr.reduce<number>((acc, curr, index) => {
     return condition(curr, index, arr) ? ++acc : acc

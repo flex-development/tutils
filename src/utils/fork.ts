@@ -3,7 +3,7 @@
  * @module tutils/utils/fork
  */
 
-import type { Predicate } from '#src/types'
+import type { ArrayPredicate } from '#src/types'
 import ifelse from './ifelse'
 
 /**
@@ -17,12 +17,12 @@ import ifelse from './ifelse'
  * @template T - Array to split
  *
  * @param {T} arr - Array to split
- * @param {Predicate<T>} condition - Condition function
+ * @param {ArrayPredicate<T>} condition - Condition function
  * @return {[T[number][], T[number][]]} Condition groups
  */
 const fork = <T extends readonly unknown[]>(
   arr: T,
-  condition: Predicate<T>
+  condition: ArrayPredicate<T>
 ): [T[number][], T[number][]] => {
   /**
    * Items in {@linkcode arr} that do not meet {@linkcode condition}.

@@ -3,7 +3,7 @@
  * @module tutils/utils/fallback
  */
 
-import type { Fallback, Fn, TypeGuard } from '#src/types'
+import type { Fallback, Predicate, TypeGuard } from '#src/types'
 import cast from './cast'
 import ifelse from './ifelse'
 import isUndefined from './is-undefined'
@@ -16,7 +16,7 @@ import isUndefined from './is-undefined'
  * @template T - Target value type
  * @template C - Fallback condition type
  */
-type Condition<T, C> = Fn<[T], boolean> | TypeGuard<C>
+type Condition<T, C> = Predicate<[T]> | TypeGuard<C>
 
 /**
  * Returns a `fallback` value if `target` meets the given fallback `condition`.

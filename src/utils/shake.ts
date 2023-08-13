@@ -3,7 +3,7 @@
  * @module tutils/utils/shake
  */
 
-import type { Fn, ObjectCurly, Shake, Values } from '#src/types'
+import type { ObjectCurly, Predicate, Shake, Values } from '#src/types'
 import cast from './cast'
 import isUndefined from './is-undefined'
 import properties from './properties'
@@ -29,12 +29,12 @@ import properties from './properties'
  * @template F - Key value filter
  *
  * @param {T} obj - Object to filter
- * @param {Fn<[Values<T>[number]], boolean>} [filter=isUndefined] - Value filter
+ * @param {Predicate<[Values<T>[number]]>} [filter=isUndefined] - Value filter
  * @return {Shake<T, F>} Filtered object
  */
 const shake = <T extends ObjectCurly, F = undefined>(
   obj: T,
-  filter: Fn<[Values<T>[number]], boolean> = isUndefined
+  filter: Predicate<[Values<T>[number]]> = isUndefined
 ): Shake<T, F> => {
   return properties(obj).reduce<Shake<T, F>>((acc, key) => {
     filter(obj[cast<keyof T>(key)]) && Reflect.deleteProperty(acc, key)
