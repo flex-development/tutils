@@ -41,6 +41,12 @@ const config = {
       }
     },
     {
+      files: ['src/utils/is-falsy.ts'],
+      rules: {
+        '@typescript-eslint/strict-boolean-expressions': 0
+      }
+    },
+    {
       files: ['src/utils/ksort.ts'],
       rules: {
         '@typescript-eslint/no-use-before-define': 0

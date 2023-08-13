@@ -4,6 +4,7 @@
  */
 
 import VEHICLE from '#fixtures/vehicle'
+import constant from '../constant'
 import testSubject from '../is-falsy'
 
 describe('unit:utils/isFalsy', () => {
@@ -13,7 +14,7 @@ describe('unit:utils/isFalsy', () => {
       [1],
       [true],
       [VEHICLE],
-      [() => 'hello, world']
+      [constant('hello, world')]
     ]
 
     // Act + Expect
