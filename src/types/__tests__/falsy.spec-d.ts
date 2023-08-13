@@ -5,6 +5,7 @@
 
 import type EmptyValue from '../empty-value'
 import type TestSubject from '../falsy'
+import type NaN from '../nan'
 
 describe('unit-d:types/Falsy', () => {
   it('should extract 0', () => {
@@ -17,6 +18,10 @@ describe('unit-d:types/Falsy', () => {
 
   it('should extract EmptyValue', () => {
     expectTypeOf<TestSubject>().extract<EmptyValue>().not.toBeNever()
+  })
+
+  it('should extract NaN', () => {
+    expectTypeOf<TestSubject>().extract<NaN>().not.toBeNever()
   })
 
   it('should extract false', () => {

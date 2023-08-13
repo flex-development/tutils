@@ -3,6 +3,7 @@
  * @module tutils/utils/isNaN
  */
 
+import type { NaN } from '#src/types'
 import isNumber from './is-number'
 
 /**
@@ -11,8 +12,10 @@ import isNumber from './is-number'
  * @todo examples
  *
  * @param {unknown} value - Value to check
- * @return {boolean} `true` if `value` is `Number.NaN`
+ * @return {value is NaN} `true` if `value` is `Number.NaN`
  */
-const isNaN = (value: unknown): boolean => isNumber(value) && value !== +value
+const isNaN = (value: unknown): value is NaN => {
+  return isNumber(value) && value !== +value
+}
 
 export default isNaN

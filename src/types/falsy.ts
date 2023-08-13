@@ -4,6 +4,7 @@
  */
 
 import type EmptyValue from './empty-value'
+import type NaN from './nan'
 
 /**
  * Falsy values union.
@@ -13,10 +14,14 @@ import type EmptyValue from './empty-value'
  * - `''`
  * - `0`
  * - `0n`
+ * - `NaN`
  * - `false`
  * - `null`
  * - `undefined`
+ *
+ * @see {@linkcode EmptyValue}
+ * @see {@linkcode NaN}
  */
-type Falsy = EmptyValue | 0 | 0n | false
+type Falsy = EmptyValue | NaN | 0 | 0n | false
 
 export type { Falsy as default }
