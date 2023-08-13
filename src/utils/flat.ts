@@ -5,6 +5,8 @@
 
 import type { Flat, Nilable } from '#src/types'
 import cast from './cast'
+import fallback from './fallback'
+import isNIL from './is-nil'
 
 /**
  * Creates a new array with all sub-array items concatenated recursively up to
@@ -28,6 +30,6 @@ const flat = <
 >(
   arr: T,
   depth?: D
-): Flat<T, D> => cast((arr ?? cast<NonNullable<T>>([])).flat(depth ?? 1))
+): Flat<T, D> => cast(fallback(arr, [], isNIL).flat(fallback(depth, 1, isNIL)))
 
 export default flat

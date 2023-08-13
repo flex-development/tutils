@@ -5,6 +5,7 @@
 
 import type { PropertyKey } from '#src/types'
 import descriptor from './descriptor'
+import fallback from './fallback'
 
 /**
  * Returns a boolean indicating if `key` is an enumerable own property of a
@@ -20,7 +21,7 @@ import descriptor from './descriptor'
  * @return {boolean} `true` if `key` is enumerable own property of `target`
  */
 const enumerable = <T, K extends PropertyKey>(target: T, key: K): boolean => {
-  return !!descriptor(target, key).enumerable
+  return fallback(descriptor(target, key).enumerable, false)
 }
 
 export default enumerable

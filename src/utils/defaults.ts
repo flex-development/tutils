@@ -6,7 +6,7 @@
 import type { Defaults, ObjectCurly, Objectify } from '#src/types'
 import assignWith from './assign-with'
 import cast from './cast'
-import isUndefined from './is-undefined'
+import fallback from './fallback'
 
 /**
  * Assigns own properties of one or more `source` objects to a target object for
@@ -34,7 +34,7 @@ const defaults = <T extends Objectify<any>, U extends readonly ObjectCurly[]>(
 ): Defaults<T, U> => {
   return cast(
     assignWith(
-      (curr: unknown, src: unknown) => (isUndefined(curr) ? src : curr),
+      (curr: unknown, src: unknown) => fallback(curr, src),
       base,
       ...source
     )

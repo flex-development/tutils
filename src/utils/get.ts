@@ -3,16 +3,16 @@
  * @module tutils/utils/get
  */
 
-import type { Get, ObjectCurly, PropertyKey } from '#src/types'
+import type { Get, Objectify, PropertyKey } from '#src/types'
 import at from './at'
 import cast from './cast'
+import fb from './fallback'
 import hasOwn from './has-own'
 import isArray from './is-array'
 import isNIL from './is-nil'
 import isNumeric from './is-numeric'
 import isString from './is-string'
 import isSymbol from './is-symbol'
-import isUndefined from './is-undefined'
 import select from './select'
 import split from './split'
 import trim from './trim'
@@ -59,12 +59,12 @@ const get = <T, K extends PropertyKey, F = undefined>(
       // reset indexed value
       ret =
         isNumeric(key) && (isArray(ret) || isString(ret))
-          ? at(cast<string | readonly unknown[]>(ret), +key)
-          : cast<ObjectCurly>(ret)[key]
+          ? at(cast<unknown[] | string>(ret), +key)
+          : cast<Objectify<any>>(ret)[key]
     }
   }
 
-  return cast(isUndefined(ret) ? fallback : ret)
+  return cast(fb(ret, fallback))
 }
 
 export default get

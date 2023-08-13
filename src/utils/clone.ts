@@ -8,6 +8,7 @@ import type { Class, Objectify } from '#src/types'
 import cast from './cast'
 import define from './define'
 import descriptor from './descriptor'
+import fallback from './fallback'
 import ifelse from './ifelse'
 import isArray from './is-array'
 import isArrayBuffer from './is-array-buffer'
@@ -117,7 +118,7 @@ const clone = <T>(value: T): T => {
     if (cache.has(obj)) return cast(cache.get(obj))
 
     // cache object and clone
-    cache.set(obj, (cloned = ifelse(cloned, cloned, cast({}))))
+    cache.set(obj, (cloned = fallback(cloned, cast({}))))
 
     // define own properties of initial object on cloned object
     for (const key of properties(obj)) {

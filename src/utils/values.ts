@@ -5,6 +5,8 @@
 
 import type { Values } from '#src/types'
 import cast from './cast'
+import fallback from './fallback'
+import isNIL from './is-nil'
 
 /**
  * Returns an array containing an object's own enumerable string-keyed property
@@ -27,7 +29,7 @@ import cast from './cast'
  * @return {Values<T>} Enumerable string-keyed property values
  */
 const values = <T>(obj: T): Values<T> => {
-  return cast(Object.values<NonNullable<T>>(obj ?? cast({})))
+  return cast(Object.values<NonNullable<T>>(cast(fallback(obj, {}, isNIL))))
 }
 
 export default values

@@ -3,9 +3,10 @@
  * @module tutils/utils/at
  */
 
-import type { At, Nilable, NumberLike, Optional } from '#src/types'
+import type { At, Nilable, NumberLike } from '#src/types'
 import cast from './cast'
-import isUndefined from './is-undefined'
+import fb from './fallback'
+import isNIL from './is-nil'
 
 /**
  * Returns the item or character in `target` value at `index`.
@@ -33,15 +34,6 @@ const at = <
   target: T,
   index: K,
   fallback?: F
-): At<T, K, F> => {
-  /**
-   * Item or character in {@linkcode target} at {@linkcode index}.
-   *
-   * @const {Optional<NonNullable<T>[number]>} ret
-   */
-  const ret: Optional<NonNullable<T>[number]> = (target ?? []).at(+index)
-
-  return cast(isUndefined(ret) ? fallback : ret)
-}
+): At<T, K, F> => cast(fb(fb(target, [], isNIL).at(+index), fallback))
 
 export default at

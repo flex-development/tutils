@@ -5,6 +5,7 @@
 
 import type { PropertyDescriptor } from '#src/interfaces'
 import type { PropertyKey } from '#src/types'
+import fallback from './fallback'
 
 /**
  * Returns an object describing the configuration of a specific property.
@@ -22,6 +23,8 @@ import type { PropertyKey } from '#src/types'
 const descriptor = <T = any>(
   target: unknown,
   key: PropertyKey
-): PropertyDescriptor<T> => Object.getOwnPropertyDescriptor(target, key) ?? {}
+): PropertyDescriptor<T> => {
+  return fallback(Object.getOwnPropertyDescriptor(target, key), {})
+}
 
 export default descriptor
