@@ -7,10 +7,13 @@ import type Vehicle from '#fixtures/types/vehicle'
 import type Dot from '../dot'
 import type EmptyArray from '../empty-array'
 import type EmptyString from '../empty-string'
+import type Fn from '../fn'
 import type Indices from '../indices'
 import type TestSubject from '../join'
+import type Joinable from '../joinable'
 import type NIL from '../nil'
 import type Nullable from '../nullable'
+import type { tag as opaque } from '../opaque'
 import type Optional from '../optional'
 
 describe('unit-d:types/Join', () => {
@@ -29,40 +32,78 @@ describe('unit-d:types/Join', () => {
     })
   })
 
-  describe('T extends readonly Joinable[]', () => {
-    type Vehicles = [Vehicle, Vehicle, Vehicle]
+  describe('T extends readonly unknown[]', () => {
+    describe('IsTuple<T> extends true', () => {
+      type Vehicles = [Vehicle, Vehicle, Vehicle]
 
-    it('should equal T.join(S)', () => {
-      // Arrange
-      type T1 = Readonly<EmptyArray>
-      type T2 = [1, 2, 3]
-      type T3 = [1n, 2n, 3n]
-      type T4 = [false, true, false, true]
-      type T5 = [Optional<'hello'>, NIL, Nullable<'world'>]
-      type T6 = ['foo', undefined, 'bar', null, 'baz']
-      type T7 = ['prefix', ...string[]]
-      type T8 = ['data', Indices<Vehicles>]
-      type T9 = [...T8, keyof Vehicle]
-      type E1 = EmptyString
-      type E2 = `${T2[0]}${Dot}${T2[1]}${Dot}${T2[2]}`
-      type E3 = E2
-      type E4 = `${T4[0]}${Dot}${T4[1]}${Dot}${T4[2]}${Dot}${T4[3]}`
-      type E5 = '..' | '..world' | 'hello..' | 'hello..world'
-      type E6 = `${T6[0]}${Dot}${Dot}${T6[2]}${Dot}${Dot}${T6[4]}`
-      type E7 = `${T7[0]}${Dot}${string}`
-      type E8 = `${T8[0]}${Dot}${Indices<Vehicles>}`
-      type E9 = `${E8}${Dot}${keyof Vehicle}`
+      describe('T extends Readonly<EmptyArray>', () => {
+        it('should equal EmptyString', () => {
+          // Arrange
+          type T1 = EmptyArray
+          type T2 = Readonly<T1>
 
-      // Expect
-      expectTypeOf<TestSubject<T1, Dot>>().toEqualTypeOf<E1>()
-      expectTypeOf<TestSubject<T2, Dot>>().toEqualTypeOf<E2>()
-      expectTypeOf<TestSubject<T3, Dot>>().toEqualTypeOf<E3>()
-      expectTypeOf<TestSubject<T4, Dot>>().toEqualTypeOf<E4>()
-      expectTypeOf<TestSubject<T5, Dot>>().toEqualTypeOf<E5>()
-      expectTypeOf<TestSubject<T6, Dot>>().toEqualTypeOf<E6>()
-      expectTypeOf<TestSubject<T7, Dot>>().toEqualTypeOf<E7>()
-      expectTypeOf<TestSubject<T8, Dot>>().toEqualTypeOf<E8>()
-      expectTypeOf<TestSubject<T9, Dot>>().toEqualTypeOf<E9>()
+          // Expect
+          expectTypeOf<TestSubject<T1>>().toEqualTypeOf<EmptyString>()
+          expectTypeOf<TestSubject<T2>>().toEqualTypeOf<EmptyString>()
+        })
+      })
+
+      describe('T extends readonly (Objectify<any> | symbol)[]', () => {
+        it('should construct string delimited by Fallback<S, ",", NIL>', () => {
+          // Arrange
+          type Expect = `${string},${string},${string}`
+
+          // Expect
+          expectTypeOf<TestSubject<Vehicles>>().toEqualTypeOf<Expect>()
+        })
+      })
+
+      describe('T extends readonly Joinable[]', () => {
+        type S = Dot
+
+        it('should construct string delimited by Fallback<S, ",", NIL>', () => {
+          // Arrange
+          type T1 = [Optional<'hello'>, NIL, Nullable<'world'>]
+          type T2 = ['foo', undefined, 'bar', null, 'baz']
+          type T3 = ['prefix', ...string[]]
+          type T4 = ['data', Indices<Vehicles>]
+          type T5 = [...T4, keyof Vehicle]
+          type E1 = '..' | '..world' | 'hello..' | 'hello..world'
+          type E2 = `${T2[0]}${S}${S}${T2[2]}${S}${S}${T2[4]}`
+          type E3 = `${T3[0]}${S}${string}`
+          type E4 = `${T4[0]}${S}${Indices<Vehicles>}`
+          type E5 = `${E4}${S}${keyof Vehicle}`
+
+          // Expect
+          expectTypeOf<TestSubject<T1, S>>().toEqualTypeOf<E1>()
+          expectTypeOf<TestSubject<T2, S>>().toEqualTypeOf<E2>()
+          expectTypeOf<TestSubject<T3, S>>().toEqualTypeOf<E3>()
+          expectTypeOf<TestSubject<T4, S>>().toEqualTypeOf<E4>()
+          expectTypeOf<TestSubject<T5, S>>().toEqualTypeOf<E5>()
+        })
+      })
+    })
+
+    describe('number extends Length<T>', () => {
+      describe('T extends readonly (Objectify<any> | symbol)[]', () => {
+        it('should equal string', () => {
+          // Arrange
+          type T = readonly (Fn<[string], Vehicle> | Vehicle | typeof opaque)[]
+
+          // Expect
+          expectTypeOf<TestSubject<T>>().toEqualTypeOf<string>()
+        })
+      })
+
+      describe('T extends readonly Joinable[]', () => {
+        it('should equal string', () => {
+          // Arrange
+          type T = NonNullable<Joinable>[]
+
+          // Expect
+          expectTypeOf<TestSubject<T>>().toEqualTypeOf<string>()
+        })
+      })
     })
   })
 

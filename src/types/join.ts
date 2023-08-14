@@ -25,22 +25,24 @@ import type Stringify from './stringify'
  * @template S - Array item separator
  */
 type Join<
-  T extends Nilable<readonly Joinable[]>,
+  T extends Nilable<readonly unknown[]>,
   S extends Nilable<string> = ','
 > = T extends Nilable<Readonly<EmptyArray>>
   ? EmptyString
-  : T extends readonly [Joinable?]
-  ? Stringify<Fallback<T[0], EmptyString, NIL>>
-  : T extends readonly [
-      infer H extends Joinable,
-      ...infer R extends readonly Joinable[]
-    ]
-  ? `${Fallback<H, EmptyString, NIL>}${Fallback<S, ',', NIL>}${Join<R, S>}`
-  : T extends readonly [
-      ...infer R extends readonly Joinable[],
-      infer L extends Joinable
-    ]
-  ? `${Join<R, S>}${Fallback<S, ',', NIL>}${Fallback<L, EmptyString, NIL>}`
+  : T extends readonly [(infer H)?]
+  ? Stringify<Fallback<H extends Joinable ? H : string, EmptyString, NIL>>
+  : T extends readonly [infer H, ...infer R extends unknown[]]
+  ? `${Fallback<H extends Joinable ? H : string, EmptyString, NIL>}${Fallback<
+      S,
+      ',',
+      NIL
+    >}${Join<R, S>}`
+  : T extends readonly [...infer R extends unknown[], infer L]
+  ? `${Join<R, S>}${Fallback<S, ',', NIL>}${Fallback<
+      L extends Joinable ? L : string,
+      EmptyString,
+      NIL
+    >}`
   : string
 
 export type { Join as default }
