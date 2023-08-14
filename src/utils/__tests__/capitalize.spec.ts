@@ -10,13 +10,14 @@ describe('unit:utils/capitalize', () => {
     // Arrange
     const cases: [...Parameters<typeof testSubject>, Capitalize<string>][] = [
       ['', ''],
+      [' ', ' '],
       ['foo', 'Foo'],
       ['Foobar', 'Foobar']
     ]
 
     // Act + Expect
-    cases.forEach(([string, expected]) => {
-      expect(testSubject(string)).to.eql(expected)
+    cases.forEach(([str, expected]) => {
+      expect(testSubject(str)).to.equal(expected)
     })
   })
 })

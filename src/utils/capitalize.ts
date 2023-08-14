@@ -3,6 +3,7 @@
  * @module tutils/utils/capitalize
  */
 
+import at from './at'
 import cast from './cast'
 import isCapitalized from './is-capitalized'
 import uppercase from './uppercase'
@@ -20,7 +21,7 @@ import uppercase from './uppercase'
 const capitalize = <T extends string>(str: T): Capitalize<T> => {
   return isCapitalized<T>(str)
     ? str
-    : cast(uppercase(str.charAt(0)) + str.slice(1))
+    : cast(uppercase(at(str, 0, '')) + str.slice(1))
 }
 
 export default capitalize

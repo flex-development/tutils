@@ -19,7 +19,12 @@ describe('unit:utils/isCapitalized', () => {
 
   it('should return true if value is capitalized string', () => {
     // Arrange
-    const cases: Parameters<typeof testSubject>[] = [[''], ['FOO'], ['Foobar']]
+    const cases: Parameters<typeof testSubject>[] = [
+      [''],
+      [' '],
+      ['FOO'],
+      ['Foobar']
+    ]
 
     // Act + Expect
     cases.forEach(([value]) => expect(testSubject(value)).to.be.true)

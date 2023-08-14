@@ -4,7 +4,9 @@
  */
 
 import at from './at'
+import cast from './cast'
 import isString from './is-string'
+import trim from './trim'
 import uppercase from './uppercase'
 
 /**
@@ -22,7 +24,10 @@ import uppercase from './uppercase'
 const isCapitalized = <T extends string>(
   value: unknown
 ): value is Capitalize<T> => {
-  return isString(value) && value.startsWith(uppercase(at(value, 0, '')))
+  return (
+    isString(value) &&
+    (value = trim(value)).startsWith(uppercase(at(cast<string>(value), 0, '')))
+  )
 }
 
 export default isCapitalized
