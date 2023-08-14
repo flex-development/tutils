@@ -1,3 +1,35 @@
+## [tutils@6.0.0-alpha.20](https://github.com/flex-development/tutils/compare/tutils@6.0.0-alpha.19...tutils@6.0.0-alpha.20) (2023-08-13)
+
+
+### ⚠ BREAKING CHANGES
+
+* **types:** `Predicate` -> `ArrayPredicate`
+
+### :sparkles: Features
+
+* **types:** [`Join`] allow `T` to extend `readonly unknown[]` ([61a8151](https://github.com/flex-development/tutils/commit/61a8151004e12fa351011f28d5e46caff2e5e357))
+* **types:** `ArrayFallback` ([95d4115](https://github.com/flex-development/tutils/commit/95d41158f2784bfde252834672f94578d62efb4e))
+* **types:** `ArrayTypeGuard` ([078a3e5](https://github.com/flex-development/tutils/commit/078a3e513e44b9bd1e91c7dd5ae86a0368b30e16))
+* **types:** `ClassDecorator`, `MethodDecorator` ([514e5fc](https://github.com/flex-development/tutils/commit/514e5fce5cf7d69135e4ac4054918b7dae354711))
+* **types:** `DecoratorTarget` ([01f8e6c](https://github.com/flex-development/tutils/commit/01f8e6cd03b873404e656f2e125a8c5c5bf1e02a))
+* **types:** `Ifelse` ([1fa5c84](https://github.com/flex-development/tutils/commit/1fa5c843290f4c603ac897add84d2d474266479a))
+* **types:** `NaN` ([e00904b](https://github.com/flex-development/tutils/commit/e00904bdeb35c7f6404e5c31060060d38d009d09))
+* **types:** `OwnPropertyKey` ([e14d68a](https://github.com/flex-development/tutils/commit/e14d68a13b0096944275b20323b5120d125b38c7))
+* **types:** `ParameterDecorator`, `PropertyDecorator` ([7055d5c](https://github.com/flex-development/tutils/commit/7055d5cf200a47b9282e08f30abe067d16d06f9d))
+* **types:** `TypeGuard` ([36aa5f8](https://github.com/flex-development/tutils/commit/36aa5f803025b82ac13ea1d5e0bc9614d9791f24))
+* **utils:** `fallback` ([db5687b](https://github.com/flex-development/tutils/commit/db5687b206828afbf68c3495ade4619b88f837ee))
+
+
+### :fire: Performance Improvements
+
+* **utils:** [`isFalsy`] use ternary ([de4e3df](https://github.com/flex-development/tutils/commit/de4e3dffb42ca230941ff86ffa707cb23d59db9c))
+
+
+### :mechanical_arm: Refactors
+
+* **types:** `Predicate` -> `ArrayPredicate` ([e256636](https://github.com/flex-development/tutils/commit/e25663634c5fa08c53ded4e415b3dc4f0cf99b12))
+* **utils:** [`capitalize`] use `at` ([cea32d9](https://github.com/flex-development/tutils/commit/cea32d962e2a4009d86cb1a94a47554c64a87410))
+
 ## [tutils@6.0.0-alpha.19](https://github.com/flex-development/tutils/compare/tutils@6.0.0-alpha.18...tutils@6.0.0-alpha.19) (2023-08-10)
 
 
