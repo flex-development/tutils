@@ -120,7 +120,11 @@ export { default as range } from './range'
 export { default as regexp } from './regexp'
 export { default as reverse } from './reverse'
 export { default as segment } from './segment'
-export { default as select } from './select'
+export {
+  default as select,
+  type SelectFilter,
+  type SelectMapper
+} from './select'
 export { default as set } from './set'
 export { default as shake } from './shake'
 export { default as sift } from './sift'

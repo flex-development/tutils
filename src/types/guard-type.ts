@@ -3,6 +3,9 @@
  * @module tutils/types/TypeGuard
  */
 
+import type Predicate from './predicate'
+import type Simplify from './simplify'
+
 /**
  * Checks if `value` is of type `T`.
  *
@@ -13,6 +16,6 @@
  * @param {unknown} value - Value to check
  * @return {value is T} `true` if `value` is of type `T`, `false` otherwise
  */
-type TypeGuard<T> = (value: unknown) => value is T
+type TypeGuard<T> = ((value: unknown) => value is T) & Simplify<Predicate>
 
 export type { TypeGuard as default }

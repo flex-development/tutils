@@ -35,6 +35,17 @@ const config = {
       }
     },
     {
+      files: ['src/types/guard-type-array.ts', 'src/types/guard-type.ts'],
+      rules: {
+        '@typescript-eslint/sort-type-constituents': [
+          2,
+          {
+            checkIntersections: false
+          }
+        ]
+      }
+    },
+    {
       files: ['src/utils/__tests__/ksort.spec.ts'],
       rules: {
         'sort-keys': 0

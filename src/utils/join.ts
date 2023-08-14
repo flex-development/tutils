@@ -3,9 +3,9 @@
  * @module tutils/utils/join
  */
 
-import type { Joinable, Mapper, Nilable } from '#src/types'
+import type { Joinable, Nilable } from '#src/types'
 import cast from './cast'
-import select from './select'
+import select, { type SelectMapper } from './select'
 
 /**
  * Converts an array to a string delimitted by the specified `separator`.
@@ -14,7 +14,7 @@ import select from './select'
  *
  * A `mapper` can be used to convert array items to {@linkcode Joinable} values.
  *
- * @see {@linkcode Mapper}
+ * @see {@linkcode SelectMapper}
  * @see https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array/join
  *
  * @todo examples
@@ -22,16 +22,16 @@ import select from './select'
  * @template T - Array to join
  * @template J - Joined array type
  *
- * @param {Nilable<T>} arr - Array to join
+ * @param {T} arr - Array to join
  * @param {Nilable<string>} [separator=','] - String used to separate one item
  * of `arr` from the next in the resulting string
- * @param {Nilable<Mapper<T, Joinable>>} [mapper] - Array item interpolator
+ * @param {Nilable<SelectMapper<T, Joinable>>} [mapper] - Array item mapper
  * @return {J} String delimitted by `separator`
  */
-const join = <T extends readonly unknown[], J extends string = string>(
-  arr: Nilable<T>,
+const join = <T extends Nilable<readonly unknown[]>, J extends string = string>(
+  arr: T,
   separator?: Nilable<string>,
-  mapper?: Nilable<Mapper<T, Joinable>>
-): J => cast(select(arr, null, mapper).join(separator ?? undefined))
+  mapper?: Nilable<SelectMapper<T, Joinable>>
+): J => cast(select<T>(arr, null, cast(mapper)).join(separator ?? undefined))
 
 export default join
