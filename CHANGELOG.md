@@ -1,3 +1,18 @@
+## [tutils@6.0.0-alpha.21](https://github.com/flex-development/tutils/compare/tutils@6.0.0-alpha.20...tutils@6.0.0-alpha.21) (2023-08-14)
+
+
+### :package: Build
+
+* **deps-dev:** Bump esbuild from 0.19.0 to 0.19.2 ([#376](https://github.com/flex-development/tutils/issues/376)) ([b1396fd](https://github.com/flex-development/tutils/commit/b1396fdbc29669d223db52e73e2a2762a14479ec))
+* **deps-dev:** Bump eslint from 8.46.0 to 8.47.0 ([#373](https://github.com/flex-development/tutils/issues/373)) ([c444efe](https://github.com/flex-development/tutils/commit/c444efe65ad689902c1cfbb3f717c810786bcfc7))
+* **deps-dev:** Bump lint-staged from 13.2.3 to 14.0.0 ([#375](https://github.com/flex-development/tutils/issues/375)) ([05eecfa](https://github.com/flex-development/tutils/commit/05eecfa0f3e99a885e01bf2677acef85cadd3f52))
+
+
+### :sparkles: Features
+
+* **types:** [`Booleanish`] add `'0'`, `'1'`, `'n'`, and `'y'` ([b1f14b1](https://github.com/flex-development/tutils/commit/b1f14b1a7307a61cdbd1b60b465a3a049411abc0))
+* **utils:** [`isBooleanish`] check for `'0'`, `'1'`, `'n'`, and `'y'` ([2ddcc71](https://github.com/flex-development/tutils/commit/2ddcc71cebc4df8cb08bebc23faf63f40818f252))
+
 ## [tutils@6.0.0-alpha.20](https://github.com/flex-development/tutils/compare/tutils@6.0.0-alpha.19...tutils@6.0.0-alpha.20) (2023-08-13)
 
 
