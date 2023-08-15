@@ -16,7 +16,10 @@ import isBoolean from './is-boolean'
  * @return {value is Booleanish} `true` if `value` is `Booleanish`
  */
 const isBooleanish = (value: unknown): value is Booleanish => {
-  return isBoolean(value) || includes(['false', 'true', 0, 1], value)
+  return (
+    isBoolean(value) ||
+    includes([0, 1, '0', '1', 'false', 'n', 'true', 'y'], value)
+  )
 }
 
 export default isBooleanish

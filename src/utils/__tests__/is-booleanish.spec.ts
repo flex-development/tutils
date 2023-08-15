@@ -13,10 +13,14 @@ describe('unit:utils/isBooleanish', () => {
   it('should return true if value is booleanish', () => {
     // Arrange
     const cases: Parameters<typeof testSubject>[] = [
+      ['0'],
+      ['1'],
+      ['false'],
+      ['n'],
+      ['true'],
+      ['y'],
       [0],
       [1],
-      ['false'],
-      ['true'],
       [false],
       [true]
     ]
