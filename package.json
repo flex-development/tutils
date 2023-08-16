@@ -96,7 +96,7 @@
     "@flex-development/mlly": "1.0.0-alpha.18",
     "@flex-development/pathe": "2.0.0",
     "@flex-development/toggle-pkg-type": "2.0.1",
-    "@flex-development/tsconfig-utils": "2.0.1",
+    "@flex-development/tsconfig-utils": "2.0.2",
     "@graphql-eslint/eslint-plugin": "3.20.1",
     "@types/chai": "4.3.5",
     "@types/chai-quantifiers": "1.0.1",
