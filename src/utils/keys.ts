@@ -37,7 +37,7 @@ import select from './select'
  * @param {Nilable<boolean>} [options.deep] - Include nested keys
  * @return {Keys<T, K>[]} Enumerable string-keyed property names
  */
-const keys = <T, K extends Nilable<KeysOptions> = Nilable<KeysOptions>>(
+const keys = <T, K extends Nilable<KeysOptions> = undefined>(
   target: T,
   options?: K
 ): Keys<T, K> => {
