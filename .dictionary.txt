@@ -14,6 +14,7 @@ dequal
 desegment
 dessant
 dohm
+dprint
 fbca
 feff
 ggshield
@@ -37,6 +38,7 @@ pathe
 pkgs
 preid
 promisable
+shfmt
 stringafiable
 tryit
 tscu
@@ -45,5 +47,6 @@ unescapes
 unstub
 vates
 vitest
+yamlfmt
 yarnrc
 zyxwvutsrqponmlkjihgfedcba

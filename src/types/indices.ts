@@ -42,9 +42,9 @@ import type UnwrapNumeric from './unwrap-numeric'
  *
  * @template T - Type to evaluate
  */
-type Indices<T extends { length: number }> = T extends
-  | EmptyString
-  | Readonly<EmptyArray>
+type Indices<T extends { length: number }> =
+  // dprint-ignore
+  T extends  EmptyString | Readonly<EmptyArray>
   ? never
   : Length<T> extends infer L extends number
   ? number extends L

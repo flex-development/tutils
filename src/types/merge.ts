@@ -27,7 +27,8 @@ type Merger<
   T extends Objectify<any>,
   U,
   M extends EmptyObject & { concat?: Nilable<boolean> } = EmptyObject
-> = IsEqual<T, U> extends true
+> = // dprint-ignore
+  IsEqual<T, U> extends true
   ? T
   : U extends ObjectCurly
   ? ReconstructArray<{
@@ -79,7 +80,8 @@ type Merge<
   T extends object,
   U extends Readonly<OneOrMany<ObjectCurly>> = EmptyObject,
   M extends EmptyObject & { concat?: Nilable<boolean> } = EmptyObject
-> = IsAnyOrNever<U> extends true
+> = // dprint-ignore
+  IsAnyOrNever<U> extends true
   ? Merger<T, Objectify<U>>
   : T extends unknown
   ? U extends ObjectCurly

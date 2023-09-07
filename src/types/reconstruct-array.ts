@@ -19,7 +19,8 @@ import type UnwrapNumeric from './unwrap-numeric'
  *
  * @template T - Type to evaluate
  */
-type ReconstructArray<T> = IsAny<T> extends true
+type ReconstructArray<T> = // dprint-ignore
+  IsAny<T> extends true
   ? T[]
   : IsNever<T> extends true
   ? EmptyArray

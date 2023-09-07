@@ -23,6 +23,7 @@ import type IfNever from './if-never'
 type IfKey<U, K, T, F> = IfNever<
   U,
   F,
+  // dprint-ignore
   U extends unknown
     ? K extends unknown
       ? HasKey<U, K> extends true

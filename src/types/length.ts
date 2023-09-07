@@ -43,6 +43,7 @@ import type Split from './split'
  *
  * @template T - Type to evaluate
  */
+// dprint-ignore
 type Length<T> = T extends { length: number }
   ? T['length'] extends infer L extends number
     ? IfAny<L, number, T extends string ? Split<T, EmptyString>['length'] : L>

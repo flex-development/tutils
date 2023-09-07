@@ -33,6 +33,7 @@ type Split<
   IfNever<
     T,
     EmptyArray,
+    // dprint-ignore
     T extends NIL
       ? EmptyArray
       : T extends object

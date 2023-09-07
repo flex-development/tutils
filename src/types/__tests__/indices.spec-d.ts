@@ -13,6 +13,7 @@ import type UnwrapNumeric from '../unwrap-numeric'
 
 describe('unit-d:types/Indices', () => {
   type IndicesRange<T extends string | readonly unknown[]> =
+    // dprint-ignore
     Length<T> extends infer L extends number
       ? NaturalRange<L> extends infer R extends number
         ? {

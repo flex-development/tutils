@@ -33,7 +33,8 @@ type Times<
   L extends number,
   V = unknown,
   Acc extends readonly unknown[] = EmptyArray
-> = IsNever<L> extends true
+> = // dprint-ignore
+  IsNever<L> extends true
   ? EmptyArray
   : number extends L
   ? V[]

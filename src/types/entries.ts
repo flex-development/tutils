@@ -52,6 +52,7 @@ import type Values from './values'
  *
  * @template T - Type to evaluate
  */
+// dprint-ignore
 type Entries<T> = IsAny<T> extends true
   ? [string, T][]
   : IsNever<T> extends true

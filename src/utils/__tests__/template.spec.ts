@@ -19,7 +19,7 @@ describe('unit:utils/template', () => {
     const phone: { mobile: string } = { mobile }
 
     // Act
-    const result = testSubject("{name}'s mobile number is {phone.mobile}", {
+    const result = testSubject('{name}\'s mobile number is {phone.mobile}', {
       name,
       phone
     })

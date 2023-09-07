@@ -12,6 +12,7 @@
  *
  * @template T - Type to evaluate
  */
+// dprint-ignore
 type Writable<T> = T extends unknown
   ? { -readonly [K in keyof T]: T[K] }
   : never

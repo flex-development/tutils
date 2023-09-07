@@ -42,6 +42,7 @@ import type PropertyKey from './property-key'
  */
 type ExactOptionalKeys<T> = Extract<
   T extends unknown
+    // dprint-ignore
     ? OptionalKeys<T> extends infer K extends keyof T
       ? K extends unknown
         ? IsEqual<Get<T, K>, Get<Required<T>, K>> extends true

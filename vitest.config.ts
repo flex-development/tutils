@@ -7,7 +7,6 @@
 import pathe from '@flex-development/pathe'
 import ci from 'is-ci'
 import tsconfigpaths from 'vite-tsconfig-paths'
-import GithubActionsReporter from 'vitest-github-actions-reporter'
 import {
   defineConfig,
   type UserConfig,
@@ -77,7 +76,7 @@ const config: UserConfigExport = defineConfig((): UserConfig => {
       reporters: [
         'json',
         'verbose',
-        ci ? new GithubActionsReporter() : './__tests__/reporters/notifier.ts'
+        ...(ci ? [] : ['./__tests__/reporters/notifier.ts'])
       ],
       /**
        * Stores snapshots next to `file`'s directory.

@@ -21,7 +21,6 @@ type ArrayTypeGuard<T extends readonly unknown[], G> = ((
   item: T[number],
   index: number,
   array: T
-) => item is G) &
-  Simplify<ArrayPredicate<T>>
+) => item is G) & Simplify<ArrayPredicate<T>>
 
 export type { ArrayTypeGuard as default }

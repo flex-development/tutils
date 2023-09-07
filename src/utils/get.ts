@@ -57,10 +57,9 @@ const get = <T, K extends PropertyKey, F = undefined>(
       if (isNIL(ret)) break
 
       // reset indexed value
-      ret =
-        isNumeric(key) && (isArray(ret) || isString(ret))
-          ? at(cast<unknown[] | string>(ret), +key)
-          : cast<Objectify<any>>(ret)[key]
+      ret = isNumeric(key) && (isArray(ret) || isString(ret))
+        ? at(cast<unknown[] | string>(ret), +key)
+        : cast<Objectify<any>>(ret)[key]
     }
   }
 

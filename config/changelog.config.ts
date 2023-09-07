@@ -155,12 +155,11 @@ sade('changelog', true)
       {
         append: false,
         debug: debug ? console.debug.bind(console) : undefined,
-        outputUnreleased:
-          typeof outputUnreleased === 'boolean'
-            ? outputUnreleased
-            : typeof outputUnreleased === 'string'
-            ? !!outputUnreleased.trim()
-            : false,
+        outputUnreleased: typeof outputUnreleased === 'boolean'
+          ? outputUnreleased
+          : typeof outputUnreleased === 'string'
+          ? !!outputUnreleased.trim()
+          : false,
         pkg: { path: pathe.resolve('package.json') },
         preset: {
           header: '',
@@ -255,8 +254,7 @@ sade('changelog', true)
            *
            * @const {number} by_date
            */
-          const by_date: number =
-            new Date(b.committerDate).getTime() -
+          const by_date: number = new Date(b.committerDate).getTime() -
             new Date(a.committerDate).getTime()
 
           return a.header && b.header
@@ -340,8 +338,7 @@ sade('changelog', true)
           }
 
           // set release date
-          context.date =
-            key?.committerDate ??
+          context.date = key?.committerDate ??
             dateformat(new Date().toLocaleDateString(), 'yyyy-mm-dd', true)
 
           // determine patch release state

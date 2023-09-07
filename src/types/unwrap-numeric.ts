@@ -42,6 +42,7 @@ import type NegativeNumeric from './numeric-negative'
 type UnwrapNumeric<T> = IfAny<
   T,
   number,
+  // dprint-ignore
   T extends `-${infer N extends 0}`
     ? N
     : T extends `${infer N extends number}`

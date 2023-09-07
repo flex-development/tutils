@@ -36,6 +36,7 @@ import type Stringify from './stringify'
  */
 type Path<T, E extends Nilable<boolean> = false> = Extract<
   T extends unknown
+    // dprint-ignore
     ? Remap<T> extends infer U
       ? {
           [H in keyof U as IfSymbol<

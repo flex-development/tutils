@@ -13,6 +13,7 @@ import type Times from './times'
  * @template M - Minuend
  * @template S - Subtrahend
  */
+// dprint-ignore
 type Subtract<M extends number, S extends number> = M extends number
   ? S extends number
     ? Times<M> extends [...Times<S>, ...infer R]

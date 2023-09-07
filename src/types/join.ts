@@ -27,7 +27,8 @@ import type Stringify from './stringify'
 type Join<
   T extends Nilable<readonly unknown[]>,
   S extends Nilable<string> = ','
-> = T extends Nilable<Readonly<EmptyArray>>
+> = // dprint-ignore
+  T extends Nilable<Readonly<EmptyArray>>
   ? EmptyString
   : T extends readonly [(infer H)?]
   ? Stringify<Fallback<H extends Joinable ? H : string, EmptyString, NIL>>

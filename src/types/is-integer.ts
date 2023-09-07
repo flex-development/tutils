@@ -47,6 +47,7 @@ import type Stringify from './stringify'
 type IsInteger<T> = IfAnyOrNever<
   T,
   false,
+  // dprint-ignore
   T extends Integer
     ? true
     : IsNumber<T> extends true

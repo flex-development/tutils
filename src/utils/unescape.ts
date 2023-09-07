@@ -23,7 +23,7 @@ const unescape = (str: string): string => {
   return str
     .replaceAll(/&gt;/g, '>')
     .replaceAll(/&lt;/g, '<')
-    .replaceAll(/&#0?39;/g, "'")
+    .replaceAll(/&#0?39;/g, '\'')
     .replaceAll(/&quot;/g, '"')
     .replaceAll(/&amp;/g, '&')
 }

@@ -30,6 +30,7 @@ type Construct<T extends Nilable<ObjectCurly>> = IfAnyOrNever<
   T,
   Objectify<T>,
   T extends ObjectCurly
+    // dprint-ignore
     ? {
         [K in keyof T as K extends number | symbol
           ? K

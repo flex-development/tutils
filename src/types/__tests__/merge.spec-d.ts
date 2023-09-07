@@ -191,47 +191,48 @@ describe('unit-d:types/Merge', () => {
 
         // Expect
         expectTypeOf<TestSubject<T, U>>().toEqualTypeOf<
-          T &
-            U[0] &
-            U[1] &
-            U[2] & {
-              readonly 0: number
-              readonly 1: number
-              readonly 2: number
-              readonly 3: number
-              readonly 4: number
-              readonly 5: number
-              readonly 6: number
-              readonly 7: number
-              readonly 8: number
-              readonly 9: number
-              readonly a: string
-              readonly b: string
-              readonly c: string
-              readonly d: string
-              readonly e: string
-              readonly f: string
-              readonly g: string
-              readonly h: string
-              readonly i: string
-              readonly j: string
-              readonly k: string
-              readonly l: string
-              readonly m: string
-              readonly n: string
-              readonly o: string
-              readonly p: string
-              readonly q: string
-              readonly r: string
-              readonly s: string
-              readonly t: string
-              readonly u: string
-              readonly v: string
-              readonly w: string
-              readonly x: string
-              readonly y: string
-              readonly z: string
-            }
+          & T
+          & U[0]
+          & U[1]
+          & U[2]
+          & {
+            readonly 0: number
+            readonly 1: number
+            readonly 2: number
+            readonly 3: number
+            readonly 4: number
+            readonly 5: number
+            readonly 6: number
+            readonly 7: number
+            readonly 8: number
+            readonly 9: number
+            readonly a: string
+            readonly b: string
+            readonly c: string
+            readonly d: string
+            readonly e: string
+            readonly f: string
+            readonly g: string
+            readonly h: string
+            readonly i: string
+            readonly j: string
+            readonly k: string
+            readonly l: string
+            readonly m: string
+            readonly n: string
+            readonly o: string
+            readonly p: string
+            readonly q: string
+            readonly r: string
+            readonly s: string
+            readonly t: string
+            readonly u: string
+            readonly v: string
+            readonly w: string
+            readonly x: string
+            readonly y: string
+            readonly z: string
+          }
         >()
       })
 
@@ -283,49 +284,50 @@ describe('unit-d:types/Merge', () => {
 
         // Expect
         expectTypeOf<TestSubject<T, U>>().toEqualTypeOf<
-          Objectify<any> &
-            Omit<T, keyof U[0]> & {
-              readonly metadata: {
-                0: number
-                1: number
-                2: number
-                3: number
-                4: number
-                5: number
-                6: number
-                7: number
-                8: number
-                a: string
-                b: string
-                c: string
-                d: string
-                drivers: string[]
-                e: string
-                f: string
-                g: string
-                h: string
-                i: string
-                j: string
-                k: string
-                location: string
-                l: string
-                m: string
-                n: string
-                o: string
-                p: string
-                q: string
-                r: string
-                s: string
-                t: string
-                u: string
-                v: string
-                vrm: string
-                w: string
-                x: string
-                y: string
-                z: string
-              }
+          & Objectify<any>
+          & Omit<T, keyof U[0]>
+          & {
+            readonly metadata: {
+              0: number
+              1: number
+              2: number
+              3: number
+              4: number
+              5: number
+              6: number
+              7: number
+              8: number
+              a: string
+              b: string
+              c: string
+              d: string
+              drivers: string[]
+              e: string
+              f: string
+              g: string
+              h: string
+              i: string
+              j: string
+              k: string
+              location: string
+              l: string
+              m: string
+              n: string
+              o: string
+              p: string
+              q: string
+              r: string
+              s: string
+              t: string
+              u: string
+              v: string
+              vrm: string
+              w: string
+              x: string
+              y: string
+              z: string
             }
+          }
         >()
       })
 

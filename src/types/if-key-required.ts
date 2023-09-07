@@ -25,6 +25,7 @@ type IfRequiredKey<U, K extends PropertyKey, T, F> = IfNever<
   IfNever<
     K,
     F,
+    // dprint-ignore
     U extends unknown
       ? K extends unknown
         ? IsRequiredKey<U, K> extends true

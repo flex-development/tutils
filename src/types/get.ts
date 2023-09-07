@@ -28,6 +28,7 @@ import type UnwrapNumeric from './unwrap-numeric'
  * @template K - Property to select
  * @template F - Fallback value type
  */
+// dprint-ignore
 type Get<T, K extends PropertyKey, F = undefined> = IsNever<T> extends true
   ? F
   : IsNever<K> extends true

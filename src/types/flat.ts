@@ -24,7 +24,8 @@ type BuildTuple<
   M extends unknown[],
   I extends number = M['length'],
   Acc extends readonly unknown[] = EmptyArray
-> = I extends 0
+> = // dprint-ignore
+  I extends 0
   ? Acc
   : Subtract<I, 1> extends infer N extends number
   ? BuildTuple<
@@ -49,6 +50,7 @@ type BuildTuple<
  * @template T - Type to evaluate
  * @template D - Maximum recursion depth
  */
+// dprint-ignore
 type Flat<
   T extends Nilable<readonly unknown[]>,
   D extends Nilable<number> = 1

@@ -20,6 +20,7 @@ import type Stringify from './stringify'
  * @template T - Type to evaluate
  */
 type Invert<T extends Nilable<{ [K in PropertyKey]?: Primitive }>> =
+  // dprint-ignore
   IsAnyOrNever<T> extends true
     ? Objectify<T>
     : T extends unknown

@@ -36,6 +36,7 @@
  * @template A - First type to evaluate
  * @template B - Second type to evaluate
  */
+// dprint-ignore
 type IsEqual<A, B> = (<T>() => T extends A ? 1 : 2) extends <T>() => T extends B
   ? 1
   : 2

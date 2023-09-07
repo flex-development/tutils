@@ -25,6 +25,7 @@ type IfOptionalKey<U, K extends PropertyKey, T, F> = IfNever<
   IfNever<
     K,
     F,
+    // dprint-ignore
     U extends unknown
       ? K extends unknown
         ? IsOptionalKey<U, K> extends true

@@ -29,6 +29,7 @@ type Head<
 > = IfAny<
   T,
   never,
+  // dprint-ignore
   T extends string
     ? T extends EmptyString
       ? never

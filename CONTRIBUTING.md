@@ -95,20 +95,20 @@ Follow the steps below to setup your local development environment:
 
 10. Reload shell
 
-   ```sh
-   exec $SHELL
-   ```
+    ```sh
+    exec $SHELL
+    ```
 
 ### Environment Variables
 
-| name                    |
-| ----------------------- |
-| `CODECOV_TOKEN`         |
-| `GITHUB_TOKEN`          |
-| `HOMEBREW_BREWFILE`     |
-| `NODE_NO_WARNINGS`      |
-| `PAT_BOT`               |
-| `ZSH_DOTENV_FILE`       |
+| name                |
+| ------------------- |
+| `CODECOV_TOKEN`     |
+| `GITHUB_TOKEN`      |
+| `HOMEBREW_BREWFILE` |
+| `NODE_NO_WARNINGS`  |
+| `PAT_BOT`           |
+| `ZSH_DOTENV_FILE`   |
 
 #### GitHub Actions
 
@@ -203,18 +203,12 @@ See [`.commitlintrc.json`](.commitlintrc.json) to view all commit guidelines.
 
 ### Code Style
 
-[Prettier][10] is used to format code and [ESLint][11] to lint files.
+[dprint][10] is used to format code and [ESLint][11] to lint files.
 
-#### ESLint Configuration
-
+- [`.dprint.jsonc`](.dprint.jsonc)
+- [`.eslintignore`](.eslintignore)
 - [`.eslintrc.base.cjs`](.eslintrc.base.cjs)
 - [`.eslintrc.cjs`](.eslintrc.cjs)
-- [`.eslintignore`](.eslintignore)
-
-#### Prettier Configuration
-
-- [`.prettierrc.json`](.prettierrc.json)
-- [`.prettierignore`](.prettierignore)
 
 ### Making Changes
 
@@ -262,8 +256,8 @@ To manually upload coverage reports:
 ### Getting Help
 
 If you need help, make note of any issues in their respective files in the form of a [JSDoc comment][12]. If you need
-help with a test, don't forget to use [`it.skip`][15] and/or [`it.todo`][16]. Afterwards, [start a discussion in the
-Q&A category][19].
+help with a test, don't forget to use [`it.skip`][15] and/or [`it.todo`][16]. Afterwards, [start a discussion in the Q&A
+category][19].
 
 ## Labels
 
@@ -389,8 +383,7 @@ Before deploying, the following steps must be completed:
          - publish package to [npm][22]
 
 [1]: https://brew.sh
-[2]:
-  https://docs.github.com/authentication/managing-commit-signature-verification/about-commit-signature-verification#gpg-commit-signature-verification
+[2]: https://docs.github.com/authentication/managing-commit-signature-verification/about-commit-signature-verification#gpg-commit-signature-verification
 [3]: https://yarnpkg.com/getting-started
 [4]: https://github.com/ohmyzsh/ohmyzsh
 [5]: https://github.com/typicode/husky
@@ -398,7 +391,7 @@ Before deploying, the following steps must be completed:
 [7]: https://trunkbaseddevelopment.com/styles/#short-lived-feature-branches
 [8]: https://conventionalcommits.org
 [9]: https://github.com/conventional-changelog/commitlint
-[10]: https://prettier.io
+[10]: https://dprint.dev/
 [11]: https://eslint.org
 [12]: https://jsdoc.app
 [13]: https://github.com/gajus/eslint-plugin-jsdoc

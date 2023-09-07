@@ -25,6 +25,7 @@ type Partial<
   T,
   R extends EmptyObject & { arrays?: true } = EmptyObject
 > = T extends unknown
+  // dprint-ignore
   ? IsNever<keyof T> extends true
     ? IfUnknown<T, { [K in keyof T]?: T[K] }, T>
     : Simplify<{

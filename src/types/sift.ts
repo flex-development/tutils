@@ -25,7 +25,8 @@ type BuildTuple<
   M extends unknown[][],
   I extends number = M['length'],
   Acc extends readonly unknown[] = EmptyArray
-> = I extends 0
+> = // dprint-ignore
+  I extends 0
   ? Acc
   : Subtract<I, 1> extends infer N extends number
   ? BuildTuple<M, N, [...M[N], ...Acc]>
@@ -52,6 +53,7 @@ type BuildTuple<
  *
  * @template T - Array to filter
  */
+// dprint-ignore
 type Sift<T extends Nilable<readonly unknown[]>> = IsAnyOrNever<T> extends true
   ? EmptyArray
   : T extends readonly unknown[]

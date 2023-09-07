@@ -170,6 +170,9 @@ jobs:
         with:
           key: ${{ needs.preflight.outputs.cache-key }}
           path: ${{ env.CACHE_PATH }}
+      - id: build
+        name: Build project
+        run: yarn build
       - id: format
         name: Check code formatting
         run: yarn check:format

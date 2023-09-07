@@ -54,9 +54,9 @@ const overwriteWith = <T extends ObjectCurly, U extends readonly ObjectCurly[]>(
     return properties(src).reduce<Overwrite<T, U>>((acc, key) => {
       return hasOwn(acc, key)
         ? define(acc, key, {
-            ...descriptor(src, key),
-            value: customizer(acc[key], src[key], key)
-          })
+          ...descriptor(src, key),
+          value: customizer(acc[key], src[key], key)
+        })
         : acc
     }, acc)
   }, cast(clone(base)))

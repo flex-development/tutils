@@ -19,6 +19,7 @@ import select from './select'
  *
  * @template K - Property key type
  */
+// dprint-ignore
 type Properties<K extends PropertyKey> = K extends OwnPropertyKey
   ? K
   : Stringify<K>

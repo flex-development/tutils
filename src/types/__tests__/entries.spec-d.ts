@@ -264,16 +264,16 @@ describe('unit-d:types/Entries', () => {
     it('should distribute over unions', () => {
       expectTypeOf<TestSubject<Nilable<Person | Vehicle>>>().toEqualTypeOf<
         | (
-            | ['age', Person['age']]
-            | ['friends', Person['friends']]
-            | ['name', Person['name']]
-          )[]
+          | ['age', Person['age']]
+          | ['friends', Person['friends']]
+          | ['name', Person['name']]
+        )[]
         | (
-            | ['make', Vehicle['make']]
-            | ['model', Vehicle['model']]
-            | ['vin', Vehicle['vin']]
-            | ['year', Vehicle['year']]
-          )[]
+          | ['make', Vehicle['make']]
+          | ['model', Vehicle['model']]
+          | ['vin', Vehicle['vin']]
+          | ['year', Vehicle['year']]
+        )[]
         | EmptyArray
       >()
     })

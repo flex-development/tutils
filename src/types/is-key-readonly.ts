@@ -24,6 +24,7 @@ import type UnwrapNumeric from './unwrap-numeric'
  * @template T - Type to evaluate
  * @template K - Keys to evaluate
  */
+// dprint-ignore
 type IsReadonlyKey<T, K extends PropertyKey> = IsNever<T> extends true
   ? false
   : IsAnyOrNever<K> extends true
