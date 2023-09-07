@@ -30,6 +30,7 @@ import type Nilable from './nilable'
  * @template T - Type to evaluate
  */
 type ArrayToUnion<T extends Nilable<readonly unknown[]>> =
+  // dprint-ignore
   T extends readonly unknown[] ? IfAny<T, never, T[number]> : never
 
 export type { ArrayToUnion as default }

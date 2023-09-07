@@ -42,11 +42,11 @@ import type Stringify from './stringify'
  *
  * @template T - Type to evaluate
  */
-type ReadonlyKeys<T> = IsAny<T> extends true
-  ? never
+type ReadonlyKeys<T> = IsAny<T> extends true ? never
   : Extract<
-      T extends unknown
-        ? {
+    T extends unknown
+      // dprint-ignore
+      ? {
             [H in keyof Objectify<T> as {
               [K in H]: T[K & keyof T]
             } extends infer V
@@ -81,8 +81,8 @@ type ReadonlyKeys<T> = IsAny<T> extends true
           } extends infer X
           ? X[keyof X]
           : never
-        : never,
-      PropertyKey
-    >
+      : never,
+    PropertyKey
+  >
 
 export type { ReadonlyKeys as default }

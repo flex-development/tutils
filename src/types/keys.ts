@@ -31,6 +31,7 @@ type Keys<
   T,
   K extends Nilable<EmptyObject & { deep?: Nilable<boolean> }> = undefined
 > = (
+  // dprint-ignore
   IsNever<T> extends true
     ? EmptyArray
     : T extends unknown
@@ -52,8 +53,7 @@ type Keys<
         : never
       : never
     : never
-) extends infer X extends string[]
-  ? X
+) extends infer X extends string[] ? X
   : never
 
 export type { Keys as default }

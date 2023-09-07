@@ -22,6 +22,7 @@ import type Primitive from './primitive'
 type LiteralCheck<T, P extends Primitive = Primitive, U = T> = IfAnyOrNever<
   T,
   false,
+  // dprint-ignore
   T extends object
     ? false
     : T extends Extract<T, P>

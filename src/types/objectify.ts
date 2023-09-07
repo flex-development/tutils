@@ -25,6 +25,7 @@ import type PropertyKey from './property-key'
  *
  * @template T - Type to evaluate
  */
+// dprint-ignore
 type Objectify<T> = IsAny<T> extends true
   ? { [K in PropertyKey]: T }
   : IsNever<T> extends true

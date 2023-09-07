@@ -67,6 +67,7 @@ import type Primitive from './primitive'
  * @template T - Type if `U` extends a literal `Primitive`
  * @template F - Type if `U` does not extend a literal `Primitive`
  */
+// dprint-ignore
 type IfLiteral<U, P extends Primitive, T, F> = IsNever<U> extends true
   ? F
   : U extends unknown

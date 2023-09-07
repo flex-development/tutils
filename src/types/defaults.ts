@@ -22,6 +22,7 @@ import type ReconstructArray from './reconstruct-array'
  * @template T - Target object
  * @template U - Source object
  */
+// dprint-ignore
 type Defaulter<T extends Objectify<any>, U> = IsEqual<T, U> extends true
   ? T
   : U extends ObjectCurly
@@ -70,7 +71,8 @@ type Defaulter<T extends Objectify<any>, U> = IsEqual<T, U> extends true
 type Defaults<
   T extends object,
   U extends Readonly<OneOrMany<ObjectCurly>> = EmptyObject
-> = IsAnyOrNever<U> extends true
+> = // dprint-ignore
+  IsAnyOrNever<U> extends true
   ? Defaulter<T, Objectify<U>>
   : T extends unknown
   ? U extends ObjectCurly

@@ -28,6 +28,7 @@ type Tail<
 > = IfAny<
   T,
   never,
+  // dprint-ignore
   T extends string
     ? T extends Join<[string, D, infer R extends string], EmptyString>
       ? R

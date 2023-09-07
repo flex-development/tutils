@@ -42,11 +42,11 @@ describe('unit-d:types/Reverse', () => {
         // Arrange
         type T1 = readonly ['a', 'b', 'c', 'd', 'e']
         type T2 = readonly ['a'?, 'b'?, 'c'?, 'd'?, 'e'?]
-        // prettier-ignore
+        // dprint-ignore
         type T3 = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 't', 'u', 'v', 'w', 'x', 'y', 'z'?]
         type E1 = ['e', 'd', 'c', 'b', 'a']
         type E2 = ['e'?, 'd'?, 'c'?, 'b'?, 'a'?]
-        // prettier-ignore
+        // dprint-ignore
         type E3 = ['z' | undefined, 'y', 'x', 'w', 'v', 'u', 't', 'r', 'q', 'p', 'o', 'n', 'm', 'l', 'k', 'j', 'i', 'h', 'g', 'f', 'e', 'd', 'c', 'b', 'a', 'z', 'y', 'x', 'w', 'v', 'u', 't', 'r', 'q', 'p', 'o', 'n', 'm', 'l', 'k', 'j', 'i', 'h', 'g', 'f', 'e', 'd', 'c', 'b', 'a', 'z', 'y', 'x', 'w', 'v', 'u', 't', 'r', 'q', 'p', 'o', 'n', 'm', 'l', 'k', 'j', 'i', 'h', 'g', 'f', 'e', 'd', 'c', 'b', 'a']
 
         // Expect
@@ -103,9 +103,9 @@ describe('unit-d:types/Reverse', () => {
   describe('unions', () => {
     it('should distribute over unions', () => {
       // Arrange
-      // prettier-ignore
+      // dprint-ignore
       type T = readonly ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 't', 'u', 'v', 'w', 'x', 'y', 'z'?] | 'abcdefghijklmnopqrstuvwxyz'
-      // prettier-ignore
+      // dprint-ignore
       type Expect = 'zyxwvutsrqponmlkjihgfedcba' | ['z' | undefined, 'y', 'x', 'w', 'v', 'u', 't', 'r', 'q', 'p', 'o', 'n', 'm', 'l', 'k', 'j', 'i', 'h', 'g', 'f', 'e', 'd', 'c', 'b', 'a']
 
       // Expect

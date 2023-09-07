@@ -52,6 +52,7 @@ import type UnwrapNumeric from './unwrap-numeric'
  *
  * @template T - Type to evaluate
  */
+// dprint-ignore
 type Values<T> = IsAny<T> extends true
   ? T[]
   : IsNever<T> extends true

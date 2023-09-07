@@ -27,6 +27,7 @@ import type UnwrapNumeric from './unwrap-numeric'
  *
  * @template T - Type to evaluate
  */
+// dprint-ignore
 type Remap<T> = IsAnyOrNever<T> extends true
   ? Objectify<T>
   : T extends unknown

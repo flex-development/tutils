@@ -28,6 +28,7 @@ import type UnwrapNumeric from './unwrap-numeric'
  * @template T - Type to evaluate
  * @template K - Keys to evaluate
  */
+// dprint-ignore
 type HasKey<T, K> = IsNever<T> extends true
   ? false
   : IsNever<K> extends true

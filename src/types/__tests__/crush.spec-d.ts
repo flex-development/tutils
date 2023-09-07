@@ -136,11 +136,11 @@ describe('unit-d:types/Crush', () => {
       expectTypeOf<TestSubject<T>>().toEqualTypeOf<
         | Vehicle
         | {
-            [x: `${number}.make`]: Get<Vehicle[], `${number}.make`>
-            [x: `${number}.model`]: Get<Vehicle[], `${number}.model`>
-            [x: `${number}.vin`]: Get<Vehicle[], `${number}.vin`>
-            [x: `${number}.year`]: Get<Vehicle[], `${number}.year`>
-          }
+          [x: `${number}.make`]: Get<Vehicle[], `${number}.make`>
+          [x: `${number}.model`]: Get<Vehicle[], `${number}.model`>
+          [x: `${number}.vin`]: Get<Vehicle[], `${number}.vin`>
+          [x: `${number}.year`]: Get<Vehicle[], `${number}.year`>
+        }
         | {}
         | {}
       >()

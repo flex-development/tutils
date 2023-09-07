@@ -20,6 +20,7 @@ import type Simplify from './simplify'
  */
 type ExactOptionalPropertyTypes<T extends ObjectCurly> = Simplify<{
   [K in keyof T]: Exclude<T[K], undefined> extends infer V
+    // dprint-ignore
     ? IfNever<V, T[K], V>
     : never
 }>

@@ -20,7 +20,8 @@ type TupleFromRecord<
   M extends { [K in number]?: unknown },
   F = never,
   Acc extends readonly unknown[] = EmptyArray
-> = M extends unknown
+> = // dprint-ignore
+  M extends unknown
   ? EmptyObject extends M
     ? Acc
     : Required<Acc>['length'] extends infer I extends number

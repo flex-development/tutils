@@ -32,6 +32,7 @@ import type IfAnyOrNever from './if-any-or-never'
 type IsUniqueSymbol<T> = IfAnyOrNever<
   T,
   false,
+  // dprint-ignore
   T extends symbol
     ? symbol extends T
       ? false

@@ -36,7 +36,8 @@ import type UnwrapNumeric from './unwrap-numeric'
 type IsKey<
   T extends string | readonly unknown[],
   K extends NumberLike
-> = IsAny<K> extends true
+> = // dprint-ignore
+  IsAny<K> extends true
   ? false
   : T extends unknown
   ? K extends unknown
@@ -116,7 +117,8 @@ type At<
   T extends Nilable<string | readonly unknown[]>,
   K extends NumberLike,
   F = undefined
-> = IsAnyOrNever<T> extends true
+> = // dprint-ignore
+  IsAnyOrNever<T> extends true
   ? F
   : IsNever<K> extends true
   ? F

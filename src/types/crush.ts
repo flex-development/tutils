@@ -26,6 +26,7 @@ import type Objectify from './objectify'
  *
  * @template T - Type to evaluate
  */
+// dprint-ignore
 type Crush<T extends Nilable<object>> = IsAnyOrNever<T> extends true
   ? Objectify<T>
   : T extends unknown

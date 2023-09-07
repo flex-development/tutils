@@ -37,6 +37,7 @@ import type Writable from './writable'
  *
  * @template T - Type to evaluate
  */
+// dprint-ignore
 type Spread<T> = IsNever<T> extends true
   ? Objectify<T>
   : T extends unknown

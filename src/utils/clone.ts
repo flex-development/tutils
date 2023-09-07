@@ -118,7 +118,7 @@ const clone = <T>(value: T): T => {
     if (cache.has(obj)) return cast(cache.get(obj))
 
     // cache object and clone
-    cache.set(obj, (cloned = fallback(cloned, cast({}))))
+    cache.set(obj, cloned = fallback(cloned, cast({})))
 
     // define own properties of initial object on cloned object
     for (const key of properties(obj)) {

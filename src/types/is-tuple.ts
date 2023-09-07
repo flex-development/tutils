@@ -41,6 +41,7 @@ import type Length from './length'
 type IsTuple<T> = IfAnyOrNever<
   T,
   false,
+  // dprint-ignore
   T extends readonly unknown[]
     ? number extends Length<T>
       ? false

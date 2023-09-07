@@ -97,8 +97,8 @@ const equal = <T, U, H = PropertyKey>(
     if (isArray(a) && isArray(b)) {
       return a.length === b.length
         ? iterate(a.length, true, (acc: boolean, i: number) => {
-            return acc && dequal(cast<unknown[]>(a)[i], cast<unknown[]>(b)[i])
-          })
+          return acc && dequal(cast<unknown[]>(a)[i], cast<unknown[]>(b)[i])
+        })
         : false
     }
 
@@ -111,11 +111,11 @@ const equal = <T, U, H = PropertyKey>(
     if (isDataView(a) && isDataView(b)) {
       return a.byteLength === b.byteLength
         ? iterate(a.byteLength, true, (acc: boolean, i: number) => {
-            return (
-              acc &&
-              cast<DataView>(a).getInt8(i) === cast<DataView>(b).getInt8(i)
-            )
-          })
+          return (
+            acc &&
+            cast<DataView>(a).getInt8(i) === cast<DataView>(b).getInt8(i)
+          )
+        })
         : false
     }
 
@@ -126,8 +126,8 @@ const equal = <T, U, H = PropertyKey>(
     if (isMap(a) && isMap(b)) {
       return a.size === b.size
         ? [...a.entries()].reduce((acc, [key, value]) => {
-            return acc && isMap(b) && b.has(key) && dequal(value, b.get(key))
-          }, true)
+          return acc && isMap(b) && b.has(key) && dequal(value, b.get(key))
+        }, true)
         : false
     }
 
@@ -138,8 +138,8 @@ const equal = <T, U, H = PropertyKey>(
     if (isSet(a) && isSet(b)) {
       return a.size === b.size
         ? [...a].reduce<boolean>((acc, value) => {
-            return acc && [...cast<Set<unknown>>(b)].some(v => dequal(value, v))
-          }, true)
+          return acc && [...cast<Set<unknown>>(b)].some(v => dequal(value, v))
+        }, true)
         : false
     }
 
@@ -147,8 +147,8 @@ const equal = <T, U, H = PropertyKey>(
     if (isTypedArray(a) && isTypedArray(b)) {
       return a.length === b.length
         ? iterate(a.length, true, (acc: boolean, i: number) => {
-            return acc && cast<TypedArray>(a)[i] === cast<TypedArray>(b)[i]
-          })
+          return acc && cast<TypedArray>(a)[i] === cast<TypedArray>(b)[i]
+        })
         : false
     }
 

@@ -20,6 +20,7 @@ import type Split from './split'
  * @template T - Array to reverse
  * @template Acc - Reversal accumulator
  */
+// dprint-ignore
 type ReverseArray<
   T extends readonly unknown[],
   Acc extends readonly unknown[] = EmptyArray
@@ -74,6 +75,7 @@ type ReverseArray<
 type Reverse<T extends string | readonly unknown[]> = IfAny<
   T,
   any[],
+  // dprint-ignore
   Length<Required<T>> extends 1
     ? T
     : T extends string

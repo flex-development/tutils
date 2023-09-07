@@ -24,6 +24,7 @@ type Keyof<T, F extends PropertyKey = PropertyKey> = Extract<
   IfNever<
     T,
     keyof Remap<T>,
+    // dprint-ignore
     T extends unknown
       ? Remap<T> extends infer U
         ? keyof {

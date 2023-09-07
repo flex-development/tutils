@@ -33,6 +33,7 @@ import type UnionToIntersection from './union-to-intersection'
 type UnionToTuple<T> = UnionToIntersection<
   T extends never ? never : Fn<[T], T>
 > extends Fn<[never], infer W>
+  // dprint-ignore
   ? [...UnionToTuple<Exclude<T, W>>, W]
   : EmptyArray
 

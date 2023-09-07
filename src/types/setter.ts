@@ -34,6 +34,7 @@ type Setter<
   K extends PropertyKey,
   V = unknown
 > = T extends unknown
+  // dprint-ignore
   ? Assign<T, { [H in K]: V }> extends infer U
     ? {
         [H in keyof U as H extends Intersection<H, K>

@@ -34,6 +34,7 @@ import type Fn from './fn'
 type UnionToIntersection<T> = (
   T extends unknown ? Fn<[T], void> : never
 ) extends Fn<[infer I], void>
+  // dprint-ignore
   ? I
   : never
 

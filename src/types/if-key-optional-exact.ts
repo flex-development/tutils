@@ -20,6 +20,7 @@ import type PropertyKey from './property-key'
  * @template T - Type if `K` extends exact optional property
  * @template F - Type if `K` does not extend exact optional property
  */
+// dprint-ignore
 type IfExactOptionalKey<U, K extends PropertyKey, T, F> = IfNever<
   U,
   F,

@@ -33,7 +33,8 @@ import type EmptyArray from './empty-array'
 type NaturalRange<
   M extends number,
   Acc extends readonly number[] = EmptyArray
-> = M extends number
+> = // dprint-ignore
+  M extends number
   ? Acc['length'] extends M
     ? Acc[number]
     : NaturalRange<M, [...Acc, Acc['length']]>

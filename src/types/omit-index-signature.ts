@@ -24,6 +24,7 @@ import type Objectify from './objectify'
  * @template T - Type to evaluate
  */
 type OmitIndexSignature<T> = T extends unknown
+  // dprint-ignore
   ? Objectify<T> extends infer U
     ? { [H in keyof U as IfIndexSignature<U, H, never, H>]: U[H] }
     : never

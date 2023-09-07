@@ -25,6 +25,7 @@ type IsIndexSignature<T, K extends PropertyKey> = IfNever<
   IfAnyOrNever<
     K,
     false,
+    // dprint-ignore
     T extends unknown
       ? K extends PropertyKey
         ? {

@@ -23,9 +23,7 @@ yarn.lock
 !.commitlintrc.*
 !.cspell.json
 !.github/
-!.graphqlrc.yml
 !.lintstagedrc.json
 !.markdownlint.jsonc
-!.prettierrc.json
 !.vscode/
 !.yarnrc.yml

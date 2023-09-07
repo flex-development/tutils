@@ -19,6 +19,7 @@ import type OneOrMany from './one-or-many'
  * @template T - Target object
  * @template U - Source object
  */
+// dprint-ignore
 type Overwriter<T extends Objectify<any>, U> = IsEqual<T, U> extends true
   ? T
   : U extends ObjectCurly
@@ -53,7 +54,8 @@ type Overwriter<T extends Objectify<any>, U> = IsEqual<T, U> extends true
 type Overwrite<
   T extends ObjectCurly,
   U extends Readonly<OneOrMany<ObjectCurly>> = EmptyObject
-> = IsAnyOrNever<U> extends true
+> = // dprint-ignore
+  IsAnyOrNever<U> extends true
   ? Overwriter<T, Objectify<U>>
   : T extends unknown
   ? U extends ObjectCurly

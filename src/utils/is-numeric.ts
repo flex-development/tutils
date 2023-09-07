@@ -20,7 +20,7 @@ import isString from './is-string'
  * @return {value is Numeric} `true` if `value` is a numeric
  */
 const isNumeric = (value: unknown): value is Numeric => {
-  return isString(value) && isNumber((value = +value)) && !isNaN(value)
+  return isString(value) && isNumber(value = +value) && !isNaN(value)
 }
 
 export default isNumeric

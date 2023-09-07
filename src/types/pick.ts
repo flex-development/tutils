@@ -29,7 +29,9 @@ import type UnwrapNumeric from './unwrap-numeric'
  * @template T - Type to evaluate
  * @template K - Keys to select
  */
-type Pick<T, K extends PropertyKey> = IsNever<T> extends true
+type Pick<T, K extends PropertyKey> =
+  // dprint-ignore
+  IsNever<T> extends true
   ? Remap<T>
   : T extends unknown
   ? Remap<T> extends infer U

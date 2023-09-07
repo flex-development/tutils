@@ -50,6 +50,7 @@ import type UnwrapNumeric from './unwrap-numeric'
  */
 type OptionalKeys<T> = Extract<
   T extends unknown
+    // dprint-ignore
     ? {
         [H in keyof Objectify<T> as IfRequiredKey<
           T,

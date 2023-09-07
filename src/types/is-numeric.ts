@@ -50,6 +50,7 @@ import type Trim from './trim'
 type IsNumeric<T> = IfAnyOrNever<
   T,
   false,
+  // dprint-ignore
   T extends NegativeNumeric | Numeric
     ? Trim<T> extends T
       ? true

@@ -23,6 +23,7 @@ import type IfEqual from './if-equal'
  * @template U - Second type to evaluate
  */
 type Intersection<T, U> = T extends unknown
+  // dprint-ignore
   ? U extends unknown
     ? IfEqual<T, U, T, never>
     : never

@@ -34,6 +34,7 @@ import type UnwrapNumeric from './unwrap-numeric'
  * @template T - Type to evaluate
  * @template K - Properties to remove
  */
+// dprint-ignore
 type Omit<T, K extends PropertyKey> = IsNever<T> extends true
   ? Objectify<T>
   : T extends unknown

@@ -24,6 +24,7 @@ import type Stringify from '../stringify'
 
 describe('unit-d:types/Path', () => {
   type IndicesAll<T extends string | readonly unknown[]> =
+    // dprint-ignore
     Indices<T> extends infer I ? I | Stringify<I> : never
 
   it('should equal NumberString if T is any', () => {
