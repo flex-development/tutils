@@ -1,3 +1,41 @@
+## [tutils@6.0.0-alpha.22](https://github.com/flex-development/tutils/compare/tutils@6.0.0-alpha.21...tutils@6.0.0-alpha.22) (2023-09-07)
+
+
+### :package: Build
+
+* **deps-dev:** Bump @flex-development/mlly from 1.0.0-alpha.17 to 1.0.0-alpha.18 ([#384](https://github.com/flex-development/tutils/issues/384)) ([03c7c30](https://github.com/flex-development/tutils/commit/03c7c30d826ca80064cf833e48291430cb9ba213))
+* **deps-dev:** Bump @flex-development/tsconfig-utils from 2.0.1 to 2.0.2 ([#385](https://github.com/flex-development/tutils/issues/385)) ([d4f76cd](https://github.com/flex-development/tutils/commit/d4f76cd1e0545cfec3fd121c4aa09d161b04900f))
+* **deps-dev:** Bump eslint-plugin-markdownlint from 0.4.1 to 0.5.0 ([#380](https://github.com/flex-development/tutils/issues/380)) ([70d8d41](https://github.com/flex-development/tutils/commit/70d8d41b173d1e2d311488989584a073b959fee0))
+* **deps-dev:** Bump graphql from 16.7.1 to 16.8.0 ([#379](https://github.com/flex-development/tutils/issues/379)) ([fc9887a](https://github.com/flex-development/tutils/commit/fc9887af16bdcc00b79cb49682933e046001b410))
+* **deps-dev:** Bump the typescript-eslint group with 2 updates ([#378](https://github.com/flex-development/tutils/issues/378)) ([e6e6428](https://github.com/flex-development/tutils/commit/e6e6428484cb82b903ed66e0b83037aa1b57d7ec))
+* **yarn:** bump yarn from 4.0.0-rc.39 to 4.0.0-rc.50 ([0e939d1](https://github.com/flex-development/tutils/commit/0e939d12930da192818cd715e57f5cf337f3a945))
+
+
+### :robot: Continuous Integration
+
+* **deps:** Bump actions/checkout from 3.5.3 to 3.6.0 ([#390](https://github.com/flex-development/tutils/issues/390)) ([8faf087](https://github.com/flex-development/tutils/commit/8faf087a7373d1355269f0112e399705fd577c8e))
+* **deps:** Bump actions/checkout from 3.6.0 to 4.0.0 ([#394](https://github.com/flex-development/tutils/issues/394)) ([2bf0ef4](https://github.com/flex-development/tutils/commit/2bf0ef4d24757bdb23523268fc64d12962dbda72))
+* **deps:** Bump actions/setup-node from 3.7.0 to 3.8.0 ([#381](https://github.com/flex-development/tutils/issues/381)) ([4c3c34a](https://github.com/flex-development/tutils/commit/4c3c34af01476ebc3692d273bd6d92c8df6211fc))
+* **deps:** Bump actions/setup-node from 3.8.0 to 3.8.1 ([#387](https://github.com/flex-development/tutils/issues/387)) ([4aea776](https://github.com/flex-development/tutils/commit/4aea7767e1b28926395d9499f1467ff2dbbe643f))
+* **deps:** Bump actions/upload-artifact from 3.1.2 to 3.1.3 ([#396](https://github.com/flex-development/tutils/issues/396)) ([11f5cbd](https://github.com/flex-development/tutils/commit/11f5cbddeace9797d9509b38dca62b72e6dfd44b))
+* **deps:** Bump crazy-max/ghaction-import-gpg from 5.3.0 to 5.4.0 ([#393](https://github.com/flex-development/tutils/issues/393)) ([e296e59](https://github.com/flex-development/tutils/commit/e296e5929b55fc0b9e235438e232669e12f2ac29))
+
+
+### :sparkles: Features
+
+* **utils:** `isURL` ([5d51d7d](https://github.com/flex-development/tutils/commit/5d51d7d3226ffe3e5f4ff5d1405d3190ba8ccbde))
+
+
+### :bug: Fixes
+
+* **utils:** [`clone`] `URL` clone initialization ([b34c5d1](https://github.com/flex-development/tutils/commit/b34c5d133d95dc6cfab56e1a9ff79fd722843c49))
+* **utils:** [`keys`] match function and type parameter defaults ([17f7bc9](https://github.com/flex-development/tutils/commit/17f7bc9672c0feee3b218adfd7cde6c89ca8ef2d))
+
+
+### :house_with_garden: Housekeeping
+
+* dprint migration ([d4e4c0a](https://github.com/flex-development/tutils/commit/d4e4c0a915a40e184e04d6e4bfcda1dd63b8407c))
+
 ## [tutils@6.0.0-alpha.21](https://github.com/flex-development/tutils/compare/tutils@6.0.0-alpha.20...tutils@6.0.0-alpha.21) (2023-08-14)
 
 
