@@ -22,6 +22,7 @@ import isRegExp from './is-reg-exp'
 import isSet from './is-set'
 import isTypedArray from './is-typed-array'
 import isUndefined from './is-undefined'
+import isURL from './is-url'
 import properties from './properties'
 
 /**
@@ -110,6 +111,9 @@ const clone = <T>(value: T): T => {
     if (isTypedArray(obj)) {
       cloned = new Clone(dclone(obj.buffer), obj.byteOffset, obj.length)
     }
+
+    // init cloned url
+    if (isURL(obj)) cloned = new Clone(obj.href)
 
     // init unknown clone
     if (isUndefined(cloned) && isFunction(Clone)) cloned = new Clone()

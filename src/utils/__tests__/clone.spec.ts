@@ -7,6 +7,7 @@ import INTEGER from '#fixtures/integer'
 import TODAY from '#fixtures/today'
 import type Vehicle from '#fixtures/types/vehicle'
 import VEHICLE, { VEHICLE_TAG } from '#fixtures/vehicle'
+import * as mlly from '@flex-development/mlly'
 import testSubject from '../clone'
 
 describe('unit:utils/clone', () => {
@@ -275,8 +276,22 @@ describe('unit:utils/clone', () => {
     })
   })
 
+  describe('URL', () => {
+    it('should return deep cloned URL instance', () => {
+      // Arrange
+      const value: URL = mlly.toURL('package.json')
+
+      // Act
+      const result = testSubject(value)
+
+      // Expect
+      expect(result).to.be.instanceof(URL)
+      expect(result).to.eql(value).but.not.equal(value)
+    })
+  })
+
   describe('arrays', () => {
-    it('should deep cloned array', () => {
+    it('should return deep cloned array', () => {
       // Arrange
       const value: RegExpExecArray = /fo+/g.exec('table football, foosball')!
 
