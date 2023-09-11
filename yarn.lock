@@ -3334,7 +3334,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"conventional-changelog-writer@npm:7.0.1":
+"conventional-changelog-writer@npm:7.0.1, conventional-changelog-writer@npm:^7.0.0":
   version: 7.0.1
   resolution: "conventional-changelog-writer@npm:7.0.1"
   dependencies:
@@ -3347,22 +3347,6 @@ __metadata:
   bin:
     conventional-changelog-writer: cli.mjs
   checksum: fdb13864104eb0df33bb21397091837177da2e24afe1380b4c48921db01d59b3016254d6d6f2de663a86fc7eac8537fcd1fa924354d478d9f2d5eec026b5f554
-  languageName: node
-  linkType: hard
-
-"conventional-changelog-writer@npm:^7.0.0":
-  version: 7.0.0
-  resolution: "conventional-changelog-writer@npm:7.0.0"
-  dependencies:
-    conventional-commits-filter: "npm:^4.0.0"
-    handlebars: "npm:^4.7.7"
-    json-stringify-safe: "npm:^5.0.1"
-    meow: "npm:^12.0.1"
-    semver: "npm:^7.5.2"
-    split2: "npm:^4.0.0"
-  bin:
-    conventional-changelog-writer: cli.mjs
-  checksum: e0b93aec528a3f703063bd982aa56202e2f418c6b6ff0136b4dc1ef9463b7341e8009c6d59e4511ad086cc166e9c762f0e05d02c4472025437a6245570d33294
   languageName: node
   linkType: hard
 
