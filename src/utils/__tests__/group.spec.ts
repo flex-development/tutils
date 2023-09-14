@@ -14,8 +14,8 @@ describe('unit:utils/group', () => {
     ]
 
     // Act + Expect
-    cases.forEach(([array, identity, expected]) => {
-      expect(testSubject(array, identity)).to.eql(expected)
+    cases.forEach(([arr, key, expected]) => {
+      expect(testSubject(arr, key)).to.eql(expected)
     })
   })
 })
