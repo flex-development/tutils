@@ -1,3 +1,10 @@
+## [tutils@6.0.0-alpha.24](https://github.com/flex-development/tutils/compare/tutils@6.0.0-alpha.23...tutils@6.0.0-alpha.24) (2023-09-14)
+
+
+### :sparkles: Features
+
+* **utils:** `groupAsync` ([34179be](https://github.com/flex-development/tutils/commit/34179be44ad780b31c20ef9a47459d6b27ae8bd2))
+
 ## [tutils@6.0.0-alpha.23](https://github.com/flex-development/tutils/compare/tutils@6.0.0-alpha.22...tutils@6.0.0-alpha.23) (2023-09-14)
 
 
