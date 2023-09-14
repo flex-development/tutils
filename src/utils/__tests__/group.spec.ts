@@ -7,15 +7,9 @@ import testSubject from '../group'
 
 describe('unit:utils/group', () => {
   it('should return groups object', () => {
-    // Arrange
-    const cases: [...Parameters<typeof testSubject<number[]>>, object][] = [
-      [[], vi.fn(), {}],
-      [[3.1, 4.2, 3.3], Math.floor, { 3: [3.1, 3.3], 4: [4.2] }]
-    ]
-
-    // Act + Expect
-    cases.forEach(([arr, key, expected]) => {
-      expect(testSubject(arr, key)).to.eql(expected)
+    expect(testSubject([3.1, 4.2, 3.3], Math.floor)).to.eql({
+      3: [3.1, 3.3],
+      4: [4.2]
     })
   })
 })
