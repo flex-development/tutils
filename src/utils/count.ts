@@ -5,6 +5,7 @@
 
 import type { ArrayPredicate } from '#src/types'
 import constant from './constant'
+import reduce from './reduce'
 
 /**
  * Returns the number of items in an array that meet a given `condition`.
@@ -23,7 +24,7 @@ const count = <T extends readonly unknown[]>(
   arr: T,
   condition: ArrayPredicate<T> = constant(true)
 ): number => {
-  return arr.reduce<number>((acc, curr, index) => {
+  return reduce(arr, (acc, curr, index) => {
     return condition(curr, index, arr) ? ++acc : acc
   }, 0)
 }

@@ -8,6 +8,7 @@ import cast from './cast'
 import define from './define'
 import get from './get'
 import properties from './properties'
+import reduce from './reduce'
 
 /**
  * Returns a new object with keys and values reversed.
@@ -24,7 +25,7 @@ import properties from './properties'
 const invert = <T extends Nilable<{ [K in PropertyKey]?: Primitive }>>(
   obj: T
 ): Invert<T> => {
-  return properties(obj).reduce<Invert<T>>((acc, key) => {
+  return reduce(properties(obj), (acc, key) => {
     return define(acc, get(obj, key), { value: key })
   }, cast({}))
 }

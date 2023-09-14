@@ -11,6 +11,7 @@ import get from './get'
 import identity from './identity'
 import isString from './is-string'
 import type KeysOptions from './keys.options'
+import reduce from './reduce'
 import select from './select'
 
 /**
@@ -41,32 +42,26 @@ const keys = <T, K extends Nilable<KeysOptions> = undefined>(
   target: T,
   options?: K
 ): Keys<T, K> => {
-  return cast(
-    alphabetize(
-      Object.keys(target ?? {}).reduce<Keys<T, K>>((acc, key) => {
-        /**
-         * Value of {@linkcode target} at {@linkcode key}.
-         *
-         * @const {any} value
-         */
-        const value: any = get(target, key)
+  return cast(alphabetize(reduce(Object.keys(target ?? {}), (acc, key) => {
+    /**
+     * Value of {@linkcode target} at {@linkcode key}.
+     *
+     * @const {any} value
+     */
+    const value: any = get(target, key)
 
-        // add property name
-        acc.push(key)
+    // add property name
+    acc.push(key)
 
-        // exit early if deep key retrieval should be skipped
-        if (!options?.deep || isString(target)) return acc
+    // exit early if deep key retrieval should be skipped
+    if (!options?.deep || isString(target)) return acc
 
-        // get nested keys
-        return cast([
-          ...acc,
-          ...select(keys(value, options), null, nk => desegment([key, nk]))
-        ])
-      }, cast([])),
-      identity,
-      options
-    )
-  )
+    // get nested keys
+    return cast([
+      ...acc,
+      ...select(keys(value, options), null, nk => desegment([key, nk]))
+    ])
+  }, cast<Keys<T, K>>([])), identity, options))
 }
 
 export default keys

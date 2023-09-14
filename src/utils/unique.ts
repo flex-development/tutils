@@ -6,6 +6,7 @@
 import type { Fn, Nilable, PropertyKey } from '#src/types'
 import cast from './cast'
 import includes from './includes'
+import reduce from './reduce'
 
 /**
  * Removes all duplicates from an array.
@@ -27,11 +28,9 @@ const unique = <T, K extends PropertyKey = PropertyKey, U = T>(
   arr: readonly T[],
   identity?: Nilable<Fn<[T], K>>
 ): U[] => {
-  return cast(
-    arr.reduce<T[]>((acc, item) => {
-      return includes(acc, item, null, identity) ? acc : [...acc, item]
-    }, [])
-  )
+  return reduce(arr, (acc, item) => {
+    return includes(acc, item, null, identity) ? acc : cast([...acc, item])
+  }, cast([]))
 }
 
 export default unique

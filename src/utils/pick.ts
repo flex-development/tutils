@@ -3,12 +3,13 @@
  * @module tutils/utils/pick
  */
 
-import type { Objectify, Pick, PropertyKey } from '#src/types'
+import type { Pick, PropertyKey } from '#src/types'
 import cast from './cast'
 import define from './define'
 import get from './get'
 import hasOwn from './has-own'
 import ksort from './ksort'
+import reduce from './reduce'
 
 /**
  * Selects properties from a value.
@@ -30,15 +31,11 @@ const pick = <T, K extends PropertyKey>(
   target: T,
   keys: readonly K[]
 ): Pick<T, K> => {
-  return cast(
-    ksort(
-      keys.reduce<Objectify<any>>((acc, key) => {
-        return hasOwn(target, key)
-          ? define(acc, key, { value: get(target, key) })
-          : acc
-      }, {})
-    )
-  )
+  return cast(ksort(reduce(keys, (acc, key) => {
+    return hasOwn(target, key)
+      ? define(acc, key, { value: get(target, key) })
+      : acc
+  }, {})))
 }
 
 export default pick

@@ -6,6 +6,7 @@
 import type { Mapper, PropertyKey } from '#src/types'
 import cast from './cast'
 import isUndefined from './is-undefined'
+import reduce from './reduce'
 
 /**
  * Group each item in an array.
@@ -33,7 +34,7 @@ const group = <
   arr: T,
   key: Mapper<T, K>
 ): { [H in K]: T[number][] } => {
-  return arr.reduce<{ [H in K]: T[number][] }>((acc, item, i) => {
+  return reduce(arr, (acc, item, i) => {
     /**
      * Group key.
      *

@@ -11,6 +11,7 @@ import isObject from './is-object'
 import isString from './is-string'
 import keys from './keys'
 import objectify from './objectify'
+import reduce from './reduce'
 
 /**
  * Flattens an object to a single dimension.
@@ -30,7 +31,7 @@ import objectify from './objectify'
 const crush = <T extends Nilable<object>>(obj: T): Crush<T> => {
   return cast(
     objectify(
-      keys(obj, { deep: true }).reduce<string[]>((acc, key, i, keys) => {
+      reduce(keys(obj, { deep: true }), (acc, key, i, keys) => {
         /**
          * Value of {@linkcode obj} at {@linkcode key}.
          *
@@ -43,7 +44,7 @@ const crush = <T extends Nilable<object>>(obj: T): Crush<T> => {
           : keys.slice(i).some(k => k.startsWith(key + DOT)) && isObject(value)
           ? acc
           : [...acc, key]
-      }, []),
+      }, cast<string[]>([])),
       key => key,
       key => get(obj, key)
     )

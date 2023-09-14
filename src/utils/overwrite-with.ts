@@ -10,6 +10,7 @@ import define from './define'
 import descriptor from './descriptor'
 import hasOwn from './has-own'
 import properties from './properties'
+import reduce from './reduce'
 
 /**
  * Function used to customize assigned values.
@@ -50,8 +51,8 @@ const overwriteWith = <T extends ObjectCurly, U extends readonly ObjectCurly[]>(
   base: T,
   ...source: U
 ): Overwrite<T, U> => {
-  return source.reduce<Overwrite<T, U>>((acc, src) => {
-    return properties(src).reduce<Overwrite<T, U>>((acc, key) => {
+  return reduce(source, (acc, src) => {
+    return reduce(properties(src), (acc, key) => {
       return hasOwn(acc, key)
         ? define(acc, key, {
           ...descriptor(src, key),

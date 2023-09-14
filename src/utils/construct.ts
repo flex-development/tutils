@@ -7,6 +7,7 @@ import type { Construct, Nilable, ObjectCurly } from '#src/types'
 import cast from './cast'
 import get from './get'
 import keys from './keys'
+import reduce from './reduce'
 import set from './set'
 
 /**
@@ -24,7 +25,7 @@ import set from './set'
  * @return {Construct<T>} Reconstructed crushed object
  */
 const construct = <T extends Nilable<ObjectCurly>>(obj: T): Construct<T> => {
-  return keys(obj).reduce<Construct<T>>((acc, path) => {
+  return reduce(keys(obj), (acc, path) => {
     return cast(set(acc, path, get(obj, path)))
   }, cast({}))
 }

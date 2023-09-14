@@ -16,6 +16,7 @@ import define from './define'
 import descriptor from './descriptor'
 import isObjectPlain from './is-object-plain'
 import properties from './properties'
+import reduce from './reduce'
 
 /**
  * Function used to customize assigned values.
@@ -61,8 +62,8 @@ const mergeWith = <T extends Objectify<any>, U extends readonly ObjectCurly[]>(
   base: T,
   ...source: U
 ): Merge<T, U> => {
-  return source.reduce<Merge<T, U>>((acc, src) => {
-    return properties(src).reduce<Merge<T, U>>((acc: Objectify<any>, key) => {
+  return reduce(source, (acc, src) => {
+    return reduce(properties(src), (acc, key) => {
       /**
        * Outgoing property value.
        *

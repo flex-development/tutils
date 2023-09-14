@@ -15,6 +15,7 @@ import constant from './constant'
 import fallback from './fallback'
 import identity from './identity'
 import isNIL from './is-nil'
+import reduceRight from './reduce-right'
 
 /**
  * Array filter function.
@@ -70,11 +71,11 @@ const select = <
   filter?: Nilable<SelectFilter<T, G>>,
   map?: Nilable<SelectMapper<G[], U>>
 ): U[] => {
-  return [...fallback(arr, [], isNIL)].reduceRight<U[]>((acc, curr, i, arr) => {
+  return reduceRight([...fallback(arr, [], isNIL)], (acc, curr, i, arr) => {
     return fallback(filter, constant(true), isNIL)(curr, i, cast(arr))
       ? [fallback(map, identity, isNIL)(cast(curr), i, cast(arr)), ...acc]
       : acc
-  }, [])
+  }, cast([]))
 }
 
 export { select as default, type SelectFilter, type SelectMapper }

@@ -4,8 +4,10 @@
  */
 
 import type { Fn, Nilable, PropertyKey } from '#src/types'
+import cast from './cast'
 import includes from './includes'
 import intersects from './intersects'
+import reduce from './reduce'
 
 /**
  * Returns an array of items exclusive to the first given array.
@@ -29,9 +31,9 @@ const diff = <T, K extends PropertyKey = PropertyKey>(
   identity?: Nilable<Fn<[T], K>>
 ): T[] => {
   return intersects(arr1, arr2, identity)
-    ? arr1.reduce<T[]>((acc, item) => {
+    ? reduce(arr1, (acc, item) => {
       return includes(arr2, item, null, identity) ? acc : [...acc, item]
-    }, [])
+    }, cast<T[]>([]))
     : [...arr1]
 }
 

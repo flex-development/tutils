@@ -7,6 +7,7 @@ import type { ObjectCurly, Predicate, Shake, Values } from '#src/types'
 import cast from './cast'
 import isUndefined from './is-undefined'
 import properties from './properties'
+import reduce from './reduce'
 
 /**
  * Remove properties from an object where the key-value meets a given `filter`
@@ -36,7 +37,7 @@ const shake = <T extends ObjectCurly, F = undefined>(
   obj: T,
   filter: Predicate<[Values<T>[number]]> = isUndefined
 ): Shake<T, F> => {
-  return properties(obj).reduce<Shake<T, F>>((acc, key) => {
+  return reduce(properties(obj), (acc, key) => {
     filter(obj[cast<keyof T>(key)]) && Reflect.deleteProperty(acc, key)
     return acc
   }, cast(obj))

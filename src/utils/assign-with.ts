@@ -15,6 +15,7 @@ import clone from './clone'
 import define from './define'
 import descriptor from './descriptor'
 import properties from './properties'
+import reduce from './reduce'
 
 /**
  * Function used to customize assigned values.
@@ -63,8 +64,8 @@ const assignWith = <T extends Objectify<any>, U extends readonly ObjectCurly[]>(
   base: T,
   ...source: U
 ): Assign<T, U> => {
-  return source.reduce<Assign<T, U>>((acc, src) => {
-    return properties(src).reduce<Assign<T, U>>((acc, key) => {
+  return reduce(source, (acc, src) => {
+    return reduce(properties(src), (acc, key: OwnPropertyKey) => {
       return define(acc, key, {
         ...descriptor(src, key),
         value: customizer(acc[key], src[key], key)

@@ -24,6 +24,7 @@ import isRegExp from './is-reg-exp'
 import isSet from './is-set'
 import isTypedArray from './is-typed-array'
 import iterate from './iterate'
+import reduce from './reduce'
 
 /**
  * Checks if two values are deeply equal.
@@ -125,7 +126,7 @@ const equal = <T, U, H = PropertyKey>(
     // compare maps
     if (isMap(a) && isMap(b)) {
       return a.size === b.size
-        ? [...a.entries()].reduce((acc, [key, value]) => {
+        ? reduce([...a.entries()], (acc, [key, value]) => {
           return acc && isMap(b) && b.has(key) && dequal(value, b.get(key))
         }, true)
         : false
@@ -137,7 +138,7 @@ const equal = <T, U, H = PropertyKey>(
     // compare sets
     if (isSet(a) && isSet(b)) {
       return a.size === b.size
-        ? [...a].reduce<boolean>((acc, value) => {
+        ? reduce([...a], (acc, value) => {
           return acc && [...cast<Set<unknown>>(b)].some(v => dequal(value, v))
         }, true)
         : false

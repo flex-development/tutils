@@ -6,6 +6,7 @@
 import type { Mapper, PropertyKey } from '#src/types'
 import cast from './cast'
 import define from './define'
+import reduce from './reduce'
 
 /**
  * Convert an array to a plain object.
@@ -32,7 +33,7 @@ const objectify = <
   key: Mapper<T, K> = (_, index) => cast(index),
   value: Mapper<T, V> = item => cast(item)
 ): { [H in K]: V } => {
-  return arr.reduce<{ [H in K]: V }>((acc, item, i) => {
+  return reduce(arr, (acc, item, i) => {
     return define(acc, key(item, i, arr), { value: value(item, i, arr) })
   }, cast({}))
 }

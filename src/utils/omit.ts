@@ -6,6 +6,7 @@
 import type { Omit, PropertyKey, Spread } from '#src/types'
 import cast from './cast'
 import clone from './clone'
+import reduce from './reduce'
 
 /**
  * Removes configurable properties from an object.
@@ -30,7 +31,7 @@ const omit = <T, K extends PropertyKey>(
   target: T,
   keys: readonly K[]
 ): Omit<Spread<T>, K> => {
-  return keys.reduce<Omit<Spread<T>, K>>((acc, key) => {
+  return reduce(keys, (acc, key) => {
     Reflect.deleteProperty(acc, key)
     return acc
   }, cast({ ...clone(target) }))
