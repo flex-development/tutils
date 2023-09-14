@@ -1,3 +1,46 @@
+## [tutils@6.0.0-alpha.23](https://github.com/flex-development/tutils/compare/tutils@6.0.0-alpha.22...tutils@6.0.0-alpha.23) (2023-09-14)
+
+
+### :package: Build
+
+* **deps-dev:** Bump @arethetypeswrong/cli from 0.7.1 to 0.10.2 ([#412](https://github.com/flex-development/tutils/issues/412)) ([707e081](https://github.com/flex-development/tutils/commit/707e08130a71007dd1e69ac8ae5c76b31a779d63))
+* **deps-dev:** Bump @flex-development/mkbuild from 1.0.0-alpha.21 to 1.0.0-alpha.23 ([#407](https://github.com/flex-development/tutils/issues/407)) ([36620d9](https://github.com/flex-development/tutils/commit/36620d9e50502fd7d653d376b23f926f2f3dcca5))
+* **deps-dev:** Bump cspell from 7.0.0 to 7.3.5 ([#413](https://github.com/flex-development/tutils/issues/413)) ([6fbbd49](https://github.com/flex-development/tutils/commit/6fbbd4955df8072468d955493aa54619f9d6bae8))
+* **deps-dev:** Bump cspell from 7.3.5 to 7.3.6 ([#419](https://github.com/flex-development/tutils/issues/419)) ([04bb0d1](https://github.com/flex-development/tutils/commit/04bb0d1f8fc5731cef766c3a397db9554b04b5e0))
+* **deps-dev:** Bump dprint from 0.40.2 to 0.41.0 ([#417](https://github.com/flex-development/tutils/issues/417)) ([2046d95](https://github.com/flex-development/tutils/commit/2046d95e8dde01d4e15a11441d3d4e5c817617ad))
+* **deps-dev:** bump dprint-plugin-markdown from 0.16.0 to 0.16.1 ([3663107](https://github.com/flex-development/tutils/commit/3663107cbc8bc7164533acdcadbfcf4ea035687b))
+* **deps-dev:** Bump esbuild from 0.19.2 to 0.19.3 ([#420](https://github.com/flex-development/tutils/issues/420)) ([4f220ea](https://github.com/flex-development/tutils/commit/4f220eafd00e40ba9400830581a97faf8aa4fa8d))
+* **deps-dev:** Bump eslint from 8.47.0 to 8.48.0 ([#401](https://github.com/flex-development/tutils/issues/401)) ([5962840](https://github.com/flex-development/tutils/commit/59628408413a53e1b8d09d634739b08198eaab2c))
+* **deps-dev:** Bump eslint from 8.48.0 to 8.49.0 ([#406](https://github.com/flex-development/tutils/issues/406)) ([96009cc](https://github.com/flex-development/tutils/commit/96009cc73dddb6edd5a136c8bc5c507419e6d3cd))
+* **deps-dev:** Bump eslint-plugin-yml from 1.8.0 to 1.9.0 ([#409](https://github.com/flex-development/tutils/issues/409)) ([9a3a143](https://github.com/flex-development/tutils/commit/9a3a143e87bfecdf0e06af89a9c7384cc0118543))
+* **deps-dev:** Bump lint-staged from 14.0.0 to 14.0.1 ([#411](https://github.com/flex-development/tutils/issues/411)) ([b21598b](https://github.com/flex-development/tutils/commit/b21598b11f19d34185fa4b9f1739899edb99e6cb))
+* **deps-dev:** Bump pretty-format from 29.6.2 to 29.6.3 ([#410](https://github.com/flex-development/tutils/issues/410)) ([10bfb32](https://github.com/flex-development/tutils/commit/10bfb32111ba06a60da615bf1c3f611b30978281))
+* **deps-dev:** Bump pretty-format from 29.6.3 to 29.7.0 ([#414](https://github.com/flex-development/tutils/issues/414)) ([87823f5](https://github.com/flex-development/tutils/commit/87823f5ad98f35f64d534e010dfac4a8c24abb30))
+* **deps-dev:** Bump the conventional-changelog group with 5 updates ([#400](https://github.com/flex-development/tutils/issues/400)) ([fea604d](https://github.com/flex-development/tutils/commit/fea604db0787a32689225837c026542cd644b3cb))
+* **deps-dev:** Bump the conventional-changelog group with 5 updates ([#404](https://github.com/flex-development/tutils/issues/404)) ([22aa2fe](https://github.com/flex-development/tutils/commit/22aa2fe5d89e0ee4b5bda89ccff2c7b8e040b260))
+* **deps-dev:** Bump the typescript-eslint group with 2 updates ([#399](https://github.com/flex-development/tutils/issues/399)) ([d3f0297](https://github.com/flex-development/tutils/commit/d3f0297a3fc9b98150cc81bb45701b014981d494))
+* **deps-dev:** Bump the typescript-eslint group with 2 updates ([#408](https://github.com/flex-development/tutils/issues/408)) ([825b1b5](https://github.com/flex-development/tutils/commit/825b1b57bb18cf565b91236a6529f767dbfc3922))
+* **deps-dev:** bump typescript from 5.1.6 to 5.2.2 ([c3371f5](https://github.com/flex-development/tutils/commit/c3371f58960af40a1ead35ff9da8e8e1d6b57f2f))
+* **deps-dev:** Bump vite-tsconfig-paths from 4.2.0 to 4.2.1 ([#416](https://github.com/flex-development/tutils/issues/416)) ([f261a44](https://github.com/flex-development/tutils/commit/f261a44e06c3dad514e29c8e6474bd677956267f))
+* **deps-dev:** bump vitest from 0.34.1 to 0.34.4 ([91407be](https://github.com/flex-development/tutils/commit/91407be51ba3c592c59ab904a40f1e7f3ca77f8b))
+
+
+### :robot: Continuous Integration
+
+* **deps:** Bump actions/cache from 3.3.1 to 3.3.2 ([#398](https://github.com/flex-development/tutils/issues/398)) ([ace2280](https://github.com/flex-development/tutils/commit/ace2280d9b47a3936b25168e4fe8f20970f53e82))
+* **deps:** Bump crazy-max/ghaction-import-gpg from 5.4.0 to 6.0.0 ([#402](https://github.com/flex-development/tutils/issues/402)) ([8bc2f3f](https://github.com/flex-development/tutils/commit/8bc2f3f0f6fd5ffb4888136d1db0f8e2a0b3676a))
+
+
+### :sparkles: Features
+
+* **utils:** `reduce`, `reduceAsync`, `reduceRight`, `reduceRightAsync` ([a3e3252](https://github.com/flex-development/tutils/commit/a3e325277c23b90e322677c6eddf892244e49e5a))
+
+
+### :bug: Fixes
+
+* **utils:** [`group`] return type ([e34ced1](https://github.com/flex-development/tutils/commit/e34ced12abab304362be85c5fb6b8cc82cf8a3c9))
+* **utils:** [`objectify`] return type ([f133bb1](https://github.com/flex-development/tutils/commit/f133bb1c1ddd7ed861d210857022952506043eac))
+
 ## [tutils@6.0.0-alpha.22](https://github.com/flex-development/tutils/compare/tutils@6.0.0-alpha.21...tutils@6.0.0-alpha.22) (2023-09-07)
 
 
