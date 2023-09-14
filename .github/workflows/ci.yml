@@ -246,6 +246,7 @@ jobs:
         typescript-version:
           - ${{ needs.preflight.outputs.version-typescript }}
           - latest
+          - 5.1.6
           - 5.0.4
     steps:
       - id: checkout
