@@ -8,7 +8,7 @@ import cast from './cast'
 import define from './define'
 
 /**
- * Converts an array to a plain object.
+ * Convert an array to a plain object.
  *
  * @see {@linkcode Mapper}
  *
@@ -21,7 +21,7 @@ import define from './define'
  * @param {T} arr - Array to convert
  * @param {Mapper<T, K>} [key=(_,index)=>index] - Object key function
  * @param {Mapper<T, V>} [value=item=>item] - Object value function
- * @return {Partial<Record<K, V>>} New plain object
+ * @return {Record<K, V>} New plain object
  */
 const objectify = <
   T extends readonly unknown[],
@@ -31,10 +31,10 @@ const objectify = <
   arr: T,
   key: Mapper<T, K> = (_, index) => cast(index),
   value: Mapper<T, V> = item => cast(item)
-): { [H in K]?: V } => {
-  return arr.reduce<{ [H in K]?: V }>((acc, item, i) => {
+): { [H in K]: V } => {
+  return arr.reduce<{ [H in K]: V }>((acc, item, i) => {
     return define(acc, key(item, i, arr), { value: value(item, i, arr) })
-  }, {})
+  }, cast({}))
 }
 
 export default objectify
