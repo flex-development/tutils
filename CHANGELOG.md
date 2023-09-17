@@ -1,3 +1,10 @@
+## [tutils@6.0.0-alpha.25](https://github.com/flex-development/tutils/compare/tutils@6.0.0-alpha.24...tutils@6.0.0-alpha.25) (2023-09-17)
+
+
+### :bug: Fixes
+
+* **utils:** `clone` usage errors ([373a2d4](https://github.com/flex-development/tutils/commit/373a2d4abbc70694978019a9c20512b1d5c48127))
+
 ## [tutils@6.0.0-alpha.24](https://github.com/flex-development/tutils/compare/tutils@6.0.0-alpha.23...tutils@6.0.0-alpha.24) (2023-09-14)
 
 
