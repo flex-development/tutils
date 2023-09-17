@@ -11,7 +11,6 @@ import type {
   OwnPropertyKey
 } from '#src/types'
 import cast from './cast'
-import clone from './clone'
 import define from './define'
 import descriptor from './descriptor'
 import properties from './properties'
@@ -28,23 +27,22 @@ import reduce from './reduce'
 type AssignCustomizer = Fn<[any, any, OwnPropertyKey]>
 
 /**
- * Assigns own properties of one or more `source` objects to a target object.
+ * Assigns all enumerable own properties of one or more `source` objects to a
+ * target object.
  *
  * A `customizer` is used to produce assigned values. The initial `base` object
  * **will not** be modified.
  *
  * Source objects are applied from left to right. Subsequent sources overwrite
- * property assignments of previous sources.
- *
- * New properties are *defined* rather than *assigned*. Both enumerable and
- * non-enumerable properties will be copied from source objects. Inherited
- * properties are not copied.
+ * property assignments of previous sources. New properties are *defined* rather
+ * than *assigned*.
  *
  * **Note**: The return type may differ from the actual return value when using
- * a `customizer`. Additionally, TypeScript does not track inheritance. The
- * return type may also differ from the actual return value when source objects
- * contain inherited properties (e.g. `Map`, `Set`). In such cases, the return
- * type will include more keys than present on the return value.
+ * a `customizer`. Additionally, TypeScript does not track enumerability or
+ * property inheritance. The return type may also differ from the actual return
+ * value when source objects contain non-enumerable or inherited properties
+ * (e.g. `Map`, `Set`). In such cases, the return type will include more keys
+ * than present on the return value.
  *
  * @see {@linkcode Assign}
  * @see {@linkcode AssignCustomizer}
@@ -71,7 +69,7 @@ const assignWith = <T extends Objectify<any>, U extends readonly ObjectCurly[]>(
         value: customizer(acc[key], src[key], key)
       })
     }, acc)
-  }, cast(clone(base)))
+  }, cast({ ...base }))
 }
 
 export { assignWith as default, type AssignCustomizer }

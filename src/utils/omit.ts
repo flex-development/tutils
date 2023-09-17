@@ -5,7 +5,6 @@
 
 import type { Omit, PropertyKey, Spread } from '#src/types'
 import cast from './cast'
-import clone from './clone'
 import reduce from './reduce'
 
 /**
@@ -34,7 +33,7 @@ const omit = <T, K extends PropertyKey>(
   return reduce(keys, (acc, key) => {
     Reflect.deleteProperty(acc, key)
     return acc
-  }, cast({ ...clone(target) }))
+  }, cast({ ...target }))
 }
 
 export default omit

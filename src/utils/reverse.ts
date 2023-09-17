@@ -5,7 +5,6 @@
 
 import type { Reverse } from '#src/types'
 import cast from './cast'
-import clone from './clone'
 import isArray from './is-array'
 import join from './join'
 import split from './split'
@@ -26,7 +25,7 @@ const reverse = <T extends string | readonly unknown[]>(
   target: T
 ): Reverse<T> => {
   return isArray(target)
-    ? cast([...clone(target)].reverse())
+    ? cast([...target].reverse())
     : cast(join(split(target, '').reverse(), ''))
 }
 

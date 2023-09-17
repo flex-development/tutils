@@ -5,7 +5,6 @@
 
 import type { Fn, ObjectCurly, Overwrite, OwnPropertyKey } from '#src/types'
 import cast from './cast'
-import clone from './clone'
 import define from './define'
 import descriptor from './descriptor'
 import hasOwn from './has-own'
@@ -60,7 +59,7 @@ const overwriteWith = <T extends ObjectCurly, U extends readonly ObjectCurly[]>(
         })
         : acc
     }, acc)
-  }, cast(clone(base)))
+  }, cast({ ...base }))
 }
 
 export { overwriteWith as default, type OverwriteCustomizer }

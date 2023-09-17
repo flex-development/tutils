@@ -11,7 +11,6 @@ import type {
   OwnPropertyKey
 } from '#src/types'
 import cast from './cast'
-import clone from './clone'
 import define from './define'
 import descriptor from './descriptor'
 import isObjectPlain from './is-object-plain'
@@ -29,8 +28,9 @@ import reduce from './reduce'
 type MergeCustomizer = Fn<[any, any, OwnPropertyKey]>
 
 /**
- * Recursively merges own properties of one or more `source` objects into a
- * target object. The initial `base` object **will not** be modified.
+ * Recursively merges all enumerable own properties of one or more `source`
+ * objects into a target object. The initial `base` object **will not** be
+ * modified.
  *
  * A `customizer` is be used to produce merged values. Plain object properties
  * are merged recursively. Other objects and value types are overridden by
@@ -39,10 +39,11 @@ type MergeCustomizer = Fn<[any, any, OwnPropertyKey]>
  * Source objects are applied from left to right. Subsequent sources overwrite
  * property assignments of previous sources.
  *
- * **Note**: TypeScript does not track inheritance. The return type may differ
- * from the actual return value when source objects contain inherited properties
- * (e.g. `Map`, `Set`). In such cases, the return type will include more keys
- * than present on the return value.
+ * **Note**: TypeScript does not track enumerability or property inheritance.
+ * The return type may differ from the actual return value when source objects
+ * contain non-enumerable or inherited properties (e.g. `Map`, `Set`). In such
+ * cases, the return type will include more keys than present on the return
+ * value.
  *
  * @see {@linkcode Merge}
  * @see {@linkcode MergeCustomizer}
@@ -89,7 +90,7 @@ const mergeWith = <T extends Objectify<any>, U extends readonly ObjectCurly[]>(
         value: customizer(outgoing, incoming, key)
       })
     }, acc)
-  }, cast(clone(base)))
+  }, cast({ ...base }))
 }
 
 export { mergeWith as default, type MergeCustomizer }

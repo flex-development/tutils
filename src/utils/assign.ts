@@ -7,20 +7,18 @@ import type { Assign, ObjectCurly, Objectify } from '#src/types'
 import assignWith from './assign-with'
 
 /**
- * Assigns own properties of one or more `source` objects to a target object.
- * The initial `base` object **will not** be modified.
+ * Assigns all enumerable own properties of one or more `source` objects to a
+ * target object. The initial `base` object **will not** be modified.
  *
  * Source objects are applied from left to right. Subsequent sources overwrite
- * property assignments of previous sources.
+ * property assignments of previous sources. New properties are *defined* rather
+ * than *assigned*.
  *
- * New properties are *defined* rather than *assigned*. Both enumerable and
- * non-enumerable properties will be copied from source objects. Inherited
- * properties are not copied.
- *
- * **Note**: TypeScript does not track inheritance. The return type may differ
- * from the actual return value when source objects contain inherited properties
- * (e.g. `Map`, `Set`). In such cases, the return type will include more keys
- * than present on the return value.
+ * **Note**: TypeScript does not track enumerability or property inheritance.
+ * The return type may differ from the actual return value when source objects
+ * contain non-enumerable or inherited properties (e.g. `Map`, `Set`). In such
+ * cases, the return type will include more keys than present on the return
+ * value.
  *
  * @see {@linkcode Assign}
  * @see {@linkcode assignWith}
