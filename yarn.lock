@@ -1547,8 +1547,8 @@ __metadata:
     "@typescript-eslint/eslint-plugin": "npm:6.8.0"
     "@typescript-eslint/parser": "npm:6.8.0"
     "@vates/toggle-scripts": "npm:1.0.0"
-    "@vitest/coverage-v8": "npm:0.34.4"
-    "@vitest/expect": "npm:0.34.4"
+    "@vitest/coverage-v8": "npm:0.34.6"
+    "@vitest/expect": "npm:0.34.6"
     add-stream: "npm:1.0.0"
     chai: "npm:5.0.0-alpha.1"
     chai-each: "npm:0.0.1"
@@ -2323,9 +2323,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vitest/coverage-v8@npm:0.34.4":
-  version: 0.34.4
-  resolution: "@vitest/coverage-v8@npm:0.34.4"
+"@vitest/coverage-v8@npm:0.34.6":
+  version: 0.34.6
+  resolution: "@vitest/coverage-v8@npm:0.34.6"
   dependencies:
     "@ampproject/remapping": "npm:^2.2.1"
     "@bcoe/v8-coverage": "npm:^0.2.3"
@@ -2340,7 +2340,7 @@ __metadata:
     v8-to-istanbul: "npm:^9.1.0"
   peerDependencies:
     vitest: ">=0.32.0 <1"
-  checksum: 315fb38f8e0221e21308b7ee33041fa20ca7c586e967cc16a1b477680b772d30adfad2bef6ecd00a269e7f99497ec0c5998f555f0078a4842ed68df023966ec3
+  checksum: f25afdc496d44b387752b88e82e4643557711f72d88d3da363785386cbd523af3f6049f5f91a3e6afc9c2417aa1d97e09801c0e5e62cb96cc9d419cc9629de2a
   languageName: node
   linkType: hard
 
@@ -2352,6 +2352,17 @@ __metadata:
     "@vitest/utils": "npm:0.34.4"
     chai: "npm:^4.3.7"
   checksum: f19a6b147c5830b7ed9c45864877638c07e5147828ebfbe0af067987d318f11ecf82057fb267405968d1d57e08dc092b976cfc22ebc2887a6912c22e4ed6e6c4
+  languageName: node
+  linkType: hard
+
+"@vitest/expect@npm:0.34.6":
+  version: 0.34.6
+  resolution: "@vitest/expect@npm:0.34.6"
+  dependencies:
+    "@vitest/spy": "npm:0.34.6"
+    "@vitest/utils": "npm:0.34.6"
+    chai: "npm:^4.3.10"
+  checksum: c5dbd3db4d914857287dcff5dd7084070a2f73ed616197c80acaa54c27e5563cecf7a11e86d6aeef002e38f2ca52626f4b9c765db9b56add736f4e94a7fb0954
   languageName: node
   linkType: hard
 
@@ -2386,6 +2397,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@vitest/spy@npm:0.34.6":
+  version: 0.34.6
+  resolution: "@vitest/spy@npm:0.34.6"
+  dependencies:
+    tinyspy: "npm:^2.1.1"
+  checksum: 9de152ac928c31e21bb4d8e1262b70db50dd11479efe8babce6bd993cc89957b974a584414a99d66ca188775b50baea1b934fdfb8d0d53c66fc2feb6dc2e348d
+  languageName: node
+  linkType: hard
+
 "@vitest/utils@npm:0.34.4":
   version: 0.34.4
   resolution: "@vitest/utils@npm:0.34.4"
@@ -2394,6 +2414,17 @@ __metadata:
     loupe: "npm:^2.3.6"
     pretty-format: "npm:^29.5.0"
   checksum: 0365f8560ac22cb741d5e1cdf2e394a11108478facc730f0ee6121e1e254132c3fdb2ed7b251c389cee9342d4a0c9cd7cbfa62957e9625e3c5bb333454e55d88
+  languageName: node
+  linkType: hard
+
+"@vitest/utils@npm:0.34.6":
+  version: 0.34.6
+  resolution: "@vitest/utils@npm:0.34.6"
+  dependencies:
+    diff-sequences: "npm:^29.4.3"
+    loupe: "npm:^2.3.6"
+    pretty-format: "npm:^29.5.0"
+  checksum: 09a1b2122ceb5541b4f3d64410088e363a36d6e4addf208b6458615ac856adf36c1c9b5431a45ea13a78c30e6a7dcb0696854abe69a710089ffa229356a5202b
   languageName: node
   linkType: hard
 
